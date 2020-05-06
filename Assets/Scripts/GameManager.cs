@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public GameObject menuTop;
-    public GameObject menuBot;
+    [Header("Interface Objects")]
+    public GameObject menuTop, menuBot;
+    public GameObject turnRightTrigger, turnLeftTrigger;
     public GameObject menuContext;
+
+    [Space]
     public GameObject roomStart;
 
     [Header("Exposed Vars for Debugging")]
-    public GameObject roomCurrent;
-    public GameObject roomTarget;
+    public GameObject player;
+    public bool canInteract = false;
+    public ObjectInteraction interactableObject;
+    public GameObject roomCurrent, roomTarget;
     public List<GameObject> rooms;
 
     private void Awake()
@@ -25,39 +32,41 @@ public class GameManager : MonoBehaviour
         {
             room.SetActive(false);
         }
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         HideMenus();
         roomStart.SetActive(true);
-        SetPlayerLocation();
+        InitialisePlayerLocation();
         SetCurrentRoom();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (canInteract && Input.GetButton("Fire2"))
+        {
             ShowContextMenu();
+        }
     }
 
-    void HideMenus()
+    private void HideMenus()
     {
         menuTop.SetActive(false);
         menuBot.SetActive(false);
         menuContext.SetActive(false);
     }
 
-    void ShowContextMenu()
+    private void ShowContextMenu()
     {
         menuContext.SetActive(true);
         menuContext.transform.position = Input.mousePosition;
     }
 
-    void SetPlayerLocation()
+    void InitialisePlayerLocation()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = roomStart.transform.position;
     }
 
@@ -72,9 +81,20 @@ public class GameManager : MonoBehaviour
         roomTarget = destination;
         roomTarget.SetActive(true);
 
-        // Find the player and move them to the destination
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = roomTarget.transform.position;
+        RoomData targetRoomData = roomTarget.GetComponent<RoomData>();
+        if (targetRoomData.playerCanTurn)
+        {
+            player.GetComponent<PlayerMovement>().turnAngle = targetRoomData.allowedTurnAngle;
+            turnLeftTrigger.SetActive(true);
+            turnRightTrigger.SetActive(true);
+        }
+        else
+        {
+            player.GetComponent<PlayerMovement>().canTurn = false;
+            turnLeftTrigger.SetActive(false);
+            turnRightTrigger.SetActive(false);
+        }
 
         // Deactivate the previous room the player was in and set the destination as the new current room
         if (roomCurrent != null)
@@ -82,9 +102,31 @@ public class GameManager : MonoBehaviour
             roomCurrent.SetActive(false);
             roomCurrent = roomTarget;
         }
-
         roomTarget = null;
+        
+        // Return cursor to default image after clicking door
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         print("Entered " + roomCurrent.name);
     }
+
+    public void InteractWithObject(Interaction interactionType)
+    {
+        switch (interactionType)
+        {
+            case Interaction.Inspect:
+                interactableObject.Inspect();
+                break;
+            case Interaction.Interact:
+                interactableObject.Interact();
+                break;
+            case Interaction.PickUp:
+                interactableObject.PickUp();
+                break;
+            default:
+                print("No case in switch statement");
+                break;
+        }
+    }
 }
+
+public enum Interaction {Inspect, Interact, PickUp};

@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public string buttonRight;
     public string buttonLeft;
+    public bool canTurn = true;
+    public int turnAngle = 90;
     
     void Start()
     {
@@ -23,10 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void Turn(string direction)
     {
-        if (direction == "right")
-            transform.Rotate(0, 90, 0);
-        else if (direction == "left")
-            transform.Rotate(0, -90, 0);
+        if (!canTurn) return;
+        
+        switch (direction)
+        {
+            case "right":
+                transform.Rotate(0, turnAngle, 0);
+                break;
+            case "left":
+                transform.Rotate(0, -turnAngle, 0);
+                break;
+        }
     }
 
     public void SetCursor(Texture2D texture)
