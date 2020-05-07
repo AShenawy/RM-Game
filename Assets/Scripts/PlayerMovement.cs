@@ -8,11 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public string buttonLeft;
     public bool canTurn = true;
     public int turnAngle = 90;
-    
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -36,10 +31,5 @@ public class PlayerMovement : MonoBehaviour
                 transform.Rotate(0, -turnAngle, 0);
                 break;
         }
-    }
-
-    public void SetCursor(Texture2D texture)
-    {
-        Cursor.SetCursor(texture, Vector2.zero,CursorMode.Auto);
     }
 }

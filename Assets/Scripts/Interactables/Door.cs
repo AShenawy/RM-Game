@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Door : MonoBehaviour, IPointerClickHandler
+public class Door : ObjectInteraction
 {
     public GameObject targetRoom;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public override void InteractWithObject()
     {
+        base.InteractWithObject();
         GameManager.gm.GoToRoom(targetRoom);
     }
 }

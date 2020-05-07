@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2973292040940949928}
   - component: {fileID: 2973292040940949931}
   - component: {fileID: 2973292040940949909}
-  - component: {fileID: 3727765386825189802}
   - component: {fileID: 5780784468198940062}
   m_Layer: 0
   m_Name: Door
@@ -77,19 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb7c29708874094b92e2cafd97c25b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectDescription: 
+  canPickUp: 0
   targetRoom: {fileID: 0}
---- !u!114 &3727765386825189802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2973292040940949929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682cbad8e1824f3399f6688e2cc1275b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5780784468198940062
 MonoBehaviour:
   m_ObjectHideFlags: 0

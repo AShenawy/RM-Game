@@ -1,26 +1,38 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
     [Header("Interface Objects")]
-    public GameObject menuTop, menuBot;
-    public GameObject turnRightTrigger, turnLeftTrigger;
-    public GameObject menuContext;
+    [SerializeField] private GameObject menuTop;
+    [SerializeField] private GameObject menuBot;
+    [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;
+    [SerializeField] private GameObject menuContext;
+    [Header("Cursor Styles")]
+    [SerializeField] private Texture2D cursorDefault;
+    [SerializeField] private Texture2D cursorInteract;
+    [SerializeField] private Texture2D cursorPointRight;
+    [SerializeField] private Texture2D cursorPointLeft;
+
 
     [Space]
-    public GameObject roomStart;
+    [SerializeField]private GameObject roomStart;
 
     [Header("Exposed Vars for Debugging")]
     public GameObject player;
+
+    public Vector2 mousePos;
     public bool canInteract = false;
     public ObjectInteraction interactableObject;
+    public ObjectInteraction tempInteractObjectReference;
     public GameObject roomCurrent, roomTarget;
     public List<GameObject> rooms;
 
@@ -40,15 +52,37 @@ public class GameManager : MonoBehaviour
         HideMenus();
         roomStart.SetActive(true);
         InitialisePlayerLocation();
-        SetCurrentRoom();
+        
+        // Set current room
+        roomCurrent = roomStart;;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (canInteract && Input.GetButton("Fire2"))
+        if (canInteract)
         {
-            ShowContextMenu();
+            SetCursor(cursorInteract);
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                if(EventSystem.current.IsPointerOverGameObject()) // Make click not work on world objects if mouse over GUI
+                    return;
+                
+                interactableObject.InteractWithObject();
+            }
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                if(EventSystem.current.IsPointerOverGameObject())
+                    return;
+                
+                tempInteractObjectReference = interactableObject;
+                ShowContextMenu();
+            }
+        }
+        else
+        {
+            //SetCursor(cursorDefault);
         }
     }
 
@@ -65,14 +99,14 @@ public class GameManager : MonoBehaviour
         menuContext.transform.position = Input.mousePosition;
     }
 
-    void InitialisePlayerLocation()
+    private void InitialisePlayerLocation()
     {
         player.transform.position = roomStart.transform.position;
     }
-
-    void SetCurrentRoom()
+    
+    public void SetCursor(Texture2D texture)
     {
-        roomCurrent = roomStart;
+        Cursor.SetCursor(texture, Vector2.zero,CursorMode.Auto);
     }
 
     public void GoToRoom(GameObject destination)
@@ -86,14 +120,14 @@ public class GameManager : MonoBehaviour
         if (targetRoomData.playerCanTurn)
         {
             player.GetComponent<PlayerMovement>().turnAngle = targetRoomData.allowedTurnAngle;
-            turnLeftTrigger.SetActive(true);
-            turnRightTrigger.SetActive(true);
+            triggerTurnLeft.SetActive(true);
+            triggerTurnRight.SetActive(true);
         }
         else
         {
             player.GetComponent<PlayerMovement>().canTurn = false;
-            turnLeftTrigger.SetActive(false);
-            turnRightTrigger.SetActive(false);
+            triggerTurnLeft.SetActive(false);
+            triggerTurnRight.SetActive(false);
         }
 
         // Deactivate the previous room the player was in and set the destination as the new current room
@@ -114,18 +148,23 @@ public class GameManager : MonoBehaviour
         switch (interactionType)
         {
             case Interaction.Inspect:
-                interactableObject.Inspect();
+                print(tempInteractObjectReference.InspectObject());
                 break;
             case Interaction.Interact:
-                interactableObject.Interact();
+                tempInteractObjectReference.InteractWithObject();
                 break;
             case Interaction.PickUp:
-                interactableObject.PickUp();
+                tempInteractObjectReference.PickUpObject();
                 break;
             default:
-                print("No case in switch statement");
+                Debug.Log("No case in switch statement");
                 break;
         }
+    }
+
+    public void ClearTempInteractableReference()
+    {
+        tempInteractObjectReference = null;
     }
 }
 
