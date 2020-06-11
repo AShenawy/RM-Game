@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 115463043}
   - component: {fileID: 115463042}
   - component: {fileID: 115463044}
+  - component: {fileID: 115463045}
   m_Layer: 5
   m_Name: TurnRightClick
   m_TagString: Untagged
@@ -545,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115463042
@@ -602,13 +603,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 299963985}
-          m_MethodName: SetCursor
-          m_Mode: 2
+        - m_Target: {fileID: 115463045}
+          m_MethodName: SetCursorImage
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: af634e09ea93bea4b9c224def1d05684,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -618,13 +618,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 299963985}
-          m_MethodName: SetCursor
-          m_Mode: 2
+        - m_Target: {fileID: 299963986}
+          m_MethodName: SetDefaultCursor
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: dbf44f02f0b0f804ea0a502c87ba8c9b,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -645,6 +644,19 @@ MonoBehaviour:
             m_StringArgument: right
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &115463045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115463040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7683d71cf917714468787f3af44a0000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 3
 --- !u!1 &137783288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,11 +1058,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce823f35737ef7b4daadd1b7cf16c4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotSpot: {x: 0, y: 0}
-  cursorDefault: {fileID: 0}
-  cursorInteract: {fileID: 0}
-  cursorPointRight: {fileID: 0}
-  cursorPointLeft: {fileID: 0}
+  hotSpot: {x: 64, y: 0}
+  cursorDefault: {fileID: 2800000, guid: dbf44f02f0b0f804ea0a502c87ba8c9b, type: 3}
+  cursorInteract: {fileID: 2800000, guid: cf813eee95d15044895c9b80cee1a877, type: 3}
+  cursorPointLeft: {fileID: 2800000, guid: 42148b96839a9e44eb0ac199ffd11e0e, type: 3}
+  cursorPointRight: {fileID: 2800000, guid: af634e09ea93bea4b9c224def1d05684, type: 3}
 --- !u!1 &322290646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4418,7 @@ GameObject:
   - component: {fileID: 2086164245}
   - component: {fileID: 2086164244}
   - component: {fileID: 2086164246}
+  - component: {fileID: 2086164247}
   m_Layer: 5
   m_Name: TurnLeftClick
   m_TagString: Untagged
@@ -4429,7 +4442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086164244
@@ -4486,13 +4499,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 299963985}
-          m_MethodName: SetCursor
-          m_Mode: 2
+        - m_Target: {fileID: 2086164247}
+          m_MethodName: SetCursorImage
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 42148b96839a9e44eb0ac199ffd11e0e,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -4502,13 +4514,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 299963985}
-          m_MethodName: SetCursor
-          m_Mode: 2
+        - m_Target: {fileID: 299963986}
+          m_MethodName: SetDefaultCursor
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: dbf44f02f0b0f804ea0a502c87ba8c9b,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -4529,6 +4540,19 @@ MonoBehaviour:
             m_StringArgument: left
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2086164247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086164242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7683d71cf917714468787f3af44a0000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 2
 --- !u!1 &2125245411
 GameObject:
   m_ObjectHideFlags: 0

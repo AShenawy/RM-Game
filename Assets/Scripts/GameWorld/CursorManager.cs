@@ -1,25 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    public Vector2 hotSpot = Vector2.zero;
-
     [Header("Cursor Styles")]
     [SerializeField] private Texture2D cursorDefault;
     [SerializeField] private Texture2D cursorInteract;
-    [SerializeField] private Texture2D cursorPointRight;
     [SerializeField] private Texture2D cursorPointLeft;
+    [SerializeField] private Texture2D cursorPointRight;
 
     // Make Cursor Manager a singleton
     #region Singleton
     public static CursorManager instance;
     private void Awake()
     {
-        if(instance = null)
-            instance = GetComponent<CursorManager>();
+        if(instance == null)
+            instance = this;
     }
     #endregion
 
@@ -29,10 +26,9 @@ public class CursorManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetDefaultCursor()
     {
-        
+        SetCursor(CursorTypes.Default);
     }
 
     public void SetCursor(CursorTypes cursorType)
@@ -46,21 +42,21 @@ public class CursorManager : MonoBehaviour
             
             // If cursor is pointing at something player can interact with
             case CursorTypes.Interact:
-                Cursor.SetCursor(cursorInteract, Vector2.zero, CursorMode.ForceSoftware);
+                Cursor.SetCursor(cursorInteract, Vector2.zero, CursorMode.Auto);
                 break;
             
             // If cursor is at left edge of screen to turn
             case CursorTypes.turnLeft:
-                Cursor.SetCursor(cursorInteract, Vector2.zero, CursorMode.ForceSoftware);
+                Cursor.SetCursor(cursorPointLeft, Vector2.zero, CursorMode.Auto);
                 break;
             
             // If cursor is at right edge of screen to turn
             case CursorTypes.turnRight:
-                Cursor.SetCursor(cursorInteract, Vector2.zero, CursorMode.ForceSoftware);
+                Cursor.SetCursor(cursorPointRight, new Vector2(cursorPointRight.width, 0), CursorMode.Auto);
                 break;
             
             default:
-                Cursor.SetCursor(cursorDefault, hotSpot, CursorMode.Auto);
+                Cursor.SetCursor(cursorDefault, Vector2.zero, CursorMode.Auto);
                 break;
         }
     }

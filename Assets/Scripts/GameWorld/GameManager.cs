@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Check if not existing and assign as singleton
-        if(instance = null)
-            instance = GetComponent<GameManager>();   
+        if(instance == null)
+            instance = this;   
     }
     private void Start()
     {
@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetButtonUp("Fire1"))
             {
-                if(EventSystem.current.IsPointerOverGameObject()) // Make click not work on world objects if mouse over GUI
+                // Make click not work on world objects if mouse is over GUI
+                if (EventSystem.current.IsPointerOverGameObject())
                     return;
                 
                 interactableObject.InteractWithObject();
