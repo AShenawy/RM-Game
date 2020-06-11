@@ -6,55 +6,47 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
-using Cursor = UnityEngine.Cursor;
+
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gm;
+    // make game manager a singleton
+    public static GameManager instance;
+    
+    [Header("World Objects")]
+    public GameObject player;
+    
+    [SerializeField] private GameObject[] rooms;
+    [SerializeField] private GameObject roomStart;
+
     [Header("Interface Objects")]
     [SerializeField] private GameObject menuTop;
     [SerializeField] private GameObject menuBot;
     [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;
     [SerializeField] private GameObject menuContext;
-    [Header("Cursor Styles")]
-    [SerializeField] private Texture2D cursorDefault;
-    [SerializeField] private Texture2D cursorInteract;
-    [SerializeField] private Texture2D cursorPointRight;
-    [SerializeField] private Texture2D cursorPointLeft;
-
-
-    [Space]
-    [SerializeField]private GameObject roomStart;
 
     [Header("Exposed Vars for Debugging")]
-    public GameObject player;
-
     public Vector2 mousePos;
     public bool canInteract = false;
     public ObjectInteraction interactableObject;
     public ObjectInteraction tempInteractObjectReference;
     public GameObject roomCurrent, roomTarget;
-    public List<GameObject> rooms;
 
     private void Awake()
     {
-        gm = GetComponent<GameManager>();
-        rooms.AddRange(GameObject.FindGameObjectsWithTag("Room"));
-        foreach(GameObject room in rooms)
-        {
-            room.SetActive(false);
-        }
-        player = GameObject.FindGameObjectWithTag("Player");
+        // Check if not existing and assign as singleton
+        if(instance = null)
+            instance = GetComponent<GameManager>();   
     }
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        HideMenus();
-        roomStart.SetActive(true);
-        InitialisePlayerLocation();
+        HideMenus();        // Ensure all menus are hidden
         
-        // Set current room
-        roomCurrent = roomStart;;
+        HideAllRooms();     // Make sure all rooms are inactive at play start
+        roomStart.SetActive(true);      // Make only the starting room where player is the active one
+        roomCurrent = roomStart;        // Set current room
+        
+        InitialisePlayerLocation();     // Make sure the player starts inside the starting room
     }
 
     // Update is called once per frame
@@ -62,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         if (canInteract)
         {
-            SetCursor(cursorInteract);
+            CursorManager.instance.SetCursor(CursorTypes.Interact);
 
             if (Input.GetButtonUp("Fire1"))
             {
@@ -82,7 +74,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // this is commented out because when active the cursor is always stuck in default texture
             //SetCursor(cursorDefault);
+        }
+    }
+
+    private void HideAllRooms()
+    {
+        for(int i = 0; i < rooms.Length; i++)
+        {
+            rooms[i].SetActive(false);
         }
     }
 
@@ -102,11 +103,6 @@ public class GameManager : MonoBehaviour
     private void InitialisePlayerLocation()
     {
         player.transform.position = roomStart.transform.position;
-    }
-    
-    public void SetCursor(Texture2D texture)
-    {
-        Cursor.SetCursor(texture, Vector2.zero,CursorMode.Auto);
     }
 
     public void GoToRoom(GameObject destination)
@@ -139,8 +135,9 @@ public class GameManager : MonoBehaviour
         roomTarget = null;
         
         // Return cursor to default image after clicking door
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        print("Entered " + roomCurrent.name);
+        CursorManager.instance.SetCursor(CursorTypes.Default);
+        
+        print("Entered " + roomCurrent.name); // for debugging
     }
 
     public void InteractWithObject(Interaction interactionType)
@@ -157,14 +154,9 @@ public class GameManager : MonoBehaviour
                 tempInteractObjectReference.PickUpObject();
                 break;
             default:
-                Debug.Log("No case in switch statement");
+                Debug.LogWarning("No case in switch statement");
                 break;
         }
-    }
-
-    public void ClearTempInteractableReference()
-    {
-        tempInteractObjectReference = null;
     }
 }
 

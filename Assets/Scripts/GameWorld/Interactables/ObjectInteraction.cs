@@ -25,14 +25,14 @@ public class ObjectInteraction : MonoBehaviour
         {
             if (hit.collider == objectCollider)
             {
-                GameManager.gm.canInteract = true;
-                GameManager.gm.interactableObject = this; 
+                GameManager.instance.canInteract = true;
+                GameManager.instance.interactableObject = this; 
             }
         }
         else
         {
-            GameManager.gm.canInteract = false;
-            GameManager.gm.interactableObject = null;
+            GameManager.instance.canInteract = false;
+            GameManager.instance.interactableObject = null;
         }
     }
 

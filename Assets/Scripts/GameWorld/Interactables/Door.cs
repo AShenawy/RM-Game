@@ -9,7 +9,7 @@ public class Door : ObjectInteraction
     public override void InteractWithObject()
     {
         base.InteractWithObject();
-        GameManager.gm.GoToRoom(targetRoom);
+        GameManager.instance.GoToRoom(targetRoom);
     }
 }
    

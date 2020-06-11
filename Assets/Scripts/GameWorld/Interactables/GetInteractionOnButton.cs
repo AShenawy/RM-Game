@@ -8,6 +8,6 @@ public class GetInteractionOnButton : MonoBehaviour
 
     public void DoInteraction()
     {
-        GameManager.gm.InteractWithObject(interactionType);
+        GameManager.instance.InteractWithObject(interactionType);
     }
 }
