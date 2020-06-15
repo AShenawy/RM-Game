@@ -95,10 +95,19 @@ public class GameManager : MonoBehaviour
         menuContext.SetActive(false);
     }
 
-    private void ShowContextMenu()
+    // Hides the mouse's context menu
+    public void HideConextMenu()
+    {
+        menuContext.SetActive(false);
+        RotationTriggersActive(true);
+    }
+
+    // shows the mouse's context menu
+    void ShowContextMenu()
     {
         menuContext.SetActive(true);
         menuContext.transform.position = Input.mousePosition;
+        RotationTriggersActive(false);
     }
 
     private void InitialisePlayerLocation()
@@ -117,14 +126,12 @@ public class GameManager : MonoBehaviour
         if (targetRoomData.playerCanTurn)
         {
             player.GetComponent<PlayerMovement>().turnAngle = targetRoomData.allowedTurnAngle;
-            triggerTurnLeft.SetActive(true);
-            triggerTurnRight.SetActive(true);
+            RotationTriggersActive(true);
         }
         else
         {
             player.GetComponent<PlayerMovement>().canTurn = false;
-            triggerTurnLeft.SetActive(false);
-            triggerTurnRight.SetActive(false);
+            RotationTriggersActive(false);
         }
 
         // Deactivate the previous room the player was in and set the destination as the new current room
@@ -158,6 +165,12 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("No case in switch statement");
                 break;
         }
+    }
+
+    void RotationTriggersActive(bool value)
+    {
+        triggerTurnLeft.SetActive(value);
+        triggerTurnRight.SetActive(value);
     }
 }
 
