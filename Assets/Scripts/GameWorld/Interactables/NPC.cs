@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is for non-playable characters (NPCs) which the player will interact with
 public class NPC : ObjectInteraction
 {
-    [TextArea] public string textDialogue;
+    [TextArea] public string[] textDialogues;
 
     public override void InteractWithObject()
     {
@@ -14,7 +15,8 @@ public class NPC : ObjectInteraction
 
     void Talk()
     {
-        print(textDialogue);
+        // feed text dialogues to dialogue output box
+        DialogueHandler.instance.DisplayDialogue(textDialogues);
     }
 }
    

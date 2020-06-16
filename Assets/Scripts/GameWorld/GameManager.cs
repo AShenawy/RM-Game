@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 // This class handles the games main information and player details
@@ -16,13 +10,13 @@ public class GameManager : MonoBehaviour
     [Header("World Objects")]
     public GameObject player;
 
-    [SerializeField] private GameObject[] rooms;
-    [SerializeField] private GameObject roomStart;
+    [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
+    [SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
 
     [Header("Interface Objects")]
-    [SerializeField] private GameObject menuTop;
-    [SerializeField] private GameObject menuBot;
-    [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;
+    [SerializeField] private GameObject inventoryPanel; // ref to inventory UI panel
+    [SerializeField] private GameObject dialoguePanel;  // ref to dialogue UI panel
+    [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;  // ref to right/left UI panels
     
 
     [Header("Exposed Vars for Debugging")]
@@ -90,8 +84,8 @@ public class GameManager : MonoBehaviour
 
     private void HideGUI()
     {
-        menuTop.SetActive(false);
-        menuBot.SetActive(false);
+        inventoryPanel.SetActive(false);
+        dialoguePanel.SetActive(false);
     }
 
     private void InitialisePlayerLocation()
