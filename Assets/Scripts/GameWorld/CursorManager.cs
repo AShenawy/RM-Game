@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This script handles the mouse cursor and mouse context menu
 public class CursorManager : MonoBehaviour
 {
+    [SerializeField] private GameObject menuContext;    // ref to the context menu GO
+
     [Header("Cursor Styles")]
     [SerializeField] private Texture2D cursorDefault;
     [SerializeField] private Texture2D cursorInteract;
     [SerializeField] private Texture2D cursorPointLeft;
     [SerializeField] private Texture2D cursorPointRight;
 
-    // Make Cursor Manager a singleton
+
+    // Make this class a singleton
     #region Singleton
     public static CursorManager instance;
     private void Awake()
@@ -24,8 +29,26 @@ public class CursorManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        HideContextMenu();
     }
 
+    // shows the mouse's context menu
+    public void ShowContextMenu()
+    {
+        menuContext.SetActive(true);    // show the menu
+        menuContext.transform.position = Input.mousePosition;   // show the menu at the mouse's location
+        GameManager.instance.RotationTriggersActive(false);     // prevent player from turning when context menu is up
+    }
+
+    // Hides the mouse's context menu
+    public void HideContextMenu()
+    {
+        menuContext.SetActive(false);       // hide the menu
+        GameManager.instance.RotationTriggersActive(true);      // return player ability to turn
+    }
+
+    // Allows to directly set cursor to default without giving enum arguments (SetCursor method).
+    // Useful when invoked by buttons and GUI, since it doesn't support enum arguments.
     public void SetDefaultCursor()
     {
         SetCursor(CursorTypes.Default);

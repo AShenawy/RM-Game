@@ -1295,8 +1295,6 @@ MonoBehaviour:
   menuBot: {fileID: 1390024187}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
-  menuContext: {fileID: 1277399702}
-  mousePos: {x: 0, y: 0}
   canInteract: 0
   interactableObject: {fileID: 0}
   tempInteractObjectReference: {fileID: 0}
@@ -1314,6 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce823f35737ef7b4daadd1b7cf16c4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuContext: {fileID: 1277399702}
   cursorDefault: {fileID: 2800000, guid: dbf44f02f0b0f804ea0a502c87ba8c9b, type: 3}
   cursorInteract: {fileID: 2800000, guid: cf813eee95d15044895c9b80cee1a877, type: 3}
   cursorPointLeft: {fileID: 2800000, guid: 42148b96839a9e44eb0ac199ffd11e0e, type: 3}
@@ -2682,8 +2681,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 299963985}
-        m_MethodName: HideConextMenu
+      - m_Target: {fileID: 299963986}
+        m_MethodName: HideContextMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3572,7 +3571,7 @@ GameObject:
   - component: {fileID: 1277399706}
   - component: {fileID: 1277399705}
   m_Layer: 5
-  m_Name: Conext Menu
+  m_Name: Context Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

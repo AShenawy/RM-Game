@@ -7,15 +7,15 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 
-
+// This class handles the games main information and player details
 public class GameManager : MonoBehaviour
 {
-    // make game manager a singleton
+    // make this a singleton class
     public static GameManager instance;
-    
+
     [Header("World Objects")]
     public GameObject player;
-    
+
     [SerializeField] private GameObject[] rooms;
     [SerializeField] private GameObject roomStart;
 
@@ -23,10 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuTop;
     [SerializeField] private GameObject menuBot;
     [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;
-    [SerializeField] private GameObject menuContext;
+    
 
     [Header("Exposed Vars for Debugging")]
-    public Vector2 mousePos;
     public bool canInteract = false;
     public ObjectInteraction interactableObject;
     public ObjectInteraction tempInteractObjectReference;
@@ -35,18 +34,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Check if not existing and assign as singleton
-        if(instance == null)
-            instance = this;   
+        if (instance == null)
+            instance = this;
     }
+
     private void Start()
     {
-        HideMenus();        // Ensure all menus are hidden
-        
-        HideAllRooms();     // Make sure all rooms are inactive at play start
-        roomStart.SetActive(true);      // Make only the starting room where player is the active one
-        roomCurrent = roomStart;        // Set current room
-        
-        InitialisePlayerLocation();     // Make sure the player starts inside the starting room
+        HideGUI(); // Ensure all menus are hidden
+
+        HideAllRooms(); // Make sure all rooms are inactive at play start
+        roomStart.SetActive(true); // Make only the starting room where player is the active one
+        roomCurrent = roomStart; // Set current room
+
+        InitialisePlayerLocation(); // Make sure the player starts inside the starting room
     }
 
     // Update is called once per frame
@@ -61,16 +61,16 @@ public class GameManager : MonoBehaviour
                 // Make click not work on world objects if mouse is over GUI
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                
+
                 interactableObject.InteractWithObject();
             }
             else if (Input.GetButtonDown("Fire2"))
             {
-                if(EventSystem.current.IsPointerOverGameObject())
+                if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                
+
                 tempInteractObjectReference = interactableObject;
-                ShowContextMenu();
+                CursorManager.instance.ShowContextMenu();
             }
         }
         else
@@ -82,32 +82,16 @@ public class GameManager : MonoBehaviour
 
     private void HideAllRooms()
     {
-        for(int i = 0; i < rooms.Length; i++)
+        for (var i = 0; i < rooms.Length; i++)
         {
             rooms[i].SetActive(false);
         }
     }
 
-    private void HideMenus()
+    private void HideGUI()
     {
         menuTop.SetActive(false);
         menuBot.SetActive(false);
-        menuContext.SetActive(false);
-    }
-
-    // Hides the mouse's context menu
-    public void HideConextMenu()
-    {
-        menuContext.SetActive(false);
-        RotationTriggersActive(true);
-    }
-
-    // shows the mouse's context menu
-    void ShowContextMenu()
-    {
-        menuContext.SetActive(true);
-        menuContext.transform.position = Input.mousePosition;
-        RotationTriggersActive(false);
     }
 
     private void InitialisePlayerLocation()
@@ -140,11 +124,12 @@ public class GameManager : MonoBehaviour
             roomCurrent.SetActive(false);
             roomCurrent = roomTarget;
         }
+
         roomTarget = null;
-        
+
         // Return cursor to default image after clicking door
         CursorManager.instance.SetCursor(CursorTypes.Default);
-        
+
         print("Entered " + roomCurrent.name); // for debugging
     }
 
@@ -167,11 +152,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void RotationTriggersActive(bool value)
+    public void RotationTriggersActive(bool value)
     {
         triggerTurnLeft.SetActive(value);
         triggerTurnRight.SetActive(value);
     }
 }
 
-public enum Interaction {Inspect, Interact, PickUp};
+public enum Interaction { Inspect, Interact, PickUp };

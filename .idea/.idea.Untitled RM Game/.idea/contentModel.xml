@@ -7,22 +7,37 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
-          <e p="GameManager.cs" t="Include" />
-          <e p="HideObject.cs" t="Include" />
-          <e p="Interactables" t="Include">
-            <e p="Door.cs" t="Include" />
-            <e p="GetInteractionOnButton.cs" t="Include" />
-            <e p="NPC.cs" t="Include" />
-            <e p="ObjectInteraction.cs" t="Include" />
-            <e p="Operate.cs" t="Include" />
-            <e p="PickUp.cs" t="Include" />
+          <e p="DBManagement" t="Include">
+            <e p="DatabaseConnector.cs" t="Include" />
+            <e p="StudentData.cs" t="Include" />
+            <e p="SupervisorData.cs" t="Include" />
+            <e p="TopicData.cs" t="Include" />
           </e>
-          <e p="Obsolete" t="Include">
-            <e p="MouseLimit.cs" t="Include" />
+          <e p="GameWorld" t="Include">
+            <e p="CursorManager.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="Helper Scripts" t="Include">
+              <e p="GetInteractionOnButton.cs" t="Include" />
+              <e p="SetCursorType.cs" t="Include" />
+            </e>
+            <e p="HideObject.cs" t="Include" />
+            <e p="Interactables" t="Include">
+              <e p="Door.cs" t="Include" />
+              <e p="NPC.cs" t="Include" />
+              <e p="ObjectInteraction.cs" t="Include" />
+              <e p="Operate.cs" t="Include" />
+              <e p="PickUp.cs" t="Include" />
+            </e>
+            <e p="Inventory" t="Include">
+              <e p="Item.cs" t="Include" />
+            </e>
+            <e p="Obsolete" t="Include">
+              <e p="MouseLimit.cs" t="Include" />
+            </e>
+            <e p="PlayerMovement.cs" t="Include" />
+            <e p="RoomData.cs" t="Include" />
+            <e p="ShowObject.cs" t="Include" />
           </e>
-          <e p="PlayerMovement.cs" t="Include" />
-          <e p="RoomData.cs" t="Include" />
-          <e p="ShowObject.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
