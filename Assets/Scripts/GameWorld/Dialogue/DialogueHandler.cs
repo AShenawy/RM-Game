@@ -24,11 +24,6 @@ public class DialogueHandler : MonoBehaviour
     private int progressionIndex = 0;
     private string text;
 
-    private void Start()
-    {
-
-    }
-
     public void AdvanceDialogue()
     {
         // moves to the next block of dialogue
