@@ -17,26 +17,49 @@ public class DialogueHandler : MonoBehaviour
     }
     #endregion  
 
-    private Text textDisplay;
+    [SerializeField] private Text textDisplay;
+    [SerializeField] private GameObject dialoguePanel;
+
+    private string[] dialoguePieces;
+    private int progressionIndex = 0;
+    private string text;
 
     private void Start()
     {
-        textDisplay = GetComponent<Text>();
+
     }
 
     public void AdvanceDialogue()
     {
         // moves to the next block of dialogue
+
+        // check which section of the dialogue array it's at
+        if (progressionIndex < dialoguePieces.Length)
+        {
+            //text = dialoguePieces[progressionIndex];
+            textDisplay.text = dialoguePieces[progressionIndex];
+            progressionIndex++;
+        }
+        else
+            EndDialogue();
     }
 
     public void DisplayDialogue(string[] inDialogues)
     {
         // Display the dialogue box and text
-        print("Text dialogue");
+
+        dialoguePanel.SetActive(true);  // display the dialogue panel
+        dialoguePieces = inDialogues;   // store incoming dialogue array
+        AdvanceDialogue();      // start going through the dialogue blocks
+        
+        Debug.Log("Displaying dialogue box");
     }
 
     void EndDialogue()
     {
         // ends the dialogue and hides the dialogue box
+        progressionIndex = 0;   // reset the index for the next dialogue interaction
+        Debug.Log("Dialogue has ended. Hiding Dialogue box");
+        dialoguePanel.SetActive(false);
     }
 }

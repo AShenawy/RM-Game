@@ -2323,7 +2323,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 587584453}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 786104083}
+        m_MethodName: AdvanceDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &587584453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,10 +2503,9 @@ MonoBehaviour:
 '
   canPickUp: 0
   textDialogues:
-  - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua.
-  - 'Ac turpis egestas integer eget aliquet nibh praesent tristique. '
-  - 'Ac turpis egestas integer eget aliquet nibh praesent tristique. '
+  - "I'm a dude with a beer in my hand\t"
+  - I'm a four-eyed douche
+  - Fuck this shit!
 --- !u!65 &661879263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2527,6 +2537,7 @@ GameObject:
   - component: {fileID: 786104081}
   - component: {fileID: 786104080}
   - component: {fileID: 786104082}
+  - component: {fileID: 786104083}
   m_Layer: 5
   m_Name: Bot UI
   m_TagString: Untagged
@@ -2634,6 +2645,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 0
+--- !u!114 &786104083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786104078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc017cba0e2d4fd4b830bbd557331b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 1518387989}
+  dialoguePanel: {fileID: 1390024187}
 --- !u!1 &810788789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4499,7 +4524,6 @@ GameObject:
   - component: {fileID: 1518387988}
   - component: {fileID: 1518387990}
   - component: {fileID: 1518387989}
-  - component: {fileID: 1518387991}
   m_Layer: 5
   m_Name: Text Display
   m_TagString: Untagged
@@ -4567,18 +4591,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518387987}
   m_CullTransparentMesh: 0
---- !u!114 &1518387991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518387987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc017cba0e2d4fd4b830bbd557331b87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1532049900
 GameObject:
   m_ObjectHideFlags: 0
