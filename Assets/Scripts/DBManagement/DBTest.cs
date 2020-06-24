@@ -6,7 +6,7 @@ public class DBTest : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI supervisor, title, expectedOutcome;
 
-    private void Start()
+    void Start()
     {
         var topics = DataAccess.GetTopics();
         var supervisors = DataAccess.GetSupervisors();
@@ -15,7 +15,7 @@ public class DBTest : MonoBehaviour
         {
             if (topic.Student_ID != 0)
             {
-                //Topic was taken
+                //Topic was chosen / not available
             }
 
             title.text = topic.Title;

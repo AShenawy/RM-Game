@@ -5,9 +5,11 @@ using UnityEngine;
 
 public static class DataAccess
 {
+    static string connector = $"URI=file:{ Application.dataPath }/MethodicaDB.db";
+
     public static List<StudentData> GetStudents()
     {
-        using (IDbConnection connection = new SqliteConnection($"URI=file:{ Application.dataPath }/MethodicaDB.db"))
+        using (IDbConnection connection = new SqliteConnection(connector))
         {
             connection.Open();
             using (IDbCommand command = new SqliteCommand("SELECT * FROM Student", connection as SqliteConnection))
@@ -32,7 +34,7 @@ public static class DataAccess
     }
     public static List<SupervisorData> GetSupervisors()
     {
-        using (IDbConnection connection = new SqliteConnection($"URI=file:{ Application.dataPath }/MethodicaDB.db"))
+        using (IDbConnection connection = new SqliteConnection(connector))
         {
             connection.Open();
             using (IDbCommand command = new SqliteCommand("SELECT * FROM Supervisor", connection as SqliteConnection))
@@ -57,7 +59,7 @@ public static class DataAccess
     }
     public static List<TopicData> GetTopics()
     {
-        using (IDbConnection connection = new SqliteConnection($"URI=file:{ Application.dataPath }/MethodicaDB.db"))
+        using (IDbConnection connection = new SqliteConnection(connector))
         {
             connection.Open();
             using (IDbCommand command = new SqliteCommand("SELECT * FROM Topic", connection as SqliteConnection))
