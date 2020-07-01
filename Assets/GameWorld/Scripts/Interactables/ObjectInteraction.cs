@@ -1,62 +1,65 @@
 ﻿using UnityEngine;
 
-public class ObjectInteraction : MonoBehaviour
+namespace GameWorld
 {
-    [TextArea]
-    public string objectDescription;
-    public bool canPickUp;
-
-    //private Collider2D objectCollider;
-    private Collider objectCollider;
-            
-    private void Start()
+    public class ObjectInteraction : MonoBehaviour
     {
-        //objectCollider = GetComponent<Collider2D>();
-        objectCollider = GetComponent<Collider>();
-    }
-    
-    private void Update()
-    {
-        // Vector2 mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        [TextArea]
+        public string objectDescription;
+        public bool canPickUp;
 
-        // if (objectCollider.bounds.Contains(mouseRay.direction))
-        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity))
+        //private Collider2D objectCollider;
+        private Collider objectCollider;
+
+        private void Start()
         {
-            if (hit.collider == objectCollider)
+            //objectCollider = GetComponent<Collider2D>();
+            objectCollider = GetComponent<Collider>();
+        }
+
+        private void Update()
+        {
+            // Vector2 mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            // if (objectCollider.bounds.Contains(mouseRay.direction))
+            if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity))
             {
-                GameManager.instance.canInteract = true;
-                GameManager.instance.interactableObject = this; 
+                if (hit.collider == objectCollider)
+                {
+                    GameManager.instance.canInteract = true;
+                    GameManager.instance.interactableObject = this;
+                }
+            }
+            else
+            {
+                GameManager.instance.canInteract = false;
+                GameManager.instance.interactableObject = null;
             }
         }
-        else
-        {
-            GameManager.instance.canInteract = false;
-            GameManager.instance.interactableObject = null;
-        }
-    }
 
-    public virtual string InspectObject()
-    {
-        print("Inspecting " + name);
-        
-        return objectDescription;
-    }
-    
-    public virtual void InteractWithObject()
-    {
-        print("Interacting with " + name);
-    }
+        public virtual string InspectObject()
+        {
+            print("Inspecting " + name);
 
-    public virtual void PickUpObject()
-    {
-        if (canPickUp)
-        {
-            print("Picked up " + name);
+            return objectDescription;
         }
-        else
+
+        public virtual void InteractWithObject()
         {
-            print("Cannot pick up " + name);
+            print("Interacting with " + name);
+        }
+
+        public virtual void PickUpObject()
+        {
+            if (canPickUp)
+            {
+                print("Picked up " + name);
+            }
+            else
+            {
+                print("Cannot pick up " + name);
+            }
         }
     }
 }

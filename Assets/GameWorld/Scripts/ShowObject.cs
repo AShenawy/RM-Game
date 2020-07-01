@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowObject : MonoBehaviour
+namespace GameWorld
 {
-    public void Show(GameObject gameObject)
+    public class ShowObject : MonoBehaviour
     {
-        gameObject.SetActive(true);
+        public void Show(GameObject gameObject)
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

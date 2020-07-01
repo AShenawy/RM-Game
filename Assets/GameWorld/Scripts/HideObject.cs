@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HideObject : MonoBehaviour
+namespace GameWorld
 {
-    public void Hide(GameObject gameObject)
+    public class HideObject : MonoBehaviour
     {
-        gameObject.SetActive(false);
-    }
+        public void Hide(GameObject gameObject)
+        {
+            gameObject.SetActive(false);
+        }
 
+    }
 }
