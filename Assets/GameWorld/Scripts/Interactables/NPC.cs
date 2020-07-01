@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameWorld;
 
 // This script is for non-playable characters (NPCs) which the player will interact with
 public class NPC : ObjectInteraction

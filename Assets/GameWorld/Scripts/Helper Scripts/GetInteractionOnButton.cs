@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
-
-// This script is for context menu buttons. Since the OnClick() event built in buttons doesn't accept
-// enums, this script will make the button activate DoInteraction() method while the enum value
-// is set in interactionType field.
-public class GetInteractionOnButton : MonoBehaviour
+namespace GameWorld
 {
-    public Interaction interactionType;
-
-    public void DoInteraction()
+    // This script is for context menu buttons. Since the OnClick() event built in buttons doesn't accept
+    // enums, this script will make the button activate DoInteraction() method while the enum value
+    // is set in interactionType field.
+    public class GetInteractionOnButton : MonoBehaviour
     {
-        GameManager.instance.InteractWithObject(interactionType);
+        public Interaction interactionType;
+
+        public void DoInteraction()
+        {
+            GameManager.instance.InteractWithObject(interactionType);
+        }
     }
 }

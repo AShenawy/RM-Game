@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextInput : MonoBehaviour
+namespace GameWorld
 {
-    public Text inputText;
-    public bool isTyping = false;
-
-    // Update is called once per frame
-    void Update()
+    // This script handles the text input when player is required to type into the game.
+    public class TextInput : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            isTyping = !isTyping;
-        }
+        public Text inputText;
+        public bool isTyping = false;
 
-        if (isTyping)
+        // Update is called once per frame
+        void Update()
         {
-            foreach(char c in Input.inputString)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                if (c == '\b' && inputText.text.Length > 0)
+                isTyping = !isTyping;
+            }
+
+            if (isTyping)
+            {
+                foreach (char c in Input.inputString)
                 {
-                    inputText.text = inputText.text.Remove(inputText.text.Length - 1);
-                }
-                else
-                {
-                    inputText.text += c;
+                    if (c == '\b' && inputText.text.Length > 0)
+                    {
+                        inputText.text = inputText.text.Remove(inputText.text.Length - 1);
+                    }
+                    else
+                    {
+                        inputText.text += c;
+                    }
                 }
             }
         }
