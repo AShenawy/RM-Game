@@ -5,23 +5,31 @@ using Methodyca.Database;
 
 public class DBTest : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI supervisor, title, expectedOutcome;
+    //[SerializeField] TextMeshProUGUI supervisor, title, expectedOutcome;
 
     void Start()
     {
         var topics = DataAccess.GetTopics();
         var supervisors = DataAccess.GetSupervisors();
+        var students = DataAccess.GetStudents();
 
-        foreach (var topic in topics)
+        foreach (var item in students)
         {
-            if (topic.Student_ID != 0)
-            {
-                //Topic was chosen / not available
-            }
 
-            title.text = topic.Title;
-            supervisor.text = supervisors.Single(s => s.ID == topic.Supervisor_ID).Name;
-            expectedOutcome.text = topic.ExpectedOutcome;
+            Debug.Log("Student Name: " + item.Name);
+
         }
+
+        //foreach (var topic in topics)
+        //{
+        //    if (topic.Student_ID != 0)
+        //    {
+        //        //Topic was chosen / not available
+        //    }
+
+        //    title.text = topic.Title;
+        //    supervisor.text = supervisors.Single(s => s.ID == topic.Supervisor_ID).Name;
+        //    expectedOutcome.text = topic.ExpectedOutcome;
+        //}
     }
 }

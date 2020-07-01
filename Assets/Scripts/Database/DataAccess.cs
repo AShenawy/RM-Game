@@ -9,7 +9,7 @@ namespace Methodyca.Database
     {
         static string connector = $"URI=file:{ Application.dataPath }/MethodicaDB.db";
 
-        public static List<StudentData> GetStudents()
+        public static IEnumerable<StudentData> GetStudents()
         {
             using (IDbConnection connection = new SqliteConnection(connector))
             {
@@ -18,7 +18,6 @@ namespace Methodyca.Database
                 {
                     using (IDataReader reader = command.ExecuteReader())
                     {
-                        List<StudentData> students = new List<StudentData>();
                         while (reader.Read())
                         {
                             StudentData data = new StudentData(int.Parse(reader["ID"].ToString()),
@@ -27,14 +26,14 @@ namespace Methodyca.Database
                                                             (string)reader["Email"],
                                                             (string)reader["Phone"],
                                                             (string)reader["Comments"]);
-                            students.Add(data);
+                            yield return data;
                         }
-                        return students;
                     }
                 }
             }
         }
-        public static List<SupervisorData> GetSupervisors()
+
+        public static IEnumerable<SupervisorData> GetSupervisors()
         {
             using (IDbConnection connection = new SqliteConnection(connector))
             {
@@ -43,7 +42,6 @@ namespace Methodyca.Database
                 {
                     using (IDataReader reader = command.ExecuteReader())
                     {
-                        List<SupervisorData> supervisor = new List<SupervisorData>();
                         while (reader.Read())
                         {
                             SupervisorData data = new SupervisorData(int.Parse(reader["ID"].ToString()),
@@ -52,14 +50,13 @@ namespace Methodyca.Database
                                                                 (string)reader["Email"],
                                                                 (string)reader["Phone"],
                                                                 (string)reader["Comments"]);
-                            supervisor.Add(data);
+                            yield return data;
                         }
-                        return supervisor;
                     }
                 }
             }
         }
-        public static List<TopicData> GetTopics()
+        public static IEnumerable<TopicData> GetTopics()
         {
             using (IDbConnection connection = new SqliteConnection(connector))
             {
@@ -68,7 +65,6 @@ namespace Methodyca.Database
                 {
                     using (IDataReader reader = command.ExecuteReader())
                     {
-                        List<TopicData> topics = new List<TopicData>();
                         while (reader.Read())
                         {
                             TopicData data = new TopicData(
@@ -85,9 +81,8 @@ namespace Methodyca.Database
                                 (string)reader["ExpringDate"],
                                 (string)reader["Comments"],
                                 (string)reader["Keywords"]);
-                            topics.Add(data);
+                            yield return data;
                         }
-                        return topics;
                     }
                 }
             }
