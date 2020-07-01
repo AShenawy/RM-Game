@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace SortGame
+
+//namespace
+namespace Methodyca.Minigames.SortGame
 {
     // class naming
     public class DragSlot : MonoBehaviour, IDropHandler

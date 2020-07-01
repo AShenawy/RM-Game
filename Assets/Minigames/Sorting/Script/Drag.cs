@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 // Create namespace for each minigame
-namespace SortGame
+namespace Methodyca.Minigames.SortGame
 {
     // Fix class name typo and capitalisation
     public class Drag : MonoBehaviour, IPointerDownHandler
