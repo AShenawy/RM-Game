@@ -1,2 +1,2 @@
-# Gameplay: World
-This branch is about the development of general gameplay, and things related to world navigation and general behaviour the player can perform.
+# Development Branch
+This branch is for accumulation of other working branches and pre-release testing.
