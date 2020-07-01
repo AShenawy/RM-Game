@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using GameWorld;
 
 public class Operate : ObjectInteraction
 {

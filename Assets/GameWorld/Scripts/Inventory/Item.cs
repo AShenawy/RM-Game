@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+// This creates a scriptable object to store data for each inventory item
+[CreateAssetMenu(fileName = "New Item",menuName = "Inventory/Item")]
+public class Item : ScriptableObject
 {
-    // This creates a scriptable object to store data for each inventory item
-    [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
-    public class Item : ScriptableObject
-    {
-        public string itemName;
-        public Sprite itemImage;
-    }
+    public string itemName;
+    public Sprite itemImage;
 }
