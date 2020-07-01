@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using Methodyca.Database;
 
 public class DBTest : MonoBehaviour
@@ -9,15 +7,11 @@ public class DBTest : MonoBehaviour
 
     void Start()
     {
-        var topics = DataAccess.GetTopics();
-        var supervisors = DataAccess.GetSupervisors();
         var students = DataAccess.GetStudents();
 
         foreach (var item in students)
         {
-
             Debug.Log("Student Name: " + item.Name);
-
         }
 
         //foreach (var topic in topics)
