@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     public class ObjectInteraction : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script handles the text input when player is required to type into the game.
     public class TextInput : MonoBehaviour

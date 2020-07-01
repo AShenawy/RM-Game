@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This creates a scriptable object to store data for each inventory item
     [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]

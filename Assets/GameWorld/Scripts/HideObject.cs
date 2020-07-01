@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     public class HideObject : MonoBehaviour
     {

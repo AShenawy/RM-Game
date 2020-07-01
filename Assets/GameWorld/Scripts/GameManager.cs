@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This class handles the games main information and player details
     public class GameManager : MonoBehaviour

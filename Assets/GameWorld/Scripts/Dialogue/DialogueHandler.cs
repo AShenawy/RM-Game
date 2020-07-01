@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script handles the dialogue display in the UI
     public class DialogueHandler : MonoBehaviour

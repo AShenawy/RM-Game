@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script handles player movement in the game world between rooms
     public class PlayerMovement : MonoBehaviour

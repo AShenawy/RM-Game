@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script handles the mouse cursor and mouse context menu
     public class CursorManager : MonoBehaviour

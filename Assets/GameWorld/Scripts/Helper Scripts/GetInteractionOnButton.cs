@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script is for context menu buttons. Since the OnClick() event built in buttons doesn't accept
     // enums, this script will make the button activate DoInteraction() method while the enum value

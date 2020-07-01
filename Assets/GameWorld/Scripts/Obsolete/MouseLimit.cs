@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameWorld
+namespace Methodyca.Core
 {
     // This script limits the cursor movement on screen to specific bounds
     // Currently in Obsolete folder because it's not working. Cursor can still move across all screen freely.
