@@ -4,8 +4,8 @@ namespace Methodyca.Core
 {
   public class ObjectInteraction : MonoBehaviour
   {
-      [TextArea]
-      public string objectDescription;
+      [TextArea, Tooltip("Information when player inspects the object.")]
+      public string inGameDescription;
       public bool canPickUp;
 
       //private Collider2D objectCollider;
@@ -42,7 +42,7 @@ namespace Methodyca.Core
       {
           print("Inspecting " + name);
 
-          return objectDescription;
+          return inGameDescription;
       }
 
       public virtual void InteractWithObject()

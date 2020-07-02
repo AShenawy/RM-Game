@@ -5,6 +5,7 @@ using Methodyca.Core;
 
 public class PickUp : ObjectInteraction
 {
+    public Item item;
 
     public override void InteractWithObject()
     {
@@ -18,11 +19,12 @@ public class PickUp : ObjectInteraction
         base.PickUpObject();
         if (canPickUp)
         {
-            print(name + " added to inventory.");
+            InventoryManager.instance.Add(item);
+            Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
         else
         {
-            print("I can't pick the " + name + " right now");
+            print("I can't pick the " + item.name + " right now");
         }
     }
 }
