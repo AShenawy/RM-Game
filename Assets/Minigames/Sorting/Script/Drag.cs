@@ -16,10 +16,13 @@ namespace Methodyca.Minigames.SortGame
         private RectTransform rectTransform;
         private CanvasGroup canvasGroup;
 
+        //public GameObject this_box.set;
+
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
+            //this_box = GameObject.SetActive(false);
         }
 
 
@@ -51,6 +54,8 @@ namespace Methodyca.Minigames.SortGame
         public void OnPointerDown(PointerEventData eventData)
         {
             Debug.Log("ClickedDragged");
+            
+            
 
         }
 
