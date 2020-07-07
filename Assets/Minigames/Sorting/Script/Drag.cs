@@ -16,7 +16,13 @@ namespace Methodyca.Minigames.SortGame
         private RectTransform rectTransform;
         private CanvasGroup canvasGroup;
 
-        //public GameObject this_box.set;
+        public GameObject box;
+
+
+
+
+
+       
 
         private void Awake()
         {
@@ -47,6 +53,8 @@ namespace Methodyca.Minigames.SortGame
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
 
+            TakeOutOfBox();
+
         }
 
         // This is redundant - No functionality. Can remove or move OnBeginDrag functionality to it,
@@ -59,5 +67,20 @@ namespace Methodyca.Minigames.SortGame
 
         }
 
+        public void PutInBox(GameObject boxType)
+        {
+            box = boxType;
+        }
+
+        public void TakeOutOfBox()
+        {
+            if(box !=null)
+            {
+                box.GetComponent<DragSlot>().Remove(gameObject);
+            }
+            
+        }
+
     }
+        
 }
