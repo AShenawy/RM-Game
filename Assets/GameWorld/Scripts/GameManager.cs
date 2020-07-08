@@ -92,13 +92,17 @@ namespace Methodyca.Core
                 {
                     canInteract = true;
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
+                    print("found something!");
+                }
+                else
+                {
+                    canInteract = false;
+                    interactableObject = null;
+                    CursorManager.instance.SetDefaultCursor();
+                    print("Nothing here!");
                 }
             }
-            else
-            {
-                canInteract = false;
-                interactableObject = null;
-            }
+            
         }
 
         private void HideAllRooms()
