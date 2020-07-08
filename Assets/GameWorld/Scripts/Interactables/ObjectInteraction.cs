@@ -3,54 +3,29 @@ using UnityEngine.UI;
 
 namespace Methodyca.Core
 {
+    // This script is the base class for all interactable game objects in game world
     public class ObjectInteraction : MonoBehaviour
     {
         [TextArea, Tooltip("Information when player inspects the object.")]
         public string inGameDescription;
+        [Tooltip("Whether this object can be picked to inventory or not")]
         public bool canPickUp;
 
-        //private Collider2D objectCollider;
-        private Collider objectCollider;
-
-        private void Start()
-        {
-            //objectCollider = GetComponent<Collider2D>();
-            objectCollider = GetComponent<Collider>();
-        }
-
-        private void Update()
-        {
-            // Vector2 mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-            // if (objectCollider.bounds.Contains(mouseRay.direction))
-            if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity))
-            {
-                if (hit.collider == objectCollider)
-                {
-                    GameManager.instance.canInteract = true;
-                    GameManager.instance.interactableObject = this; 
-                }
-            }
-            else
-            {
-                GameManager.instance.canInteract = false;
-                GameManager.instance.interactableObject = null;
-            }
-        }
-
+        // this method will be overridden for when object is inspected
         public virtual string InspectObject()
         {
             print("Inspecting " + name);
         
             return inGameDescription;
         }
-        
+
+        // this method will be overridden for when object is interacted with
         public virtual void InteractWithObject()
         {
             print("Interacting with " + name);
         }
-        
+
+        // this method will be overridden for when object is picked up
         public virtual void PickUpObject()
         {
             if (canPickUp)

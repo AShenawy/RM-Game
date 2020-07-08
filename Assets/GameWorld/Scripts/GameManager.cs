@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -57,7 +56,7 @@ namespace Methodyca.Core
             {
                 CursorManager.instance.SetCursor(CursorTypes.Interact);
     
-                if (Input.GetButtonUp("Fire1"))
+                if (Input.GetButtonUp("Fire1"))     // ref to LMB
                 {
                     // Make click not work on world objects if mouse is over GUI
                     if (EventSystem.current.IsPointerOverGameObject())
@@ -65,7 +64,7 @@ namespace Methodyca.Core
     
                     interactableObject.InteractWithObject();
                 }
-                else if (Input.GetButtonDown("Fire2"))
+                else if (Input.GetButtonDown("Fire2"))      // ref to RMB
                 {
                     if (EventSystem.current.IsPointerOverGameObject())
                         return;
@@ -80,7 +79,28 @@ namespace Methodyca.Core
                 //SetCursor(cursorDefault);
             }
         }
-    
+
+        private void FixedUpdate()
+        {
+            // cast ray at cursor location onto game world
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            // check if cursor hit an interactable object
+            if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity))
+            {
+                if (hit.collider.GetComponent<ObjectInteraction>())
+                {
+                    canInteract = true;
+                    interactableObject = hit.collider.GetComponent<ObjectInteraction>();
+                }
+            }
+            else
+            {
+                canInteract = false;
+                interactableObject = null;
+            }
+        }
+
         private void HideAllRooms()
         {
             for (var i = 0; i < rooms.Length; i++)
