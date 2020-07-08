@@ -16,7 +16,6 @@ public class PickUp : ObjectInteraction
 
     public override void PickUpObject()
     {
-        base.PickUpObject();
         if (canPickUp)
         {
             InventoryManager.instance.Add(item);

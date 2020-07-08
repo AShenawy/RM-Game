@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,11 +21,12 @@ namespace Methodyca.Core
         [SerializeField] private GameObject dialoguePanel;  // ref to dialogue UI panel
         [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;  // ref to right/left UI panels
     
-        [Header("Exposed Vars for Debugging")]
+        [Header("Script Interaction Vars")]
         public bool canInteract = false;
         public ObjectInteraction interactableObject;
-        public ObjectInteraction tempInteractObjectReference;
-        public GameObject roomCurrent, roomTarget;
+        private ObjectInteraction tempInteractObjectReference;
+        private GameObject roomCurrent, roomTarget;
+        private RoomData roomData;
     
         private void Awake()
         {
@@ -32,16 +34,19 @@ namespace Methodyca.Core
             if (instance == null)
                 instance = this;
         }
-    
+
         private void Start()
         {
-            HideGUI(); // Ensure all menus are hidden
-    
-            HideAllRooms(); // Make sure all rooms are inactive at play start
-            roomStart.SetActive(true); // Make only the starting room where player is the active one
-            roomCurrent = roomStart; // Set current room
-    
-            InitialisePlayerLocation(); // Make sure the player starts inside the starting room
+            #region RoomSetup
+            roomCurrent = roomStart;    // Set current room
+            HideAllRooms();     // Make sure all rooms are inactive at play start
+            GoToRoom(roomStart);    // Initialise first room in scene
+            #endregion
+
+            // Subscribe to context menu event
+            CursorManager.instance.contextMenuDisabled += OnContextMenuDisabled;
+
+            HideGUI();  // Ensure all menus are hidden. KEEP below RoomSetup region
         }
     
         // Update is called once per frame
@@ -71,7 +76,7 @@ namespace Methodyca.Core
             }
             else
             {
-                // this is commented out because when active the cursor is always stuck in default texture
+                // Commented out because when active the cursor is always stuck in default texture
                 //SetCursor(cursorDefault);
             }
         }
@@ -88,11 +93,7 @@ namespace Methodyca.Core
         {
             inventoryPanel.SetActive(false);
             dialoguePanel.SetActive(false);
-        }
-    
-        private void InitialisePlayerLocation()
-        {
-            player.transform.position = roomStart.transform.position;
+            CursorManager.instance.HideContextMenu();
         }
     
         public void GoToRoom(GameObject destination)
@@ -101,60 +102,89 @@ namespace Methodyca.Core
             roomTarget = destination;
             roomTarget.SetActive(true);
     
+            // Check details about destination room
+            CheckRoom(roomTarget);
+            
+            // Move player to target room
             player.transform.position = roomTarget.transform.position;
-            RoomData targetRoomData = roomTarget.GetComponent<RoomData>();
-            if (targetRoomData.playerCanTurn)
+
+            // Deactivate previous room player was in and update current room info (player is now inside)
+            // check and only disable previous room if destination room is different (not the one player is already in)
+            if ((roomCurrent != null) && (roomCurrent != roomTarget))
             {
-                player.GetComponent<PlayerMovement>().turnAngle = targetRoomData.allowedTurnAngle;
-                RotationTriggersActive(true);
+                roomCurrent.SetActive(false);
+
+                // set destination room as new current room
+                roomCurrent = roomTarget;
+            }
+            else if ((roomCurrent != null) && (roomCurrent == roomTarget))
+            {
+                Debug.LogWarning("Warning: Player re-entered the same room.");
+            }
+            else
+            {
+                Debug.LogWarning("Warning: Entering new room while previous room value not set/found.");
+            }
+
+            // clear target room value
+            roomTarget = null;
+
+            ResetCursor();
+
+            // ---- for debugging ----
+            print("Entered " + roomCurrent.name);
+        }
+
+        private void CheckRoom(GameObject room)
+        {
+            // Get room data
+            roomData = room.GetComponent<RoomData>();
+
+            // Check if room allows player to turn or not
+            if (roomData.playerCanTurn)
+            {
+                PlayerMovement movement = player.GetComponent<PlayerMovement>();
+                movement.canTurn = true;
+                movement.turnAngle = roomData.allowedTurnAngle;
+
+                SetTurnTriggersActive(true);
             }
             else
             {
                 player.GetComponent<PlayerMovement>().canTurn = false;
-                RotationTriggersActive(false);
+
+                SetTurnTriggersActive(false);
             }
 
-            if(targetRoomData.isCheckpoint)
+            // Check if entered room is a save checkpoint
+            if (roomData.isCheckpoint)
             {
                 SaveGame();
             }
-    
-            // Deactivate the previous room the player was in and set the destination as the new current room
-            if (roomCurrent != null)
-            {
-                roomCurrent.SetActive(false);
-                roomCurrent = roomTarget;
-            }
-    
-            roomTarget = null;
-    
-            // Return cursor to default image after clicking door
-            CursorManager.instance.SetCursor(CursorTypes.Default);
-            
-            // ---- for debugging ----
-            print("Entered " + roomCurrent.name); 
         }
     
-        public void InteractWithObject(Interaction interactionType)
+        private void ResetCursor()
         {
-            switch (interactionType)
+            // Reset cursor to default image
+            CursorManager.instance.SetDefaultCursor();
+        }
+
+        private void OnContextMenuDisabled(bool isDisabled)
+        {
+            // check if context menu is NOT disabled, then disable player turning
+            if(!isDisabled)
             {
-                case Interaction.Inspect:
-                    print(tempInteractObjectReference.InspectObject());
-                    break;
-                case Interaction.Interact:
-                    tempInteractObjectReference.InteractWithObject();
-                    break;
-                case Interaction.PickUp:
-                    tempInteractObjectReference.PickUpObject();
-                    break;
-                default:
-                    Debug.LogWarning("No case in switch statement");
-                    break;
+                SetTurnTriggersActive(false);
+            }
+            // if context menu IS disabled and room allows turning, let player turn
+            else if(roomData.playerCanTurn)
+            {
+                SetTurnTriggersActive(true);
             }
         }
-    
-        public void RotationTriggersActive(bool value)
+
+        // Enable or disable UI triggers for player turn using mouse
+        public void SetTurnTriggersActive(bool value)
         {
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
@@ -162,7 +192,30 @@ namespace Methodyca.Core
 
         public void SaveGame()
         {
+            //TODO Save the game
             print("Save the current game progress");
+        }
+
+        public void InteractWithObject(Interaction interactionType)
+        {
+            switch (interactionType)
+            {
+                case Interaction.Inspect:
+                    print(tempInteractObjectReference.InspectObject());
+                    break;
+
+                case Interaction.Interact:
+                    tempInteractObjectReference.InteractWithObject();
+                    break;
+
+                case Interaction.PickUp:
+                    tempInteractObjectReference.PickUpObject();
+                    break;
+
+                default:
+                    Debug.LogWarning("No case in switch statement");
+                    break;
+            }
         }
     }
     

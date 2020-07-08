@@ -4,35 +4,29 @@ using UnityEngine;
 
 namespace Methodyca.Core
 {
-  public class PlayerMovement : MonoBehaviour
-  {
-      public string buttonRight;
-      public string buttonLeft;
-      public bool canTurn = true;
-      public int turnAngle = 90;
+    public class PlayerMovement : MonoBehaviour
+    {
+        public bool canTurn = true;
+        public int turnAngle = 90;
+    
+        // Removed ability to turn with keyboard. Player can only turn using on-screen interface
+        //void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.RightArrow) && canTurn)
+        //        RotateClockwise();
 
-      void Update()
-      {
-          if (Input.GetKeyDown(buttonRight))
-              Turn("right");
+        //    if (Input.GetKeyDown(KeyCode.LeftArrow) && canTurn)
+        //        RotateCounterclockwise();
+        //}
+    
+        public void RotateClockwise()
+        {
+            transform.Rotate(0, turnAngle, 0);
+        }
 
-          else if (Input.GetKeyDown(buttonLeft))
-              Turn("left");
-      }
-
-      public void Turn(string direction)
-      {
-          if (!canTurn) return;
-
-          switch (direction)
-          {
-              case "right":
-                  transform.Rotate(0, turnAngle, 0);
-                  break;
-              case "left":
-                  transform.Rotate(0, -turnAngle, 0);
-                  break;
-          }
-      }
-  }
+        public void RotateCounterclockwise()
+        {
+            transform.Rotate(0, -turnAngle, 0);
+        }
+    }
 }

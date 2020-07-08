@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Methodyca.Core;
 
+// This script handles transporting the player between rooms
 public class Door : ObjectInteraction
 {
     public GameObject targetRoom;
