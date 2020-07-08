@@ -11,42 +11,27 @@ namespace Methodyca.Minigames.SortGame
     // class naming
     public class DragSlot : MonoBehaviour, IDropHandler
     {
-        // accessor not explicitly defined in this class. inconsistent with Drag class. Need to choose style.
-        int points = 0;
-        public GameObject crystal_pink;
-        // public GameObject this_box_on;
+        private int points = 0;
+        public GameObject crystalStation;//The charging station either pink or blue.
 
-        // public GameObject ql_on;
-
-        // public bool activation;
-
-
-        //public Manager drag;
-
-        // box position
         private RectTransform position;
 
-        public Sprite[] crystalPhasesPink;
+        public Sprite[] crystalPhases;//The array of crystals charging. 
 
-        public string boxType;
+        public string boxType;//The tag name for the boxes in the game either QA or QN.
         
-        public List <GameObject> inTheBox = new List<GameObject>();
-
-
+        public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped. 
 
 
         private void Start()
         {
             position = GetComponent<RectTransform>();
-           
 
         }
-
-        public void OnDrop(PointerEventData eventData)
+        public void OnDrop(PointerEventData eventData) //Mouse released. 
         {
-            // It's better to move this statement to Start method than to do the check during gameplay.
-            // Can also make the Dock Station GO a variable and assign the object in inspector.
-            if (crystal_pink == null)
+            // A check to see if the objects are placed in the box, represented with charging crystals and to snap items to the box.
+            if (crystalStation == null)
             {
                 return;
             }
@@ -57,64 +42,40 @@ namespace Methodyca.Minigames.SortGame
             }
 
             Debug.Log("Dropped");
-            // The anchoredPosition of the GO this script is on can be made into a variable
-            // Place the item inside box
-            RectTransform thingOnTheTable;
+            //This is basically to define the things on the table and, make them snap to the box when clicked. 
+            RectTransform thingOnTheTable; //the position of the things on the table. 
             thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
-
             thingOnTheTable.anchoredPosition = position.anchoredPosition;
 
-                if(thingOnTheTable.CompareTag(boxType))
-                {
-                    if (points < 5)
-                    {          
-                        // since the points variable isn't initialised it will automatically start at 0.
-                        // However, it's better to explicitly initialise it at the top, since this can be confusing when reading the code
-                        // and only see points++ without a starting value.
-                        points++;
-                        // Better to replace this with Sprite array than load from Resources live. Then the if check will need to be <4 
-                        //Sprite sprite = Resources.Load<Sprite>("ChargingRates/charger_" + points.ToString());
-
-                        Sprite sprite = crystalPhasesPink[points];
-
-                        // Suggest replacing with battery.GetComponent<Image>().sprite for easy debug. Can see it in inspector
-                        //battery.GetComponent<Image>().overrideSprite = sprite;
-                        crystal_pink.GetComponent<Image>().sprite = sprite;
-                        Debug.Log("Change Image");
-                        Debug.Log(points);
-                    } 
-                }
-            
-                   inTheBox.Add(thingOnTheTable.gameObject);
-                   Debug.Log("Addng to the box");
-                   thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
-                    
-                    //The box swtich 
-                    // this_box_on.SetActive(activation);
-                    // Debug.Log("Switch");
-                    // ql_on.SetActive(!activation);
-                    
-                
-            
-
-            
-
-            
-
-
+            //To compare with Tags (QN and QA), with the box and see which enters which. 
+            if(thingOnTheTable.CompareTag(boxType))
+            {
+                //A check to award points if the the right itea is placed in the box. 
+                if (points < 5) //Points is 5 because of the amount of the crystal variations.
+                {          
+                    points++;
+                    //This is basically calling the array created early and attachign the points to call the images in said array. 
+                    Sprite sprite = crystalPhases[points];
+                    crystalStation.GetComponent<Image>().sprite = sprite;
+                    Debug.Log("Charging");
+                    Debug.Log(points);
+                } 
+            }
+            //To check if the itea dropped has beening added to the box or not. 
+            inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
+            Debug.Log("Addng to the box");
+            thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }
-        public void Remove(GameObject thingInTheBox)
+        public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
         {
-            if(thingInTheBox.CompareTag(boxType))
+            if(thingInTheBox.CompareTag(boxType))//A check to see if the tags are correct and if there is a point award to the box already.
             {
                if(points > 0) 
-                    points --;
+                points --;
             }
 
-            inTheBox.Remove(thingInTheBox);
+            inTheBox.Remove(thingInTheBox);//if the check is coming then the item should be removed from the box. 
             Debug.Log("Removing");
         }
-
-
     }
 }
