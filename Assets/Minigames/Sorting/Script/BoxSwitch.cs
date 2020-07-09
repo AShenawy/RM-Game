@@ -8,24 +8,27 @@ using UnityEngine.UI;
 namespace Methodyca.Minigames.SortGame
 {   public class BoxSwitch : MonoBehaviour 
     {
-        public GameObject this_box;
+        //public GameObject this_box;
 
-        public bool activation;
+        //public bool activation;
+
+        public RectTransform boxSpace;
     
     
         // For the boxes to switch layers when after drop has been triggered. 
-
-    // Update is called once per frame
-             void Update()
-             {
-                //swtiching the boxes
-                this_box.SetActive(activation);
-                
-
-
-             }
+        void Start()
+        {
+            boxSpace = GetComponent<RectTransform>(); 
+            Debug.Log(boxSpace.rect);
         }
+        // Update is called once per frame
+        void Update()
+        {
+            //swtiching the boxes
+            //this_box.SetActive(activation);
+        }
+    }
         
             
-    }   
+}   
 
