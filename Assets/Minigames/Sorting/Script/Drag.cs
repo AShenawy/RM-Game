@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Threading;
 
 // Create namespace for each minigame
 namespace Methodyca.Minigames.SortGame
 {
     public class Drag : MonoBehaviour, IPointerDownHandler
-    , IBeginDragHandler, IEndDragHandler, IDragHandler
+    , IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
     {
 
         [SerializeField] private Canvas canvas;
@@ -15,6 +17,12 @@ namespace Methodyca.Minigames.SortGame
         private RectTransform rectTransform;//Transfrom of the item selected.
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
+        public GameObject itemsHD;//The clear vision of the items on the table. 
+        bool turnOn;// for the iteas to turn on. 
+
+        //Float created for the double click function. 
+        private float lastClickTime;
+        private const float doubleClickTime = .25f;
 
         private void Awake()
         {
@@ -50,7 +58,7 @@ namespace Methodyca.Minigames.SortGame
         // so as soon as item is clicked it is transparent
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("ClickedDragged");            
+            //Debug.Log("Clicked");            
         }
 
         //Method to see what is in dropped in the box.
@@ -67,5 +75,28 @@ namespace Methodyca.Minigames.SortGame
                 box.GetComponent<DragSlot>().Remove(gameObject);
             }            
         }
+        //Method On Pointer click to add double click function.
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.pointerEnter)
+            {
+                float timeSince = Time.time - lastClickTime;
+                if (timeSince <= doubleClickTime)
+                {
+                   itemsHD.SetActive(!turnOn);//double click.
+                   Debug.Log("Image Turning On - Double Click");
+                   
+                }           
+                else
+                {
+                   itemsHD.SetActive(turnOn);//turn on the image.
+                   Debug.Log("Off Image");
+                }          
+                lastClickTime= Time.time;
+
+            }
+
+        }
+        
     }      
 }

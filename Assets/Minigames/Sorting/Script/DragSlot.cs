@@ -55,7 +55,7 @@ namespace Methodyca.Minigames.SortGame
                 if (points < 5) //Points is 5 because of the amount of the crystal variations.
                 {          
                     points++;
-                    //This is basically calling the array created early and attaching the points to call the images in said array. 
+                    //This is basically calling the array created to add crystals to the dock. 
                     Sprite sprite = crystalPhases[points];
                     crystalStation.GetComponent<Image>().sprite = sprite;
                     Debug.Log("Charging");
@@ -69,7 +69,7 @@ namespace Methodyca.Minigames.SortGame
         }
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
         {   
-            if (!inTheBox.Remove(thingInTheBox)) //If the obejct isnt in the box it wouldnt remove.
+            if (!inTheBox.Remove(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
             return;
             Debug.Log("Removing");
             if(thingInTheBox.CompareTag(boxType))//A check to see if the tags are correct and if there is a point award to the box already.

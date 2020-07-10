@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Methodyca.Minigames.SortGame
 {
-    public class DropTable : MonoBehaviour, IDropHandler 
+    public class DropTable : MonoBehaviour, IDropHandler //The Remove method to the Game Object: Table. 
     {
         public GameObject boxQuali;
         public GameObject boxQuanti; 
@@ -16,7 +16,7 @@ namespace Methodyca.Minigames.SortGame
             { 
                 return;
             }
-            //calling the method remove from DragSlot to remove from the box to the table
+            //calling the method Remove from DragSlot to remove from the box to the table
             boxQuali.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
             boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
             Debug.Log("Dropped on table");
