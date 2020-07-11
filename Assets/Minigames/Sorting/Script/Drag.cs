@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.SortGame
         private RectTransform rectTransform;//Transfrom of the item selected.
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
-        public GameObject itemsHD;//The clear vision of the items on the table. 
+        //public GameObject itemsHD;//The clear vision of the items on the table. 
         bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
@@ -83,13 +83,13 @@ namespace Methodyca.Minigames.SortGame
                 float timeSince = Time.time - lastClickTime;
                 if (timeSince <= doubleClickTime)
                 {
-                   itemsHD.SetActive(!turnOn);//double click.
+                   //itemsHD.SetActive(!turnOn);//double click.
                    Debug.Log("Image Turning On - Double Click");
                    
                 }           
                 else
                 {
-                   itemsHD.SetActive(turnOn);//turn on the image.
+                   //itemsHD.SetActive(turnOn);//turn on the image.
                    Debug.Log("Off Image");
                 }          
                 lastClickTime= Time.time;
