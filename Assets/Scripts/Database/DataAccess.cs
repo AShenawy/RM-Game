@@ -7,7 +7,9 @@ namespace Methodyca.Database
 {
     public static class DataAccess
     {
-        static string connector = $"URI=file:{ Application.dataPath }/MethodicaDB.db";
+        public static string connector;
+
+        //static string connector = $"URI=file:{ Application.dataPath }/MethodicaDB.db";
 
         public static IEnumerable<StudentData> GetStudents()
         {

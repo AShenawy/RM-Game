@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using Methodyca.Database;
+using UnityEngine.UI;
 
 public class DBTest : MonoBehaviour
 {
     //[SerializeField] TextMeshProUGUI supervisor, title, expectedOutcome;
+    [SerializeField] Text testText;
 
-    void Start()
+    public void GETSTART()
     {
         var students = DataAccess.GetStudents();
 
         foreach (var item in students)
         {
             Debug.Log("Student Name: " + item.Name);
+            testText.text += item.Name + ", ";
         }
 
         //foreach (var topic in topics)
