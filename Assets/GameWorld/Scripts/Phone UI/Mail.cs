@@ -16,6 +16,7 @@ namespace Methodyca.Core
         public void Display()
         {
             isRead = true;
+            GetComponent<Image>().color =  Color.white;
             MailManager.instance.DisplayMail(this);
         }
     }

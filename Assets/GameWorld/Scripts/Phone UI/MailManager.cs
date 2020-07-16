@@ -17,7 +17,9 @@ namespace Methodyca.Core
         }
         #endregion
 
-        public GameObject mailNotifier;
+        [Header("Indicators")]
+        public GameObject mailAppNotifier;
+        public Image inventoryIconNotifier;
 
         [Header("Mail List")]
         public GameObject mailList;
@@ -80,31 +82,35 @@ namespace Methodyca.Core
             // Update unread mail counter
             Mail[] mailReceived = listContent.GetComponentsInChildren<Mail>(true);
 
-            print(mailReceived.Length);
+            // Reset the count to not add up the numbers in below foreach statement
+            unreadMailCount = 0;
 
-            //foreach(Mail mail in mailReceived)
-            //{
-            //    if (!mail.isRead)
-            //        unreadMailCount++;
-            //}
-            
-            Text counter = mailNotifier.GetComponentInChildren<Text>();
+            foreach (Mail mail in mailReceived)
+            {
+                if (!mail.isRead)
+                    unreadMailCount++;
+            }
+
+            Text counter = mailAppNotifier.GetComponentInChildren<Text>();
 
             // check what to display in the message notification
             if(unreadMailCount < 1)
             {
                 counter.text = "";
-                mailNotifier.SetActive(false);  // hide the red notification icon
+                mailAppNotifier.SetActive(false);  // hide notification icon on App
+                inventoryIconNotifier.enabled = false; // hide notification icon on phone inventory icon
             }
             else if(unreadMailCount > 9)
             {
                 counter.text = "9+";
-                mailNotifier.SetActive(true);
+                mailAppNotifier.SetActive(true);
+                inventoryIconNotifier.enabled = true;
             }
             else
             {
                 counter.text = unreadMailCount.ToString();
-                mailNotifier.SetActive(true);
+                mailAppNotifier.SetActive(true);
+                inventoryIconNotifier.enabled = true;
             }
         }
     }
