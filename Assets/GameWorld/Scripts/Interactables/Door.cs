@@ -7,11 +7,15 @@ using Methodyca.Core;
 public class Door : ObjectInteraction
 {
     public GameObject targetRoom;
+    public bool isLocked;
 
     public override void InteractWithObject()
     {
         base.InteractWithObject();
-        GameManager.instance.GoToRoom(targetRoom);
+
+
+        if(!isLocked)
+            GameManager.instance.GoToRoom(targetRoom);
     }
 }
    
