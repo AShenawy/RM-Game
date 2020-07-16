@@ -61,10 +61,12 @@ namespace Methodyca.Minigames.SortGame
                     Debug.Log("Charging");
                     Debug.Log(points);
                 } 
+
+                //To check if the itea dropped has being added to the box or not. 
+                inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
+                Debug.Log("Addng to the box");
             }
-            //To check if the itea dropped has beening added to the box or not. 
-            inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
-            Debug.Log("Addng to the box");
+            
             thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
@@ -72,6 +74,7 @@ namespace Methodyca.Minigames.SortGame
             if (!inTheBox.Remove(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
             return;
             Debug.Log("Removing");
+           
             if(thingInTheBox.CompareTag(boxType))//A check to see if the tags are correct and if there is a point award to the box already.
             {
                if(points > 0) 
