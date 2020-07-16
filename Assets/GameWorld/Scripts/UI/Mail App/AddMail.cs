@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+    // ******** This script was for debugging, is no longer needed and should be deleted *********
 
 namespace Methodyca.Core
 {

@@ -37,7 +37,7 @@ namespace Methodyca.Core
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.M))        // **** This is for debugging and should be deleted ****
                 SendMail(mailSample);
         }
 
@@ -82,7 +82,7 @@ namespace Methodyca.Core
             // Update unread mail counter
             Mail[] mailReceived = listContent.GetComponentsInChildren<Mail>(true);
 
-            // Reset the count to not add up the numbers in below foreach statement
+            // Reset the counter to not add up the numbers in below foreach statement
             unreadMailCount = 0;
 
             foreach (Mail mail in mailReceived)
@@ -97,21 +97,24 @@ namespace Methodyca.Core
             if(unreadMailCount < 1)
             {
                 counter.text = "";
-                mailAppNotifier.SetActive(false);  // hide notification icon on App
-                inventoryIconNotifier.enabled = false; // hide notification icon on phone inventory icon
+                DisplayNotificationIcons(false);
             }
             else if(unreadMailCount > 9)
             {
                 counter.text = "9+";
-                mailAppNotifier.SetActive(true);
-                inventoryIconNotifier.enabled = true;
+                DisplayNotificationIcons(true);
             }
             else
             {
                 counter.text = unreadMailCount.ToString();
-                mailAppNotifier.SetActive(true);
-                inventoryIconNotifier.enabled = true;
+                DisplayNotificationIcons(true);
             }
+        }
+
+        void DisplayNotificationIcons(bool value)
+        {
+            mailAppNotifier.SetActive(value);   // hide notification icon on App
+            inventoryIconNotifier.enabled = value;  // hide notification icon on phone inventory icon
         }
     }
 }
