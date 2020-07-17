@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +13,8 @@ namespace Methodyca.Core
     public class InventorySlot : MonoBehaviour
     {
         public Image icon;
+        public Item item;
 
-        private Item item;
 
         public void AddItem(Item newItem)
         {
@@ -33,6 +34,13 @@ namespace Methodyca.Core
         public void RemoveItem()
         {
             InventoryManager.instance.Remove(item);
+        }
+
+        public void CarryInHand()
+        {
+            PlayerItemHandler player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerItemHandler>();
+
+            player.HoldItem(item);
         }
     }
 }

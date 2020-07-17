@@ -8,14 +8,18 @@ public class Door : ObjectInteraction
 {
     public GameObject targetRoom;
     public bool isLocked;
+    public string unlockItemName;
 
     public override void InteractWithObject()
     {
         base.InteractWithObject();
 
-
-        if(!isLocked)
-            GameManager.instance.GoToRoom(targetRoom);
+        if(isLocked)
+        {
+            // TODO Check if player is using correct item
+        }
+        else
+            GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
     }
 }
    
