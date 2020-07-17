@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
-    [System.Serializable]
+    [Serializable]
     public struct Question
     {
         public string QuestionText;
         public Answer[] Answers;
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct Answer
     {
         public string AnswerText;
@@ -19,18 +21,32 @@ namespace Methodyca.Minigames.Questioniser
 
     public class QuizManager : Singleton<QuizManager>
     {
-        public List<Question> questions;
+        [SerializeField] GameObject quizObject;
+        [SerializeField] List<Question> questions;
+
         public Question CurrentQuestion { get; set; }
-        public static event System.Action<Answer> OnAnswerSelected = delegate { };
+        public event Action<Answer> OnAnswerSelected = delegate { };
 
-        public void SetQuiz()
+        Queue<Question> _availableQuestions = new Queue<Question>();
+
+        public void SetQuizQuestion()
         {
+            if (_availableQuestions.Count > 0)
+                CurrentQuestion = _availableQuestions.Dequeue();
 
+            quizObject.SetActive(true);
         }
 
         public void SelectAnswer(Answer answer)
         {
             OnAnswerSelected?.Invoke(answer);
+            quizObject.SetActive(false);
+        }
+
+        void Start()
+        {
+            for (int i = 0; i < questions.Count; i++)
+                _availableQuestions.Enqueue(questions[i]);
         }
     }
 }

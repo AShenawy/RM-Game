@@ -17,7 +17,7 @@ public class InterestBarUI : MonoBehaviour
 
     void OnEnable()
     {
-        QuizManager.OnAnswerSelected += AnswerSelectedHandler;
+        QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
     }
 
     void AnswerSelectedHandler(Answer answer)
@@ -29,6 +29,6 @@ public class InterestBarUI : MonoBehaviour
 
     void OnDisable()
     {
-        QuizManager.OnAnswerSelected -= AnswerSelectedHandler;
+        QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
     }
 }

@@ -2,11 +2,13 @@
 using System;
 using TMPro;
 using UnityEngine;
-
 namespace Methodyca.Minigames.Questioniser
 {
-    public class Card : MonoBehaviour
+    public class Card : CardBase
     {
+        const float SELECTION_SCALE = 1.2F;
+        const float SELECTION_SCALE_PACE_IN_SEC = 0.25F;
+
         [SerializeField] TextMeshPro actionPoint;
         [SerializeField] TextMeshPro interestPoint;
         [SerializeField] TextMeshPro description;
@@ -22,16 +24,9 @@ namespace Methodyca.Minigames.Questioniser
         public int ActionPoint => _data.ActionPoint;
         public int InterestPoint => _data.InterestPoint;
 
-        public static event Action<Card> OnCardThrown = delegate { };
+        public override event Action<CardBase> OnCardThrown = delegate { };
 
-        void Awake()
-        {
-            _transform = transform;
-            _collider = GetComponent<Collider2D>();
-            _renderer = GetComponent<SpriteRenderer>();
-        }
-
-        public void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
+        public override void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
         {
             _camera = camera;
             _data = data;
@@ -44,18 +39,31 @@ namespace Methodyca.Minigames.Questioniser
             description.text = data.Description;
         }
 
-        public void SetHolder(CardHolder holder)
+        public override void SetHolder(CardHolder holder)
         {
             if (!holder.Cards.Contains(this))
                 holder.Cards.Add(this);
 
-            _collider.enabled = false;
-            transform.DOMove(holder.transform.position, 0.5f).OnComplete(() => _collider.enabled = true);
+            _transform.DOMove(holder.Transform.position, 0.5f).OnStart(() => _collider.enabled = false).OnComplete(() => _collider.enabled = true);
+        }
+
+        protected override void TriggerActionAfterThrown()
+        {
+            QuizManager.Instance.SetQuizQuestion();
+            OnCardThrown?.Invoke(this);
+        }
+
+        void Awake()
+        {
+            _transform = transform;
+            _collider = GetComponent<Collider2D>();
+            _renderer = GetComponent<SpriteRenderer>();
         }
 
         void OnMouseDown()
         {
             _hand.Cards.Remove(this);
+            _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
         }
 
         void OnMouseDrag()
@@ -66,9 +74,10 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnMouseUp()
         {
+            _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
             var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
 
-            if (inputPosition.y > 0.5f && inputPosition.y < 0.75f && inputPosition.x > 0.3f && inputPosition.x < 0.7f)
+            if (inputPosition.y > 0.5f && inputPosition.y < 0.75f && inputPosition.x > 0.4f && inputPosition.x < 0.7f)
                 ThrowCard();
             else
                 ReturnHand();
@@ -98,7 +107,7 @@ namespace Methodyca.Minigames.Questioniser
                 var offset = new Vector2(_collider.bounds.extents.x, _table.Transform.position.y);
                 var horizontalPosition = offset;
 
-                cardsOnTable[i].transform.DOMove(horizontalPosition, 1f).OnComplete(() => OnCardThrown?.Invoke(this));
+                cardsOnTable[i].transform.DOMove(horizontalPosition, 1f).OnComplete(() => TriggerActionAfterThrown());
             }
         }
     }

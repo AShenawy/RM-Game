@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -9,60 +8,53 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Camera sceneCamera;
         [SerializeField] int maxInterestPoint = 10;
         [SerializeField] int initialCardSize = 5;
-        [SerializeField] Card cardPrefab;
+        [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
         [SerializeField] Transform deck;
         [SerializeField] List<CardData> cardData;
 
-        public static event Action OnGameOver = delegate { };
-
         public int InterestPoint { get; set; } = 0;
-        public List<CardData> CardData => cardData;
         public int GetDeckSize => _cardsInDeck.Count;
+        public List<CardData> CardData => cardData;
 
-        List<Card> _cardsInDeck;
+        List<CardBase> _cardsInDeck;
 
         void Start()
         {
-            _cardsInDeck = new List<Card>(GetSpawnedCards());
-            DrawRandomCardsOf(initialCardSize);
+            _cardsInDeck = new List<CardBase>(GetSpawnedCards());
+            DrawRandomCardFromDeck(initialCardSize);
         }
 
         void OnEnable()
         {
-            Card.OnCardThrown += CardThrownHandler;
-            QuizManager.OnAnswerSelected += AnswerSelectedHandler;
+            QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
         }
 
         void AnswerSelectedHandler(Answer answer)
         {
             if (InterestPoint < maxInterestPoint)
                 InterestPoint += answer.Score;
-            else
-                OnGameOver?.Invoke();
+
+            if (answer.IsCorrect)
+                DrawRandomCardFromDeck();
         }
 
-        void CardThrownHandler(Card card)
-        {
-            QuizManager.Instance.SetQuiz();
-        }
-
-        IEnumerable<Card> GetSpawnedCards()
+        IEnumerable<CardBase> GetSpawnedCards()
         {
             for (int j = 0; j < cardData.Count; j++)
             {
                 for (int i = 0; i < cardData[i].SpawnSize; i++)
                 {
-                    var card = Instantiate(cardPrefab);
-                    card.InitializeCard(sceneCamera, cardData[i], hand, table);
-                    card.transform.position = deck.position;
-                    yield return card;
+                    var spawned = Instantiate(cardPrefab);
+                    spawned.InitializeCard(sceneCamera, cardData[i], hand, table);
+                    spawned.transform.position = deck.position;
+                    yield return spawned;
                 }
             }
         }
 
-        void DrawRandomCardsOf(int size)
+        void DrawRandomCardFromDeck(int size = 1)
         {
             for (int i = 0; i < size; i++)
             {
@@ -75,8 +67,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnDisable()
         {
-            Card.OnCardThrown -= CardThrownHandler;
-            QuizManager.OnAnswerSelected -= AnswerSelectedHandler;
+            QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
         }
     }
 }

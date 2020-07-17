@@ -10,7 +10,7 @@ namespace Methodyca.Minigames.Questioniser
 
         private void OnEnable()
         {
-            QuizManager.OnAnswerSelected += AnswerSelectedHandler;
+            QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
         }
 
         private void AnswerSelectedHandler(Answer answer)
@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.Questioniser
         }
         private void OnDisable()
         {
-            QuizManager.OnAnswerSelected -= AnswerSelectedHandler;
+            QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
         }
     }
 }
