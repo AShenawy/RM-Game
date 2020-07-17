@@ -10,6 +10,8 @@ namespace Methodyca.Core
         public string inGameDescription;
         [Tooltip("Whether this object can be picked to inventory or not")]
         public bool canPickUp;
+        [Tooltip("Can the player interact with the object?")]
+        public bool canInteract = true;
 
         // this method will be overridden for when object is inspected
         public virtual string InspectObject()
