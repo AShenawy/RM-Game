@@ -8,32 +8,30 @@ namespace Methodyca.Minigames.SortGame{
 
     public class Test : MonoBehaviour  //IPointerDownHandler 
     {   
-        float currentTIme = 0f;
-        float setTime = 10f;
+        //the inputs.
+        public float degreePerSecond = 20.0f;
+        public float amp = 7f;
+        public float freq = 1f;
+
+        //Storing positios
+        Vector3 posOffset = new Vector3();
+        Vector3 temPos = new Vector3();
 
 
         // Start is called before the first frame update
         void Start()
         { 
-            currentTIme = setTime;
+            posOffset = transform.position;
         }
-
-        // public void OnPointerDown(PointerEventData eventData)
-        // {
-        //     Debug.Log("shouting");
-        // }
 
         // Update is called once per frame
         void Update()
         {
-            currentTIme -= 1 * Time.deltaTime;
-            Debug.Log(currentTIme);
-            if(currentTIme <= 0)
-            {
-                currentTIme = setTime;
-                Debug.Log("Auto Off");
+            temPos = posOffset;
+            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * amp;
+            transform.position = temPos;
                 
-            }
+            
 
         }
     }

@@ -23,9 +23,11 @@ namespace Methodyca.Minigames.SortGame
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped. 
 
 
+
         private void Start()
         {
             anchored = GetComponent<RectTransform>();
+          
 
         }
         public void OnDrop(PointerEventData eventData) //Mouse released. 
@@ -55,6 +57,7 @@ namespace Methodyca.Minigames.SortGame
                 if (points < 5) //Points is 5 because of the amount of the crystal variations.
                 {          
                     points++;
+
                     //This is basically calling the array created to add crystals to the dock. 
                     Sprite sprite = crystalPhases[points];
                     crystalStation.GetComponent<Image>().sprite = sprite;

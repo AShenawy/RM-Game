@@ -1852,6 +1852,7 @@ GameObject:
   - component: {fileID: 545214128}
   - component: {fileID: 545214130}
   - component: {fileID: 545214129}
+  - component: {fileID: 545214131}
   m_Layer: 5
   m_Name: crystal_pink_station
   m_TagString: Qualitative
@@ -1915,6 +1916,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545214127}
   m_CullTransparentMesh: 0
+--- !u!114 &545214131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreePerSecond: 20
+  amp: 7
+  freq: 1
 --- !u!1 &569189695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &880263808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5491,6 +5507,7 @@ GameObject:
   - component: {fileID: 1611874112}
   - component: {fileID: 1611874114}
   - component: {fileID: 1611874113}
+  - component: {fileID: 1611874115}
   m_Layer: 5
   m_Name: crystal_blue_station
   m_TagString: Quantitative
@@ -5554,6 +5571,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611874111}
   m_CullTransparentMesh: 0
+--- !u!114 &1611874115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611874111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreePerSecond: 10
+  amp: 7
+  freq: 1
 --- !u!1 &1778740926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5856,6 +5888,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degreePerSecond: 20
+  amp: 7
+  freq: 1
 --- !u!114 &1794644207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6049,7 +6084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876544977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6656,7 +6691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2039648665
 RectTransform:
   m_ObjectHideFlags: 0
