@@ -15,6 +15,7 @@ namespace Methodyca.Minigames.SortGame
         public GameObject crystalStation;//The charging station either pink or blue.
 
         private RectTransform anchored;//the position of the snapping. 
+        private RectTransform levitate;//for the floating crystals. 
          
         public Sprite[] crystalPhases;//The array of crystals charging. 
 
@@ -22,12 +23,21 @@ namespace Methodyca.Minigames.SortGame
         
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped. 
 
+        //inputs for the levitations
+        public float degreePerSecond =20f;
+        public float amp = 7f;
+        public float freq = 1f;
 
+        //storing transform values 
+        Vector3 posOffset = new Vector3();
+        Vector3 temPos = new Vector3();
 
         private void Start()
         {
             anchored = GetComponent<RectTransform>();
-          
+            
+            levitate = crystalStation.GetComponent<RectTransform>();
+            posOffset = levitate.position;
 
         }
         public void OnDrop(PointerEventData eventData) //Mouse released. 
@@ -53,23 +63,30 @@ namespace Methodyca.Minigames.SortGame
             //To compare with Tags (QN and QA), with the box and see which enters which. 
             if(thingOnTheTable.CompareTag(boxType))
             {
-                //A check to award points if the the right itea is placed in the box. 
-                if (points < 5) //Points is 5 because of the amount of the crystal variations.
-                {          
-                    points++;
-
-                    //This is basically calling the array created to add crystals to the dock. 
-                    Sprite sprite = crystalPhases[points];
-                    crystalStation.GetComponent<Image>().sprite = sprite;
-                    Debug.Log("Charging");
-                    Debug.Log(points);
-                } 
+                
 
                 //To check if the itea dropped has being added to the box or not. 
-                inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
+                if(!inTheBox.Contains(thingOnTheTable.gameObject))
+                {
+                    inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
+                    //A check to award points if the the right itea is placed in the box. 
+                    if (points < 4) //Points is 5 because of the amount of the crystal variations.
+                    {          
+                        points++;
+                        //This is basically calling the array created to add crystals to the dock. 
+                        Sprite sprite = crystalPhases[points];
+                        crystalStation.GetComponent<Image>().sprite = sprite;
+                        Debug.Log("Charging");
+                        Debug.Log(points);
+                    } 
+                }
+                
+                
                 Debug.Log("Addng to the box");
             }
             
+            
+
             thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
@@ -88,6 +105,13 @@ namespace Methodyca.Minigames.SortGame
             }
 
             
+        }
+        void Update()
+        {
+            //The levitation of the crystals
+            temPos = posOffset;
+            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq * points) * amp;
+            levitate.position = temPos;
         }
     }
 }
