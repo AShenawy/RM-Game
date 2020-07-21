@@ -2,6 +2,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+
 namespace Methodyca.Minigames.Questioniser
 {
     public class Card : CardBase
@@ -26,6 +27,21 @@ namespace Methodyca.Minigames.Questioniser
 
         public override event Action<CardBase> OnCardThrown = delegate { };
 
+        public override void Draw()
+        {
+            Sequence mySequence = DOTween.Sequence();
+            mySequence.Append(transform.DOMoveY(1, 0.5f));
+            mySequence.Append(transform.DORotate(new Vector3(0, 180, 0), 0.5f));
+            mySequence.Append(transform.DOMove(_hand.Transform.position, 1));
+            mySequence.OnComplete(() =>
+            {
+                if (!_hand.Cards.Contains(this))
+                    _hand.Cards.Add(this);
+
+                _collider.enabled = true;
+            });
+        }
+
         public override void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
         {
             _camera = camera;
@@ -44,7 +60,7 @@ namespace Methodyca.Minigames.Questioniser
             if (!holder.Cards.Contains(this))
                 holder.Cards.Add(this);
 
-            _transform.DOMove(holder.Transform.position, 0.5f).OnStart(() => _collider.enabled = false).OnComplete(() => _collider.enabled = true);
+            _collider.enabled = true;
         }
 
         protected override void TriggerActionAfterThrown()

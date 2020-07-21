@@ -9,5 +9,7 @@ namespace Methodyca.Minigames.Questioniser
         public abstract void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table);
         public abstract void SetHolder(CardHolder holder);
         protected abstract void TriggerActionAfterThrown();
+
+        public abstract void Draw();
     }
 }

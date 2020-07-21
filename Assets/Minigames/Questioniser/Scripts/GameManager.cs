@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] Camera sceneCamera;
         [SerializeField] int maxInterestPoint = 10;
-        [SerializeField] int initialCardSize = 5;
+        [SerializeField] Camera sceneCamera;
         [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
@@ -22,13 +25,13 @@ namespace Methodyca.Minigames.Questioniser
 
         void Start()
         {
-            _cardsInDeck = new List<CardBase>(GetSpawnedCards());
-            DrawRandomCardFromDeck(initialCardSize);
+            _cardsInDeck = GetSpawnedCards().ToList();
+            DrawRandomCardFromDeck(4);
         }
 
         void OnEnable()
         {
-            QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
+            //QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
         }
 
         void AnswerSelectedHandler(Answer answer)
@@ -40,34 +43,42 @@ namespace Methodyca.Minigames.Questioniser
                 DrawRandomCardFromDeck();
         }
 
+        void DrawRandomCardFromDeck(int size = 1)
+        {
+            if (_cardsInDeck.Count <= 0)
+                return;
+
+            StartCoroutine(DrawInDelay(size));
+        }
+
+        IEnumerator DrawInDelay(int size)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                int index = UnityEngine.Random.Range(0, _cardsInDeck.Count);
+                _cardsInDeck[index].Draw();
+                _cardsInDeck.RemoveAt(index);
+                yield return new WaitForSeconds(1);
+            }
+        }
+
         IEnumerable<CardBase> GetSpawnedCards()
         {
             for (int j = 0; j < cardData.Count; j++)
             {
-                for (int i = 0; i < cardData[i].SpawnSize; i++)
+                for (int i = 0; i < cardData[j].SpawnSize; i++)
                 {
                     var spawned = Instantiate(cardPrefab);
-                    spawned.InitializeCard(sceneCamera, cardData[i], hand, table);
+                    spawned.InitializeCard(sceneCamera, cardData[j], hand, table);
                     spawned.transform.position = deck.position;
                     yield return spawned;
                 }
             }
         }
 
-        void DrawRandomCardFromDeck(int size = 1)
-        {
-            for (int i = 0; i < size; i++)
-            {
-                int index = UnityEngine.Random.Range(0, _cardsInDeck.Count);
-                var randomCard = _cardsInDeck[index];
-                randomCard.SetHolder(hand);
-                _cardsInDeck.RemoveAt(index);
-            }
-        }
-
         void OnDisable()
         {
-            QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
+            //QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
         }
     }
 }
