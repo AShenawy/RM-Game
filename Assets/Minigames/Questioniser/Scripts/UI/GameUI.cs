@@ -5,21 +5,21 @@ namespace Methodyca.Minigames.Questioniser
 {
     public class GameUI : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI deckCountText;
         [SerializeField] TextMeshProUGUI actionPointText;
 
-        private void OnEnable()
+        void OnEnable()
         {
-            QuizManager.Instance.OnAnswerSelected += AnswerSelectedHandler;
+            GameManager.Instance.OnScoreChanged += ScoreChangedHandler;
         }
 
-        private void AnswerSelectedHandler(Answer answer)
+        void ScoreChangedHandler(int actionPoint, float interestPoint)
         {
-            deckCountText.text = GameManager.Instance.GetDeckSize.ToString();
+            actionPointText.text = actionPoint.ToString();
         }
-        private void OnDisable()
+
+        void OnDisable()
         {
-            QuizManager.Instance.OnAnswerSelected -= AnswerSelectedHandler;
+            GameManager.Instance.OnScoreChanged -= ScoreChangedHandler;
         }
     }
 }

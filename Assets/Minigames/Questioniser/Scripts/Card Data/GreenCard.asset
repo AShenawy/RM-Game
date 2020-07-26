@@ -19,3 +19,15 @@ MonoBehaviour:
   description: Green Card
   sprite: {fileID: 21300000, guid: c713694f43afe254f822061ee4424f35, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  question:
+    QuestionText: Green Card Question
+    Answers:
+    - AnswerText: Wrong
+      Score: -5
+      IsCorrect: 0
+    - AnswerText: Correct
+      Score: 10
+      IsCorrect: 1
+    - AnswerText: Wrong
+      Score: -5
+      IsCorrect: 0

@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.Questioniser
     public class QuizUI : MonoBehaviour
     {
         [SerializeField] Transform answerHolder;
-        [SerializeField] TextMeshPro questionText;
+        [SerializeField] TextMeshProUGUI questionText;
 
         AnswerButtonUI[] _answerButtons;
 
@@ -17,14 +17,13 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnEnable()
         {
-            SetQuizPanel();
+            GameManager.Instance.OnQuestionAsked += QuestionAskedHandler;
         }
 
-        void SetQuizPanel()
+        void QuestionAskedHandler(Question question)
         {
-            var currentQuestion = QuizManager.Instance.CurrentQuestion;
-            var answers = currentQuestion.Answers;
-            questionText.text = currentQuestion.QuestionText;
+            var answers = question.Answers;
+            questionText.text = question.QuestionText;
 
             foreach (var button in _answerButtons)
                 button.gameObject.SetActive(false);
@@ -34,6 +33,11 @@ namespace Methodyca.Minigames.Questioniser
                 _answerButtons[i].gameObject.SetActive(true);
                 _answerButtons[i].SetButton(answers[i]);
             }
+        }
+
+        void OnDisable()
+        {
+            GameManager.Instance.OnQuestionAsked -= QuestionAskedHandler;
         }
     }
 }

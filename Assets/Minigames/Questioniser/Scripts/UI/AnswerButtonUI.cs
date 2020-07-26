@@ -6,8 +6,8 @@ namespace Methodyca.Minigames.Questioniser
 {
     public class AnswerButtonUI : MonoBehaviour
     {
-        [SerializeField] TextMeshPro answerText;
         [SerializeField] Button button;
+        [SerializeField] TextMeshProUGUI answerText;
 
         Answer _answer;
 
@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnEnable()
         {
-            button.onClick.AddListener(() => QuizManager.Instance.SelectAnswer(_answer));
+            button.onClick.AddListener(() => GameManager.Instance.SelectAnswer(_answer));
         }
 
         void OnDisable()

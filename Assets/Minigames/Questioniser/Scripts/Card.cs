@@ -1,7 +1,6 @@
-﻿using DG.Tweening;
-using System;
-using TMPro;
+﻿using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -10,10 +9,6 @@ namespace Methodyca.Minigames.Questioniser
         const float SELECTION_SCALE = 1.2F;
         const float SELECTION_SCALE_PACE_IN_SEC = 0.25F;
 
-        [SerializeField] TextMeshPro actionPoint;
-        [SerializeField] TextMeshPro interestPoint;
-        [SerializeField] TextMeshPro description;
-
         Camera _camera;
         CardData _data;
         Transform _transform;
@@ -21,26 +16,12 @@ namespace Methodyca.Minigames.Questioniser
         CardHolder _hand;
         CardHolder _table;
         SpriteRenderer _renderer;
+        Question _question;
 
-        public int ActionPoint => _data.ActionPoint;
-        public int InterestPoint => _data.InterestPoint;
-
-        public override event Action<CardBase> OnCardThrown = delegate { };
-
-        public override void Draw()
-        {
-            Sequence mySequence = DOTween.Sequence();
-            mySequence.Append(transform.DOMoveY(1, 0.5f));
-            mySequence.Append(transform.DORotate(new Vector3(0, 180, 0), 0.5f));
-            mySequence.Append(transform.DOMove(_hand.Transform.position, 1));
-            mySequence.OnComplete(() =>
-            {
-                if (!_hand.Cards.Contains(this))
-                    _hand.Cards.Add(this);
-
-                _collider.enabled = true;
-            });
-        }
+        public override int ActionPoint => _data.ActionPoint;
+        public override int InterestPoint => _data.InterestPoint;
+        public override Question Question => _question;
+        public override void Draw() => StartCoroutine(DrawCoroutine());
 
         public override void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
         {
@@ -48,25 +29,16 @@ namespace Methodyca.Minigames.Questioniser
             _data = data;
             _hand = hand;
             _table = table;
+            _question = data.Question;
             _renderer.sprite = data.Sprite;
-
-            actionPoint.text = data.ActionPoint.ToString();
-            interestPoint.text = data.InterestPoint.ToString();
-            description.text = data.Description;
-        }
-
-        public override void SetHolder(CardHolder holder)
-        {
-            if (!holder.Cards.Contains(this))
-                holder.Cards.Add(this);
-
-            _collider.enabled = true;
+            _collider.enabled = false;
         }
 
         protected override void TriggerActionAfterThrown()
         {
-            QuizManager.Instance.SetQuizQuestion();
-            OnCardThrown?.Invoke(this);
+            GameManager.Instance.UpdateTurn(this);
+            _transform.SetParent(_table.GetTransform);
+            _table.ArrangeCardDeck();
         }
 
         void Awake()
@@ -84,8 +56,10 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnMouseDrag()
         {
-            var inputPosition = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
-            _transform.position = inputPosition;
+            var distance = Vector3.Distance(_transform.position, _camera.transform.position);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Vector2 rayPoint = ray.GetPoint(distance);
+            _transform.position = rayPoint;
         }
 
         void OnMouseUp()
@@ -94,37 +68,50 @@ namespace Methodyca.Minigames.Questioniser
             var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
 
             if (inputPosition.y > 0.5f && inputPosition.y < 0.75f && inputPosition.x > 0.4f && inputPosition.x < 0.7f)
-                ThrowCard();
+                StartCoroutine(ThrowCoroutine());
             else
                 ReturnHand();
         }
 
         void ReturnHand()
         {
+            _hand.ArrangeCardDeck();
+            transform.DOMove(_hand.GetTransform.position, 0.5f)
+                .OnStart(() => _collider.enabled = false)
+                .OnComplete(() => _collider.enabled = true);
+        }
+
+        IEnumerator DrawCoroutine()
+        {
+            Sequence drawSequence = DOTween.Sequence();
+            drawSequence.Append(transform.DOMoveY(1, 0.5f))
+                .Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f))
+                .Append(transform.DOMove(_hand.GetTransform.position, 1));
+
+            yield return drawSequence.WaitForCompletion();
+
             if (!_hand.Cards.Contains(this))
                 _hand.Cards.Add(this);
 
-            _collider.enabled = false;
-            transform.DOMove(_hand.Transform.position, 0.5f).OnComplete(() => _collider.enabled = true);
+            _transform.SetParent(_hand.GetTransform);
+            _collider.enabled = true;
+            _hand.ArrangeCardDeck();
         }
 
-        void ThrowCard()
+        IEnumerator ThrowCoroutine()
         {
+            if (!_table.Cards.Contains(this))
+                _table.Cards.Add(this);
+
             _collider.enabled = false;
-            _hand.Cards.Remove(this);
+            _hand.ArrangeCardDeck();
 
-            var cardsOnTable = _table.Cards;
+            Sequence throwSequence = DOTween.Sequence();
+            throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 1f))
+                .Append(transform.DORotate(new Vector3(45, 0, 0), 0.3f));
 
-            if (!cardsOnTable.Contains(this))
-                cardsOnTable.Add(this);
-
-            for (int i = 0; i < cardsOnTable.Count; i++)
-            {
-                var offset = new Vector2(_collider.bounds.extents.x, _table.Transform.position.y);
-                var horizontalPosition = offset;
-
-                cardsOnTable[i].transform.DOMove(horizontalPosition, 1f).OnComplete(() => TriggerActionAfterThrown());
-            }
+            yield return throwSequence.WaitForCompletion();
+            TriggerActionAfterThrown();
         }
     }
 }

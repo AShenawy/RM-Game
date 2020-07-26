@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -7,7 +8,14 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] Transform holder;
 
-        public Transform Transform => holder;
-        public List<Card> Cards { get; set; }
+        public Transform GetTransform => holder;
+        public List<Card> Cards { get; set; } = new List<Card>();
+
+        public void ArrangeCardDeck()
+        {
+            if (Cards.Count > 0)
+                for (int i = 0; i < Cards.Count; i++)
+                    Cards[i].transform.DOMoveX(Cards.Count - 1 - i, 1f);
+        }
     }
 }
