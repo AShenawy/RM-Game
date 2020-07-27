@@ -33,7 +33,7 @@ namespace Methodyca.Core
         // Start is called before the first frame update
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.lockState = CursorLockMode.Confined;
         }
     
         // shows the mouse's context menu
