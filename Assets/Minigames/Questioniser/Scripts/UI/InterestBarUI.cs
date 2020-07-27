@@ -1,33 +1,24 @@
 ﻿using DG.Tweening;
-using Methodyca.Minigames.Questioniser;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InterestBarUI : MonoBehaviour
+namespace Methodyca.Minigames.Questioniser
 {
-    [SerializeField] Image bar;
-
-    Transform _transfom;
-
-    void Awake()
+    public class InterestBarUI : MonoBehaviour
     {
-        _transfom = transform;
-    }
+        [SerializeField] Image bar;
 
-    void OnEnable()
-    {
-        GameManager.Instance.OnScoreChanged += ScoreChangedHandler;
-    }
+        Transform _transfom;
 
-    void ScoreChangedHandler(int actionPoint, float interestPoint)
-    {
-        bar.fillAmount = interestPoint;
-        _transfom.DOShakePosition(1);
-        //Buzzy sound maybe
-    }
+        void Awake() => _transfom = transform;
+        void OnEnable() => GameManager.OnScoreChanged += ScoreChangedHandler;
+        void OnDisable() => GameManager.OnScoreChanged -= ScoreChangedHandler;
 
-    void OnDisable()
-    {
-        GameManager.Instance.OnScoreChanged -= ScoreChangedHandler;
+        void ScoreChangedHandler(int actionPoint, float interestPoint)
+        {
+            bar.fillAmount = interestPoint;
+            _transfom.DOShakePosition(duration: 1.5f, strength: 3, vibrato: 20, fadeOut: false);
+            //Buzzy sound maybe
+        }
     }
 }

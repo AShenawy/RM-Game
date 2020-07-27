@@ -107,8 +107,8 @@ namespace Methodyca.Minigames.Questioniser
             _hand.ArrangeCardDeck();
 
             Sequence throwSequence = DOTween.Sequence();
-            throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 1f))
-                .Append(transform.DORotate(new Vector3(45, 0, 0), 0.3f));
+            throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
+                .Join(transform.DORotate(new Vector3(45, 0, 0), 0.5f));
 
             yield return throwSequence.WaitForCompletion();
             TriggerActionAfterThrown();

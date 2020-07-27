@@ -10,15 +10,9 @@ namespace Methodyca.Minigames.Questioniser
 
         AnswerButtonUI[] _answerButtons;
 
-        void Awake()
-        {
-            _answerButtons = answerHolder.GetComponentsInChildren<AnswerButtonUI>();
-        }
-
-        void OnEnable()
-        {
-            GameManager.Instance.OnQuestionAsked += QuestionAskedHandler;
-        }
+        void Awake() => _answerButtons = answerHolder.GetComponentsInChildren<AnswerButtonUI>();
+        void OnEnable() => GameManager.Instance.OnQuestionAsked += QuestionAskedHandler;
+        void OnDisable() => GameManager.Instance.OnQuestionAsked -= QuestionAskedHandler;
 
         void QuestionAskedHandler(Question question)
         {
@@ -33,11 +27,6 @@ namespace Methodyca.Minigames.Questioniser
                 _answerButtons[i].gameObject.SetActive(true);
                 _answerButtons[i].SetButton(answers[i]);
             }
-        }
-
-        void OnDisable()
-        {
-            GameManager.Instance.OnQuestionAsked -= QuestionAskedHandler;
         }
     }
 }

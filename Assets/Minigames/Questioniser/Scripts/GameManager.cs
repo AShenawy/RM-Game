@@ -32,13 +32,13 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] int actionPoint = 10;
         [SerializeField] List<CardData> cardData;
 
-        public int GetDeckSize => _cardsInDeck.Count;
+        //public int GetDeckSize => _cardsInDeck.Count;
         public List<CardData> CardData => cardData;
-        public event Action<int, float> OnScoreChanged = delegate { };
         public event Action<Question> OnQuestionAsked = delegate { };
+        public static event Action<int, float> OnScoreChanged = delegate { };
 
         int _interestPoint = 0;
-        readonly int _maxInterestPoint = 100;
+        readonly float _maxInterestPoint = 100f;
         List<CardBase> _cardsInDeck;
 
         //Find a better way

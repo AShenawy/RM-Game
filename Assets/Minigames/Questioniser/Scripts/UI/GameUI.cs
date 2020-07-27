@@ -7,19 +7,12 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] TextMeshProUGUI actionPointText;
 
-        void OnEnable()
-        {
-            GameManager.Instance.OnScoreChanged += ScoreChangedHandler;
-        }
+        void OnEnable() => GameManager.OnScoreChanged += ScoreChangedHandler;
+        void OnDisable() => GameManager.OnScoreChanged -= ScoreChangedHandler;
 
         void ScoreChangedHandler(int actionPoint, float interestPoint)
         {
             actionPointText.text = actionPoint.ToString();
-        }
-
-        void OnDisable()
-        {
-            GameManager.Instance.OnScoreChanged -= ScoreChangedHandler;
         }
     }
 }
