@@ -9,23 +9,30 @@ namespace Methodyca.Core
     {
         public Item heldItem;
 
+        public delegate void OnItemHeld();
+        public event OnItemHeld itemHeld;
 
         private void Update()
         {
             if (Input.GetButtonDown("Fire2"))
-                PutItemBack();
+                RemoveFromHand();
         }
 
-        public void HoldItem(Item inventoryItem)
+        public void HoldInHand(Item inventoryItem)
         {
             heldItem = inventoryItem;
-            CursorManager.instance.SetCursor(CursorTypes.ItemHeld, heldItem.cursorImage);
 
+            GameManager.instance.isPlayerHoldingItem = true;
+
+            // Change cursor image to that of item being held
+            CursorManager.instance.SetCursor(CursorTypes.ItemHeld, heldItem.cursorImage);
         }
 
-        private void PutItemBack()
+        public void RemoveFromHand()
         {
             heldItem = null;
+
+            GameManager.instance.isPlayerHoldingItem = false;
         }
     }
 }

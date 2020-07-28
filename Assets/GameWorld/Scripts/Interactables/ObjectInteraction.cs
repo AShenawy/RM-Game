@@ -8,23 +8,33 @@ namespace Methodyca.Core
     {
         [TextArea, Tooltip("Information when player inspects the object.")]
         public string inGameDescription;
+        
         [Tooltip("Whether this object can be picked to inventory or not")]
-        public bool canPickUp;
-        [Tooltip("Can the player interact with the object?")]
+        public bool canPickUp = false;
+        
+        [Tooltip("Can the player interact with this object?")]
         public bool canInteract = true;
+
+        [Tooltip("Does this object require an item to use with it?")]
+        public bool isItemRequired = false;
+        [Tooltip("The item required for use with this object")]
+        public Item requiredItem;
 
         // this method will be overridden for when object is inspected
         public virtual string InspectObject()
         {
-            print("Inspecting " + name);
-        
             return inGameDescription;
         }
 
         // this method will be overridden for when object is interacted with
         public virtual void InteractWithObject()
         {
-            print("Interacting with " + name);
+
+        }
+
+        public virtual void UseHeldItem(Item item)
+        {
+            print("using " + item.name);
         }
 
         // this method will be overridden for when object is picked up

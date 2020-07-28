@@ -36,11 +36,12 @@ namespace Methodyca.Core
             InventoryManager.instance.Remove(item);
         }
 
-        public void CarryInHand()
+        // Make player carry item to use with game world objects
+        public void HoldInHand()
         {
             PlayerItemHandler player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerItemHandler>();
 
-            player.HoldItem(item);
+            player.HoldInHand(item);
         }
     }
 }

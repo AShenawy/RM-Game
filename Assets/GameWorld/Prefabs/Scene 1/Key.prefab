@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6941695044328225835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6005016, y: 0.6005016, z: 0.6005016}
+  m_LocalScale: {x: 0.69556105, y: 0.69556105, z: 0.69556105}
   m_Children:
   - {fileID: 6941695044937797647}
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.7, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6941695044328225845
 MonoBehaviour:
@@ -60,6 +60,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameDescription: A key. Looks like it might be for the office door.
   canPickUp: 1
+  canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
   item: {fileID: 11400000, guid: 046c01be4e1171f4d927b8417116280d, type: 2}
 --- !u!1 &6941695044937797644
 GameObject:
@@ -87,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 6941695044937797644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00000011921, y: 0, z: 0}
-  m_LocalScale: {x: 0.2072147, y: 0.2072147, z: 0.2072147}
+  m_LocalScale: {x: 0.16799256, y: 0.16799256, z: 0.16799256}
   m_Children: []
   m_Father: {fileID: 6941695044328225834}
   m_RootOrder: 0

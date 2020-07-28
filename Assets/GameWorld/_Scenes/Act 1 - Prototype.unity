@@ -1640,6 +1640,7 @@ MonoBehaviour:
   triggerTurnLeft: {fileID: 2086164242}
   canInteract: 0
   interactableObject: {fileID: 0}
+  isPlayerHoldingItem: 0
 --- !u!114 &299963986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3775,6 +3776,11 @@ PrefabInstance:
       propertyPath: inGameDescription
       value: A welcome mat.
       objectReference: {fileID: 0}
+    - target: {fileID: 5013531850455976816, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5013531850455976818, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
       propertyPath: m_Sprite
@@ -3952,6 +3958,8 @@ MonoBehaviour:
   inGameDescription: A welcome mat.
   canPickUp: 0
   canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
   movementValue: {x: 2.5, y: 0}
 --- !u!1 &573846268
 GameObject:
@@ -4913,6 +4921,8 @@ MonoBehaviour:
   inGameDescription: A fire extinguisher.
   canPickUp: 0
   canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
   movementValue: {x: -1, y: 0}
 --- !u!4 &878001709 stripped
 Transform:
@@ -5636,6 +5646,8 @@ MonoBehaviour:
   inGameDescription: I'm still trying to find a topic..
   canPickUp: 0
   canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
   movementValue: {x: 1.2, y: 0}
 --- !u!224 &986602436 stripped
 RectTransform:
@@ -8163,6 +8175,16 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8645712453315489106, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -856561901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645712453315489106, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8645712453346354794, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
       propertyPath: m_Text
@@ -8570,8 +8592,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -856561901
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 93335bead547b3e43a80ff1f3b5ad2f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9159,7 +9181,7 @@ PrefabInstance:
     - target: {fileID: 4652820553126027664, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_Name
-      value: Office Entrance
+      value: DOR-Office Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -9174,12 +9196,33 @@ PrefabInstance:
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: unlockItemName
       value: Supervisor Office Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: inGameDescription
+      value: This is the entrance to my supervisor's office.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: isItemRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: requiredItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 046c01be4e1171f4d927b8417116280d,
+        type: 2}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: responseForLocked
+      value: The door won't open. Looks like I'll need the key.
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}

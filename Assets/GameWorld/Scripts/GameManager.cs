@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,7 +17,7 @@ namespace Methodyca.Core
         [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
         [SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
     
-        [Header("Interface Objects")]
+        [Header("UI Objects")]
         [SerializeField] private GameObject inventoryPanel; // ref to inventory UI panel
         [SerializeField] private GameObject dialoguePanel;  // ref to dialogue UI panel
         [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;  // ref to right/left UI panels
@@ -25,8 +26,12 @@ namespace Methodyca.Core
         public bool canInteract = false;
         public ObjectInteraction interactableObject;
         private ObjectInteraction tempInteractObjectReference;
+        
         private GameObject roomCurrent, roomTarget;
         private RoomData roomData;
+
+        
+        [HideInInspector] public bool isPlayerHoldingItem = false;
     
         private void Awake()
         {
@@ -52,31 +57,20 @@ namespace Methodyca.Core
         // Update is called once per frame
         private void Update()
         {
-            // Can look for interactable items if player not holding an item to use
-            if(!player.GetComponent<PlayerItemHandler>().heldItem)
-                Scan();
-
-
+            Scan();
 
             // Check mouse input
             if (canInteract)
             {
+                // Make click not work on world objects if mouse is over GUI
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
+
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
-                {
-                    // Make click not work on world objects if mouse is over GUI
-                    if (EventSystem.current.IsPointerOverGameObject())
-                        return;
-    
-                    interactableObject.InteractWithObject();
-                }
-                else if (Input.GetButtonDown("Fire2"))      // ref to RMB
-                {
-                    if (EventSystem.current.IsPointerOverGameObject())
-                        return;
-    
-                    tempInteractObjectReference = interactableObject;
-                    CursorManager.instance.ShowContextMenu();
-                }
+                    DoMainAction();
+                
+                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to 
+                    DoSecondaryAction();
             }
             else
             {
@@ -95,19 +89,47 @@ namespace Methodyca.Core
             {
                 if (hit.collider.GetComponent<ObjectInteraction>())
                 {
-                    canInteract = true;
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
-                    CursorManager.instance.SetCursor(CursorTypes.Interact, null); // set interaction cursor image
+                    canInteract = interactableObject.canInteract;
+                    
+                    if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
+                        CursorManager.instance.SetCursor(CursorTypes.Interact, null);
+
                     print("Found something!");
                 }
                 else
                 {
-                    canInteract = false;
                     interactableObject = null;
-                    CursorManager.instance.SetDefaultCursor();
+                    canInteract = false;
+
+                    if(!isPlayerHoldingItem)    // change to default cursor if no item is held
+                        CursorManager.instance.SetDefaultCursor();
+
                     print("Nothing here!");
                 }
             }
+        }
+
+        private void DoMainAction()
+        {
+            if (!isPlayerHoldingItem)   // Interact with object if player is not holding item
+                interactableObject.InteractWithObject();
+            else
+            {
+                interactableObject.UseHeldItem(player.GetComponent<PlayerItemHandler>().heldItem);   // Do not interact and use the held item
+                player.GetComponent<PlayerItemHandler>().RemoveFromHand();
+            }
+        }
+
+        private void DoSecondaryAction()
+        {
+            tempInteractObjectReference = interactableObject;
+            CursorManager.instance.ShowContextMenu();
+        }
+
+        private void CheckPlayerHoldingItem(Item heldItem)
+        {
+            isPlayerHoldingItem = heldItem ? true : false;
         }
 
         private void HideAllRooms()
