@@ -9,6 +9,7 @@ namespace Methodyca.Core
     {
         public Item heldItem;
 
+
         private void Update()
         {
             if (Input.GetButtonDown("Fire2"))
@@ -18,6 +19,8 @@ namespace Methodyca.Core
         public void HoldItem(Item inventoryItem)
         {
             heldItem = inventoryItem;
+            CursorManager.instance.SetCursor(CursorTypes.ItemHeld, heldItem.cursorImage);
+
         }
 
         private void PutItemBack()

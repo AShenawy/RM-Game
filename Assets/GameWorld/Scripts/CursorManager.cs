@@ -33,7 +33,7 @@ namespace Methodyca.Core
         // Start is called before the first frame update
         void Start()
         {
-            //Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     
         // shows the mouse's context menu
@@ -57,10 +57,15 @@ namespace Methodyca.Core
         // Useful when invoked by buttons and GUI, since it doesn't support enum arguments.
         public void SetDefaultCursor()
         {
-            SetCursor(CursorTypes.Default);
+            SetCursor(CursorTypes.Default, null);
+        }
+
+        public void ShowCursor(bool value)
+        {
+            Cursor.visible = value;
         }
     
-        public void SetCursor(CursorTypes cursorType)
+        public void SetCursor(CursorTypes cursorType, Texture2D heldItemImage)
         {
             switch(cursorType)
             {
@@ -83,6 +88,11 @@ namespace Methodyca.Core
                 case CursorTypes.turnRight:
                     Cursor.SetCursor(cursorPointRight, new Vector2(cursorPointRight.width, 0), CursorMode.Auto);
                     break;
+                
+                // If player is holding item
+                case CursorTypes.ItemHeld:
+                    Cursor.SetCursor(heldItemImage, new Vector2(heldItemImage.width / 2, heldItemImage.height / 2), CursorMode.Auto);
+                    break;
     
                 default:
                     Cursor.SetCursor(cursorDefault, Vector2.zero, CursorMode.Auto);
@@ -92,5 +102,5 @@ namespace Methodyca.Core
     }
     
     // enum for different situations the cursor can be in
-    public enum CursorTypes { Default, Interact, turnLeft, turnRight }
+    public enum CursorTypes { Default, Interact, turnLeft, turnRight, ItemHeld }
 }

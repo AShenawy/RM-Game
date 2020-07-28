@@ -52,11 +52,15 @@ namespace Methodyca.Core
         // Update is called once per frame
         private void Update()
         {
+            // Can look for interactable items if player not holding an item to use
+            if(!player.GetComponent<PlayerItemHandler>().heldItem)
+                Scan();
+
+
+
             // Check mouse input
             if (canInteract)
             {
-                CursorManager.instance.SetCursor(CursorTypes.Interact);
-    
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                 {
                     // Make click not work on world objects if mouse is over GUI
@@ -81,7 +85,7 @@ namespace Methodyca.Core
             }
         }
 
-        private void FixedUpdate()
+        private void Scan()
         {
             // cast ray at cursor location onto game world
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -93,7 +97,8 @@ namespace Methodyca.Core
                 {
                     canInteract = true;
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
-                    print("found something!");
+                    CursorManager.instance.SetCursor(CursorTypes.Interact, null); // set interaction cursor image
+                    print("Found something!");
                 }
                 else
                 {
@@ -103,7 +108,6 @@ namespace Methodyca.Core
                     print("Nothing here!");
                 }
             }
-            
         }
 
         private void HideAllRooms()

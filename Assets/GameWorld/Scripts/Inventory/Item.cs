@@ -11,5 +11,6 @@ namespace Methodyca.Core
     {
         public string name;
         public Sprite icon;
+        public Texture2D cursorImage;
     }
 }
