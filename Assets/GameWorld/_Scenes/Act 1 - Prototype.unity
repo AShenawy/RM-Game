@@ -4940,6 +4940,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2064448012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &899582682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8927455692767573923, guid: a06fd86a49c645a45bb6ff61093444c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8927455692405483176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfc514d58ea62b4a9ad674032fb80ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &901199206
 GameObject:
   m_ObjectHideFlags: 0
@@ -12042,6 +12054,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 299963988}
+      objectReference: {fileID: 899582682}
+    - target: {fileID: 8927455692767573920, guid: a06fd86a49c645a45bb6ff61093444c1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Send
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927455692767573920, guid: a06fd86a49c645a45bb6ff61093444c1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927455692767573920, guid: a06fd86a49c645a45bb6ff61093444c1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927455692767573920, guid: a06fd86a49c645a45bb6ff61093444c1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927455692767573923, guid: a06fd86a49c645a45bb6ff61093444c1,
+        type: 3}
+      propertyPath: mailPrefab
+      value: 
+      objectReference: {fileID: 825785724394823307, guid: b1bde9c9362ceb24588dc020616dae28,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06fd86a49c645a45bb6ff61093444c1, type: 3}
