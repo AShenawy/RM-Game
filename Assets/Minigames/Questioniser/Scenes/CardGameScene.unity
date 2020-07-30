@@ -133,12 +133,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58de5dbb94d0f648b6e762a536cafbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &386915572 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7779027876737672796, guid: 4a7405656f47de24abc6a771ac8d19ba,
+--- !u!114 &386915573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7779027876737672785, guid: 4a7405656f47de24abc6a771ac8d19ba,
     type: 3}
   m_PrefabInstance: {fileID: 7779027877055478440}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6406b7c41fa11874cb7c94796a4ba826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &586293785
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneCamera: {fileID: 1065593065}
   quizGUI: {fileID: 269901357}
-  cardFocusGUI: {fileID: 386915572}
+  cardInfoGUI: {fileID: 386915573}
   cardPrefab: {fileID: 8322568224573480688, guid: 523c71a9dabc23d46b467ff258462ccb,
     type: 3}
   hand: {fileID: 1102130677}
@@ -827,7 +833,7 @@ PrefabInstance:
     - target: {fileID: 7779027876737672796, guid: 4a7405656f47de24abc6a771ac8d19ba,
         type: 3}
       propertyPath: m_Name
-      value: CardFocusCanvas
+      value: CardInfoCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7405656f47de24abc6a771ac8d19ba, type: 3}

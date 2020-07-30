@@ -13,24 +13,66 @@ MonoBehaviour:
   m_Name: GreenCard
   m_EditorClassIdentifier: 
   name: green
-  actionPoint: 2
-  interestPoint: 2
+  actionPoint: 1
+  interestPoint: 5
   spawnSize: 5
   description: Green Card
   sprite: {fileID: 21300000, guid: c713694f43afe254f822061ee4424f35, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
   questions:
-  - QuestionText: 
+  - QuestionText: Set a proper option
     Topic:
-      Name: 
+      Name: Work
       IsCompleted: 0
     Answers:
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+    - IsCorrect: 1
+      Point: 5
+      AnswerText: Correct
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+  - QuestionText: Set a proper option
+    Topic:
+      Name: Free Time
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+    - IsCorrect: 1
+      Point: 5
+      AnswerText: Correct
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+  - QuestionText: Set a proper option
+    Topic:
+      Name: Travel
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+    - IsCorrect: 1
+      Point: 5
+      AnswerText: Correct
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+  - QuestionText: Set a proper option
+    Topic:
+      Name: Food & Drink
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong
+    - IsCorrect: 1
+      Point: 5
+      AnswerText: Correct
+    - IsCorrect: 0
+      Point: -5
+      AnswerText: Wrong

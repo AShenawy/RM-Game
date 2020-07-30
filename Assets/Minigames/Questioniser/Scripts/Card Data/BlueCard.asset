@@ -14,23 +14,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: blue
   actionPoint: 2
-  interestPoint: 2
+  interestPoint: 3
   spawnSize: 5
   description: Blue Card
   sprite: {fileID: 21300000, guid: 5bf52b5b651e4764c91a0e15614ae315, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
   questions:
-  - QuestionText: Set asdasd
+  - QuestionText: Select the appropriate option
     Topic:
       Name: Food & Drink
       IsCompleted: 0
     Answers:
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Correct phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+  - QuestionText: Select the appropriate option
+    Topic:
+      Name: Travel
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Correct phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+  - QuestionText: Select the appropriate option
+    Topic:
+      Name: Free Time
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Correct phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+  - QuestionText: Select the appropriate option
+    Topic:
+      Name: Work
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Correct phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Wrong phrase.

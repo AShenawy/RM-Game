@@ -17,8 +17,8 @@ namespace Methodyca.Minigames.Questioniser
             answerText.text = answer.AnswerText;
         }
 
-        void OnEnable() => button.onClick.AddListener(ClickHandler);
-        void OnDisable() => button.onClick.RemoveAllListeners();
+        void Start() => button.onClick.AddListener(ClickHandler);
+        void OnDestroy() => button.onClick.RemoveAllListeners();
 
         void ClickHandler()
         {

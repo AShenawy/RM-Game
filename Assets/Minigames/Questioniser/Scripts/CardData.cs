@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] int actionPoint;
         [SerializeField] int interestPoint;
         [SerializeField] int spawnSize;
-        [SerializeField] string description;
+        [SerializeField] [Multiline] string description;
         [SerializeField] Sprite sprite;
         [SerializeField] Color outlineColor;
         [SerializeField] Question[] questions;

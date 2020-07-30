@@ -4,28 +4,22 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
-    public class CardFocusUI : MonoBehaviour
+    public class CardInfoUI : MonoBehaviour
     {
         [SerializeField] Transform focusPanel;
         [SerializeField] TextMeshProUGUI detailText;
 
         void OnEnable()
         {
-            //GameManager.Instance.OnCardFocus += CardFocusHandler;
             focusPanel.localScale = Vector3.zero;
             Sequence sequence = DOTween.Sequence();
             sequence.Append(focusPanel.DOScale(Vector3.one, 0.2f))
                 .Append(focusPanel.DOShakeRotation(duration: 0.25f, strength: 20, vibrato: 5, fadeOut: false));
         }
 
-        void CardFocusHandler(CardBase card)
+        public void SetData(string description)
         {
-            detailText.text = card.GetData.Description;
-        }
-
-        void OnDisable()
-        {
-            //GameManager.Instance.OnCardFocus -= CardFocusHandler;
+            detailText.text = description;
         }
     }
 }

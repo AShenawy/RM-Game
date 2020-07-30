@@ -13,24 +13,66 @@ MonoBehaviour:
   m_Name: RedCard
   m_EditorClassIdentifier: 
   name: red
-  actionPoint: 2
-  interestPoint: 2
+  actionPoint: 3
+  interestPoint: 4
   spawnSize: 5
   description: Red Card
   sprite: {fileID: 21300000, guid: 72f824f1de5fd5d489f99688ce924ac9, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
   questions:
-  - QuestionText: 
+  - QuestionText: Select anyting below
     Topic:
-      Name: 
+      Name: Free Time
       IsCompleted: 0
     Answers:
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
-    - AnswerText: 
-      Point: 0
-      IsCorrect: 0
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Bravo
+  - QuestionText: Select anyting below
+    Topic:
+      Name: Food & Drink
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Bravo
+  - QuestionText: Select anyting below
+    Topic:
+      Name: Travel
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Bravo
+  - QuestionText: Select anyting below
+    Topic:
+      Name: Work
+      IsCompleted: 0
+    Answers:
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 0
+      Point: -10
+      AnswerText: Booo
+    - IsCorrect: 1
+      Point: 10
+      AnswerText: Bravo

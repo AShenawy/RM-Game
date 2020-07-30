@@ -24,16 +24,16 @@ namespace Methodyca.Minigames.Questioniser
     [Serializable]
     public struct Answer
     {
-        public string AnswerText;
-        public int Point;
         public bool IsCorrect;
+        public int Point;
+        [Multiline] public string AnswerText;
     }
 
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] Camera sceneCamera;
         [SerializeField] QuizUI quizGUI;
-        [SerializeField] GameObject cardFocusGUI;
+        [SerializeField] CardInfoUI cardInfoGUI;
         [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
@@ -44,13 +44,13 @@ namespace Methodyca.Minigames.Questioniser
         public event Action OnGameOver = delegate { };
         public event Action<int> OnActionPointChanged = delegate { };
         public event Action<float> OnInterestPointChanged = delegate { };
-        public event Action<CardBase> OnCardFocus = delegate { };
 
         int _actionPoint = 5;
         float _interestPoint = 0;
         readonly float _maxInterestPoint = 100f;
         List<CardBase> _cardsInDeck;
 
+        public CardInfoUI CardInfoGUI => cardInfoGUI;
         public QuizUI QuizGUI => quizGUI;
         public Topic CurrentTopic { get; set; }
         public float InterestPoint
@@ -73,12 +73,6 @@ namespace Methodyca.Minigames.Questioniser
                 _actionPoint = value;
                 OnActionPointChanged?.Invoke(_actionPoint);
             }
-        }
-
-        public void FocusCardDetails(CardBase card)
-        {
-            cardFocusGUI.SetActive(true);
-            OnCardFocus?.Invoke(card);
         }
 
         public void EndTurn()

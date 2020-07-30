@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] RectTransform actionPoint;
         [SerializeField] TextMeshProUGUI actionPointText;
 
-        void OnEnable()
+        void Start()
         {
             GameManager.Instance.OnActionPointChanged += ActionPointChangedHandler;
             GameManager.Instance.OnInterestPointChanged += InterestPointChangedHandler;

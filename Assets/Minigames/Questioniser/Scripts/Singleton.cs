@@ -32,8 +32,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     protected virtual void OnDestroy()
     {
         if (Instance == this)
-        {
             Instance = null;
-        }
     }
 }
