@@ -85,7 +85,7 @@ namespace Methodyca.Minigames.SortGame
                 Debug.Log("Addng to the box");
             }
             
-            
+            thingOnTheTable.GetComponent<Drag>().insideBox(this.gameObject);
 
             thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }

@@ -18,6 +18,9 @@ namespace Methodyca.Minigames.SortGame
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
         //public GameObject itemsHD;//The clear vision of the items on the table. 
+
+        public GameObject prefab;
+        public GameObject parent;
         bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
@@ -78,24 +81,30 @@ namespace Methodyca.Minigames.SortGame
         //Method On Pointer click to add double click function.
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (eventData.pointerEnter)
-            {
-                float timeSince = Time.time - lastClickTime;
-                if (timeSince <= doubleClickTime)
-                {
-                   //itemsHD.SetActive(!turnOn);//double click.
-                   Debug.Log("Image Turning On - Double Click");
+            // if (eventData.pointerEnter)
+            // {
+            //     float timeSince = Time.time - lastClickTime;
+            //     if (timeSince <= doubleClickTime)
+            //     {
+            //        //itemsHD.SetActive(!turnOn);//double click.
+            //        Debug.Log("Image Turning On - Double Click");
                    
-                }           
-                else
-                {
-                   //itemsHD.SetActive(turnOn);//turn on the image.
-                   Debug.Log("Off Image");
-                }          
-                lastClickTime= Time.time;
+            //     }           
+            //     else
+            //     {
+            //        //itemsHD.SetActive(turnOn);//turn on the image.
+            //        Debug.Log("Off Image");
+            //     }          
+            //     lastClickTime= Time.time;
 
-            }
+            // }
 
+        }
+        public void insideBox(GameObject boxType)
+        {
+            //this swtiches the images
+            Instantiate(prefab,parent.transform);
+            this.gameObject.SetActive(turnOn);
         }
         
     }      
