@@ -11,10 +11,8 @@ namespace Methodyca.Minigames.Questioniser
         AnswerButtonUI[] _answerButtons;
 
         void Awake() => _answerButtons = answerHolder.GetComponentsInChildren<AnswerButtonUI>();
-        void OnEnable() => GameManager.Instance.OnQuestionAsked += QuestionAskedHandler;
-        void OnDisable() => GameManager.Instance.OnQuestionAsked -= QuestionAskedHandler;
 
-        void QuestionAskedHandler(Question question)
+        public void SetQuiz(Question question)
         {
             var answers = question.Answers;
             questionText.text = question.QuestionText;
@@ -25,7 +23,7 @@ namespace Methodyca.Minigames.Questioniser
             for (int i = 0; i < answers.Length; i++)
             {
                 _answerButtons[i].gameObject.SetActive(true);
-                _answerButtons[i].SetButton(answers[i]);
+                _answerButtons[i].SetOption(answers[i]);
             }
         }
     }

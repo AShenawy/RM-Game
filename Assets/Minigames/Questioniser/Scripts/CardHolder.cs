@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Transform holder;
 
         public Transform GetTransform => holder;
-        public List<Card> Cards { get; set; } = new List<Card>();
+        public List<CardBase> Cards { get; set; } = new List<CardBase>();
 
         public void ArrangeCardDeck()
         {

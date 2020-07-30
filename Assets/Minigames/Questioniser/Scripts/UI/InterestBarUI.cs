@@ -11,14 +11,13 @@ namespace Methodyca.Minigames.Questioniser
         Transform _transfom;
 
         void Awake() => _transfom = transform;
-        void OnEnable() => GameManager.OnScoreChanged += ScoreChangedHandler;
-        void OnDisable() => GameManager.OnScoreChanged -= ScoreChangedHandler;
+        void OnEnable() => GameManager.Instance.OnInterestPointChanged += InterestPointChangedHandler;
+        void OnDisable() => GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
 
-        void ScoreChangedHandler(int actionPoint, float interestPoint)
+        void InterestPointChangedHandler(float point)
         {
-            bar.fillAmount = interestPoint;
-            _transfom.DOShakePosition(duration: 1.5f, strength: 3, vibrato: 20, fadeOut: false);
-            //Buzzy sound maybe
+            bar.fillAmount = point;
+            _transfom.DOShakePosition(duration: 1, strength: 3, vibrato: 20, fadeOut: false);
         }
     }
 }

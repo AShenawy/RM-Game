@@ -7,9 +7,17 @@ using UnityEngine;
 namespace Methodyca.Minigames.Questioniser
 {
     [Serializable]
+    public struct Topic
+    {
+        public string Name;
+        public bool IsCompleted;
+    }
+
+    [Serializable]
     public struct Question
     {
         public string QuestionText;
+        public Topic Topic;
         public Answer[] Answers;
     }
 
@@ -17,66 +25,94 @@ namespace Methodyca.Minigames.Questioniser
     public struct Answer
     {
         public string AnswerText;
-        public int Score;
+        public int Point;
         public bool IsCorrect;
     }
 
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] Camera sceneCamera;
-        [SerializeField] GameObject quizObject;
+        [SerializeField] QuizUI quizGUI;
+        [SerializeField] GameObject cardFocusGUI;
         [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
         [SerializeField] Transform deck;
-        [SerializeField] int actionPoint = 10;
         [SerializeField] List<CardData> cardData;
+        [SerializeField] List<Topic> topics;
 
-        //public int GetDeckSize => _cardsInDeck.Count;
-        public List<CardData> CardData => cardData;
-        public event Action<Question> OnQuestionAsked = delegate { };
-        public static event Action<int, float> OnScoreChanged = delegate { };
+        public event Action OnGameOver = delegate { };
+        public event Action<int> OnActionPointChanged = delegate { };
+        public event Action<float> OnInterestPointChanged = delegate { };
+        public event Action<CardBase> OnCardFocus = delegate { };
 
-        int _interestPoint = 0;
+        int _actionPoint = 5;
+        float _interestPoint = 0;
         readonly float _maxInterestPoint = 100f;
         List<CardBase> _cardsInDeck;
 
-        //Find a better way
-        public void UpdateTurn(CardBase cardBase)
+        public QuizUI QuizGUI => quizGUI;
+        public Topic CurrentTopic { get; set; }
+        public float InterestPoint
         {
-            quizObject.SetActive(true); // Can be animated
-
-            if (cardBase.ActionPoint > 0)
-                actionPoint -= cardBase.ActionPoint;
-
-            OnQuestionAsked?.Invoke(cardBase.Question);
+            get => _interestPoint;
+            set
+            {
+                _interestPoint = value;
+                if (_interestPoint >= _maxInterestPoint || _interestPoint <= 0)
+                    OnGameOver?.Invoke();
+                else
+                    OnInterestPointChanged?.Invoke(_interestPoint / _maxInterestPoint);
+            }
+        }
+        public int ActionPoint
+        {
+            get => _actionPoint;
+            set
+            {
+                _actionPoint = value;
+                OnActionPointChanged?.Invoke(_actionPoint);
+            }
         }
 
-        public void SelectAnswer(Answer answer)
+        public void FocusCardDetails(CardBase card)
         {
-            if (_interestPoint < _maxInterestPoint)
-                _interestPoint += answer.Score;
+            cardFocusGUI.SetActive(true);
+            OnCardFocus?.Invoke(card);
+        }
 
-            OnScoreChanged?.Invoke(actionPoint, _interestPoint / _maxInterestPoint);
-
-            if (answer.IsCorrect)
-                DrawRandomCardFromDeck();
-
-            quizObject.SetActive(false); // Can be animated
+        public void EndTurn()
+        {
+            DiscardCards();
+            DrawRandomCardFromDeck(5);
+            OnActionPointChanged?.Invoke(_actionPoint += 5);
         }
 
         void Start()
         {
+            CurrentTopic = topics[UnityEngine.Random.Range(0, topics.Count)];
             _cardsInDeck = GetSpawnedCards().ToList();
-            DrawRandomCardFromDeck(4);
+            DrawRandomCardFromDeck(5);
         }
 
         void DrawRandomCardFromDeck(int size = 1)
         {
             if (_cardsInDeck.Count <= 0)
-                return;
+                OnGameOver?.Invoke();
 
             StartCoroutine(DrawInDelay(size));
+        }
+
+        void DiscardCards()
+        {
+            foreach (var card in hand.Cards)
+                card.Discard();
+
+            foreach (var card in table.Cards)
+                card.Discard();
+
+            hand.Cards.Clear();
+            table.Cards.Clear();
         }
 
         IEnumerator DrawInDelay(int size)
