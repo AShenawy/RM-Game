@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Methodyca.Core
 {
@@ -11,6 +10,10 @@ namespace Methodyca.Core
         
         [Tooltip("Whether this object can be picked to inventory or not")]
         public bool canPickUp = false;
+        [Tooltip("Dialogue to display on successful pick up of object")]
+        public string PickUpSuccessText;
+        [Tooltip("Dialogue to display on failing to pick up object")]
+        public string PickUpFailText;
         
         [Tooltip("Can the player interact with this object?")]
         public bool canInteract = true;
@@ -23,6 +26,7 @@ namespace Methodyca.Core
         // this method will be overridden for when object is inspected
         public virtual string InspectObject()
         {
+            DialogueHandler.instance.DisplayDialogue(inGameDescription);
             return inGameDescription;
         }
 
@@ -32,9 +36,9 @@ namespace Methodyca.Core
 
         }
 
-        public virtual void UseHeldItem(Item item)
+        public virtual void UseWithHeldItem(Item item)
         {
-            print("using " + item.name);
+            DialogueHandler.instance.DisplayDialogue($"Used {item.name}");
         }
 
         // this method will be overridden for when object is picked up
@@ -42,11 +46,11 @@ namespace Methodyca.Core
         {
             if (canPickUp)
             {
-                print("Picked up " + name);
+                DialogueHandler.instance.DisplayDialogue(PickUpSuccessText);
             }
             else
             {
-                print("Cannot pick up " + name);
+                DialogueHandler.instance.DisplayDialogue(PickUpFailText);
             }
         }
     }

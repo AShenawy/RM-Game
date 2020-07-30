@@ -16,16 +16,14 @@ public class Door : ObjectInteraction
         base.InteractWithObject();
 
         if(isLocked)
-        {
-            print(responseForLocked);
-        }
+            DialogueHandler.instance.DisplayDialogue(responseForLocked);
         else
             GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
     }
 
-    public override void UseHeldItem(Item item)
+    public override void UseWithHeldItem(Item item)
     {
-        base.UseHeldItem(item);
+        base.UseWithHeldItem(item);
 
         if (item == requiredItem)
         {

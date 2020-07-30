@@ -3957,6 +3957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameDescription: A welcome mat.
   canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: I don't think the janitor would appreciate that.
   canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
@@ -4920,10 +4922,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameDescription: A fire extinguisher.
   canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: Thankfully, there's no fire. So I don't need it.
   canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
-  movementValue: {x: -1, y: 0}
+  movementValue: {x: 0, y: 0}
 --- !u!4 &878001709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
@@ -5645,6 +5649,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameDescription: I'm still trying to find a topic..
   canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: I don't need any more reminders.
   canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
@@ -6236,6 +6242,74 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7042165987475212943}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1162636626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1162636627}
+  - component: {fileID: 1162636628}
+  - component: {fileID: 1162636629}
+  m_Layer: 0
+  m_Name: Window Crack
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1162636627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162636626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.27, y: 0.49, z: -0.47}
+  m_LocalScale: {x: 2.2875, y: 3.184531, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1973420956}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1162636628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162636626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1162636629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162636626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameDescription: A large crack in the office window!
+  canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: I'll keep my distance. It might break at the slightest touch.
+  canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
+  textDialogues:
+  - There's a large crack in the office window!
+  - Nobody seems to have noticed this. It must be quite recent.
+  - I hope my supervisor's okay..
 --- !u!4 &1225287385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
@@ -8524,6 +8598,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee312f028fa6bc14bb726b33ad0bb022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1596779670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596779671}
+  - component: {fileID: 1596779673}
+  - component: {fileID: 1596779672}
+  m_Layer: 0
+  m_Name: Mail Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1596779671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596779670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.427, y: -1.31, z: -0.47}
+  m_LocalScale: {x: 1.1258788, y: 1.63456, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1973420956}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1596779672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596779670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameDescription: The office's mailbox.
+  canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: It's empty.
+  canInteract: 1
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
+  textDialogues:
+  - A mailbox for my supervisor's office.
+  - Each office has one. But I think this one's specifically red to please my supervisor's
+    tastes.
+--- !u!65 &1596779673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596779670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1608412002
 GameObject:
   m_ObjectHideFlags: 0
@@ -9052,7 +9194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34843764, y: 0.11937038}
   m_AnchorMax: {x: 0.6544376, y: 0.9407778}
-  m_AnchoredPosition: {x: 0.7998047, y: 0.5}
+  m_AnchoredPosition: {x: 0.75, y: 0.5}
   m_SizeDelta: {x: -4.4989014, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726200986
@@ -9222,7 +9364,12 @@ PrefabInstance:
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: responseForLocked
-      value: The door won't open. Looks like I'll need the key.
+      value: The door won't open. Looks like I'll need a key.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: PickUpFailText
+      value: I think it'd be easier to swing it open. Just saying.
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -10286,6 +10433,8 @@ Transform:
   - {fileID: 234765633}
   - {fileID: 848883661}
   - {fileID: 330583786}
+  - {fileID: 1162636627}
+  - {fileID: 1596779671}
   m_Father: {fileID: 41938383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11618,7 +11767,7 @@ PrefabInstance:
     - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
         type: 3}
       propertyPath: inGameDescription
-      value: A well-kept plant. It's not too heavy.
+      value: A well-kept plant.
       objectReference: {fileID: 0}
     - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
         type: 3}
@@ -11634,6 +11783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canInteract
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+        type: 3}
+      propertyPath: PickUpFailText
+      value: It's too heavy.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecea66d6a2fd3054ea6f24d8384a2c02, type: 3}
