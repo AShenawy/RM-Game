@@ -70,7 +70,7 @@ namespace Methodyca.Minigames.SortGame
                 {
                     inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
                     //A check to award points if the the right itea is placed in the box. 
-                    if (points < 4) //Points is 5 because of the amount of the crystal variations.
+                    if (points < 5) //Points is 5 because of the amount of the crystal variations.
                     {          
                         points++;
                         //This is basically calling the array created to add crystals to the dock. 

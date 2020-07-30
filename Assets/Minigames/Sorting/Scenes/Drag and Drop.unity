@@ -303,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cffbe14c9fb45e0885cea6d4fde69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localPosition: {fileID: 715231146}
 --- !u!1001 &34144544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,7 +721,7 @@ PrefabInstance:
     - target: {fileID: 6303058884517973847, guid: 691d0962754e618478e43c6372f2fff8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691d0962754e618478e43c6372f2fff8, type: 3}
@@ -2282,11 +2281,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalStation: {fileID: 545214127}
   crystalPhases:
-  - {fileID: 21300000, guid: c36cc2167deb34e8b87db7e597cc20bb, type: 3}
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
   - {fileID: 21300000, guid: 253beb5e13dee472aaa5c33473523db7, type: 3}
   - {fileID: 21300000, guid: afd37cb092f1e44e3899fd3515eeb6a6, type: 3}
+  - {fileID: 21300000, guid: 29c3c058ed5e94285b58a34ed5f2e795, type: 3}
+  - {fileID: 21300000, guid: 504286347812c46b3a3eb41550164794, type: 3}
   boxType: Qualitative
   inTheBox: []
   degreePerSecond: 20
@@ -3574,11 +3574,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalStation: {fileID: 1611874111}
   crystalPhases:
-  - {fileID: 21300000, guid: 5604f4b0665e54715b5e0ccd59c24b1f, type: 3}
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
   - {fileID: 21300000, guid: 17060ddcd9095432bbaa7574cb8e7cbb, type: 3}
   - {fileID: 21300000, guid: 581cc6a3bdc13442a8fac3099326d97f, type: 3}
+  - {fileID: 21300000, guid: 3caf33752399946109ba3fd3b79230ed, type: 3}
+  - {fileID: 21300000, guid: 187e553dd91c946b792045d4b017e09c, type: 3}
   boxType: Quantitative
   inTheBox: []
   degreePerSecond: 20
@@ -4015,6 +4016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: dispersion_sheet_in_the_box
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049899967045901264, guid: 498e355b6e88296488a99a921ec9d7ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1049899967045901265, guid: 498e355b6e88296488a99a921ec9d7ef,
         type: 3}
