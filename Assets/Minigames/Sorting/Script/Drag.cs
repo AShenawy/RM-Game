@@ -38,6 +38,7 @@ namespace Methodyca.Minigames.SortGame
             Debug.Log("StartDrag");
             canvasGroup.alpha = .7f;//reduced the opacity of the item when selected.
             canvasGroup.blocksRaycasts = false;
+            FindObjectOfType<SoundManager>().Play("click");//sound of the game. 
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -104,7 +105,10 @@ namespace Methodyca.Minigames.SortGame
         {
             //this swtiches the images
             Instantiate(prefab,parent.transform);
+            
+            //prefab.GetComponent<CanvasGroup>()=canvasGroup;
             this.gameObject.SetActive(turnOn);
+            Debug.Log("Appear inside the box");
         }
         
     }      
