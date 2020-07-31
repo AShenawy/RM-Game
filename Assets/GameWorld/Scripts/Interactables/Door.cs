@@ -6,6 +6,7 @@ using Methodyca.Core;
 // This script handles transporting the player between rooms
 public class Door : ObjectInteraction
 {
+    [Header("Specific Door Parameters")]
     public GameObject targetRoom;
     public bool isLocked;
     [Multiline, Tooltip("In-game text to be displayed if door is locked")]

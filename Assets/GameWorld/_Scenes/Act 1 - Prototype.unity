@@ -575,11 +575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a401bf3ab24f70b328ba81b0d13add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: 
   canPickUp: 1
   PickUpSuccessText: Picked up dark blue crystal.
   PickUpFailText: 
-  canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
   item: {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
@@ -1771,7 +1771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973420956}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268079064
 GameObject:
@@ -2793,7 +2793,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973420956}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &346276877 stripped
 RectTransform:
@@ -3321,104 +3321,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1557720752}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &402113737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 402113738}
-  - component: {fileID: 402113740}
-  - component: {fileID: 402113739}
-  m_Layer: 0
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &402113738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402113737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.47, y: -2.22, z: -0.78}
-  m_LocalScale: {x: 0.60749, y: 0.60749, z: 0.60749}
-  m_Children: []
-  m_Father: {fileID: 1973420956}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!102 &402113739
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402113737}
-  m_Text: 'Door is locked
-
-    Need to find key to pass
-
-    Key hidden location
-    is random'
-  m_OffsetZ: 0
-  m_CharacterSize: 0.5
-  m_LineSpacing: 1
-  m_Anchor: 4
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 24
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &402113740
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402113737}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &409342179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,7 +3649,7 @@ PrefabInstance:
     - target: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645712453818223723, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
@@ -4352,7 +4254,7 @@ Transform:
   m_Children:
   - {fileID: 555778196}
   m_Father: {fileID: 1973420956}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &547478615 stripped
 RectTransform:
@@ -4719,7 +4621,7 @@ PrefabInstance:
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
@@ -4789,13 +4691,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d56fcb73101a6e439bc10b8f93e1c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: A welcome mat.
   canPickUp: 0
   PickUpSuccessText: 
   PickUpFailText: I don't think the janitor would appreciate that.
-  canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
+  canMove: 0
   movementValue: {x: 2.5, y: 0}
 --- !u!1 &573846268
 GameObject:
@@ -5350,11 +5253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e5cd39ded342ff90b0f6219f05ce15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: 
   canPickUp: 0
   PickUpSuccessText: 
   PickUpFailText: 
-  canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
   canOperate: 1
@@ -5788,7 +5691,7 @@ PrefabInstance:
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
@@ -5858,13 +5761,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d56fcb73101a6e439bc10b8f93e1c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: A fire extinguisher.
   canPickUp: 0
   PickUpSuccessText: 
   PickUpFailText: Thankfully, there's no fire. So I don't need it.
-  canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
+  canMove: 0
   movementValue: {x: 0, y: 0}
 --- !u!4 &878001709 stripped
 Transform:
@@ -6020,6 +5924,137 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901199206}
   m_CullTransparentMesh: 0
+--- !u!1001 &903485760
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1973420956}
+    m_Modifications:
+    - target: {fileID: 2508603821981685854, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Name
+      value: Crack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.7473047
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.8933282
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inGameDescription
+      value: A large crack in the office window!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: PickUpFailText
+      value: I'll keep my distance. It might break at the slightest touch.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[0]
+      value: There's a large crack in the office window!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[1]
+      value: Nobody seems to have noticed this. It must be quite recent.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[2]
+      value: I hope my supervisor's okay..
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
+--- !u!4 &903485761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 903485760}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904223342
 GameObject:
   m_ObjectHideFlags: 0
@@ -6689,7 +6724,7 @@ PrefabInstance:
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
@@ -6759,13 +6794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d56fcb73101a6e439bc10b8f93e1c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: I'm still trying to find a topic..
   canPickUp: 0
   PickUpSuccessText: 
   PickUpFailText: I don't need any more reminders.
-  canInteract: 1
   isItemRequired: 0
   requiredItem: {fileID: 0}
+  canMove: 0
   movementValue: {x: 1.2, y: 0}
 --- !u!224 &986602436 stripped
 RectTransform:
@@ -7516,74 +7552,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7042165987475212943}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1162636626
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1162636627}
-  - component: {fileID: 1162636628}
-  - component: {fileID: 1162636629}
-  m_Layer: 0
-  m_Name: Window Crack
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1162636627
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162636626}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.27, y: 0.49, z: -0.47}
-  m_LocalScale: {x: 2.2875, y: 3.184531, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1973420956}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1162636628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162636626}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1162636629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162636626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inGameDescription: A large crack in the office window!
-  canPickUp: 0
-  PickUpSuccessText: 
-  PickUpFailText: I'll keep my distance. It might break at the slightest touch.
-  canInteract: 1
-  isItemRequired: 0
-  requiredItem: {fileID: 0}
-  textDialogues:
-  - There's a large crack in the office window!
-  - Nobody seems to have noticed this. It must be quite recent.
-  - I hope my supervisor's okay..
 --- !u!4 &1225287385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
@@ -9616,7 +9584,7 @@ PrefabInstance:
     - target: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645712453818223723, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
@@ -9903,74 +9871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee312f028fa6bc14bb726b33ad0bb022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1596779670
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1596779671}
-  - component: {fileID: 1596779673}
-  - component: {fileID: 1596779672}
-  m_Layer: 0
-  m_Name: Mail Box
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1596779671
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596779670}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.427, y: -1.31, z: -0.47}
-  m_LocalScale: {x: 1.1258788, y: 1.63456, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1973420956}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1596779672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596779670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inGameDescription: The office's mailbox.
-  canPickUp: 0
-  PickUpSuccessText: 
-  PickUpFailText: It's empty.
-  canInteract: 1
-  isItemRequired: 0
-  requiredItem: {fileID: 0}
-  textDialogues:
-  - A mailbox for my supervisor's office.
-  - Each office has one. But I think this one's specifically red to please my supervisor's
-    tastes.
---- !u!65 &1596779673
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596779670}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1608412002
 GameObject:
   m_ObjectHideFlags: 0
@@ -10714,7 +10614,7 @@ PrefabInstance:
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -11891,7 +11791,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973420956}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1973420955
 GameObject:
@@ -11920,7 +11820,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 402113738}
   - {fileID: 544476407}
   - {fileID: 878001709}
   - {fileID: 8275076122314357855}
@@ -11931,8 +11830,8 @@ Transform:
   - {fileID: 234765633}
   - {fileID: 848883661}
   - {fileID: 330583786}
-  - {fileID: 1162636627}
-  - {fileID: 1596779671}
+  - {fileID: 2052134200}
+  - {fileID: 903485761}
   m_Father: {fileID: 41938383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12306,6 +12205,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 487625688}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2052134199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1973420956}
+    m_Modifications:
+    - target: {fileID: 2508603821981685854, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Name
+      value: Mailbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inGameDescription
+      value: The office's mailbox.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: PickUpFailText
+      value: It's empty.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[0]
+      value: A mailbox for my supervisor's office.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[1]
+      value: Each office has one. But I think this one's specifically red to please
+        my supervisor's tastes.
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
+--- !u!4 &2052134200 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2052134199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2064448012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12458,7 +12484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973420956}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086164242
 GameObject:
@@ -12916,7 +12942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2125245412
 Transform:
   m_ObjectHideFlags: 0
@@ -13395,100 +13421,151 @@ MonoBehaviour:
   playerCanTurn: 0
   allowedTurnAngle: 90
   isCheckpoint: 1
---- !u!1001 &5596581608410249345
+--- !u!1001 &5766472300605662208
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1973420956}
     m_Modifications:
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685825, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.18
+      propertyPath: m_Size.y
+      value: 4.4845595
       objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685825, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.1
+      propertyPath: m_Center.y
+      value: -0.09169984
       objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685825, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.53
+      propertyPath: m_Size.x
+      value: 1.9984989
       objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685825, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
+      propertyPath: m_Center.x
+      value: 0.2750969
       objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575081841586586847, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685854, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: m_Name
       value: Plant
       objectReference: {fileID: 0}
-    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755834, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755834, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755834, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 52c781d25de466a408b12eeca2bece64,
+        type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: inGameDescription
       value: A well-kept plant.
       objectReference: {fileID: 0}
-    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: movementValue.x
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: movementValue.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
-        type: 3}
-      propertyPath: canInteract
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055475441369489350, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: PickUpFailText
-      value: It's too heavy.
+      value: It's too heavy. I shouldn't walk around with it anyway.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: inspectDialogue.Array.data[0]
+      value: An ordinary plant. Nothing special about it.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ecea66d6a2fd3054ea6f24d8384a2c02, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
 --- !u!1001 &7042165987475212943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13610,9 +13687,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 33674419dceb2a44082e17d585a9ba4d, type: 3}
 --- !u!4 &8275076122314357855 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4575081841586586846, guid: ecea66d6a2fd3054ea6f24d8384a2c02,
+  m_CorrespondingSourceObject: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
     type: 3}
-  m_PrefabInstance: {fileID: 5596581608410249345}
+  m_PrefabInstance: {fileID: 5766472300605662208}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8927455692405483176
 PrefabInstance:

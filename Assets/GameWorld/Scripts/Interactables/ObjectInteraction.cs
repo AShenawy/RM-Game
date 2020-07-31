@@ -6,9 +6,12 @@ namespace Methodyca.Core
     public class ObjectInteraction : MonoBehaviour
     {
         [Header("General Object Interaction Parameters")]
-        [TextArea, Tooltip("Information when player inspects the object.")]
+        [Tooltip("Can the player interact with this object?")]
+        public bool canInteract = true;
+        [TextArea, Tooltip("Information when player inspects the object")]
         public string inGameDescription;
         
+        [Space]
         [Tooltip("Whether this object can be picked to inventory or not")]
         public bool canPickUp = false;
         [Tooltip("Dialogue to display on successful pick up of object")]
@@ -16,9 +19,7 @@ namespace Methodyca.Core
         [Tooltip("Dialogue to display on failing to pick up object")]
         public string PickUpFailText;
         
-        [Tooltip("Can the player interact with this object?")]
-        public bool canInteract = true;
-
+        [Space]
         [Tooltip("Does this object require an item to use with it?")]
         public bool isItemRequired = false;
         [Tooltip("The item required for use with this object")]
