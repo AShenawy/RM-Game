@@ -24,6 +24,8 @@ namespace Methodyca.Core
         public bool isItemRequired = false;
         [Tooltip("The item required for use with this object")]
         public Item requiredItem;
+        [Tooltip("Dialogue to display if using wrong item")]
+        public string wrongItemText;
 
         // this method will be overridden for when object is inspected
         public virtual string InspectObject()
@@ -40,7 +42,10 @@ namespace Methodyca.Core
 
         public virtual void UseWithHeldItem(Item item)
         {
-            DialogueHandler.instance.DisplayDialogue($"Used {item.name}");
+            if (item == requiredItem)
+                DialogueHandler.instance.DisplayDialogue($"Used {item.name}");
+            else
+                DialogueHandler.instance.DisplayDialogue(wrongItemText);
         }
 
         // this method will be overridden for when object is picked up
