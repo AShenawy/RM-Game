@@ -1,30 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Methodyca.Core;
-using UnityEngine.UIElements;
 
 public class Operate : ObjectInteraction
 {
+    [Header("Specific Operate Parameters")]
+    [Tooltip("Can the player operate this object?")]
+    public bool canOperate;
+    public SpriteRenderer imageGameObject;
+    public Sprite imageBefore, imageAfter;
+    [Tooltip("Dialogue to display on successful operate")]
+    public string onOperateSuccessText;
+    [Tooltip("Dialogue to display on failed operate")]
+    public string onOperateFailText;
 
     public override void InteractWithObject()
     {
-        base.InteractWithObject();
-        Use();
-        
-    }
-
-    public override void PickUpObject()
-    {
-        base.PickUpObject();
-        if (!canPickUp)
-            print("I can only use it on the spot");
-        
+        if (canOperate)
+            Use();
+        else
+            DialogueHandler.instance.DisplayDialogue(onOperateFailText);
     }
 
     void Use()
     {
-        print("used " + name);
+        canInteract = false;
+        imageGameObject.sprite = imageAfter;
+        DialogueHandler.instance.DisplayDialogue(onOperateSuccessText);
     }
 }
    

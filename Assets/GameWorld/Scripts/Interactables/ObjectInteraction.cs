@@ -5,6 +5,7 @@ namespace Methodyca.Core
     // This script is the base class for all interactable game objects in game world
     public class ObjectInteraction : MonoBehaviour
     {
+        [Header("General Object Interaction Parameters")]
         [TextArea, Tooltip("Information when player inspects the object.")]
         public string inGameDescription;
         

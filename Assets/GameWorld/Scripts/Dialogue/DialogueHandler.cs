@@ -46,20 +46,18 @@ namespace Methodyca.Core
     
             dialoguePanel.SetActive(true);  // display the dialogue panel
             AdvanceDialogue();      // start going through the dialogue blocks
-    
-            Debug.Log("Displaying dialogue box");
         }
 
         public void DisplayDialogue(string inDialogue)
         {
-            
+
             // Display the dialogue box and text
-
-            dialoguePanel.SetActive(true);  // display the dialogue panel
-            dialoguePieces = new[] {inDialogue};
-            AdvanceDialogue();
-
-            Debug.Log("Displaying dialogue box");
+            if (inDialogue != "")
+            {
+                dialoguePanel.SetActive(true);  // display the dialogue panel
+                dialoguePieces = new[] { inDialogue };
+                AdvanceDialogue();
+            }
         }
     
         void EndDialogue()
