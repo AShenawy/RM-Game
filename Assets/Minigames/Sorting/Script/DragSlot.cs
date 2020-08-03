@@ -54,6 +54,8 @@ namespace Methodyca.Minigames.SortGame
             }
 
             Debug.Log("Dropped");
+            FindObjectOfType<SoundManager>().Play("paper_hit");//sound of the game.
+
             //This is basically to define the things on the table and, make them snap to the box when clicked. 
             RectTransform thingOnTheTable; //Anchored position. 
             thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
@@ -85,7 +87,7 @@ namespace Methodyca.Minigames.SortGame
                 Debug.Log("Addng to the box");
             }
             
-            thingOnTheTable.GetComponent<Drag>().insideBox(this.gameObject);
+            thingOnTheTable.GetComponent<Drag>().insideBox(this.gameObject);//prefab instaniation. 
 
             thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }

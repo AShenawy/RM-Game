@@ -38,7 +38,7 @@ namespace Methodyca.Minigames.SortGame
             Debug.Log("StartDrag");
             canvasGroup.alpha = .7f;//reduced the opacity of the item when selected.
             canvasGroup.blocksRaycasts = false;
-            FindObjectOfType<SoundManager>().Play("click");//sound of the game. 
+             
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -62,7 +62,8 @@ namespace Methodyca.Minigames.SortGame
         // so as soon as item is clicked it is transparent
         public void OnPointerDown(PointerEventData eventData)
         {
-            //Debug.Log("Clicked");            
+            //Debug.Log("Clicked");  
+            FindObjectOfType<SoundManager>().Play("click");//sound of the game.
         }
 
         //Method to see what is in dropped in the box.
