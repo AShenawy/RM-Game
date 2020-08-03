@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +22,10 @@ namespace Methodyca.Minigames.Questioniser
         protected virtual void Throw() { }
         public CardData GetData => _data;
         public void Draw() => StartCoroutine(DrawCoroutine());
+
+        public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
+        public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
+        protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
 
         public void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
         {

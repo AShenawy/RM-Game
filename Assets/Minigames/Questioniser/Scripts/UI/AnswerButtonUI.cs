@@ -17,13 +17,7 @@ namespace Methodyca.Minigames.Questioniser
             answerText.text = answer.AnswerText;
         }
 
-        void Start() => button.onClick.AddListener(ClickHandler);
-        void OnDestroy() => button.onClick.RemoveAllListeners();
-
-        void ClickHandler()
-        {
-            GameManager.Instance.InterestPoint += _answer.Point;
-            GameManager.Instance.QuizGUI.gameObject.SetActive(false);
-        }
+        void OnEnable() => button.onClick.AddListener(() => GameManager.Instance.HandleItemCardQuestionFor(_answer));
+        void OnDisable() => button.onClick.RemoveAllListeners();
     }
 }

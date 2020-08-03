@@ -6,8 +6,6 @@ namespace Methodyca.Minigames.Questioniser
 {
     public class ItemCard : CardBase
     {
-        QuizUI _quiz;
-
         protected override void Throw()
         {
             StartCoroutine(ThrowCoroutine());
@@ -16,11 +14,6 @@ namespace Methodyca.Minigames.Questioniser
         public override void Discard()
         {
             _transform.DOScale(0, 0.25f).OnComplete(() => Destroy(gameObject));
-        }
-
-        void OnEnable()
-        {
-            _quiz = GameManager.Instance.QuizGUI;
         }
 
         IEnumerator ThrowCoroutine()
@@ -37,12 +30,7 @@ namespace Methodyca.Minigames.Questioniser
             yield return throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
                 .Join(_transform.DORotate(new Vector3(45, 0, 0), 0.5f)).WaitForCompletion();
 
-            GameManager.Instance.ActionPoint -= _data.ActionPoint;
-            _quiz.gameObject.SetActive(true);
-
-            foreach (var q in _data.Questions)
-                if (q.Topic.Name == GameManager.Instance.CurrentTopic.Name)
-                    _quiz.SetQuiz(q);
+            TriggerCardIsThrown(this);
         }
     }
 }

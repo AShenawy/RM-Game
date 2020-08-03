@@ -12,7 +12,12 @@ namespace Methodyca.Minigames.Questioniser
 
         void Awake() => _transfom = transform;
         void Start() => GameManager.Instance.OnInterestPointChanged += InterestPointChangedHandler;
-        void OnDisable() => GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+
+        void OnDisable() {
+
+            if (GameManager.InstanceExists)
+                GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+        } 
 
         void InterestPointChangedHandler(float point)
         {

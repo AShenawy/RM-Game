@@ -42,50 +42,71 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] List<Topic> topics;
 
         public event Action OnGameOver = delegate { };
+        public event Action<Topic> OnTopicChanged = delegate { };
+        public event Action<Question> OnQuestionAsked = delegate { };
         public event Action<int> OnActionPointChanged = delegate { };
         public event Action<float> OnInterestPointChanged = delegate { };
 
-        int _actionPoint = 5;
-        float _interestPoint = 0;
         readonly float _maxInterestPoint = 100f;
         List<CardBase> _cardsInDeck;
 
         public CardInfoUI CardInfoGUI => cardInfoGUI;
-        public QuizUI QuizGUI => quizGUI;
-        public Topic CurrentTopic { get; set; }
-        public float InterestPoint
-        {
-            get => _interestPoint;
-            set
-            {
-                _interestPoint = value;
-                if (_interestPoint >= _maxInterestPoint || _interestPoint <= 0)
-                    OnGameOver?.Invoke();
-                else
-                    OnInterestPointChanged?.Invoke(_interestPoint / _maxInterestPoint);
-            }
-        }
-        public int ActionPoint
-        {
-            get => _actionPoint;
-            set
-            {
-                _actionPoint = value;
-                OnActionPointChanged?.Invoke(_actionPoint);
-            }
-        }
+        public Topic CurrentTopic { get; private set; }
+        public int ActionPoint { get; private set; } = 5;
+        public float InterestPoint { get; private set; } = 0;
 
         public void EndTurn()
         {
             DiscardCards();
-            DrawRandomCardFromDeck(5);
-            OnActionPointChanged?.Invoke(_actionPoint += 5);
+            DrawRandomCardFromDeck(5); //Add validation check
+            OnActionPointChanged?.Invoke(ActionPoint += 5);
+        }
+
+        public void SetRandomTopic() //Change Later
+        {
+            var topic = topics[UnityEngine.Random.Range(0, topics.Count)];
+            if (!topic.IsCompleted)
+            {
+                CurrentTopic = topic;
+                OnTopicChanged?.Invoke(topic);
+            }
+        }
+
+        public void HandleItemCardQuestionFor(Answer answer)
+        {
+            InterestPoint += answer.Point;
+
+            if (InterestPoint >= _maxInterestPoint || InterestPoint <= 0)
+                OnGameOver?.Invoke();
+            else
+                OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
+
+            quizGUI.gameObject.SetActive(false);
+        }
+
+        void CardThrownHandler(object sender, CardBase.OnCardThrownEventArgs e)
+        {
+            if (sender is ItemCard itemCard)
+            {
+                OnActionPointChanged?.Invoke(ActionPoint -= e.Card.GetData.ActionPoint);
+
+                foreach (var q in itemCard.GetData.Questions)
+                    if (q.Topic.Name == CurrentTopic.Name && !q.Topic.IsCompleted)
+                        quizGUI.AskQuestion(q); // Replace it with event later
+            }
+
+            if (sender is MetaCard metaCard)
+            {
+                // Add validation check
+                InterestPoint -= e.Card.GetData.InterestPoint;
+                OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
+            }
         }
 
         void Start()
         {
-            CurrentTopic = topics[UnityEngine.Random.Range(0, topics.Count)];
             _cardsInDeck = GetSpawnedCards().ToList();
+            SetRandomTopic();
             DrawRandomCardFromDeck(5);
         }
 
@@ -116,7 +137,7 @@ namespace Methodyca.Minigames.Questioniser
                 int index = UnityEngine.Random.Range(0, _cardsInDeck.Count);
                 _cardsInDeck[index].Draw();
                 _cardsInDeck.RemoveAt(index);
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.5f);
             }
         }
 
@@ -129,6 +150,7 @@ namespace Methodyca.Minigames.Questioniser
                     var spawned = Instantiate(cardPrefab, deck);
                     spawned.transform.position = deck.position;
                     spawned.InitializeCard(sceneCamera, cardData[j], hand, table);
+                    spawned.OnCardThrown += CardThrownHandler;
                     yield return spawned;
                 }
             }

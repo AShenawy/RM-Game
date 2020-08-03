@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -7,24 +8,15 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] Transform answerHolder;
         [SerializeField] TextMeshProUGUI questionText;
+        [SerializeField] AnswerButtonUI[] answerButtons = new AnswerButtonUI[3];
 
-        AnswerButtonUI[] _answerButtons;
-
-        void Awake() => _answerButtons = answerHolder.GetComponentsInChildren<AnswerButtonUI>();
-
-        public void SetQuiz(Question question)
+        public void AskQuestion(Question question)
         {
-            var answers = question.Answers;
+            gameObject.SetActive(true);
             questionText.text = question.QuestionText;
 
-            foreach (var button in _answerButtons)
-                button.gameObject.SetActive(false);
-
-            for (int i = 0; i < answers.Length; i++)
-            {
-                _answerButtons[i].gameObject.SetActive(true);
-                _answerButtons[i].SetOption(answers[i]);
-            }
+            for (int i = 0; i < question.Answers.Length; i++)
+                answerButtons[i].SetOption(question.Answers[i]);
         }
     }
 }

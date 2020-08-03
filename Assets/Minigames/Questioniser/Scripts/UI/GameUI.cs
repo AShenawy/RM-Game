@@ -28,8 +28,11 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnDisable()
         {
-            GameManager.Instance.OnActionPointChanged -= ActionPointChangedHandler;
-            GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+            if (GameManager.InstanceExists)
+            {
+                GameManager.Instance.OnActionPointChanged -= ActionPointChangedHandler;
+                GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+            }
         }
     }
 }
