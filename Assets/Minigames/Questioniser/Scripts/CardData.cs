@@ -12,7 +12,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] [Multiline] string description;
         [SerializeField] Sprite sprite;
         [SerializeField] Color outlineColor;
-        [SerializeField] Question[] questions;
+        [SerializeField] Topic[] topics;
 
         public string Name => name;
         public int ActionPoint => actionPoint;
@@ -21,6 +21,6 @@ namespace Methodyca.Minigames.Questioniser
         public string Description => description;
         public Sprite Sprite => sprite;
         public Color OutlineColor => outlineColor;
-        public Question[] Questions => questions;
+        public Topic[] Topics => topics;
     }
 }

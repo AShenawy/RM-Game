@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 562823878359644541}
   - component: {fileID: 3350433250946317308}
   - component: {fileID: 3283530145283052955}
-  - component: {fileID: 2287066155797697169}
   m_Layer: 5
-  m_Name: Answer
+  m_Name: 'AnswerButton [ID: 1]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,21 +118,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3350433250946317308}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2287066155797697169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723456299002727178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235b0f8ba7a836d48a1750b1304f70de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 3283530145283052955}
-  answerText: {fileID: 9016054167733064407}
+      m_Calls:
+      - m_Target: {fileID: 2629337259910835390}
+        m_MethodName: ClickHandler
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2025719906778091286
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,13 +419,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1458413092113257829}
-    characterCount: 0
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -458,9 +454,8 @@ GameObject:
   - component: {fileID: 3411788432316938616}
   - component: {fileID: 4433090574914023826}
   - component: {fileID: 685517831499532516}
-  - component: {fileID: 3764004877235577617}
   m_Layer: 5
-  m_Name: Answer (1)
+  m_Name: 'AnswerButton [ID: 2]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,21 +560,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4433090574914023826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3764004877235577617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4663578142233959806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235b0f8ba7a836d48a1750b1304f70de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 685517831499532516}
-  answerText: {fileID: 1643544359527455692}
+      m_Calls:
+      - m_Target: {fileID: 2629337259910835390}
+        m_MethodName: ClickHandler
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5514298703495584300
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5514298703495584304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -692,12 +684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58de5dbb94d0f648b6e762a536cafbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerHolder: {fileID: 365428541743923616}
+  root: {fileID: 8232163486485081243}
   questionText: {fileID: 8739463570435222151}
-  answerButtons:
-  - {fileID: 2287066155797697169}
-  - {fileID: 3764004877235577617}
-  - {fileID: 5945428561339186847}
+  answerTexts:
+  - {fileID: 9016054167733064407}
+  - {fileID: 1643544359527455692}
+  - {fileID: 1458413092113257829}
 --- !u!1 &6837291465638684923
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,9 +702,8 @@ GameObject:
   - component: {fileID: 6222772236928037793}
   - component: {fileID: 7783990564788320831}
   - component: {fileID: 7939859658305631510}
-  - component: {fileID: 5945428561339186847}
   m_Layer: 5
-  m_Name: Answer (2)
+  m_Name: 'AnswerButton [ID: 3]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,21 +808,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7783990564788320831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5945428561339186847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837291465638684923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235b0f8ba7a836d48a1750b1304f70de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 7939859658305631510}
-  answerText: {fileID: 1458413092113257829}
+      m_Calls:
+      - m_Target: {fileID: 2629337259910835390}
+        m_MethodName: ClickHandler
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6966725749879523534
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,13 +953,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1643544359527455692}
-    characterCount: 0
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1038,12 +1026,12 @@ GameObject:
   - component: {fileID: 8140550333548210005}
   - component: {fileID: 2202310598290738200}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6215662918133423798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1235,13 +1223,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9016054167733064407}
-    characterCount: 0
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

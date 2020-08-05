@@ -10,21 +10,27 @@ namespace Methodyca.Minigames.Questioniser
     public struct Topic
     {
         public string Name;
-        public bool IsCompleted;
+        public Question Question;
     }
 
     [Serializable]
     public struct Question
     {
+        public bool IsAnswerCorrect;
         public string QuestionText;
-        public Topic Topic;
         public Answer[] Answers;
+
+        public void SetAnswerAs(bool isCorrect)
+        {
+            IsAnswerCorrect = isCorrect;
+        }
     }
 
     [Serializable]
     public struct Answer
     {
         public bool IsCorrect;
+        public int Id;
         public int Point;
         [Multiline] public string AnswerText;
     }
@@ -32,26 +38,29 @@ namespace Methodyca.Minigames.Questioniser
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] Camera sceneCamera;
-        [SerializeField] QuizUI quizGUI;
         [SerializeField] CardInfoUI cardInfoGUI;
         [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
         [SerializeField] Transform deck;
         [SerializeField] List<CardData> cardData;
-        [SerializeField] List<Topic> topics;
+        [SerializeField] List<string> topics;
 
         public event Action OnGameOver = delegate { };
-        public event Action<Topic> OnTopicChanged = delegate { };
+        public event Action<string> OnTopicChanged = delegate { };
         public event Action<Question> OnQuestionAsked = delegate { };
         public event Action<int> OnActionPointChanged = delegate { };
         public event Action<float> OnInterestPointChanged = delegate { };
+        public event Action<string, string> OnStoryPointRaised = delegate { };
+        public event Action<string, string, bool> OnChartUpdated = delegate { };
 
-        readonly float _maxInterestPoint = 100f;
+        string _currentTopicName;
+        CardData _currentCardData;
         List<CardBase> _cardsInDeck;
+        Dictionary<string, byte> _availableTopics = new Dictionary<string, byte>();
+        readonly float _maxInterestPoint = 100f;
 
         public CardInfoUI CardInfoGUI => cardInfoGUI;
-        public Topic CurrentTopic { get; private set; }
         public int ActionPoint { get; private set; } = 5;
         public float InterestPoint { get; private set; } = 0;
 
@@ -62,26 +71,71 @@ namespace Methodyca.Minigames.Questioniser
             OnActionPointChanged?.Invoke(ActionPoint += 5);
         }
 
-        public void SetRandomTopic() //Change Later
+        public void SetRandomTopic()
         {
             var topic = topics[UnityEngine.Random.Range(0, topics.Count)];
-            if (!topic.IsCompleted)
-            {
-                CurrentTopic = topic;
-                OnTopicChanged?.Invoke(topic);
-            }
+
+            while (_currentTopicName == topic)
+                topic = topics[UnityEngine.Random.Range(0, topics.Count)];
+
+            _currentTopicName = topic;
+            OnTopicChanged?.Invoke(_currentTopicName);
         }
+
+        public void HandleStoryPointDialog()
+        {
+            topics.Remove(_currentTopicName);
+            _currentTopicName = "";
+            SetRandomTopic();
+        }
+        bool[][] topicCardAnswerSheet;
 
         public void HandleItemCardQuestionFor(Answer answer)
         {
             InterestPoint += answer.Point;
 
+            if (answer.IsCorrect)
+            {
+                for (int i = 0; i < _currentCardData.Topics.Length; i++)
+                {
+                    if (_currentCardData.Topics[i].Name == _currentTopicName)
+                    {
+
+                    }
+                }
+
+                for (int i = 0; i < _currentCardData.Topics.Length; i++)
+                {
+                    var currentTopic = _currentCardData.Topics[i];
+                    if (currentTopic.Name == _currentTopicName)
+                    {
+                        Debug.Log("Answer is " + currentTopic.Question.IsAnswerCorrect);
+                        //currentTopic.Question.IsAnswerCorrect = true;
+                        //var storyPoint = _availableTopics[_currentTopicName]++;
+
+                        //OnChartUpdated?.Invoke(_currentTopicName, _currentCardData.Name, storyPoint >= 3);
+
+                        //if (storyPoint >= 3)
+                        //    OnStoryPointRaised?.Invoke(_currentTopicName, _currentCardData.Name);
+                        //else if (storyPoint >= cardData.Count)
+                        //    _availableTopics[_currentTopicName] = (byte)cardData.Count;
+                    }
+                }
+
+                //foreach (var tq in _topicQuestionPairsOfCards)
+                //{
+                //    if (tq. == _currentCardData.name)
+                //    {
+                //        Debug.Log("answer is " + tq.Value.IsAnswerCorrect);
+
+                //    }
+                //}
+            }
+
             if (InterestPoint >= _maxInterestPoint || InterestPoint <= 0)
                 OnGameOver?.Invoke();
             else
                 OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
-
-            quizGUI.gameObject.SetActive(false);
         }
 
         void CardThrownHandler(object sender, CardBase.OnCardThrownEventArgs e)
@@ -89,10 +143,11 @@ namespace Methodyca.Minigames.Questioniser
             if (sender is ItemCard itemCard)
             {
                 OnActionPointChanged?.Invoke(ActionPoint -= e.Card.GetData.ActionPoint);
+                _currentCardData = itemCard.GetData;
 
-                foreach (var q in itemCard.GetData.Questions)
-                    if (q.Topic.Name == CurrentTopic.Name && !q.Topic.IsCompleted)
-                        quizGUI.AskQuestion(q); // Replace it with event later
+                foreach (var t in itemCard.GetData.Topics)
+                    if (_currentTopicName == t.Name && !t.Question.IsAnswerCorrect)
+                        OnQuestionAsked?.Invoke(t.Question);
             }
 
             if (sender is MetaCard metaCard)
@@ -102,12 +157,27 @@ namespace Methodyca.Minigames.Questioniser
                 OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
             }
         }
-
+        List<KeyValuePair<CardData, Question>> _topicQuestionPairsOfCards = new List<KeyValuePair<CardData, Question>>();
         void Start()
         {
+            foreach (var t in topics)
+                if (!_availableTopics.ContainsKey(t))
+                    _availableTopics.Add(t, 0);
+            SetGrid();
+
+            //var lookUp = _topicQuestionPairsOfCards.ToLookup(kvp => kvp.Key, kvp => kvp.Value.IsAnswerCorrect);
+
             _cardsInDeck = GetSpawnedCards().ToList();
             SetRandomTopic();
             DrawRandomCardFromDeck(5);
+        }
+
+        private void SetGrid()
+        {
+            
+            //foreach (var card in cardData)
+            //    foreach (var topic in card.Topics)
+            //        _topicQuestionPairsOfCards.Add(new KeyValuePair<CardData, Question>(card, topic.Question));
         }
 
         void DrawRandomCardFromDeck(int size = 1)

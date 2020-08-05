@@ -12,9 +12,9 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.OnTopicChanged += TopicChangedHandler;
         }
 
-        void TopicChangedHandler(Topic topic)
+        void TopicChangedHandler(string topicName)
         {
-            topicText.text = topic.Name;
+            topicText.text = topicName;
         }
 
         void OnDisable()

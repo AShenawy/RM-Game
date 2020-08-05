@@ -19,60 +19,80 @@ MonoBehaviour:
   description: Blue Card
   sprite: {fileID: 21300000, guid: 5bf52b5b651e4764c91a0e15614ae315, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  questions:
-  - QuestionText: Select the appropriate option
-    Topic:
-      Name: Food & Drink
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Correct phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-  - QuestionText: Select the appropriate option
-    Topic:
-      Name: Travel
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Correct phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-  - QuestionText: Select the appropriate option
-    Topic:
-      Name: Free Time
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Correct phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-  - QuestionText: Select the appropriate option
-    Topic:
-      Name: Work
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Correct phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Wrong phrase.
+  topics:
+  - Name: Free Time
+    CriticalPoint: 0
+    IsCompleted: 0
+    Question:
+      QuestionText: Select the proper option
+      IsAnswerCorrect: 1
+      Answers:
+      - Id: 1
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+  - Name: Travel
+    CriticalPoint: 0
+    IsCompleted: 0
+    Question:
+      QuestionText: Select the proper option
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+  - Name: Work
+    CriticalPoint: 0
+    IsCompleted: 0
+    Question:
+      QuestionText: Select the proper option
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+  - Name: Food & Drink
+    CriticalPoint: 0
+    IsCompleted: 0
+    Question:
+      QuestionText: Select the proper option
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong

@@ -19,60 +19,72 @@ MonoBehaviour:
   description: Red Card
   sprite: {fileID: 21300000, guid: 72f824f1de5fd5d489f99688ce924ac9, type: 3}
   outlineColor: {r: 0, g: 0, b: 0, a: 0}
-  questions:
-  - QuestionText: Select anyting below
-    Topic:
-      Name: Free Time
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Bravo
-  - QuestionText: Select anyting below
-    Topic:
-      Name: Food & Drink
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Bravo
-  - QuestionText: Select anyting below
-    Topic:
-      Name: Travel
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Bravo
-  - QuestionText: Select anyting below
-    Topic:
-      Name: Work
-      IsCompleted: 0
-    Answers:
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 0
-      Point: -10
-      AnswerText: Booo
-    - IsCorrect: 1
-      Point: 10
-      AnswerText: Bravo
+  topics:
+  - Name: Free Time
+    Question:
+      QuestionText: Select something
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+  - Name: Food & Drink
+    Question:
+      QuestionText: Select something
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+  - Name: Travel
+    Question:
+      QuestionText: Select something
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct
+  - Name: Work
+    Question:
+      QuestionText: Select something
+      IsAnswerCorrect: 0
+      Answers:
+      - Id: 1
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 2
+        IsCorrect: 0
+        Point: -10
+        AnswerText: Wrong
+      - Id: 3
+        IsCorrect: 1
+        Point: 10
+        AnswerText: Correct

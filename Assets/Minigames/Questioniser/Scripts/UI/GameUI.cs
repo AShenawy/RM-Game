@@ -13,6 +13,12 @@ namespace Methodyca.Minigames.Questioniser
         {
             GameManager.Instance.OnActionPointChanged += ActionPointChangedHandler;
             GameManager.Instance.OnInterestPointChanged += InterestPointChangedHandler;
+            GameManager.Instance.OnChartUpdated += ChartUpdatedHandler;
+        }
+
+        void ChartUpdatedHandler(string currentTopicName, string currentCardName, bool isEnough)
+        {
+
         }
 
         void InterestPointChangedHandler(float point)
@@ -32,6 +38,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 GameManager.Instance.OnActionPointChanged -= ActionPointChangedHandler;
                 GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+                GameManager.Instance.OnChartUpdated -= ChartUpdatedHandler;
             }
         }
     }

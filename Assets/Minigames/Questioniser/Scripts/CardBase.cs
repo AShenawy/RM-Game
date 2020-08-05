@@ -36,7 +36,7 @@ namespace Methodyca.Minigames.Questioniser
             _renderer.sprite = data.Sprite;
             _collider.enabled = false;
         }
-
+        
         void Awake()
         {
             _transform = transform;
