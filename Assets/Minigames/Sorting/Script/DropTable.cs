@@ -19,6 +19,7 @@ namespace Methodyca.Minigames.SortGame
             //calling the method Remove from DragSlot to remove from the box to the table
             boxQuali.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
             boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
+            FindObjectOfType<SoundManager>().Stop("battery");
             Debug.Log("Dropped on table");
             
         }           

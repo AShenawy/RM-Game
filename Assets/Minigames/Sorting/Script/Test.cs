@@ -9,30 +9,35 @@ namespace Methodyca.Minigames.SortGame{
     public class Test : MonoBehaviour  //IPointerDownHandler 
     {   
         //the inputs.
-        public float degreePerSecond = 20.0f;
-        public float amp = 7f;
-        public float freq = 1f;
+        //public float degreePerSecond = 20.0f;
+        public float amp ;
+        
+        //public float freq = 1f;
 
         //Storing positios
-        Vector3 posOffset = new Vector3();
-        Vector3 temPos = new Vector3();
+        //Vector3 posOffset = new Vector3();
+        //Vector3 temPos = new Vector3();
+
+       
 
 
-        // Start is called before the first frame update
-        void Start()
-        { 
-            posOffset = transform.position;
-        }
+        //Start is called before the first frame update
+        // void Awake()
+        // { 
+            
+        // }
 
         // Update is called once per frame
         void Update()
         {
-            temPos = posOffset;
-            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * amp;
-            transform.position = temPos;
-                
+            //float r = Input.GetAxis("Mouse X");
+            //float xPos = r*amp;
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Debug.Log(pos.x);
+            }
             
-
         }
     }
 }

@@ -64,6 +64,7 @@ namespace Methodyca.Minigames.SortGame
         {
             //Debug.Log("Clicked");  
             FindObjectOfType<SoundManager>().Play("click");//sound of the game.
+            // FindObjectOfType<SoundManager>():
         }
 
         //Method to see what is in dropped in the box.

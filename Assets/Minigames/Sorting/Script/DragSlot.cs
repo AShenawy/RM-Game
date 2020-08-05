@@ -13,7 +13,8 @@ namespace Methodyca.Minigames.SortGame
     {
         private int points = 0;
         public GameObject crystalStation;//The charging station either pink or blue.
-
+        // public GameObject boxQuali;//for the sound
+        // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
         private RectTransform levitate;//for the floating crystals. 
          
@@ -24,9 +25,9 @@ namespace Methodyca.Minigames.SortGame
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped. 
 
         //inputs for the levitations
-        public float degreePerSecond =20f;
-        public float amp = 7f;
-        public float freq = 1f;
+        float degreePerSecond =20f;
+        float amp = 7f;
+        float freq = 1f;
 
         //storing transform values 
         Vector3 posOffset = new Vector3();
@@ -54,8 +55,13 @@ namespace Methodyca.Minigames.SortGame
             }
 
             Debug.Log("Dropped");
+            
+            //Sound Effect
+            FindObjectOfType<SoundManager>().Imaging("paper_hit");
             FindObjectOfType<SoundManager>().Play("paper_hit");//sound of the game.
-
+            
+            
+            
             //This is basically to define the things on the table and, make them snap to the box when clicked. 
             RectTransform thingOnTheTable; //Anchored position. 
             thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
@@ -78,9 +84,15 @@ namespace Methodyca.Minigames.SortGame
                         //This is basically calling the array created to add crystals to the dock. 
                         Sprite sprite = crystalPhases[points];
                         crystalStation.GetComponent<Image>().sprite = sprite;
+                        
+                        FindObjectOfType<SoundManager>().Imaging("battery");
+                        FindObjectOfType<SoundManager>().Bounce("battery");
+                        FindObjectOfType<SoundManager>().Play("battery");
+                        
                         Debug.Log("Charging");
                         Debug.Log(points);
-                    } 
+                    }
+                    
                 }
                 
                 
