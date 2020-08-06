@@ -10,33 +10,48 @@ namespace Methodyca.Minigames.Questioniser
         const float SELECTION_SCALE = 1.2F;
         const float SELECTION_SCALE_PACE_IN_SEC = 0.25F;
 
+        [Header("Base Attributes")]
+        [SerializeField] new string name;
+        [SerializeField] int actionPoint;
+        [SerializeField] int interestPoint;
+        [SerializeField] int spawnSize;
+        [SerializeField] [Multiline] string description;
+        [SerializeField] Sprite sprite;
+        [SerializeField] Color outlineColor;
+
+        public string Name => name;
+        public int ActionPoint { get => actionPoint; protected set => actionPoint = value; }
+        public int InterestPoint { get => interestPoint; protected set => interestPoint = value; }
+        public int SpawnSize => spawnSize;
+        public string Description => description;
+        public Sprite Sprite => sprite;
+        public Color OutlineColor => outlineColor;
+
         protected Camera _camera;
-        protected CardData _data;
         protected Transform _transform;
         protected Collider2D _collider;
         protected CardHolder _hand;
         protected CardHolder _table;
-        protected SpriteRenderer _renderer;
 
+        SpriteRenderer _renderer;
+
+        public static bool IsClickable = false;
         public virtual void Discard() { }
         protected virtual void Throw() { }
-        public CardData GetData => _data;
         public void Draw() => StartCoroutine(DrawCoroutine());
 
         public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
         public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
 
-        public void InitializeCard(Camera camera, CardData data, CardHolder hand, CardHolder table)
+        public void InitializeCard(Camera camera, CardHolder hand, CardHolder table)
         {
             _camera = camera;
-            _data = data;
             _hand = hand;
             _table = table;
-            _renderer.sprite = data.Sprite;
             _collider.enabled = false;
         }
-        
+
         void Awake()
         {
             _transform = transform;
@@ -44,43 +59,56 @@ namespace Methodyca.Minigames.Questioniser
             _renderer = GetComponent<SpriteRenderer>();
         }
 
-        void OnMouseDown()
+        void OnEnable()
         {
+            _renderer.sprite = sprite;
+        }
+
+        protected virtual void OnMouseDown()
+        {
+            if (!IsClickable)
+                return;
+
             _hand.Cards.Remove(this);
             _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
         }
 
+        //protected virtual void OnMouseUpAsButton() { }
+
         void OnMouseDrag()
         {
+            if (!IsClickable)
+                return;
+
             var distance = Vector3.Distance(_transform.position, _camera.transform.position);
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             Vector2 rayPoint = ray.GetPoint(distance);
             _transform.position = rayPoint;
         }
 
-        void OnMouseUp()
+        protected virtual void OnMouseUp()
         {
+            if (!IsClickable)
+                return;
+
             _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
             var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
 
             if (inputPosition.y < 0.5f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
                 ReturnHand();
-            else if (GameManager.Instance.ActionPoint >= _data.ActionPoint)
-                Throw();
-            else
-                ReturnHand();
         }
 
-        void ReturnHand()
+        protected void ReturnHand()
         {
             _hand.Cards.Add(this);
-            _transform.DOMove(_hand.GetTransform.position, 0.25f)
+            Sequence seq = DOTween.Sequence();
+            seq.Append(_transform.DOMove(_hand.GetTransform.position, 0.25f)
                 .OnStart(() => _collider.enabled = false)
                 .OnComplete(() =>
                 {
                     _hand.ArrangeCardDeck();
                     _collider.enabled = true;
-                });
+                })).Join(_transform.DOScale(1, 0.25f));
         }
 
         IEnumerator DrawCoroutine()
@@ -98,6 +126,7 @@ namespace Methodyca.Minigames.Questioniser
             _transform.SetParent(_hand.GetTransform);
             _hand.ArrangeCardDeck();
             _collider.enabled = true;
+            IsClickable = true;
         }
     }
 }

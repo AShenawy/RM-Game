@@ -7,72 +7,71 @@ using UnityEngine;
 namespace Methodyca.Minigames.Questioniser
 {
     [Serializable]
-    public struct Topic
-    {
-        public string Name;
-        public Question Question;
-    }
-
-    [Serializable]
     public struct Question
     {
         public bool IsAnswerCorrect;
-        public string QuestionText;
-        public Answer[] Answers;
-
-        public void SetAnswerAs(bool isCorrect)
-        {
-            IsAnswerCorrect = isCorrect;
-        }
+        public string TopicName;
+        public string OptionDescription;
+        public Option[] Options;
     }
 
     [Serializable]
-    public struct Answer
+    public struct Option
     {
         public bool IsCorrect;
         public int Id;
         public int Point;
-        [Multiline] public string AnswerText;
+        [Multiline] public string Text;
     }
 
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] Camera sceneCamera;
         [SerializeField] CardInfoUI cardInfoGUI;
-        [SerializeField] CardBase cardPrefab;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
         [SerializeField] Transform deck;
-        [SerializeField] List<CardData> cardData;
+        [SerializeField] List<CardBase> cards;
         [SerializeField] List<string> topics;
 
         public event Action OnGameOver = delegate { };
         public event Action<string> OnTopicChanged = delegate { };
         public event Action<Question> OnQuestionAsked = delegate { };
-        public event Action<int> OnActionPointChanged = delegate { };
-        public event Action<float> OnInterestPointChanged = delegate { };
+        public event Action<int> OnActionPointUpdated = delegate { };
+        public event Action<float> OnInterestPointUpdated = delegate { };
         public event Action<string, string> OnStoryPointRaised = delegate { };
         public event Action<string, string, bool> OnChartUpdated = delegate { };
+        public event Action<string> OnMessageRaised = delegate { };
+        public event Action<byte> OnDeckUpdated = delegate { };
 
         string _currentTopicName;
-        CardData _currentCardData;
+        CardBase _currentCard;
         List<CardBase> _cardsInDeck;
-        Dictionary<string, byte> _availableTopics = new Dictionary<string, byte>();
-        readonly float _maxInterestPoint = 100f;
+        bool[,] _quizAnswerSheet;
 
         public CardInfoUI CardInfoGUI => cardInfoGUI;
         public int ActionPoint { get; private set; } = 5;
-        public float InterestPoint { get; private set; } = 0;
+        public int InterestPoint { get; private set; } = 2;
+        public void RaiseGameMessage(string message) => OnMessageRaised?.Invoke(message);
 
         public void EndTurn()
         {
             DiscardCards();
             DrawRandomCardFromDeck(5); //Add validation check
-            OnActionPointChanged?.Invoke(ActionPoint += 5);
+            OnActionPointUpdated?.Invoke(ActionPoint += 5);
+        }
+
+        public void SwitchInterestToActionPoint(int interestPoint, int actionPoint)
+        {
+            OnActionPointUpdated?.Invoke(ActionPoint += actionPoint);
+            OnInterestPointUpdated?.Invoke(InterestPoint += interestPoint);
         }
 
         public void SetRandomTopic()
         {
+            if (topics.Count <= 0)
+                return;
+
             var topic = topics[UnityEngine.Random.Range(0, topics.Count)];
 
             while (_currentTopicName == topic)
@@ -88,96 +87,82 @@ namespace Methodyca.Minigames.Questioniser
             _currentTopicName = "";
             SetRandomTopic();
         }
-        bool[][] topicCardAnswerSheet;
 
-        public void HandleItemCardQuestionFor(Answer answer)
+        public void HandleItemCardQuestionFor(Option answer)
         {
+            CardBase.IsClickable = true;
             InterestPoint += answer.Point;
+            OnInterestPointUpdated?.Invoke(InterestPoint);
 
+            var itemCard = _currentCard.GetComponent<ItemCard>();
             if (answer.IsCorrect)
             {
-                for (int i = 0; i < _currentCardData.Topics.Length; i++)
+                for (int i = 0; i < itemCard.Questions.Length; i++)
                 {
-                    if (_currentCardData.Topics[i].Name == _currentTopicName)
+                    if (itemCard.Questions[i].TopicName == _currentTopicName)
                     {
+                        itemCard.Questions[i].IsAnswerCorrect = true;
+                        TickAnswerSheet(_currentTopicName, _currentCard.Name);
 
+                        if (GetCorrectAnswerCountFor(_currentTopicName) >= 2)
+                            OnStoryPointRaised?.Invoke(_currentTopicName, _currentCard.Name);
                     }
                 }
-
-                for (int i = 0; i < _currentCardData.Topics.Length; i++)
-                {
-                    var currentTopic = _currentCardData.Topics[i];
-                    if (currentTopic.Name == _currentTopicName)
-                    {
-                        Debug.Log("Answer is " + currentTopic.Question.IsAnswerCorrect);
-                        //currentTopic.Question.IsAnswerCorrect = true;
-                        //var storyPoint = _availableTopics[_currentTopicName]++;
-
-                        //OnChartUpdated?.Invoke(_currentTopicName, _currentCardData.Name, storyPoint >= 3);
-
-                        //if (storyPoint >= 3)
-                        //    OnStoryPointRaised?.Invoke(_currentTopicName, _currentCardData.Name);
-                        //else if (storyPoint >= cardData.Count)
-                        //    _availableTopics[_currentTopicName] = (byte)cardData.Count;
-                    }
-                }
-
-                //foreach (var tq in _topicQuestionPairsOfCards)
-                //{
-                //    if (tq. == _currentCardData.name)
-                //    {
-                //        Debug.Log("answer is " + tq.Value.IsAnswerCorrect);
-
-                //    }
-                //}
             }
-
-            if (InterestPoint >= _maxInterestPoint || InterestPoint <= 0)
-                OnGameOver?.Invoke();
-            else
-                OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
         }
 
         void CardThrownHandler(object sender, CardBase.OnCardThrownEventArgs e)
         {
             if (sender is ItemCard itemCard)
             {
-                OnActionPointChanged?.Invoke(ActionPoint -= e.Card.GetData.ActionPoint);
-                _currentCardData = itemCard.GetData;
+                _currentCard = itemCard;
+                OnActionPointUpdated?.Invoke(ActionPoint -= e.Card.ActionPoint);
 
-                foreach (var t in itemCard.GetData.Topics)
-                    if (_currentTopicName == t.Name && !t.Question.IsAnswerCorrect)
-                        OnQuestionAsked?.Invoke(t.Question);
+                foreach (var q in itemCard.Questions)
+                {
+                    if (_currentTopicName == q.TopicName && !q.IsAnswerCorrect)
+                        OnQuestionAsked?.Invoke(q);
+                    else if (q.IsAnswerCorrect)
+                        OnMessageRaised?.Invoke("The proper option was already selected before");
+                }
             }
 
-            if (sender is MetaCard metaCard)
+            if (sender is ActionCard actionCard)
             {
                 // Add validation check
-                InterestPoint -= e.Card.GetData.InterestPoint;
-                OnInterestPointChanged?.Invoke(InterestPoint / _maxInterestPoint);
+                _currentCard = actionCard;
+                InterestPoint -= e.Card.InterestPoint;
+                OnInterestPointUpdated?.Invoke(InterestPoint);
             }
         }
-        List<KeyValuePair<CardData, Question>> _topicQuestionPairsOfCards = new List<KeyValuePair<CardData, Question>>();
+
         void Start()
         {
-            foreach (var t in topics)
-                if (!_availableTopics.ContainsKey(t))
-                    _availableTopics.Add(t, 0);
-            SetGrid();
-
-            //var lookUp = _topicQuestionPairsOfCards.ToLookup(kvp => kvp.Key, kvp => kvp.Value.IsAnswerCorrect);
-
+            _quizAnswerSheet = new bool[topics.Count, cards.Count];
             _cardsInDeck = GetSpawnedCards().ToList();
+
             SetRandomTopic();
             DrawRandomCardFromDeck(5);
         }
 
-        private void SetGrid()
+        void TickAnswerSheet(string topicName, string cardName)
         {
-            
-            //foreach (var card in cardData)
-            //    foreach (var topic in card.Topics)
-            //        _topicQuestionPairsOfCards.Add(new KeyValuePair<CardData, Question>(card, topic.Question));
+            for (int i = 0; i < topics.Count; i++)
+                if (topicName == topics[i])
+                    for (int j = 0; j < cards.Count; j++)
+                        if (cardName == cards[j].Name)
+                            _quizAnswerSheet[i, j] = true;
+        }
+
+        byte GetCorrectAnswerCountFor(string topicName)
+        {
+            byte num = 0;
+            for (int i = 0; i < topics.Count; i++)
+                if (topicName == topics[i])
+                    for (int j = 0; j < cards.Count; j++)
+                        if (_quizAnswerSheet[i, j])
+                            num++;
+            return num;
         }
 
         void DrawRandomCardFromDeck(int size = 1)
@@ -207,19 +192,20 @@ namespace Methodyca.Minigames.Questioniser
                 int index = UnityEngine.Random.Range(0, _cardsInDeck.Count);
                 _cardsInDeck[index].Draw();
                 _cardsInDeck.RemoveAt(index);
+                OnDeckUpdated?.Invoke((byte)_cardsInDeck.Count);
                 yield return new WaitForSeconds(0.5f);
             }
         }
 
         IEnumerable<CardBase> GetSpawnedCards()
         {
-            for (int j = 0; j < cardData.Count; j++)
+            for (int j = 0; j < cards.Count; j++)
             {
-                for (int i = 0; i < cardData[j].SpawnSize; i++)
+                for (int i = 0; i < cards[j].SpawnSize; i++)
                 {
-                    var spawned = Instantiate(cardPrefab, deck);
+                    var spawned = Instantiate(cards[j], deck);
                     spawned.transform.position = deck.position;
-                    spawned.InitializeCard(sceneCamera, cardData[j], hand, table);
+                    spawned.InitializeCard(sceneCamera, hand, table);
                     spawned.OnCardThrown += CardThrownHandler;
                     yield return spawned;
                 }

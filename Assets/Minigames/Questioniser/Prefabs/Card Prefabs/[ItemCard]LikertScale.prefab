@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3059785074208783371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda99e660c93ce449b986d925ee9f1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Likert Scale
+  actionPoint: 3
+  interestPoint: 0
+  spawnSize: 5
+  description: Likert Scale Description
+  sprite: {fileID: 21300000, guid: 72f824f1de5fd5d489f99688ce924ac9, type: 3}
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  questions:
+  - IsAnswerCorrect: 0
+    TopicName: Free Time
+    OptionDescription: Likert Scale
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 0
+      Id: 2
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 1
+      Id: 3
+      Point: 4
+      Text: Correct
+  - IsAnswerCorrect: 0
+    TopicName: Food & Drink
+    OptionDescription: Likert Scale
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 0
+      Id: 2
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 1
+      Id: 3
+      Point: 4
+      Text: Correct
+  - IsAnswerCorrect: 0
+    TopicName: Travel
+    OptionDescription: Likert Scale
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 0
+      Id: 2
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 1
+      Id: 3
+      Point: 4
+      Text: Correct
+  - IsAnswerCorrect: 0
+    TopicName: Work
+    OptionDescription: Likert Scale
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 0
+      Id: 2
+      Point: -2
+      Text: Wrong
+    - IsCorrect: 1
+      Id: 3
+      Point: 4
+      Text: Correct
+--- !u!1001 &6154170396189033455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 713846691693631341, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 3059785074208783371}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Name
+      value: '[ItemCard]LikertScale'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
+--- !u!1 &619988347210649360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}

@@ -6,9 +6,28 @@ namespace Methodyca.Minigames.Questioniser
 {
     public class ItemCard : CardBase
     {
-        protected override void Throw()
+        [Header("ItemCard Attributes")]
+        [SerializeField] Question[] questions;
+
+        public Question[] Questions => questions;
+
+        protected override void Throw() => StartCoroutine(ThrowCoroutine());
+        protected override void OnMouseUp()
         {
-            StartCoroutine(ThrowCoroutine());
+            if (!IsClickable)
+                return;
+
+            base.OnMouseUp();
+
+            if (GameManager.Instance.ActionPoint >= ActionPoint)
+            {
+                Throw();
+            }
+            else
+            {
+                ReturnHand();
+                GameManager.Instance.RaiseGameMessage("Not enough action points");
+            }
         }
 
         public override void Discard()

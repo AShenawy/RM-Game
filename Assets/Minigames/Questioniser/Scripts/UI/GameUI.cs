@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,14 +7,32 @@ namespace Methodyca.Minigames.Questioniser
 {
     public class GameUI : MonoBehaviour
     {
+        [SerializeField] RectTransform messagePanel;
         [SerializeField] RectTransform actionPoint;
+        [SerializeField] RectTransform interestPoint;
+        [SerializeField] TextMeshPro deckCountText;
+        [SerializeField] TextMeshProUGUI messageText;
         [SerializeField] TextMeshProUGUI actionPointText;
+        [SerializeField] TextMeshProUGUI interestPointText;
 
         void Start()
         {
-            GameManager.Instance.OnActionPointChanged += ActionPointChangedHandler;
-            GameManager.Instance.OnInterestPointChanged += InterestPointChangedHandler;
+            GameManager.Instance.OnDeckUpdated += DeckUpdatedHandler;
+            GameManager.Instance.OnMessageRaised += MessageRaisedHandler;
+            GameManager.Instance.OnActionPointUpdated += ActionPointUpdatedHandler;
+            GameManager.Instance.OnInterestPointUpdated += InterestPointUpdatedHandler;
             GameManager.Instance.OnChartUpdated += ChartUpdatedHandler;
+        }
+
+        void DeckUpdatedHandler(byte cardCount) => deckCountText.text = cardCount.ToString();
+        void MessageRaisedHandler(string message) => StartCoroutine(MessageCoroutine(message));
+
+        IEnumerator MessageCoroutine(string message)
+        {
+            messagePanel.gameObject.SetActive(true);
+            messageText.text = message;
+            yield return new WaitForSeconds(3f);
+            messagePanel.gameObject.SetActive(false);
         }
 
         void ChartUpdatedHandler(string currentTopicName, string currentCardName, bool isEnough)
@@ -21,14 +40,15 @@ namespace Methodyca.Minigames.Questioniser
 
         }
 
-        void InterestPointChangedHandler(float point)
+        void InterestPointUpdatedHandler(float point)
         {
-
+            interestPoint.DOShakeScale(duration: 0.2f);
+            interestPointText.text = point.ToString();
         }
 
-        void ActionPointChangedHandler(int point)
+        void ActionPointUpdatedHandler(int point)
         {
-            actionPoint.DOShakeScale(duration: 0.5f);
+            actionPoint.DOShakeScale(duration: 0.2f);
             actionPointText.text = point.ToString();
         }
 
@@ -36,8 +56,10 @@ namespace Methodyca.Minigames.Questioniser
         {
             if (GameManager.InstanceExists)
             {
-                GameManager.Instance.OnActionPointChanged -= ActionPointChangedHandler;
-                GameManager.Instance.OnInterestPointChanged -= InterestPointChangedHandler;
+                GameManager.Instance.OnDeckUpdated -= DeckUpdatedHandler;
+                GameManager.Instance.OnMessageRaised -= MessageRaisedHandler;
+                GameManager.Instance.OnActionPointUpdated -= ActionPointUpdatedHandler;
+                GameManager.Instance.OnInterestPointUpdated -= InterestPointUpdatedHandler;
                 GameManager.Instance.OnChartUpdated -= ChartUpdatedHandler;
             }
         }

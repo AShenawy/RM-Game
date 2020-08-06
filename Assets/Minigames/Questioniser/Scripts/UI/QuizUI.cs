@@ -1,15 +1,17 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Questioniser
 {
     public class QuizUI : MonoBehaviour
     {
         [SerializeField] GameObject root;
+        [SerializeField] Image topicCardImage;
         [SerializeField] TextMeshProUGUI questionText;
         [SerializeField] TextMeshProUGUI[] answerTexts = new TextMeshProUGUI[3];
 
-        Answer[] _answers;
+        Option[] _answers;
 
         public void ClickHandler(int id)
         {
@@ -30,12 +32,13 @@ namespace Methodyca.Minigames.Questioniser
 
         void QuestionAskedHandle(Question question)
         {
-            _answers = question.Answers;
+            _answers = question.Options;
+            CardBase.IsClickable = false;
             root.SetActive(true);
-            questionText.text = question.QuestionText;
+            questionText.text = question.OptionDescription;
 
-            for (int i = 0; i < question.Answers.Length; i++)
-                answerTexts[i].text = question.Answers[i].AnswerText;
+            for (int i = 0; i < question.Options.Length; i++)
+                answerTexts[i].text = question.Options[i].Text;
         }
 
         void OnDisable()
