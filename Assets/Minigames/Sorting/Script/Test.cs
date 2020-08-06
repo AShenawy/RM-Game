@@ -53,7 +53,7 @@ namespace Methodyca.Minigames.SortGame{
         {   
             
             audioSource.volume = volume;
-            
+
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 if(!audioSource.isPlaying)
@@ -109,7 +109,7 @@ namespace Methodyca.Minigames.SortGame{
         }
         public float Limiter(float soo)
         {
-            return duh = volume = volumeMain;// real time volume.
+            return duh = volume;// real time volume.
             
         }
     }   
