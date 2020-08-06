@@ -10,6 +10,7 @@ namespace Methodyca.Minigames.SortGame
     {
         public GameObject boxQuali;
         public GameObject boxQuanti; 
+        public GameObject placementParent;
         public void OnDrop(PointerEventData eventData)//calling the event OnDrop 
         {   
             if (eventData.pointerDrag == null)
@@ -19,9 +20,13 @@ namespace Methodyca.Minigames.SortGame
             //calling the method Remove from DragSlot to remove from the box to the table
             boxQuali.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
             boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
+
+            eventData.pointerDrag.GetComponent<Drag>().OutsideBox(placementParent);
+
             FindObjectOfType<SoundManager>().Stop("battery");
             Debug.Log("Dropped on table");
             
+
         }           
    
     }

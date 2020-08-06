@@ -23,7 +23,9 @@ namespace Methodyca.Minigames.SortGame
 
         public string boxType;//The tag name for the boxes in the game either QA or QN.
         
-        public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped. 
+        public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
+
+        public Vector3 shift;
 
         //inputs for the levitations
         float degreePerSecond =20f;
@@ -55,18 +57,18 @@ namespace Methodyca.Minigames.SortGame
             }
 
             if (eventData.pointerDrag == null)
-            { 
+            {
                 return;
             }
 
             Debug.Log("Dropped");
-            
+
             //Sound Effect
             soundMan.Imaging("paper_hit");
             soundMan.Play("paper_hit");//sound of the game.
-            
-            
-            
+
+
+
             //This is basically to define the things on the table and, make them snap to the box when clicked. 
             RectTransform thingOnTheTable; //Anchored position. 
             thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
@@ -74,35 +76,40 @@ namespace Methodyca.Minigames.SortGame
 
 
             //To check if the item dropped has been added to the box or not. 
-            if(!inTheBox.Contains(thingOnTheTable.gameObject))
+            if (!inTheBox.Contains(thingOnTheTable.gameObject))
             {
                 inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
 
                 //To compare with Tags (QN and QA), with the box and see which enters which. 
-                if(thingOnTheTable.CompareTag(boxType))
+                if (thingOnTheTable.CompareTag(boxType))
                 {
                     //A check to award points if the the right itea is placed in the box. 
                     if (points < 5) //Points is 5 because of the amount of the crystal variations.
-                    {          
+                    {
                         points++;
                         //This is basically calling the array created to add crystals to the dock. 
                         crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
-                        
+
                         soundMan.Imaging("battery");
                         soundMan.Bounce("battery");
                         soundMan.Play("battery");
-                        
+
                         Debug.Log("Charging");
                         Debug.Log(points);
                     }
                 }
 
                 Debug.Log("Addng to the box");
-            }
+            }           
             
-            thingOnTheTable.GetComponent<Drag>().insideBox(placementParent);//prefab instaniation. 
+            PlaceInBox(thingOnTheTable);//instatioation 
+        }
 
-            thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
+        void PlaceInBox(RectTransform transform)
+        {
+            transform.GetComponent<Drag>().InsideBox(placementParent, shift);//prefab instaniation. 
+
+            transform.GetComponent<Drag>().PutInBox(this.gameObject);
         }
 
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 

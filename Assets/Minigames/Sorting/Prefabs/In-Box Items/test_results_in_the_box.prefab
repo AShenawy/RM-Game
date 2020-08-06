@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4618359959448623396}
   - component: {fileID: 4618359959448623397}
   - component: {fileID: -4144306851973146820}
+  - component: {fileID: 6974804434792567365}
   m_Layer: 5
   m_Name: test_results_in_the_box
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 161, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4618359959448623396
 CanvasRenderer:
@@ -87,3 +88,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6974804434792567365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618359959448623399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11871d99365974aa58e56e7758a5fb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  box: {fileID: 0}
+  inBoxPrefab: {fileID: 4618359959448623399}
+  OnTablePrefab: {fileID: 6903876393518444766, guid: b2722bc68a0604130b6a5f837810c964,
+    type: 3}

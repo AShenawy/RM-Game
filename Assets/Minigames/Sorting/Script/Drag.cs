@@ -19,8 +19,8 @@ namespace Methodyca.Minigames.SortGame
         public GameObject box;//The boxtag either QA or QN for on the table. 
         //public GameObject itemsHD;//The clear vision of the items on the table. 
 
-        public GameObject prefab;
-        public GameObject prefabOut;
+        public GameObject inBoxPrefab; // ---------- rename to inBoxPrefab
+        public GameObject OnTablePrefab; // ---------- rename to onTablePrefab
         bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
@@ -107,19 +107,24 @@ namespace Methodyca.Minigames.SortGame
             // }
 
         }
-        public void insideBox(GameObject boxType)
+
+        public void InsideBox(GameObject boxType, Vector3 shift)    // ------ rename to InsideBox
         {
             //this swtiches the images
-            Instantiate(prefab,boxType.transform);
+            GameObject instance = Instantiate(inBoxPrefab, boxType.transform);
+            Vector3 orderInBox = instance.transform.GetSiblingIndex() * shift;
+            instance.GetComponent<RectTransform>().position += orderInBox;
 
             //prefab.GetComponent<CanvasGroup>()=canvasGroup;
             //this.gameObject.SetActive(false);
             Destroy(gameObject);
             Debug.Log("Appear inside the box");
         }
-        public void outsideBox()
+
+        public void OutsideBox(GameObject parent)   // ------- rename to OutsideBox
         {
-            Instantiate(prefabOut, GameObject.Find("Table").transform);
+            Instantiate(OnTablePrefab, parent.transform);
+            Destroy(gameObject);
         }
         
     }      

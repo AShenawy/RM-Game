@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3278070228023996120}
   - component: {fileID: 3278070228023996127}
   - component: {fileID: -733663175942567034}
+  - component: {fileID: 3111310506892149824}
   m_Layer: 5
   m_Name: essay_sheet_in_the_box
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 161, y: 217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3278070228023996120
 CanvasRenderer:
@@ -87,3 +88,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3111310506892149824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278070228023996125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11871d99365974aa58e56e7758a5fb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  box: {fileID: 0}
+  inBoxPrefab: {fileID: 3278070228023996125}
+  OnTablePrefab: {fileID: 5065967677457964131, guid: 3cdef71e91fe74c54a98be633e0d1a5a,
+    type: 3}

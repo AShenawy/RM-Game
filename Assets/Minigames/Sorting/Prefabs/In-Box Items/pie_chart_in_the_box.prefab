@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 161, y: 217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3988612418786280407
 CanvasRenderer:
@@ -90,8 +90,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   box: {fileID: 0}
-  prefab: {fileID: 0}
-  prefabOut: {fileID: 0}
+  inBoxPrefab: {fileID: 3988612418786280404}
+  OnTablePrefab: {fileID: 7514350143076049333, guid: acd92641fa2bd47018ba266be3b4b746,
+    type: 3}
 --- !u!225 &-6346319394360447008
 CanvasGroup:
   m_ObjectHideFlags: 0
