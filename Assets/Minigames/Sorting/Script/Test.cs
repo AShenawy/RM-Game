@@ -8,36 +8,109 @@ namespace Methodyca.Minigames.SortGame{
 
     public class Test : MonoBehaviour  //IPointerDownHandler 
     {   
-        //the inputs.
-        //public float degreePerSecond = 20.0f;
-        public float amp ;
-        
-        //public float freq = 1f;
+        [Range(1,20000)]  //Creates a slider in the inspector
+        public float frequency1;
+    
+        [Range(1,20000)]  //Creates a slider in the inspector
+        public float frequency2;
 
-        //Storing positios
-        //Vector3 posOffset = new Vector3();
-        //Vector3 temPos = new Vector3();
+        [Range (0,1f)]
+        public float volume;
 
-       
+        [Range(0,1)]
+        public float volumeMain;
+
+        public float sampleRate = 44100;
+        public float waveLengthInSeconds = 2.0f;
+
+        public float y;//to convert vector to float 
+        public float tick;//for the speed.
+        public float gain;//like a compressor
+        public float duh;
+
+        public Vector2 pos; //for the bounce. 
 
 
-        //Start is called before the first frame update
-        // void Awake()
-        // { 
-            
-        // }
+    
+        public AudioSource audioSource;
+        int timeIndex = 0;
 
-        // Update is called once per frame
-        void Update()
+
+        void Awake()
         {
-            //float r = Input.GetAxis("Mouse X");
-            //float xPos = r*amp;
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Debug.Log(pos.x);
-            }
             
         }
-    }
+        void Start()
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.spatialBlend = 0; //force 2D sound
+            audioSource.Stop(); //avoids audiosource from starting to play automatically
+            
+        }
+    
+        void Update()
+        {   
+            
+            audioSource.volume = volume;
+            
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if(!audioSource.isPlaying)
+                {
+                    timeIndex = 0;  //resets timer before playing sound
+                    audioSource.Play();
+                    Debug.Log("Keys are playing");
+                }
+                else
+                {
+                    audioSource.Stop();
+                }   Debug.Log("Stop Keys");
+            }
+
+            Shake(audioSource);
+            
+            
+            Limiter(volumeMain);
+            
+            
+        }
+    
+        void OnAudioFilterRead(float[] data, int channels)
+        {
+            for(int i = 0; i < data.Length; i+= channels)
+            {          
+                data[i] = CreateSine(timeIndex, frequency1, sampleRate);
+            
+                if(channels == 2)
+                    data[i+1] = CreateSine(timeIndex, frequency2, sampleRate);
+            
+                timeIndex++;
+            
+                //if timeIndex gets too big, reset it to 0
+                if(timeIndex >= (sampleRate * waveLengthInSeconds))
+                {
+                    timeIndex = 0;
+                }
+            }
+        }
+    
+        //Creates a sinewave
+        public float CreateSine(int timeIndex, float frequency, float sampleRate)
+        {
+            return Mathf.Sin(2 * Mathf.PI * timeIndex * frequency / sampleRate);
+        }
+        public void Shake(AudioSource audioSource)//The automatied shake
+        {
+            pos =  new Vector2();
+            pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI* tick)* gain/10f;
+            y = pos.y + 0.4f;
+            volume = y;
+        }
+        public float Limiter(float soo)
+        {
+            return duh = volume = volumeMain;// real time volume.
+            
+        }
+    }   
 }

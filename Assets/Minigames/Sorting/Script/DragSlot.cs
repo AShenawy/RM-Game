@@ -13,6 +13,7 @@ namespace Methodyca.Minigames.SortGame
     {
         private int points = 0;
         public GameObject crystalStation;//The charging station either pink or blue.
+        public GameObject placementParent; // the parent of the items placed in the box
         // public GameObject boxQuali;//for the sound
         // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
@@ -33,6 +34,9 @@ namespace Methodyca.Minigames.SortGame
         Vector3 posOffset = new Vector3();
         Vector3 temPos = new Vector3();
 
+        // sound manager
+        SoundManager soundMan;
+
         private void Start()
         {
             anchored = GetComponent<RectTransform>();
@@ -40,6 +44,7 @@ namespace Methodyca.Minigames.SortGame
             levitate = crystalStation.GetComponent<RectTransform>();
             posOffset = levitate.position;
 
+            soundMan = FindObjectOfType<SoundManager>();
         }
         public void OnDrop(PointerEventData eventData) //Mouse released. 
         {
@@ -57,8 +62,8 @@ namespace Methodyca.Minigames.SortGame
             Debug.Log("Dropped");
             
             //Sound Effect
-            FindObjectOfType<SoundManager>().Imaging("paper_hit");
-            FindObjectOfType<SoundManager>().Play("paper_hit");//sound of the game.
+            soundMan.Imaging("paper_hit");
+            soundMan.Play("paper_hit");//sound of the game.
             
             
             
@@ -68,57 +73,54 @@ namespace Methodyca.Minigames.SortGame
             thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
 
 
-            //To compare with Tags (QN and QA), with the box and see which enters which. 
-            if(thingOnTheTable.CompareTag(boxType))
+            //To check if the item dropped has been added to the box or not. 
+            if(!inTheBox.Contains(thingOnTheTable.gameObject))
             {
-                
+                inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
 
-                //To check if the itea dropped has being added to the box or not. 
-                if(!inTheBox.Contains(thingOnTheTable.gameObject))
+                //To compare with Tags (QN and QA), with the box and see which enters which. 
+                if(thingOnTheTable.CompareTag(boxType))
                 {
-                    inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
                     //A check to award points if the the right itea is placed in the box. 
                     if (points < 5) //Points is 5 because of the amount of the crystal variations.
                     {          
                         points++;
                         //This is basically calling the array created to add crystals to the dock. 
-                        Sprite sprite = crystalPhases[points];
-                        crystalStation.GetComponent<Image>().sprite = sprite;
+                        crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
                         
-                        FindObjectOfType<SoundManager>().Imaging("battery");
-                        FindObjectOfType<SoundManager>().Bounce("battery");
-                        FindObjectOfType<SoundManager>().Play("battery");
+                        soundMan.Imaging("battery");
+                        soundMan.Bounce("battery");
+                        soundMan.Play("battery");
                         
                         Debug.Log("Charging");
                         Debug.Log(points);
                     }
-                    
                 }
-                
-                
+
                 Debug.Log("Addng to the box");
             }
             
-            thingOnTheTable.GetComponent<Drag>().insideBox(this.gameObject);//prefab instaniation. 
+            thingOnTheTable.GetComponent<Drag>().insideBox(placementParent);//prefab instaniation. 
 
             thingOnTheTable.GetComponent<Drag>().PutInBox(this.gameObject);
         }
+
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
         {   
-            if (!inTheBox.Remove(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
-            return;
+            if (!inTheBox.Contains(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
+                return;
+
+            inTheBox.Remove(thingInTheBox);
+
             Debug.Log("Removing");
            
             if(thingInTheBox.CompareTag(boxType))//A check to see if the tags are correct and if there is a point award to the box already.
             {
                if(points > 0) 
                 points --;
-                Sprite sprite = crystalPhases[points];
-                crystalStation.GetComponent<Image>().sprite = sprite;
+                crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
                 Debug.Log(points);
             }
-
-            
         }
         void Update()
         {

@@ -20,17 +20,23 @@ namespace Methodyca.Minigames.SortGame
         //public GameObject itemsHD;//The clear vision of the items on the table. 
 
         public GameObject prefab;
-        public GameObject parent;
+        public GameObject prefabOut;
         bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
         private float lastClickTime;
         private const float doubleClickTime = .25f;
 
+        // Sound manager
+        SoundManager soundMan;
+
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();     
             canvasGroup = GetComponent<CanvasGroup>();
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+            soundMan = FindObjectOfType<SoundManager>();
         }
     
         public void OnBeginDrag(PointerEventData eventData)
@@ -38,7 +44,6 @@ namespace Methodyca.Minigames.SortGame
             Debug.Log("StartDrag");
             canvasGroup.alpha = .7f;//reduced the opacity of the item when selected.
             canvasGroup.blocksRaycasts = false;
-             
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -63,8 +68,7 @@ namespace Methodyca.Minigames.SortGame
         public void OnPointerDown(PointerEventData eventData)
         {
             //Debug.Log("Clicked");  
-            FindObjectOfType<SoundManager>().Play("click");//sound of the game.
-            // FindObjectOfType<SoundManager>():
+            soundMan.Play("click");//sound of the game.
         }
 
         //Method to see what is in dropped in the box.
@@ -106,11 +110,16 @@ namespace Methodyca.Minigames.SortGame
         public void insideBox(GameObject boxType)
         {
             //this swtiches the images
-            Instantiate(prefab,parent.transform);
-            
+            Instantiate(prefab,boxType.transform);
+
             //prefab.GetComponent<CanvasGroup>()=canvasGroup;
-            this.gameObject.SetActive(turnOn);
+            //this.gameObject.SetActive(false);
+            Destroy(gameObject);
             Debug.Log("Appear inside the box");
+        }
+        public void outsideBox()
+        {
+            Instantiate(prefabOut, GameObject.Find("Table").transform);
         }
         
     }      
