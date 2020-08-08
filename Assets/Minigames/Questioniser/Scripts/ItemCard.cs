@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Question[] questions;
 
         public Question[] Questions => questions;
+        public event Action<ItemCard> OnCardClicked = delegate { };
 
         protected override void Throw() => StartCoroutine(ThrowCoroutine());
         protected override void OnMouseUp()
@@ -28,6 +30,11 @@ namespace Methodyca.Minigames.Questioniser
                 ReturnHand();
                 GameManager.Instance.RaiseGameMessage("Not enough action points");
             }
+        }
+
+        protected override void OnMouseUpAsButton()
+        {
+            OnCardClicked?.Invoke(this);
         }
 
         public override void Discard()
@@ -49,7 +56,7 @@ namespace Methodyca.Minigames.Questioniser
             yield return throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
                 .Join(_transform.DORotate(new Vector3(45, 0, 0), 0.5f)).WaitForCompletion();
 
-            TriggerCardIsThrown(this);
+            TriggerCardIsThrown((ItemCard)this);
         }
     }
 }

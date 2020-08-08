@@ -20,8 +20,8 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Color outlineColor;
 
         public string Name => name;
-        public int ActionPoint { get => actionPoint; protected set => actionPoint = value; }
-        public int InterestPoint { get => interestPoint; protected set => interestPoint = value; }
+        public int ActionPoint { get => actionPoint; protected set { actionPoint = value; OnActionValueChanged?.Invoke(actionPoint); } }
+        public int InterestPoint { get => interestPoint; protected set { interestPoint = value; OnInterestValueChanged?.Invoke(interestPoint); } }
         public int SpawnSize => spawnSize;
         public string Description => description;
         public Sprite Sprite => sprite;
@@ -40,6 +40,8 @@ namespace Methodyca.Minigames.Questioniser
         protected virtual void Throw() { }
         public void Draw() => StartCoroutine(DrawCoroutine());
 
+        public event Action<int> OnActionValueChanged = delegate { };
+        public event Action<int> OnInterestValueChanged = delegate { };
         public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
         public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
@@ -57,10 +59,6 @@ namespace Methodyca.Minigames.Questioniser
             _transform = transform;
             _collider = GetComponent<Collider2D>();
             _renderer = GetComponent<SpriteRenderer>();
-        }
-
-        void OnEnable()
-        {
             _renderer.sprite = sprite;
         }
 
@@ -73,7 +71,7 @@ namespace Methodyca.Minigames.Questioniser
             _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
         }
 
-        //protected virtual void OnMouseUpAsButton() { }
+        protected virtual void OnMouseUpAsButton() { }
 
         void OnMouseDrag()
         {

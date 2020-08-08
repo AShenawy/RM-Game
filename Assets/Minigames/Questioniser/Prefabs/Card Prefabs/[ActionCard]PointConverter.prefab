@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Point Converter
   actionPoint: 0
-  interestPoint: 0
+  interestPoint: 2
   spawnSize: 5
   description: Convert 10 interest points to 5 action points
   sprite: {fileID: 21300000, guid: 63ebdfeffdaf8cd4bbbed9c3a46f8913, type: 3}
@@ -28,6 +28,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 34749705673263400, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2558315732062379536, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
       propertyPath: m_IsActive
@@ -93,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[ActionCard]PointConverter'
       objectReference: {fileID: 0}
+    - target: {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: cardBase
+      value: 
+      objectReference: {fileID: 8247712159564594456}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
 --- !u!1 &619988347210649360 stripped

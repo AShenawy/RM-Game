@@ -10,7 +10,7 @@ namespace Methodyca.Minigames.Questioniser
 
         public void EndDialog()
         {
-            GameManager.Instance.HandleStoryPointDialog();
+            GameManager.Instance.HandleStoryDialog();
         }
 
         void Start()

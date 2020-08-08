@@ -28,6 +28,12 @@ namespace Methodyca.Minigames.Questioniser
         void Start()
         {
             GameManager.Instance.OnQuestionAsked += QuestionAskedHandle;
+            GameManager.Instance.OnTopicChanged += TopicChangedHandler;
+        }
+
+        void TopicChangedHandler(Topic topic)
+        {
+            topicCardImage.sprite = topic.CardSprite;
         }
 
         void QuestionAskedHandle(Question question)
@@ -44,7 +50,10 @@ namespace Methodyca.Minigames.Questioniser
         void OnDisable()
         {
             if (GameManager.InstanceExists)
+            {
                 GameManager.Instance.OnQuestionAsked -= QuestionAskedHandle;
+                GameManager.Instance.OnTopicChanged -= TopicChangedHandler;
+            }
         }
     }
 }
