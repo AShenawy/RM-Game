@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
-    public class Strategiser : ActionCard
+    public class Gambler : ActionCard
     {
-        //[Header("Strategiser Attributes")]
+        const byte CARD_COUNT_TO_GAMBLE = 2;
 
-        List<ItemCard> _selectableCards;
+        HashSet<CardBase> _selectedCards;
 
         protected override void OnMouseUp()
         {
@@ -40,35 +40,45 @@ namespace Methodyca.Minigames.Questioniser
             Sequence throwSeq = DOTween.Sequence();
             yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(0, 0, 0), 0.25f))
                 .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .Join(_transform.DOScale(2f, 0.25f)).AppendCallback(() => Recycle()).WaitForCompletion();
+                .Join(_transform.DOScale(2f, 0.25f)).AppendCallback(() => SetSelectables()).WaitForCompletion();
         }
 
-        void Recycle()
+        void SetSelectables()
         {
-            var selectables = _hand.Cards;
-            foreach (var selection in selectables)
+            IsClickable = false;
+            _selectedCards = new HashSet<CardBase>();
+            foreach (var selection in _hand.Cards)
             {
-                IsClickable = false;
-                if (selection is ItemCard itemCard)
-                {
-                    itemCard.OnCardClicked += CardClickedHandler;
-                    _selectableCards.Add(itemCard);
-                    itemCard.SetAsSelectable();
-                }
+                selection.OnCardClicked += CardClickedHandler;
+                selection.SetAsSelectable();
             }
         }
 
         void CardClickedHandler(CardBase card)
         {
-            card.Discard();
-            GameManager.Instance.ActionPoint += card.ActionPoint;
-            IsClickable = true;
-            Destroy(gameObject); // Replace with Dissolve Effect
+            if (_selectedCards.Contains(card))
+                card.DeselectCard();
+            
+            if (_selectedCards.Count < CARD_COUNT_TO_GAMBLE)
+            {
+                _selectedCards.Add(card);
+                card.SelectCard();
+            }
+            else
+            {
+                foreach (var c in _selectedCards)
+                {
+                    c.DeselectCard();
+                    c.Discard();
+                }
+                GameManager.Instance.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
+                Destroy(gameObject); //Replace with Dissolve Effect
+            }
         }
 
         void OnDisable()
         {
-            foreach (var card in _selectableCards)
+            foreach (var card in _hand.Cards)
                 card.OnCardClicked -= CardClickedHandler;
         }
     }

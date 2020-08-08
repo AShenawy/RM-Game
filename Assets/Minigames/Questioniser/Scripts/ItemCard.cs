@@ -11,7 +11,6 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Question[] questions;
 
         public Question[] Questions => questions;
-        public event Action<ItemCard> OnCardClicked = delegate { };
 
         protected override void Throw() => StartCoroutine(ThrowCoroutine());
         protected override void OnMouseUp()
@@ -32,10 +31,7 @@ namespace Methodyca.Minigames.Questioniser
             }
         }
 
-        protected override void OnMouseUpAsButton()
-        {
-            OnCardClicked?.Invoke(this);
-        }
+        
 
         public override void Discard()
         {

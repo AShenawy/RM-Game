@@ -40,6 +40,7 @@ namespace Methodyca.Minigames.Questioniser
         protected virtual void Throw() { }
         public void Draw() => StartCoroutine(DrawCoroutine());
 
+        public event Action<CardBase> OnCardClicked = delegate { };
         public event Action<int> OnActionValueChanged = delegate { };
         public event Action<int> OnInterestValueChanged = delegate { };
         public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
@@ -52,6 +53,21 @@ namespace Methodyca.Minigames.Questioniser
             _hand = hand;
             _table = table;
             _collider.enabled = false;
+        }
+
+        public void SetAsSelectable()
+        {
+            // BLUE OUTLINE
+        }
+
+        public void SelectCard()
+        {
+            _transform.DOScale(1.2f, 0.2f);
+        }
+
+        public void DeselectCard()
+        {
+            _transform.DOScale(1f, 0.2f);
         }
 
         void Awake()
@@ -70,8 +86,6 @@ namespace Methodyca.Minigames.Questioniser
             _hand.Cards.Remove(this);
             _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
         }
-
-        protected virtual void OnMouseUpAsButton() { }
 
         void OnMouseDrag()
         {
@@ -94,6 +108,11 @@ namespace Methodyca.Minigames.Questioniser
 
             if (inputPosition.y < 0.5f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
                 ReturnHand();
+        }
+
+        protected virtual void OnMouseUpAsButton()
+        {
+            OnCardClicked?.Invoke(this);
         }
 
         protected void ReturnHand()

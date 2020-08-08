@@ -65,11 +65,14 @@ namespace Methodyca.Minigames.Questioniser
 
         int _actionPoint = 5;
         int _interestPoint = 2;
+        int _extraPointsForNextTurn = 0;
         Topic _currentTopic = new Topic("", false, null);
         CardBase _currentCard;
         List<CardBase> _cardsInDeck;
+        HashSet<ItemCard> _correctItemCardsPerTurn;
         bool[,] _quizAnswerSheet;
 
+        public int GetCorrectOptionCountPerTurn => _correctItemCardsPerTurn.Count;
         public CardInfoUI CardInfoGUI => cardInfoGUI;
         public int ActionPoint
         {
@@ -99,18 +102,28 @@ namespace Methodyca.Minigames.Questioniser
         public int GetTopicCount => topics.Count;
         public void RaiseGameMessage(string message) => OnMessageRaised?.Invoke(message);
 
+        public void DrawRandomCardFromDeck(byte size = 1)
+        {
+            if (_cardsInDeck.Count <= 0)
+                OnGameOver?.Invoke();
+
+            StartCoroutine(DrawInDelay(size));
+        }
+
         public void EndTurn()
         {
+            _correctItemCardsPerTurn = new HashSet<ItemCard>();
             DiscardCards();
 
             if (_cardsInDeck.Count < DRAW_COUNT_PER_TURN)
-                DrawRandomCardFromDeck(_cardsInDeck.Count);
+                DrawRandomCardFromDeck((byte)_cardsInDeck.Count);
             else if (_cardsInDeck.Count <= 0)
                 OnGameOver?.Invoke();
             else
                 DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
 
-            OnActionPointUpdated?.Invoke(ACTION_POINT_PER_TURN);
+            OnActionPointUpdated?.Invoke(ACTION_POINT_PER_TURN + _extraPointsForNextTurn);
+            _extraPointsForNextTurn = 0;
         }
 
         public void SwitchInterestToActionPoint(int interestPoint, int actionPoint)
@@ -134,6 +147,16 @@ namespace Methodyca.Minigames.Questioniser
             OnTopicChanged?.Invoke(_currentTopic);
         }
 
+        public void HandleHighFlayer()
+        {
+            _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
+        }
+
+        //public void HandleImproviser()
+        //{
+
+        //}
+
         public void HandleStoryDialog()
         {
             topics.Remove(_currentTopic);
@@ -155,6 +178,7 @@ namespace Methodyca.Minigames.Questioniser
                     if (itemCard.Questions[i].TopicName == _currentTopic.Name)
                     {
                         itemCard.Questions[i].IsAnswerCorrect = true;
+                        _correctItemCardsPerTurn.Add(itemCard);
                         TickAnswerSheet(_currentTopic.Name, _currentCard.Name);
 
                         if (GetCorrectAnswerCountFor(_currentTopic.Name) >= 2)
@@ -215,14 +239,6 @@ namespace Methodyca.Minigames.Questioniser
                         if (_quizAnswerSheet[i, j])
                             num++;
             return num;
-        }
-
-        void DrawRandomCardFromDeck(int size = 1)
-        {
-            if (_cardsInDeck.Count <= 0)
-                OnGameOver?.Invoke();
-
-            StartCoroutine(DrawInDelay(size));
         }
 
         void DiscardCards()
