@@ -62,7 +62,9 @@ namespace Methodyca.Minigames.Questioniser
         public event Action<string, string, bool> OnChartUpdated = delegate { };
         public event Action<string> OnMessageRaised = delegate { };
         public event Action<byte> OnDeckUpdated = delegate { };
+        public event Action<bool> OnImproviserRaised = delegate { };
 
+        bool _isImproviserTurn;
         int _actionPoint = 5;
         int _interestPoint = 2;
         int _extraPointsForNextTurn = 0;
@@ -96,6 +98,10 @@ namespace Methodyca.Minigames.Questioniser
                     _interestPoint = 0;
                     OnGameOver?.Invoke();
                 }
+                else
+                {
+                    OnInterestPointUpdated?.Invoke(_interestPoint);
+                }
             }
         }
         public byte StoryPoint { get; private set; } = 0;
@@ -122,15 +128,17 @@ namespace Methodyca.Minigames.Questioniser
             else
                 DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
 
-            OnActionPointUpdated?.Invoke(ACTION_POINT_PER_TURN + _extraPointsForNextTurn);
+            if (_isImproviserTurn)
+                OnImproviserRaised?.Invoke(_isImproviserTurn = false);
+
+            ActionPoint += ACTION_POINT_PER_TURN + _extraPointsForNextTurn;
             _extraPointsForNextTurn = 0;
         }
 
         public void SwitchInterestToActionPoint(int interestPoint, int actionPoint)
         {
-            OnActionPointUpdated?.Invoke(ActionPoint += actionPoint);
+            ActionPoint += actionPoint;
             InterestPoint += interestPoint;
-            OnInterestPointUpdated?.Invoke(InterestPoint);
         }
 
         public void SetRandomTopic()
@@ -150,12 +158,13 @@ namespace Methodyca.Minigames.Questioniser
         public void HandleHighFlayer()
         {
             _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
+            RaiseGameMessage("Interest points can be used as action points for this turn");
         }
 
-        //public void HandleImproviser()
-        //{
-
-        //}
+        public void HandleImproviser()
+        {
+            OnImproviserRaised?.Invoke(_isImproviserTurn = true);
+        }
 
         public void HandleStoryDialog()
         {
@@ -168,7 +177,6 @@ namespace Methodyca.Minigames.Questioniser
         {
             CardBase.IsClickable = true;
             InterestPoint += answer.Point;
-            OnInterestPointUpdated?.Invoke(InterestPoint);
 
             var itemCard = _currentCard.GetComponent<ItemCard>();
             if (answer.IsCorrect)
@@ -193,7 +201,11 @@ namespace Methodyca.Minigames.Questioniser
             if (sender is ItemCard itemCard)
             {
                 _currentCard = itemCard;
-                OnActionPointUpdated?.Invoke((ActionPoint -= e.Card.ActionPoint) <= 0 ? 0 : ActionPoint);
+
+                if (_isImproviserTurn)
+                    InterestPoint -= e.Card.ActionPoint;
+                else
+                    ActionPoint -= e.Card.ActionPoint;
 
                 foreach (var q in itemCard.Questions)
                 {
@@ -208,7 +220,6 @@ namespace Methodyca.Minigames.Questioniser
             {
                 _currentCard = actionCard;
                 InterestPoint -= e.Card.InterestPoint;
-                OnInterestPointUpdated?.Invoke(InterestPoint);
             }
         }
 

@@ -40,8 +40,8 @@ namespace Methodyca.Minigames.Questioniser
 
         void HandleAction()
         {
-            //GameManager.Instance.HandleImproviser();
-
+            GameManager.Instance.HandleImproviser();
+            Destroy(gameObject);
         }
     }
 }

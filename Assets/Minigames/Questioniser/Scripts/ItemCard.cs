@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -30,8 +29,6 @@ namespace Methodyca.Minigames.Questioniser
                 GameManager.Instance.RaiseGameMessage("Not enough action points");
             }
         }
-
-        
 
         public override void Discard()
         {
