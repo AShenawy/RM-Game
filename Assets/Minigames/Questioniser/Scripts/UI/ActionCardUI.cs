@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
-    public class CardUI : MonoBehaviour
+    public class ActionCardUI : MonoBehaviour
     {
         [SerializeField] CardBase cardBase;
         [SerializeField] TextMeshPro interestPointText;

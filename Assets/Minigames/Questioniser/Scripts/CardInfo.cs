@@ -14,13 +14,13 @@ namespace Methodyca.Minigames.Questioniser
 
         }
 
-        void OnMouseEnter()
+        void OnMouseDown()
         {
             _infoGUI.gameObject.SetActive(true);
             _infoGUI.SetData(card.Description);
         }
 
-        void OnMouseExit()
+        void OnMouseUp()
         {
             _infoGUI.gameObject.SetActive(false);
         }

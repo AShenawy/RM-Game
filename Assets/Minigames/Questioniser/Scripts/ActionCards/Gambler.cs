@@ -40,7 +40,8 @@ namespace Methodyca.Minigames.Questioniser
             Sequence throwSeq = DOTween.Sequence();
             yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(0, 0, 0), 0.25f))
                 .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .Join(_transform.DOScale(2f, 0.25f)).AppendCallback(() => SetSelectables()).WaitForCompletion();
+                .Join(_transform.DOScale(2f, 0.25f))
+                .AppendCallback(() => SetSelectables()).WaitForCompletion();
         }
 
         void SetSelectables()

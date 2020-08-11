@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.Questioniser
                 GameManager.Instance.OnInterestPointUpdated -= InterestPointChangedHandler;
         } 
 
-        void InterestPointChangedHandler(float point)
+        void InterestPointChangedHandler(int point)
         {
             bar.fillAmount = point;
             _transfom.DOShakePosition(duration: 1, strength: 3, vibrato: 20, fadeOut: false);

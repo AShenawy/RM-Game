@@ -9,6 +9,7 @@ namespace Methodyca.Minigames.Questioniser
     {
         const float SELECTION_SCALE = 1.2F;
         const float SELECTION_SCALE_PACE_IN_SEC = 0.25F;
+        readonly int outlineColor = Shader.PropertyToID("_OutlineColor");
 
         [Header("Base Attributes")]
         [SerializeField] new string name;
@@ -17,21 +18,19 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] int spawnSize;
         [SerializeField] [Multiline] string description;
         [SerializeField] Sprite sprite;
-        [SerializeField] Color outlineColor;
 
         public string Name => name;
         public int ActionPoint { get => actionPoint; protected set { actionPoint = value; OnActionValueChanged?.Invoke(actionPoint); } }
         public int InterestPoint { get => interestPoint; protected set { interestPoint = value; OnInterestValueChanged?.Invoke(interestPoint); } }
         public int SpawnSize => spawnSize;
         public string Description => description;
-        public Sprite Sprite => sprite;
-        public Color OutlineColor => outlineColor;
 
         protected Camera _camera;
         protected Transform _transform;
         protected Collider2D _collider;
         protected CardHolder _hand;
         protected CardHolder _table;
+        protected CardHolder _deck;
 
         SpriteRenderer _renderer;
 
@@ -47,17 +46,29 @@ namespace Methodyca.Minigames.Questioniser
         public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
 
-        public void InitializeCard(Camera camera, CardHolder hand, CardHolder table)
+        public void InitializeCard(Camera camera, CardHolder hand, CardHolder table, CardHolder deck)
         {
             _camera = camera;
             _hand = hand;
             _table = table;
+            _deck = deck;
             _collider.enabled = false;
+        }
+
+        public void ReturnDeck()
+        {
+            IsClickable = false;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.1f))
+                .AppendCallback(() => _hand.Cards.Remove(this))
+                .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.1f))
+                .Append(_transform.DOMove(_deck.GetTransform.position, 0.5f))
+                .AppendCallback(() => _deck.Cards.Add(this));
         }
 
         public void SetAsSelectable()
         {
-            // BLUE OUTLINE
+            _renderer.material.SetColor(outlineColor, new Color(0, 0, 1, 1));
         }
 
         public void SelectCard()
@@ -76,6 +87,22 @@ namespace Methodyca.Minigames.Questioniser
             _collider = GetComponent<Collider2D>();
             _renderer = GetComponent<SpriteRenderer>();
             _renderer.sprite = sprite;
+        }
+
+        void OnMouseEnter()
+        {
+            if (!IsClickable)
+                return;
+
+            _renderer.material.SetColor(outlineColor, new Color(1, 0, 0, 1));
+        }
+
+        void OnMouseExit()
+        {
+            if (!IsClickable)
+                return;
+
+            _renderer.material.SetColor(outlineColor, new Color(0, 0, 0, 0));
         }
 
         protected virtual void OnMouseDown()
@@ -106,12 +133,13 @@ namespace Methodyca.Minigames.Questioniser
             _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
             var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
 
-            if (inputPosition.y < 0.5f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
+            if (inputPosition.y < 0.4f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
                 ReturnHand();
         }
 
         protected virtual void OnMouseUpAsButton()
         {
+            _renderer.material.SetColor(outlineColor, new Color(0, 1, 0, 1));
             OnCardClicked?.Invoke(this);
         }
 
@@ -132,8 +160,8 @@ namespace Methodyca.Minigames.Questioniser
         {
             Sequence drawSequence = DOTween.Sequence();
             drawSequence.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
-                .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.3f))
-                .Append(_transform.DOMove(_hand.GetTransform.position, 0.75f));
+                .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.5f))
+                .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f));
 
             yield return drawSequence.WaitForCompletion();
 

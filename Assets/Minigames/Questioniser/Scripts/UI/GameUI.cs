@@ -8,6 +8,7 @@ namespace Methodyca.Minigames.Questioniser
     public class GameUI : MonoBehaviour
     {
         [SerializeField] RectTransform messagePanel;
+        [SerializeField] RectTransform mulliganPanel;
         [SerializeField] RectTransform actionPoint;
         [SerializeField] RectTransform interestPoint;
         [SerializeField] TextMeshPro deckCountText;
@@ -21,7 +22,7 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.OnMessageRaised += MessageRaisedHandler;
             GameManager.Instance.OnActionPointUpdated += ActionPointUpdatedHandler;
             GameManager.Instance.OnInterestPointUpdated += InterestPointUpdatedHandler;
-            GameManager.Instance.OnChartUpdated += ChartUpdatedHandler;
+            GameManager.Instance.OnMulliganStated += MulliganStatedHandler;
         }
 
         void DeckUpdatedHandler(byte cardCount) => deckCountText.text = cardCount.ToString();
@@ -35,12 +36,12 @@ namespace Methodyca.Minigames.Questioniser
             messagePanel.gameObject.SetActive(false);
         }
 
-        void ChartUpdatedHandler(string currentTopicName, string currentCardName, bool isEnough)
+        void MulliganStatedHandler(bool isOn)
         {
-
+            mulliganPanel.gameObject.SetActive(isOn);
         }
 
-        void InterestPointUpdatedHandler(float point)
+        void InterestPointUpdatedHandler(int point)
         {
             interestPoint.DOShakeScale(duration: 0.2f);
             interestPointText.text = point.ToString();
@@ -60,7 +61,7 @@ namespace Methodyca.Minigames.Questioniser
                 GameManager.Instance.OnMessageRaised -= MessageRaisedHandler;
                 GameManager.Instance.OnActionPointUpdated -= ActionPointUpdatedHandler;
                 GameManager.Instance.OnInterestPointUpdated -= InterestPointUpdatedHandler;
-                GameManager.Instance.OnChartUpdated -= ChartUpdatedHandler;
+                GameManager.Instance.OnMulliganStated -= MulliganStatedHandler;
             }
         }
     }
