@@ -23,7 +23,12 @@ namespace Methodyca.Core
 
         private string[] dialoguePieces;
         private int progressionIndex = 0;
-    
+
+        private void Start()
+        {
+            dialoguePanel.SetActive(false);
+        }
+
         public void AdvanceDialogue()
         {
             // moves to the next block of dialogue

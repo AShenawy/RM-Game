@@ -19,7 +19,6 @@ namespace Methodyca.Core
     
         [Header("UI Objects")]
         [SerializeField] private GameObject inventoryPanel; // ref to inventory UI panel
-        [SerializeField] private GameObject dialoguePanel;  // ref to dialogue UI panel
         [SerializeField] private GameObject triggerTurnRight, triggerTurnLeft;  // ref to right/left UI panels
     
         [Header("Script Interaction Vars")]
@@ -143,7 +142,6 @@ namespace Methodyca.Core
         private void HideGUI()
         {
             inventoryPanel.SetActive(false);
-            dialoguePanel.SetActive(false);
             CursorManager.instance.HideContextMenu();
         }
     
