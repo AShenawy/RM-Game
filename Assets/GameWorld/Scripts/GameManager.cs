@@ -85,7 +85,7 @@ namespace Methodyca.Core
                 if (hit.collider.GetComponent<ObjectInteraction>())
                 {
                     // Make click not work on world objects if mouse is over GUI
-                    if (CheckOnGUI())
+                    if (IsCursorOnGUI())
                         return;
 
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
@@ -109,7 +109,7 @@ namespace Methodyca.Core
             }
         }
 
-        bool CheckOnGUI()
+        private bool IsCursorOnGUI()
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return true;
