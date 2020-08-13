@@ -61,6 +61,10 @@ namespace Methodyca.Core
             // Check mouse input
             if (canInteract)
             {
+                // Make click not work on world objects if mouse is over GUI
+                if (IsCursorOnGUI())
+                    return;
+
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                     DoMainAction();
                 
