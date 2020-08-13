@@ -5,7 +5,7 @@ using Methodyca.Core;
 public class Observe : ObjectInteraction
 {
     [Header("Specific Observe Paramters")]
-    [TextArea, Tooltip("Dialogue to display when interacting/inspecting object")]
+    [TextArea, Tooltip("Dialogue to display when interacting with object")]
     public string[] inspectDialogue;
 
     public override void InteractWithObject()
