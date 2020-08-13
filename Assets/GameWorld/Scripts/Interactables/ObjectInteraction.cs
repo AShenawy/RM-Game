@@ -27,6 +27,12 @@ namespace Methodyca.Core
         [Tooltip("Dialogue to display if using wrong item")]
         public string wrongItemText;
 
+        private void Start()
+        {
+            if(!canInteract)
+                DisableInteractionCollider();
+        }
+
         // this method will be overridden for when object is inspected
         public virtual string InspectObject()
         {
@@ -59,6 +65,12 @@ namespace Methodyca.Core
             {
                 DialogueHandler.instance.DisplayDialogue(PickUpFailText);
             }
+        }
+
+        // disable interaction collider on object to allow interaction with things below/inside it
+        protected void DisableInteractionCollider()
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }
