@@ -12,7 +12,7 @@ namespace Methodyca.Core
         public string[] digits;
 
         private int currentIndex = 0;
-        private string currentValue;
+        public string currentValue { get;  private set; }
 
         private void Start()
         {
