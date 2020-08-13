@@ -6,16 +6,15 @@ using UnityEngine;
 public class LockBox : ObjectInteraction
 {
     [Header("Specific Lock Box Parameters")]
+    [SerializeField, Tooltip("Is box already locked?")] private bool isLocked = true;
     [SerializeField] private GameObject lockedBoxPrefab;
     [SerializeField] private GameObject unlockedBoxPrefab;
-    [SerializeField, Tooltip("Is box already locked?")] private bool isLocked = true;
+    [SerializeField, Tooltip("UI Game Object to display lock interface")] private GameObject lockScreen;
 
     public override void InteractWithObject()
     {
         if (isLocked)
-        {
-            //TODO Display the safe closeup
-        }
+            lockScreen.SetActive(true);
         else
             Open();
     }

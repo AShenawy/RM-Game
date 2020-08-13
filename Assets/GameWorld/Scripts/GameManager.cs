@@ -61,10 +61,6 @@ namespace Methodyca.Core
             // Check mouse input
             if (canInteract)
             {
-                // Make click not work on world objects if mouse is over GUI
-                if (EventSystem.current.IsPointerOverGameObject())
-                    return;
-
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                     DoMainAction();
                 
@@ -88,8 +84,12 @@ namespace Methodyca.Core
             {
                 if (hit.collider.GetComponent<ObjectInteraction>())
                 {
+                    // Make click not work on world objects if mouse is over GUI
+                    if (CheckOnGUI())
+                        return;
+
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
-                    canInteract = interactableObject.canInteract;
+                    canInteract = interactableObject.canInteract;   // player can only interact if the object allows it
                     
                     if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
                         CursorManager.instance.SetCursor(CursorTypes.Interact, null);
@@ -107,6 +107,14 @@ namespace Methodyca.Core
                     print("Nothing here!");
                 }
             }
+        }
+
+        bool CheckOnGUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return true;
+            else
+                return false;
         }
 
         private void DoMainAction()
