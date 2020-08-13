@@ -1,6 +1,7 @@
 using UnityEngine;
 using Methodyca.Core;
 
+// This script handles general use of objects
 public class Operate : ObjectInteraction
 {
     [Header("Specific Operate Parameters")]
