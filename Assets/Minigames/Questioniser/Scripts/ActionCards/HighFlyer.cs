@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
+    /// <summary>
+    /// When this card is played, the player starts with one extra AP next turn for each correct Item Card played this turn.
+    /// </summary>
     public class HighFlyer : ActionCard
     {
         protected override void OnMouseUp()
@@ -31,9 +34,8 @@ namespace Methodyca.Minigames.Questioniser
         IEnumerator ThrowCoroutine()
         {
             TriggerCardIsThrown((ActionCard)this);
-            _hand.ArrangeCardDeck();
             Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(0, 0, 0), 0.25f))
+            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(-5, 0, -5), 0.25f))
                 .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
                 .Join(_transform.DOScale(2f, 0.25f)).AppendCallback(() => HandleAction()).WaitForCompletion();
         }
@@ -41,6 +43,7 @@ namespace Methodyca.Minigames.Questioniser
         void HandleAction()
         {
             GameManager.Instance.HandleHighFlayer();
+            Destroy(gameObject);
         }
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
+    /// <summary>
+    /// Player chooses one Item Card to discard. They gain Action Points (AP) equal to the cost of discarded card.
+    /// </summary>
     public class Strategiser : ActionCard
     {
-        //[Header("Strategiser Attributes")]
-
         List<ItemCard> _selectableCards;
 
         protected override void OnMouseUp()
@@ -36,40 +37,46 @@ namespace Methodyca.Minigames.Questioniser
         IEnumerator ThrowCoroutine()
         {
             TriggerCardIsThrown((ActionCard)this);
-            _hand.ArrangeCardDeck();
+            _collider.enabled = false;
             Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(0, 0, 0), 0.25f))
+            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(-5, 0, -5), 0.25f))
                 .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .Join(_transform.DOScale(2f, 0.25f)).AppendCallback(() => Recycle()).WaitForCompletion();
+                .Join(_transform.DOScale(2f, 0.25f))
+                .AppendCallback(() => Recycle()).WaitForCompletion();
         }
 
         void Recycle()
         {
-            var selectables = _hand.Cards;
-            foreach (var selection in selectables)
+            byte cardCount = 0;
+            IsClickable = false;
+            _selectableCards = new List<ItemCard>();
+
+            foreach (ItemCard itemCard in _hand.Cards)
             {
-                IsClickable = false;
-                if (selection is ItemCard itemCard)
-                {
-                    itemCard.OnCardClicked += CardClickedHandler;
-                    _selectableCards.Add(itemCard);
-                    itemCard.SetAsSelectable();
-                }
+                cardCount++;
+                itemCard.OnCardClicked += CardClickedHandler;
+                _selectableCards.Add(itemCard);
+                itemCard.SetOutlineColorAs(Color.yellow);
+            }
+
+            if (cardCount <= 0)
+            {
+                GameManager.Instance.RaiseGameMessage("There is not any Item Card in hand");
+                Destroy(gameObject);
             }
         }
 
         void CardClickedHandler(CardBase card)
         {
-            card.Discard();
             GameManager.Instance.ActionPoint += card.ActionPoint;
+            card.Discard();
+            Destroy(gameObject);
             IsClickable = true;
-            Destroy(gameObject); // Replace with Dissolve Effect
-        }
-
-        void OnDisable()
-        {
-            foreach (var card in _selectableCards)
-                card.OnCardClicked -= CardClickedHandler;
+            foreach (var c in _selectableCards)
+            {
+                c.SetOutlineColorAs(Color.clear);
+                c.OnCardClicked -= CardClickedHandler;
+            }
         }
     }
 }

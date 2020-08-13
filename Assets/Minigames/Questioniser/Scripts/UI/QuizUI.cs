@@ -47,7 +47,7 @@ namespace Methodyca.Minigames.Questioniser
                 answerTexts[i].text = question.Options[i].Text;
         }
 
-        void OnDisable()
+        void OnDestroy()
         {
             if (GameManager.InstanceExists)
             {

@@ -38,7 +38,7 @@ namespace Methodyca.Minigames.Questioniser
             }
         }
 
-        void OnDisable()
+        void OnDestroy()
         {
             if (GameManager.InstanceExists)
                 GameManager.Instance.OnQuizGridUpdated -= QuizGridUpdatedHandler;

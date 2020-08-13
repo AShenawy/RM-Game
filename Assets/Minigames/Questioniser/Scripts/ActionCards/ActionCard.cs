@@ -14,12 +14,7 @@ namespace Methodyca.Minigames.Questioniser
             InterestPoint++;
         }
 
-        public override void Discard()
-        {
-            _transform.DOScale(0, 0.25f).OnComplete(() => Destroy(gameObject));
-        }
-
-        void OnDisable()
+        void OnDestroy()
         {
             if(GameManager.InstanceExists)
                 GameManager.Instance.OnTopicClosed -= TopicClosedHandler;

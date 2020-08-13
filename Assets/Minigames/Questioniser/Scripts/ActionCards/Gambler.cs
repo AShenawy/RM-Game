@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
+    /// <summary>
+    /// Player chooses two cards to discard, and draws two random cards from the deck.
+    /// </summary>
     public class Gambler : ActionCard
     {
         const byte CARD_COUNT_TO_GAMBLE = 2;
@@ -36,22 +39,31 @@ namespace Methodyca.Minigames.Questioniser
         IEnumerator ThrowCoroutine()
         {
             TriggerCardIsThrown((ActionCard)this);
-            _hand.ArrangeCardDeck();
+            _collider.enabled = false;
             Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(0, 0, 0), 0.25f))
+            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(-5, 0, -5), 0.25f))
                 .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
                 .Join(_transform.DOScale(2f, 0.25f))
-                .AppendCallback(() => SetSelectables()).WaitForCompletion();
+                .AppendCallback(() => HandleAction()).WaitForCompletion();
         }
 
-        void SetSelectables()
+        void HandleAction()
         {
-            IsClickable = false;
-            _selectedCards = new HashSet<CardBase>();
-            foreach (var selection in _hand.Cards)
+            if (_hand.Cards.Count < CARD_COUNT_TO_GAMBLE)
             {
-                selection.OnCardClicked += CardClickedHandler;
-                selection.SetAsSelectable();
+                GameManager.Instance.RaiseGameMessage("Not enough card to gamble");
+                Destroy(gameObject);
+            }
+            else
+            {
+                IsClickable = false;
+                _selectedCards = new HashSet<CardBase>();
+
+                foreach (var selection in _hand.Cards)
+                {
+                    selection.OnCardClicked += CardClickedHandler;
+                    selection.SetOutlineColorAs(Color.yellow);
+                }
             }
         }
 
@@ -59,28 +71,30 @@ namespace Methodyca.Minigames.Questioniser
         {
             if (_selectedCards.Contains(card))
                 card.DeselectCard();
-            
-            if (_selectedCards.Count < CARD_COUNT_TO_GAMBLE)
-            {
-                _selectedCards.Add(card);
-                card.SelectCard();
-            }
-            else
-            {
-                foreach (var c in _selectedCards)
-                {
-                    c.DeselectCard();
-                    c.Discard();
-                }
-                GameManager.Instance.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
-                Destroy(gameObject); //Replace with Dissolve Effect
-            }
+
+            _selectedCards.Add(card);
+            card.SelectCard();
+
+            if (_selectedCards.Count >= CARD_COUNT_TO_GAMBLE)
+                StartCoroutine(ActionHandlerCor());
         }
 
-        void OnDisable()
+        IEnumerator ActionHandlerCor()
         {
-            foreach (var card in _hand.Cards)
-                card.OnCardClicked -= CardClickedHandler;
+            yield return new WaitForSeconds(0.25f);
+
+            foreach (var c in _selectedCards)
+                c.Discard();
+
+            foreach (var c in _hand.Cards)
+            {
+                c.SetOutlineColorAs(Color.clear);
+                c.OnCardClicked -= CardClickedHandler;
+            }
+
+            GameManager.Instance.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
+            IsClickable = true;
+            Destroy(gameObject); //Replace with Dissolve Effect
         }
     }
 }

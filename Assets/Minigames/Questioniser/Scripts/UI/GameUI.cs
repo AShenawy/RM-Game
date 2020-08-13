@@ -53,7 +53,7 @@ namespace Methodyca.Minigames.Questioniser
             actionPointText.text = point.ToString();
         }
 
-        void OnDisable()
+        void OnDestroy()
         {
             if (GameManager.InstanceExists)
             {

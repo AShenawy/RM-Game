@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -24,6 +25,7 @@ namespace Methodyca.Minigames.Questioniser
         public int InterestPoint { get => interestPoint; protected set { interestPoint = value; OnInterestValueChanged?.Invoke(interestPoint); } }
         public int SpawnSize => spawnSize;
         public string Description => description;
+        public float SpriteSizeX => sprite.bounds.size.x;
 
         protected Camera _camera;
         protected Transform _transform;
@@ -35,7 +37,6 @@ namespace Methodyca.Minigames.Questioniser
         SpriteRenderer _renderer;
 
         public static bool IsClickable = false;
-        public virtual void Discard() { }
         protected virtual void Throw() { }
         public void Draw() => StartCoroutine(DrawCoroutine());
 
@@ -55,6 +56,19 @@ namespace Methodyca.Minigames.Questioniser
             _collider.enabled = false;
         }
 
+        public void Discard()
+        {
+            _transform.DOScale(0, 0.25f).OnComplete(() =>
+            {
+                if (_hand.Cards.Contains(this))
+                    _hand.Cards.Remove(this);
+                else if (_table.Cards.Contains(this))
+                    _table.Cards.Remove(this);
+
+                Destroy(gameObject);
+            });
+        }
+
         public void ReturnDeck()
         {
             IsClickable = false;
@@ -66,11 +80,6 @@ namespace Methodyca.Minigames.Questioniser
                 .AppendCallback(() => _deck.Cards.Add(this));
         }
 
-        public void SetAsSelectable()
-        {
-            _renderer.material.SetColor(outlineColor, new Color(0, 0, 1, 1));
-        }
-
         public void SelectCard()
         {
             _transform.DOScale(1.2f, 0.2f);
@@ -79,6 +88,11 @@ namespace Methodyca.Minigames.Questioniser
         public void DeselectCard()
         {
             _transform.DOScale(1f, 0.2f);
+        }
+
+        public void SetOutlineColorAs(Color color)
+        {
+            _renderer.material.SetColor(outlineColor, color);
         }
 
         void Awake()
@@ -94,7 +108,7 @@ namespace Methodyca.Minigames.Questioniser
             if (!IsClickable)
                 return;
 
-            _renderer.material.SetColor(outlineColor, new Color(1, 0, 0, 1));
+            _renderer.material.SetColor(outlineColor, Color.red);
         }
 
         void OnMouseExit()
@@ -102,7 +116,7 @@ namespace Methodyca.Minigames.Questioniser
             if (!IsClickable)
                 return;
 
-            _renderer.material.SetColor(outlineColor, new Color(0, 0, 0, 0));
+            _renderer.material.SetColor(outlineColor, Color.clear);
         }
 
         protected virtual void OnMouseDown()
@@ -139,7 +153,7 @@ namespace Methodyca.Minigames.Questioniser
 
         protected virtual void OnMouseUpAsButton()
         {
-            _renderer.material.SetColor(outlineColor, new Color(0, 1, 0, 1));
+            _renderer.material.SetColor(outlineColor, Color.green);
             OnCardClicked?.Invoke(this);
         }
 
@@ -165,9 +179,7 @@ namespace Methodyca.Minigames.Questioniser
 
             yield return drawSequence.WaitForCompletion();
 
-            if (!_hand.Cards.Contains(this))
-                _hand.Cards.Add(this);
-
+            _hand.Cards.Add(this);
             _transform.SetParent(_hand.GetTransform);
             _hand.ArrangeCardDeck();
             _collider.enabled = true;
