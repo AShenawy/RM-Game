@@ -30,7 +30,7 @@ namespace Methodyca.Core
         private void Start()
         {
             if(!canInteract)
-                DisableInteractionCollider();
+                DisableInteraction();
         }
 
         // this method will be overridden for when object is inspected
@@ -68,8 +68,9 @@ namespace Methodyca.Core
         }
 
         // disable interaction collider on object to allow interaction with things below/inside it
-        protected void DisableInteractionCollider()
+        protected void DisableInteraction()
         {
+            canInteract = false;
             gameObject.GetComponent<Collider>().enabled = false;
         }
     }

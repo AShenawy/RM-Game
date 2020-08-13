@@ -8,7 +8,7 @@ namespace Methodyca.Core
     public class SetScrollDirection : MonoBehaviour
     {
         [Tooltip("Game Object which has the Scroll Digits script on it")]
-        public ScrollDigits scrollDigitObject;
+        public ScrollDial scrollDigitObject;
         [Tooltip("Which direction do the digits scroll")]
         public ScrollDirection scrollDirection;
 

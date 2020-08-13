@@ -24,8 +24,7 @@ public class Operate : ObjectInteraction
 
     void Use()
     {
-        canInteract = false;
-        DisableInteractionCollider();
+        DisableInteraction();
         imageGameObject.sprite = imageAfter;
         DialogueHandler.instance.DisplayDialogue(onOperateSuccessText);
     }

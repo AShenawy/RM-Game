@@ -94,7 +94,7 @@ namespace Methodyca.Core
                     if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
                         CursorManager.instance.SetCursor(CursorTypes.Interact, null);
 
-                    print("Found something!");
+                    // print("Found something!");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace Methodyca.Core
                     if(!isPlayerHoldingItem)    // change to default cursor if no item is held
                         CursorManager.instance.SetDefaultCursor();
 
-                    print("Nothing here!");
+                    // print("Nothing here!");
                 }
             }
         }

@@ -4,15 +4,17 @@ using UnityEngine.UI;
 namespace Methodyca.Core
 {
     // This script handles the interface buttons for lock box/safe objects
-    public class ScrollDigits : MonoBehaviour
+    public class ScrollDial : MonoBehaviour
     {
         [Tooltip("Display game object")]
         public Text digitDisplay;
         [Tooltip("Values to be displayed")]
-        public string[] digits;
+        public int[] digits;
+        public delegate void OnDigitChanged();
+        public event OnDigitChanged onDigitChanged;
 
         private int currentIndex = 0;
-        public string currentValue { get;  private set; }
+        public int currentValue { get;  private set; }
 
         private void Start()
         {
@@ -22,7 +24,8 @@ namespace Methodyca.Core
         private void UpdateDisplay(int index)
         {
             currentValue = digits[index];
-            digitDisplay.text = currentValue;
+            digitDisplay.text = currentValue.ToString();
+            onDigitChanged?.Invoke();
         }
 
         public void Scroll(ScrollDirection direction)
