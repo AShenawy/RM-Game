@@ -21,10 +21,10 @@ namespace Methodyca.Minigames.SortGame
             boxQuali.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
             boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
 
-            eventData.pointerDrag.GetComponent<Drag>().OutsideBox(placementParent);
+            eventData.pointerDrag.GetComponent<Drag>().OutsideBox(placementParent);//for the image to appear back on the table.
 
             FindObjectOfType<SoundManager>().Stop("battery");
-            Debug.Log("Dropped on table");
+            Debug.Log("Back on the table");
             
 
         }           

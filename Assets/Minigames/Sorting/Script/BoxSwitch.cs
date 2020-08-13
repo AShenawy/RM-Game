@@ -8,24 +8,69 @@ using UnityEngine.UI;
 namespace Methodyca.Minigames.SortGame
 {   public class BoxSwitch : MonoBehaviour 
     {
-        //public GameObject this_box;
+        public float amp;
+        public float freq;
+        public float degreePerSecond = 30f;
+        public Vector3 posOffset = new Vector3();
+        public Vector3 temPos = new Vector3();
+        //public Vector3 loose.position.y = new Vector3();
+        
+        //[Range(1f, 4f)]
+        public RectTransform levitate;
+        public RectTransform boibo;// RectTransform of the Object
 
-        //public bool activation;
+        void Lift()
+        {
+            posOffset =  boibo.position;
+            temPos = posOffset;
+            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq )* amp;
+            
+            levitate.position = temPos;
+            
+            //Debug.Log(levitate.position);
+        }
 
-        public RectTransform boxSpace;
+        void Gear()
+        {
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                freq = freq + degreePerSecond;  
+                Debug.Log("New Freq is "+ freq);
+                
+            }
+        }
+        void Irubie()
+        {
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                degreePerSecond = degreePerSecond+ 1f; 
+                Debug.Log("your new degree is " + degreePerSecond);
+            }
+        }
+        void itsjustkewa()
+        {
+            if(Input.GetKeyDown(KeyCode.I))
+            {
+                degreePerSecond = degreePerSecond - 1f;
+                Debug.Log("Subtracting... Your DPS is " + degreePerSecond); 
+            }
+        }
+
+        
     
     
-        // For the boxes to switch layers when after drop has been triggered. 
+        
         void Start()
         {
-            boxSpace = GetComponent<RectTransform>(); 
-            Debug.Log(boxSpace.rect);
+            //boibo.position = temPos;
         }
         // Update is called once per frame
         void Update()
         {
-            //swtiching the boxes
-            //this_box.SetActive(activation);
+            Lift();
+            Gear();
+            Irubie();
+            itsjustkewa();
         }
     }
         

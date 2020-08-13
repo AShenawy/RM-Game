@@ -41,7 +41,7 @@ namespace Methodyca.Minigames.SortGame
     
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log("StartDrag");
+            //Debug.Log("StartDrag");
             canvasGroup.alpha = .7f;//reduced the opacity of the item when selected.
             canvasGroup.blocksRaycasts = false;
         }
@@ -55,7 +55,7 @@ namespace Methodyca.Minigames.SortGame
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            Debug.Log("EndDrag");
+            //Debug.Log("EndDrag");
             canvasGroup.alpha = 1f;//restores the opacity of the item after being dropped.
             canvasGroup.blocksRaycasts = true;
 
@@ -118,7 +118,7 @@ namespace Methodyca.Minigames.SortGame
             //prefab.GetComponent<CanvasGroup>()=canvasGroup;
             //this.gameObject.SetActive(false);
             Destroy(gameObject);
-            Debug.Log("Appear inside the box");
+            //Debug.Log("Appear inside the box");
         }
 
         public void OutsideBox(GameObject parent)   // ------- rename to OutsideBox
