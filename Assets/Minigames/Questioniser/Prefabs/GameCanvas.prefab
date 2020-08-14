@@ -337,6 +337,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyPanel: {fileID: 2572692000731476511}
   topicText: {fileID: 5095582544697231194}
+--- !u!1 &549815989785997916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5618191682283078576}
+  m_Layer: 5
+  m_Name: ActionPointEffectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5618191682283078576
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549815989785997916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2794621541081900554}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 108.9, y: -0.000024557114}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &662210694979190214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904352636334759148}
+  m_Layer: 5
+  m_Name: InterestPointEffectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &904352636334759148
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662210694979190214}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1150054657592993826}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 108.90051, y: 75}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &807963617696202112
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,14 +816,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 820901507028937695}
+  - {fileID: 5618191682283078576}
   m_Father: {fileID: 2602506295854446430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1811.35, y: 744}
+  m_AnchoredPosition: {x: -1786.1311, y: 747.75}
   m_SizeDelta: {x: 140.10564, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.68, y: 0.55}
 --- !u!1 &1690756144894550461
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,14 +1010,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 714076973209984030}
+  - {fileID: 904352636334759148}
   m_Father: {fileID: 2602506295854446430}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1811.35, y: 669}
+  m_AnchoredPosition: {x: -1786.1316, y: 672.75}
   m_SizeDelta: {x: 140.10564, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.68, y: 0.55}
 --- !u!1 &2572692000731476511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,6 +2177,10 @@ MonoBehaviour:
   messageText: {fileID: 6307389983134374369}
   actionPointText: {fileID: 3459843961814747216}
   interestPointText: {fileID: 2339415141602934408}
+  pointTextPrefab: {fileID: 6351042321495265346, guid: 39fa980c59bd96d4c98b4cbe9993b172,
+    type: 3}
+  actionPointEffectPlace: {fileID: 5618191682283078576}
+  interestPointEffectPlace: {fileID: 904352636334759148}
 --- !u!1 &8831390033869842667
 GameObject:
   m_ObjectHideFlags: 0

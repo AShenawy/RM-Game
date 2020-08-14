@@ -71,12 +71,16 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.ActionPoint += card.ActionPoint;
             card.Discard();
             Destroy(gameObject);
-            IsClickable = true;
+            
             foreach (var c in _selectableCards)
             {
                 c.SetOutlineColorAs(Color.clear);
                 c.OnCardClicked -= CardClickedHandler;
             }
+        }
+        private void OnDestroy()
+        {
+            IsClickable = true;
         }
     }
 }

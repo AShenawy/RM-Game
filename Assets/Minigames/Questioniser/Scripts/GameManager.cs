@@ -58,14 +58,15 @@ namespace Methodyca.Minigames.Questioniser
         public event Action<Topic> OnTopicChanged = delegate { };
         public event Action<Question> OnQuestionAsked = delegate { };
         public event Action<byte> OnDeckUpdated = delegate { };
-        public event Action<int> OnActionPointUpdated = delegate { };
-        public event Action<int> OnInterestPointUpdated = delegate { };
+        public event Action<int, int> OnActionPointUpdated = delegate { };
+        public event Action<int, int> OnInterestPointUpdated = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
         public event Action<bool> OnMulliganStated = delegate { };
         public event Action<bool> OnImproviserRaised = delegate { };
         public event Action<string> OnMessageRaised = delegate { };
         public event Action<string, string> OnQuizGridUpdated = delegate { };
 
+        int _lastValue;
         int _actionPoint = 5;
         int _interestPoint = 2;
         int _storyPoint = 5;
@@ -76,18 +77,23 @@ namespace Methodyca.Minigames.Questioniser
         HashSet<ItemCard> _correctItemCardsPerTurn = new HashSet<ItemCard>();
         bool[,] _quizAnswerSheet;
 
-        public List<Topic> GetTopics => topics;
-        public List<CardBase> GetCards => cards;
         public CardInfoUI CardInfoGUI => cardInfoGUI;
         public int ActionPoint
         {
             get => _actionPoint;
             set
             {
+                _lastValue = _actionPoint;
                 _actionPoint = value;
                 if (_actionPoint <= 0)
+                {
                     _actionPoint = 0;
-                OnActionPointUpdated?.Invoke(_actionPoint);
+                    OnActionPointUpdated?.Invoke(_actionPoint, _lastValue);
+                }
+                else
+                {
+                    OnActionPointUpdated?.Invoke(_actionPoint, _lastValue);
+                }
             }
         }
         public int InterestPoint
@@ -95,16 +101,17 @@ namespace Methodyca.Minigames.Questioniser
             get => _interestPoint;
             set
             {
+                _lastValue = _interestPoint;
                 _interestPoint = value;
                 if (_interestPoint <= 0)
                 {
                     _interestPoint = 0;
-                    OnInterestPointUpdated?.Invoke(_interestPoint);
+                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastValue);
                     OnGameOver?.Invoke();
                 }
                 else
                 {
-                    OnInterestPointUpdated?.Invoke(_interestPoint);
+                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastValue);
                 }
             }
         }

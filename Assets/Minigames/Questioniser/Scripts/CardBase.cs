@@ -77,7 +77,11 @@ namespace Methodyca.Minigames.Questioniser
                 .AppendCallback(() => _hand.Cards.Remove(this))
                 .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.1f))
                 .Append(_transform.DOMove(_deck.GetTransform.position, 0.5f))
-                .AppendCallback(() => _deck.Cards.Add(this));
+                .AppendCallback(() =>
+                {
+                    _deck.Cards.Add(this);
+                    _transform.SetParent(_deck.GetTransform);
+                });
         }
 
         public void SelectCard()

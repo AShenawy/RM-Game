@@ -8,8 +8,13 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] Transform holder;
 
-        public Transform GetTransform => holder;
+        public Transform GetTransform;
         public List<CardBase> Cards = new List<CardBase>();
+
+        void Awake()
+        {
+            GetTransform = holder;
+        }
 
         public void ArrangeCardDeck()
         {
