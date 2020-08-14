@@ -6,73 +6,53 @@ using UnityEngine.UI;
 
 
 namespace Methodyca.Minigames.SortGame
-{   public class BoxSwitch : MonoBehaviour 
+{   public class BoxSwitch : MonoBehaviour
     {
-        public float amp;
-        public float freq;
-        public float degreePerSecond = 30f;
-        public Vector3 posOffset = new Vector3();
-        public Vector3 temPos = new Vector3();
-        //public Vector3 loose.position.y = new Vector3();
-        
-        //[Range(1f, 4f)]
-        public RectTransform levitate;
-        public RectTransform boibo;// RectTransform of the Object
+        //public SpriteRenderer firstImage;
+        public Sprite ontable;
+        public Sprite inbox;
+        public Sprite falz;
+        public GameObject item; 
 
-        void Lift()
-        {
-            posOffset =  boibo.position;
-            temPos = posOffset;
-            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq )* amp;
-            
-            levitate.position = temPos;
-            
-            //Debug.Log(levitate.position);
-        }
-
-        void Gear()
-        {
-            if(Input.GetKeyDown(KeyCode.O))
-            {
-                freq = freq + degreePerSecond;  
-                Debug.Log("New Freq is "+ freq);
-                
-            }
-        }
-        void Irubie()
-        {
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                degreePerSecond = degreePerSecond+ 1f; 
-                Debug.Log("your new degree is " + degreePerSecond);
-            }
-        }
-        void itsjustkewa()
-        {
-            if(Input.GetKeyDown(KeyCode.I))
-            {
-                degreePerSecond = degreePerSecond - 1f;
-                Debug.Log("Subtracting... Your DPS is " + degreePerSecond); 
-            }
-        }
-
-        
-    
-    
-        
         void Start()
         {
-            //boibo.position = temPos;
+            item = this.gameObject;
+            falz = item.GetComponent<Image>().sprite;
+            falz = ontable;
         }
-        // Update is called once per frame
+        // public void OnDrop(PointerEventData eventData)
+        // {
+                
+            
+        // }
+        public void onTheTable()
+        {
+           if(Input.GetKeyDown(KeyCode.Q))
+           {
+               if(falz = inbox)
+                falz =  ontable;
+               Debug.Log("Your image is now on the table.");
+           }
+        }
+        public void inTheBox()
+        {
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                if(falz = ontable)
+                falz = inbox;
+                Debug.Log("Your item is back on the table");
+            }
+        }
         void Update()
         {
-            Lift();
-            Gear();
-            Irubie();
-            itsjustkewa();
+            onTheTable();
+            inTheBox();
+            item.GetComponent<Image>().sprite = falz;
         }
+
+        
     }
+
         
             
 }   

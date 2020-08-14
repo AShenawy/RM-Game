@@ -17,10 +17,24 @@ namespace Methodyca.Minigames.SortGame
         private RectTransform rectTransform;//Transfrom of the item selected.
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
+        
+        
         //public GameObject itemsHD;//The clear vision of the items on the table. 
 
-        public GameObject inBoxPrefab; // ---------- rename to inBoxPrefab
-        public GameObject OnTablePrefab; // ---------- rename to onTablePrefab
+        //public GameObject inBoxPrefab; // ---------- rename to inBoxPrefab
+        //public GameObject OnTablePrefab; // ---------- rename to onTablePrefab
+        
+        //The switch
+        public string host;//the child of the box. 
+        public GameObject vistor;//the table. 
+        public GameObject thisniccur;//this game object 
+        public Sprite ontable;
+        public Sprite inbox;
+        public Sprite swap;//the operation that swaps. 
+        public Vector2 sizer;
+        public Vector2 shazam;
+
+        
         bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
@@ -35,8 +49,16 @@ namespace Methodyca.Minigames.SortGame
             rectTransform = GetComponent<RectTransform>();     
             canvasGroup = GetComponent<CanvasGroup>();
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            vistor = GameObject.Find("Draggable Items");
 
             soundMan = FindObjectOfType<SoundManager>();
+        }
+        
+        void Start()
+        {
+            thisniccur = this.gameObject;
+            swap = thisniccur.GetComponent<Image>().sprite;
+            swap = ontable; 
         }
     
         public void OnBeginDrag(PointerEventData eventData)
@@ -88,43 +110,53 @@ namespace Methodyca.Minigames.SortGame
         //Method On Pointer click to add double click function.
         public void OnPointerClick(PointerEventData eventData)
         {
-            // if (eventData.pointerEnter)
-            // {
-            //     float timeSince = Time.time - lastClickTime;
-            //     if (timeSince <= doubleClickTime)
-            //     {
-            //        //itemsHD.SetActive(!turnOn);//double click.
-            //        Debug.Log("Image Turning On - Double Click");
-                   
-            //     }           
-            //     else
-            //     {
-            //        //itemsHD.SetActive(turnOn);//turn on the image.
-            //        Debug.Log("Off Image");
-            //     }          
-            //     lastClickTime= Time.time;
-
-            // }
 
         }
 
-        public void InsideBox(GameObject boxType, Vector3 shift)    // ------ rename to InsideBox
+        public void InsideBox(GameObject host, Vector3 shift)    // ------ rename to InsideBox
         {
+            
+            if(swap = ontable)
+            swap = inbox; 
+            transform.parent = host.transform;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = sizer;
+            
+            
+            
+            
+            
+            
+            
             //this swtiches the images
-            GameObject instance = Instantiate(inBoxPrefab, boxType.transform);
+            GameObject instance = thisniccur;
+            //Debug.Log("creatdabing the prefab");
             Vector3 orderInBox = instance.transform.GetSiblingIndex() * shift;
             instance.GetComponent<RectTransform>().position += orderInBox;
 
             //prefab.GetComponent<CanvasGroup>()=canvasGroup;
             //this.gameObject.SetActive(false);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //Debug.Log("Destroying");
+            //this.gameObject.SetActive(turnOn);
             //Debug.Log("Appear inside the box");
         }
 
         public void OutsideBox(GameObject parent)   // ------- rename to OutsideBox
         {
-            Instantiate(OnTablePrefab, parent.transform);
-            Destroy(gameObject);
+            if(swap = inbox)
+            swap = ontable;
+            transform.parent = vistor.transform;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = shazam;
+            Debug.Log("laughing");
+            
+            
+            
+            //Instantiate(thisniccur, parent.transform);
+            //Destroy(gameObject);
+        }
+        void Update()
+        {
+            thisniccur.GetComponent<Image>().sprite =swap;
         }
         
     }      

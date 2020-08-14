@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
 
 
 //namespace
@@ -15,6 +16,8 @@ namespace Methodyca.Minigames.SortGame
         public float stun;
         public GameObject crystalStation;//The charging station either pink or blue.
         public GameObject placementParent; // the parent of the items placed in the box
+        public GameObject listBox;//the box to show how its removed.
+
         // public GameObject boxQuali;//for the sound
         // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
@@ -27,13 +30,13 @@ namespace Methodyca.Minigames.SortGame
         public string boxType;//The tag name for the boxes in the game either QA or QN.
         
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
-
+        //public List <GameObject> listBoxi;
         public Vector3 shift;
 
         //inputs for the levitations
         float degreePerSecond =20f;
         public float amp = 2f;
-        public float freq = 1f;
+        public float freq = 0f;
 
         //storing transform values 
         //Vector3 posOffset = new Vector3();
@@ -50,6 +53,8 @@ namespace Methodyca.Minigames.SortGame
             //posOffset = levitate.position;
             //stun = freq + 0.5f;
             soundMan = FindObjectOfType<SoundManager>();
+        
+            
         }
         public void OnDrop(PointerEventData eventData) //Mouse released. 
         {
@@ -64,11 +69,12 @@ namespace Methodyca.Minigames.SortGame
                 return;
             }
 
-            //Debug.Log("Dropped");
+            
 
             //Sound Effect
             soundMan.Imaging("paper_hit");
             soundMan.Play("paper_hit");//sound of the game.
+            Debug.Log("placing");
 
 
 
@@ -77,12 +83,13 @@ namespace Methodyca.Minigames.SortGame
             thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
             thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
 
+            PlaceInBox(thingOnTheTable);//instatioation 
 
             //To check if the item dropped has been added to the box or not. 
             if (!inTheBox.Contains(thingOnTheTable.gameObject))
             {
                 inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
-
+                
                 //To compare with Tags (QN and QA), with the box and see which enters which. 
                 if (thingOnTheTable.CompareTag(boxType))
                 {
@@ -105,15 +112,17 @@ namespace Methodyca.Minigames.SortGame
                 //Debug.Log("Addng to the box");
             }           
             
-            PlaceInBox(thingOnTheTable);//instatioation 
         }
 
         void Rise()
         {
             //The levitation of the crystals
             temPos = shinnny.position;
-            temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq *stun) * amp;
-            levitate.position = temPos;
+            //temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq *stun) * amp;
+            // shinnny.Translate();
+            shinnny.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.timeSinceLevelLoad * points));
+    
+            levitate.position = shinnny.position;
             
             //Debug.Log(temPos.y);
         }     
@@ -126,25 +135,25 @@ namespace Methodyca.Minigames.SortGame
 
         public void Remove(GameObject thingInTheBox)//The method to remove things in the box. 
         {   
-            if (inTheBox.Contains(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
+            if (!inTheBox.Contains(thingInTheBox)) //If the object isnt in the box it wouldnt remove.
             
                 return;
             
-                
+                //Debug.Log("Hello");
                 inTheBox.Remove(thingInTheBox);
 
 
             if(thingInTheBox.CompareTag(boxType))//A check to see if the tags are correct and if there is a point award to the box already.
             {
-                Debug.Log("ISEA");
+                //Debug.Log("ISEA");
                 if(points > 0)
                      
                     //Debug.Log("Deducting Points");
                     points --; 
                     crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
                     stun = freq - 0.5f;    
-                    Debug.Log("Discharging");
-                    Debug.Log(points);
+                    //Debug.Log("Discharging");
+                    //Debug.Log(points);
                     
             }
             Debug.Log("Takeout");
