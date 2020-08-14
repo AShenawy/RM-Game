@@ -151,7 +151,7 @@ namespace Methodyca.Minigames.SortGame
                     //Debug.Log("Deducting Points");
                     points --; 
                     crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
-                    stun = freq - 0.5f;    
+                    //stun = freq - 0.5f;    
                     //Debug.Log("Discharging");
                     //Debug.Log(points);
                     
