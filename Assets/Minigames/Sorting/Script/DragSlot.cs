@@ -13,10 +13,11 @@ namespace Methodyca.Minigames.SortGame
     public class DragSlot : MonoBehaviour, IDropHandler
     {
         private int points = 0;
+        private int goal = 5;
         public float stun;
         public GameObject crystalStation;//The charging station either pink or blue.
         public GameObject placementParent; // the parent of the items placed in the box
-        public GameObject listBox;//the box to show how its removed.
+        public GameObject[] listBox ;//the box to show how its removed.
 
         // public GameObject boxQuali;//for the sound
         // public GameObject boxQuanti;//for the sound. 
@@ -28,6 +29,13 @@ namespace Methodyca.Minigames.SortGame
         public Sprite[] crystalPhases;//The array of crystals charging. 
 
         public string boxType;//The tag name for the boxes in the game either QA or QN.
+        public string box;
+        public string complete;
+
+        
+
+        public bool sorted;
+        public bool done;
         
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
         //public List <GameObject> listBoxi;
@@ -44,6 +52,7 @@ namespace Methodyca.Minigames.SortGame
 
         // sound manager
         SoundManager soundMan;
+        GameManager levelman;
 
         private void Start()
         {
@@ -53,6 +62,7 @@ namespace Methodyca.Minigames.SortGame
             //posOffset = levitate.position;
             //stun = freq + 0.5f;
             soundMan = FindObjectOfType<SoundManager>();
+            levelman = FindObjectOfType<GameManager>();            
         
             
         }
@@ -74,7 +84,7 @@ namespace Methodyca.Minigames.SortGame
             //Sound Effect
             soundMan.Imaging("paper_hit");
             soundMan.Play("paper_hit");//sound of the game.
-            Debug.Log("placing");
+            //Debug.Log("placing");
 
 
 
@@ -103,7 +113,7 @@ namespace Methodyca.Minigames.SortGame
                         soundMan.Imaging("battery");
                         soundMan.Bounce("battery");
                         soundMan.Play("battery");
-
+                        
                         //Debug.Log("Charging");
                         Debug.Log(points);
                     }
@@ -112,6 +122,7 @@ namespace Methodyca.Minigames.SortGame
                 //Debug.Log("Addng to the box");
             }           
             
+                FileArranged();            
         }
 
         void Rise()
@@ -158,6 +169,40 @@ namespace Methodyca.Minigames.SortGame
             }
             Debug.Log("Takeout");
             
+        }
+        public void FileArranged() //Winning Condition for the game. 
+        {
+            if(inTheBox.Where(x => listBox.Contains(x)).ToList().Count == inTheBox.Count)// list is equal to the array
+            {
+                
+                    //if(done = sorted)
+                    {
+                        if(points >= goal)
+                        {
+                            if(sorted = this.gameObject.CompareTag(box))
+                            {
+                                {
+                                    // if(done = sorted)
+                                    // {
+                                    //     Debug.Log("Leggo");
+
+                                    // }
+
+                                }
+
+                            }
+                            //Debug.Log("Finally"); 
+                            //levelman.Complete();
+                            
+                        }
+
+                        
+                    }
+
+                
+                
+            }
+
         }
         void Update()
         {

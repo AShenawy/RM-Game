@@ -147,7 +147,7 @@ namespace Methodyca.Minigames.SortGame
             swap = ontable;
             transform.parent = vistor.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = shazam;
-            Debug.Log("laughing");
+            
             
             
             
