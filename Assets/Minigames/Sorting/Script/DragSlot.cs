@@ -19,6 +19,9 @@ namespace Methodyca.Minigames.SortGame
         public GameObject placementParent; // the parent of the items placed in the box
         public GameObject[] listBox ;//the box to show how its removed.
 
+        
+        
+
         // public GameObject boxQuali;//for the sound
         // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
@@ -30,12 +33,12 @@ namespace Methodyca.Minigames.SortGame
 
         public string boxType;//The tag name for the boxes in the game either QA or QN.
         public string box;
-        public string complete;
+        
 
         
 
         public bool sorted;
-        public bool done;
+        //public bool done;
         
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
         //public List <GameObject> listBoxi;
@@ -52,7 +55,7 @@ namespace Methodyca.Minigames.SortGame
 
         // sound manager
         SoundManager soundMan;
-        GameManager levelman;
+        //GameManager levelman;
 
         private void Start()
         {
@@ -62,7 +65,7 @@ namespace Methodyca.Minigames.SortGame
             //posOffset = levitate.position;
             //stun = freq + 0.5f;
             soundMan = FindObjectOfType<SoundManager>();
-            levelman = FindObjectOfType<GameManager>();            
+            //levelman = FindObjectOfType<GameManager>();            
         
             
         }
@@ -175,34 +178,34 @@ namespace Methodyca.Minigames.SortGame
             if(inTheBox.Where(x => listBox.Contains(x)).ToList().Count == inTheBox.Count)// list is equal to the array
             {
                 
-                    //if(done = sorted)
+                    
                     {
                         if(points >= goal)
                         {
                             if(sorted = this.gameObject.CompareTag(box))
                             {
-                                {
-                                    // if(done = sorted)
-                                    // {
-                                    //     Debug.Log("Leggo");
+                                
+                                
+                                
 
-                                    // }
-
-                                }
-
+                                
                             }
                             //Debug.Log("Finally"); 
                             //levelman.Complete();
                             
-                        }
-
+                        } 
                         
-                    }
-
+                    } 
+                        
                 
                 
             }
 
+        }
+
+        public void Check()
+        {   
+           
         }
         void Update()
         {
