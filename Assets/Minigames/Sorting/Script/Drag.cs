@@ -70,12 +70,12 @@ namespace Methodyca.Minigames.SortGame
         {
             //Debug.Log("WhileDrag");
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;//make the object retain its postion when selected, and retains the opacity of the item 
-            Debug.Log("Moving");
+            //Debug.Log("Moving");
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            Debug.Log("EndDrag");
+            //Debug.Log("EndDrag");
             canvasGroup.alpha = 1f;//restores the opacity of the item after being dropped.
             canvasGroup.blocksRaycasts = true;
 
