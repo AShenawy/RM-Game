@@ -170,7 +170,7 @@ namespace Methodyca.Minigames.SortGame
                     //Debug.Log(points);
                     
             }
-            Debug.Log("Takeout");
+            //Debug.Log("Takeout");
             
         }
         public void FileArranged() //Winning Condition for the game. 
@@ -186,9 +186,6 @@ namespace Methodyca.Minigames.SortGame
                             {
                                 
                                 
-                                
-
-                                
                             }
                             //Debug.Log("Finally"); 
                             //levelman.Complete();
@@ -203,10 +200,6 @@ namespace Methodyca.Minigames.SortGame
 
         }
 
-        public void Check()
-        {   
-           
-        }
         void Update()
         {
             Rise();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Methodyca.Minigames.SortGame
 {
@@ -11,8 +12,16 @@ namespace Methodyca.Minigames.SortGame
         public void Complete()
         {
             filesSorted.SetActive(true);
-            Debug.Log("You Sabi");
+            //Debug.Log("You Sabi");
         }
+        // public void Reup()
+        // {
+        //     if(Input.GetKeyDown(KeyCode.R))
+        //     {
+        //         SceneManager.LoadScene("Drag and Drop");
+        //         Debug.Log("Restart");
+        //     }
+        // }
     }
 
 }

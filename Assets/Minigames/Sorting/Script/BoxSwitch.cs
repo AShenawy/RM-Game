@@ -16,7 +16,7 @@ namespace Methodyca.Minigames.SortGame
        
        GameManager levelman;
     
-       public int balance = 10;
+       //public int balance = 10;
 
         void Start()
         {
@@ -27,22 +27,7 @@ namespace Methodyca.Minigames.SortGame
 
         public void Sky()
         {
-           //firstbox =  boxOne.transform.childCount;
-           //secondbox = boxtwo.transform.childCount;
-           //int gain;
-           // gain = firstbox + secondbox;
-           // if(balance == gain)
-           // {
-           //     //if(this.gameObject.CompareTag(boxer))
-           //     {
-           //         Debug.Log("Hunted");
-
-           //     }
-           // }
-           // else
-           // {
-           //     return;
-           // }
+        
         }
     
 
@@ -50,7 +35,7 @@ namespace Methodyca.Minigames.SortGame
        {
           if (firstbox.sorted && secondbox.sorted)
           {
-              Debug.Log("Wins");
+              //Debug.Log("Wins");
               levelman.Complete();
           }
        }

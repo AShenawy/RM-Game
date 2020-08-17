@@ -21,8 +21,6 @@ namespace Methodyca.Minigames.SortGame
         
         //public GameObject itemsHD;//The clear vision of the items on the table. 
 
-        //public GameObject inBoxPrefab; // ---------- rename to inBoxPrefab
-        //public GameObject OnTablePrefab; // ---------- rename to onTablePrefab
         
         //The switch
         public string host;//the child of the box. 
@@ -35,7 +33,7 @@ namespace Methodyca.Minigames.SortGame
         public Vector2 shazam;
 
         
-        bool turnOn;// for the iteas to turn on. 
+        //bool turnOn;// for the iteas to turn on. 
 
         //Float created for the double click function. 
         private float lastClickTime;
@@ -72,16 +70,19 @@ namespace Methodyca.Minigames.SortGame
         {
             //Debug.Log("WhileDrag");
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;//make the object retain its postion when selected, and retains the opacity of the item 
-
+            Debug.Log("Moving");
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            //Debug.Log("EndDrag");
+            Debug.Log("EndDrag");
             canvasGroup.alpha = 1f;//restores the opacity of the item after being dropped.
             canvasGroup.blocksRaycasts = true;
 
-            //TakeOutOfBox();
+            
+            {
+
+            }
 
         }
 
@@ -120,25 +121,12 @@ namespace Methodyca.Minigames.SortGame
             swap = inbox; 
             transform.parent = host.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = sizer;
-            
-            
-            
-            
-            
-            
-            
+        
             //this swtiches the images
             GameObject instance = thisniccur;
-            //Debug.Log("creatdabing the prefab");
             Vector3 orderInBox = instance.transform.GetSiblingIndex() * shift;
             instance.GetComponent<RectTransform>().position += orderInBox;
 
-            //prefab.GetComponent<CanvasGroup>()=canvasGroup;
-            //this.gameObject.SetActive(false);
-            //Destroy(gameObject);
-            //Debug.Log("Destroying");
-            //this.gameObject.SetActive(turnOn);
-            //Debug.Log("Appear inside the box");
         }
 
         public void OutsideBox(GameObject parent)   // ------- rename to OutsideBox
@@ -147,12 +135,7 @@ namespace Methodyca.Minigames.SortGame
             swap = ontable;
             transform.parent = vistor.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = shazam;
-            
-            
-            
-            
-            //Instantiate(thisniccur, parent.transform);
-            //Destroy(gameObject);
+
         }
         void Update()
         {

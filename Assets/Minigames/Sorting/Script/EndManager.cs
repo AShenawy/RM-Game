@@ -1,29 +1,27 @@
 ﻿//using System.Collections;
 //using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
 
 namespace Methodyca.Minigames.SortGame
 {
-    public class EndManager : MonoBehaviour
+    public class EndManager : MonoBehaviour, IPointerClickHandler
     {
-        public bool filesArranged = false;
+        //public bool filesArranged = false;
         
 
-        public void EndGame()
+        public void OnPointerClick(PointerEventData eventData)
         {
-                Debug.Log("Weldone");
-            // if(filesArranged == false)
-            // {
-            //     filesArranged = true;
-            // }
-        }
-        public void Leave(bool yea)
-        {
-            Debug.Log("Great you suck");
-        }
+            Debug.Log("restart");
+            SceneManager.LoadScene("Drag and Drop");
 
+        }
+        
+        
+        
     }
 
 }

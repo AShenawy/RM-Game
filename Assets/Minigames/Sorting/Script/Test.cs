@@ -65,7 +65,9 @@ namespace Methodyca.Minigames.SortGame{
                 else
                 {
                     audioSource.Stop();
-                }   Debug.Log("Stop Keys");
+                    Debug.Log("Stop Keys");
+                
+                }   
             }
 
             Shake(audioSource);
