@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define TESTING
+using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
@@ -34,6 +35,32 @@ namespace Methodyca.Core
         public TMP_Text mailBody;
 
         private int unreadMailCount = 0;
+
+        #region Test Code Vars
+        // typing in this string during gameplay sends the messages app a test mail
+        private string[] sndml = new string[] {"s", "n", "d", "m", "l"};
+        private int sndmlIndex = 0;
+        #endregion
+
+        private void Update()
+        {
+            // ========== TEST CODE INPUT ==========
+#if TESTING
+            if (Input.anyKeyDown)
+            {
+                if (Input.GetKeyDown(sndml[sndmlIndex]))
+                    sndmlIndex++;
+                else
+                    sndmlIndex = 0;
+            }
+
+            if (sndmlIndex == sndml.Length)
+            {
+                SendMail(mailSample);
+                sndmlIndex = 0;
+            }
+#endif
+        }
 
         public void DisplayMail(Mail mail)
         {

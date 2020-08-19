@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+#define TESTING
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -29,9 +28,15 @@ namespace Methodyca.Core
         private GameObject roomCurrent, roomTarget;
         private RoomData roomData;
 
-        
         [HideInInspector] public bool isPlayerHoldingItem = false;
-    
+
+        #region Test Code Vars
+        // typing in this string makes the player able to turn in current room (if originally disabled)
+        private string[] cntrn = new string[] { "c", "n", "t", "r", "n" };
+        private int cntrnIndex = 0;
+        #endregion
+
+
         private void Awake()
         {
             // Check if not existing and assign as singleton
@@ -50,7 +55,8 @@ namespace Methodyca.Core
             // Subscribe to context menu event
             CursorManager.instance.contextMenuDisabled += OnContextMenuDisabled;
 
-            HideGUI();  // Ensure all menus are hidden. KEEP below RoomSetup region
+            // KEEP BELOW RoomSetup region. Ensures all menus are hidden on start
+            HideGUI();
         }
     
         // Update is called once per frame
@@ -76,6 +82,24 @@ namespace Methodyca.Core
                 // Commented out because when active the cursor is always stuck in default texture
                 //SetCursor(cursorDefault);
             }
+
+            // ========== TEST CODE INPUT ==========
+#if TESTING
+            if (Input.anyKeyDown)
+            {
+                if (Input.GetKeyDown(cntrn[cntrnIndex]))
+                    cntrnIndex++;
+                else
+                    cntrnIndex = 0;
+            }
+
+            if (cntrnIndex == cntrn.Length)
+            {
+                roomData.playerCanTurn = !roomData.playerCanTurn;
+                CheckRoom(roomCurrent);
+                cntrnIndex = 0;
+            }
+#endif
         }
 
         private void Scan()
