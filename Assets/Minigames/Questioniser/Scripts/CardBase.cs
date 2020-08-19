@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -38,7 +37,6 @@ namespace Methodyca.Minigames.Questioniser
 
         public static bool IsClickable = false;
         protected virtual void Throw() { }
-        public void Draw() => StartCoroutine(DrawCoroutine());
 
         public event Action<CardBase> OnCardClicked = delegate { };
         public event Action<int> OnActionValueChanged = delegate { };
@@ -46,6 +44,7 @@ namespace Methodyca.Minigames.Questioniser
         public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
         public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
+        public void Draw() => StartCoroutine(DrawCoroutine());
 
         public void InitializeCard(Camera camera, CardHolder hand, CardHolder table, CardHolder deck)
         {
@@ -99,30 +98,6 @@ namespace Methodyca.Minigames.Questioniser
             _renderer.material.SetColor(outlineColor, color);
         }
 
-        void Awake()
-        {
-            _transform = transform;
-            _collider = GetComponent<Collider2D>();
-            _renderer = GetComponent<SpriteRenderer>();
-            _renderer.sprite = sprite;
-        }
-
-        void OnMouseEnter()
-        {
-            if (!IsClickable)
-                return;
-
-            _renderer.material.SetColor(outlineColor, Color.red);
-        }
-
-        void OnMouseExit()
-        {
-            if (!IsClickable)
-                return;
-
-            _renderer.material.SetColor(outlineColor, Color.clear);
-        }
-
         protected virtual void OnMouseDown()
         {
             if (!IsClickable)
@@ -130,17 +105,6 @@ namespace Methodyca.Minigames.Questioniser
 
             _hand.Cards.Remove(this);
             _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
-        }
-
-        void OnMouseDrag()
-        {
-            if (!IsClickable)
-                return;
-
-            var distance = Vector3.Distance(_transform.position, _camera.transform.position);
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            Vector2 rayPoint = ray.GetPoint(distance);
-            _transform.position = rayPoint;
         }
 
         protected virtual void OnMouseUp()
@@ -172,6 +136,41 @@ namespace Methodyca.Minigames.Questioniser
                     _hand.ArrangeCardDeck();
                     _collider.enabled = true;
                 })).Join(_transform.DOScale(1, 0.25f));
+        }
+
+        void Awake()
+        {
+            _transform = transform;
+            _collider = GetComponent<Collider2D>();
+            _renderer = GetComponent<SpriteRenderer>();
+            _renderer.sprite = sprite;
+        }
+
+        void OnMouseEnter()
+        {
+            if (!IsClickable)
+                return;
+
+            _renderer.material.SetColor(outlineColor, Color.red);
+        }
+
+        void OnMouseExit()
+        {
+            if (!IsClickable)
+                return;
+
+            _renderer.material.SetColor(outlineColor, Color.clear);
+        }
+
+        void OnMouseDrag()
+        {
+            if (!IsClickable)
+                return;
+
+            var distance = Vector3.Distance(_transform.position, _camera.transform.position);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Vector2 rayPoint = ray.GetPoint(distance);
+            _transform.position = rayPoint;
         }
 
         IEnumerator DrawCoroutine()

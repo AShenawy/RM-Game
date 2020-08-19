@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.OnTopicClosed += TopicClosedHandler;
         }
 
-        void TopicClosedHandler()
+        void TopicClosedHandler(Topic topic)
         {
             InterestPoint++;
         }

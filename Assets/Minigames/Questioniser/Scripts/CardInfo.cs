@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -6,23 +7,16 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] CardBase card;
 
-        CardInfoUI _infoGUI;
-
-        void Start()
-        {
-            _infoGUI = GameManager.Instance.CardInfoGUI;
-
-        }
+        public static event Action<bool, string> OnCardInfoCalled = delegate { };
 
         void OnMouseDown()
         {
-            _infoGUI.gameObject.SetActive(true);
-            _infoGUI.SetData(card.Description);
+            OnCardInfoCalled?.Invoke(true, card.Description);
         }
 
         void OnMouseUp()
         {
-            _infoGUI.gameObject.SetActive(false);
+            OnCardInfoCalled?.Invoke(false, "");
         }
     }
 }

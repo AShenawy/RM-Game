@@ -3,24 +3,33 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
-    public class QuizGridUI : MonoBehaviour
+    public class ChecklistUI : MonoBehaviour
     {
         [SerializeField] RectTransform gridPanel;
         [SerializeField] RectTransform tickPrefab;
+        [SerializeField] RectTransform crossOutPrefab;
         [SerializeField] TextMeshProUGUI[] topicTexts;
         [SerializeField] TextMeshProUGUI[] cardTexts;
 
-        public void EndDialog()
-        {
-            GameManager.Instance.HandleStoryDialog();
-        }
-
         void Start()
         {
-            GameManager.Instance.OnQuizGridUpdated += QuizGridUpdatedHandler;
+            GameManager.Instance.OnChecklistUpdated += ChecklistUpdatedHandler;
+            GameManager.Instance.OnTopicClosed += TopicClosedHandler;
         }
 
-        void QuizGridUpdatedHandler(string currentTopicName, string currentCardName)
+        void TopicClosedHandler(Topic topic)
+        {
+            foreach (var t in topicTexts)
+            {
+                if (t.text == topic.Name)
+                {
+                    var line = Instantiate(crossOutPrefab, gridPanel);
+                    line.anchoredPosition = new Vector2(0, t.rectTransform.anchoredPosition.y);
+                }
+            }
+        }
+
+        void ChecklistUpdatedHandler(string currentTopicName, string currentCardName)
         {
             for (int i = 0; i < topicTexts.Length; i++)
             {
@@ -41,7 +50,10 @@ namespace Methodyca.Minigames.Questioniser
         void OnDestroy()
         {
             if (GameManager.InstanceExists)
-                GameManager.Instance.OnQuizGridUpdated -= QuizGridUpdatedHandler;
+            {
+                GameManager.Instance.OnChecklistUpdated -= ChecklistUpdatedHandler;
+                GameManager.Instance.OnTopicClosed -= TopicClosedHandler;
+            }
         }
     }
 }

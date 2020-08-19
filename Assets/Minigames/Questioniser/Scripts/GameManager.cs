@@ -12,6 +12,7 @@ namespace Methodyca.Minigames.Questioniser
         public string Name;
         public bool IsStoryInitiated;
         public Sprite CardSprite;
+        public Dialog StoryDialog;
 
         public Topic(string name, bool isStoryInitiated, Sprite cardSprite)
         {
@@ -22,21 +23,23 @@ namespace Methodyca.Minigames.Questioniser
     }
 
     [Serializable]
-    public struct Question
+    public class Question
     {
         public bool IsAnswerCorrect;
         public string TopicName;
         public string OptionDescription;
         public Option[] Options;
+
+        public void ResetOption() => IsAnswerCorrect = false;
     }
 
     [Serializable]
-    public struct Option
+    public class Option
     {
         public bool IsCorrect;
         public int Id;
         public int Point;
-        [Multiline] public string Text;
+        [TextArea(4, 10)] public string Text;
     }
 
     public class GameManager : Singleton<GameManager>
@@ -46,53 +49,53 @@ namespace Methodyca.Minigames.Questioniser
         const byte POINT_TO_INITIATE_STORY = 4;
 
         [SerializeField] Camera sceneCamera;
-        [SerializeField] CardInfoUI cardInfoGUI;
         [SerializeField] CardHolder hand;
         [SerializeField] CardHolder table;
         [SerializeField] CardHolder deck;
         [SerializeField] List<CardBase> cards;
         [SerializeField] List<Topic> topics;
 
-        public event Action OnTopicClosed = delegate { };
         public event Action OnGameOver = delegate { };
-        public event Action<Topic> OnTopicChanged = delegate { };
-        public event Action<Question> OnQuestionAsked = delegate { };
-        public event Action<byte> OnDeckUpdated = delegate { };
-        public event Action<int, int> OnActionPointUpdated = delegate { };
-        public event Action<int, int> OnInterestPointUpdated = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
         public event Action<bool> OnMulliganStated = delegate { };
         public event Action<bool> OnImproviserRaised = delegate { };
+        public event Action<bool> OnCardInfoCalled = delegate { };
+        public event Action<byte> OnDeckUpdated = delegate { };
         public event Action<string> OnMessageRaised = delegate { };
-        public event Action<string, string> OnQuizGridUpdated = delegate { };
+        public event Action<int, int> OnActionPointUpdated = delegate { };
+        public event Action<int, int> OnInterestPointUpdated = delegate { };
+        public event Action<string, string> OnChecklistUpdated = delegate { };
+        public event Action<Topic> OnTopicClosed = delegate { };
+        public event Action<Topic> OnTopicChanged = delegate { };
+        public event Action<Question> OnQuestionAsked = delegate { };
 
-        int _lastValue;
+        int _lastActionPointValue;
+        int _lastInterestPointValue;
         int _actionPoint = 5;
         int _interestPoint = 2;
         int _storyPoint = 5;
         int _extraPointsForNextTurn = 0;
         bool _isImproviserTurn;
+        bool[,] _quizAnswerSheet;
         CardBase _currentCard;
         Topic _currentTopic = new Topic("", false, null);
         HashSet<ItemCard> _correctItemCardsPerTurn = new HashSet<ItemCard>();
-        bool[,] _quizAnswerSheet;
 
-        public CardInfoUI CardInfoGUI => cardInfoGUI;
         public int ActionPoint
         {
             get => _actionPoint;
             set
             {
-                _lastValue = _actionPoint;
+                _lastActionPointValue = _actionPoint;
                 _actionPoint = value;
                 if (_actionPoint <= 0)
                 {
                     _actionPoint = 0;
-                    OnActionPointUpdated?.Invoke(_actionPoint, _lastValue);
+                    OnActionPointUpdated?.Invoke(_actionPoint, _lastActionPointValue);
                 }
                 else
                 {
-                    OnActionPointUpdated?.Invoke(_actionPoint, _lastValue);
+                    OnActionPointUpdated?.Invoke(_actionPoint, _lastActionPointValue);
                 }
             }
         }
@@ -101,22 +104,22 @@ namespace Methodyca.Minigames.Questioniser
             get => _interestPoint;
             set
             {
-                _lastValue = _interestPoint;
+                _lastInterestPointValue = _interestPoint;
                 _interestPoint = value;
                 if (_interestPoint <= 0)
                 {
                     _interestPoint = 0;
-                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastValue);
-                    OnGameOver?.Invoke();
+                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastInterestPointValue);
+                   // OnGameOver?.Invoke();
                 }
                 else
                 {
-                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastValue);
+                    OnInterestPointUpdated?.Invoke(_interestPoint, _lastInterestPointValue);
                 }
             }
         }
 
-        public int GetTopicCount => topics.Count;
+        public void TriggerMulligan() => StartCoroutine(MulliganCoroutine());
         public void RaiseGameMessage(string message) => OnMessageRaised?.Invoke(message);
 
         public void DrawRandomCardFromDeck(byte size = 1)
@@ -127,11 +130,6 @@ namespace Methodyca.Minigames.Questioniser
                 RaiseGameMessage("Cannot hold more than 5 cards");
             else
                 OnGameOver?.Invoke();
-        }
-
-        public void TriggerMulligan()
-        {
-            StartCoroutine(MulliganCoroutine());
         }
 
         public void EndTurn()
@@ -187,12 +185,12 @@ namespace Methodyca.Minigames.Questioniser
             RaiseGameMessage("Interest points can be used as action points for this turn");
         }
 
-        public void HandleStory()
+        public void InitiateStoryDialog()
         {
             if (InterestPoint >= _storyPoint)
             {
                 InterestPoint -= _storyPoint;
-                _storyPoint += 3;
+                DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
             }
             else
             {
@@ -202,9 +200,10 @@ namespace Methodyca.Minigames.Questioniser
 
         public void HandleStoryDialog()
         {
+            _storyPoint += 3;
+            OnTopicClosed?.Invoke(_currentTopic);
             topics.Remove(_currentTopic);
             SetRandomTopic();
-            OnTopicClosed?.Invoke();
         }
 
         public void HandleItemCardQuestionFor(Option answer)
@@ -221,10 +220,9 @@ namespace Methodyca.Minigames.Questioniser
                     {
                         ItemCard c = GetPrefabOf(itemCard) as ItemCard;
                         c.Questions[i].IsAnswerCorrect = true;
-
                         _correctItemCardsPerTurn.Add(itemCard);
                         TickAnswerSheet(_currentTopic.Name, _currentCard.Name);
-                        OnQuizGridUpdated?.Invoke(_currentTopic.Name, _currentCard.Name);
+                        OnChecklistUpdated?.Invoke(_currentTopic.Name, _currentCard.Name);
 
                         if (GetCorrectAnswerCountFor(_currentTopic.Name) >= POINT_TO_INITIATE_STORY)
                             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated = true);
@@ -318,6 +316,7 @@ namespace Methodyca.Minigames.Questioniser
                 OnDeckUpdated?.Invoke((byte)deck.Cards.Count);
             }
         }
+
         CardBase GetPrefabOf(CardBase card)
         {
             foreach (var c in cards)
@@ -352,6 +351,19 @@ namespace Methodyca.Minigames.Questioniser
 
             yield return new WaitForSeconds(1);
             DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
+        }
+
+        void ResetGame()
+        {
+            for (int i = 0; i < cards.Count; i++)
+                if (cards[i] is ItemCard card)
+                    for (int j = 0; j < card.Questions.Length; j++)
+                        card.Questions[j].ResetOption();
+        }
+
+        void OnDisable()
+        {
+            ResetGame();
         }
     }
 }

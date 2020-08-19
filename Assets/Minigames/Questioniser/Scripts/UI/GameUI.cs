@@ -21,9 +21,10 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] RectTransform actionPointEffectPlace;
         [SerializeField] RectTransform interestPointEffectPlace;
 
-        RectTransform _pointUI;
-        TextMeshProUGUI _pointText;
         RectTransform _pointSpawnLocation;
+        RectTransform _mainPointObject;
+        readonly Color _positivePointTextColor = new Color(.35f, 0.9f, 0.3f, 1);
+        readonly Color _negativePointTextColor = new Color(0.9f, 0.35f, 0.35f, 1);
 
         void Start()
         {
@@ -35,6 +36,7 @@ namespace Methodyca.Minigames.Questioniser
         }
 
         void DeckUpdatedHandler(byte cardCount) => deckCountText.text = cardCount.ToString();
+        void MulliganStatedHandler(bool isOn) => mulliganPanel.gameObject.SetActive(isOn);
 
         void MessageRaisedHandler(string message)
         {
@@ -50,55 +52,46 @@ namespace Methodyca.Minigames.Questioniser
             messagePanel.gameObject.SetActive(false);
         }
 
-        void MulliganStatedHandler(bool isOn)
-        {
-            mulliganPanel.gameObject.SetActive(isOn);
-        }
-
         void InterestPointUpdatedHandler(int currentValue, int lastValue)
         {
             _pointSpawnLocation = interestPointEffectPlace;
-            _pointUI = interestPoint;
-            _pointText = interestPointText;
-            SpawnPointText(currentValue, lastValue);
+            _mainPointObject = interestPoint;
+            SpawnPointText(currentValue, lastValue, interestPointText);
         }
 
         void ActionPointUpdatedHandler(int currentValue, int lastValue)
         {
             _pointSpawnLocation = actionPointEffectPlace;
-            _pointUI = actionPoint;
-            _pointText = actionPointText;
-            SpawnPointText(currentValue, lastValue);
+            _mainPointObject = actionPoint;
+            SpawnPointText(currentValue, lastValue, actionPointText);
         }
 
-        void SpawnPointText(int currentValue, int lastValue)
+        void SpawnPointText(int currentValue, int lastValue, TextMeshProUGUI updatedText)
         {
-            var diff = currentValue - lastValue;
-
-            if (diff == 0)
+            var difference = currentValue - lastValue;
+            if (difference == 0)
                 return;
 
-            Sequence seq = DOTween.Sequence();
             var point = Instantiate(pointTextPrefab, _pointSpawnLocation.position, Quaternion.identity, _pointSpawnLocation);
 
-            if (diff > 0)
+            if (difference > 0)
             {
-                point.color = new Color(.35f, 0.9f, 0.3f, 1);
-                point.text = "+" + diff.ToString();
+                point.color = _positivePointTextColor;
+                point.text = "+" + difference.ToString();
             }
             else
             {
-                point.color = new Color(0.9f, 0.25f, 0.25f, 1);
-                point.text = diff.ToString();
+                point.color = _negativePointTextColor;
+                point.text = difference.ToString();
             }
 
-            seq.SetDelay(0.75f);
-            seq.Append(point.rectTransform.DOMove(_pointUI.position, 0.25f).SetEase(Ease.InSine))
+            Sequence seq = DOTween.Sequence();
+            seq.SetDelay(0.75f).Append(point.rectTransform.DOMove(_mainPointObject.position, 0.25f).SetEase(Ease.InSine))
                     .Append(point.rectTransform.DOScale(0, 0.2f))
-                    .Join(_pointUI.DOShakeScale(duration: 0.2f, strength: 0.5f, vibrato: 20))
+                    .Join(_mainPointObject.DOShakeScale(duration: 0.2f, strength: 0.5f, vibrato: 20))
                     .OnComplete(() =>
                     {
-                        _pointText.text = currentValue.ToString();
+                        updatedText.text = currentValue.ToString();
                         Destroy(point);
                     });
         }
