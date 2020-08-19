@@ -35,12 +35,6 @@ namespace Methodyca.Core
 
         private int unreadMailCount = 0;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.M))        // **** This is for debugging and should be deleted ****
-                SendMail(mailSample);
-        }
-
         public void DisplayMail(Mail mail)
         {
             mailSubject.text = mail.subject.text;
