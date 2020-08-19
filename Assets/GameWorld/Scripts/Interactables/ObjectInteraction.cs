@@ -33,19 +33,20 @@ namespace Methodyca.Core
                 DisableInteraction();
         }
 
-        // this method will be overridden for when object is inspected
+        // this method will be overridden by derived classes
         public virtual string InspectObject()
         {
             DialogueHandler.instance.DisplayDialogue(inGameDescription);
             return inGameDescription;
         }
 
-        // this method will be overridden for when object is interacted with
+        // this method will be overridden by derived classes
         public virtual void InteractWithObject()
         {
 
         }
 
+        // this method will be overridden by derived classes
         public virtual void UseWithHeldItem(Item item)
         {
             if (item == requiredItem)
@@ -54,7 +55,7 @@ namespace Methodyca.Core
                 DialogueHandler.instance.DisplayDialogue(wrongItemText);
         }
 
-        // this method will be overridden for when object is picked up
+        // this method will be overridden by derived classes
         public virtual void PickUpObject()
         {
             if (canPickUp)
