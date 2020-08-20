@@ -110,7 +110,7 @@ namespace Methodyca.Minigames.Questioniser
                 {
                     _interestPoint = 0;
                     OnInterestPointUpdated?.Invoke(_interestPoint, _lastInterestPointValue);
-                   // OnGameOver?.Invoke();
+                    // OnGameOver?.Invoke();
                 }
                 else
                 {
@@ -233,7 +233,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void CardThrownHandler(object sender, CardBase.OnCardThrownEventArgs e)
         {
-            hand.ArrangeCardDeck();
+            hand.ArrangeCards();
             OnMulliganStated?.Invoke(false);
 
             if (sender is ItemCard itemCard)
@@ -302,8 +302,8 @@ namespace Methodyca.Minigames.Questioniser
             foreach (var card in table.Cards)
                 card.Discard();
 
-            hand.Cards.Clear();
-            table.Cards.Clear();
+            hand.RemoveAllCards();
+            table.RemoveAllCards();
         }
 
         void Draw(int size)
@@ -326,7 +326,7 @@ namespace Methodyca.Minigames.Questioniser
             return null;
         }
 
-        IEnumerable<CardBase> GetSpawnedCards()
+        IEnumerable<CardBase> GetSpawnedCards() // MEMORY LEAK
         {
             for (int j = 0; j < cards.Count; j++)
             {

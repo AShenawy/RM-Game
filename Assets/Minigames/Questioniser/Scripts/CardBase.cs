@@ -73,12 +73,12 @@ namespace Methodyca.Minigames.Questioniser
             IsClickable = false;
             Sequence seq = DOTween.Sequence();
             seq.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.1f))
-                .AppendCallback(() => _hand.Cards.Remove(this))
+                .AppendCallback(() => _hand.RemoveCard(this))
                 .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.1f))
                 .Append(_transform.DOMove(_deck.GetTransform.position, 0.5f))
                 .AppendCallback(() =>
                 {
-                    _deck.Cards.Add(this);
+                    _deck.AddCard(this);
                     _transform.SetParent(_deck.GetTransform);
                 });
         }
@@ -103,7 +103,7 @@ namespace Methodyca.Minigames.Questioniser
             if (!IsClickable)
                 return;
 
-            _hand.Cards.Remove(this);
+            _hand.RemoveCard(this);
             _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
         }
 
@@ -115,7 +115,7 @@ namespace Methodyca.Minigames.Questioniser
             _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
             var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
 
-            if (inputPosition.y < 0.4f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
+            if (inputPosition.y < 0.45f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
                 ReturnHand();
         }
 
@@ -127,13 +127,13 @@ namespace Methodyca.Minigames.Questioniser
 
         protected void ReturnHand()
         {
-            _hand.Cards.Add(this);
+            _hand.AddCard(this);
+            _hand.ArrangeCards();
             Sequence seq = DOTween.Sequence();
             seq.Append(_transform.DOMove(_hand.GetTransform.position, 0.25f)
                 .OnStart(() => _collider.enabled = false)
                 .OnComplete(() =>
                 {
-                    _hand.ArrangeCardDeck();
                     _collider.enabled = true;
                 })).Join(_transform.DOScale(1, 0.25f));
         }
@@ -176,15 +176,13 @@ namespace Methodyca.Minigames.Questioniser
         IEnumerator DrawCoroutine()
         {
             Sequence drawSequence = DOTween.Sequence();
-            drawSequence.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
+            yield return drawSequence.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
                 .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.5f))
-                .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f));
+                .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f)).WaitForCompletion();
 
-            yield return drawSequence.WaitForCompletion();
-
-            _hand.Cards.Add(this);
+            _hand.AddCard(this);
+            _hand.ArrangeCards();
             _transform.SetParent(_hand.GetTransform);
-            _hand.ArrangeCardDeck();
             _collider.enabled = true;
             IsClickable = true;
         }

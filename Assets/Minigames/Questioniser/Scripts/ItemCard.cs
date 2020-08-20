@@ -35,12 +35,12 @@ namespace Methodyca.Minigames.Questioniser
         {
             _table.Cards.Add(this);
             _transform.SetParent(_table.GetTransform);
-            _table.ArrangeCardDeck();
+            _table.ArrangeCards();
             _collider.enabled = false;
 
             Sequence throwSequence = DOTween.Sequence();
             yield return throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
-                .Join(_transform.DORotate(new Vector3(45, 0, 0), 0.5f)).WaitForCompletion();
+                .Join(_transform.DORotate(new Vector3(30, 0, 0), 0.5f)).WaitForCompletion();
 
             TriggerCardIsThrown((ItemCard)this);
         }

@@ -16,7 +16,29 @@ namespace Methodyca.Minigames.Questioniser
             GetTransform = holder;
         }
 
-        public void ArrangeCardDeck()
+        public int GetCardCount()
+        {
+            return Cards.Count;
+        }
+
+        public void AddCard(CardBase card)
+        {
+            if (!Cards.Contains(card))
+                Cards.Add(card);
+        }
+
+        public void RemoveCard(CardBase card)
+        {
+            if (Cards.Contains(card))
+                Cards.Remove(card);
+        }
+
+        public void RemoveAllCards()
+        {
+            Cards.Clear();
+        }
+
+        public void ArrangeCards()
         {
             if (Cards.Count > 0)
             {

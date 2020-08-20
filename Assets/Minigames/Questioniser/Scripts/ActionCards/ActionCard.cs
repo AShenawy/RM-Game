@@ -1,9 +1,11 @@
-﻿using DG.Tweening;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
     public class ActionCard : CardBase
     {
+        protected readonly Vector3 _thrownLocation = new Vector3(-5, 0, 0);
+
         void Start()
         {
             GameManager.Instance.OnTopicClosed += TopicClosedHandler;
@@ -16,7 +18,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnDestroy()
         {
-            if(GameManager.InstanceExists)
+            if (GameManager.InstanceExists)
                 GameManager.Instance.OnTopicClosed -= TopicClosedHandler;
         }
     }

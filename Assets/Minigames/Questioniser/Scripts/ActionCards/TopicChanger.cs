@@ -32,9 +32,8 @@ namespace Methodyca.Minigames.Questioniser
         {
             TriggerCardIsThrown((ActionCard)this);
             Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + new Vector3(-5, 0, -5), 0.25f))
+            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + _thrownLocation, 0.25f))
                 .Append(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .Join(_transform.DOScale(1.5f, 0.25f))
                 .AppendCallback(() => GameManager.Instance.SetRandomTopic()).WaitForCompletion();
             Destroy(gameObject);
         }
