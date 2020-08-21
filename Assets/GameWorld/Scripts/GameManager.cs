@@ -7,9 +7,16 @@ namespace Methodyca.Core
     // This class handles the games main information and player details
     public class GameManager : MonoBehaviour
     {
-        // make this a singleton class
+        #region Singleton
         public static GameManager instance;
-    
+        private void Awake()
+        {
+            // Check if not existing and assign as singleton
+            if (instance == null)
+                instance = this;
+        }
+        #endregion
+
         [Header("World Objects")]
         public GameObject player;
     
@@ -37,12 +44,7 @@ namespace Methodyca.Core
         #endregion
 
 
-        private void Awake()
-        {
-            // Check if not existing and assign as singleton
-            if (instance == null)
-                instance = this;
-        }
+
 
         private void Start()
         {
@@ -273,6 +275,11 @@ namespace Methodyca.Core
         {
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
+        }
+
+        public void SetStartingRoom(GameObject room)
+        {
+            roomStart = room;
         }
 
         public void SaveGame()
