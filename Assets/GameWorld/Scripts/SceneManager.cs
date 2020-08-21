@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 namespace Methodyca.Core
 {
-    // This class handles moving the player between different scenes/levels in the game
+    /* This class handles moving the player between different scenes/levels in the game
+     * and also protects some game objects from being destroyed when switching scenes
+     */
     public class SceneManager : MonoBehaviour
     {
+        // make this class a singleton
         public static SceneManager instance;
 
         [Header("Protected Game Objects")]
