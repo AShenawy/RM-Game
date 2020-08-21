@@ -44,6 +44,11 @@ namespace Methodyca.Core
             itemChanged?.Invoke();
         }
 
+
+        /// <summary>
+        /// Removes item from player inventory
+        /// </summary>
+        /// <param name="item">The item to be removed</param>
         public void Remove(Item item)
         {
             // Remove item from inventory

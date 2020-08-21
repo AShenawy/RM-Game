@@ -26,11 +26,17 @@ public class Door : ObjectInteraction
     {
         base.UseWithHeldItem(item);
 
-        if (item == requiredItem)
+        if (usedCorrectItem)
         {
-            isLocked = false;
+            requiredItemsLeft--; // take down the required items count by 1
             InventoryManager.instance.Remove(item);
         }
+        else
+            return;
+
+        // if all required items are used, then unlock
+        if (requiredItemsLeft < 1)
+            isLocked = false;
     }
 }
    

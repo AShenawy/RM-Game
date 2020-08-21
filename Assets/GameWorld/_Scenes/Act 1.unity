@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &41938383
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   rooms:
   - {fileID: 41938382}
   - {fileID: 2125245411}
-  roomStart: {fileID: 2125245411}
+  roomStart: {fileID: 41938382}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -4632,7 +4632,7 @@ MonoBehaviour:
   PickUpSuccessText: 
   PickUpFailText: I don't think the janitor would appreciate that.
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: It doesn't need that
   canMove: 1
   movementValue: {x: 2.5, y: 0}
@@ -5115,7 +5115,7 @@ MonoBehaviour:
   PickUpSuccessText: 
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
   canOperate: 1
   imageGameObject: {fileID: 1912530126}
@@ -5451,7 +5451,7 @@ MonoBehaviour:
   PickUpSuccessText: 
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
   targetRoom: {fileID: 0}
   isLocked: 0
@@ -5781,7 +5781,7 @@ MonoBehaviour:
   PickUpSuccessText: 
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
   isLocked: 1
   unlockCombination: 030000000000000002000000
@@ -7677,7 +7677,7 @@ MonoBehaviour:
   PickUpSuccessText: 
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
 --- !u!65 &1313759071
 BoxCollider:
@@ -10435,6 +10435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
+      propertyPath: requiredItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
       propertyPath: targetRoom
       value: 
       objectReference: {fileID: 2125245411}
@@ -10478,6 +10483,22 @@ PrefabInstance:
         type: 3}
       propertyPath: PickUpFailText
       value: I think it'd be easier to swing it open. Just saying.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: wrongItemText
+      value: I can't use that on the door.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: requiredItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 046c01be4e1171f4d927b8417116280d,
+        type: 2}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: requiredItems.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -12995,7 +13016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2125245412
 Transform:
   m_ObjectHideFlags: 0
@@ -13643,6 +13664,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1618254537}
     m_Modifications:
+    - target: {fileID: 1484870298333094944, guid: 33674419dceb2a44082e17d585a9ba4d,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c,
+        type: 2}
     - target: {fileID: 7042165988469670950, guid: 33674419dceb2a44082e17d585a9ba4d,
         type: 3}
       propertyPath: m_LocalPosition.x

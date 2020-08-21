@@ -153,7 +153,8 @@ namespace Methodyca.Core
                 interactableObject.InteractWithObject();
             else
             {
-                interactableObject.UseWithHeldItem(player.GetComponent<PlayerItemHandler>().heldItem);   // Do not interact and use the held item
+                // Do not interact and use the held item
+                interactableObject.UseWithHeldItem(player.GetComponent<PlayerItemHandler>().heldItem);   
                 player.GetComponent<PlayerItemHandler>().RemoveFromHand();
             }
         }

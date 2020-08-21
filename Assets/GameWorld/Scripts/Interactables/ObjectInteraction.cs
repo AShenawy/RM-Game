@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Methodyca.Core
@@ -22,15 +23,20 @@ namespace Methodyca.Core
         [Space]
         [Tooltip("Does this object require an item to use with it?")]
         public bool isItemRequired = false;
-        [Tooltip("The item required for use with this object")]
-        public Item requiredItem;
+        [Tooltip("The item(s) required to allow using this object")]
+        public List<Item> requiredItems = new List<Item>();
         [Tooltip("Dialogue to display if using wrong item")]
         public string wrongItemText;
 
+        protected bool usedCorrectItem;
+        protected int requiredItemsLeft;
+
         private void Start()
         {
-            if(!canInteract)
+            if (!canInteract)
                 DisableInteraction();
+
+            requiredItemsLeft = requiredItems.Count;
         }
 
         // this method will be overridden by derived classes
@@ -41,18 +47,38 @@ namespace Methodyca.Core
         }
 
         // this method will be overridden by derived classes
-        public virtual void InteractWithObject()
-        {
-
-        }
+        public virtual void InteractWithObject() {}
 
         // this method will be overridden by derived classes
         public virtual void UseWithHeldItem(Item item)
         {
-            if (item == requiredItem)
+            // reset the correct item used check
+            usedCorrectItem = false;
+
+            if (isItemRequired)
+            {
+                // check if the used item is one that's required
+                for (int i = 0; i < requiredItems.Count; i++)
+                {
+                    // if it the used item is correct, mark as so
+                    if (item == requiredItems[i])
+                        usedCorrectItem = true;
+                }
+            }
+            else
+            {
+                // if no item is required then any item used with this object doesn't work
+                DialogueHandler.instance.DisplayDialogue(wrongItemText);
+                return;
+            }
+
+            if (usedCorrectItem)
                 DialogueHandler.instance.DisplayDialogue($"Used {item.name}");
             else
+            {
+                // if used item doesn't match with those required, then don't proceed further
                 DialogueHandler.instance.DisplayDialogue(wrongItemText);
+            }
         }
 
         // this method will be overridden by derived classes
