@@ -1,25 +1,41 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
 {
     public class ActionCard : CardBase
     {
-        protected readonly Vector3 _thrownLocation = new Vector3(-5, 0, 0);
+        protected const float THROW_TWEEN_DURATION = 0.25f;
+        protected readonly Vector3 _throwLocation = new Vector3(-5, 0, 0);
 
         void Start()
         {
-            GameManager.Instance.OnTopicClosed += TopicClosedHandler;
+            _gameManager.OnTopicClosed += TopicClosedHandler;
         }
 
         void TopicClosedHandler(Topic topic)
         {
-            InterestPoint++;
+            CostPoint++;
         }
+
+        protected override void Throw()
+        {
+            DOTween.Sequence()
+            .Append(_transform.DOMove(_table.GetTransform.position + _throwLocation, THROW_TWEEN_DURATION))
+            .Join(_transform.DOScale(1.5f, THROW_TWEEN_DURATION))
+            .AppendCallback(() =>
+            {
+                TriggerCardIsThrown(this);
+                HandleActionBehaviour();
+            });
+        }
+
+        protected virtual void HandleActionBehaviour() { }
 
         void OnDestroy()
         {
-            if (GameManager.InstanceExists)
-                GameManager.Instance.OnTopicClosed -= TopicClosedHandler;
+            _gameManager.GameState = GameState.Playable;
+            _gameManager.OnTopicClosed -= TopicClosedHandler;
         }
     }
 }

@@ -14,49 +14,17 @@ namespace Methodyca.Minigames.Questioniser
 
         HashSet<CardBase> _selectedCards;
 
-        protected override void OnMouseUp()
-        {
-            if (!IsClickable)
-                return;
-            base.OnMouseUp();
-
-            if (GameManager.Instance.InterestPoint >= InterestPoint)
-            {
-                Throw();
-            }
-            else
-            {
-                ReturnHand();
-                GameManager.Instance.RaiseGameMessage("Not enough interest points");
-            }
-        }
-
-        protected override void Throw()
-        {
-            StartCoroutine(ThrowCoroutine());
-        }
-
-        IEnumerator ThrowCoroutine()
-        {
-            TriggerCardIsThrown((ActionCard)this);
-            _collider.enabled = false;
-            Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position + _thrownLocation, 0.25f))
-                .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .AppendCallback(() => HandleAction()).WaitForCompletion();
-        }
-
-        void HandleAction()
+        protected override void HandleActionBehaviour()
         {
             if (_hand.Cards.Count < CARD_COUNT_TO_GAMBLE)
             {
-                GameManager.Instance.RaiseGameMessage("Not enough card to gamble");
+                _gameManager.RaiseGameMessage("Not enough card to gamble");
                 Destroy(gameObject);
             }
             else
             {
-                IsClickable = false;
                 _selectedCards = new HashSet<CardBase>();
+                _gameManager.GameState = GameState.Selectable;
 
                 foreach (var selection in _hand.Cards)
                 {
@@ -80,20 +48,21 @@ namespace Methodyca.Minigames.Questioniser
 
         IEnumerator ActionHandlerCor()
         {
+            _gameManager.GameState = GameState.Busy;
             yield return new WaitForSeconds(0.25f);
 
             foreach (var c in _selectedCards)
                 c.Discard();
 
+            _hand.ArrangeCards();
             foreach (var c in _hand.Cards)
             {
                 c.SetOutlineColorAs(Color.clear);
                 c.OnCardClicked -= CardClickedHandler;
             }
 
-            GameManager.Instance.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
-            IsClickable = true;
-            Destroy(gameObject); //Replace with Dissolve Effect
+            _gameManager.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
+            Destroy(gameObject);
         }
     }
 }

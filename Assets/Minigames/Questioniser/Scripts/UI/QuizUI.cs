@@ -38,7 +38,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void QuestionAskedHandle(Question question)
         {
-            CardBase.IsClickable = false;
+            //CardBase.IsClickable = false;
             _answers = question.Options;
             root.SetActive(true);
             questionText.text = question.OptionDescription;

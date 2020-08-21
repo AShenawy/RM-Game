@@ -1,7 +1,6 @@
-﻿using DG.Tweening;
-using System;
-using System.Collections;
+﻿using System;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -13,38 +12,36 @@ namespace Methodyca.Minigames.Questioniser
 
         [Header("Base Attributes")]
         [SerializeField] new string name;
-        [SerializeField] int actionPoint;
-        [SerializeField] int interestPoint;
+        [SerializeField] int costPoint;
         [SerializeField] int spawnSize;
         [SerializeField] [Multiline] string description;
         [SerializeField] Sprite sprite;
 
         public string Name => name;
-        public int ActionPoint { get => actionPoint; protected set { actionPoint = value; OnActionValueChanged?.Invoke(actionPoint); } }
-        public int InterestPoint { get => interestPoint; protected set { interestPoint = value; OnInterestValueChanged?.Invoke(interestPoint); } }
+        public int CostPoint { get => costPoint; protected set { costPoint = value; OnCostChanged?.Invoke(costPoint); } }
         public int SpawnSize => spawnSize;
         public string Description => description;
         public float SpriteSizeX => sprite.bounds.size.x;
 
+        protected bool _isThrown;
         protected Camera _camera;
         protected Transform _transform;
         protected Collider2D _collider;
         protected CardHolder _hand;
         protected CardHolder _table;
         protected CardHolder _deck;
+        protected GameManager _gameManager;
 
+        int _currentGamePoint;
         SpriteRenderer _renderer;
 
-        public static bool IsClickable = false;
-        protected virtual void Throw() { }
-
+        public Tweener DiscardTweener { get; private set; }
+        public event Action<int> OnCostChanged = delegate { };
         public event Action<CardBase> OnCardClicked = delegate { };
-        public event Action<int> OnActionValueChanged = delegate { };
-        public event Action<int> OnInterestValueChanged = delegate { };
         public event EventHandler<OnCardThrownEventArgs> OnCardThrown;
         public class OnCardThrownEventArgs : EventArgs { public CardBase Card; }
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
-        public void Draw() => StartCoroutine(DrawCoroutine());
+        protected virtual void Throw() { }
 
         public void InitializeCard(Camera camera, CardHolder hand, CardHolder table, CardHolder deck)
         {
@@ -52,27 +49,33 @@ namespace Methodyca.Minigames.Questioniser
             _hand = hand;
             _table = table;
             _deck = deck;
-            _collider.enabled = false;
         }
 
-        public void Discard()
+        public void Draw()
         {
-            _transform.DOScale(0, 0.25f).OnComplete(() =>
-            {
-                if (_hand.Cards.Contains(this))
-                    _hand.Cards.Remove(this);
-                else if (_table.Cards.Contains(this))
-                    _table.Cards.Remove(this);
-
-                Destroy(gameObject);
-            });
+            DOTween.Sequence().OnStart(() =>
+                {
+                    _gameManager.GameState = GameState.Busy;
+                })
+                .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
+                .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.5f))
+                .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f)).AppendCallback(() =>
+                {
+                    _isThrown = false;
+                    _hand.AddCard(this);
+                    _hand.ArrangeCards();
+                    _transform.SetParent(_hand.GetTransform);
+                    _gameManager.GameState = GameState.Playable;
+                });
         }
 
         public void ReturnDeck()
         {
-            IsClickable = false;
-            Sequence seq = DOTween.Sequence();
-            seq.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.1f))
+            DOTween.Sequence().OnStart(() =>
+                {
+                    _gameManager.GameState = GameState.Busy;
+                })
+                .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.1f))
                 .AppendCallback(() => _hand.RemoveCard(this))
                 .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.1f))
                 .Append(_transform.DOMove(_deck.GetTransform.position, 0.5f))
@@ -81,6 +84,27 @@ namespace Methodyca.Minigames.Questioniser
                     _deck.AddCard(this);
                     _transform.SetParent(_deck.GetTransform);
                 });
+        }
+
+        public void ReturnHand()
+        {
+            DOTween.Sequence().Append(_transform.DOMove(_hand.GetTransform.position, 0.25f)
+                .OnStart(() =>
+                {
+                    _gameManager.GameState = GameState.Busy;
+                    _hand.AddCard(this);
+                    _hand.ArrangeCards();
+                })
+                .OnComplete(() =>
+                {
+                    _gameManager.GameState = GameState.Playable;
+                }))
+                .Join(_transform.DOScale(1, 0.25f));
+        }
+
+        public void Discard()
+        {
+            DiscardTweener.Restart();
         }
 
         public void SelectCard()
@@ -98,57 +122,37 @@ namespace Methodyca.Minigames.Questioniser
             _renderer.material.SetColor(outlineColor, color);
         }
 
-        protected virtual void OnMouseDown()
-        {
-            if (!IsClickable)
-                return;
-
-            _hand.RemoveCard(this);
-            _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
-        }
-
-        protected virtual void OnMouseUp()
-        {
-            if (!IsClickable)
-                return;
-
-            _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
-            var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
-
-            if (inputPosition.y < 0.45f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
-                ReturnHand();
-        }
-
-        protected virtual void OnMouseUpAsButton()
-        {
-            _renderer.material.SetColor(outlineColor, Color.green);
-            OnCardClicked?.Invoke(this);
-        }
-
-        protected void ReturnHand()
-        {
-            _hand.AddCard(this);
-            _hand.ArrangeCards();
-            Sequence seq = DOTween.Sequence();
-            seq.Append(_transform.DOMove(_hand.GetTransform.position, 0.25f)
-                .OnStart(() => _collider.enabled = false)
-                .OnComplete(() =>
-                {
-                    _collider.enabled = true;
-                })).Join(_transform.DOScale(1, 0.25f));
-        }
-
         void Awake()
         {
             _transform = transform;
             _collider = GetComponent<Collider2D>();
             _renderer = GetComponent<SpriteRenderer>();
             _renderer.sprite = sprite;
+
+            if (GameManager.TryGetInstance(out GameManager manager))
+                _gameManager = manager;
+
+            SetDiscardTweener();
+        }
+
+        void SetDiscardTweener()
+        {
+            DiscardTweener = _transform.DOScale(0, 0.25f).OnComplete(() =>
+            {
+                if (_hand.Cards.Contains(this))
+                    _hand.Cards.Remove(this);
+                else if (_table.Cards.Contains(this))
+                    _table.Cards.Remove(this);
+
+                Destroy(gameObject);
+            }).SetAutoKill(false);
+
+            DiscardTweener.Pause();
         }
 
         void OnMouseEnter()
         {
-            if (!IsClickable)
+            if (_gameManager.GameState != GameState.Playable || _isThrown)
                 return;
 
             _renderer.material.SetColor(outlineColor, Color.red);
@@ -156,35 +160,64 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnMouseExit()
         {
-            if (!IsClickable)
+            if (_gameManager.GameState != GameState.Playable || _isThrown)
                 return;
 
             _renderer.material.SetColor(outlineColor, Color.clear);
         }
 
+        void OnMouseDown()
+        {
+            if (_gameManager.GameState != GameState.Playable || _isThrown)
+                return;
+
+            _hand.RemoveCard(this);
+            _hand.ArrangeCards();
+            _transform.DOScale(SELECTION_SCALE, SELECTION_SCALE_PACE_IN_SEC);
+        }
+
+        void OnMouseUp()
+        {
+            if (_gameManager.GameState != GameState.Playable || _isThrown)
+                return;
+
+            _transform.DOScale(Vector2.one, SELECTION_SCALE_PACE_IN_SEC);
+            var inputPosition = (Vector2)_camera.ScreenToViewportPoint(Input.mousePosition);
+
+            if (this is ItemCard)
+                _currentGamePoint = _gameManager.ActionPoint;
+            if (this is ActionCard)
+                _currentGamePoint = _gameManager.InterestPoint;
+
+            if (inputPosition.y < 0.45f || inputPosition.y > 0.9f || inputPosition.x < 0.25f || inputPosition.x > 0.75f)
+                ReturnHand();
+            else if (_currentGamePoint >= CostPoint)
+                Throw();
+            else
+            {
+                ReturnHand();
+                _gameManager.RaiseGameMessage("Not enough points");
+            }
+        }
+
+        void OnMouseUpAsButton()
+        {
+            if (_gameManager.GameState != GameState.Selectable || _isThrown)
+                return;
+
+            _renderer.material.SetColor(outlineColor, Color.green);
+            OnCardClicked?.Invoke(this);
+        }
+
         void OnMouseDrag()
         {
-            if (!IsClickable)
+            if (_gameManager.GameState != GameState.Playable || _isThrown)
                 return;
 
             var distance = Vector3.Distance(_transform.position, _camera.transform.position);
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             Vector2 rayPoint = ray.GetPoint(distance);
             _transform.position = rayPoint;
-        }
-
-        IEnumerator DrawCoroutine()
-        {
-            Sequence drawSequence = DOTween.Sequence();
-            yield return drawSequence.Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
-                .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.5f))
-                .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f)).WaitForCompletion();
-
-            _hand.AddCard(this);
-            _hand.ArrangeCards();
-            _transform.SetParent(_hand.GetTransform);
-            _collider.enabled = true;
-            IsClickable = true;
         }
     }
 }

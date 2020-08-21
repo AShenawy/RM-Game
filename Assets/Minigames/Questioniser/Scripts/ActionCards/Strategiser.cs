@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,74 +11,41 @@ namespace Methodyca.Minigames.Questioniser
     {
         List<ItemCard> _selectableCards;
 
-        protected override void OnMouseUp()
-        {
-            if (!IsClickable)
-                return;
-            base.OnMouseUp();
-
-            if (GameManager.Instance.InterestPoint >= InterestPoint)
-            {
-                Throw();
-            }
-            else
-            {
-                ReturnHand();
-                GameManager.Instance.RaiseGameMessage("Not enough interest points");
-            }
-        }
-
-        protected override void Throw()
-        {
-            StartCoroutine(ThrowCoroutine());
-        }
-
-        IEnumerator ThrowCoroutine()
-        {
-            TriggerCardIsThrown((ActionCard)this);
-            _collider.enabled = false;
-            Sequence throwSeq = DOTween.Sequence();
-            yield return throwSeq.Append(_transform.DOMove(_table.GetTransform.position +_thrownLocation, 0.25f))
-                .Join(_transform.DORotate(new Vector3(0, 360, 0), 0.25f))
-                .AppendCallback(() => Recycle()).WaitForCompletion();
-        }
-
-        void Recycle()
+        protected override void HandleActionBehaviour()
         {
             byte cardCount = 0;
-            IsClickable = false;
             _selectableCards = new List<ItemCard>();
+            _gameManager.GameState = GameState.Selectable;
 
             foreach (ItemCard itemCard in _hand.Cards)
             {
                 cardCount++;
-                itemCard.OnCardClicked += CardClickedHandler;
                 _selectableCards.Add(itemCard);
+                itemCard.OnCardClicked += CardClickedHandler;
                 itemCard.SetOutlineColorAs(Color.yellow);
             }
 
             if (cardCount <= 0)
             {
-                GameManager.Instance.RaiseGameMessage("There is not any Item Card in hand");
+                _gameManager.RaiseGameMessage("There is not any Item Card in hand");
                 Destroy(gameObject);
             }
         }
 
         void CardClickedHandler(CardBase card)
         {
-            GameManager.Instance.ActionPoint += card.ActionPoint;
-            card.Discard();
-            Destroy(gameObject);
-            
+            _gameManager.ActionPoint += card.CostPoint;
+            DOTween.Sequence().Append(card.DiscardTweener).AppendCallback(() =>
+            {
+                _hand.ArrangeCards();
+                Destroy(gameObject);
+            });
+
             foreach (var c in _selectableCards)
             {
                 c.SetOutlineColorAs(Color.clear);
                 c.OnCardClicked -= CardClickedHandler;
             }
-        }
-        private void OnDestroy()
-        {
-            IsClickable = true;
         }
     }
 }

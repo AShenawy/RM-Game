@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -8,41 +7,29 @@ namespace Methodyca.Minigames.Questioniser
     {
         [Header("ItemCard Attributes")]
         [SerializeField] Question[] questions;
-
         public Question[] Questions => questions;
 
-        protected override void Throw() => StartCoroutine(ThrowCoroutine());
+        CardInfo _cardInfo;
 
-        protected override void OnMouseUp()
+        void Start()=>_cardInfo = GetComponentInChildren<CardInfo>();
+
+        protected override void Throw()
         {
-            if (!IsClickable)
-                return;
-
-            base.OnMouseUp();
-
-            if (GameManager.Instance.ActionPoint >= ActionPoint)
+            DOTween.Sequence().OnStart(() =>
             {
-                Throw();
-            }
-            else
+                _isThrown = true;
+                _table.Cards.Add(this);
+                _table.ArrangeCards();
+                _transform.SetParent(_table.GetTransform);
+                _gameManager.GameState = GameState.Busy;
+                _cardInfo.gameObject.SetActive(false);
+                SetOutlineColorAs(Color.clear);
+            })
+            .Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
+            .Join(_transform.DORotate(new Vector3(30, 0, 0), 0.5f)).OnComplete(() =>
             {
-                ReturnHand();
-                GameManager.Instance.RaiseGameMessage("Not enough action points");
-            }
-        }
-
-        IEnumerator ThrowCoroutine()
-        {
-            _table.Cards.Add(this);
-            _transform.SetParent(_table.GetTransform);
-            _table.ArrangeCards();
-            _collider.enabled = false;
-
-            Sequence throwSequence = DOTween.Sequence();
-            yield return throwSequence.Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
-                .Join(_transform.DORotate(new Vector3(30, 0, 0), 0.5f)).WaitForCompletion();
-
-            TriggerCardIsThrown((ItemCard)this);
+                TriggerCardIsThrown(this);
+            });
         }
     }
 }

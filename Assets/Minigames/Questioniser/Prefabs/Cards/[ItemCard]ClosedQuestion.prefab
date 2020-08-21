@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Closed Question
   actionPoint: 1
   interestPoint: 0
+  costPoint: 1
   spawnSize: 5
   description: Closed Question Description
   sprite: {fileID: 21300000, guid: 119d5e2461ba60e41a4151bd8985db85, type: 3}
@@ -39,18 +40,18 @@ MonoBehaviour:
     TopicName: Food & Drink
     OptionDescription: Closed Question
     Options:
-    - IsCorrect: 0
-      Id: 1
-      Point: 0
-      Text: Wrong
     - IsCorrect: 1
-      Id: 2
+      Id: 1
       Point: 2
-      Text: Correct
+      Text: Would you say your diet is healthy or unhealthy?
+    - IsCorrect: 0
+      Id: 2
+      Point: 0
+      Text: Would you say your diet is good?
     - IsCorrect: 0
       Id: 3
       Point: 0
-      Text: Wrong
+      Text: Should you be more healthy?
   - IsAnswerCorrect: 0
     TopicName: Travel
     OptionDescription: Closed Question

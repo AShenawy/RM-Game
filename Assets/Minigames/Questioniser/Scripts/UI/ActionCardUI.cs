@@ -10,18 +10,18 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnEnable()
         {
-            cardBase.OnInterestValueChanged += InterestValueChangedHandler;
-            interestPointText.text = cardBase.InterestPoint.ToString();
+            cardBase.OnCostChanged += CostChangedHandler;
+            interestPointText.text = cardBase.CostPoint.ToString();
         }
 
-        void InterestValueChangedHandler(int value)
+        void CostChangedHandler(int value)
         {
             interestPointText.text = value.ToString();
         }
 
         void OnDisable()
         {
-            cardBase.OnInterestValueChanged -= InterestValueChangedHandler;
+            cardBase.OnCostChanged -= CostChangedHandler;
         }
     }
 }

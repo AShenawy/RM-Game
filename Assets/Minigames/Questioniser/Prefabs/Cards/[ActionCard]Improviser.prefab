@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6795262201861993987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db6e3683e77e7d418479a5a27242da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Improviser
+  actionPoint: 0
+  interestPoint: 2
+  costPoint: 2
+  spawnSize: 2
+  description: 
+  sprite: {fileID: 21300000, guid: 7a74bb7b055215d49bdc39ad52d69424, type: 3}
+--- !u!114 &8986580493073114404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardBase: {fileID: 6795262201861993987}
+  interestPointText: {fileID: 1754808628270921810}
 --- !u!1 &4816899518972738546
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,38 +115,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6795262201861993987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6db6e3683e77e7d418479a5a27242da4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Improviser
-  actionPoint: 0
-  interestPoint: 2
-  spawnSize: 2
-  description: 
-  sprite: {fileID: 21300000, guid: 7a74bb7b055215d49bdc39ad52d69424, type: 3}
---- !u!114 &8986580493073114404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardBase: {fileID: 6795262201861993987}
-  interestPointText: {fileID: 1754808628270921810}
 --- !u!1 &6516072236249517238
 GameObject:
   m_ObjectHideFlags: 0

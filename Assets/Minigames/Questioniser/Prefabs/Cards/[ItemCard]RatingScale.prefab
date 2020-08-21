@@ -12,77 +12,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda99e660c93ce449b986d925ee9f1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Likert Scale
-  actionPoint: 3
+  name: Rating Scale
+  actionPoint: 2
   interestPoint: 0
+  costPoint: 2
   spawnSize: 5
-  description: Likert Scale Description
-  sprite: {fileID: 21300000, guid: 2dcfddb543f13cd4bbd6c30ac7e84425, type: 3}
+  description: Rating Scale Description
+  sprite: {fileID: 21300000, guid: 97b7ba5af83e08f4f81c6bc5cf480c72, type: 3}
   questions:
   - IsAnswerCorrect: 0
     TopicName: Free Time
-    OptionDescription: Likert Scale
+    OptionDescription: Rating Scale
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -2
-      Text: Wrong
+      Point: 3
+      Text: Correct
     - IsCorrect: 0
       Id: 2
-      Point: -2
+      Point: -1
       Text: Wrong
-    - IsCorrect: 1
+    - IsCorrect: 0
       Id: 3
-      Point: 4
-      Text: Correct
+      Point: -1
+      Text: Wrong
   - IsAnswerCorrect: 0
     TopicName: Food & Drink
-    OptionDescription: Likert Scale
+    OptionDescription: Rating Scale
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -2
-      Text: Wrong
+      Point: 3
+      Text: Correct
     - IsCorrect: 0
       Id: 2
-      Point: -2
+      Point: -1
       Text: Wrong
-    - IsCorrect: 1
+    - IsCorrect: 0
       Id: 3
-      Point: 4
-      Text: Correct
+      Point: -1
+      Text: Wrong
   - IsAnswerCorrect: 0
     TopicName: Travel
-    OptionDescription: Likert Scale
+    OptionDescription: Rating Scale
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -2
-      Text: Wrong
+      Point: 3
+      Text: Correct
     - IsCorrect: 0
       Id: 2
-      Point: -2
+      Point: -1
       Text: Wrong
-    - IsCorrect: 1
+    - IsCorrect: 0
       Id: 3
-      Point: 4
-      Text: Correct
+      Point: -1
+      Text: Wrong
   - IsAnswerCorrect: 0
     TopicName: Work
-    OptionDescription: Likert Scale
+    OptionDescription: Rating Scale
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -2
-      Text: Wrong
+      Point: 3
+      Text: Correct
     - IsCorrect: 0
       Id: 2
-      Point: -2
+      Point: -1
       Text: Wrong
-    - IsCorrect: 1
+    - IsCorrect: 0
       Id: 3
-      Point: 4
-      Text: Correct
+      Point: -1
+      Text: Wrong
 --- !u!1001 &6154170396189033455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,26 +101,6 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 3059785074208783371}
-    - target: {fileID: 4752062068039396837, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752062068039396837, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752062068039396837, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752062068039396837, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 4.21
-      objectReference: {fileID: 0}
     - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,31 +156,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6769654898956815614, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2dcfddb543f13cd4bbd6c30ac7e84425,
-        type: 3}
-    - target: {fileID: 6769654898956815614, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769654898956815614, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 4.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769654898956815614, guid: 523c71a9dabc23d46b467ff258462ccb,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
       propertyPath: m_Name
-      value: '[ItemCard]LikertScale'
+      value: '[ItemCard]RatingScale'
       objectReference: {fileID: 0}
     - target: {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}

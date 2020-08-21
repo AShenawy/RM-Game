@@ -42,11 +42,20 @@ namespace Methodyca.Minigames.Questioniser
         [TextArea(4, 10)] public string Text;
     }
 
+    public enum GameState
+    {
+        None = 0,
+        Busy,
+        Playable,
+        Selectable
+    }
+
     public class GameManager : Singleton<GameManager>
     {
         const byte DRAW_COUNT_PER_TURN = 5;
         const byte ACTION_POINT_PER_TURN = 5;
         const byte POINT_TO_INITIATE_STORY = 4;
+        const float GAME_START_DELAY_TIME = 0.5f;
 
         [SerializeField] Camera sceneCamera;
         [SerializeField] CardHolder hand;
@@ -55,6 +64,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] List<CardBase> cards;
         [SerializeField] List<Topic> topics;
 
+        public GameState GameState;
         public event Action OnGameOver = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
         public event Action<bool> OnMulliganStated = delegate { };
@@ -79,6 +89,7 @@ namespace Methodyca.Minigames.Questioniser
         bool[,] _quizAnswerSheet;
         CardBase _currentCard;
         Topic _currentTopic = new Topic("", false, null);
+        HashSet<CardBase> _allAvailableCards;
         HashSet<ItemCard> _correctItemCardsPerTurn = new HashSet<ItemCard>();
 
         public int ActionPoint
@@ -176,7 +187,7 @@ namespace Methodyca.Minigames.Questioniser
         public void HandleHighFlayer()
         {
             _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
-            RaiseGameMessage($"You will start extra {_correctItemCardsPerTurn.Count} action points next turn");
+            RaiseGameMessage($"Extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
         }
 
         public void HandleImproviser()
@@ -208,7 +219,7 @@ namespace Methodyca.Minigames.Questioniser
 
         public void HandleItemCardQuestionFor(Option answer)
         {
-            CardBase.IsClickable = true;
+            GameState = GameState.Playable;
             InterestPoint += answer.Point;
 
             var itemCard = _currentCard as ItemCard;
@@ -242,9 +253,9 @@ namespace Methodyca.Minigames.Questioniser
                 ItemCard c = GetPrefabOf(itemCard) as ItemCard;
 
                 if (_isImproviserTurn)
-                    InterestPoint -= e.Card.ActionPoint;
+                    InterestPoint -= e.Card.CostPoint;
                 else
-                    ActionPoint -= e.Card.ActionPoint;
+                    ActionPoint -= e.Card.CostPoint;
 
                 foreach (var q in c.Questions)
                 {
@@ -261,15 +272,16 @@ namespace Methodyca.Minigames.Questioniser
             if (sender is ActionCard actionCard)
             {
                 _currentCard = actionCard;
-                InterestPoint -= e.Card.InterestPoint;
+                InterestPoint -= e.Card.CostPoint;
             }
         }
 
-        void Start()
+        IEnumerator Start()
         {
-            _quizAnswerSheet = new bool[topics.Count, cards.Count];
             deck.Cards = GetSpawnedCards().ToList();
-
+            _allAvailableCards = new HashSet<CardBase>(GetSpawnedCards());
+            _quizAnswerSheet = new bool[topics.Count, cards.Count];
+            yield return new WaitForSeconds(GAME_START_DELAY_TIME);
             SetRandomTopic();
             DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
         }
@@ -326,7 +338,7 @@ namespace Methodyca.Minigames.Questioniser
             return null;
         }
 
-        IEnumerable<CardBase> GetSpawnedCards() // MEMORY LEAK
+        IEnumerable<CardBase> GetSpawnedCards()
         {
             for (int j = 0; j < cards.Count; j++)
             {
@@ -361,8 +373,18 @@ namespace Methodyca.Minigames.Questioniser
                         card.Questions[j].ResetOption();
         }
 
+        void UnsubscribeCardEvents()
+        {
+            foreach (var c in _allAvailableCards)
+            {
+                if (c != null)
+                    c.OnCardThrown -= CardThrownHandler;
+            }
+        }
+
         void OnDisable()
         {
+            UnsubscribeCardEvents();
             ResetGame();
         }
     }
