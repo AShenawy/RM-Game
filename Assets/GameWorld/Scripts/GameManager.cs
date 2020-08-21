@@ -294,7 +294,7 @@ namespace Methodyca.Core
             switch (interactionType)
             {
                 case Interaction.Inspect:
-                    print(tempInteractObjectReference.InspectObject());
+                    tempInteractObjectReference.InspectObject();
                     break;
 
                 case Interaction.Interact:

@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41938383
 Transform:
   m_ObjectHideFlags: 0
@@ -7672,13 +7672,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
-  inGameDescription: 'This desk is all '
+  inGameDescription: This desk is all messy with so many things on it. But there
+    are 2 weird objects laid on it.
   canPickUp: 0
   PickUpSuccessText: 
-  PickUpFailText: 
-  isItemRequired: 0
-  requiredItems: []
-  wrongItemText: 
+  PickUpFailText: Nope.
+  isItemRequired: 1
+  requiredItems:
+  - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
+  - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
+  wrongItemText: There's no point in doing that.
 --- !u!65 &1313759071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13016,7 +13019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2125245412
 Transform:
   m_ObjectHideFlags: 0

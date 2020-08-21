@@ -28,22 +28,22 @@ namespace Methodyca.Core
         [Tooltip("Dialogue to display if using wrong item")]
         public string wrongItemText;
 
-        protected bool usedCorrectItem;
-        protected int requiredItemsLeft;
+        protected bool usedCorrectItem;     // check when player uses item with object that requires one
+        protected int requiredItemsLeft;    // counter for how many items before object can be used/unlocked
 
         private void Start()
         {
             if (!canInteract)
                 DisableInteraction();
 
+            // set the counter value
             requiredItemsLeft = requiredItems.Count;
         }
 
         // this method will be overridden by derived classes
-        public virtual string InspectObject()
+        public virtual void InspectObject()
         {
             DialogueHandler.instance.DisplayDialogue(inGameDescription);
-            return inGameDescription;
         }
 
         // this method will be overridden by derived classes
@@ -52,15 +52,15 @@ namespace Methodyca.Core
         // this method will be overridden by derived classes
         public virtual void UseWithHeldItem(Item item)
         {
-            // reset the correct item used check
-            usedCorrectItem = false;
-
             if (isItemRequired)
             {
-                // check if the used item is one that's required
+                // reset the check
+                usedCorrectItem = false;
+
+                // check if used item is the same one required
                 for (int i = 0; i < requiredItems.Count; i++)
                 {
-                    // if it the used item is correct, mark as so
+                    // if used item is correct, mark as so
                     if (item == requiredItems[i])
                         usedCorrectItem = true;
                 }
@@ -85,13 +85,9 @@ namespace Methodyca.Core
         public virtual void PickUpObject()
         {
             if (canPickUp)
-            {
                 DialogueHandler.instance.DisplayDialogue(PickUpSuccessText);
-            }
             else
-            {
                 DialogueHandler.instance.DisplayDialogue(PickUpFailText);
-            }
         }
 
         // disable interaction collider on object to allow interaction with things below/inside it
