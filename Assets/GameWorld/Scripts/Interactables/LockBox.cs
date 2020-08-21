@@ -62,7 +62,10 @@ public class LockBox : ObjectInteraction
             {
                 // if reached last combination digit and is correct then unlock. Otherwise continue to next iteration.
                 if (i >= lockDials.Length - 1)
+                {
+                    DialogueHandler.instance.DisplayDialogue(winMessage);
                     Unlock();
+                }
 
                 continue;
             }
@@ -76,8 +79,6 @@ public class LockBox : ObjectInteraction
         // change indicator colour if available
         if (lockIndicator)
             lockIndicator.color = Color.green;
-
-        DialogueHandler.instance.DisplayDialogue(winMessage);
     }
 
     void Open()

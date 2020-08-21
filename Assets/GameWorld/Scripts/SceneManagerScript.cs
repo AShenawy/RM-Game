@@ -41,15 +41,21 @@ namespace Methodyca.Core
             
         }
 
-        public void GoToMinigame(Scene scene)
+        public void LoadSceneAdditive(string sceneName)
         {
-
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
 
-        private void ProtectGameObjects()
+        public void UnloadScene(string scene)
         {
-            DontDestroyOnLoad(gameManagerGO);
-            DontDestroyOnLoad(userInterfaceGO);
+            SceneManager.UnloadSceneAsync(scene);
+            Resources.UnloadUnusedAssets();
         }
+
+        //private void ProtectGameObjects()
+        //{
+        //    DontDestroyOnLoad(gameManagerGO);
+        //    DontDestroyOnLoad(userInterfaceGO);
+        //}
     }
 }

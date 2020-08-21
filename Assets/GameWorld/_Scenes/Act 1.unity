@@ -760,8 +760,8 @@ Transform:
   - {fileID: 655782966}
   - {fileID: 148437330}
   - {fileID: 826353352}
-  - {fileID: 1858405388}
   - {fileID: 331391410}
+  - {fileID: 1858405388}
   m_Father: {fileID: 2125245412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   rooms:
   - {fileID: 41938382}
   - {fileID: 2125245411}
-  roomStart: {fileID: 41938382}
+  roomStart: {fileID: 2125245411}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -2555,7 +2555,7 @@ PrefabInstance:
     - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2508603821981685855, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
@@ -7682,6 +7682,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
   wrongItemText: There's no point in doing that.
+  minigameSceneName: Sorting Game
+  responseForDisabled: I need to place the crystals on the desk first.
 --- !u!65 &1313759071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10917,7 +10919,7 @@ Transform:
   - {fileID: 86282215}
   - {fileID: 1914223867}
   m_Father: {fileID: 78724359}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871605702
 GameObject:
