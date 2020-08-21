@@ -6,14 +6,16 @@ namespace Methodyca.Core
     /* This class handles moving the player between different scenes/levels in the game
      * and also protects some game objects from being destroyed when switching scenes
      */
-    public class SceneManager : MonoBehaviour
+    public class SceneManagerScript : MonoBehaviour
     {
         // make this class a singleton
-        public static SceneManager instance;
+        public static SceneManagerScript instance;
 
         [Header("Protected Game Objects")]
         [SerializeField] private GameObject gameManagerGO;
         [SerializeField] private GameObject userInterfaceGO;
+
+        private Scene sceneCurrent;
 
 
         private void Awake()
@@ -22,24 +24,36 @@ namespace Methodyca.Core
             if (instance == null)
                 instance = this;
 
-            ProtectGameObjects();
+            DontDestroyOnLoad(this);
         }
 
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
+        {
+            sceneCurrent = SceneManager.GetActiveScene();
+        }
+
+        public void GoToLevel(string sceneName)
+        {
+            
+        }
+
+        public void GoToLevel(int sceneIndex)
         {
 
         }
 
-        // Update is called once per frame
-        void Update()
+        public void GoToMinigame(string sceneName)
+        {
+
+        }
+
+        public void GoToMinigame(int sceneIndex)
         {
 
         }
 
         private void ProtectGameObjects()
         {
-            DontDestroyOnLoad(this);
             DontDestroyOnLoad(gameManagerGO);
             DontDestroyOnLoad(userInterfaceGO);
         }
