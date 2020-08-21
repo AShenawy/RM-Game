@@ -244,7 +244,7 @@ namespace Methodyca.Core
             }
 
             // Check if entered room is a save checkpoint
-            if (roomData.isCheckpoint)
+            if (roomData.isSavePoint)
             {
                 SaveGame();
             }

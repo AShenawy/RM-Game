@@ -2046,7 +2046,7 @@ MonoBehaviour:
   rooms:
   - {fileID: 41938382}
   - {fileID: 2125245411}
-  roomStart: {fileID: 41938382}
+  roomStart: {fileID: 2125245411}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -7634,6 +7634,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313759069}
+  - component: {fileID: 1313759072}
+  - component: {fileID: 1313759071}
+  - component: {fileID: 1313759070}
   m_Layer: 0
   m_Name: Desk Sorting
   m_TagString: Untagged
@@ -7649,13 +7652,59 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313759068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.39, y: -1.85, z: -0}
+  m_LocalPosition: {x: -8.39, y: -1.85, z: -0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1037794952}
   m_Father: {fileID: 78724359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1313759070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  inGameDescription: 'This desk is all '
+  canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: 
+  isItemRequired: 0
+  requiredItem: {fileID: 0}
+  wrongItemText: 
+--- !u!65 &1313759071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.54284, y: 1.915422, z: 1}
+  m_Center: {x: -0.3356557, y: 2.308901, z: 0}
+--- !u!65 &1313759072
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.543954, y: 1.5085667, z: 1}
+  m_Center: {x: 0.14240599, y: 0.60010964, z: 0}
 --- !u!1 &1329734934
 GameObject:
   m_ObjectHideFlags: 0
@@ -12979,7 +13028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
-  isCheckpoint: 1
+  isSavePoint: 1
 --- !u!114 &2125245414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13441,7 +13490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
-  isCheckpoint: 1
+  isSavePoint: 1
 --- !u!1001 &5766472300605662208
 PrefabInstance:
   m_ObjectHideFlags: 0

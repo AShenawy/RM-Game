@@ -12,8 +12,11 @@ namespace Methodyca.Core
         public static SceneManagerScript instance;
 
         [Header("Protected Game Objects")]
-        [SerializeField] private GameObject gameManagerGO;
-        [SerializeField] private GameObject userInterfaceGO;
+        [SerializeField, Tooltip("Game Manager game object")]
+        private GameObject gameManagerGO;
+        
+        [SerializeField, Tooltip("Main UI canvas game object. It holds the top, bottom, and mobile phone UI")]
+        private GameObject userInterfaceGO;
 
         private Scene sceneCurrent;
 
@@ -24,6 +27,7 @@ namespace Methodyca.Core
             if (instance == null)
                 instance = this;
 
+            // Ensure game object which this script is on is available at all times
             DontDestroyOnLoad(this);
         }
 
@@ -32,22 +36,12 @@ namespace Methodyca.Core
             sceneCurrent = SceneManager.GetActiveScene();
         }
 
-        public void GoToLevel(string sceneName)
+        public void GoToLevel(Scene scene)
         {
             
         }
 
-        public void GoToLevel(int sceneIndex)
-        {
-
-        }
-
-        public void GoToMinigame(string sceneName)
-        {
-
-        }
-
-        public void GoToMinigame(int sceneIndex)
+        public void GoToMinigame(Scene scene)
         {
 
         }

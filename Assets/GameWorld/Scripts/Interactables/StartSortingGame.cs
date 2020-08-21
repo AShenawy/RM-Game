@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 // This script handles initiation of a minigame when interacted with
-public class StartMiniGame : ObjectInteraction
+public class StartSortingGame : ObjectInteraction
 {
     
 }
