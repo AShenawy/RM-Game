@@ -49,6 +49,8 @@ namespace Methodyca.Core
         public void UnloadScene(string scene)
         {
             SceneManager.UnloadSceneAsync(scene);
+            
+            // Unload minigame unused assests
             Resources.UnloadUnusedAssets();
         }
 

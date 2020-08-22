@@ -19,7 +19,7 @@ public class StartSortingGame : ObjectInteraction
         base.InteractWithObject();
 
         if (canStartGame)
-            SceneManagerScript.instance.LoadSceneAdditive(minigameSceneName);
+            SceneManagerScript.instance.LoadSceneAdditive(minigameSceneName);   // load the sorting minigame
         else
             DialogueHandler.instance.DisplayDialogue(responseForDisabled);
 
