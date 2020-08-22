@@ -31,7 +31,7 @@ namespace Methodyca.Core
         protected bool usedCorrectItem;     // check when player uses item with object that requires one
         protected int requiredItemsLeft;    // counter for how many items before object can be used/unlocked
 
-        private void Start()
+        protected virtual void Start()
         {
             if (!canInteract)
                 DisableInteraction();
