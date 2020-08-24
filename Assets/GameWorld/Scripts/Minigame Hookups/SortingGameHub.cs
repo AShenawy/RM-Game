@@ -4,6 +4,7 @@
 namespace Methodyca.Core
 {
     // This script handles initiation of a minigame when interacted with
+    [RequireComponent(typeof(SortingGameInteraction))]
     public class SortingGameHub : MonoBehaviour
     {
 
@@ -40,7 +41,7 @@ namespace Methodyca.Core
         public void EndGame()
         {
             isGamePlayable?.Invoke(false);
-            deskSpriteSwitch.SwitchImage();
+            deskSpriteSwitch.SwitchImage();     // switch to clean desk image
             ReplaceCrystals();
         }
 
@@ -100,13 +101,6 @@ namespace Methodyca.Core
          * After minigame is won, desk should be inactive and there's on big collision box covering both charged
          * crystals. This way, clicking on either crystal will automatically add both crytals to inventory.
          */
-
-        //public void CompleteGame()
-        //{
-        //    isGameWon = true;
-        //    crystalQLDisplay.SwitchImage();
-        //    crystalQNDisplay.SwitchImage();
-        //}
     }
 
     public enum MinigameAccessType { Additive, Unique }

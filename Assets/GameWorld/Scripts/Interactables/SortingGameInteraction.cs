@@ -3,6 +3,7 @@ using Methodyca.Core;
 
 
 // this script handles entry to minigame scenes
+[RequireComponent(typeof(SortingGameHub))]
 public class SortingGameInteraction : ObjectInteraction
 {
     [Header("Specific Script Parameters")]
@@ -16,7 +17,7 @@ public class SortingGameInteraction : ObjectInteraction
 
     private void OnEnable()
     {
-        gameHub.isGamePlayable += ToggleInteraction;
+        gameHub.isGamePlayable += ToggleInteraction;    // event drives interactability with desk/minigame
     }
 
     public override void InteractWithObject()

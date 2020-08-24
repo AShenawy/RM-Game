@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Methodyca.Core
 {
     // This script is the base class for all interactable game objects in game world
+    [RequireComponent(typeof(BoxCollider))]
     public class ObjectInteraction : MonoBehaviour
     {
         [Header("General Object Interaction Parameters")]
