@@ -19,6 +19,6 @@ public class MoveObject : ObjectInteraction
     void Move()
     {
         transform.Translate(movementValue.x, movementValue.y, 0);
-        canInteract = false;
+        ToggleInteraction(false);
     }
 }

@@ -34,7 +34,7 @@ namespace Methodyca.Core
         protected virtual void Start()
         {
             if (!canInteract)
-                DisableInteraction();
+                ToggleInteraction(false);
 
             // set the counter value
             requiredItemsLeft = requiredItems.Count;
@@ -91,10 +91,10 @@ namespace Methodyca.Core
         }
 
         // disable interaction collider on object to allow interaction with things below/inside it
-        protected void DisableInteraction()
+        protected void ToggleInteraction(bool value)
         {
-            canInteract = false;
-            gameObject.GetComponent<Collider>().enabled = false;
+            canInteract = value;
+            gameObject.GetComponent<Collider>().enabled = value;
         }
     }
 }

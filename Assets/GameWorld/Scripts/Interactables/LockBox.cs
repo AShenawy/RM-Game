@@ -85,6 +85,6 @@ public class LockBox : ObjectInteraction
     {
         Destroy(lockedBoxPrefab);  // remove locked box child
         Instantiate(unlockedBoxPrefab, gameObject.transform);   // instaniate unlocked box version as child
-        DisableInteraction();
+        ToggleInteraction(false);
     }
 }

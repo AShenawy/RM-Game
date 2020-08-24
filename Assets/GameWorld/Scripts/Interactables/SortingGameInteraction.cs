@@ -14,6 +14,10 @@ public class SortingGameInteraction : ObjectInteraction
     [SerializeField, Multiline, Tooltip("In-game text to be displayed if Can Start Game is set to false.")]
     private string responseForDisabled;
 
+    private void OnEnable()
+    {
+        gameHub.isGamePlayable += ToggleInteraction;
+    }
 
     public override void InteractWithObject()
     {
@@ -42,5 +46,10 @@ public class SortingGameInteraction : ObjectInteraction
         // if all required items are used, then unlock
         if (requiredItemsLeft < 1)
             canStartGame = true;
+    }
+
+    private void OnDisable()
+    {
+        gameHub.isGamePlayable -= ToggleInteraction;
     }
 }

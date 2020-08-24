@@ -13,21 +13,23 @@ namespace Methodyca.Core
             "of it. Unique closes the main game scene and loads the minigame only.")]
         private MinigameAccessType sceneLoadType = MinigameAccessType.Additive;
 
+        [Space]
+        public GameObject unchargedCrystalQLPrefab;
+        public GameObject unchargedCrystalQNPrefab;
 
         [Space]
-        public GameObject unchargedCrystalQNPrefab;
-        public GameObject unchargedCrystalQLPrefab;
-        [Space]
-        public GameObject chargedCrystalQNPrefab;
         public GameObject chargedCrystalQLPrefab;
+        public GameObject chargedCrystalQNPrefab;
+
         [Space]
         [SerializeField, Tooltip("Game Object holding qualitative crystal on desk")]
         private GameObject qualitativeCrystalDisplay;
         [SerializeField, Tooltip("Game Object holding quantitative crystal on desk")]
         private GameObject quantitativeCrystalDisplay;
 
+        public delegate void GamePlayAccess(bool value);
+        public event GamePlayAccess isGamePlayable;
 
-        [HideInInspector] public bool isGameWon = false;
         private SwitchImageDisplay deskSpriteSwitch;
 
         private void Start()
@@ -35,11 +37,20 @@ namespace Methodyca.Core
             deskSpriteSwitch = GetComponent<SwitchImageDisplay>();
         }
 
-        public void OnGameWon()
+        public void EndGame()
         {
+            isGamePlayable?.Invoke(false);
             deskSpriteSwitch.SwitchImage();
+            ReplaceCrystals();
+        }
+
+        void ReplaceCrystals()
+        {
+            // destroy existing uncharged crystals
             Destroy(qualitativeCrystalDisplay.GetComponentInChildren<Transform>().gameObject);
             Destroy(quantitativeCrystalDisplay.GetComponentInChildren<Transform>().gameObject);
+            
+            // spawn charged crystals
             Instantiate(chargedCrystalQLPrefab, qualitativeCrystalDisplay.transform);
             Instantiate(chargedCrystalQNPrefab, quantitativeCrystalDisplay.transform);
         }
