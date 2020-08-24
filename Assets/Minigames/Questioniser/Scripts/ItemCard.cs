@@ -11,7 +11,7 @@ namespace Methodyca.Minigames.Questioniser
 
         CardInfo _cardInfo;
 
-        void Start()=>_cardInfo = GetComponentInChildren<CardInfo>();
+        void Start() => _cardInfo = GetComponentInChildren<CardInfo>();
 
         protected override void Throw()
         {
@@ -26,7 +26,7 @@ namespace Methodyca.Minigames.Questioniser
                 SetOutlineColorAs(Color.clear);
             })
             .Append(_transform.DOMove(_table.GetTransform.position, 0.5f))
-            .Join(_transform.DORotate(new Vector3(30, 0, 0), 0.5f)).OnComplete(() =>
+            .Join(_transform.DORotate(new Vector3(30, 0, 0), 0.5f)).AppendCallback(() =>
             {
                 TriggerCardIsThrown(this);
             });

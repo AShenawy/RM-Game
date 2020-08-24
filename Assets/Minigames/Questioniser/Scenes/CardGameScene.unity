@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 688246653}
   - component: {fileID: 688246652}
   m_Layer: 5
-  m_Name: StaticBackgroundCanvas
+  m_Name: BackgroundCanvas [static]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.099, g: 0.277, b: 0.7019608, a: 1}
+  m_BackGroundColor: {r: 0.2878248, g: 0.7924528, b: 0.6967093, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1735,6 +1735,7 @@ MonoBehaviour:
     CardSprite: {fileID: 21300000, guid: 6222fa7588395a9449cdcc2c34ec9d44, type: 3}
     StoryDialog: {fileID: 4988126531667103339, guid: 81bc6ef6aec7afc48aa5bc2568caf5ba,
       type: 3}
+  GameState: 0
 --- !u!4 &2040553472
 Transform:
   m_ObjectHideFlags: 0
@@ -2226,46 +2227,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 596299299}
-    - target: {fileID: 6400446346697768111, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6400446346697768111, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6400446346697768111, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7555227566209004023, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7555227566209004023, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7555227566209004023, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7555227566209004023, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7555227566209004023, guid: 743e5d6d9c244094e960563a29d3ffe4,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7727465071519112588, guid: 743e5d6d9c244094e960563a29d3ffe4,
         type: 3}
       propertyPath: m_Name

@@ -27,7 +27,7 @@ namespace Methodyca.Minigames.Questioniser
 
             if (cardCount <= 0)
             {
-                _gameManager.RaiseGameMessage("There is not any Item Card in hand");
+                _gameManager.SendGameMessage("There is not any Item Card in hand");
                 Destroy(gameObject);
             }
         }

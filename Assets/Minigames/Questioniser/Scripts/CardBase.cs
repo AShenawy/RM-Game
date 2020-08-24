@@ -58,7 +58,7 @@ namespace Methodyca.Minigames.Questioniser
                     _gameManager.GameState = GameState.Busy;
                 })
                 .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
-                .Append(_transform.DORotate(new Vector3(0, 0, 0), 0.5f))
+                .Append(_transform.DORotate(Vector3.zero, 0.5f))
                 .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f)).AppendCallback(() =>
                 {
                     _isThrown = false;
@@ -109,7 +109,7 @@ namespace Methodyca.Minigames.Questioniser
 
         public void SelectCard()
         {
-            _transform.DOScale(1.2f, 0.2f);
+            _transform.DOScale(1.25f, 0.2f);
         }
 
         public void DeselectCard()
@@ -138,14 +138,14 @@ namespace Methodyca.Minigames.Questioniser
         void SetDiscardTweener()
         {
             DiscardTweener = _transform.DOScale(0, 0.25f).OnComplete(() =>
-            {
-                if (_hand.Cards.Contains(this))
-                    _hand.Cards.Remove(this);
-                else if (_table.Cards.Contains(this))
-                    _table.Cards.Remove(this);
+                                {
+                                    if (_hand.Cards.Contains(this))
+                                        _hand.Cards.Remove(this);
+                                    else if (_table.Cards.Contains(this))
+                                        _table.Cards.Remove(this);
 
-                Destroy(gameObject);
-            }).SetAutoKill(false);
+                                    Destroy(gameObject);
+                                }).SetAutoKill(false);
 
             DiscardTweener.Pause();
         }
@@ -196,7 +196,7 @@ namespace Methodyca.Minigames.Questioniser
             else
             {
                 ReturnHand();
-                _gameManager.RaiseGameMessage("Not enough points");
+                _gameManager.SendGameMessage("Not enough points");
             }
         }
 

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Closed Question
-  actionPoint: 1
-  interestPoint: 0
   costPoint: 1
   spawnSize: 5
   description: Closed Question Description
@@ -22,68 +20,80 @@ MonoBehaviour:
   questions:
   - IsAnswerCorrect: 0
     TopicName: Free Time
-    OptionDescription: Closed Question
+    OptionDescription: Closed-Ended Question
     Options:
-    - IsCorrect: 0
-      Id: 1
-      Point: 0
-      Text: Wrong
     - IsCorrect: 1
-      Id: 2
+      Id: 1
       Point: 2
-      Text: Correct
+      Text: In general, are you an indoor or outdoor kind of person?
+      Reaction: Indoor
+    - IsCorrect: 0
+      Id: 2
+      Point: 0
+      Text: Do you have interesting hobbies?
+      Reaction: Well I think so
     - IsCorrect: 0
       Id: 3
       Point: 0
-      Text: Wrong
+      Text: How often do you do your hobbies?
+      Reaction: Always
   - IsAnswerCorrect: 0
     TopicName: Food & Drink
-    OptionDescription: Closed Question
+    OptionDescription: Closed-Ended Question
     Options:
     - IsCorrect: 1
       Id: 1
       Point: 2
       Text: Would you say your diet is healthy or unhealthy?
+      Reaction: Healty
     - IsCorrect: 0
       Id: 2
       Point: 0
       Text: Would you say your diet is good?
+      Reaction: I don't know
     - IsCorrect: 0
       Id: 3
       Point: 0
       Text: Should you be more healthy?
+      Reaction: Maybe?
   - IsAnswerCorrect: 0
     TopicName: Travel
-    OptionDescription: Closed Question
+    OptionDescription: Closed-Ended Question
     Options:
     - IsCorrect: 0
       Id: 1
       Point: 0
-      Text: Wrong
+      Text: Have you been to Spain or France?
+      Reaction: Spain, I think
     - IsCorrect: 1
       Id: 2
       Point: 2
-      Text: Correct
+      Text: Do you prefer relaxing or adventurous trips?
+      Reaction: Adventurous
     - IsCorrect: 0
       Id: 3
       Point: 0
-      Text: Wrong
+      Text: Do you like travelling?
+      Reaction: Sure
   - IsAnswerCorrect: 0
     TopicName: Work
-    OptionDescription: Closed Question
+    OptionDescription: Closed-Ended Question
     Options:
     - IsCorrect: 0
       Id: 1
       Point: 0
-      Text: Wrong
+      Text: What do you think about your job?
+      Reaction: Err I don't know
     - IsCorrect: 1
       Id: 2
       Point: 2
-      Text: Correct
+      Text: Are you currently employed?
+      Reaction: Yes
     - IsCorrect: 0
       Id: 3
       Point: 0
-      Text: Wrong
+      Text: How much do you like your job?
+      Reaction: 
 --- !u!1001 &6154170396189033455
 PrefabInstance:
   m_ObjectHideFlags: 0

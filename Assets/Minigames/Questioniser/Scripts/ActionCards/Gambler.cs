@@ -18,7 +18,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             if (_hand.Cards.Count < CARD_COUNT_TO_GAMBLE)
             {
-                _gameManager.RaiseGameMessage("Not enough card to gamble");
+                _gameManager.SendGameMessage("Not enough card to gamble");
                 Destroy(gameObject);
             }
             else

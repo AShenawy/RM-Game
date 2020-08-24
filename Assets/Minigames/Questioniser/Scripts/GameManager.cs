@@ -40,6 +40,7 @@ namespace Methodyca.Minigames.Questioniser
         public int Id;
         public int Point;
         [TextArea(4, 10)] public string Text;
+        [TextArea(2, 5)] public string Reaction;
     }
 
     public enum GameState
@@ -130,21 +131,31 @@ namespace Methodyca.Minigames.Questioniser
             }
         }
 
-        public void TriggerMulligan() => StartCoroutine(MulliganCoroutine());
-        public void RaiseGameMessage(string message) => OnMessageRaised?.Invoke(message);
+        public void SendGameMessage(string message) => OnMessageRaised?.Invoke(message);
+
+        public void TriggerMulligan()
+        {
+            if (GameState != GameState.Playable)
+                return;
+
+            StartCoroutine(MulliganCoroutine());
+        }
 
         public void DrawRandomCardFromDeck(byte size = 1)
         {
             if (deck.Cards.Count > 0)
                 Draw(size);
             else if (hand.Cards.Count >= 5)
-                RaiseGameMessage("Cannot hold more than 5 cards");
+                SendGameMessage("Cannot hold more than 5 cards");
             else
                 OnGameOver?.Invoke();
         }
 
         public void EndTurn()
         {
+            if (GameState != GameState.Playable)
+                return;
+
             DiscardAllCards();
             OnMulliganStated?.Invoke(true);
             _correctItemCardsPerTurn = new HashSet<ItemCard>();
@@ -187,13 +198,13 @@ namespace Methodyca.Minigames.Questioniser
         public void HandleHighFlayer()
         {
             _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
-            RaiseGameMessage($"Extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
+            SendGameMessage($"Extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
         }
 
         public void HandleImproviser()
         {
             OnImproviserRaised?.Invoke(_isImproviserTurn = true);
-            RaiseGameMessage("Interest points can be used as action points for this turn");
+            SendGameMessage("Interest points can be used as action points for this turn");
         }
 
         public void InitiateStoryDialog()
@@ -205,7 +216,7 @@ namespace Methodyca.Minigames.Questioniser
             }
             else
             {
-                RaiseGameMessage("Not enough interest point");
+                SendGameMessage("Not enough interest point");
             }
         }
 
@@ -220,9 +231,11 @@ namespace Methodyca.Minigames.Questioniser
         public void HandleItemCardQuestionFor(Option answer)
         {
             GameState = GameState.Playable;
+            var itemCard = _currentCard as ItemCard;
             InterestPoint += answer.Point;
 
-            var itemCard = _currentCard as ItemCard;
+            SendGameMessage(answer.Reaction);
+
             if (answer.IsCorrect)
             {
                 for (int i = 0; i < itemCard.Questions.Length; i++)
@@ -264,7 +277,7 @@ namespace Methodyca.Minigames.Questioniser
                         if (!q.IsAnswerCorrect)
                             OnQuestionAsked?.Invoke(q);
                         else
-                            RaiseGameMessage("The proper option was already selected before");
+                            SendGameMessage("The proper option was already selected before");
                     }
                 }
             }
@@ -376,10 +389,8 @@ namespace Methodyca.Minigames.Questioniser
         void UnsubscribeCardEvents()
         {
             foreach (var c in _allAvailableCards)
-            {
                 if (c != null)
                     c.OnCardThrown -= CardThrownHandler;
-            }
         }
 
         void OnDisable()
