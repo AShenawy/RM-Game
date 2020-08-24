@@ -6628,7 +6628,7 @@ GameObject:
   - component: {fileID: 1037794952}
   - component: {fileID: 1037794953}
   m_Layer: 0
-  m_Name: Art
+  m_Name: Art Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7037,10 +7037,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127053414}
-  - component: {fileID: 1127053415}
-  - component: {fileID: 1127053416}
   m_Layer: 0
-  m_Name: QN Crystal
+  m_Name: QN Crystal Charger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7058,73 +7056,8 @@ Transform:
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_Children: []
   m_Father: {fileID: 1313759069}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1127053415
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127053413}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: fdbf5bd86433ba0448de281b4c3910b2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &1127053416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127053413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd30eead776017045ba3322cbb141ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1127053415}
-  firstImage: {fileID: 21300000, guid: fdbf5bd86433ba0448de281b4c3910b2, type: 3}
-  secondImage: {fileID: 21300000, guid: c6d49b0e27c18b7488292782a2223527, type: 3}
 --- !u!1 &1135975322
 GameObject:
   m_ObjectHideFlags: 0
@@ -7734,6 +7667,7 @@ GameObject:
   - component: {fileID: 1313759072}
   - component: {fileID: 1313759071}
   - component: {fileID: 1313759070}
+  - component: {fileID: 1313759073}
   m_Layer: 0
   m_Name: Desk Sorting
   m_TagString: Untagged
@@ -7753,8 +7687,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1037794952}
-  - {fileID: 1127053414}
   - {fileID: 1673020242}
+  - {fileID: 1127053414}
   m_Father: {fileID: 78724359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7783,8 +7717,16 @@ MonoBehaviour:
   wrongItemText: There's no point in doing that.
   minigameSceneName: Sorting Game
   responseForDisabled: I need to place the crystals on the desk first.
-  crystalQNDisplay: {fileID: 1127053416}
-  crystalQLDisplay: {fileID: 1673020244}
+  unchargedCrystalQNPrefab: {fileID: 5626291000834006621, guid: 23f3f5d2931d3d44c93ff6bad8610e68,
+    type: 3}
+  unchargedCrystalQLPrefab: {fileID: 6554072079888044917, guid: 60efba3dda61dea4c8c766ee7693de55,
+    type: 3}
+  chargedCrystalQNPrefab: {fileID: 6754367283600587642, guid: 9441ed849f039644e930fdc6bf00b1e4,
+    type: 3}
+  chargedCrystalQLPrefab: {fileID: 6565855657171274249, guid: c98ca717207f39e4cbe4b12133e39d23,
+    type: 3}
+  qualitativeCrystalDisplay: {fileID: 1673020241}
+  quantitativeCrystalDisplay: {fileID: 1127053413}
   isGameWon: 0
 --- !u!65 &1313759071
 BoxCollider:
@@ -7797,8 +7739,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.54284, y: 1.915422, z: 1}
-  m_Center: {x: -0.3356557, y: 2.308901, z: 0}
+  m_Size: {x: 3.2517278, y: 1.8221164, z: 1}
+  m_Center: {x: -0.37220562, y: 2.2622478, z: 1.0403993e-13}
 --- !u!65 &1313759072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7812,6 +7754,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.543954, y: 1.5085667, z: 1}
   m_Center: {x: 0.14240599, y: 0.60010964, z: 0}
+--- !u!114 &1313759073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd30eead776017045ba3322cbb141ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1037794953}
+  firstImage: {fileID: 21300000, guid: f94a969a3a4c8fd409c9ccdd5d3112f6, type: 3}
+  secondImage: {fileID: 21300000, guid: d8c35106914c60a43953de87dc2768a3, type: 3}
 --- !u!1 &1329734934
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,10 +10335,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673020242}
-  - component: {fileID: 1673020243}
-  - component: {fileID: 1673020244}
   m_Layer: 0
-  m_Name: QL Crystal
+  m_Name: QL Crystal Charger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10399,73 +10354,8 @@ Transform:
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_Children: []
   m_Father: {fileID: 1313759069}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1673020243
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673020241}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 0422e1677fcec1e4fa8029b8f2d1a1e1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &1673020244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673020241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd30eead776017045ba3322cbb141ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1673020243}
-  firstImage: {fileID: 21300000, guid: 0422e1677fcec1e4fa8029b8f2d1a1e1, type: 3}
-  secondImage: {fileID: 21300000, guid: 546929df75593a148acd847b878e9a7d, type: 3}
 --- !u!1 &1726200984
 GameObject:
   m_ObjectHideFlags: 0
