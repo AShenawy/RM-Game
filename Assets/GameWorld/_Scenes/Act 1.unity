@@ -7666,7 +7666,9 @@ GameObject:
   - component: {fileID: 1313759069}
   - component: {fileID: 1313759072}
   - component: {fileID: 1313759071}
+  - component: {fileID: 1313759075}
   - component: {fileID: 1313759070}
+  - component: {fileID: 1313759074}
   - component: {fileID: 1313759073}
   m_Layer: 0
   m_Name: Desk Sorting
@@ -7704,19 +7706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteract: 1
-  inGameDescription: This desk is all messy with so many things on it. But there
-    are 2 weird objects laid on it.
-  canPickUp: 0
-  PickUpSuccessText: 
-  PickUpFailText: Nope.
-  isItemRequired: 1
-  requiredItems:
-  - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
-  - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
-  wrongItemText: There's no point in doing that.
   minigameSceneName: Sorting Game
-  responseForDisabled: I need to place the crystals on the desk first.
+  sceneLoadType: 0
   unchargedCrystalQNPrefab: {fileID: 5626291000834006621, guid: 23f3f5d2931d3d44c93ff6bad8610e68,
     type: 3}
   unchargedCrystalQLPrefab: {fileID: 6554072079888044917, guid: 60efba3dda61dea4c8c766ee7693de55,
@@ -7769,6 +7760,42 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1037794953}
   firstImage: {fileID: 21300000, guid: f94a969a3a4c8fd409c9ccdd5d3112f6, type: 3}
   secondImage: {fileID: 21300000, guid: d8c35106914c60a43953de87dc2768a3, type: 3}
+--- !u!114 &1313759074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764edc89d31612d4cb1c99c0febaf1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  inGameDescription: 
+  canPickUp: 0
+  PickUpSuccessText: 
+  PickUpFailText: 
+  isItemRequired: 0
+  requiredItems: []
+  wrongItemText: 
+  gameHub: {fileID: 0}
+  canStartGame: 0
+  responseForDisabled: 
+--- !u!65 &1313759075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313759068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6499691, y: 0.4160645, z: 0}
+  m_Center: {x: 2.2314284, y: 1.5608186, z: 0.5}
 --- !u!1 &1329734934
 GameObject:
   m_ObjectHideFlags: 0

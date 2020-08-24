@@ -36,9 +36,9 @@ namespace Methodyca.Core
             sceneCurrent = SceneManager.GetActiveScene();
         }
 
-        public void GoToLevel(Scene scene)
+        public void GoToLevel(string sceneName)
         {
-            
+            SceneManager.LoadScene(sceneName);
         }
 
         public void LoadSceneAdditive(string sceneName)
