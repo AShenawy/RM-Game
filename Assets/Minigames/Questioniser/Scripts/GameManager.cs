@@ -65,7 +65,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] List<CardBase> cards;
         [SerializeField] List<Topic> topics;
 
-        public GameState GameState;
+        [HideInInspector] public GameState GameState;
         public event Action OnGameOver = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
         public event Action<bool> OnMulliganStated = delegate { };
@@ -122,7 +122,7 @@ namespace Methodyca.Minigames.Questioniser
                 {
                     _interestPoint = 0;
                     OnInterestPointUpdated?.Invoke(_interestPoint, _lastInterestPointValue);
-                    // OnGameOver?.Invoke();
+                    GameOver();
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace Methodyca.Minigames.Questioniser
             else if (hand.Cards.Count >= 5)
                 SendGameMessage("Cannot hold more than 5 cards");
             else
-                OnGameOver?.Invoke();
+                GameOver();
         }
 
         public void EndTurn()
@@ -163,7 +163,7 @@ namespace Methodyca.Minigames.Questioniser
             if (deck.Cards.Count < DRAW_COUNT_PER_TURN)
                 DrawRandomCardFromDeck((byte)deck.Cards.Count);
             else if (deck.Cards.Count <= 0)
-                OnGameOver?.Invoke();
+                GameOver();
             else
                 DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
 
@@ -222,6 +222,7 @@ namespace Methodyca.Minigames.Questioniser
 
         public void HandleStoryDialog()
         {
+            GameState = GameState.Playable;
             _storyPoint += 3;
             OnTopicClosed?.Invoke(_currentTopic);
             topics.Remove(_currentTopic);
@@ -235,7 +236,6 @@ namespace Methodyca.Minigames.Questioniser
             InterestPoint += answer.Point;
 
             SendGameMessage(answer.Reaction);
-
             if (answer.IsCorrect)
             {
                 for (int i = 0; i < itemCard.Questions.Length; i++)
@@ -260,7 +260,7 @@ namespace Methodyca.Minigames.Questioniser
             hand.ArrangeCards();
             OnMulliganStated?.Invoke(false);
 
-            if (sender is ItemCard itemCard)
+            if (e.Card is ItemCard itemCard)
             {
                 _currentCard = itemCard;
                 ItemCard c = GetPrefabOf(itemCard) as ItemCard;
@@ -277,12 +277,15 @@ namespace Methodyca.Minigames.Questioniser
                         if (!q.IsAnswerCorrect)
                             OnQuestionAsked?.Invoke(q);
                         else
+                        {
+                            GameState = GameState.Playable;
                             SendGameMessage("The proper option was already selected before");
+                        }
                     }
                 }
             }
 
-            if (sender is ActionCard actionCard)
+            if (e.Card is ActionCard actionCard)
             {
                 _currentCard = actionCard;
                 InterestPoint -= e.Card.CostPoint;
@@ -297,6 +300,12 @@ namespace Methodyca.Minigames.Questioniser
             yield return new WaitForSeconds(GAME_START_DELAY_TIME);
             SetRandomTopic();
             DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
+        }
+
+        void GameOver()
+        {
+            GameState = GameState.None;
+            OnGameOver?.Invoke();
         }
 
         void TickAnswerSheet(string topicName, string cardName)

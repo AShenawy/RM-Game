@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -14,6 +14,12 @@ namespace Methodyca.Minigames.Questioniser
         {
             GameManager.Instance.OnTopicChanged += TopicChangedHandler;
             GameManager.Instance.OnStoryInitiated += StoryInitiatedHandler;
+            GameManager.Instance.OnGameOver += GameOverHandler;
+        }
+
+        void GameOverHandler()
+        {
+            gameObject.SetActive(false);
         }
 
         void StoryInitiatedHandler(bool status)
@@ -32,7 +38,6 @@ namespace Methodyca.Minigames.Questioniser
                 .AppendCallback(() => topicSprite.sprite = topic.CardSprite).SetDelay(0.2f)
                 .Append(topicSprite.transform.DOLocalMoveX(3f, 0.2f))
                 .Join(topicSprite.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f));
-            //topicSprite.transform.DOShakePosition(duration: 0.75f, strength: 5, vibrato: 50, fadeOut: false);
             if (topic.IsStoryInitiated)
                 storyPanel.SetActive(true);
         }
@@ -43,6 +48,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 GameManager.Instance.OnTopicChanged -= TopicChangedHandler;
                 GameManager.Instance.OnStoryInitiated -= StoryInitiatedHandler;
+                GameManager.Instance.OnGameOver -= GameOverHandler;
             }
         }
     }

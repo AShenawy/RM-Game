@@ -1,16 +1,18 @@
-﻿using DG.Tweening;
-using System.Collections;
-using TMPro;
+﻿using System.Collections;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
 
 namespace Methodyca.Minigames.Questioniser
 {
     public class GameUI : MonoBehaviour
     {
+        [SerializeField] RectTransform gameOverBackground;
         [SerializeField] RectTransform messagePanel;
         [SerializeField] RectTransform mulliganPanel;
         [SerializeField] RectTransform actionPoint;
         [SerializeField] RectTransform interestPoint;
+        [SerializeField] RectTransform endTurnButton;
         [SerializeField] TextMeshPro deckCountText;
         [SerializeField] TextMeshProUGUI messageText;
 
@@ -23,6 +25,7 @@ namespace Methodyca.Minigames.Questioniser
 
         RectTransform _pointSpawnLocation;
         RectTransform _mainPointObject;
+        readonly Vector2 _messagePanelPaddingSize = new Vector2(15, 0);
         readonly Color _positivePointTextColor = new Color(.35f, 0.9f, 0.3f, 1);
         readonly Color _negativePointTextColor = new Color(0.9f, 0.35f, 0.35f, 1);
 
@@ -33,10 +36,20 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.OnActionPointUpdated += ActionPointUpdatedHandler;
             GameManager.Instance.OnInterestPointUpdated += InterestPointUpdatedHandler;
             GameManager.Instance.OnMulliganStated += MulliganStatedHandler;
+            GameManager.Instance.OnGameOver += GameOverHandler;
         }
 
         void DeckUpdatedHandler(byte cardCount) => deckCountText.text = cardCount.ToString();
         void MulliganStatedHandler(bool isOn) => mulliganPanel.gameObject.SetActive(isOn);
+
+        void GameOverHandler()
+        {
+            messagePanel.gameObject.SetActive(false);
+            actionPoint.gameObject.SetActive(false);
+            endTurnButton.gameObject.SetActive(false);
+            mulliganPanel.gameObject.SetActive(false);
+            DOTween.Sequence().Append(interestPoint.DOAnchorPos(new Vector2(0, 300), 0.5f)).Join(interestPoint.DOScale(2, 0.5f)); // Change AcnhorPos later
+        }
 
         void MessageRaisedHandler(string message)
         {
@@ -48,6 +61,11 @@ namespace Methodyca.Minigames.Questioniser
         {
             messagePanel.gameObject.SetActive(true);
             messageText.text = message;
+            messageText.ForceMeshUpdate();
+
+            Vector2 textSize = messageText.GetRenderedValues(false);
+            messagePanel.sizeDelta = textSize + _messagePanelPaddingSize;
+
             yield return new WaitForSeconds(3f);
             messagePanel.gameObject.SetActive(false);
         }
@@ -85,8 +103,8 @@ namespace Methodyca.Minigames.Questioniser
                 point.text = difference.ToString();
             }
 
-            Sequence seq = DOTween.Sequence();
-            seq.SetDelay(0.75f).Append(point.rectTransform.DOMove(_mainPointObject.position, 0.25f).SetEase(Ease.InSine))
+            DOTween.Sequence().SetDelay(0.75f)
+                    .Append(point.rectTransform.DOMove(_mainPointObject.position, 0.25f).SetEase(Ease.InSine))
                     .Append(point.rectTransform.DOScale(0, 0.2f))
                     .Join(_mainPointObject.DOShakeScale(duration: 0.2f, strength: 0.5f, vibrato: 20))
                     .OnComplete(() =>
@@ -105,6 +123,7 @@ namespace Methodyca.Minigames.Questioniser
                 GameManager.Instance.OnActionPointUpdated -= ActionPointUpdatedHandler;
                 GameManager.Instance.OnInterestPointUpdated -= InterestPointUpdatedHandler;
                 GameManager.Instance.OnMulliganStated -= MulliganStatedHandler;
+                GameManager.Instance.OnGameOver -= GameOverHandler;
             }
         }
     }

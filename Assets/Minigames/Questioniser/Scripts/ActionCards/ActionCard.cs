@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -20,14 +21,18 @@ namespace Methodyca.Minigames.Questioniser
 
         protected override void Throw()
         {
-            DOTween.Sequence()
+            StopCoroutine(ThrowCor());
+            StartCoroutine(ThrowCor());
+        }
+
+        IEnumerator ThrowCor()
+        {
+            yield return DOTween.Sequence()
             .Append(_transform.DOMove(_table.GetTransform.position + _throwLocation, THROW_TWEEN_DURATION))
-            .Join(_transform.DOScale(1.5f, THROW_TWEEN_DURATION))
-            .AppendCallback(() =>
-            {
-                TriggerCardIsThrown(this);
-                HandleActionBehaviour();
-            });
+            .Join(_transform.DOScale(1.5f, THROW_TWEEN_DURATION)).WaitForCompletion();
+
+            TriggerCardIsThrown(this);
+            HandleActionBehaviour();
         }
 
         protected virtual void HandleActionBehaviour() { }

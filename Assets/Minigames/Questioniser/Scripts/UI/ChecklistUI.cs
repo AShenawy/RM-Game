@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
@@ -11,10 +12,20 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] TextMeshProUGUI[] topicTexts;
         [SerializeField] TextMeshProUGUI[] cardTexts;
 
+        Canvas _checkListCanvas;
+
         void Start()
         {
+            _checkListCanvas = gridPanel.GetComponentInParent<Canvas>();
+
             GameManager.Instance.OnChecklistUpdated += ChecklistUpdatedHandler;
             GameManager.Instance.OnTopicClosed += TopicClosedHandler;
+            GameManager.Instance.OnGameOver += GameOverHandler;
+        }
+
+        void GameOverHandler()
+        {
+            DOTween.Sequence().Append(_checkListCanvas.transform.DOMove(Vector2.zero, 0.5f)).Join(_checkListCanvas.transform.DORotate(Vector3.zero,0.5f));
         }
 
         void TopicClosedHandler(Topic topic)
@@ -31,6 +42,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void ChecklistUpdatedHandler(string currentTopicName, string currentCardName)
         {
+            Debug.Log("Topic: " + currentTopicName + " - Card: " + currentCardName);
             for (int i = 0; i < topicTexts.Length; i++)
             {
                 if (topicTexts[i].text == currentTopicName)
@@ -53,6 +65,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 GameManager.Instance.OnChecklistUpdated -= ChecklistUpdatedHandler;
                 GameManager.Instance.OnTopicClosed -= TopicClosedHandler;
+                GameManager.Instance.OnGameOver -= GameOverHandler;
             }
         }
     }
