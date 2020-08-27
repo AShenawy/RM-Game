@@ -74,7 +74,7 @@ namespace Methodyca.Core
             }
 
             if (usedCorrectItem)
-                DialogueHandler.instance.DisplayDialogue($"Used {item.name}");
+                DialogueHandler.instance.DisplayDialogue($"Used {item.itemName}");
             else
             {
                 // if used item doesn't match with those required, then don't proceed further

@@ -38,7 +38,7 @@ namespace Methodyca.Core
 
             // add item to inventory list
             items.Add(item);
-            print(item.name + " added to inventory");
+            print(item.itemName + " added to inventory");
 
             // invoke event
             itemChanged?.Invoke();
@@ -53,7 +53,7 @@ namespace Methodyca.Core
         {
             // Remove item from inventory
             items.Remove(item);
-            print(item.name + " removed from inventory");
+            print(item.itemName + " removed from inventory");
 
             // invoke event
             itemChanged?.Invoke();

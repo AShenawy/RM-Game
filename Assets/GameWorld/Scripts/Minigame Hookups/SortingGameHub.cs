@@ -27,7 +27,7 @@ public class SortingGameHub : MinigameHub
 
     public override void OnItemPlacement(Item item)
     {
-        DisplayCrystalOnCharger(item.name);
+        DisplayCrystalOnCharger(item.itemName);
     }
 
     void DisplayCrystalOnCharger(string itemName)
