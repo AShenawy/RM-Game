@@ -73,10 +73,13 @@ namespace Methodyca.Minigames.SortGame{
                 
                 }   
             }
+            if(Input.GetKey(KeyCode.P))
+            {
+                Shake(audioSource);
 
-            levi();
-            Shake(audioSource);
+            }
             
+                levi();
             
             
         }
