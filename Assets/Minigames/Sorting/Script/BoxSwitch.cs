@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 
 
+
 namespace Methodyca.Minigames.SortGame
 {   public class BoxSwitch : MonoBehaviour 
     {
@@ -15,6 +16,10 @@ namespace Methodyca.Minigames.SortGame
        public DragSlot secondbox;
        
        GameManager levelman;
+       SoundManager soundman;
+
+       
+       
     
        //public int balance = 10;
 
@@ -23,6 +28,7 @@ namespace Methodyca.Minigames.SortGame
             //firstbox = boxOne.GetComponent<DragSlot>();
             //secondbox = boxtwo.GetComponent<DragSlot>();
             levelman =  FindObjectOfType<GameManager>();
+            soundman = FindObjectOfType<SoundManager>();
         }
 
         public void Sky()
@@ -36,7 +42,10 @@ namespace Methodyca.Minigames.SortGame
           if (firstbox.sorted && secondbox.sorted)
           {
               //Debug.Log("Wins");
+              soundman.Stop("paper_hit");
+              soundman.Stop("battery");
               levelman.Complete();
+              soundman.Stop("Fraud Full");
           }
        }
         

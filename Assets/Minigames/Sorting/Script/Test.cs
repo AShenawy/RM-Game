@@ -15,10 +15,10 @@ namespace Methodyca.Minigames.SortGame{
         public float frequency2;
 
         [Range (0,1f)]
-        public float volume;
+        public float volume;//the main volume. 
 
         [Range(0,1)]
-        public float volumeMain;
+        public float volumeAux;// the volume of the automation. 
 
         public float sampleRate = 44100;
         public float waveLengthInSeconds = 2.0f;
@@ -28,7 +28,10 @@ namespace Methodyca.Minigames.SortGame{
         public float gain;//like a compressor
         public float duh;
 
-        public Vector2 pos; //for the bounce. 
+        public Vector3 pos; //for the bounce. 
+        public Vector3 temp = new Vector3();
+        public RectTransform rig;
+        public RectTransform him;
 
 
     
@@ -46,14 +49,15 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.playOnAwake = false;
             audioSource.spatialBlend = 0; //force 2D sound
             audioSource.Stop(); //avoids audiosource from starting to play automatically
+            rig = this.gameObject.GetComponent<RectTransform>();
             
         }
     
         void Update()
         {   
+            audioSource.volume = volume;// the volume of the track. 
             
-            audioSource.volume = volume;
-
+            
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 if(!audioSource.isPlaying)
@@ -70,10 +74,9 @@ namespace Methodyca.Minigames.SortGame{
                 }   
             }
 
+            levi();
             Shake(audioSource);
             
-            
-            Limiter(volumeMain);
             
             
         }
@@ -102,17 +105,25 @@ namespace Methodyca.Minigames.SortGame{
         {
             return Mathf.Sin(2 * Mathf.PI * timeIndex * frequency / sampleRate);
         }
-        public void Shake(AudioSource audioSource)//The automatied shake
+        
+        //The volume automation for pulsing.
+        public void Shake(AudioSource audioSource) 
         {
-            pos =  new Vector2();
+            pos =  new Vector3();
             pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI* tick)* gain/10f;
             y = pos.y + 0.4f;
-            volume = y;
+            volumeAux = y;
+            audioSource.volume = volumeAux;
         }
-        public float Limiter(float soo)
+        public void levi()
         {
-            return duh = volume;// real time volume.
-            
+           temp = him.position;
+           temp.y = Mathf.Sin(Time.fixedTime * Mathf.PI* tick)* gain/10f;
+           him.position = temp;
+           rig.position = him.position;
+           
         }
+
+        
     }   
 }

@@ -18,6 +18,7 @@ namespace Methodyca.Minigames.SortGame
         public GameObject crystalStation;//The charging station either pink or blue.
         public GameObject placementParent; // the parent of the items placed in the box
         public GameObject[] listBox ;//the box to show how its removed.
+        public GameObject glow;//the halo effect
 
         
         
@@ -60,12 +61,12 @@ namespace Methodyca.Minigames.SortGame
         private void Start()
         {
             anchored = GetComponent<RectTransform>();
-            
+            glow.SetActive(false);
             levitate = crystalStation.GetComponent<RectTransform>();
             //posOffset = levitate.position;
             //stun = freq + 0.5f;
             soundMan = FindObjectOfType<SoundManager>();
-            //levelman = FindObjectOfType<GameManager>();            
+                       
         
             
         }
@@ -112,6 +113,10 @@ namespace Methodyca.Minigames.SortGame
                         points++;
                         //This is basically calling the array created to add crystals to the dock. 
                         crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
+                        if(points == 5)
+                        {
+                            glow.SetActive(true);
+                        }
                         stun = freq + 0.5f;
                         soundMan.Imaging("battery");
                         soundMan.Bounce("battery");
@@ -128,7 +133,7 @@ namespace Methodyca.Minigames.SortGame
                 FileArranged();            
         }
 
-        void Rise()
+        public void Rise()
         {
             //The levitation of the crystals
             temPos = shinnny.position;
@@ -165,6 +170,7 @@ namespace Methodyca.Minigames.SortGame
                     //Debug.Log("Deducting Points");
                     points --; 
                     crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
+                    glow.SetActive(false);
                     //stun = freq - 0.5f;    
                     //Debug.Log("Discharging");
                     //Debug.Log(points);

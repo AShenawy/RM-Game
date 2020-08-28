@@ -12,6 +12,7 @@ namespace Methodyca.Minigames.SortGame
         public void Complete()
         {
             filesSorted.SetActive(true);
+            
             //Debug.Log("You Sabi");
         }
         // public void Reup()

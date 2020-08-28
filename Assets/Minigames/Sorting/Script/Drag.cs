@@ -15,6 +15,7 @@ namespace Methodyca.Minigames.SortGame
         [SerializeField] private Canvas canvas;
 
         private RectTransform rectTransform;//Transfrom of the item selected.
+        public RectTransform begin;
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
         
@@ -29,8 +30,11 @@ namespace Methodyca.Minigames.SortGame
         public Sprite ontable;
         public Sprite inbox;
         public Sprite swap;//the operation that swaps. 
-        public Vector2 sizer;
-        public Vector2 shazam;
+        [HideInInspector]public Vector2 sizer;
+        [HideInInspector]public Vector2 shazam;
+
+        public Vector3 arrive;
+        public Vector3 beat;
 
         
         //bool turnOn;// for the iteas to turn on. 
@@ -44,16 +48,16 @@ namespace Methodyca.Minigames.SortGame
 
         private void Awake()
         {
-            rectTransform = GetComponent<RectTransform>();     
+            rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             vistor = GameObject.Find("Draggable Items");
-
+            beat = rectTransform.position;
             soundMan = FindObjectOfType<SoundManager>();
         }
         
         void Start()
-        {
+        {     
             thisniccur = this.gameObject;
             swap = thisniccur.GetComponent<Image>().sprite;
             swap = ontable; 
@@ -79,12 +83,16 @@ namespace Methodyca.Minigames.SortGame
             canvasGroup.alpha = 1f;//restores the opacity of the item after being dropped.
             canvasGroup.blocksRaycasts = true;
 
-            
+            //The return feature of the game items. 
+            if(!this.gameObject == box)
             {
+                Debug.Log("Back on the table");
+                rectTransform.position = arrive + beat;
 
             }
 
         }
+        
 
         // This is redundant - No functionality. Can remove or move OnBeginDrag functionality to it,
         // so as soon as item is clicked it is transparent
