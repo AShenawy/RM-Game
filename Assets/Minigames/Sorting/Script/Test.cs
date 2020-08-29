@@ -26,12 +26,15 @@ namespace Methodyca.Minigames.SortGame{
         public float y;//to convert vector to float 
         public float tick;//for the speed.
         public float gain;//like a compressor
-        public float duh;
+        public float duh ;
 
+        //public Vector3 saz;
         public Vector3 pos; //for the bounce. 
         public Vector3 temp = new Vector3();
         public RectTransform rig;
         public RectTransform him;
+        
+        public GameObject bling;
 
 
     
@@ -75,11 +78,23 @@ namespace Methodyca.Minigames.SortGame{
             }
             if(Input.GetKey(KeyCode.P))
             {
-                Shake(audioSource);
-
+                frequency1 = 50f;
             }
+            else 
+            {
+                frequency1 = 0f;
+            }
+            if(Input.GetKey(KeyCode.O))
+            {
+                frequency2 = 60f;
+            }
+            else 
+            {
+                frequency2 = 0f;
+            }
+                Shake(audioSource);
             
-                levi();
+                //levi();
             
             
         }
@@ -109,23 +124,22 @@ namespace Methodyca.Minigames.SortGame{
             return Mathf.Sin(2 * Mathf.PI * timeIndex * frequency / sampleRate);
         }
         
-        //The volume automation for pulsing.
+        //Matches the wave with the game object
         public void Shake(AudioSource audioSource) 
         {
-            pos =  new Vector3();
-            pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI* tick)* gain/10f;
-            y = pos.y + 0.4f;
-            volumeAux = y;
+            y = rig.position.y;
+            duh = y /30.94f ;
+            volumeAux = duh - 6f;
             audioSource.volume = volumeAux;
         }
-        public void levi()
-        {
-           temp = him.position;
-           temp.y = Mathf.Sin(Time.fixedTime * Mathf.PI* tick)* gain/10f;
-           him.position = temp;
-           rig.position = him.position;
+        
+        // public void levi()
+        // {
+        //    temp = him.position;
+        //    him.transform.Translate(Vector3.up * tick * Mathf.Sin(Time.timeSinceLevelLoad *gain));
+        //    rig.position = him.position;
            
-        }
+        // }
 
         
     }   

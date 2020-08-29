@@ -47,8 +47,8 @@ namespace Methodyca.Minigames.SortGame
 
         //inputs for the levitations
         float degreePerSecond =20f;
-        public float amp = 2f;
-        public float freq = 0f;
+        public float amp;
+        public float freq;
 
         //storing transform values 
         //Vector3 posOffset = new Vector3();
@@ -117,10 +117,10 @@ namespace Methodyca.Minigames.SortGame
                         {
                             glow.SetActive(true);
                         }
-                        stun = freq + 0.5f;
-                        soundMan.Imaging("battery");
-                        soundMan.Bounce("battery");
-                        soundMan.Play("battery");
+                        //stun = freq + 0.5f;
+                        // soundMan.Imaging("battery");
+                        // soundMan.Bounce("battery");
+                        // soundMan.Play("battery");
                         
                         //Debug.Log("Charging");
                         Debug.Log(points);
@@ -137,10 +137,7 @@ namespace Methodyca.Minigames.SortGame
         {
             //The levitation of the crystals
             temPos = shinnny.position;
-            //temPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * freq *stun) * amp;
-            // shinnny.Translate();
             shinnny.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.timeSinceLevelLoad * points));
-    
             levitate.position = shinnny.position;
             
             //Debug.Log(temPos.y);
@@ -209,7 +206,10 @@ namespace Methodyca.Minigames.SortGame
         void Update()
         {
             Rise();
-            
+            // if()
+            // {
+                
+            // }
         }
     }
 
