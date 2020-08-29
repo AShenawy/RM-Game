@@ -1775,7 +1775,7 @@ MonoBehaviour:
   sounds:
   - name: Fraud Full
     clip: {fileID: 8300000, guid: a1d12045b3d714cc3b283be47710727a, type: 3}
-    amp: 0
+    amp: 0.3
     pitch: 1
     loop: 1
     pan: 0
@@ -2269,6 +2269,7 @@ GameObject:
   - component: {fileID: 545214128}
   - component: {fileID: 545214130}
   - component: {fileID: 545214129}
+  - component: {fileID: 545214131}
   m_Layer: 5
   m_Name: crystal_pink_station
   m_TagString: Qualitative
@@ -2332,6 +2333,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545214127}
   m_CullTransparentMesh: 0
+--- !u!114 &545214131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency1: 60
+  frequency2: 1
+  volume: 0
+  volumeAux: 0
+  sampleRate: 44100
+  waveLengthInSeconds: 2
+  y: 0
+  tick: 0
+  gain: 0
+  duh: 0
+  pos: {x: 0, y: 0, z: 0}
+  temp: {x: 0, y: 0, z: 0}
+  rig: {fileID: 0}
+  him: {fileID: 0}
+  bling: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &563590946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2509,6 @@ MonoBehaviour:
   inTheBox: []
   shift: {x: -3, y: -6, z: 0}
   amp: 1.09
-  freq: 2.7
   temPos: {x: 0, y: 0, z: 0}
 --- !u!1 &572454817
 GameObject:
@@ -3531,8 +3559,7 @@ MonoBehaviour:
   sorted: 0
   inTheBox: []
   shift: {x: 3, y: -10, z: 0}
-  amp: 0.12
-  freq: 0.72
+  amp: 0.64
   temPos: {x: 0, y: 0, z: 0}
 --- !u!1 &864065508
 GameObject:
@@ -6893,8 +6920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency1: 0
-  frequency2: 0
+  frequency1: 1
+  frequency2: 50
   volume: 0
   volumeAux: 0
   sampleRate: 44100

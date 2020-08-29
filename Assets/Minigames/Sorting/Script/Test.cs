@@ -61,7 +61,7 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.volume = volume;// the volume of the track. 
             
             
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.C))
             {
                 if(!audioSource.isPlaying)
                 {
@@ -76,25 +76,8 @@ namespace Methodyca.Minigames.SortGame{
                 
                 }   
             }
-            if(Input.GetKey(KeyCode.P))
-            {
-                frequency1 = 50f;
-            }
-            else 
-            {
-                frequency1 = 0f;
-            }
-            if(Input.GetKey(KeyCode.O))
-            {
-                frequency2 = 60f;
-            }
-            else 
-            {
-                frequency2 = 0f;
-            }
-                Shake(audioSource);
             
-                //levi();
+            Shake(audioSource);
             
             
         }
@@ -128,8 +111,8 @@ namespace Methodyca.Minigames.SortGame{
         public void Shake(AudioSource audioSource) 
         {
             y = rig.position.y;
-            duh = y /30.94f ;
-            volumeAux = duh - 6f;
+            duh = y /20.94f ;
+            volumeAux = duh - 9.37f;
             audioSource.volume = volumeAux;
         }
         

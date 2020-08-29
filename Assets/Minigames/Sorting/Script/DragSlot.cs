@@ -48,7 +48,7 @@ namespace Methodyca.Minigames.SortGame
         //inputs for the levitations
         float degreePerSecond =20f;
         public float amp;
-        public float freq;
+        //public float freq;
 
         //storing transform values 
         //Vector3 posOffset = new Vector3();
