@@ -14,14 +14,11 @@ namespace Methodyca.Minigames.SortGame
 
        public DragSlot firstbox;
        public DragSlot secondbox;
+       public GameManager cry;
        
        GameManager levelman;
        SoundManager soundman;
 
-       
-       
-    
-       //public int balance = 10;
 
         void Start()
         {
@@ -33,7 +30,10 @@ namespace Methodyca.Minigames.SortGame
 
         public void Sky()
         {
-        
+            if(cry.filesArranged == true)
+            {
+                Debug.Log("Crazy");
+            }
         }
     
 
@@ -41,12 +41,15 @@ namespace Methodyca.Minigames.SortGame
        {
           if (firstbox.sorted && secondbox.sorted)
           {
-              //Debug.Log("Wins");
-              soundman.Stop("paper_hit");
-              soundman.Stop("battery");
+              //soundman.Play("comp");
               levelman.Complete();
               soundman.Stop("Fraud Full");
+              soundman.Stop("static");
+              Debug.Log("Wins");
+              //soundman.Stop("paper_hit");
+              //soundman.Stop("battery");
           }
+          Sky();
        }
         
 

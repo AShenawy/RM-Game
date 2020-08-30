@@ -7,22 +7,29 @@ namespace Methodyca.Minigames.SortGame
 {
     public class GameManager : MonoBehaviour
     {
-        public bool filesArranged = false;
+        public bool filesArranged;
         public GameObject filesSorted;
+        SoundManager soundMan;
+        
+        void Start()
+        {
+            soundMan = FindObjectOfType<SoundManager>();
+
+        }
         public void Complete()
         {
             filesSorted.SetActive(true);
-            
-            //Debug.Log("You Sabi");
+            // if(filesArranged == true)
+            // {
+            //     Debug.Log("You Sabi");
+                
+            // }
         }
-        // public void Reup()
-        // {
-        //     if(Input.GetKeyDown(KeyCode.R))
-        //     {
-        //         SceneManager.LoadScene("Drag and Drop");
-        //         Debug.Log("Restart");
-        //     }
-        // }
+        void Update()
+        {
+            //Complete();
+        }
+      
     }
 
 }

@@ -23,7 +23,7 @@ namespace Methodyca.Minigames.SortGame
 
             eventData.pointerDrag.GetComponent<Drag>().OutsideBox(placementParent);//for the image to appear back on the table.
 
-            FindObjectOfType<SoundManager>().Stop("battery");
+            //FindObjectOfType<SoundManager>().Stop("battery");
             
             
 

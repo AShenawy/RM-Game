@@ -12,7 +12,7 @@ namespace Methodyca.Minigames.SortGame
     // class naming
     public class DragSlot : MonoBehaviour, IDropHandler
     {
-        private int points = 0;
+        public int points = 0;
         private int goal = 5;
         public float stun;
         public GameObject crystalStation;//The charging station either pink or blue.
@@ -27,7 +27,7 @@ namespace Methodyca.Minigames.SortGame
         // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
         public RectTransform levitate;//for the floating crystals.
-        public RectTransform shinnny; 
+        //public RectTransform shinnny; 
 
          
         public Sprite[] crystalPhases;//The array of crystals charging. 
@@ -39,7 +39,8 @@ namespace Methodyca.Minigames.SortGame
         
 
         public bool sorted;
-        //public bool done;
+        public bool done;
+        public bool almost;
         
         public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
         //public List <GameObject> listBoxi;
@@ -52,19 +53,20 @@ namespace Methodyca.Minigames.SortGame
 
         //storing transform values 
         //Vector3 posOffset = new Vector3();
-        public Vector3 temPos = new Vector3();
+        public Vector3 temPos;
 
         // sound manager
         SoundManager soundMan;
-        //GameManager levelman;
+        // public DragSlot junk;
+        // public DragSlot junkie;
 
         private void Start()
         {
             anchored = GetComponent<RectTransform>();
             glow.SetActive(false);
             levitate = crystalStation.GetComponent<RectTransform>();
-            //posOffset = levitate.position;
-            //stun = freq + 0.5f;
+            temPos = levitate.position;
+            degreePerSecond = levitate.position.y;
             soundMan = FindObjectOfType<SoundManager>();
                        
         
@@ -111,18 +113,19 @@ namespace Methodyca.Minigames.SortGame
                     if (points < 5) //Points is 5 because of the amount of the crystal variations.
                     {
                         points++;
+                        if(points == 1)
+                        {
+                            //Debug.Log("Float");
+                            done = true;
+                        }
                         //This is basically calling the array created to add crystals to the dock. 
                         crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
                         if(points == 5)
                         {
+                            almost = true;
                             glow.SetActive(true);
+                            soundMan.Play("static");
                         }
-                        //stun = freq + 0.5f;
-                        // soundMan.Imaging("battery");
-                        // soundMan.Bounce("battery");
-                        // soundMan.Play("battery");
-                        
-                        //Debug.Log("Charging");
                         Debug.Log(points);
                     }
                 }
@@ -136,9 +139,8 @@ namespace Methodyca.Minigames.SortGame
         public void Rise()
         {
             //The levitation of the crystals
-            temPos = shinnny.position;
-            shinnny.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.timeSinceLevelLoad * points));
-            levitate.position = shinnny.position;
+            temPos.y = degreePerSecond + amp * Mathf.Sin(points*Time.time);
+            levitate.position = temPos;
             
             //Debug.Log(temPos.y);
         }     
@@ -206,10 +208,7 @@ namespace Methodyca.Minigames.SortGame
         void Update()
         {
             Rise();
-            // if()
-            // {
-                
-            // }
+            
         }
     }
 

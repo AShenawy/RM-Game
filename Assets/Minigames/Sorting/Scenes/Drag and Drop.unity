@@ -979,6 +979,7 @@ GameObject:
   - component: {fileID: 206842105}
   - component: {fileID: 206842104}
   - component: {fileID: 206842106}
+  - component: {fileID: 206842107}
   m_Layer: 5
   m_Name: switch
   m_TagString: Untagged
@@ -1002,7 +1003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -544, y: 132}
+  m_AnchoredPosition: {x: -253, y: 132}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206842104
@@ -1049,11 +1050,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206842102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bling: {fileID: 0}
   frequency1: 1
   frequency2: 1
   volume: 0
@@ -1068,8 +1070,21 @@ MonoBehaviour:
   temp: {x: 0, y: 0, z: 0}
   rig: {fileID: 0}
   him: {fileID: 206842103}
-  bling: {fileID: 0}
   audioSource: {fileID: 0}
+--- !u!114 &206842107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206842102}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b042d720d417c4bbeafe8ead49746de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  amplitude: 5
 --- !u!1 &228756883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,11 +1809,25 @@ MonoBehaviour:
     loop: 0
     pan: 0
     source: {fileID: 0}
-  - name: battery
-    clip: {fileID: 8300000, guid: d7331e0fa04854214974727b8d4d7911, type: 3}
-    amp: 0
+  - name: static
+    clip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
+    amp: 0.5
     pitch: 1
-    loop: 0
+    loop: 1
+    pan: 0
+    source: {fileID: 0}
+  - name: staticL
+    clip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
+    amp: 0.5
+    pitch: 1
+    loop: 1
+    pan: 1
+    source: {fileID: 0}
+  - name: comp
+    clip: {fileID: 8300000, guid: 7beefcaea1d0d43d1ae90fd42d2beeeb, type: 3}
+    amp: 0.3
+    pitch: 1
+    loop: 1
     pan: 0
     source: {fileID: 0}
   pos: {x: 0, y: 0}
@@ -2345,6 +2374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bling: {fileID: 569189697}
   frequency1: 60
   frequency2: 1
   volume: 0
@@ -2359,7 +2389,6 @@ MonoBehaviour:
   temp: {x: 0, y: 0, z: 0}
   rig: {fileID: 0}
   him: {fileID: 0}
-  bling: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!1 &563590946
 GameObject:
@@ -2484,6 +2513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdf17ab8ddd6429b8cbd5c6f1e58913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
   stun: 0
   crystalStation: {fileID: 545214127}
   placementParent: {fileID: 668920366}
@@ -2495,7 +2525,6 @@ MonoBehaviour:
   - {fileID: 1207372948}
   glow: {fileID: 588210949}
   levitate: {fileID: 588210950}
-  shinnny: {fileID: 588210950}
   crystalPhases:
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
@@ -2506,9 +2535,11 @@ MonoBehaviour:
   boxType: Qualitative
   box: box
   sorted: 0
+  done: 0
+  almost: 0
   inTheBox: []
   shift: {x: -3, y: -6, z: 0}
-  amp: 1.09
+  amp: 9
   temPos: {x: 0, y: 0, z: 0}
 --- !u!1 &572454817
 GameObject:
@@ -3237,6 +3268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstbox: {fileID: 569189697}
   secondbox: {fileID: 827433517}
+  cry: {fileID: 0}
 --- !u!4 &690957710
 Transform:
   m_ObjectHideFlags: 0
@@ -3535,6 +3567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdf17ab8ddd6429b8cbd5c6f1e58913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
   stun: 0
   crystalStation: {fileID: 1611874111}
   placementParent: {fileID: 1710780501}
@@ -3546,7 +3579,6 @@ MonoBehaviour:
   - {fileID: 1058094584}
   glow: {fileID: 563590946}
   levitate: {fileID: 563590947}
-  shinnny: {fileID: 563590947}
   crystalPhases:
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
@@ -3557,9 +3589,11 @@ MonoBehaviour:
   boxType: Quantitative
   box: boxx
   sorted: 0
+  done: 0
+  almost: 0
   inTheBox: []
   shift: {x: 3, y: -10, z: 0}
-  amp: 0.64
+  amp: 9
   temPos: {x: 0, y: 0, z: 0}
 --- !u!1 &864065508
 GameObject:
@@ -5989,6 +6023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290497626}
   - component: {fileID: 1290497627}
+  - component: {fileID: 1290497628}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -6025,6 +6060,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filesArranged: 0
   filesSorted: {fileID: 1930363418}
+--- !u!114 &1290497628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290497625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc47bfe02bfd94838885576a3b484687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstbox: {fileID: 569189697}
+  secondbox: {fileID: 827433517}
+  cry: {fileID: 1290497627}
 --- !u!1 &1429622117
 GameObject:
   m_ObjectHideFlags: 0
@@ -6920,6 +6970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bling: {fileID: 827433517}
   frequency1: 1
   frequency2: 50
   volume: 0
@@ -6934,7 +6985,6 @@ MonoBehaviour:
   temp: {x: 0, y: 0, z: 0}
   rig: {fileID: 0}
   him: {fileID: 0}
-  bling: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!1 &1648965549
 GameObject:
@@ -7113,6 +7163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bling: {fileID: 0}
   frequency1: 0
   frequency2: 0
   volume: 0
@@ -7127,7 +7178,6 @@ MonoBehaviour:
   temp: {x: 0, y: 0, z: 0}
   rig: {fileID: 0}
   him: {fileID: 0}
-  bling: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!222 &1648965554
 CanvasRenderer:
@@ -7530,6 +7580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bling: {fileID: 0}
   frequency1: 0
   frequency2: 0
   volume: 0
@@ -7544,7 +7595,6 @@ MonoBehaviour:
   temp: {x: 0, y: 0, z: 0}
   rig: {fileID: 0}
   him: {fileID: 0}
-  bling: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!114 &1794644207
 MonoBehaviour:

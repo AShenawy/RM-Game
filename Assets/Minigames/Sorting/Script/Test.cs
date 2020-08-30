@@ -8,6 +8,11 @@ namespace Methodyca.Minigames.SortGame{
 
     public class Test : MonoBehaviour  //IPointerDownHandler 
     {   
+
+        //The Ossicaltor. 
+        public DragSlot bling;
+        SoundManager soundMan; 
+
         [Range(1,20000)]  //Creates a slider in the inspector
         public float frequency1;
     
@@ -34,7 +39,7 @@ namespace Methodyca.Minigames.SortGame{
         public RectTransform rig;
         public RectTransform him;
         
-        public GameObject bling;
+        
 
 
     
@@ -53,6 +58,7 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.spatialBlend = 0; //force 2D sound
             audioSource.Stop(); //avoids audiosource from starting to play automatically
             rig = this.gameObject.GetComponent<RectTransform>();
+            soundMan = FindObjectOfType<SoundManager>();
             
         }
     
@@ -61,23 +67,24 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.volume = volume;// the volume of the track. 
             
             
-            if(Input.GetKeyDown(KeyCode.C))
-            {
-                if(!audioSource.isPlaying)
-                {
-                    timeIndex = 0;  //resets timer before playing sound
-                    audioSource.Play();
-                    Debug.Log("Keys are playing");
-                }
-                else
-                {
-                    audioSource.Stop();
-                    Debug.Log("Stop Keys");
+            // if(bling.done == true)
+            // {
+            //         //soundMan.Play("staticL");
+            //     if(!audioSource.isPlaying)
+            //     {
+            //         audioSource.Play();
+            //         timeIndex = 0;  //resets timer before playing sound
+            //         Debug.Log("Keys are playing");
+            //     }
+            //     // 
+            //     // {
+            //     //     audioSource.Stop();
+            //     //     Debug.Log("Stop Keys");
                 
-                }   
-            }
+            //     // }   
+            // }
             
-            Shake(audioSource);
+            // //Shake(audioSource);
             
             
         }
@@ -112,17 +119,9 @@ namespace Methodyca.Minigames.SortGame{
         {
             y = rig.position.y;
             duh = y /20.94f ;
-            volumeAux = duh - 9.37f;
+            volumeAux = duh - 8f;
             audioSource.volume = volumeAux;
         }
-        
-        // public void levi()
-        // {
-        //    temp = him.position;
-        //    him.transform.Translate(Vector3.up * tick * Mathf.Sin(Time.timeSinceLevelLoad *gain));
-        //    rig.position = him.position;
-           
-        // }
 
         
     }   
