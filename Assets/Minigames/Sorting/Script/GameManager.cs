@@ -7,9 +7,10 @@ namespace Methodyca.Minigames.SortGame
 {
     public class GameManager : MonoBehaviour
     {
-        public bool filesArranged;
+        public bool filesArranged, completed = false;
         public GameObject filesSorted;
         SoundManager soundMan;
+        
         
         void Start()
         {
@@ -18,12 +19,15 @@ namespace Methodyca.Minigames.SortGame
         }
         public void Complete()
         {
-            filesSorted.SetActive(true);
-            // if(filesArranged == true)
-            // {
-            //     Debug.Log("You Sabi");
-                
-            // }
+            if(!completed)
+            {
+                completed = true;
+                filesSorted.SetActive(true);
+                soundMan.Stop("Fraud Full");
+                soundMan.Stop("static");
+                soundMan.Play("comp");
+                soundMan.Play("staticL");
+            }
         }
         void Update()
         {

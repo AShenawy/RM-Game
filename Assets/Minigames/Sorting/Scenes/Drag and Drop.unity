@@ -1003,7 +1003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -253, y: 132}
+  m_AnchoredPosition: {x: 63, y: 132}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206842104
@@ -1042,7 +1042,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206842102}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &206842106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,6 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bling: {fileID: 0}
+  jinx: {fileID: 0}
   frequency1: 1
   frequency2: 1
   volume: 0
@@ -1078,13 +1079,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206842102}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b042d720d417c4bbeafe8ead49746de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  amplitude: 5
+  speed: 1
+  amplitude: 1
+  originalY: 0
+  off: {x: 0, y: 0, z: 0}
+  lick: {fileID: 206842103}
+  points: 0
 --- !u!1 &228756883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Fraud Full
-    clip: {fileID: 8300000, guid: a1d12045b3d714cc3b283be47710727a, type: 3}
+    clip: {fileID: 8300000, guid: 7540e8a21e1f14de49d4264037651663, type: 3}
     amp: 0.3
     pitch: 1
     loop: 1
@@ -1818,16 +1823,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: staticL
     clip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
-    amp: 0.5
+    amp: 0.15
     pitch: 1
-    loop: 1
-    pan: 1
+    loop: 0
+    pan: 0
     source: {fileID: 0}
   - name: comp
-    clip: {fileID: 8300000, guid: 7beefcaea1d0d43d1ae90fd42d2beeeb, type: 3}
-    amp: 0.3
+    clip: {fileID: 8300000, guid: 43fc9b7ff4e3043a1995e11d586c1bdb, type: 3}
+    amp: 0.4
     pitch: 1
-    loop: 1
+    loop: 0
     pan: 0
     source: {fileID: 0}
   pos: {x: 0, y: 0}
@@ -2375,6 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bling: {fileID: 569189697}
+  jinx: {fileID: 1290497627}
   frequency1: 60
   frequency2: 1
   volume: 0
@@ -2525,6 +2531,7 @@ MonoBehaviour:
   - {fileID: 1207372948}
   glow: {fileID: 588210949}
   levitate: {fileID: 588210950}
+  shinnny: {fileID: 588210950}
   crystalPhases:
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
@@ -2539,8 +2546,9 @@ MonoBehaviour:
   almost: 0
   inTheBox: []
   shift: {x: -3, y: -6, z: 0}
-  amp: 9
+  amp: 0.4
   temPos: {x: 0, y: 0, z: 0}
+  posOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &572454817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,7 +3261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &690957709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3268,7 +3276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstbox: {fileID: 569189697}
   secondbox: {fileID: 827433517}
-  cry: {fileID: 0}
+  almost: 0
 --- !u!4 &690957710
 Transform:
   m_ObjectHideFlags: 0
@@ -3579,6 +3587,7 @@ MonoBehaviour:
   - {fileID: 1058094584}
   glow: {fileID: 563590946}
   levitate: {fileID: 563590947}
+  shinnny: {fileID: 563590947}
   crystalPhases:
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
@@ -3593,8 +3602,9 @@ MonoBehaviour:
   almost: 0
   inTheBox: []
   shift: {x: 3, y: -10, z: 0}
-  amp: 9
+  amp: 0.4
   temPos: {x: 0, y: 0, z: 0}
+  posOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &864065508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4334,7 +4344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 838.3008, y: -143.60004}
+  m_AnchoredPosition: {x: 442, y: -143.60004}
   m_SizeDelta: {x: 273, y: 149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058094586
@@ -6059,6 +6069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filesArranged: 0
+  completed: 0
   filesSorted: {fileID: 1930363418}
 --- !u!114 &1290497628
 MonoBehaviour:
@@ -6074,7 +6085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstbox: {fileID: 569189697}
   secondbox: {fileID: 827433517}
-  cry: {fileID: 1290497627}
+  almost: 0
 --- !u!1 &1429622117
 GameObject:
   m_ObjectHideFlags: 0
@@ -6741,7 +6752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.09985, y: -89.89998}
+  m_AnchoredPosition: {x: 213, y: -89.89998}
   m_SizeDelta: {x: 216, y: 178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601090185
@@ -6971,6 +6982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bling: {fileID: 827433517}
+  jinx: {fileID: 1290497627}
   frequency1: 1
   frequency2: 50
   volume: 0
@@ -7164,6 +7176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bling: {fileID: 0}
+  jinx: {fileID: 0}
   frequency1: 0
   frequency2: 0
   volume: 0
@@ -7581,6 +7594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bling: {fileID: 0}
+  jinx: {fileID: 0}
   frequency1: 0
   frequency2: 0
   volume: 0
@@ -8115,7 +8129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160.39998, y: -170.00003}
+  m_AnchoredPosition: {x: -63, y: -170.00003}
   m_SizeDelta: {x: 299, y: 136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1968638402

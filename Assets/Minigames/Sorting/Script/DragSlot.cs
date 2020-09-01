@@ -27,7 +27,7 @@ namespace Methodyca.Minigames.SortGame
         // public GameObject boxQuanti;//for the sound. 
         private RectTransform anchored;//the position of the snapping. 
         public RectTransform levitate;//for the floating crystals.
-        //public RectTransform shinnny; 
+        public RectTransform shinnny; 
 
          
         public Sprite[] crystalPhases;//The array of crystals charging. 
@@ -49,11 +49,12 @@ namespace Methodyca.Minigames.SortGame
         //inputs for the levitations
         float degreePerSecond =20f;
         public float amp;
-        //public float freq;
+        private float temp;
 
         //storing transform values 
         //Vector3 posOffset = new Vector3();
         public Vector3 temPos;
+        public Vector3 posOffset;
 
         // sound manager
         SoundManager soundMan;
@@ -64,9 +65,10 @@ namespace Methodyca.Minigames.SortGame
         {
             anchored = GetComponent<RectTransform>();
             glow.SetActive(false);
-            levitate = crystalStation.GetComponent<RectTransform>();
-            temPos = levitate.position;
-            degreePerSecond = levitate.position.y;
+            shinnny = crystalStation.GetComponent<RectTransform>();
+            //temp = shinnny.position.y;
+            //temPos = levitate.position;
+            //degreePerSecond = levitate.position.y;
             soundMan = FindObjectOfType<SoundManager>();
                        
         
@@ -124,8 +126,12 @@ namespace Methodyca.Minigames.SortGame
                         {
                             almost = true;
                             glow.SetActive(true);
+                            soundMan.Imaging("static");
                             soundMan.Play("static");
+                            //Debug.Log(crystalStation.name+" charged");                            
+                            
                         }
+                        
                         Debug.Log(points);
                     }
                 }
@@ -136,13 +142,13 @@ namespace Methodyca.Minigames.SortGame
                 FileArranged();            
         }
 
-        public void Rise()
+        public void Rise()//The levitation of the crystals
         {
-            //The levitation of the crystals
-            temPos.y = degreePerSecond + amp * Mathf.Sin(points*Time.time);
-            levitate.position = temPos;
             
-            //Debug.Log(temPos.y);
+            temPos = levitate.position;
+            levitate.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.fixedTime));
+            shinnny.position = levitate.position;
+            
         }     
         void PlaceInBox(RectTransform transform)
         {
@@ -207,7 +213,10 @@ namespace Methodyca.Minigames.SortGame
 
         void Update()
         {
-            Rise();
+            if(points >= 1)
+            {
+                Rise();
+            }
             
         }
     }

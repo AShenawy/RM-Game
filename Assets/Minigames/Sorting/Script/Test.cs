@@ -11,6 +11,7 @@ namespace Methodyca.Minigames.SortGame{
 
         //The Ossicaltor. 
         public DragSlot bling;
+        public GameManager jinx;
         SoundManager soundMan; 
 
         [Range(1,20000)]  //Creates a slider in the inspector
@@ -38,6 +39,8 @@ namespace Methodyca.Minigames.SortGame{
         public Vector3 temp = new Vector3();
         public RectTransform rig;
         public RectTransform him;
+
+        //public string boxType;
         
         
 
@@ -67,25 +70,28 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.volume = volume;// the volume of the track. 
             
             
-            // if(bling.done == true)
-            // {
-            //         //soundMan.Play("staticL");
-            //     if(!audioSource.isPlaying)
-            //     {
-            //         audioSource.Play();
-            //         timeIndex = 0;  //resets timer before playing sound
-            //         Debug.Log("Keys are playing");
-            //     }
-            //     // 
-            //     // {
-            //     //     audioSource.Stop();
-            //     //     Debug.Log("Stop Keys");
+            if(bling.done == true)
+            {
+                    //soundMan.Play("staticL");
+                if(!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                    timeIndex = 0;  //resets timer before playing sound
+                    Debug.Log("Keys are playing");
+                }
+                // 
+                // {
+                //     audioSource.Stop();
+                //     Debug.Log("Stop Keys");
                 
-            //     // }   
-            // }
+                // }   
+            }
+            if(jinx.completed==true)
+            {
+                audioSource.Stop();
+            }
             
-            // //Shake(audioSource);
-            
+             Shake(audioSource);
             
         }
     
@@ -119,8 +125,9 @@ namespace Methodyca.Minigames.SortGame{
         {
             y = rig.position.y;
             duh = y /20.94f ;
-            volumeAux = duh - 8f;
+            volumeAux = duh - 17.5f;
             audioSource.volume = volumeAux;
+            Debug.Log(duh);
         }
 
         
