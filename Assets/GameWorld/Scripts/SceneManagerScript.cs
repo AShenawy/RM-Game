@@ -27,12 +27,14 @@ namespace Methodyca.Core
         public string startRoomTag = "Starting Room";
 
         private Scene sceneCurrent;
+        private GameObject loadingScreen;
 
         public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
         {
             startRoomTag = roomTag;
             SceneManager.LoadScene(sceneName);
-
+            // TODO: Load and unload scenes behind a loading screen
+            // loadingScreen = Object.Instantiate(Resources.Load("Loading Screen") as GameObject);
         }
 
         public void LoadSceneAdditive(string sceneName)

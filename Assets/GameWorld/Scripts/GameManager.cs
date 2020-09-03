@@ -43,6 +43,7 @@ namespace Methodyca.Core
         private int cntrnIndex = 0;
         #endregion
 
+
         // When loading a new scene with GameManager in it, it should first check 
         private void OnEnable()
         {

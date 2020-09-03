@@ -20,8 +20,8 @@ namespace Methodyca.Core
         [SerializeField] private SpriteRenderer swirlDisplayTop;
 
         [Header("Act 2 Scenes")]
-        [SerializeField] private string Act2QLScene;
-        [SerializeField] private string Act2QNScene;
+        [SerializeField] private string Act2Scene;
+        [SerializeField] private string Act2QLRoomTag, Act2QNRoomTag;
 
 
         private enum CrystalType { Quantitaive, Qualitative, None}
@@ -111,11 +111,11 @@ namespace Methodyca.Core
             switch (lastPlacedCrystal)
             {
                 case CrystalType.Qualitative:
-                    SceneManager.LoadScene(Act2QLScene);
+                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QLRoomTag);
                     break;
 
                 case CrystalType.Quantitaive:
-                    SceneManager.LoadScene(Act2QNScene);
+                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QNRoomTag);
                     break;
 
                 case CrystalType.None:
