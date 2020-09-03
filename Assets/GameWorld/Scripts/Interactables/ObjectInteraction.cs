@@ -5,7 +5,7 @@ namespace Methodyca.Core
 {
     // This script is the base class for all interactable game objects in game world
     [RequireComponent(typeof(BoxCollider))]
-    public class ObjectInteraction : MonoBehaviour
+    public abstract class ObjectInteraction : MonoBehaviour
     {
         [Header("General Object Interaction Parameters")]
         [Tooltip("Can the player interact with this object?")]

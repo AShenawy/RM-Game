@@ -6,39 +6,33 @@ namespace Methodyca.Core
     /* This class handles moving the player between different scenes/levels in the game
      * and also protects some game objects from being destroyed when switching scenes
      */
-    public class SceneManagerScript : MonoBehaviour
+    public sealed class SceneManagerScript
     {
         // make this class a singleton
-        public static SceneManagerScript instance;
+        #region Singleton
+        private static SceneManagerScript singleton;
 
-        [Header("Protected Game Objects")]
-        [SerializeField, Tooltip("Game Manager game object")]
-        private GameObject gameManagerGO;
-        
-        [SerializeField, Tooltip("Main UI canvas game object. It holds the top, bottom, and mobile phone UI")]
-        private GameObject userInterfaceGO;
+        public static SceneManagerScript instance
+        {
+            get
+            {
+                if (singleton == null)
+                    singleton = new SceneManagerScript();
+
+                return singleton;
+            }
+        }
+        #endregion
+
+        public string startRoomTag = "Starting Room";
 
         private Scene sceneCurrent;
 
-
-        private void Awake()
+        public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
         {
-            // make this class a singleton
-            if (instance == null)
-                instance = this;
-
-            // Ensure game object which this script is on is available at all times
-            DontDestroyOnLoad(this);
-        }
-
-        private void Start()
-        {
-            sceneCurrent = SceneManager.GetActiveScene();
-        }
-
-        public void GoToLevel(string sceneName)
-        {
+            startRoomTag = roomTag;
             SceneManager.LoadScene(sceneName);
+
         }
 
         public void LoadSceneAdditive(string sceneName)
@@ -53,11 +47,12 @@ namespace Methodyca.Core
             // Unload minigame unused assests
             Resources.UnloadUnusedAssets();
         }
-
-        //private void ProtectGameObjects()
-        //{
-        //    DontDestroyOnLoad(gameManagerGO);
-        //    DontDestroyOnLoad(userInterfaceGO);
-        //}
+        
+        // Typically called by GameManager script when player is going to a scene within main game
+        public GameObject GetSceneStartingRoom()
+        {
+            GameObject sceneStartRoom = GameObject.FindGameObjectWithTag(startRoomTag);
+            return sceneStartRoom;
+        }
     }
 }

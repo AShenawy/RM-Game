@@ -25,7 +25,7 @@ namespace Methodyca.Core
         public event OnItemChanged itemChanged;
 
         // set the limit of how many items player can carry in inventory. 13 is the max using current UI icon size.
-        public int space = 13;
+        public int space = 12;
         public List<Item> items = new List<Item>();
 
         public void Add(Item item)

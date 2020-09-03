@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 namespace Methodyca.Core
 {
     // This class handles the games main information and player details
-    public class GameManager : MonoBehaviour
+    public sealed class GameManager : MonoBehaviour
     {
         #region Singleton
         public static GameManager instance;
@@ -21,7 +21,7 @@ namespace Methodyca.Core
         public GameObject player;
     
         [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
-        [SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
+        [Space, SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
     
         [Header("UI Objects")]
         [SerializeField] private GameObject inventoryPanel; // ref to inventory UI panel
@@ -43,15 +43,19 @@ namespace Methodyca.Core
         private int cntrnIndex = 0;
         #endregion
 
-
-
+        // When loading a new scene with GameManager in it, it should first check 
+        private void OnEnable()
+        {
+            if (SceneManagerScript.instance != null)
+                roomStart = SceneManagerScript.instance.GetSceneStartingRoom();
+        }
 
         private void Start()
         {
             #region RoomSetup
             roomCurrent = roomStart;    // Set current room
             HideAllRooms();     // Make sure all rooms are inactive at play start
-            GoToRoom(roomStart);    // Initialise first room in scene
+            GoToRoom(roomStart);    // Place player in first room in scene
             #endregion
 
             // Subscribe to context menu event
