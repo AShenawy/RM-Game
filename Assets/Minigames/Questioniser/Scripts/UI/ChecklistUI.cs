@@ -25,7 +25,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void GameOverHandler()
         {
-            DOTween.Sequence().Append(_checkListCanvas.transform.DOMove(Vector2.zero, 0.5f)).Join(_checkListCanvas.transform.DORotate(Vector3.zero,0.5f));
+            DOTween.Sequence().SetDelay(1).Append(_checkListCanvas.transform.DOMove(Vector2.zero, 1)).Join(_checkListCanvas.transform.DORotate(Vector3.zero,1));
         }
 
         void TopicClosedHandler(Topic topic)
@@ -42,7 +42,6 @@ namespace Methodyca.Minigames.Questioniser
 
         void ChecklistUpdatedHandler(string currentTopicName, string currentCardName)
         {
-            Debug.Log("Topic: " + currentTopicName + " - Card: " + currentCardName);
             for (int i = 0; i < topicTexts.Length; i++)
             {
                 if (topicTexts[i].text == currentTopicName)

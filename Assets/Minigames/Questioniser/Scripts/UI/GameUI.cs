@@ -48,7 +48,7 @@ namespace Methodyca.Minigames.Questioniser
             actionPoint.gameObject.SetActive(false);
             endTurnButton.gameObject.SetActive(false);
             mulliganPanel.gameObject.SetActive(false);
-            DOTween.Sequence().Append(interestPoint.DOAnchorPos(new Vector2(0, 300), 0.5f)).Join(interestPoint.DOScale(2, 0.5f)); // Change AcnhorPos later
+            DOTween.Sequence().SetDelay(1).Append(interestPoint.DOAnchorPos(new Vector2(0, 300), 1)).Join(interestPoint.DOScale(2, 1)); // Change AcnhorPos later
         }
 
         void MessageRaisedHandler(string message)

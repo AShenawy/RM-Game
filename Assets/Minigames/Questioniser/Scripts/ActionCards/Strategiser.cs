@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.Questioniser
             _selectableCards = new List<ItemCard>();
             _gameManager.GameState = GameState.Selectable;
 
-            foreach (ItemCard itemCard in _hand.Cards)
+            foreach (ItemCard itemCard in _hand.Cards)//BUG
             {
                 cardCount++;
                 _selectableCards.Add(itemCard);

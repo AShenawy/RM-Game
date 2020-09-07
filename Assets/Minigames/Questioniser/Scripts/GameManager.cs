@@ -28,6 +28,7 @@ namespace Methodyca.Minigames.Questioniser
         public bool IsAnswerCorrect;
         public string TopicName;
         public string OptionDescription;
+        //Add image section for top side
         public Option[] Options;
 
         public void ResetOption() => IsAnswerCorrect = false;
@@ -198,7 +199,7 @@ namespace Methodyca.Minigames.Questioniser
         public void HandleHighFlayer()
         {
             _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
-            SendGameMessage($"Extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
+            SendGameMessage($"Added extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
         }
 
         public void HandleImproviser()
