@@ -6,6 +6,8 @@ namespace Methodyca.Core
     // This script creates a flicker effect on objects making them active/inactive randomly
     public class SpriteFlicker : MonoBehaviour
     {
+        // Starting the coroutine in start isn't working.
+        // Possibly when GameManager disables all rooms this blocks the operation
         private void OnEnable()
         {
             StartCoroutine(Flicker());
@@ -13,14 +15,14 @@ namespace Methodyca.Core
 
         IEnumerator Flicker()
         {
-            float random = Random.Range(0.2f, 3f);
+            // reverse the sprite component active/inactive to imitate light on/off
             GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
 
-            print("Coroutine started");
+            // get a random time for the waiting to make flickering realistic
+            float randomTimer = Random.Range(0.2f, 3f);
+            yield return new WaitForSecondsRealtime(randomTimer);
 
-            yield return new WaitForSecondsRealtime(random);
-
-            print("Done waiting");
+            // restart the coroutine to keep and endless play loop of effect
             yield return StartCoroutine(Flicker());
         }
     }
