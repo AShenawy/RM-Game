@@ -1464,7 +1464,7 @@ MonoBehaviour:
   rooms:
   - {fileID: 308958452}
   - {fileID: 1467873452}
-  roomStart: {fileID: 308958452}
+  roomStart: {fileID: 1467873452}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -2274,6 +2274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404727117}
   - component: {fileID: 404727118}
+  - component: {fileID: 404727119}
   m_Layer: 0
   m_Name: Cloud 1
   m_TagString: Untagged
@@ -2289,7 +2290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404727116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.24, y: 5, z: 0}
+  m_LocalPosition: {x: -8.42, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1862959908}
@@ -2345,6 +2346,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &404727119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404727116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99593cca83470a4693e5d356680ac9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationDirection: 0
+  translationSpeed: 1
 --- !u!1001 &437088618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4574,6 +4589,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1391566970}
   - component: {fileID: 1391566971}
+  - component: {fileID: 1391566973}
+  - component: {fileID: 1391566972}
   m_Layer: 0
   m_Name: Cloud 1
   m_TagString: Untagged
@@ -4589,7 +4606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391566969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.24, y: 5, z: 0}
+  m_LocalPosition: {x: -12.67, y: 5.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1518010298}
@@ -4645,6 +4662,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1391566972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391566969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0011ccfafc06774387df73eae93921a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrapAfterEdge: 1
+  edgeBuffer: 10
+--- !u!114 &1391566973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391566969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99593cca83470a4693e5d356680ac9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationDirection: 0
+  translationSpeed: 1
 --- !u!1 &1420467383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,6 +4834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Starting Room QN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8645712453818223723, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
