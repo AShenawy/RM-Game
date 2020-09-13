@@ -39,7 +39,6 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnDestroy()
         {
-            _gameManager.GameState = GameState.Playable;
             _gameManager.OnTopicClosed -= TopicClosedHandler;
         }
     }

@@ -10,6 +10,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] Image topicCardImage;
         [SerializeField] Image header;
         [SerializeField] Image feedback;
+        [SerializeField] GameObject profile;
         [SerializeField] Button doneButton;
         [SerializeField] Image[] options;
         [SerializeField] TextMeshProUGUI[] answerTexts = new TextMeshProUGUI[3];
@@ -24,13 +25,16 @@ namespace Methodyca.Minigames.Questioniser
                 if (id == _options[i].Id)
                 {
                     _selectedOption = _options[i];
+
                     if (_selectedOption.IsCorrect)
                     {
                         options[i].color = Color.green;
+                        profile.SetActive(true);
                     }
                     else
                     {
                         options[i].color = Color.red;
+                        profile.SetActive(true);
                     }
 
                     feedback.gameObject.SetActive(true);
@@ -64,7 +68,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             _options = question.Options;
             root.SetActive(true);
-            //header.sprite = question.Header;
+            header.sprite = question.Header;
 
             for (int i = 0; i < question.Options.Length; i++)
                 answerTexts[i].text = question.Options[i].Text;

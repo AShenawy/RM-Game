@@ -62,6 +62,7 @@ namespace Methodyca.Minigames.Questioniser
             }
 
             _gameManager.DrawRandomCardFromDeck(CARD_COUNT_TO_GAMBLE);
+            _gameManager.GameState = GameState.Playable;
             Destroy(gameObject);
         }
     }

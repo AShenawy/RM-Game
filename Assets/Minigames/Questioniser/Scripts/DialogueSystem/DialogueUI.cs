@@ -7,11 +7,14 @@ namespace Methodyca.Minigames.Questioniser
     public class DialogueUI : MonoBehaviour
     {
         [SerializeField] GameObject root;
-        [SerializeField] TextMeshProUGUI speechText;
+        [SerializeField] GameObject dateDialogBubble;
         [SerializeField] Button[] respondButtons;
+
+        TextMeshProUGUI _dateDialogText;
 
         void Start()
         {
+            _dateDialogText = dateDialogBubble.GetComponentInChildren<TextMeshProUGUI>();
             DialogManager.Instance.OnDialogInitiated += DialogueInitiatedHandler;
         }
 
@@ -24,7 +27,17 @@ namespace Methodyca.Minigames.Questioniser
             else
             {
                 root.SetActive(true);
-                speechText.text = dialogue.Text;
+
+                if (string.IsNullOrEmpty(dialogue.Text))
+                {
+                    dateDialogBubble.SetActive(false);
+                }
+                else
+                {
+                    dateDialogBubble.SetActive(true);
+                    _dateDialogText.text = dialogue.Text;
+                }
+
                 var responds = dialogue.Responds;
 
                 foreach (var button in respondButtons)

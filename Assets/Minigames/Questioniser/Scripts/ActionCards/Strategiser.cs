@@ -28,6 +28,7 @@ namespace Methodyca.Minigames.Questioniser
             if (cardCount <= 0)
             {
                 _gameManager.SendGameMessage("There is not any Item Card in hand");
+                _gameManager.GameState = GameState.Playable;
                 Destroy(gameObject);
             }
         }
@@ -38,6 +39,7 @@ namespace Methodyca.Minigames.Questioniser
             DOTween.Sequence().Append(card.DiscardTweener).AppendCallback(() =>
             {
                 _hand.ArrangeCards();
+                _gameManager.GameState = GameState.Playable;
                 Destroy(gameObject);
             });
 

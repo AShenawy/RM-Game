@@ -13,6 +13,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] RectTransform actionPoint;
         [SerializeField] RectTransform interestPoint;
         [SerializeField] RectTransform endTurnButton;
+        [SerializeField] RectTransform compromiserPanel;
         [SerializeField] TextMeshPro deckCountText;
         [SerializeField] TextMeshProUGUI messageText;
 
@@ -36,20 +37,17 @@ namespace Methodyca.Minigames.Questioniser
             GameManager.Instance.OnActionPointUpdated += ActionPointUpdatedHandler;
             GameManager.Instance.OnInterestPointUpdated += InterestPointUpdatedHandler;
             GameManager.Instance.OnMulliganStated += MulliganStatedHandler;
-            //GameManager.Instance.OnGameOver += GameOverHandler;
+
+            Compromiser.OnEnabled += Compromiser_OnEnabled;
+        }
+
+        void Compromiser_OnEnabled()
+        {
+            compromiserPanel.gameObject.SetActive(true);
         }
 
         void DeckUpdatedHandler(byte cardCount) => deckCountText.text = cardCount.ToString();
         void MulliganStatedHandler(bool isOn) => mulliganPanel.gameObject.SetActive(isOn);
-
-        //void GameOverHandler()
-        //{
-        //    messagePanel.gameObject.SetActive(false);
-        //    actionPoint.gameObject.SetActive(false);
-        //    endTurnButton.gameObject.SetActive(false);
-        //    mulliganPanel.gameObject.SetActive(false);
-        //    DOTween.Sequence().SetDelay(1).Append(interestPoint.DOAnchorPos(new Vector2(0, 300), 1)).Join(interestPoint.DOScale(2, 1)); // Change AcnhorPos later
-        //}
 
         void MessageRaisedHandler(string message)
         {
@@ -123,8 +121,8 @@ namespace Methodyca.Minigames.Questioniser
                 GameManager.Instance.OnActionPointUpdated -= ActionPointUpdatedHandler;
                 GameManager.Instance.OnInterestPointUpdated -= InterestPointUpdatedHandler;
                 GameManager.Instance.OnMulliganStated -= MulliganStatedHandler;
-                //GameManager.Instance.OnGameOver -= GameOverHandler;
             }
+            Compromiser.OnEnabled -= Compromiser_OnEnabled;
         }
     }
 }

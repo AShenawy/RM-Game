@@ -187,11 +187,7 @@ namespace Methodyca.Minigames.Questioniser
             _extraPointsForNextTurn = 0;
         }
 
-        public void SwitchInterestToActionPoint(int interestPoint, int actionPoint)
-        {
-            ActionPoint += actionPoint;
-            InterestPoint += interestPoint;
-        }
+       
 
         public void SetRandomTopic()
         {
@@ -208,14 +204,23 @@ namespace Methodyca.Minigames.Questioniser
             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated);
         }
 
+        public void HandleCompromiser(int interestPoint, int actionPoint)
+        {
+            GameState = GameState.Playable;
+            ActionPoint += actionPoint;
+            InterestPoint += interestPoint;
+        }
+
         public void HandleHighFlayer()
         {
+            GameState = GameState.Playable;
             _extraPointsForNextTurn += _questionsAskedCorrectlyPerTurn;
             SendGameMessage($"Added extra <b>{_questionsAskedCorrectlyPerTurn}</b> action points for the next turn");
         }
 
         public void HandleImproviser()
         {
+            GameState = GameState.Playable;
             OnImproviserRaised?.Invoke(_isImproviserTurn = true);
             SendGameMessage("Interest points can be used as action points for this turn");
         }

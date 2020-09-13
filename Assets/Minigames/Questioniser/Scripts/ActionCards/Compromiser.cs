@@ -1,11 +1,12 @@
 ﻿namespace Methodyca.Minigames.Questioniser
 {
-    public class TopicChanger : ActionCard
+    public class Compromiser : ActionCard
     {
+        public static event System.Action OnEnabled = delegate { };
+
         protected override void HandleActionBehaviour()
         {
-            _gameManager.SetRandomTopic();
-            _gameManager.GameState = GameState.Playable;
+            OnEnabled?.Invoke();
             Destroy(gameObject);
         }
     }
