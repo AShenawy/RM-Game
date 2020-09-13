@@ -48,7 +48,7 @@ namespace Methodyca.Core
         private void OnEnable()
         {
             if (SceneManagerScript.instance != null)
-                roomStart = SceneManagerScript.instance.GetSceneStartingRoom();
+                roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
         }
 
         private void Start()
