@@ -7,7 +7,7 @@ namespace Methodyca.Core
     {
         private enum Direction { Right, Left, Up, Down};
         [SerializeField] private Direction translationDirection;
-        public float translationSpeed = 5f;
+        public float translationSpeed = 1f;
 
         private void Update()
         {
