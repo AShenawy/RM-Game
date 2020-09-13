@@ -27,8 +27,7 @@ namespace Methodyca.Minigames.Questioniser
     {
         public bool IsAnswerCorrect;
         public string TopicName;
-        public string OptionDescription;
-        //Add image section for top side
+        public Sprite Header;
         public Option[] Options;
 
         public void ResetOption() => IsAnswerCorrect = false;
@@ -40,16 +39,16 @@ namespace Methodyca.Minigames.Questioniser
         public bool IsCorrect;
         public int Id;
         public int Point;
+        public Sprite Feedback;
         [TextArea(4, 10)] public string Text;
-        [TextArea(2, 5)] public string Reaction;
     }
 
     public enum GameState
     {
         None = 0,
-        Busy,
-        Playable,
-        Selectable
+        Busy = 1,
+        Playable = 2,
+        Selectable = 3
     }
 
     public class GameManager : Singleton<GameManager>
@@ -67,6 +66,11 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] List<Topic> topics;
 
         [HideInInspector] public GameState GameState;
+        [HideInInspector] public byte QuestionsAskedCorrectly = 0;
+        [HideInInspector] public byte QuestionsAskedIncorrectly = 0;
+        [HideInInspector] public int GainedInterestPoints = 0;
+        [HideInInspector] public int StoryEventsCompleted = 0;
+
         public event Action OnGameOver = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
         public event Action<bool> OnMulliganStated = delegate { };
@@ -81,18 +85,19 @@ namespace Methodyca.Minigames.Questioniser
         public event Action<Topic> OnTopicChanged = delegate { };
         public event Action<Question> OnQuestionAsked = delegate { };
 
-        int _lastActionPointValue;
-        int _lastInterestPointValue;
+        int _initialTopicCount;
+        int _storyPoint = 5;
         int _actionPoint = 5;
         int _interestPoint = 2;
-        int _storyPoint = 5;
+        int _lastActionPointValue;
+        int _lastInterestPointValue;
         int _extraPointsForNextTurn = 0;
         bool _isImproviserTurn;
         bool[,] _quizAnswerSheet;
+        byte _questionsAskedCorrectlyPerTurn = 0;
         CardBase _currentCard;
         Topic _currentTopic = new Topic("", false, null);
         HashSet<CardBase> _allAvailableCards;
-        HashSet<ItemCard> _correctItemCardsPerTurn = new HashSet<ItemCard>();
 
         public int ActionPoint
         {
@@ -119,9 +124,16 @@ namespace Methodyca.Minigames.Questioniser
             {
                 _lastInterestPointValue = _interestPoint;
                 _interestPoint = value;
-                if (_interestPoint <= 0)
+
+                int difference = _interestPoint - _lastInterestPointValue;
+
+                if (difference > 0)
                 {
-                    _interestPoint = 0;
+                    GainedInterestPoints += difference;
+                }
+
+                if (_interestPoint < 0)
+                {
                     OnInterestPointUpdated?.Invoke(_interestPoint, _lastInterestPointValue);
                     GameOver();
                 }
@@ -159,7 +171,7 @@ namespace Methodyca.Minigames.Questioniser
 
             DiscardAllCards();
             OnMulliganStated?.Invoke(true);
-            _correctItemCardsPerTurn = new HashSet<ItemCard>();
+            _questionsAskedCorrectlyPerTurn = 0;
 
             if (deck.Cards.Count < DRAW_COUNT_PER_TURN)
                 DrawRandomCardFromDeck((byte)deck.Cards.Count);
@@ -198,8 +210,8 @@ namespace Methodyca.Minigames.Questioniser
 
         public void HandleHighFlayer()
         {
-            _extraPointsForNextTurn += _correctItemCardsPerTurn.Count;
-            SendGameMessage($"Added extra <b>{_correctItemCardsPerTurn.Count}</b> action points for the next turn");
+            _extraPointsForNextTurn += _questionsAskedCorrectlyPerTurn;
+            SendGameMessage($"Added extra <b>{_questionsAskedCorrectlyPerTurn}</b> action points for the next turn");
         }
 
         public void HandleImproviser()
@@ -227,17 +239,18 @@ namespace Methodyca.Minigames.Questioniser
             _storyPoint += 3;
             OnTopicClosed?.Invoke(_currentTopic);
             topics.Remove(_currentTopic);
+            StoryEventsCompleted = _initialTopicCount - topics.Count;
             SetRandomTopic();
         }
 
-        public void HandleItemCardQuestionFor(Option answer)
+        public void HandleItemCardQuestionFor(Option option)
         {
             GameState = GameState.Playable;
-            var itemCard = _currentCard as ItemCard;
-            InterestPoint += answer.Point;
+            InterestPoint += option.Point;
 
-            SendGameMessage(answer.Reaction);
-            if (answer.IsCorrect)
+            var itemCard = _currentCard as ItemCard;
+
+            if (option.IsCorrect)
             {
                 for (int i = 0; i < itemCard.Questions.Length; i++)
                 {
@@ -245,7 +258,10 @@ namespace Methodyca.Minigames.Questioniser
                     {
                         ItemCard c = GetPrefabOf(itemCard) as ItemCard;
                         c.Questions[i].IsAnswerCorrect = true;
-                        _correctItemCardsPerTurn.Add(itemCard);
+
+                        QuestionsAskedCorrectly++;
+                        _questionsAskedCorrectlyPerTurn++;
+
                         TickAnswerSheet(_currentTopic.Name, _currentCard.Name);
                         OnChecklistUpdated?.Invoke(_currentTopic.Name, _currentCard.Name);
 
@@ -253,6 +269,10 @@ namespace Methodyca.Minigames.Questioniser
                             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated = true);
                     }
                 }
+            }
+            else
+            {
+                QuestionsAskedIncorrectly++;
             }
         }
 
@@ -298,6 +318,8 @@ namespace Methodyca.Minigames.Questioniser
             deck.Cards = GetSpawnedCards().ToList();
             _allAvailableCards = new HashSet<CardBase>(GetSpawnedCards());
             _quizAnswerSheet = new bool[topics.Count, cards.Count];
+            _initialTopicCount = topics.Count;
+
             yield return new WaitForSeconds(GAME_START_DELAY_TIME);
             SetRandomTopic();
             DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);

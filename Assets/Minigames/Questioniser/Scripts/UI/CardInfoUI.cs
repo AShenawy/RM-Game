@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -8,30 +8,35 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] GameObject root;
         [SerializeField] RectTransform infoPanel;
-        [SerializeField] TextMeshProUGUI detailText;
+        [SerializeField] Image card;
+        [SerializeField] Image info;
 
-        void Start()
+        void OnEnable()
         {
             CardInfo.OnCardInfoCalled += CardInfoCalledHandler;
         }
 
-        void CardInfoCalledHandler(bool isEnabled, string description)
+        void CardInfoCalledHandler(bool isEnabled, CardBase cardBase)
         {
             if (isEnabled)
             {
                 root.SetActive(isEnabled);
-                detailText.text = description;
-                infoPanel.localScale = Vector3.zero;
 
-                Sequence sequence = DOTween.Sequence();
-                sequence.Append(infoPanel.DOScale(Vector3.one, 0.2f))
+                card.sprite = cardBase.CardSprite;
+                info.sprite = cardBase.InfoSprite;
+
+                infoPanel.localScale = Vector3.zero;
+               
+                DOTween.Sequence().Append(infoPanel.DOScale(Vector3.one, 0.2f))
                     .Append(infoPanel.DOShakeRotation(duration: 0.25f, strength: 20, vibrato: 5, fadeOut: false));
             }
             else
+            {
                 root.SetActive(false);
+            }
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
             CardInfo.OnCardInfoCalled -= CardInfoCalledHandler;
         }

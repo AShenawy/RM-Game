@@ -8,21 +8,45 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] GameObject root;
         [SerializeField] Image topicCardImage;
-        [SerializeField] TextMeshProUGUI questionText;
+        [SerializeField] Image header;
+        [SerializeField] Image feedback;
+        [SerializeField] Button doneButton;
+        [SerializeField] Image[] options;
         [SerializeField] TextMeshProUGUI[] answerTexts = new TextMeshProUGUI[3];
 
-        Option[] _answers;
+        Option _selectedOption;
+        Option[] _options;
 
-        public void ClickHandler(int id)
+        public void ClickHandler(int id) // Called from the editor
         {
-            foreach (var answer in _answers)
+            for (int i = 0; i < _options.Length; i++)
             {
-                if (id == answer.Id)
+                if (id == _options[i].Id)
                 {
-                    GameManager.Instance.HandleItemCardQuestionFor(answer);
-                    root.SetActive(false);
+                    _selectedOption = _options[i];
+                    if (_selectedOption.IsCorrect)
+                    {
+                        options[i].color = Color.green;
+                    }
+                    else
+                    {
+                        options[i].color = Color.red;
+                    }
+
+                    feedback.gameObject.SetActive(true);
+                    feedback.sprite = _selectedOption.Feedback;
+
+                    doneButton.gameObject.SetActive(true);
+                    doneButton.onClick.AddListener(DoneClickHandler);
                 }
             }
+        }
+
+        void DoneClickHandler()
+        {
+            GameManager.Instance.HandleItemCardQuestionFor(_selectedOption);
+            feedback.gameObject.SetActive(false);
+            root.SetActive(false);
         }
 
         void Start()
@@ -38,10 +62,9 @@ namespace Methodyca.Minigames.Questioniser
 
         void QuestionAskedHandle(Question question)
         {
-            //CardBase.IsClickable = false;
-            _answers = question.Options;
+            _options = question.Options;
             root.SetActive(true);
-            questionText.text = question.OptionDescription;
+            //header.sprite = question.Header;
 
             for (int i = 0; i < question.Options.Length; i++)
                 answerTexts[i].text = question.Options[i].Text;
@@ -49,6 +72,7 @@ namespace Methodyca.Minigames.Questioniser
 
         void OnDestroy()
         {
+            doneButton.onClick.RemoveAllListeners();
             if (GameManager.InstanceExists)
             {
                 GameManager.Instance.OnQuestionAsked -= QuestionAskedHandle;

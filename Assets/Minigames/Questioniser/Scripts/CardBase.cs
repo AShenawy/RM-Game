@@ -14,13 +14,14 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] new string name;
         [SerializeField] int costPoint;
         [SerializeField] int spawnSize;
-        [SerializeField] [Multiline] string description;
         [SerializeField] Sprite sprite;
+        [SerializeField] Sprite infoSprite;
 
         public string Name => name;
         public int CostPoint { get => costPoint; protected set { costPoint = value; OnCostChanged?.Invoke(costPoint); } }
         public int SpawnSize => spawnSize;
-        public string Description => description;
+        public Sprite CardSprite => sprite;
+        public Sprite InfoSprite => infoSprite;
         public float SpriteSizeX => sprite.bounds.size.x;
 
         protected bool _isThrown;

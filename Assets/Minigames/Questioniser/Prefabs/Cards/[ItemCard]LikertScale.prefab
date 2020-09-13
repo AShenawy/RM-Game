@@ -13,76 +13,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Likert Scale
-  actionPoint: 3
-  interestPoint: 0
   costPoint: 3
   spawnSize: 5
-  description: Likert Scale Description
   sprite: {fileID: 21300000, guid: 2dcfddb543f13cd4bbd6c30ac7e84425, type: 3}
+  infoSprite: {fileID: 21300000, guid: b484b84551cb8674bbcbf35a94779daa, type: 3}
   questions:
   - IsAnswerCorrect: 0
     TopicName: Free Time
-    OptionDescription: Likert Scale
+    Header: {fileID: 0}
     Options:
     - IsCorrect: 0
       Id: 1
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 0
       Id: 2
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 1
       Id: 3
       Point: 4
+      Feedback: {fileID: 0}
       Text: Correct
   - IsAnswerCorrect: 0
     TopicName: Food & Drink
-    OptionDescription: Likert Scale
+    Header: {fileID: 0}
     Options:
     - IsCorrect: 0
       Id: 1
       Point: -2
+      Feedback: {fileID: 0}
       Text: What do you think about your job?
     - IsCorrect: 0
       Id: 2
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 1
       Id: 3
       Point: 4
+      Feedback: {fileID: 0}
       Text: Are you currently employed?
   - IsAnswerCorrect: 0
     TopicName: Travel
-    OptionDescription: Likert Scale
+    Header: {fileID: 0}
     Options:
     - IsCorrect: 0
       Id: 1
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 0
       Id: 2
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 1
       Id: 3
       Point: 4
+      Feedback: {fileID: 0}
       Text: Correct
   - IsAnswerCorrect: 0
     TopicName: Work
-    OptionDescription: Likert Scale
+    Header: {fileID: 0}
     Options:
     - IsCorrect: 0
       Id: 1
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 0
       Id: 2
       Point: -2
+      Feedback: {fileID: 0}
       Text: Wrong
     - IsCorrect: 1
       Id: 3
       Point: 4
+      Feedback: {fileID: 0}
       Text: Correct
 --- !u!1001 &6154170396189033455
 PrefabInstance:

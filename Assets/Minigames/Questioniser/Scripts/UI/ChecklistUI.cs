@@ -12,21 +12,21 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] TextMeshProUGUI[] topicTexts;
         [SerializeField] TextMeshProUGUI[] cardTexts;
 
-        Canvas _checkListCanvas;
+        //Canvas _checkListCanvas;
 
         void Start()
         {
-            _checkListCanvas = gridPanel.GetComponentInParent<Canvas>();
+            //_checkListCanvas = gridPanel.GetComponentInParent<Canvas>();
 
             GameManager.Instance.OnChecklistUpdated += ChecklistUpdatedHandler;
             GameManager.Instance.OnTopicClosed += TopicClosedHandler;
-            GameManager.Instance.OnGameOver += GameOverHandler;
+            //GameManager.Instance.OnGameOver += GameOverHandler;
         }
 
-        void GameOverHandler()
-        {
-            DOTween.Sequence().SetDelay(1).Append(_checkListCanvas.transform.DOMove(Vector2.zero, 1)).Join(_checkListCanvas.transform.DORotate(Vector3.zero,1));
-        }
+        //void GameOverHandler()
+        //{
+        //    DOTween.Sequence().SetDelay(1).Append(_checkListCanvas.transform.DOMove(Vector2.zero, 1)).Join(_checkListCanvas.transform.DORotate(Vector3.zero,1));
+        //}
 
         void TopicClosedHandler(Topic topic)
         {
@@ -64,7 +64,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 GameManager.Instance.OnChecklistUpdated -= ChecklistUpdatedHandler;
                 GameManager.Instance.OnTopicClosed -= TopicClosedHandler;
-                GameManager.Instance.OnGameOver -= GameOverHandler;
+               // GameManager.Instance.OnGameOver -= GameOverHandler;
             }
         }
     }

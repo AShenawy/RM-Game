@@ -7,16 +7,16 @@ namespace Methodyca.Minigames.Questioniser
     {
         [SerializeField] CardBase card;
 
-        public static event Action<bool, string> OnCardInfoCalled = delegate { };
+        public static event Action<bool, CardBase> OnCardInfoCalled = delegate { };
 
         void OnMouseDown()
         {
-            OnCardInfoCalled?.Invoke(true, card.Description);
+            OnCardInfoCalled?.Invoke(true, card);
         }
 
         void OnMouseUp()
         {
-            OnCardInfoCalled?.Invoke(false, "");
+            OnCardInfoCalled?.Invoke(false, null);
         }
     }
 }
