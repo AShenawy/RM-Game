@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Methodyca.Core
 {
+    // This script handles player holding items from inventory to use with world interactions
     public class PlayerItemHandler : MonoBehaviour
     {
         public Item heldItem;

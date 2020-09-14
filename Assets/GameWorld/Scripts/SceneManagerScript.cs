@@ -38,7 +38,7 @@ namespace Methodyca.Core
 
             // Give the player the dimension switcher on Act 2 entry
             Scene loadedScene = SceneManager.GetActiveScene();
-            if (loadedScene.name == "Act 2")
+            if (loadedScene.name == "Act 2" || loadedScene.name == "Act 3")
                 GiveSwitcherItem();
         }
 
