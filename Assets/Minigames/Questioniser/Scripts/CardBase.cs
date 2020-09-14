@@ -16,6 +16,7 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] int spawnSize;
         [SerializeField] Sprite sprite;
         [SerializeField] Sprite infoSprite;
+        [SerializeField] GameObject cardBack;
 
         public string Name => name;
         public int CostPoint { get => costPoint; protected set { costPoint = value; OnCostChanged?.Invoke(costPoint); } }
@@ -60,6 +61,7 @@ namespace Methodyca.Minigames.Questioniser
                 })
                 .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
                 .Append(_transform.DORotate(Vector3.zero, 0.5f))
+                .InsertCallback(0.55f,()=> cardBack.SetActive(false))
                 .Join(_transform.DOMove(_hand.GetTransform.position, 0.5f)).AppendCallback(() =>
                 {
                     _isThrown = false;
@@ -76,10 +78,11 @@ namespace Methodyca.Minigames.Questioniser
                 {
                     _gameManager.GameState = GameState.Busy;
                 })
-                .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.1f))
+                .Append(_transform.DOMoveY(_collider.bounds.extents.y, 0.25f))
                 .AppendCallback(() => _hand.RemoveCard(this))
-                .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.1f))
-                .Append(_transform.DOMove(_deck.GetTransform.position, 0.5f))
+                .Join(_transform.DORotate(new Vector3(0, -180, 0), 0.25f))
+                .InsertCallback(.3f, () => cardBack.SetActive(true))
+                .Append(_transform.DOMove(_deck.GetTransform.position, 0.3f))
                 .AppendCallback(() =>
                 {
                     _deck.AddCard(this);

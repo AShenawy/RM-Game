@@ -1,38 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2599276571824186358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb5a7c18f55bae4eb055bda5c914fda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Gambler
-  actionPoint: 0
-  interestPoint: 2
-  costPoint: 2
-  spawnSize: 2
-  description: 
-  sprite: {fileID: 21300000, guid: 30a02b5ca7b035249a2f729b09efcdfe, type: 3}
---- !u!114 &8986580493073114404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardBase: {fileID: -2599276571824186358}
-  interestPointText: {fileID: 6009374715738357040}
 --- !u!1 &3036838215984732181
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +82,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2599276571824186358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb5a7c18f55bae4eb055bda5c914fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Gambler
+  costPoint: 2
+  spawnSize: 2
+  sprite: {fileID: 21300000, guid: 30a02b5ca7b035249a2f729b09efcdfe, type: 3}
+  infoSprite: {fileID: 0}
+  cardBack: {fileID: 8704260277624349887}
+--- !u!114 &8986580493073114404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardBase: {fileID: -2599276571824186358}
+  interestPointText: {fileID: 6009374715738357040}
 --- !u!1 &7652551988089941494
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,8 +165,8 @@ MeshRenderer:
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -333,6 +332,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1313668066019732701, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2558315732062379536, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
       propertyPath: m_IsActive
@@ -419,6 +423,12 @@ GameObject:
 --- !u!4 &619988347210649362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
     type: 3}
   m_PrefabInstance: {fileID: 6154170396189033455}
   m_PrefabAsset: {fileID: 0}

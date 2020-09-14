@@ -17,6 +17,7 @@ MonoBehaviour:
   spawnSize: 5
   sprite: {fileID: 21300000, guid: 2dcfddb543f13cd4bbd6c30ac7e84425, type: 3}
   infoSprite: {fileID: 21300000, guid: b484b84551cb8674bbcbf35a94779daa, type: 3}
+  cardBack: {fileID: 8704260277624349887}
   questions:
   - IsAnswerCorrect: 0
     TopicName: Free Time
@@ -55,13 +56,13 @@ MonoBehaviour:
       Point: 4
       Feedback: {fileID: 21300000, guid: cc713012f1d81fe4191b8dfc08538fdf, type: 3}
       Text: "How often do you have an alcoholic drink?\r\n[Never] [Less than monthly]
-        [2-4 times a month] [2-3 times a week] [4 or more times a week]\r"
+        [2-4 times a month]\n[2-3 times a week] [4 or more times a week]\r"
     - IsCorrect: 0
       Id: 3
       Point: -2
       Feedback: {fileID: 21300000, guid: 7e6079ec42aa69547aaa9e3ac6975753, type: 3}
       Text: "Which of these drinks do you like the most?\r\n[Green tea] [Hot chocolate]
-        [Tea with lemon] [Beer] [Red Wine] [Vodka] [Absinthe]\r"
+        [Tea with lemon]\n[Beer] [Red Wine] [Vodka] [Absinthe]\r"
   - IsAnswerCorrect: 0
     TopicName: Travel
     Header: {fileID: 21300000, guid: 38ead11c4491e3f44b11e0dc40c8287a, type: 3}
@@ -96,7 +97,7 @@ MonoBehaviour:
       Point: -2
       Feedback: {fileID: 21300000, guid: 257a5bc213dfe354ba949803c8ba03bd, type: 3}
       Text: "How often do you feel like not going to work?\r\n[Almost never] [Less
-        than once a month] [1-3 times a month] [Once a week] [Several times a week]
+        than once a month] [1-3 times a month]\n[Once a week] [Several times a week]
         [All the time!]\r"
     - IsCorrect: 1
       Id: 2
@@ -109,8 +110,8 @@ MonoBehaviour:
       Point: -2
       Feedback: {fileID: 21300000, guid: 977fdf822f170b8449349309fbe7fca0, type: 3}
       Text: "What kind of job would you like to do?\r\n[A job that pays well] [A
-        job that helps people] [A job where I deal with people] \r[A job that allows
-        me to express myself] \r[A job with lots of time off]\r"
+        job that helps people] [A job where I deal with people]\n\r[A job that allows
+        me to express myself]\n[A job with lots of time off]\r"
 --- !u!1001 &6154170396189033455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,6 +241,12 @@ PrefabInstance:
 --- !u!1 &619988347210649360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
     type: 3}
   m_PrefabInstance: {fileID: 6154170396189033455}
   m_PrefabAsset: {fileID: 0}

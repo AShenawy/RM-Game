@@ -17,6 +17,7 @@ MonoBehaviour:
   spawnSize: 5
   sprite: {fileID: 21300000, guid: 81c9390363036334eb76883396c15266, type: 3}
   infoSprite: {fileID: 21300000, guid: a216e623abe00474d8aefad2d97669f1, type: 3}
+  cardBack: {fileID: 8704260277624349887}
   questions:
   - IsAnswerCorrect: 0
     TopicName: Free Time
@@ -27,14 +28,14 @@ MonoBehaviour:
       Point: 4
       Feedback: {fileID: 21300000, guid: fe06121ef45ce314cae5f6c0f2d6a568, type: 3}
       Text: "Which of the following activities have you tried before? \r\n[A pottery
-        class] [Surfing] [Rock climbing] [Basket weaving] [Book binding] [Clay pigeon
-        shooting]\r"
+        class] [Surfing] [Rock climbing] [Basket weaving]\n[Book binding] [Clay pigeon
+        shooting]"
     - IsCorrect: 0
       Id: 2
       Point: -2
       Feedback: {fileID: 21300000, guid: 9a319569d921a534186a5b0eb9699a23, type: 3}
       Text: "Why do you like playing sports over watching them? \r\n[I prefer to
-        be active] [I prefer to interact with others] [It\u2019s more interesting
+        be active] [I prefer to interact with others]\n[It\u2019s more interesting
         to me] [I don\u2019t like playing sports]\r"
     - IsCorrect: 0
       Id: 3
@@ -51,7 +52,7 @@ MonoBehaviour:
       Point: 4
       Feedback: {fileID: 21300000, guid: 68ad631e0f9a9d242b5382bb48462aff, type: 3}
       Text: "Which cuisines have you tried before and would like to try again? \r\n[French]
-        [Italian] [Ukrainian] [Georgian] [Mexican] [North American] [Chinese] [Japanese]\r"
+        [Italian] [Ukrainian] [Georgian] [Mexican]\n[North American] [Chinese] [Japanese]\r"
     - IsCorrect: 0
       Id: 2
       Point: -2
@@ -100,8 +101,10 @@ MonoBehaviour:
       Id: 2
       Point: 4
       Feedback: {fileID: 21300000, guid: 20fd818905c1a3b4b85c5d6862c27662, type: 3}
-      Text: Which of these professions would you consider for your own career? [Engineer]
-        [Teacher] [Vet] [Nurse] [Social worker] [Politician]
+      Text: 'Which of these professions would you consider for your own career?
+
+        [Engineer]
+        [Teacher] [Vet] [Nurse] [Social worker] [Politician]'
     - IsCorrect: 0
       Id: 3
       Point: -2
@@ -237,6 +240,12 @@ PrefabInstance:
 --- !u!1 &619988347210649360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
     type: 3}
   m_PrefabInstance: {fileID: 6154170396189033455}
   m_PrefabAsset: {fileID: 0}

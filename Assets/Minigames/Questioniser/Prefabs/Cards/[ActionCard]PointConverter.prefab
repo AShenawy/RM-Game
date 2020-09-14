@@ -1,40 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3254264143788521093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardBase: {fileID: 8247712159564594456}
-  interestPointText: {fileID: 3133677962174767037}
---- !u!114 &8247712159564594456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619988347210649360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14a9938ea5e36d4dac02d978bbe88c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Point Converter
-  actionPoint: 0
-  interestPoint: 2
-  costPoint: 2
-  spawnSize: 1
-  description: Convert 10 interest points to 5 action points
-  sprite: {fileID: 21300000, guid: 227357022a726ed41b54d28c79deb699, type: 3}
-  affectedActionPoint: 5
-  affectedInterestPoint: -10
 --- !u!1 &3515403382355832126
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +288,38 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &3254264143788521093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afdd4be1bb07d04ab8b87278613a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardBase: {fileID: 8247712159564594456}
+  interestPointText: {fileID: 3133677962174767037}
+--- !u!114 &8247712159564594456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14a9938ea5e36d4dac02d978bbe88c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Point Converter
+  costPoint: 2
+  spawnSize: 1
+  sprite: {fileID: 21300000, guid: 227357022a726ed41b54d28c79deb699, type: 3}
+  infoSprite: {fileID: 0}
+  cardBack: {fileID: 8704260277624349887}
 --- !u!1001 &6154170396189033455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,6 +331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313668066019732701, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2558315732062379536, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
@@ -421,6 +423,12 @@ GameObject:
 --- !u!4 &619988347210649362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
     type: 3}
   m_PrefabInstance: {fileID: 6154170396189033455}
   m_PrefabAsset: {fileID: 0}

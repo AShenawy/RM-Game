@@ -17,6 +17,7 @@ namespace Methodyca.Minigames.Questioniser
 
         Option _selectedOption;
         Option[] _options;
+        readonly Vector2 _optionPanelPaddingSize = new Vector2(75, 50);
 
         public void ClickHandler(int id) // Called from the editor
         {
@@ -53,6 +54,7 @@ namespace Methodyca.Minigames.Questioniser
 
             GameManager.Instance.HandleItemCardQuestionFor(_selectedOption);
             feedback.gameObject.SetActive(false);
+            doneButton.gameObject.SetActive(false);
             root.SetActive(false);
         }
 
@@ -74,7 +76,13 @@ namespace Methodyca.Minigames.Questioniser
             header.sprite = question.Header;
 
             for (int i = 0; i < question.Options.Length; i++)
+            {
                 answerTexts[i].text = question.Options[i].Text;
+                answerTexts[i].ForceMeshUpdate();
+
+                Vector2 textSize = answerTexts[i].GetRenderedValues(false);
+                options[i].rectTransform.sizeDelta = textSize + _optionPanelPaddingSize;
+            }
         }
 
         void OnDestroy()
