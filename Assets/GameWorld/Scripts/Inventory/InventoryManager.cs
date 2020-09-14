@@ -58,5 +58,10 @@ namespace Methodyca.Core
             // invoke event
             itemChanged?.Invoke();
         }
+
+        public void GiveSwitcherItem()
+        {
+
+        }
     }
 }

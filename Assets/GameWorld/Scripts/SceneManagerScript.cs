@@ -35,6 +35,16 @@ namespace Methodyca.Core
             SceneManager.LoadScene(sceneName);
             // TODO: Load and unload scenes behind a loading screen
             // loadingScreen = Object.Instantiate(Resources.Load("Loading Screen") as GameObject);
+
+            // Give the player the dimension switcher on Act 2 entry
+            Scene loadedScene = SceneManager.GetActiveScene();
+            if (loadedScene.name == "Act 2")
+                GiveSwitcherItem();
+        }
+
+        void GiveSwitcherItem()
+        {
+            InventoryManager.instance.GiveSwitcherItem();
         }
 
         public void LoadSceneAdditive(string sceneName)
