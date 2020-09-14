@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.Questioniser
     {
         public static GenderManager Current;
 
-        public bool IsMale { get; set; }
+        public bool IsMale { get; set; } = false;
 
         private void Awake()
         {

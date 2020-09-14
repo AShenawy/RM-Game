@@ -28,13 +28,13 @@ namespace Methodyca.Minigames.Questioniser
 
                     if (_selectedOption.IsCorrect)
                     {
-                        options[i].color = Color.green;
+                        options[i].color = new Color(0.3f, 0.92f, 0.43f, 1);
                         profile.SetActive(true);
                     }
                     else
                     {
-                        options[i].color = Color.red;
-                        profile.SetActive(true);
+                        options[i].color = new Color(0.9f, 0.4f, 0.45f, 1);
+                        profile.SetActive(false);
                     }
 
                     feedback.gameObject.SetActive(true);
@@ -48,6 +48,9 @@ namespace Methodyca.Minigames.Questioniser
 
         void DoneClickHandler()
         {
+            foreach (var option in options)
+                option.color = Color.white;
+
             GameManager.Instance.HandleItemCardQuestionFor(_selectedOption);
             feedback.gameObject.SetActive(false);
             root.SetActive(false);

@@ -22,21 +22,21 @@ MonoBehaviour:
     TopicName: Free Time
     Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
+      Point: 5
+      Feedback: {fileID: 21300000, guid: 0e6c1ded8c996654d8f542d874afa124, type: 3}
+      Text: What do you enjoy about the hobbies you currently do?
     - IsCorrect: 0
       Id: 2
       Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
-    - IsCorrect: 1
+      Feedback: {fileID: 21300000, guid: 512d6c509a214614384f0f70bd4b276b, type: 3}
+      Text: How do you feel about drawing?
+    - IsCorrect: 0
       Id: 3
-      Point: 5
-      Feedback: {fileID: 0}
-      Text: Correct
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 994f85ed331b12942b0193550fc36a89, type: 3}
+      Text: "Why don\u2019t you take up something new?"
   - IsAnswerCorrect: 0
     TopicName: Food & Drink
     Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
@@ -44,18 +44,19 @@ MonoBehaviour:
     - IsCorrect: 0
       Id: 1
       Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
-    - IsCorrect: 0
-      Id: 2
-      Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
+      Feedback: {fileID: 21300000, guid: 1fa61435ec950bf48ae760a9582da775, type: 3}
+      Text: What do you think about wine? Or do you prefer beer? Why?
     - IsCorrect: 1
-      Id: 3
+      Id: 2
       Point: 5
-      Feedback: {fileID: 0}
-      Text: Correct
+      Feedback: {fileID: 21300000, guid: 3b97fdcf034aed2438109274d9184df8, type: 3}
+      Text: "What\u2019s your attitude to trying new things when it comes to food
+        and drink?"
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1da4eea1ef440b047beb509f1291d1b6, type: 3}
+      Text: So...do you like food?
   - IsAnswerCorrect: 0
     TopicName: Travel
     Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
@@ -63,37 +64,37 @@ MonoBehaviour:
     - IsCorrect: 0
       Id: 1
       Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
-    - IsCorrect: 0
-      Id: 2
-      Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
+      Feedback: {fileID: 21300000, guid: 02fe76356bc547d4983c8bf073d6f5ff, type: 3}
+      Text: What kind of things do you like to do?
     - IsCorrect: 1
-      Id: 3
+      Id: 2
       Point: 5
-      Feedback: {fileID: 0}
-      Text: Correct
+      Feedback: {fileID: 21300000, guid: d7e164adac179ff43baed7ef12987e82, type: 3}
+      Text: Tell me about what you like most about travelling.
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1874b9963fd48cb43be819a5aa16aa23, type: 3}
+      Text: Describe your best holiday.
   - IsAnswerCorrect: 0
     TopicName: Work
     Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
     Options:
-    - IsCorrect: 0
+    - IsCorrect: 1
       Id: 1
-      Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
+      Point: 5
+      Feedback: {fileID: 21300000, guid: 1d25cc1817e71b041b8150f836d812a6, type: 3}
+      Text: How do you feel about your work situation?
     - IsCorrect: 0
       Id: 2
       Point: -3
-      Feedback: {fileID: 0}
-      Text: Wrong
-    - IsCorrect: 1
+      Feedback: {fileID: 21300000, guid: 1735ebf54c879554eb8c47ae938a1ff3, type: 3}
+      Text: Are you happy with your work?
+    - IsCorrect: 0
       Id: 3
-      Point: 5
-      Feedback: {fileID: 0}
-      Text: Correct
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 852361756839494489e5a319bab23205, type: 3}
+      Text: "Where are you going to be in three years\u2019 time?"
 --- !u!1001 &6154170396189033455
 PrefabInstance:
   m_ObjectHideFlags: 0
