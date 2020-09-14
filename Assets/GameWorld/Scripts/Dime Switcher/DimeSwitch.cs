@@ -7,9 +7,7 @@ namespace Methodyca.Core
     {
         public void OnClicked()
         {
-            // moving player isn't good. The target room is inactive. need to do it through game manager instead
-            //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().DoSwitch();
-            GetComponentInChildren<SwapImageUI>().SwapImage();
+            GameManager.instance.SwitchDimension();
         }
     }
 }

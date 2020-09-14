@@ -315,6 +315,29 @@ namespace Methodyca.Core
                     break;
             }
         }
+
+        public void SwitchDimension()
+        {
+            // check if player can actually switch
+            if (!player.GetComponent<PlayerMovement>().canDimeSwitch)
+            {
+                DialogueHandler.instance.DisplayDialogue("I can't switch dimensions right now.");
+                return;
+            }
+
+            // find the corresponding room in the rooms list according to active state and location and teleport to it
+            foreach (GameObject room in rooms)
+            {
+                if (room.activeSelf == false && room.transform.position.z == roomCurrent.transform.position.z)
+                {
+                    GoToRoom(room);
+                    break;
+                }
+            }
+
+            // Swap the UI image for dime switcher on successful switch
+            inventoryPanel.GetComponentInChildren<SwapImageUI>(true).SwapImage();
+        }
     }
     
     public enum Interaction { Inspect, Interact, PickUp };
