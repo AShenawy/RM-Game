@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8471056654142379885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8471056654142379875}
+  - component: {fileID: 8471056654142379872}
+  - component: {fileID: 8471056654142379874}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8471056654142379875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471056654142379885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &8471056654142379872
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471056654142379885}
+  m_Enabled: 0
+--- !u!114 &8471056654142379874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471056654142379885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d21429f932b6439ab183fd607f218ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 5961300a231ec4f2bba88c1e79885237, type: 3}
+    loop: 1
+    volume: 0.51
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: GameTheme
+    clip: {fileID: 8300000, guid: d66151ba9d7734e84a3cca2f3b666269, type: 3}
+    loop: 1
+    volume: 0.51
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 0}
+    loop: 1
+    volume: 0.51
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: Hover
+    clip: {fileID: 0}
+    loop: 1
+    volume: 0.51
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}

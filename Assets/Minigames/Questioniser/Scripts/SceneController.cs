@@ -24,6 +24,9 @@ namespace Methodyca.Minigames.Questioniser
         {
             var opr = SceneManager.LoadSceneAsync(index);
             loadProgressCanvas.SetActive(true);
+            //Debug.Log("swtiching Scene");
+            FindObjectOfType<SoundManager>().Stop("Theme");
+            FindObjectOfType<SoundManager>().Play("GameTheme");
 
             while (!opr.isDone)
             {
