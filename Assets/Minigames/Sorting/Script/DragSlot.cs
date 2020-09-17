@@ -12,54 +12,44 @@ namespace Methodyca.Minigames.SortGame
     // class naming
     public class DragSlot : MonoBehaviour, IDropHandler
     {
-        public int points = 0;
+        [HideInInspector]public int points = 0;
         private int goal = 5;
-        public float stun;
+        //public float stun;
         public GameObject crystalStation;//The charging station either pink or blue.
         public GameObject placementParent; // the parent of the items placed in the box
-        public GameObject[] listBox ;//the box to show how its removed.
-        public GameObject glow;//the halo effect
-
-        
-        
-
-        // public GameObject boxQuali;//for the sound
-        // public GameObject boxQuanti;//for the sound. 
+        [HideInInspector]public GameObject[] listBox ;//the box to show how its removed.
+        [HideInInspector]public GameObject glow;//the halo effect 
         private RectTransform anchored;//the position of the snapping. 
-        public RectTransform levitate;//for the floating crystals.
-        public RectTransform shinnny; 
 
-         
-        public Sprite[] crystalPhases;//The array of crystals charging. 
-
-        public string boxType;//The tag name for the boxes in the game either QA or QN.
-        public string box;
-        
-
-        
-
-        public bool sorted;
-        public bool done;
-        public bool almost;
-        
-        public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
-        //public List <GameObject> listBoxi;
-        public Vector3 shift;
-
+        //The levitation for the crytsals. 
+        [HideInInspector]public RectTransform levitate;//for the floating crystals.
+        [HideInInspector]public RectTransform shinnny;//stored position for the rect transfrom.  
+        [HideInInspector]public Vector3 temPos;
+      
         //inputs for the levitations
         float degreePerSecond =20f;
         public float amp;
         private float temp;
 
-        //storing transform values 
-        //Vector3 posOffset = new Vector3();
-        public Vector3 temPos;
-        public Vector3 posOffset;
+        [HideInInspector]public Sprite[] crystalPhases;//The array of crystals charging. 
+
+        public string boxType;//The tag name for the boxes in the game either QA or QN.
+        [HideInInspector]public string box;
+
+        //bools for the game manager. 
+        [HideInInspector]public bool sorted;
+        [HideInInspector]public bool done;
+        [HideInInspector]public bool almost;
+        
+        public List <GameObject> inTheBox = new List<GameObject>();//The list for items dropped.
+      
+        [HideInInspector]public Vector3 shift;//the distance between the items in box,for spacing. 
+
+
 
         // sound manager
         SoundManager soundMan;
-        // public DragSlot junk;
-        // public DragSlot junkie;
+      
 
         private void Start()
         {

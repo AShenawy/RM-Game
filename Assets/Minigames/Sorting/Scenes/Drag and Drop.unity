@@ -380,18 +380,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 4d77d30f070ca468ea8a8b316987caf1, type: 3}
   inbox: {fileID: 21300000, guid: 8099283bc3716440e85dd4a67953e1eb, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 220}
-  shazam: {x: 278, y: 132}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 220}
+  onTableShazam: {x: 278, y: 132}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &65347811
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -633,18 +631,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: bba3e080be0b24370ac2fc653e2e8fe3, type: 3}
   inbox: {fileID: 21300000, guid: 4a380e24e42714f1e96ce24e66174fe9, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 78, y: 36}
-  shazam: {x: 78, y: 36}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 78, y: 36}
+  onTableShazam: {x: 78, y: 36}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &111672364
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -955,18 +951,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 2ee27890307e94e09ba28e1eff5b2684, type: 3}
   inbox: {fileID: 21300000, guid: 1547924cac6d84715953e37f4a4edb1a, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 133, y: 200}
-  shazam: {x: 121, y: 256}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 133, y: 200}
+  onTableShazam: {x: 121, y: 256}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!1 &206842102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,7 +2571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  stun: 0
   crystalStation: {fileID: 545214127}
   placementParent: {fileID: 668920366}
   listBox:
@@ -2589,6 +2582,8 @@ MonoBehaviour:
   glow: {fileID: 588210949}
   levitate: {fileID: 588210950}
   shinnny: {fileID: 588210950}
+  temPos: {x: 0, y: 0, z: 0}
+  amp: 0.4
   crystalPhases:
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
@@ -2603,9 +2598,6 @@ MonoBehaviour:
   almost: 0
   inTheBox: []
   shift: {x: -3, y: -6, z: 0}
-  amp: 0.4
-  temPos: {x: 0, y: 0, z: 0}
-  posOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &572454817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,18 +2688,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: f0e3ddac33d014ed0b4c3d9fe70c08d1, type: 3}
   inbox: {fileID: 21300000, guid: c3cc8a8d04eef4ab2bd1a53decf66031, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 241, y: 166}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 241, y: 166}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &572454822
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2979,7 +2969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &606917050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3049,18 +3039,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 715231145}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: b4d48e2f9fb4a40369bf5846dad86747, type: 3}
   inbox: {fileID: 21300000, guid: d3bcf2a95492c4a96aeddb6ab3e13bea, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 284, y: 128}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 284, y: 128}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &606917054
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3633,7 +3621,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  stun: 0
   crystalStation: {fileID: 1611874111}
   placementParent: {fileID: 1710780501}
   listBox:
@@ -3645,6 +3632,8 @@ MonoBehaviour:
   glow: {fileID: 563590946}
   levitate: {fileID: 563590947}
   shinnny: {fileID: 563590947}
+  temPos: {x: 0, y: 0, z: 0}
+  amp: 0.4
   crystalPhases:
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
@@ -3659,9 +3648,6 @@ MonoBehaviour:
   almost: 0
   inTheBox: []
   shift: {x: 3, y: -10, z: 0}
-  amp: 0.4
-  temPos: {x: 0, y: 0, z: 0}
-  posOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &864065508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,18 +4132,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 182c7d8cc29554460bc0c15dc649c746, type: 3}
   inbox: {fileID: 21300000, guid: 97aa64911ff004bb6b1570f63b9e3ad2, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 194, y: 228}
-  shazam: {x: 229, y: 105}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 194, y: 228}
+  onTableShazam: {x: 229, y: 105}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!114 &911425033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4454,18 +4438,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: e5e29f50e79df4621a291c4b117ee922, type: 3}
   inbox: {fileID: 21300000, guid: 5576336ea2957475791647919b53fddb, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 215, y: 222}
-  shazam: {x: 273, y: 149}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 215, y: 222}
+  onTableShazam: {x: 273, y: 149}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1058094589
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5018,7 +5000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1140844604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5088,18 +5070,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: fe53c865eb6f445e78404200e44fb609, type: 3}
   inbox: {fileID: 21300000, guid: fd52c37670273474b9066633368b57f6, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 265, y: 122}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 265, y: 122}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1140844608
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5267,18 +5247,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 62d5911fae31f4557aaa1bb13e2cf6b1, type: 3}
   inbox: {fileID: 21300000, guid: a9449c597827b49e1809e8c27775d4db, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 167, y: 223}
-  shazam: {x: 197, y: 225}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 167, y: 223}
+  onTableShazam: {x: 197, y: 225}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1147040333
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5707,7 +5685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1207372949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5777,18 +5755,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 83f7172d0736e49bbaed8847b5f7ca87, type: 3}
   inbox: {fileID: 21300000, guid: f1e125667d1f4453fa384a70bce5f42a, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 286, y: 134}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 286, y: 134}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1207372953
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6234,18 +6210,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 715231145}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 6faf4a5b254e14632b383cb31c5ad3fd, type: 3}
   inbox: {fileID: 21300000, guid: 5fed2c934baeb4780880bb221372ef40, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 287, y: 135}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 287, y: 135}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1429622122
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6927,18 +6901,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: da742d8ac106341bfacc2e856ce240c4, type: 3}
   inbox: {fileID: 21300000, guid: 7c86ab57540ec408d82ef593b423441d, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 176, y: 229}
-  shazam: {x: 216, y: 178}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 176, y: 229}
+  onTableShazam: {x: 216, y: 178}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1601090189
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8223,7 +8195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1968638401
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8293,18 +8265,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 591349096}
-  begin: {fileID: 0}
   box: {fileID: 0}
   host: 
-  vistor: {fileID: 0}
+  tabledItems: {fileID: 0}
   thisniccur: {fileID: 0}
   ontable: {fileID: 21300000, guid: 9b364c705d3a044cbbf36df416efa443, type: 3}
   inbox: {fileID: 21300000, guid: 7ea151612ef4147a3a669c9197791d0c, type: 3}
   swap: {fileID: 0}
-  sizer: {x: 161, y: 217}
-  shazam: {x: 299, y: 136}
-  arrive: {x: 0, y: 0, z: 0}
-  beat: {x: 0, y: 0, z: 0}
+  inboxSizer: {x: 161, y: 217}
+  onTableShazam: {x: 299, y: 136}
+  storedRectPos: {x: 0, y: 0, z: 0}
 --- !u!225 &1968638405
 CanvasGroup:
   m_ObjectHideFlags: 0

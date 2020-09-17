@@ -15,7 +15,7 @@ namespace Methodyca.Minigames.SortGame
         [SerializeField] private Canvas canvas;
 
         private RectTransform rectTransform;//Transfrom of the item selected.
-        public RectTransform begin;
+        //public RectTransform begin;
         private CanvasGroup canvasGroup;//A component needed for the raycast.
         public GameObject box;//The boxtag either QA or QN for on the table. 
         
@@ -25,23 +25,19 @@ namespace Methodyca.Minigames.SortGame
         
         //The switch
         public string host;//the child of the box. 
-        public GameObject vistor;//the table. 
+        public GameObject tabledItems;//the table. 
         public GameObject thisniccur;//this game object 
-        public Sprite ontable;
-        public Sprite inbox;
-        public Sprite swap;//the operation that swaps. 
-        [HideInInspector]public Vector2 sizer;
-        [HideInInspector]public Vector2 shazam;
+        [HideInInspector]public Sprite ontable;
+        [HideInInspector]public Sprite inbox;
+        [HideInInspector]public Sprite swap;//the operation that swaps. 
 
-        public Vector3 arrive;
-        public Vector3 beat;
+        //Resizer for the sprites both inside and outside. 
+        [HideInInspector]public Vector2 inboxSizer;   
+        [HideInInspector]public Vector2 onTableShazam;
 
-        
-        //bool turnOn;// for the iteas to turn on. 
+        //Stored position for the gameobject;
+        [HideInInspector]public Vector3 storedRectPos;
 
-        //Float created for the double click function. 
-        private float lastClickTime;
-        private const float doubleClickTime = .25f;
 
         // Sound manager
         SoundManager soundMan;
@@ -51,8 +47,8 @@ namespace Methodyca.Minigames.SortGame
             rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            vistor = GameObject.Find("Draggable Items");
-            beat = rectTransform.position;
+            tabledItems = GameObject.Find("Draggable Items");
+            storedRectPos = rectTransform.position;
             soundMan = FindObjectOfType<SoundManager>();
         }
         
@@ -87,7 +83,7 @@ namespace Methodyca.Minigames.SortGame
             if(!this.gameObject == box)
             {
                 Debug.Log("Back on the table");
-                rectTransform.position = arrive + beat;
+                rectTransform.position = storedRectPos;
 
             }
 
@@ -122,13 +118,13 @@ namespace Methodyca.Minigames.SortGame
 
         }
 
-        public void InsideBox(GameObject host, Vector3 shift)    // ------ rename to InsideBox
+        public void InsideBox(GameObject host, Vector3 shift)    // ------ how the image swithces inside the box
         {
             
             if(swap = ontable)
             swap = inbox; 
             transform.parent = host.transform;
-            this.gameObject.GetComponent<RectTransform>().sizeDelta = sizer;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
         
             //this swtiches the images
             GameObject instance = thisniccur;
@@ -137,12 +133,12 @@ namespace Methodyca.Minigames.SortGame
 
         }
 
-        public void OutsideBox(GameObject parent)   // ------- rename to OutsideBox
+        public void OutsideBox(GameObject parent)   // ------- how the images switches outside the box 
         {
             if(swap = inbox)
             swap = ontable;
-            transform.parent = vistor.transform;
-            this.gameObject.GetComponent<RectTransform>().sizeDelta = shazam;
+            transform.parent = tabledItems.transform;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = onTableShazam;
 
         }
         void Update()
