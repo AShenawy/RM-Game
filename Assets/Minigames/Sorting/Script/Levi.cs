@@ -20,8 +20,8 @@ namespace Methodyca.Minigames.SortGame
 
        void Start ()
        {
-           used = this.gameObject.GetComponent<RectTransform>();
-           temp = used.position.y;
+           //used = this.gameObject.GetComponent<RectTransform>();
+           //temp = used.position.y;
            //off.Set(used.position.x, used.position.y, used.position.z);
        }
 
@@ -40,17 +40,12 @@ namespace Methodyca.Minigames.SortGame
                     //Shenway();
                 }
 
-            //Le();    
+            Le();    
         }
         public void Le()
         {
-           
-            tempPos = lick.position;
             tempPos.y = temp + amplitude * Mathf.Sin(speed* Time.time);
             lick.position = tempPos; //removing this makes the position stay the same.
-            //used.position = tempPos; 
-            used.position = lick.position;
-            //tempPos = off;
             off = lick.position;
 
         }

@@ -32,15 +32,12 @@ namespace Methodyca.Minigames.SortGame{
         public float y;//to convert vector to float 
         public float tick;//for the speed.
         public float gain;//like a compressor
-        public float duh ;
+      
 
-        //public Vector3 saz;
-        public Vector3 pos; //for the bounce. 
+       
         public Vector3 temp = new Vector3();
         public RectTransform rig;
-        public RectTransform him;
-
-        //public string boxType;
+        
         
         
 
@@ -60,7 +57,7 @@ namespace Methodyca.Minigames.SortGame{
             audioSource.playOnAwake = false;
             audioSource.spatialBlend = 0; //force 2D sound
             audioSource.Stop(); //avoids audiosource from starting to play automatically
-            rig = this.gameObject.GetComponent<RectTransform>();
+            //rig = this.gameObject.GetComponent<RectTransform>();
             soundMan = FindObjectOfType<SoundManager>();
             
         }
@@ -71,27 +68,22 @@ namespace Methodyca.Minigames.SortGame{
             
             
             if(bling.done == true)
+            
             {
-                    //soundMan.Play("staticL");
+                    
                 if(!audioSource.isPlaying)
                 {
                     audioSource.Play();
                     timeIndex = 0;  //resets timer before playing sound
                     Debug.Log("Keys are playing");
                 }
-                // 
-                // {
-                //     audioSource.Stop();
-                //     Debug.Log("Stop Keys");
-                
-                // }   
             }
             if(jinx.completed==true)
             {
                 audioSource.Stop();
             }
-            
-             Shake(audioSource);
+            Ossci();
+            Shake(audioSource);
             
         }
     
@@ -124,10 +116,14 @@ namespace Methodyca.Minigames.SortGame{
         public void Shake(AudioSource audioSource) 
         {
             y = rig.position.y;
-            duh = y /20.94f ;
-            volumeAux = duh - 17.5f;
+            volumeAux = y;
             audioSource.volume = volumeAux;
-            Debug.Log(duh);
+        }  
+        
+        public void Ossci()
+        {
+            temp.y = gain * Mathf.Sin (tick* Time.fixedTime);
+            rig.position = temp; //removing this makes the position stay the same.
         }
 
         
