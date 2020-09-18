@@ -100,7 +100,6 @@ namespace Methodyca.Minigames.Observation
 
         public void RestartGame()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
