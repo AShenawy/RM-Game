@@ -54,7 +54,7 @@ namespace Methodyca.Minigames.Observation
             {
                 TaskView.InstantHide();
                 ServiceView.SetVisibility(true);
-                return;
+                //return;   // this line prevented last day from being recorded in visitor counters in following loop
             }
 
             for (int i = 0; i < allCounters.Length; i++)
