@@ -114,7 +114,8 @@ namespace Methodyca.Minigames.Questioniser
         public void SelectCard()
         {
             _transform.DOScale(1.25f, 0.2f);
-            Debug.Log("Card Selected");
+            FindObjectOfType<SoundManager>().Play("ThinkingSFX");
+            //Debug.Log("Card Selected");
         }
 
         public void DeselectCard()
@@ -125,7 +126,8 @@ namespace Methodyca.Minigames.Questioniser
         public void SetOutlineColorAs(Color color)
         {
             _renderer.material.SetColor(outlineColor, color);
-            Debug.Log("Setting Outline Colors");
+            //Debug.Log("Setting Outline Colors");
+            FindObjectOfType<SoundManager>().Play("CardHitting");
             
         }
 
@@ -207,6 +209,8 @@ namespace Methodyca.Minigames.Questioniser
             {
                 ReturnHand();
                 _gameManager.SendGameMessage("Not enough points");
+                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+                
             }
         }
 

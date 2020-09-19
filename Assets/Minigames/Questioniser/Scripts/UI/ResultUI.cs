@@ -33,10 +33,14 @@ namespace Methodyca.Minigames.Questioniser
             else if (GameManager.Instance.InterestPoint < 0)
             {
                 gameOverPanel.sprite = outOfInterestPoint;
+                FindObjectOfType<SoundManager>().Stop("Theme");
+                FindObjectOfType<SoundManager>().Play("GameOverLose");
             }
             else
             {
                 gameOverPanel.sprite = outOfCard;
+                FindObjectOfType<SoundManager>().Stop("Theme");
+                FindObjectOfType<SoundManager>().Play("GameOverLose");
             }
 
             questionsAskedCorrectly.text = GameManager.Instance.QuestionsAskedCorrectly.ToString();

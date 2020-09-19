@@ -34,9 +34,9 @@ namespace Methodyca.Minigames.Questioniser
         public void AddCard(CardBase card)
         {
             if (!Cards.Contains(card))
+            //Debug.Log("Adding Cards");
             FindObjectOfType<SoundManager>().Play("CardShuffledSFX");
                 Cards.Add(card);
-            Debug.Log("Adding Cards");
         }
 
         public void RemoveCard(CardBase card)

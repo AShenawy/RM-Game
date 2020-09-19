@@ -51,9 +51,9 @@ namespace Methodyca.Minigames.Questioniser
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);
             posX = Camera.main.ScreenToViewportPoint(Input.mousePosition);//x position of the mouse
-            x = posX.x;//converting the vec2 to float 
+            x = posX.x -0.5f;//converting the vec2 to float 
             s.Source.panStereo = x;//float adjusting the pan of the audio clip.
-            Debug.Log(posX);
+            
         }
         void Start()
         {

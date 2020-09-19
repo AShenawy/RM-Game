@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.Questioniser
         [Range(.1f, 3f)]
         public float pitch;
 
-        [Range(-1f, 1f)]
+        [Range(0.1f, 0.7f)]
         public float pan;
 
         [HideInInspector]

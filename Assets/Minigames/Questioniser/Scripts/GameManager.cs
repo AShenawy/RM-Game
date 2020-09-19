@@ -343,6 +343,8 @@ namespace Methodyca.Minigames.Questioniser
                     for (int j = 0; j < cards.Count; j++)
                         if (cardName == cards[j].Name)
                             _quizAnswerSheet[i, j] = true;
+            //Debug.Log("We gat Money");
+            FindObjectOfType<SoundManager>().Play("Points");
         }
 
         byte GetCorrectAnswerCountFor(string topicName)

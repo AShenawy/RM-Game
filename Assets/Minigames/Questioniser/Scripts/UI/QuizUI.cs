@@ -45,6 +45,8 @@ namespace Methodyca.Minigames.Questioniser
                     doneButton.onClick.AddListener(DoneClickHandler);
                 }
             }
+            FindObjectOfType<SoundManager>().Play("Click");
+            //Debug.Log("Call");
         }
 
         void DoneClickHandler()
