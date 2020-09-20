@@ -54,16 +54,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 5961300a231ec4f2bba88c1e79885237, type: 3}
+    clip: {fileID: 8300000, guid: c04f209f3430947eb9b3f54965efec4d, type: 3}
     loop: 1
-    volume: 0.51
+    volume: 0.35
     pitch: 1
     pan: 0
     Source: {fileID: 0}
   - name: GameTheme
-    clip: {fileID: 8300000, guid: d66151ba9d7734e84a3cca2f3b666269, type: 3}
+    clip: {fileID: 8300000, guid: e2f5103c468b54891a4d78ccab8416a5, type: 3}
     loop: 1
-    volume: 0.51
+    volume: 0.35
     pitch: 1
     pan: 0
     Source: {fileID: 0}
@@ -125,6 +125,13 @@ MonoBehaviour:
     Source: {fileID: 0}
   - name: Points
     clip: {fileID: 8300000, guid: 5dac5082c589c44ef9aa0fdf9ba6e76c, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: ActionPoints
+    clip: {fileID: 8300000, guid: 2b3fdb0d4e63a4527aada3be9625f998, type: 3}
     loop: 0
     volume: 0.2
     pitch: 1

@@ -29,7 +29,7 @@ namespace Methodyca.Minigames.Questioniser
          
         }
 
-        public void OnPointerEnter(PointerEventData eventData)//HoveringSound
+        public void OnPointerEnter(PointerEventData eventData)
         {
             _transform.DOScale(1.1f, 0.15f);
             FindObjectOfType<SoundManager>().Play("Hover");

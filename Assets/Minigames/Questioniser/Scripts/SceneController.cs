@@ -13,6 +13,7 @@ namespace Methodyca.Minigames.Questioniser
         public void ChangeScene(int index)
         {
             StartCoroutine(LoadSceneCor(index));
+            
         }
 
         void Start()
@@ -33,7 +34,6 @@ namespace Methodyca.Minigames.Questioniser
                 var progress = Mathf.Clamp01(opr.progress / .9f);
 
                 loadProgressSlider.value = progress;
-
                 yield return null;
             }
 

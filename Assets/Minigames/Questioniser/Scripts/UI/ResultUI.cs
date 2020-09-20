@@ -34,12 +34,14 @@ namespace Methodyca.Minigames.Questioniser
             {
                 gameOverPanel.sprite = outOfInterestPoint;
                 FindObjectOfType<SoundManager>().Stop("Theme");
+                FindObjectOfType<SoundManager>().Stop("GameTheme");
                 FindObjectOfType<SoundManager>().Play("GameOverLose");
             }
             else
             {
                 gameOverPanel.sprite = outOfCard;
                 FindObjectOfType<SoundManager>().Stop("Theme");
+                FindObjectOfType<SoundManager>().Stop("GameTheme");
                 FindObjectOfType<SoundManager>().Play("GameOverLose");
             }
 

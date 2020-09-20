@@ -184,6 +184,7 @@ namespace Methodyca.Minigames.Questioniser
                 OnImproviserRaised?.Invoke(_isImproviserTurn = false);
 
             ActionPoint = ACTION_POINT_PER_TURN + _extraPointsForNextTurn;
+            FindObjectOfType<SoundManager>().Play("ActionPoints");
             _extraPointsForNextTurn = 0;
         }
 
@@ -235,6 +236,7 @@ namespace Methodyca.Minigames.Questioniser
             else
             {
                 SendGameMessage("Not enough interest point");
+                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
             }
         }
 
@@ -315,6 +317,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 _currentCard = actionCard;
                 InterestPoint -= e.Card.CostPoint;
+                //Debug.Log("Totally");
             }
         }
 
