@@ -231,6 +231,7 @@ namespace Methodyca.Minigames.Questioniser
             if (InterestPoint >= _storyPoint)
             {
                 InterestPoint -= _storyPoint;
+                
                 DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
             }
             else
@@ -359,6 +360,7 @@ namespace Methodyca.Minigames.Questioniser
                         if (_quizAnswerSheet[i, j])
                             num++;
             return num;
+               
         }
 
         void DiscardAllCards()

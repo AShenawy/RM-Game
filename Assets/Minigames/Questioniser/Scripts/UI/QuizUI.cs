@@ -84,6 +84,7 @@ namespace Methodyca.Minigames.Questioniser
 
                 Vector2 textSize = answerTexts[i].GetRenderedValues(false);
                 options[i].rectTransform.sizeDelta = textSize + _optionPanelPaddingSize;
+                //Debug.Log("We are live");
             }
         }
 
