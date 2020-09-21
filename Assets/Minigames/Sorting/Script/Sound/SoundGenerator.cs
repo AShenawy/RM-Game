@@ -4,30 +4,30 @@
 namespace Methodyca.Minigames.SortGame
 {
 
-    public class Test : MonoBehaviour  //IPointerDownHandler 
+    public class SoundGenerator : MonoBehaviour  //IPointerDownHandler 
     {   
         //The Ossicaltor. 
         public DragSlot bling;
         public GameManager gameManager;
 
-        [Range(1,20000)]  //Creates a slider in the inspector
+        [Range(1,20000)]
         public float frequency1;
     
-        [Range(1,20000)]  //Creates a slider in the inspector
+        [Range(1,20000)]
         public float frequency2;
 
         [Range (0,1f)]
-        public float volume;//the main volume. 
+        public float volume;    //the main volume. 
 
         [Range(0,1)]
-        public float volumeAux;// the volume of the automation. 
+        public float volumeAux;     // the volume of the automation. 
 
-        public float sampleRate = 44100;
+        public int sampleRate = 44100;
         public float waveLengthInSeconds = 2.0f;
 
-        public float y;//to convert vector to float 
-        public float tick;//for the speed.
-        public float gain;//like a compressor
+        public float y;         //to convert vector to float 
+        public float tick;      //for the speed.
+        public float gain;      //like a compressor
        
         public Vector3 temp = new Vector3();
         public RectTransform rig;
@@ -53,7 +53,7 @@ namespace Methodyca.Minigames.SortGame
                 if(!audioSource.isPlaying)
                 {
                     audioSource.Play();
-                    timeIndex = 0;          //resets timer before playing sound
+                    timeIndex = 0;           //resets timer before playing sound
                     Debug.Log("Keys are playing");
                 }
             }
