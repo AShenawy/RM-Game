@@ -2,6 +2,7 @@
 
 namespace Methodyca.Minigames.SortGame
 {
+    // this script destroys instantiated enlarged object display prefab via UI button
     public class DestroyObject : MonoBehaviour
     {
         public GameObject objectToDestroy;
