@@ -11,7 +11,7 @@ namespace Methodyca.Minigames.SortGame{
 
         //The Ossicaltor. 
         public DragSlot bling;
-        public GameManager jinx;
+        public GameManager gameManager;
         SoundManager soundMan; 
 
         [Range(1,20000)]  //Creates a slider in the inspector
@@ -78,7 +78,7 @@ namespace Methodyca.Minigames.SortGame{
                     Debug.Log("Keys are playing");
                 }
             }
-            if(jinx.completed==true)
+            if(gameManager.completed==true)
             {
                 audioSource.Stop();
             }
