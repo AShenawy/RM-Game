@@ -9,7 +9,6 @@ namespace Methodyca.Minigames.SortGame
         //The Ossicaltor. 
         public DragSlot bling;
         public GameManager gameManager;
-        SoundManager soundMan; 
 
         [Range(1,20000)]  //Creates a slider in the inspector
         public float frequency1;
@@ -41,23 +40,20 @@ namespace Methodyca.Minigames.SortGame
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
-            audioSource.spatialBlend = 0; //force 2D sound
-            audioSource.Stop(); //avoids audiosource from starting to play automatically
-            //rig = this.gameObject.GetComponent<RectTransform>();
-            soundMan = FindObjectOfType<SoundManager>();
-            
+            audioSource.spatialBlend = 0;       //force 2D sound
+            audioSource.Stop();     //avoids audiosource from starting to play automatically
         }
     
         void Update()
         {   
-            audioSource.volume = volume;// the volume of the track. 
+            audioSource.volume = volume;    // the volume of the track. 
             
             if(bling.done == true)
             {
                 if(!audioSource.isPlaying)
                 {
                     audioSource.Play();
-                    timeIndex = 0;  //resets timer before playing sound
+                    timeIndex = 0;          //resets timer before playing sound
                     Debug.Log("Keys are playing");
                 }
             }
