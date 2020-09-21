@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
-namespace Methodyca.Minigames.SortGame{
+
+namespace Methodyca.Minigames.SortGame
+{
 
     public class Test : MonoBehaviour  //IPointerDownHandler 
     {   
-
         //The Ossicaltor. 
         public DragSlot bling;
         public GameManager gameManager;
@@ -32,25 +29,14 @@ namespace Methodyca.Minigames.SortGame{
         public float y;//to convert vector to float 
         public float tick;//for the speed.
         public float gain;//like a compressor
-      
-
        
         public Vector3 temp = new Vector3();
         public RectTransform rig;
-        
-        
-        
-
-
     
         public AudioSource audioSource;
         int timeIndex = 0;
 
 
-        void Awake()
-        {
-            
-        }
         void Start()
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -66,11 +52,8 @@ namespace Methodyca.Minigames.SortGame{
         {   
             audioSource.volume = volume;// the volume of the track. 
             
-            
             if(bling.done == true)
-            
             {
-                    
                 if(!audioSource.isPlaying)
                 {
                     audioSource.Play();
@@ -84,7 +67,6 @@ namespace Methodyca.Minigames.SortGame{
             }
             Ossci();
             Shake(audioSource);
-            
         }
     
         void OnAudioFilterRead(float[] data, int channels)
@@ -125,7 +107,5 @@ namespace Methodyca.Minigames.SortGame{
             temp.y = gain * Mathf.Sin (tick* Time.fixedTime);
             rig.position = temp; //removing this makes the position stay the same.
         }
-
-        
     }   
 }
