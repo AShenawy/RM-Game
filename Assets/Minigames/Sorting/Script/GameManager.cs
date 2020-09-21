@@ -7,7 +7,8 @@ namespace Methodyca.Minigames.SortGame
 {
     public class GameManager : MonoBehaviour
     {
-        public bool filesArranged, completed = false;
+        public bool filesArranged; // **************** this field seems unused 
+        public bool completed;
         public GameObject winScreen;
         SoundManager soundMan;
         
