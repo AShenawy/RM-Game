@@ -14,7 +14,8 @@ namespace Methodyca.Minigames.SortGame
         
         public float y;
         public float freq;
-        public float gain; 
+        public float gain;
+
         
         void Awake()
         {
