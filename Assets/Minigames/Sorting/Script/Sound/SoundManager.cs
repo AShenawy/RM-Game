@@ -7,10 +7,16 @@ namespace Methodyca.Minigames.SortGame
     // The script handling in-game sound playback
     public class SoundManager : MonoBehaviour
     {
-        public Sound[] sounds;      //******************** This isn't right. Need to fix. Check Play method ln34
+        /******
+         * Sounds can be devided to BGM and SFX audio sources
+         * BGM audio source will play and switch BGMs, and same for SFX audio source
+         * thus no need to make a list of all BGMs and all SFXs
+         *******/
+        public Sound[] sounds;      //******************** Check Play() ln34
+
         
-        private float x;        //for stearo imaging 
-        public Vector2 pos;     //for stearo imaging.
+        private float x;        //for stereo imaging 
+        public Vector2 pos;     //for stereo imaging.
         
         public float y;
         public float freq;
@@ -20,7 +26,7 @@ namespace Methodyca.Minigames.SortGame
         void Awake()
         {
             //for preloading the sounds
-            foreach(Sound s in sounds)       //looping sound called from the SOUND SCRIPT
+            foreach (Sound s in sounds)       //looping sound called from the SOUND SCRIPT
             {
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
@@ -47,20 +53,28 @@ namespace Methodyca.Minigames.SortGame
             Play("Fraud Full");      //Background Music 
         }
         
-        public void Imaging(string name)//Panning
+        public void Imaging(string name)    //Panning
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);   
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);     //x position of the mouse 
             x= pos.x/7.5f;         //converting the vec2 to float 
-            s.source.panStereo = x;        //float adjusting the pan of the audio clip.      
+            s.source.panStereo = x;        //float adjusting the pan of the audio clip
+
+            /* Possible solution to panning/imaging
+              
+            float mouseX = Input.mousePosition.x;
+            float panner = mouseX / Screen.width;
+            s.source.panStereo = Mathf.Lerp(-1, 1, panner);
+            
+             */
         }
 
         public void Bounce(string name)
         {
-            Sound s =Array.Find(sounds, sound => sound.name ==name);
+            Sound s = Array.Find(sounds, sound => sound.name == name);
             pos = new Vector2();
-            pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI* freq)* gain/10f;
-            y= pos.y + 0.4f;
+            pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * gain / 10f; //******* why divide by 10f?
+            y= pos.y + 0.4f;        //*********** why add 0.4f? Sin() will produce a value between -1 and 1; thus will be -0.6 and 1.4
             s.source.volume = y;
         }
 
