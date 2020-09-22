@@ -12,8 +12,10 @@ namespace Methodyca.Minigames.SortGame
         private int goal = 5;
         public GameObject crystalStation;       //The charging station either pink or blue.
         public GameObject placementParent;      // the parent of the items placed in the box
+        
         public int requiredItemsInBox;          // condition for how many items should be placed in box to win
         //public GameObject[] listBox;            //the box to show how its removed.
+        
         public GameObject glow;                 //the halo effect 
         private RectTransform anchored;         //the position of the snapping. 
 
