@@ -8,7 +8,7 @@ namespace Methodyca.Minigames.SortGame
     {   
         //The Ossicaltor. 
         public DragSlot boxDragSlot;
-        public GameManager gameManager;
+        public SortingManager gameManager;
 
         [Range(0, 20000)]
         public int frequency1;

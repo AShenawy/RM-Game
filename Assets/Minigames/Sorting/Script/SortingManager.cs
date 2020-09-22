@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-
+// this script handles the sorting minigame gameplay
 namespace Methodyca.Minigames.SortGame
 {
-    public class GameManager : MonoBehaviour
+    public class SortingManager : MonoBehaviour
     {
         public bool filesArranged; // **************** this field seems unused 
         public bool completed;

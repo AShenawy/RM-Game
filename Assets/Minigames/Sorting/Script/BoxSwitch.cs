@@ -9,12 +9,12 @@ namespace Methodyca.Minigames.SortGame
        public DragSlot secondbox;
        
        public bool almost = false;
-       GameManager levelman;
+       SortingManager levelman;
 
 
         void Start()
         {
-            levelman =  FindObjectOfType<GameManager>();
+            levelman =  FindObjectOfType<SortingManager>();
         }
     
        void Update()

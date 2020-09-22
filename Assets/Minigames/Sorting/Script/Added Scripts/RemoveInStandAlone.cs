@@ -13,11 +13,5 @@ namespace Methodyca.Minigames
             Destroy(gameObject);
 #endif
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
