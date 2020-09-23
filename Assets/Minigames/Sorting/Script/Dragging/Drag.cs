@@ -61,21 +61,26 @@ namespace Methodyca.Minigames.SortGame
         public void OnBeginDrag(PointerEventData eventData)
         {
             //Debug.Log("StartDrag");
-            canvasGroup.alpha = .7f;//reduced the opacity of the item when selected.
+            canvasGroup.alpha = .7f;        //reduced the opacity of the item when selected.
             canvasGroup.blocksRaycasts = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             //Debug.Log("WhileDrag");
-            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;//make the object retain its postion when selected, and retains the opacity of the item 
+            
+            //make the object retain its postion when selected, and retains the opacity of the item 
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;     
+            
             //Debug.Log("Moving");
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             //Debug.Log("EndDrag");
-            canvasGroup.alpha = 1f;//restores the opacity of the item after being dropped.
+            
+            //restores the opacity of the item after being dropped.
+            canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
 
             //The return feature of the game items. 
@@ -91,7 +96,7 @@ namespace Methodyca.Minigames.SortGame
         public void OnPointerDown(PointerEventData eventData)
         {
             //Debug.Log("Clicked");  
-            soundMan.Play("click");//sound of the game.
+            soundMan.Play("click");     //sound of the game.
         }
 
         //Method to see what is in dropped in the box.
@@ -117,9 +122,9 @@ namespace Methodyca.Minigames.SortGame
 
         public void InsideBox(GameObject host, Vector3 shift)    // ------ how the image swithces inside the box
         {
+            if (swap = ontable)
+                swap = inbox; 
             
-            if(swap = ontable)
-            swap = inbox; 
             transform.parent = host.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
         
@@ -132,8 +137,9 @@ namespace Methodyca.Minigames.SortGame
 
         public void OutsideBox(GameObject parent)   // ------- how the images switches outside the box 
         {
-            if(swap = inbox)
-            swap = ontable;
+            if (swap = inbox)
+                swap = ontable;
+            
             transform.parent = tabledItems.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = onTableShazam;
         }
