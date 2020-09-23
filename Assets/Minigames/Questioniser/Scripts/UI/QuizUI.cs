@@ -43,6 +43,7 @@ namespace Methodyca.Minigames.Questioniser
 
                     doneButton.gameObject.SetActive(true);
                     doneButton.onClick.AddListener(DoneClickHandler);
+                    break;
                 }
             }
         }
@@ -56,6 +57,7 @@ namespace Methodyca.Minigames.Questioniser
             feedback.gameObject.SetActive(false);
             doneButton.gameObject.SetActive(false);
             root.SetActive(false);
+            doneButton.onClick.RemoveAllListeners();
         }
 
         void Start()

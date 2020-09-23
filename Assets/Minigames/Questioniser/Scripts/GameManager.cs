@@ -73,7 +73,7 @@ namespace Methodyca.Minigames.Questioniser
 
         public event Action OnGameOver = delegate { };
         public event Action<bool> OnStoryInitiated = delegate { };
-        public event Action<bool> OnMulliganStated = delegate { };
+        public event Action<bool> OnRedrawStated = delegate { };
         public event Action<bool> OnImproviserRaised = delegate { };
         public event Action<bool> OnCardInfoCalled = delegate { };
         public event Action<byte> OnDeckUpdated = delegate { };
@@ -146,12 +146,12 @@ namespace Methodyca.Minigames.Questioniser
 
         public void SendGameMessage(string message) => OnMessageRaised?.Invoke(message);
 
-        public void TriggerMulligan()
+        public void TriggerRedraw()
         {
             if (GameState != GameState.Playable)
                 return;
 
-            StartCoroutine(MulliganCoroutine());
+            StartCoroutine(RedrawCoroutine());
         }
 
         public void DrawRandomCardFromDeck(byte size = 1)
@@ -170,7 +170,7 @@ namespace Methodyca.Minigames.Questioniser
                 return;
 
             DiscardAllCards();
-            OnMulliganStated?.Invoke(true);
+            OnRedrawStated?.Invoke(true);
             _questionsAskedCorrectlyPerTurn = 0;
 
             if (deck.Cards.Count < DRAW_COUNT_PER_TURN)
@@ -187,7 +187,18 @@ namespace Methodyca.Minigames.Questioniser
             _extraPointsForNextTurn = 0;
         }
 
-       
+        public void InitiateStoryDialog()
+        {
+            if (InterestPoint >= _storyPoint)
+            {
+                InterestPoint -= _storyPoint;
+                DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
+            }
+            else
+            {
+                SendGameMessage("Not enough interest point");
+            }
+        }
 
         public void SetRandomTopic()
         {
@@ -225,22 +236,10 @@ namespace Methodyca.Minigames.Questioniser
             SendGameMessage("Interest points can be used as action points for this turn");
         }
 
-        public void InitiateStoryDialog()
-        {
-            if (InterestPoint >= _storyPoint)
-            {
-                InterestPoint -= _storyPoint;
-                DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
-            }
-            else
-            {
-                SendGameMessage("Not enough interest point");
-            }
-        }
-
         public void HandleStoryDialog()
         {
             GameState = GameState.Playable;
+            ActionPoint += GetCorrectAnswerCountFor(_currentTopic.Name);
             _storyPoint += 3;
             OnTopicClosed?.Invoke(_currentTopic);
             topics.Remove(_currentTopic);
@@ -284,7 +283,7 @@ namespace Methodyca.Minigames.Questioniser
         void CardThrownHandler(object sender, CardBase.OnCardThrownEventArgs e)
         {
             hand.ArrangeCards();
-            OnMulliganStated?.Invoke(false);
+            OnRedrawStated?.Invoke(false);
 
             if (e.Card is ItemCard itemCard)
             {
@@ -403,10 +402,10 @@ namespace Methodyca.Minigames.Questioniser
             }
         }
 
-        IEnumerator MulliganCoroutine()
+        IEnumerator RedrawCoroutine()
         {
             ActionPoint--;
-            OnMulliganStated?.Invoke(false);
+            OnRedrawStated?.Invoke(false);
 
             foreach (var card in hand.Cards)
                 card.ReturnDeck();

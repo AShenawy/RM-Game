@@ -24,7 +24,6 @@ namespace Methodyca.Minigames.Questioniser
         void GameOverHandler()
         {
             root.SetActive(true);
-            GameManager.Instance.GameState = GameState.None;
 
             if (GameManager.Instance.StoryEventsCompleted >= 4)
             {

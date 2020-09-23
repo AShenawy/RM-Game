@@ -22,6 +22,9 @@ namespace Methodyca.Minigames.Questioniser
             OnDialogInitiated?.Invoke(dialog);
         }
 
+        /// <summary>
+        /// Called in the editor
+        /// </summary>
         public void TriggerRespondAt(int index)
         {
             if (index > _currentDialog.Responds.Length)
