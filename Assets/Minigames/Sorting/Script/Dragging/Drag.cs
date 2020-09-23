@@ -1,35 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Threading;
 
-// Create namespace for each minigame
+
 namespace Methodyca.Minigames.SortGame
 {
     public class Drag : MonoBehaviour, IPointerDownHandler
     , IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
     {
-
         [SerializeField] private Canvas canvas;
 
-        private RectTransform rectTransform;//Transfrom of the item selected.
+        private RectTransform rectTransform;    //Transfrom of the item selected.
         //public RectTransform begin;
-        private CanvasGroup canvasGroup;//A component needed for the raycast.
-        public GameObject box;//The boxtag either QA or QN for on the table. 
+        private CanvasGroup canvasGroup;    //A component needed for the raycast.
+        public GameObject box;      //The boxtag either QA or QN for on the table. 
         
-        
-        //public GameObject itemsHD;//The clear vision of the items on the table. 
-
+        //public GameObject itemsHD;    //The clear vision of the items on the table. 
         
         //The switch
-        public string host;//the child of the box. 
-        public GameObject tabledItems;//the table. 
-        public GameObject thisniccur;//this game object 
+        public string host;     //the child of the box. 
+        public GameObject tabledItems;  //the table. 
+        public GameObject thisniccur;   //this game object 
         [HideInInspector]public Sprite ontable;
         [HideInInspector]public Sprite inbox;
-        [HideInInspector]public Sprite swap;//the operation that swaps. 
+        [HideInInspector]public Sprite swap;    //the operation that swaps. 
 
         //Resizer for the sprites both inside and outside. 
         [HideInInspector]public Vector2 inboxSizer;   
@@ -38,9 +32,9 @@ namespace Methodyca.Minigames.SortGame
         //Stored position for the gameobject;
         [HideInInspector]public Vector3 storedRectPos;
 
-
         // Sound manager
         SoundManager soundMan;
+
 
         private void Awake()
         {
@@ -58,7 +52,12 @@ namespace Methodyca.Minigames.SortGame
             swap = thisniccur.GetComponent<Image>().sprite;
             swap = ontable; 
         }
-    
+
+        void Update()
+        {
+            thisniccur.GetComponent<Image>().sprite = swap;
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             //Debug.Log("StartDrag");
@@ -84,11 +83,8 @@ namespace Methodyca.Minigames.SortGame
             {
                 Debug.Log("Back on the table");
                 rectTransform.position = storedRectPos;
-
             }
-
         }
-        
 
         // This is redundant - No functionality. Can remove or move OnBeginDrag functionality to it,
         // so as soon as item is clicked it is transparent
@@ -112,6 +108,7 @@ namespace Methodyca.Minigames.SortGame
                 box.GetComponent<DragSlot>().Remove(gameObject);
             }            
         }
+
         //Method On Pointer click to add double click function.
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -139,12 +136,6 @@ namespace Methodyca.Minigames.SortGame
             swap = ontable;
             transform.parent = tabledItems.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = onTableShazam;
-
         }
-        void Update()
-        {
-            thisniccur.GetComponent<Image>().sprite =swap;
-        }
-        
     }      
 }
