@@ -39,7 +39,7 @@ namespace Methodyca.Minigames.SortGame
         
         public List <GameObject> inTheBox = new List<GameObject>();     //The list for items dropped.
 
-        public Vector3 shift;       //the distance between the items in box,for spacing. 
+        public Vector2 shift;       //the distance between the items in box,for spacing. 
         
         SoundManager soundMan;
       
@@ -127,7 +127,7 @@ namespace Methodyca.Minigames.SortGame
         
         void PlaceInBox(RectTransform transform)
         {
-            transform.GetComponent<Drag>().InsideBox(placementParent, shift);       //prefab instaniation. 
+            transform.GetComponent<Drag>().GoIntoBox(placementParent, shift);       //prefab instaniation. 
 
             transform.GetComponent<Drag>().PutInBox(this.gameObject);
         }

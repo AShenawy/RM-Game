@@ -4,13 +4,14 @@ using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.SortGame
 {
-    public class DropTable : MonoBehaviour, IDropHandler //The Remove method to the Game Object: Table. 
+    
+    public class DropTable : MonoBehaviour, IDropHandler 
     {
         public GameObject boxQuali;
         public GameObject boxQuanti; 
         public GameObject placementParent;
-        public void OnDrop(PointerEventData eventData)//calling the event OnDrop 
-        {   
+        public void OnDrop(PointerEventData eventData) 
+        {
             if (eventData.pointerDrag == null)
             { 
                 return;
@@ -21,7 +22,7 @@ namespace Methodyca.Minigames.SortGame
             boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
 
             //for the image to appear back on the table.
-            eventData.pointerDrag.GetComponent<Drag>().OutsideBox(placementParent);
+            eventData.pointerDrag.GetComponent<Drag>().ReturnOriginalLocation(placementParent);
         }           
     }
 }

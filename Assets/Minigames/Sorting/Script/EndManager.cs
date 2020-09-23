@@ -16,7 +16,7 @@ namespace Methodyca.Minigames.SortGame
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.Log("restart");
-            SceneManager.LoadScene("Drag and Drop");
+            SceneManager.LoadScene("Data Charger");
 
         }
         
