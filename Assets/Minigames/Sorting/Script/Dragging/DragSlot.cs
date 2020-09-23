@@ -11,6 +11,7 @@ namespace Methodyca.Minigames.SortGame
         public int points = 0;
         private int goal = 5;
         public GameObject crystalStation;       //The charging station either pink or blue.
+        public Image crystalSprite;
         public GameObject placementParent;      // the parent of the items placed in the box
         
         public int requiredItemsInBox;          // condition for how many items should be placed in box to win
@@ -88,7 +89,7 @@ namespace Methodyca.Minigames.SortGame
                 if (thingOnTheTable.CompareTag(boxType))
                 {
                     //A check to award points if the the right itea is placed in the box. 
-                    if (points < 5) //Points is 5 because of the amount of the crystal variations.
+                    if (points < 5)     //Points is 5 because of the amount of the crystal variations.
                     {
                         points++;
                         if(points == 1)
@@ -97,7 +98,7 @@ namespace Methodyca.Minigames.SortGame
                             done = true;
                         }
                         //This is basically calling the array created to add crystals to the dock. 
-                        crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
+                        crystalSprite.sprite = crystalPhases[points];
                         if(points == 5)
                         {
                             almost = true;
@@ -144,7 +145,7 @@ namespace Methodyca.Minigames.SortGame
                 if (points > 0)
                 {
                     points--;
-                    crystalStation.GetComponent<Image>().sprite = crystalPhases[points];
+                    crystalSprite.sprite = crystalPhases[points];
                     glow.SetActive(false);
                 }  
             }
