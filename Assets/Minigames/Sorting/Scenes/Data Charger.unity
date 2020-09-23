@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -360.72, y: -174.3}
+  m_AnchoredPosition: {x: -372, y: -166}
   m_SizeDelta: {x: 278, y: 132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65347808
@@ -745,7 +745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523, y: -151}
+  m_AnchoredPosition: {x: -569, y: -118}
   m_SizeDelta: {x: 78, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111672361
@@ -1398,6 +1398,8 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   mouseZ: 0
+  screenHeight: 0
+  screenWidth: 0
 --- !u!1 &499883502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499883502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
@@ -1465,7 +1467,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499883502}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -1640,7 +1642,7 @@ GameObject:
   - component: {fileID: 522027961}
   - component: {fileID: 522027960}
   m_Layer: 5
-  m_Name: battery_station_ql
+  m_Name: Charge Station QL
   m_TagString: Qualitative
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1663,7 +1665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -549.50024, y: 361.85013}
+  m_AnchoredPosition: {x: -557, y: 402}
   m_SizeDelta: {x: 260, y: 326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522027960
@@ -1981,13 +1983,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 785530791}
+  - {fileID: 1876544977}
+  - {fileID: 2039648665}
   m_Father: {fileID: 1561395581}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -672, y: 289}
-  m_SizeDelta: {x: 99, y: 100}
+  m_AnchoredPosition: {x: -785, y: 398}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569189697
 MonoBehaviour:
@@ -2061,7 +2065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550.0022, y: 45.45}
+  m_AnchoredPosition: {x: 509, y: 63.5}
   m_SizeDelta: {x: 241, y: 166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572454819
@@ -2421,7 +2425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286.5991, y: 17.099976}
+  m_AnchoredPosition: {x: -523, y: -5.1}
   m_SizeDelta: {x: 284, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606917051
@@ -2730,7 +2734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 668920367}
   m_Layer: 5
-  m_Name: Box backside
+  m_Name: QL placement ref
   m_TagString: complete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2743,7 +2747,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668920366}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2752,7 +2756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 84}
+  m_AnchoredPosition: {x: 71, y: 106}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &715231145
@@ -2946,7 +2950,7 @@ GameObject:
   - component: {fileID: 745429898}
   - component: {fileID: 745429897}
   m_Layer: 5
-  m_Name: boxquati_top
+  m_Name: backside art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,8 +2968,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1710780502}
-  m_Father: {fileID: 864065509}
-  m_RootOrder: 0
+  m_Father: {fileID: 827433516}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3098,7 +3102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &785530791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3109,9 +3113,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1876544977}
-  - {fileID: 2039648665}
+  m_Children: []
   m_Father: {fileID: 569189696}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3149,12 +3151,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 864065509}
+  - {fileID: 745429896}
+  - {fileID: 2113048697}
   m_Father: {fileID: 1561395581}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 749, y: 299}
+  m_AnchoredPosition: {x: 757, y: 405}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827433517
@@ -3206,7 +3210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &864065509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3217,9 +3221,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 745429896}
-  - {fileID: 2113048697}
+  m_Children: []
   m_Father: {fileID: 827433516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3408,7 +3410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138.09985, y: 187.10005}
+  m_AnchoredPosition: {x: 140, y: 169}
   m_SizeDelta: {x: 229, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911425030
@@ -3589,7 +3591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 442, y: -143.60004}
+  m_AnchoredPosition: {x: 453.50003, y: -174.5}
   m_SizeDelta: {x: 273, y: 149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058094586
@@ -3770,7 +3772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 596.39844, y: -75.50003}
+  m_AnchoredPosition: {x: 658, y: -69}
   m_SizeDelta: {x: 265, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1140844605
@@ -4274,7 +4276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 821.2, y: -306.7}
+  m_AnchoredPosition: {x: 840, y: -290}
   m_SizeDelta: {x: 181, y: 251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183769138
@@ -4420,7 +4422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 264.3989, y: 67.500015}
+  m_AnchoredPosition: {x: 267, y: 52}
   m_SizeDelta: {x: 286, y: 143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207372950
@@ -4869,7 +4871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -692, y: -127}
+  m_AnchoredPosition: {x: -786, y: -118}
   m_SizeDelta: {x: 287, y: 135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1429622119
@@ -5166,9 +5168,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 569189696}
   - {fileID: 827433516}
   - {fileID: 1983376745}
+  - {fileID: 569189696}
   - {fileID: 522027959}
   - {fileID: 33600797}
   - {fileID: 715231146}
@@ -5316,7 +5318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 213, y: -89.89998}
+  m_AnchoredPosition: {x: 209, y: -118}
   m_SizeDelta: {x: 216, y: 178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601090185
@@ -5644,7 +5646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710780502}
   m_Layer: 5
-  m_Name: boxbackie
+  m_Name: QN placement ref
   m_TagString: complete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5829,7 +5831,7 @@ GameObject:
   - component: {fileID: 1876544979}
   - component: {fileID: 1876544978}
   m_Layer: 5
-  m_Name: boxquali_buttom
+  m_Name: backside art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5847,12 +5849,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 668920367}
-  m_Father: {fileID: 785530791}
-  m_RootOrder: 0
+  m_Father: {fileID: 569189696}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.3756714, y: -3.6054993}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 418, y: 374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876544978
@@ -6089,7 +6091,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953842293}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
@@ -6112,7 +6114,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953842293}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -6239,7 +6241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -63, y: -170.00003}
+  m_AnchoredPosition: {x: -63, y: -176}
   m_SizeDelta: {x: 299, y: 136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1968638402
@@ -6416,7 +6418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.60008, y: 184.40001}
+  m_AnchoredPosition: {x: 56.199993, y: 159.1}
   m_SizeDelta: {x: 128, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975257517
@@ -6468,7 +6470,7 @@ GameObject:
   - component: {fileID: 1983376747}
   - component: {fileID: 1983376746}
   m_Layer: 5
-  m_Name: battery_station_qa
+  m_Name: Charge Station QN
   m_TagString: Quantitative
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6487,12 +6489,12 @@ RectTransform:
   m_Children:
   - {fileID: 1611874112}
   m_Father: {fileID: 1561395581}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 520, y: 369.35004}
-  m_SizeDelta: {x: 283, y: 334}
+  m_AnchoredPosition: {x: 518, y: 400}
+  m_SizeDelta: {x: 281, y: 334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983376746
 MonoBehaviour:
@@ -6543,7 +6545,7 @@ GameObject:
   - component: {fileID: 2039648667}
   - component: {fileID: 2039648666}
   m_Layer: 5
-  m_Name: boxquali_top
+  m_Name: frontside art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6560,12 +6562,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 785530791}
-  m_RootOrder: 1
+  m_Father: {fileID: 569189696}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.8755336, y: -3.6055336}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 417, y: 374}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039648666
@@ -6617,7 +6619,7 @@ GameObject:
   - component: {fileID: 2113048699}
   - component: {fileID: 2113048698}
   m_Layer: 5
-  m_Name: boxquati_bottom
+  m_Name: frontside art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6634,8 +6636,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 864065509}
-  m_RootOrder: 1
+  m_Father: {fileID: 827433516}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
