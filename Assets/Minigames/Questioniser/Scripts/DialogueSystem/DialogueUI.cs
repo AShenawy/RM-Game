@@ -7,7 +7,6 @@ namespace Methodyca.Minigames.Questioniser
     public class DialogueUI : MonoBehaviour
     {
         [SerializeField] GameObject root;
-        [SerializeField] Image dateExpression;
         [SerializeField] GameObject dateDialogBubble;
         [SerializeField] Button[] respondButtons;
 
