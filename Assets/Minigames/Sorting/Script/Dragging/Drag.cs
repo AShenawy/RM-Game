@@ -122,6 +122,13 @@ namespace Methodyca.Minigames.SortGame
 
         public void InsideBox(GameObject host, Vector3 shift)    // ------ how the image swithces inside the box
         {
+            /******************************** were all 3 lines meant to be within if statement? Also, the condition test isn't properly type
+            if (swap = ontable)
+            swap = inbox; 
+            transform.parent = host.transform;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
+            */
+            
             if (swap = ontable)
                 swap = inbox; 
             
@@ -137,6 +144,14 @@ namespace Methodyca.Minigames.SortGame
 
         public void OutsideBox(GameObject parent)   // ------- how the images switches outside the box 
         {
+            /******************************** were all 3 lines meant to be within if statement? Also, the condition test isn't properly type
+            if (swap = inbox)
+                swap = ontable;
+            
+            transform.parent = tabledItems.transform;
+            this.gameObject.GetComponent<RectTransform>().sizeDelta = onTableShazam;
+            */
+
             if (swap = inbox)
                 swap = ontable;
             
