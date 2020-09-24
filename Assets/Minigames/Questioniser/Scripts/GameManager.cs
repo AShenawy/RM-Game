@@ -233,6 +233,7 @@ namespace Methodyca.Minigames.Questioniser
                 InterestPoint -= _storyPoint;
                 
                 DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
+                //Debug.Log("jackpot");
             }
             else
             {
@@ -274,7 +275,10 @@ namespace Methodyca.Minigames.Questioniser
                         OnChecklistUpdated?.Invoke(_currentTopic.Name, _currentCard.Name);
 
                         if (GetCorrectAnswerCountFor(_currentTopic.Name) >= POINT_TO_INITIATE_STORY)
+                        {
                             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated = true);
+                            FindObjectOfType<SoundManager>().Play("StoryPoints");
+                        }
                     }
                 }
             }
@@ -338,6 +342,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             GameState = GameState.None;
             OnGameOver?.Invoke();
+
         }
 
         void TickAnswerSheet(string topicName, string cardName)

@@ -44,6 +44,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             for (int i = 0; i < topicTexts.Length; i++)
             {
+                            
                 if (topicTexts[i].text == currentTopicName)
                 {
                     for (int j = 0; j < cardTexts.Length; j++)

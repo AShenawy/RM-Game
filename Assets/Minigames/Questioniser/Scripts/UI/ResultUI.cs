@@ -29,6 +29,9 @@ namespace Methodyca.Minigames.Questioniser
             if (GameManager.Instance.StoryEventsCompleted >= 4)
             {
                 gameOverPanel.sprite = winTheGame;
+                FindObjectOfType<SoundManager>().Stop("Theme");
+                FindObjectOfType<SoundManager>().Stop("GameTheme");
+                FindObjectOfType<SoundManager>().Play("GameWin");
             }
             else if (GameManager.Instance.InterestPoint < 0)
             {
@@ -49,6 +52,7 @@ namespace Methodyca.Minigames.Questioniser
             mistakesMade.text = GameManager.Instance.QuestionsAskedIncorrectly.ToString();
             interestPointGained.text = GameManager.Instance.GainedInterestPoints.ToString();
             storyEventCompleted.text = GameManager.Instance.StoryEventsCompleted.ToString() + "/4";
+            
         }
 
         void OnDestroy()
