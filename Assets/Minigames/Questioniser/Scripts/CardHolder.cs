@@ -34,6 +34,8 @@ namespace Methodyca.Minigames.Questioniser
         public void AddCard(CardBase card)
         {
             if (!Cards.Contains(card))
+            //Debug.Log("Adding Cards");
+            FindObjectOfType<SoundManager>().Play("CardShuffledSFX");
                 Cards.Add(card);
         }
 
@@ -55,6 +57,7 @@ namespace Methodyca.Minigames.Questioniser
                 Cards.RemoveAll(c => c == null);
                 for (int i = 0; i < Cards.Count; i++)
                     Cards[i].transform.DOMoveX(holder.position.x + ((Cards.Count * Cards[i].SpriteSizeX * 0.5f) - (i * Cards[i].SpriteSizeX)) - 1, 0.5f);
+                //Debug.Log("Card Set");
             }
         }
 

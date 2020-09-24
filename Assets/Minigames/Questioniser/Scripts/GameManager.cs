@@ -184,6 +184,7 @@ namespace Methodyca.Minigames.Questioniser
                 OnImproviserRaised?.Invoke(_isImproviserTurn = false);
 
             ActionPoint = ACTION_POINT_PER_TURN + _extraPointsForNextTurn;
+            FindObjectOfType<SoundManager>().Play("ActionPoints");
             _extraPointsForNextTurn = 0;
         }
 
@@ -236,6 +237,22 @@ namespace Methodyca.Minigames.Questioniser
             SendGameMessage("Interest points can be used as action points for this turn");
         }
 
+        public void InitiateStoryDialog()
+        {
+            if (InterestPoint >= _storyPoint)
+            {
+                InterestPoint -= _storyPoint;
+                
+                DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
+                //Debug.Log("jackpot");
+            }
+            else
+            {
+                SendGameMessage("Not enough interest point");
+                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+            }
+        }
+
         public void HandleStoryDialog()
         {
             GameState = GameState.Playable;
@@ -270,7 +287,10 @@ namespace Methodyca.Minigames.Questioniser
                         OnChecklistUpdated?.Invoke(_currentTopic.Name, _currentCard.Name);
 
                         if (GetCorrectAnswerCountFor(_currentTopic.Name) >= POINT_TO_INITIATE_STORY)
+                        {
                             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated = true);
+                            FindObjectOfType<SoundManager>().Play("StoryPoints");
+                        }
                     }
                 }
             }
@@ -314,6 +334,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 _currentCard = actionCard;
                 InterestPoint -= e.Card.CostPoint;
+                //Debug.Log("Totally");
             }
         }
 
@@ -333,6 +354,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             GameState = GameState.None;
             OnGameOver?.Invoke();
+
         }
 
         void TickAnswerSheet(string topicName, string cardName)
@@ -342,6 +364,8 @@ namespace Methodyca.Minigames.Questioniser
                     for (int j = 0; j < cards.Count; j++)
                         if (cardName == cards[j].Name)
                             _quizAnswerSheet[i, j] = true;
+            //Debug.Log("We gat Money");
+            FindObjectOfType<SoundManager>().Play("Points");
         }
 
         byte GetCorrectAnswerCountFor(string topicName)
@@ -353,6 +377,7 @@ namespace Methodyca.Minigames.Questioniser
                         if (_quizAnswerSheet[i, j])
                             num++;
             return num;
+               
         }
 
         void DiscardAllCards()

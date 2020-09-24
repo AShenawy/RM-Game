@@ -12,6 +12,7 @@ namespace Methodyca.Minigames.Questioniser
         void OnMouseDown()
         {
             OnCardInfoCalled?.Invoke(true, card);
+            
         }
 
         void OnMouseUp()

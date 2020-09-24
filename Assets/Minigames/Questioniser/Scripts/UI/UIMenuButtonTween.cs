@@ -16,19 +16,24 @@ namespace Methodyca.Minigames.Questioniser
             _button = GetComponent<Button>();
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventData)//ClickSound
         {
             _transform.DOScale(0.9f, 0.15f);
+            FindObjectOfType<SoundManager>().Play("Click");
+            //Debug.Log("Click ");
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             _transform.DOScale(1, 0.15f);
+         
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             _transform.DOScale(1.1f, 0.15f);
+            FindObjectOfType<SoundManager>().Play("Hover");
+            //Debug.Log("Hello there");
         }
 
         public void OnPointerExit(PointerEventData eventData)

@@ -114,6 +114,8 @@ namespace Methodyca.Minigames.Questioniser
         public void SelectCard()
         {
             _transform.DOScale(1.25f, 0.2f);
+            FindObjectOfType<SoundManager>().Play("ThinkingSFX");
+            //Debug.Log("Card Selected");
         }
 
         public void DeselectCard()
@@ -124,6 +126,9 @@ namespace Methodyca.Minigames.Questioniser
         public void SetOutlineColorAs(Color color)
         {
             _renderer.material.SetColor(outlineColor, color);
+            //Debug.Log("Setting Outline Colors");
+            FindObjectOfType<SoundManager>().Play("CardHitting");
+            
         }
 
         void Awake()
@@ -160,6 +165,9 @@ namespace Methodyca.Minigames.Questioniser
                 return;
 
             _renderer.material.SetColor(outlineColor, Color.red);
+            FindObjectOfType<SoundManager>().StereoImaging("CardHighSFX");
+            FindObjectOfType<SoundManager>().Play("CardHighSFX");
+            //Debug.Log("Sighted");
         }
 
         void OnMouseExit()
@@ -201,6 +209,8 @@ namespace Methodyca.Minigames.Questioniser
             {
                 ReturnHand();
                 _gameManager.SendGameMessage("Not enough points");
+                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+                
             }
         }
 
