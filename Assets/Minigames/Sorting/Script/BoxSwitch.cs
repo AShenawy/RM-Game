@@ -5,8 +5,8 @@ namespace Methodyca.Minigames.SortGame
 {   
     public class BoxSwitch : MonoBehaviour 
     {
-       public DragSlot firstbox;
-       public DragSlot secondbox;
+       public SortBoxBehaviour firstbox;
+       public SortBoxBehaviour secondbox;
        
        public bool almost = false;
        SortingManager levelman;

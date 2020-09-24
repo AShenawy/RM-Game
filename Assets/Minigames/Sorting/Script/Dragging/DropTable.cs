@@ -18,8 +18,8 @@ namespace Methodyca.Minigames.SortGame
             }
 
             //calling the method Remove from DragSlot to remove from the box to the table
-            boxQuali.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
-            boxQuanti.GetComponent<DragSlot>().Remove(eventData.pointerDrag);
+            boxQuali.GetComponent<SortBoxBehaviour>().RemoveFromBox(eventData.pointerDrag);
+            boxQuanti.GetComponent<SortBoxBehaviour>().RemoveFromBox(eventData.pointerDrag);
 
             //for the image to appear back on the table.
             eventData.pointerDrag.GetComponent<Drag>().ReturnOriginalLocation(placementParent);

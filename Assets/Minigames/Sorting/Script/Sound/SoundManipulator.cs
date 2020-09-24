@@ -7,7 +7,7 @@ namespace Methodyca.Minigames.SortGame
     public class SoundManipulator : MonoBehaviour
     {   
         //The Ossicaltor. 
-        public DragSlot boxDragSlot;
+        public SortBoxBehaviour boxDragSlot;
         public SortingManager gameManager;
 
         [Range(0, 20000)]

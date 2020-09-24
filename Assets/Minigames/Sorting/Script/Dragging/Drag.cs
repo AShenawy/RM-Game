@@ -123,7 +123,7 @@ namespace Methodyca.Minigames.SortGame
         {
             //Debug.Log("WhileDrag");
 
-            //make the object retain its postion when selected, and retains the opacity of the item 
+            // ensure dragging is relative to current screen size so item doesn't 'drift' off from cursor 
             rectTransform.anchoredPosition += eventData.delta / dragCanvas.scaleFactor;
         }
 
@@ -166,11 +166,11 @@ namespace Methodyca.Minigames.SortGame
             rectTransform.anchoredPosition = startPosOnTable;
         }
 
-        //Method to see what is in dropped in the box.
-        public void PutInBox(GameObject boxType)
-        {
-            box = boxType;
-        }
+        //Method to see what is in dropped in the box.      //******* moved line to GoIntoBox
+        //public void PutInBox(GameObject boxType)
+        //{
+        //    box = boxType;
+        //}
 
         //Method to see what is taken out of the box.       //******* Unused method. Removed **********
         //public void TakeOutOfBox()
@@ -181,7 +181,7 @@ namespace Methodyca.Minigames.SortGame
         //    }            
         //}
 
-        public void GoIntoBox(GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
+        public void GoIntoBox(GameObject boxType, GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
         {
             /******************************** were all 3 lines meant to be within if statement? Also, the condition test isn't properly typed
             if (swap = ontable)
@@ -189,6 +189,7 @@ namespace Methodyca.Minigames.SortGame
             transform.parent = host.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
             */
+            box = boxType;
 
             if (boxPlaceRef.CompareTag("Right Box"))
                 image.sprite = insideBoxSpriteRight;
@@ -207,11 +208,11 @@ namespace Methodyca.Minigames.SortGame
             //Vector3 orderInBox = instance.transform.GetSiblingIndex() * shift;    //****** simply take the value directly from game object
             Vector2 inBoxPos = gameObject.transform.GetSiblingIndex() * shift;
             
-            //rectTransform.position += orderInBox;     //******** using += adds to existing value. We want to set a new position value
+            //rectTransform.position += orderInBox;     //******** using += adds to existing value. We want to set a new position value. This probably what cause object to fly all around the scene **************
             rectTransform.anchoredPosition = inBoxPos;
         }
 
-        public void ReturnOriginalLocation(GameObject location)   // ------- how the images switches outside the box 
+        public void ReturnOriginalLocation(GameObject table)   // ------- how the images switches outside the box 
         {
             /******** were all 3 lines meant to be within if statement?
              * Also, the condition test isn't properly typed: if (swap = inbox) is not checking if the values are similar
@@ -227,7 +228,7 @@ namespace Methodyca.Minigames.SortGame
             image.sprite = onTableSprite;
             rectTransform.sizeDelta = onTableImageDimensions;
 
-            transform.parent = location.transform;
+            transform.parent = table.transform;
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
             box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
         }

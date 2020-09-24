@@ -6,29 +6,30 @@ using UnityEngine.UI;
 
 namespace Methodyca.Minigames.SortGame
 {
-    public class DragSlot : MonoBehaviour, IDropHandler
+    // this script handles the QL/QN boxes and placement of items in them
+    public class SortBoxBehaviour : MonoBehaviour, IDropHandler
     {
         public int points = 0;
         private int goal = 5;
         public GameObject crystalStation;       //The charging station either pink or blue.
-        public Image crystalSprite;
-        public GameObject placementParent;      // the parent of the items placed in the box
+        public Image crystalSprite;             //************** box shouldn't control crystal. moved to CrystalCharger ***************
+        public GameObject placementReference;      // the parent of the items placed in the box
         
         public int requiredItemsInBox;          // condition for how many items should be placed in box to win
-        //public GameObject[] listBox;            //the box to show how its removed.
+        //public GameObject[] listBox;            //the box to show how its removed.    //******** this list isn't needed. can use above int variable
         
-        public GameObject glow;                 //the halo effect 
+        public GameObject glow;                 //the halo effect   //************** box shouldn't control crystal. moved to CrystalCharger ***************
         private RectTransform anchored;         //the position of the snapping. 
 
-        //The levitation for the crytsals. 
+        //The levitation for the crytsals.      //************** box shouldn't control crystal. moved to CrystalCharger ***************
         public RectTransform levitate;          //for the floating crystals.
         public RectTransform shinnny;           //stored position for the rect transfrom.  
         public Vector3 temPos;
-      
-        //inputs for the levitations
+
+        //inputs for the levitations            //************** box shouldn't control crystal. moved to CrystalCharger ***************
         public float amp;
 
-        public Sprite[] crystalPhases;          //The array of crystals charging. 
+        public Sprite[] crystalPhases;          //The array of crystals charging.   //************** box shouldn't control crystal. moved to CrystalCharger ***************
 
         public string boxType;                  //The tag name for the boxes in the game either QA or QN.
 
@@ -39,7 +40,7 @@ namespace Methodyca.Minigames.SortGame
         
         public List <GameObject> inTheBox = new List<GameObject>();     //The list for items dropped.
 
-        public Vector2 shift;       //the distance between the items in box,for spacing. 
+        public Vector2 itemPlacementShift;       //the distance between the items in box,for spacing. 
         
         SoundManager soundMan;
       
@@ -48,22 +49,22 @@ namespace Methodyca.Minigames.SortGame
         {
             anchored = GetComponent<RectTransform>();
             glow.SetActive(false);
-            shinnny = crystalStation.GetComponent<RectTransform>();
+            //shinnny = crystalStation.GetComponent<RectTransform>();
             soundMan = FindObjectOfType<SoundManager>();
         }
 
         void Update()
         {
-            if (points >= 1)
-                Rise();
+            if (points >= 1) { }
+                // Rise();      //***** moved to CrystalCharger ****
         }
 
         //Mouse released. 
         public void OnDrop(PointerEventData eventData) 
         {
             // A check to see if the objects are placed in the box, represented with charging crystals and to snap items to the box.
-            if (crystalStation == null)
-                return;
+            //if (crystalStation == null)           //********* since now crystal functionality is no longer controlled by box (moved to CrystalCharger), box doesn't need to do this check. CrystalCharger can check itself ********
+            //    return;
 
             if (eventData.pointerDrag == null)
                 return;
@@ -74,16 +75,22 @@ namespace Methodyca.Minigames.SortGame
 
 
             //This is basically to define the things on the table and, make them snap to the box when clicked. 
-            RectTransform thingOnTheTable;      //Anchored position. 
-            thingOnTheTable = eventData.pointerDrag.GetComponent<RectTransform>();
-            thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
+            //RectTransform thingOnTheTable;      //Anchored position. 
+            //thingOnTheTable = eventData.pointerDrag;
+            GameObject thingOnTheTable = eventData.pointerDrag; ;      //******* item dropped on the box. 2 steps above merged into one line ********
+            
+            //******* Extra step that does nothing. a few lines down PlaceInBox() gets called which dictates final position of thingOnTable
+            //thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
+            
 
-            PlaceInBox(thingOnTheTable);        //instatioation 
+            // do action of placing dropped item into the box 
+            PlaceInBox(thingOnTheTable);
 
             //To check if the item dropped has been added to the box or not. 
-            if (!inTheBox.Contains(thingOnTheTable.gameObject))
+            if (!inTheBox.Contains(thingOnTheTable))
             {
-                inTheBox.Add(thingOnTheTable.gameObject);//created a method of IntheBox
+                // add dropped item to list of things the box holds
+                inTheBox.Add(thingOnTheTable);      //created a method of IntheBox      //**** this isn't a method. This is a property of Lists we utilise ****
                 
                 //To compare with Tags (QN and QA), with the box and see which enters which. 
                 if (thingOnTheTable.CompareTag(boxType))
@@ -118,21 +125,21 @@ namespace Methodyca.Minigames.SortGame
                 CheckSorting();            
         }
 
-        public void Rise()      //The levitation of the crystals
-        {
-            temPos = levitate.position;
-            levitate.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.fixedTime));
-            shinnny.position = levitate.position;
-        }   
+        //public void Rise()      //The levitation of the crystals
+        //{
+        //    temPos = levitate.position;
+        //    levitate.transform.Translate(Vector3.up * amp * Mathf.Sin(Time.fixedTime));
+        //    shinnny.position = levitate.position;
+        //}   
         
-        void PlaceInBox(RectTransform transform)
+        void PlaceInBox(GameObject droppedItem)
         {
-            transform.GetComponent<Drag>().GoIntoBox(placementParent, shift);       //prefab instaniation. 
+            droppedItem.GetComponent<Drag>().GoIntoBox(gameObject, placementReference, itemPlacementShift);
 
-            transform.GetComponent<Drag>().PutInBox(this.gameObject);
+            // transform.GetComponent<Drag>().PutInBox(this.gameObject);        //************ moved that functionality to GoIntoBox ************
         }
 
-        public void Remove(GameObject thingInTheBox)    //The method to remove things in the box. 
+        public void RemoveFromBox(GameObject thingInTheBox)    //The method to remove things in the box. 
         {   
             if (!inTheBox.Contains(thingInTheBox))      //If the object isnt in the box it wouldnt remove.
                 return;
@@ -153,7 +160,7 @@ namespace Methodyca.Minigames.SortGame
             CheckSorting();
         }
 
-        public void CheckSorting()  //Winning Condition for the game. 
+        public void CheckSorting()  //  Winning Condition for the game. 
         {
             if (inTheBox.Count == requiredItemsInBox)
             {
