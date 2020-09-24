@@ -198,6 +198,7 @@ namespace Methodyca.Minigames.Questioniser
             else
             {
                 SendGameMessage("Not enough interest point");
+                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
             }
         }
 
@@ -237,21 +238,21 @@ namespace Methodyca.Minigames.Questioniser
             SendGameMessage("Interest points can be used as action points for this turn");
         }
 
-        public void InitiateStoryDialog()
-        {
-            if (InterestPoint >= _storyPoint)
-            {
-                InterestPoint -= _storyPoint;
+        //public void InitiateStoryDialog()
+        //{
+        //    if (InterestPoint >= _storyPoint)
+        //    {
+        //        InterestPoint -= _storyPoint;
                 
-                DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
-                //Debug.Log("jackpot");
-            }
-            else
-            {
-                SendGameMessage("Not enough interest point");
-                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
-            }
-        }
+        //        DialogManager.Instance.StartDialog(_currentTopic.StoryDialog);
+        //        //Debug.Log("jackpot");
+        //    }
+        //    else
+        //    {
+        //        SendGameMessage("Not enough interest point");
+        //        FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+        //    }
+        //}
 
         public void HandleStoryDialog()
         {

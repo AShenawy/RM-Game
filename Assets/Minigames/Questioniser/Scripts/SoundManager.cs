@@ -1,7 +1,5 @@
-﻿
-using UnityEngine.Audio;
+﻿using System;
 using UnityEngine;
-using System;
 
 namespace Methodyca.Minigames.Questioniser
 {
@@ -58,11 +56,6 @@ namespace Methodyca.Minigames.Questioniser
         void Start()
         {
             Play("Theme");
-            //Debug.Log("Playing Main Theme");
-        }
-        void Update()
-        {
-            
         }
     }
 }
