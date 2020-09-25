@@ -20,8 +20,8 @@ namespace Methodyca.Minigames.SortGame
         *   2) can do same functionality from the already included Image component
         *
         private CanvasGroup canvasGroup;    //A component needed for the raycast.   ******/
-        
-        //public GameObject box;      //The boxtag either QA or QN for on the table. //******** not requird to check since canvas space either places item in a box or on table
+
+        public GameObject box;      // the box the item is sitting in
 
         //public GameObject itemsHD;    //The clear vision of the items on the table.       //********** unused. removed *************
 
@@ -187,7 +187,7 @@ namespace Methodyca.Minigames.SortGame
         //    }            
         //}
 
-        public void GoIntoBox(GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
+        public void GoIntoBox(GameObject sortingBox, GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
         {
             /******************************** were all 3 lines meant to be within if statement? Also, the condition test isn't properly typed
             if (swap = ontable)
@@ -195,7 +195,7 @@ namespace Methodyca.Minigames.SortGame
             transform.parent = host.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
             */
-            //box = boxType;        //********** not required anymore. removed
+            box = sortingBox;
 
             if (boxPlaceRef.CompareTag("Right Box"))
                 image.sprite = insideBoxSpriteRight;
@@ -237,7 +237,7 @@ namespace Methodyca.Minigames.SortGame
             transform.parent = table.transform;
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
             //************ not required. removed
-            //box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
+            box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
         }
     }      
 }

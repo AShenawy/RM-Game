@@ -13,8 +13,10 @@ namespace Methodyca.Minigames.SortGame
         public delegate void ItemDropped(int itemCount);
         public event ItemDropped onItemDropped;
 
-        public int points = 0;                  //******** better to move this to GameManager/SortingManager script and leave the box do box stuff
-        private int goal = 5;                   //***************** same as above
+        //public int points = 0;                  //******** better to move this to GameManager/SortingManager script and leave the box do box stuff
+        //private int goal = 5;                   //***************** same as above
+        public SortingManager gameManager;
+        public SortBoxBehaviour otherSortBox;
         
         //public GameObject crystalStation;       //The charging station either pink or blue.
         //public Image crystalSprite;             //************** box shouldn't control crystal. moved to Crystal ***************
@@ -24,7 +26,7 @@ namespace Methodyca.Minigames.SortGame
          * this listBox isn't needed because it's only used to count how many items are in it. The items in the list aren't accessed or used.
          * In that case, a number is all we need: requiredItemsInBox does that.
         public GameObject[] listBox;          //the box to show how its removed.        */
-        public int requiredItemsInBox = 5;          // Condition for how many items should be placed in box to win
+        //public int requiredItemsInBox = 5;          // Condition for how many items should be placed in box to win //********* not used. removed
         
         //public GameObject glow;                 //the halo effect   //************** box shouldn't control crystal. moved to Crystal ***************
         //private RectTransform anchored;         //the position of the snapping.       //************* unused. removed ***************
@@ -43,8 +45,8 @@ namespace Methodyca.Minigames.SortGame
         private int correctItemsInBoxCount = 0;    //****** how many correct items are currently in the box
 
         //bools for the game manager. 
-        public bool sorted;
-        public bool done;
+        //public bool sorted;
+        //public bool done;
         //public bool almost;
         
         public List <GameObject> inTheBox = new List<GameObject>();     //The list for items dropped.
@@ -90,6 +92,9 @@ namespace Methodyca.Minigames.SortGame
             //thingOnTheTable = eventData.pointerDrag;
             GameObject droppedItem = eventData.pointerDrag; ;      //******* item dropped on the box. 2 steps above merged into one line ********
 
+            if (droppedItem.GetComponent<Drag>().box != gameObject)
+                otherSortBox.RemoveFromBox(droppedItem);
+
             //*********** Extra step that does nothing. a few lines down PlaceInBox() gets called which dictates final position of thingOnTable **********
             //thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
 
@@ -105,9 +110,11 @@ namespace Methodyca.Minigames.SortGame
             if (droppedItem.CompareTag(acceptableItemTag))
             {
                 correctItemsInBoxCount++;
-
-                onItemDropped?.Invoke(correctItemsInBoxCount);
             }
+
+            // invoke event to tell if correct item was added
+            onItemDropped?.Invoke(correctItemsInBoxCount);
+
 
                 /*
                 //A check to award points if the the right itea is placed in the box. 
@@ -151,7 +158,7 @@ namespace Methodyca.Minigames.SortGame
         
         void PlaceInBox(GameObject item)
         {
-            item.GetComponent<Drag>().GoIntoBox(placementReference, itemPlacementShift);
+            item.GetComponent<Drag>().GoIntoBox(gameObject, placementReference, itemPlacementShift);
 
             // transform.GetComponent<Drag>().PutInBox(this.gameObject);        //************ moved that functionality to GoIntoBox ************
         }
@@ -166,7 +173,6 @@ namespace Methodyca.Minigames.SortGame
             {
                 correctItemsInBoxCount--;
 
-                onItemDropped?.Invoke(correctItemsInBoxCount);
 
                 /*
                 if (points > 0)
@@ -179,9 +185,23 @@ namespace Methodyca.Minigames.SortGame
             }
             
             inTheBox.Remove(itemInBox);
+
+            // rearrange items existing in the box to not sit on top of the new placed item
+            ReshuffleBox();
+
+            // invoke event to check if a correct item was removed
+            onItemDropped?.Invoke(correctItemsInBoxCount);
+            
             //CheckSorting();
         }
 
+        void ReshuffleBox()
+        {
+            foreach (GameObject placedItem in inTheBox)
+                PlaceInBox(placedItem);
+        }
+
+        /*
         public void CheckSorting()  //  Winning Condition for the game.     //******** functionality belongs to the game manager. moved to GameManager/SortingManager
         {
             if (inTheBox.Count == requiredItemsInBox)
@@ -192,5 +212,6 @@ namespace Methodyca.Minigames.SortGame
             else
                 sorted = false;
         }
+        */
     }
 }
