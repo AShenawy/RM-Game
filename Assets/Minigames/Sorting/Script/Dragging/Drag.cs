@@ -21,7 +21,7 @@ namespace Methodyca.Minigames.SortGame
         *
         private CanvasGroup canvasGroup;    //A component needed for the raycast.   ******/
         
-        public GameObject box;      //The boxtag either QA or QN for on the table. 
+        //public GameObject box;      //The boxtag either QA or QN for on the table. //******** not requird to check since canvas space either places item in a box or on table
 
         //public GameObject itemsHD;    //The clear vision of the items on the table.       //********** unused. removed *************
 
@@ -117,6 +117,9 @@ namespace Methodyca.Minigames.SortGame
             
             // disable raycasting so that object is not blocking raycast of elements under it (e.g. box/table to drop on to)
             image.raycastTarget = false;
+
+            // prevent UI buttons from blocking raycasts, essentially making items float on them
+            GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -145,15 +148,18 @@ namespace Methodyca.Minigames.SortGame
 
             //The return feature of the game items. 
             //if (!this.gameObject == box)      //******** this doesn't work. Will always return true because this gameObject is and will never be the box game object  ************
-            if (box == null)
-            {
-                // restore original parent so reset position works properly
-                transform.parent = onTableItemsContainer.transform;
-                ResetItemPosition();
-            }
+            //if (box == null)
+            //{
+            //    // restore original parent so reset position works properly
+            //    transform.parent = onTableItemsContainer.transform;
+            //    ResetItemPosition();
+            //}
 
             if (soundMan)
                 soundMan.Play("click");
+
+            // re-allow UI buttons to work again
+            GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
         public void ResetItemGraphic()
@@ -181,7 +187,7 @@ namespace Methodyca.Minigames.SortGame
         //    }            
         //}
 
-        public void GoIntoBox(GameObject boxType, GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
+        public void GoIntoBox(GameObject boxPlaceRef, Vector2 shift)    // ------ how the image swithces inside the box
         {
             /******************************** were all 3 lines meant to be within if statement? Also, the condition test isn't properly typed
             if (swap = ontable)
@@ -189,7 +195,7 @@ namespace Methodyca.Minigames.SortGame
             transform.parent = host.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;
             */
-            box = boxType;
+            //box = boxType;        //********** not required anymore. removed
 
             if (boxPlaceRef.CompareTag("Right Box"))
                 image.sprite = insideBoxSpriteRight;
@@ -230,7 +236,8 @@ namespace Methodyca.Minigames.SortGame
 
             transform.parent = table.transform;
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
-            box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
+            //************ not required. removed
+            //box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
         }
     }      
 }

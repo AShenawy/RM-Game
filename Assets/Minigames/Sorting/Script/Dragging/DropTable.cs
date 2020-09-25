@@ -12,8 +12,8 @@ namespace Methodyca.Minigames.SortGame
         public GameObject placementParent;
         public void OnDrop(PointerEventData eventData) 
         {
-            if (eventData.pointerDrag == null)
-            { 
+            if (eventData.pointerDrag.GetComponent<Drag>() == null)
+            {
                 return;
             }
 

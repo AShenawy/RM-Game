@@ -6,7 +6,8 @@ namespace Methodyca.Minigames.SortGame
     {
         public float minY;
         public float maxY;
-        public float speed;     // controls how fast the oscillation happens
+        public float speedIncrement = 0.4f;     // the increments by which oscillation speed increases
+        private float speed;     // controls how fast the oscillation happens
         
         RectTransform rect;
         float t = 0f;
@@ -35,6 +36,11 @@ namespace Methodyca.Minigames.SortGame
         public void Oscillate()
         {
             rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, Mathf.Lerp(minY, maxY, t));
+        }
+
+        public void AdjustSpeed(int multiplier)
+        {
+            speed = speedIncrement * multiplier;
         }
     }
 }

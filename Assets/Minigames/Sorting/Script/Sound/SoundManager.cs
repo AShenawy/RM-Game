@@ -22,6 +22,8 @@ namespace Methodyca.Minigames.SortGame
         public float freq;
         public float gain;
 
+        private AudioSource SFXPlayer;
+
         
         void Awake()
         {
@@ -37,6 +39,13 @@ namespace Methodyca.Minigames.SortGame
             }
         }
 
+        void Start()
+        {
+            SFXPlayer = gameObject.AddComponent<AudioSource>();
+
+            Play("Fraud Full");      //Background Music 
+        }
+
         public void Play (string name)
         {
             //finding the name of the sound
@@ -48,11 +57,26 @@ namespace Methodyca.Minigames.SortGame
             s.source.Play(); 
         }
 
-        void Start()
+        public void PlaySFX(AudioClip clip, bool doPan = false)
         {
-            Play("Fraud Full");      //Background Music 
+            SFXPlayer.clip = clip;
+
+            if (doPan)
+                SFXPlayer.panStereo = SFXImaging();
+
+            SFXPlayer.Play();
         }
-        
+
+        public float SFXImaging()
+        {
+            // get the horizontal component of the mouse
+            float mouseX = Input.mousePosition.x;
+
+            // compare the ratio between mouse horizontal position relative to the screen, then lerp it between range of values for stereo pan
+            float panner = Mathf.Lerp(-1, 1, mouseX / Screen.width);
+            return panner;
+        }
+
         public void Imaging(string name)    //Panning
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);   
@@ -68,6 +92,7 @@ namespace Methodyca.Minigames.SortGame
             
              */
         }
+
 
         public void Bounce(string name)
         {

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-// this script handles the sorting minigame gameplay
 namespace Methodyca.Minigames.SortGame
 {
+    // this script handles the sorting minigame gameplay
     public class SortingManager : MonoBehaviour
     {
+        public int currentPoints;
+        public int goalPoints = 10;         // the total number of points needed to win from both QL and QN
+
         public bool filesArranged; // **************** this field seems unused 
         public bool completed;
         public GameObject winScreen;

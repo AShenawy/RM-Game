@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 4d77d30f070ca468ea8a8b316987caf1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 8099283bc3716440e85dd4a67953e1eb,
@@ -726,7 +725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: bba3e080be0b24370ac2fc653e2e8fe3, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 4a380e24e42714f1e96ce24e66174fe9,
@@ -903,7 +901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 2ee27890307e94e09ba28e1eff5b2684, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5b807dee4b2be4ebaad5b66849b8c4a0,
@@ -961,7 +958,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1158.1915, y: 651.04395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298945520
 MonoBehaviour:
@@ -1025,6 +1022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 324152593}
   - component: {fileID: 324152596}
+  - component: {fileID: 324152594}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -1055,6 +1053,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &324152594
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324152592}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!222 &324152596
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1093,7 +1103,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1611874112}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1303,17 +1313,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDragSlot: {fileID: 569189697}
   gameManager: {fileID: 1290497627}
+  crystalOscillator: {fileID: 0}
   frequency1: 0
   frequency2: 50
   volume: 0
   volumeAux: 0
   sampleRate: 44100
   waveLengthInSeconds: 2
-  tick: 1
-  gain: 0.5
-  audioSource: {fileID: 0}
 --- !u!82 &499883505
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1496,6 +1503,8 @@ GameObject:
   - component: {fileID: 522027961}
   - component: {fileID: 522027960}
   - component: {fileID: 522027962}
+  - component: {fileID: 522027964}
+  - component: {fileID: 522027963}
   m_Layer: 5
   m_Name: Charge Station QL
   m_TagString: Qualitative
@@ -1572,103 +1581,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847e601a4a8242a4486bedfb1e094f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystalSprite: {fileID: 0}
-  crystalPhases: []
-  levitate: {fileID: 0}
-  shinnny: {fileID: 0}
-  temPos: {x: 0, y: 0, z: 0}
-  amp: 0
---- !u!1 &545214127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 545214128}
-  - component: {fileID: 545214133}
-  - component: {fileID: 545214132}
-  - component: {fileID: 545214131}
-  m_Layer: 5
-  m_Name: crystal pink
-  m_TagString: Qualitative
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &545214128
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545214127}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 588210950}
-  - {fileID: 1829932743}
-  - {fileID: 499883503}
-  m_Father: {fileID: 522027959}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 256}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &545214131
+  sortingBox: {fileID: 569189697}
+  crystal: {fileID: 545214129}
+--- !u!114 &522027963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545214127}
+  m_GameObject: {fileID: 522027958}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDragSlot: {fileID: 569189697}
-  gameManager: {fileID: 1290497627}
-  frequency1: 50
-  frequency2: 0
+  gameManager: {fileID: 0}
+  crystalOscillator: {fileID: 545214132}
+  frequency1: 0
+  frequency2: 50
   volume: 0
   volumeAux: 0
   sampleRate: 44100
   waveLengthInSeconds: 2
-  tick: 1
-  gain: 0.5
-  audioSource: {fileID: 0}
---- !u!114 &545214132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545214127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 653171d3fe05aa145a93fc05fe205776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minY: 256
-  maxY: 356
-  speed: 0
---- !u!82 &545214133
+--- !u!82 &522027964
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545214127}
+  m_GameObject: {fileID: 522027958}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1753,6 +1699,179 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &545214127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545214128}
+  - component: {fileID: 545214133}
+  - component: {fileID: 545214129}
+  - component: {fileID: 545214132}
+  m_Layer: 5
+  m_Name: crystal pink
+  m_TagString: Qualitative
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &545214128
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1829932743}
+  - {fileID: 588210950}
+  - {fileID: 499883503}
+  m_Father: {fileID: 522027959}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -7, y: 256}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &545214129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f627e9a9c5ab04a9c2035df7582bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystalImageRenderer: {fileID: 1829932744}
+  crystalPhases:
+  - {fileID: 21300000, guid: c36cc2167deb34e8b87db7e597cc20bb, type: 3}
+  - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
+  - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
+  - {fileID: 21300000, guid: 253beb5e13dee472aaa5c33473523db7, type: 3}
+  - {fileID: 21300000, guid: afd37cb092f1e44e3899fd3515eeb6a6, type: 3}
+  - {fileID: 21300000, guid: 29c3c058ed5e94285b58a34ed5f2e795, type: 3}
+  glowImage: {fileID: 588210951}
+--- !u!114 &545214132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653171d3fe05aa145a93fc05fe205776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minY: 256
+  maxY: 356
+  speedIncrement: 0.4
+--- !u!82 &545214133
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545214127}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: -1
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &563590946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1883,7 @@ GameObject:
   - component: {fileID: 563590947}
   - component: {fileID: 563590949}
   - component: {fileID: 563590948}
+  - component: {fileID: 563590950}
   m_Layer: 5
   m_Name: glowBlue
   m_TagString: Untagged
@@ -1783,7 +1903,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1611874112}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1827,6 +1947,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563590946}
   m_CullTransparentMesh: 0
+--- !u!95 &563590950
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563590946}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 908f0237ca348854db579a873fe02e73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &569189695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,28 +2017,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  crystalStation: {fileID: 545214127}
-  crystalSprite: {fileID: 1829932744}
-  placementReference: {fileID: 0}
+  placementReference: {fileID: 668920366}
   requiredItemsInBox: 5
-  glow: {fileID: 588210949}
-  levitate: {fileID: 588210950}
-  shinnny: {fileID: 588210950}
-  temPos: {x: 0, y: 0, z: 0}
-  amp: 0.4
-  crystalPhases:
-  - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
-  - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
-  - {fileID: 21300000, guid: 253beb5e13dee472aaa5c33473523db7, type: 3}
-  - {fileID: 21300000, guid: afd37cb092f1e44e3899fd3515eeb6a6, type: 3}
-  - {fileID: 21300000, guid: 29c3c058ed5e94285b58a34ed5f2e795, type: 3}
-  - {fileID: 21300000, guid: 504286347812c46b3a3eb41550164794, type: 3}
-  boxType: Qualitative
+  acceptableItemTag: Qualitative
   sorted: 0
   done: 0
-  almost: 0
   inTheBox: []
   itemPlacementShift: {x: -15, y: -20}
+  onItemPlacedSFX: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
 --- !u!1 &572454817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +2114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: f0e3ddac33d014ed0b4c3d9fe70c08d1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: c3cc8a8d04eef4ab2bd1a53decf66031,
@@ -2022,6 +2146,7 @@ GameObject:
   - component: {fileID: 588210950}
   - component: {fileID: 588210952}
   - component: {fileID: 588210951}
+  - component: {fileID: 588210954}
   m_Layer: 5
   m_Name: glowPurple
   m_TagString: Untagged
@@ -2041,7 +2166,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 545214128}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2085,6 +2210,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588210949}
   m_CullTransparentMesh: 0
+--- !u!95 &588210954
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588210949}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 908f0237ca348854db579a873fe02e73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &591349093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,7 +2418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: b4d48e2f9fb4a40369bf5846dad86747, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: d3bcf2a95492c4a96aeddb6ab3e13bea,
@@ -2968,28 +3111,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  crystalStation: {fileID: 1611874111}
-  crystalSprite: {fileID: 440691334}
-  placementReference: {fileID: 0}
+  placementReference: {fileID: 1710780501}
   requiredItemsInBox: 5
-  glow: {fileID: 563590946}
-  levitate: {fileID: 563590947}
-  shinnny: {fileID: 563590947}
-  temPos: {x: 0, y: 0, z: 0}
-  amp: 0.4
-  crystalPhases:
-  - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
-  - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
-  - {fileID: 21300000, guid: 17060ddcd9095432bbaa7574cb8e7cbb, type: 3}
-  - {fileID: 21300000, guid: 581cc6a3bdc13442a8fac3099326d97f, type: 3}
-  - {fileID: 21300000, guid: 3caf33752399946109ba3fd3b79230ed, type: 3}
-  - {fileID: 21300000, guid: 187e553dd91c946b792045d4b017e09c, type: 3}
-  boxType: Quantitative
+  acceptableItemTag: Quantitative
   sorted: 0
   done: 0
-  almost: 0
   inTheBox: []
   itemPlacementShift: {x: 15, y: -20}
+  onItemPlacedSFX: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
 --- !u!1 &880725258
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,7 +3350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 182c7d8cc29554460bc0c15dc649c746, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: cdbe00a776a054ed4a2eedc354d0f9be,
@@ -3332,7 +3460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: e5e29f50e79df4621a291c4b117ee922, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5576336ea2957475791647919b53fddb,
@@ -3443,7 +3570,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: fe53c865eb6f445e78404200e44fb609, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: fd52c37670273474b9066633368b57f6,
@@ -3554,7 +3680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 62d5911fae31f4557aaa1bb13e2cf6b1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: a9449c597827b49e1809e8c27775d4db,
@@ -3953,7 +4078,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 83f7172d0736e49bbaed8847b5f7ca87, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: f1e125667d1f4453fa384a70bce5f42a,
@@ -4093,6 +4217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f818d700040be4d7cadad7328904d71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPoints: 0
+  goalPoints: 0
   filesArranged: 0
   completed: 0
   winScreen: {fileID: 1930363418}
@@ -4331,7 +4457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 6faf4a5b254e14632b383cb31c5ad3fd, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5fed2c934baeb4780880bb221372ef40,
@@ -4736,7 +4861,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: da742d8ac106341bfacc2e856ce240c4, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 7c86ab57540ec408d82ef593b423441d,
@@ -4866,8 +4990,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1611874112}
   - component: {fileID: 1611874117}
-  - component: {fileID: 1611874116}
-  - component: {fileID: 1611874115}
+  - component: {fileID: 1611874113}
+  - component: {fileID: 1611874114}
   m_Layer: 5
   m_Name: crystal blue
   m_TagString: Quantitative
@@ -4886,8 +5010,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 563590947}
   - {fileID: 440691333}
+  - {fileID: 563590947}
   - {fileID: 1953842294}
   m_Father: {fileID: 1983376745}
   m_RootOrder: 0
@@ -4897,7 +5021,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 256}
   m_SizeDelta: {x: 206, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1611874115
+--- !u!114 &1611874113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4906,21 +5030,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1611874111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 27f627e9a9c5ab04a9c2035df7582bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDragSlot: {fileID: 827433517}
-  gameManager: {fileID: 1290497627}
-  frequency1: 0
-  frequency2: 50
-  volume: 0
-  volumeAux: 0
-  sampleRate: 44100
-  waveLengthInSeconds: 2
-  tick: 1
-  gain: 0.5
-  audioSource: {fileID: 0}
---- !u!114 &1611874116
+  crystalImageRenderer: {fileID: 440691334}
+  crystalPhases:
+  - {fileID: 21300000, guid: 5604f4b0665e54715b5e0ccd59c24b1f, type: 3}
+  - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
+  - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
+  - {fileID: 21300000, guid: 17060ddcd9095432bbaa7574cb8e7cbb, type: 3}
+  - {fileID: 21300000, guid: 581cc6a3bdc13442a8fac3099326d97f, type: 3}
+  - {fileID: 21300000, guid: 3caf33752399946109ba3fd3b79230ed, type: 3}
+  glowImage: {fileID: 563590948}
+--- !u!114 &1611874114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4934,7 +5056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minY: 256
   maxY: 356
-  speed: 0
+  speedIncrement: 0.4
 --- !u!82 &1611874117
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4945,11 +5067,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4957,7 +5079,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -5096,7 +5218,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 545214128}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5491,17 +5613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDragSlot: {fileID: 827433517}
   gameManager: {fileID: 1290497627}
+  crystalOscillator: {fileID: 0}
   frequency1: 0
   frequency2: 50
   volume: 0
   volumeAux: 0
   sampleRate: 44100
   waveLengthInSeconds: 2
-  tick: 1
-  gain: 0.5
-  audioSource: {fileID: 0}
 --- !u!82 &1953842296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5687,7 +5806,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
-  box: {fileID: 0}
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 9b364c705d3a044cbbf36df416efa443, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 7ea151612ef4147a3a669c9197791d0c,
@@ -5795,6 +5913,8 @@ GameObject:
   - component: {fileID: 1983376747}
   - component: {fileID: 1983376746}
   - component: {fileID: 1983376748}
+  - component: {fileID: 1983376750}
+  - component: {fileID: 1983376749}
   m_Layer: 5
   m_Name: Charge Station QN
   m_TagString: Quantitative
@@ -5871,12 +5991,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847e601a4a8242a4486bedfb1e094f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystalSprite: {fileID: 0}
-  crystalPhases: []
-  levitate: {fileID: 0}
-  shinnny: {fileID: 0}
-  temPos: {x: 0, y: 0, z: 0}
-  amp: 0
+  sortingBox: {fileID: 827433517}
+  crystal: {fileID: 1611874113}
+--- !u!114 &1983376749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983376744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac0612880934908a780d8f64e972b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  crystalOscillator: {fileID: 1611874114}
+  frequency1: 50
+  frequency2: 0
+  volume: 0
+  volumeAux: 0
+  sampleRate: 44100
+  waveLengthInSeconds: 2
+--- !u!82 &1983376750
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983376744}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2039648664
 GameObject:
   m_ObjectHideFlags: 0

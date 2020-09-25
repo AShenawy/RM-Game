@@ -3,12 +3,13 @@
 
 namespace Methodyca.Minigames.SortGame
 {
-    [RequireComponent(typeof(AudioSource), typeof(VerticalOscillator))]
+    [RequireComponent(typeof(AudioSource))]
     public class SoundManipulator : MonoBehaviour
     {   
         //The Ossicaltor. 
-        public SortBoxBehaviour boxDragSlot;
+        //public SortBoxBehaviour boxDragSlot;      //********* not needed anymore. removed
         public SortingManager gameManager;
+        public VerticalOscillator crystalOscillator;
 
         [Range(0, 20000)]
         public int frequency1;
@@ -25,16 +26,14 @@ namespace Methodyca.Minigames.SortGame
         public int sampleRate = 44100;
         public float waveLengthInSeconds = 2.0f;
 
-        public float tick;      //for the speed.        //************* Is this required for anything besides moving the object?
-        public float gain;      //like a compressor     //************ Same question
+        //public float tick;      //for the speed.        //************* Is this required for anything besides moving the object?
+        //public float gain;      //like a compressor     //************ Same question
        
-        public AudioSource audioSource;
-    
-        RectTransform rig;
         float minOscillationPosition;
         float maxOscillationPosition;
         int timeIndex = 0;
 
+        AudioSource audioSource;
 
         void Start()
         {
@@ -44,16 +43,18 @@ namespace Methodyca.Minigames.SortGame
             audioSource.Stop();     //avoids audiosource from starting to play automatically
             audioSource.volume = volume;    // set initial track volume
 
-            rig = GetComponent<RectTransform>();
-            minOscillationPosition = GetComponent<VerticalOscillator>().minY;
-            maxOscillationPosition = GetComponent<VerticalOscillator>().maxY;
+            minOscillationPosition = crystalOscillator.minY;
+            maxOscillationPosition = crystalOscillator.maxY;
         }
     
         void Update()
-        {   
+        {
+            Shake(audioSource);
+
+            /*
             if(boxDragSlot.done == true)
             {
-                if(!audioSource.isPlaying)
+                if(!audioSource.isPlaying)        //****************** moved to PlaySound()
                 {
                     audioSource.Play();
                     timeIndex = 0;           //resets timer before playing sound
@@ -61,13 +62,30 @@ namespace Methodyca.Minigames.SortGame
                 }
             }
             
-            if(gameManager.completed==true)
-                audioSource.Stop();
+
+            if (gameManager.completed==true)
+                audioSource.Stop();                 //**************** moved to StopSound()
             
-            Shake(audioSource);
-            //Oscillate();
+
+            Oscillate();                //********* check method comments
+            */
         }
-    
+
+        public void PlaySound()
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+                timeIndex = 0;           //resets timer before playing sound
+                Debug.Log("Keys are playing");
+            }
+        }
+
+        public void StopSound()
+        {
+            audioSource.Stop();
+        }
+
         void OnAudioFilterRead(float[] data, int channels)
         {
             for(int i = 0; i < data.Length; i+= channels)       //***************** Needs review with Kewa
@@ -97,14 +115,14 @@ namespace Methodyca.Minigames.SortGame
         void Shake(AudioSource audioSource) 
         {
             float motionRange = maxOscillationPosition - minOscillationPosition;
-            float currentPos = rig.anchoredPosition.y;
+            float currentPos = crystalOscillator.GetComponent<RectTransform>().anchoredPosition.y;
             float ratio = (currentPos - minOscillationPosition) / motionRange;
 
             volumeAux = Mathf.Lerp(0, 1, ratio);
             audioSource.volume = volumeAux;
         }
 
-        // Move game object in oscillations according to sound
+        // Move game object in oscillations according to sound          //********** functionality moved to VerticalOscillator script
         //void Oscillate()
         //{
         //    //Vector3 temp = new Vector3();
