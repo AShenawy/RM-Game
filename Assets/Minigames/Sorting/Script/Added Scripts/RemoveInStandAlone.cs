@@ -1,5 +1,4 @@
-﻿#define StandAlone
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames
 {
@@ -9,9 +8,7 @@ namespace Methodyca.Minigames
         // Start is called before the first frame update
         void Awake()
         {
-#if StandAlone
             Destroy(gameObject);
-#endif
         }
     }
 }
