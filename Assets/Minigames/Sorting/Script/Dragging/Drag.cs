@@ -110,7 +110,7 @@ namespace Methodyca.Minigames.SortGame
             //canvasGroup.blocksRaycasts = false;     // ***************** moved to disabling RaycastTarget property on Image component
 
             // move object to drag canvas so it's viewed on top of other elements
-            transform.parent = dragCanvas.transform;
+            rectTransform.SetParent(dragCanvas.transform, true);
 
             // change object opacity when starting to drag it
             image.color = new Color(image.color.r, image.color.g, image.color.b, onDragOpacity);
@@ -162,12 +162,12 @@ namespace Methodyca.Minigames.SortGame
             GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
-        public void ResetItemGraphic()
+        void ResetItemGraphic()
         {
             image.sprite = onTableSprite;
         }
 
-        public void ResetItemPosition()
+        void ResetItemPosition()
         {
             rectTransform.anchoredPosition = startPosOnTable;
         }
@@ -202,7 +202,8 @@ namespace Methodyca.Minigames.SortGame
             else if (boxPlaceRef.CompareTag("Left Box"))
                 image.sprite = insideBoxSpriteLeft;
 
-            transform.parent = boxPlaceRef.transform;
+            //transform.parent = boxPlaceRef.transform;
+            rectTransform.SetParent(boxPlaceRef.transform, false);
             
             //gameObject.GetComponent<RectTransform>().sizeDelta = inboxSizer;  //******** just use the variable you already set *********
             rectTransform.sizeDelta = inBoxImageDimensions;
@@ -218,7 +219,7 @@ namespace Methodyca.Minigames.SortGame
             rectTransform.anchoredPosition = inBoxPos;
         }
 
-        public void ReturnOriginalLocation(GameObject table)   // ------- how the images switches outside the box 
+        public void ReturnOriginalLocation()   // ------- how the images switches outside the box 
         {
             /******** were all 3 lines meant to be within if statement?
              * Also, the condition test isn't properly typed: if (swap = inbox) is not checking if the values are similar
@@ -231,10 +232,11 @@ namespace Methodyca.Minigames.SortGame
             transform.parent = tabledItems.transform;
             this.gameObject.GetComponent<RectTransform>().sizeDelta = onTableShazam;
             */
-            image.sprite = onTableSprite;
+            ResetItemGraphic();
             rectTransform.sizeDelta = onTableImageDimensions;
 
-            transform.parent = table.transform;
+            //transform.parent = onTableItemsContainer.transform;
+            rectTransform.SetParent(onTableItemsContainer.transform, false);
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
             //************ not required. removed
             box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********

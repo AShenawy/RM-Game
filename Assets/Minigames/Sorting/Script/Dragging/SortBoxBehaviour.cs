@@ -98,13 +98,18 @@ namespace Methodyca.Minigames.SortGame
             //*********** Extra step that does nothing. a few lines down PlaceInBox() gets called which dictates final position of thingOnTable **********
             //thingOnTheTable.anchoredPosition = anchored.anchoredPosition;
 
-
-            // Check if the item dropped has already been added to the box or not
-            if (!inTheBox.Contains(droppedItem))
-                inTheBox.Add(droppedItem);
-
             // do action of placing dropped item into the box 
             PlaceInBox(droppedItem);
+
+            // Check if the item dropped has already been added to the box or not
+            //if (!inTheBox.Contains(droppedItem))
+            //    inTheBox.Add(droppedItem);
+
+            // reverse above
+            if (inTheBox.Contains(droppedItem))
+                return;
+
+            inTheBox.Add(droppedItem);
 
             //To compare with Tags (QN and QA), with the box and see which enters which. 
             if (droppedItem.CompareTag(acceptableItemTag))
@@ -164,16 +169,16 @@ namespace Methodyca.Minigames.SortGame
         }
 
         public void RemoveFromBox(GameObject itemInBox)    //The method to remove things in the box. 
-        {   
+        {
             if (!inTheBox.Contains(itemInBox))      //If the object isnt in the box it wouldnt remove.
                 return;
 
             //A check to see if the tags are correct and if there is a point award to the box already.
-            if(itemInBox.CompareTag(acceptableItemTag))
+            if (itemInBox.CompareTag(acceptableItemTag))
             {
-                correctItemsInBoxCount--;
-
-
+                if (correctItemsInBoxCount > 0)
+                    correctItemsInBoxCount--;
+                
                 /*
                 if (points > 0)
                 {
@@ -192,6 +197,7 @@ namespace Methodyca.Minigames.SortGame
             // invoke event to check if a correct item was removed
             onItemDropped?.Invoke(correctItemsInBoxCount);
             
+
             //CheckSorting();
         }
 
@@ -199,6 +205,17 @@ namespace Methodyca.Minigames.SortGame
         {
             foreach (GameObject placedItem in inTheBox)
                 PlaceInBox(placedItem);
+        }
+
+        public void EmptyBox()
+        {
+            // copy list to array since we're modifying original list by removing entries
+            // This prevents the foreach enumerator from going through entries
+            foreach (GameObject placedItem in inTheBox.ToArray())
+            {
+                RemoveFromBox(placedItem);
+                placedItem.GetComponent<Drag>().ReturnOriginalLocation();
+            }
         }
 
         /*

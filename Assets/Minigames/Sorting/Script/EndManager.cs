@@ -7,7 +7,7 @@ namespace Methodyca.Minigames.SortGame
     {
         public void ResetGame(string sceneName)
         {
-            Debug.Log("restart");
+            Debug.Log("game reset");
             SceneManager.LoadScene(sceneName);
         }
     }

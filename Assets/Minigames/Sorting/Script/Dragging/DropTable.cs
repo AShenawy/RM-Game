@@ -22,7 +22,7 @@ namespace Methodyca.Minigames.SortGame
             boxQuanti.GetComponent<SortBoxBehaviour>().RemoveFromBox(eventData.pointerDrag);
 
             //for the image to appear back on the table.
-            eventData.pointerDrag.GetComponent<Drag>().ReturnOriginalLocation(placementParent);
+            eventData.pointerDrag.GetComponent<Drag>().ReturnOriginalLocation();
         }           
     }
 }

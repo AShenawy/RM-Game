@@ -61,7 +61,7 @@ namespace Methodyca.Minigames.SortGame
                 Complete();
         }
 
-        public void Complete()
+        void Complete()
         {
             //if(!completed)  // ******************* is check necessary?
             //{
@@ -73,6 +73,12 @@ namespace Methodyca.Minigames.SortGame
             soundMan.Stop("static");
             soundMan.Play("comp");
             soundMan.Play("staticL");
+        }
+
+        public void ResetLayout()
+        {
+            QNBox.EmptyBox();
+            QLBox.EmptyBox();
         }
     }
 }
