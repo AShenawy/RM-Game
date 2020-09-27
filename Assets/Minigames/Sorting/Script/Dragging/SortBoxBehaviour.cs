@@ -196,7 +196,6 @@ namespace Methodyca.Minigames.SortGame
 
             // invoke event to check if a correct item was removed
             onItemDropped?.Invoke(correctItemsInBoxCount);
-            
 
             //CheckSorting();
         }
