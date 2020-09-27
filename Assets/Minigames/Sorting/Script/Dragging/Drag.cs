@@ -7,7 +7,7 @@ namespace Methodyca.Minigames.SortGame
 {
     // script handles the behaviour of draggable items on UI canvas
     public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
-                        IEndDragHandler, IDragHandler
+                        IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private Canvas dragCanvas;
 
@@ -22,6 +22,7 @@ namespace Methodyca.Minigames.SortGame
         private CanvasGroup canvasGroup;    //A component needed for the raycast.   ******/
 
         public GameObject box;      // the box the item is sitting in
+        public int peekUpDistance = 15;
 
         //public GameObject itemsHD;    //The clear vision of the items on the table.       //********** unused. removed *************
 
@@ -245,6 +246,18 @@ namespace Methodyca.Minigames.SortGame
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
             //************ not required. removed
             box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (box)
+                rectTransform.anchoredPosition += new Vector2(0, peekUpDistance);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (box)
+                rectTransform.anchoredPosition -= new Vector2(0, peekUpDistance);
         }
     }      
 }
