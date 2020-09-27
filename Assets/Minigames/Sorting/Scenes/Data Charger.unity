@@ -381,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 4d77d30f070ca468ea8a8b316987caf1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 8099283bc3716440e85dd4a67953e1eb,
@@ -827,6 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: bba3e080be0b24370ac2fc653e2e8fe3, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 4a380e24e42714f1e96ce24e66174fe9,
@@ -1041,6 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 2ee27890307e94e09ba28e1eff5b2684, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5b807dee4b2be4ebaad5b66849b8c4a0,
@@ -3178,6 +3181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: f0e3ddac33d014ed0b4c3d9fe70c08d1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: c3cc8a8d04eef4ab2bd1a53decf66031,
@@ -3483,6 +3487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: b4d48e2f9fb4a40369bf5846dad86747, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: d3bcf2a95492c4a96aeddb6ab3e13bea,
@@ -4731,9 +4736,8 @@ GameObject:
   - component: {fileID: 880725261}
   - component: {fileID: 880725263}
   - component: {fileID: 880725262}
-  - component: {fileID: 880725260}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Reset Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4758,18 +4762,6 @@ RectTransform:
   m_AnchoredPosition: {x: 791.1605, y: 409.9999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &880725260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880725258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becd1fe203ebc40a8b4e1e599535eed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &880725261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5030,6 +5022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 182c7d8cc29554460bc0c15dc649c746, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: cdbe00a776a054ed4a2eedc354d0f9be,
@@ -5472,6 +5465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: e5e29f50e79df4621a291c4b117ee922, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5576336ea2957475791647919b53fddb,
@@ -5583,6 +5577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: fe53c865eb6f445e78404200e44fb609, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: fd52c37670273474b9066633368b57f6,
@@ -5694,6 +5689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 62d5911fae31f4557aaa1bb13e2cf6b1, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: a9449c597827b49e1809e8c27775d4db,
@@ -5819,6 +5815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: f8ae7c11d708f47d38b9422c6e174589, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: c17d32709747a43cfbc1da1f66652a22,
@@ -5996,6 +5993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 52027eef4f4fc41058d6986b6a1d63d3, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 27abd7d4c8b37411686a07aaf2143a2c,
@@ -6131,6 +6129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 83f7172d0736e49bbaed8847b5f7ca87, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: f1e125667d1f4453fa384a70bce5f42a,
@@ -6402,6 +6401,7 @@ MonoBehaviour:
   QNBox: {fileID: 827433517}
   QLBox: {fileID: 569189697}
   requiredItemsInBox: 5
+  buttonsPanel: {fileID: 324152594}
   winScreen: {fileID: 1930363418}
 --- !u!1 &1303687988
 GameObject:
@@ -6776,6 +6776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 6faf4a5b254e14632b383cb31c5ad3fd, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 5fed2c934baeb4780880bb221372ef40,
@@ -7474,6 +7475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: da742d8ac106341bfacc2e856ce240c4, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 7c86ab57540ec408d82ef593b423441d,
@@ -9162,6 +9164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCanvas: {fileID: 1605718121}
   box: {fileID: 0}
+  peekUpDistance: 25
   onTableItemsContainer: {fileID: 715231145}
   onTableSprite: {fileID: 21300000, guid: 9b364c705d3a044cbbf36df416efa443, type: 3}
   insideBoxSpriteLeft: {fileID: 21300000, guid: 7ea151612ef4147a3a669c9197791d0c,
