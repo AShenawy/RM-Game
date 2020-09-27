@@ -22,6 +22,7 @@ namespace Methodyca.Minigames.SortGame
         private CanvasGroup canvasGroup;    //A component needed for the raycast.   ******/
 
         public GameObject box;      // the box the item is sitting in
+        [Tooltip("How far up would the item slide up when the pointer hovers over it, while it's in a box"), Range(0, 100)]
         public int peekUpDistance = 15;
 
         //public GameObject itemsHD;    //The clear vision of the items on the table.       //********** unused. removed *************
@@ -97,6 +98,17 @@ namespace Methodyca.Minigames.SortGame
         {
             //********* simply use GetComponent(), and why do you get it from thisniccur in Start() only to keep reassigning it in update?? *********
             //thisniccur.GetComponent<Image>().sprite = swap;     //********* switched with direct reference to Image component **********
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (box)
+                rectTransform.anchoredPosition += new Vector2(0, peekUpDistance);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (box)
+                rectTransform.anchoredPosition -= new Vector2(0, peekUpDistance);
         }
 
         // This is redundant - No functionality. Can remove or move OnBeginDrag functionality to it,
@@ -246,18 +258,6 @@ namespace Methodyca.Minigames.SortGame
             ResetItemPosition();            //***************************   this is necessary to have the item return to its original place ************
             //************ not required. removed
             box = null;                     //************************ should empty the variable again, return it to its original state, to avoid unwanted behaviour ***********
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            if (box)
-                rectTransform.anchoredPosition += new Vector2(0, peekUpDistance);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            if (box)
-                rectTransform.anchoredPosition -= new Vector2(0, peekUpDistance);
         }
     }      
 }
