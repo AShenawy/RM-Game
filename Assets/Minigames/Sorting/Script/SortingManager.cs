@@ -8,6 +8,7 @@ namespace Methodyca.Minigames.SortGame
         public SortBoxBehaviour QNBox;
         public SortBoxBehaviour QLBox;
         public int requiredItemsInBox;
+        public CanvasGroup buttonsPanel;
 
         //public bool filesArranged;    // **************** this field seems unused. removed
         //public bool completed;        //*********** not needed. removed
@@ -79,6 +80,11 @@ namespace Methodyca.Minigames.SortGame
         {
             QNBox.EmptyBox();
             QLBox.EmptyBox();
+        }
+
+        public void EnableButtons(bool value)
+        {
+            buttonsPanel.blocksRaycasts = value;
         }
     }
 }

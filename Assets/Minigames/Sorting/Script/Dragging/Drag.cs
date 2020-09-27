@@ -6,8 +6,8 @@ using UnityEngine.UI;
 namespace Methodyca.Minigames.SortGame
 {
     // script handles the behaviour of draggable items on UI canvas
-    public class Drag : MonoBehaviour, IPointerDownHandler,
-                        IBeginDragHandler, IEndDragHandler, IDragHandler
+    public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
+                        IEndDragHandler, IDragHandler
     {
         [SerializeField] private Canvas dragCanvas;
 
@@ -57,6 +57,7 @@ namespace Methodyca.Minigames.SortGame
 
         Image image;
         SoundManager soundMan;
+        SortingManager sortMan;
 
 
         private void Awake()
@@ -77,7 +78,9 @@ namespace Methodyca.Minigames.SortGame
         }
         
         void Start()
-        {     
+        {
+            sortMan = FindObjectOfType<SortingManager>();
+
             //thisniccur = this.gameObject;           // *************  redundant  *******************
             
             /****************** can use GetComponent() right away without recursive referencing by usign thisniccur  *************
@@ -119,7 +122,8 @@ namespace Methodyca.Minigames.SortGame
             image.raycastTarget = false;
 
             // prevent UI buttons from blocking raycasts, essentially making items float on them
-            GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = false;
+            //GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = false;
+            sortMan.EnableButtons(false);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -159,7 +163,8 @@ namespace Methodyca.Minigames.SortGame
                 soundMan.Play("click");
 
             // re-allow UI buttons to work again
-            GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            sortMan.EnableButtons(true);
         }
 
         void ResetItemGraphic()
