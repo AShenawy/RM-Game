@@ -2665,8 +2665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   crystalOscillator: {fileID: 545214132}
-  frequency1: 0
-  frequency2: 50
+  frequency1: 50
+  frequency2: 0
   volume: 0
   volumeAux: 0
   sampleRate: 44100
@@ -5195,7 +5195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -118.83942, y: -79.99994}
+  m_AnchoredPosition: {x: -118.75, y: -80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1000032109
@@ -6365,6 +6365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290497626}
   - component: {fileID: 1290497627}
+  - component: {fileID: 1290497628}
   m_Layer: 0
   m_Name: MiniGame Manager
   m_TagString: Untagged
@@ -6402,7 +6403,23 @@ MonoBehaviour:
   QLBox: {fileID: 569189697}
   requiredItemsInBox: 5
   buttonsPanel: {fileID: 324152594}
+  BGM: {fileID: 0}
   winScreen: {fileID: 1930363418}
+--- !u!114 &1290497628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290497625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195538bad0e2f4549b96077cfd98a26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value1: 15
+  value3: 0
+  value4: 0
 --- !u!1 &1303687988
 GameObject:
   m_ObjectHideFlags: 0
@@ -9444,8 +9461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   crystalOscillator: {fileID: 1611874114}
-  frequency1: 50
-  frequency2: 0
+  frequency1: 0
+  frequency2: 50
   volume: 0
   volumeAux: 0
   sampleRate: 44100

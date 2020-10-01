@@ -1,12 +1,12 @@
-﻿using UnityEngine.Audio;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.SortGame
 {
+    // this class is to hold data about SFX or BGM clip
     [System.Serializable]
     public class Sound
     {
-        public string name;
+        public string name;       //******* will drop this as calling sounds will better be using variable references
         public AudioClip clip;
         
         [Range(0f,1f)] 

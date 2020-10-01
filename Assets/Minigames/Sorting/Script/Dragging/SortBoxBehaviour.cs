@@ -54,6 +54,7 @@ namespace Methodyca.Minigames.SortGame
         public Vector2 itemPlacementShift;       //the distance between the items in box,for spacing. 
 
         public AudioClip onItemPlacedSFX;
+        public Sound onItemPlacedSFX2;
         SoundManager soundMan;
       
 

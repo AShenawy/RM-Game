@@ -86,9 +86,10 @@ namespace Methodyca.Minigames.SortGame
             audioSource.Stop();
         }
 
+        // Produces the humming effect 
         void OnAudioFilterRead(float[] data, int channels)
         {
-            for(int i = 0; i < data.Length; i+= channels)       //***************** Needs review with Kewa
+            for(int i = 0; i < data.Length; i+= channels)
             {          
                 data[i] = CreateSine(timeIndex, frequency1, sampleRate);
             

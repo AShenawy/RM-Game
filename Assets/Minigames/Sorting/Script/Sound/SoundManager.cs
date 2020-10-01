@@ -23,8 +23,8 @@ namespace Methodyca.Minigames.SortGame
         public float gain;
 
         private AudioSource SFXPlayer;
-
         
+
         void Awake()
         {
             //for preloading the sounds
@@ -94,14 +94,14 @@ namespace Methodyca.Minigames.SortGame
         }
 
 
-        public void Bounce(string name)
-        {
-            Sound s = Array.Find(sounds, sound => sound.name == name);
-            pos = new Vector2();
-            pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * gain / 10f; //******* why divide by 10f?
-            y= pos.y + 0.4f;        //*********** why add 0.4f? Sin() will produce a value between -1 and 1; thus will be -0.6 and 1.4
-            s.source.volume = y;
-        }
+        //public void Bounce(string name)       // *********** not used. removed
+        //{
+        //    Sound s = Array.Find(sounds, sound => sound.name == name);
+        //    pos = new Vector2();
+        //    pos.y = Mathf.Sin(Time.fixedTime * Mathf.PI * freq) * gain / 10f; //******* why divide by 10f?
+        //    y= pos.y + 0.4f;        //*********** why add 0.4f? Sin() will produce a value between -1 and 1; thus will be -0.6 and 1.4
+        //    s.source.volume = y;
+        //}
 
         public void Stop(string name)
         {

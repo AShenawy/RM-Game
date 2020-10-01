@@ -9,6 +9,7 @@ namespace Methodyca.Minigames.SortGame
         public SortBoxBehaviour QLBox;
         public int requiredItemsInBox;
         public CanvasGroup buttonsPanel;
+        public AudioClip BGM;
 
         //public bool filesArranged;    // **************** this field seems unused. removed
         //public bool completed;        //*********** not needed. removed

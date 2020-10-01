@@ -21,27 +21,27 @@ namespace Methodyca.Minigames.SortGame
             audioSource = GetComponent<AudioSource>();
         }
 
-        public void IncreaseCharge()
-        {
-            chargePhase++;
-            crystalImageRenderer.sprite = crystalPhases[chargePhase];
+        //public void IncreaseCharge()
+        //{
+        //    chargePhase++;
+        //    crystalImageRenderer.sprite = crystalPhases[chargePhase];
 
-            if (chargePhase > 4)
-            {
-                glowImage.enabled = true;
-                audioSource.Play();
-            }
-        }
+        //    if (chargePhase > 4)
+        //    {
+        //        glowImage.enabled = true;
+        //        audioSource.Play();
+        //    }
+        //}
 
-        public void DecreaseCharge()
-        {
-            chargePhase--;
-            crystalImageRenderer.sprite = crystalPhases[chargePhase];
+        //public void DecreaseCharge()
+        //{
+        //    chargePhase--;
+        //    crystalImageRenderer.sprite = crystalPhases[chargePhase];
 
-            // no need for if statement since the glow is displayed at max only.
-            glowImage.enabled = false;
-            audioSource.Stop();
-        }
+        //    // no need for if statement since the glow is displayed at max only.
+        //    glowImage.enabled = false;
+        //    audioSource.Stop();
+        //}
 
         public void AdjustGlow(int phase)
         {
