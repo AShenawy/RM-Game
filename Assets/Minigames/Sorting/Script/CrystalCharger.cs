@@ -37,6 +37,8 @@ namespace Methodyca.Minigames.SortGame
 
             if (charge > 0)
                 soundManipulator.PlaySound();
+            else
+                soundManipulator.StopSound();
         }
 
 

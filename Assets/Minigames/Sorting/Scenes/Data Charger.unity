@@ -389,6 +389,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 8099283bc3716440e85dd4a67953e1eb,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &65347813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +409,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 2438831852354163316, guid: ca9ac735c0d4f284a8965284a216a12b,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &90876152
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +848,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 4a380e24e42714f1e96ce24e66174fe9,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &111672366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,6 +868,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 5000975382094465393, guid: 31472c217a7064d4c9f4ed6a7bcfe6e0,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &184220666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1075,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 1547924cac6d84715953e37f4a4edb1a,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &204458454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,6 +1095,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 3152300832841816703, guid: 4fcb0e2a246789e4fadd8742962148a1,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &235235072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,7 +1954,6 @@ GameObject:
   - component: {fileID: 446176283}
   - component: {fileID: 446176282}
   - component: {fileID: 446176284}
-  - component: {fileID: 446176285}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1938,53 +1973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e27bf57851dc47e19c309665d69079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: Fraud Full
-    clip: {fileID: 8300000, guid: 7540e8a21e1f14de49d4264037651663, type: 3}
-    amp: 0.3
-    pitch: 1
-    loop: 1
-    pan: 0
-    source: {fileID: 0}
-  - name: click
-    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
-    amp: 0.15
-    pitch: 1
-    loop: 0
-    pan: 0
-    source: {fileID: 0}
-  - name: paper_hit
-    clip: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
-    amp: 0.13
-    pitch: 1
-    loop: 0
-    pan: 0
-    source: {fileID: 0}
-  - name: static
-    clip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
-    amp: 0.5
-    pitch: 1
-    loop: 1
-    pan: 0
-    source: {fileID: 0}
-  - name: staticL
-    clip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
-    amp: 0.15
-    pitch: 1
-    loop: 0
-    pan: 0
-    source: {fileID: 0}
-  - name: comp
-    clip: {fileID: 8300000, guid: 43fc9b7ff4e3043a1995e11d586c1bdb, type: 3}
-    amp: 0.4
-    pitch: 1
-    loop: 0
-    pan: 0
-    source: {fileID: 0}
-  pos: {x: 0, y: 0}
-  y: 3.04
-  freq: 0.94
-  gain: 1
 --- !u!4 &446176283
 Transform:
   m_ObjectHideFlags: 0
@@ -2007,23 +1995,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446176281}
   m_Enabled: 1
---- !u!114 &446176285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446176281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 789e3d3cff7566e47bb5fc7f735b2729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseX: 0
-  mouseY: 0
-  mouseZ: 0
-  screenHeight: 0
-  screenWidth: 0
 --- !u!1 &467990387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2826,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
@@ -3090,7 +3061,12 @@ MonoBehaviour:
   acceptableItemTag: Qualitative
   inTheBox: []
   itemPlacementShift: {x: -15, y: -20}
-  onItemPlacedSFX: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
+  onItemPlacedSFX:
+    clip: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
+    amp: 0.13
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &572454817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,6 +3165,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: c3cc8a8d04eef4ab2bd1a53decf66031,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &572454824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3203,6 +3185,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 346014731167101313, guid: b790ee863273b3441845318956367e76,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &588210949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3483,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: d3bcf2a95492c4a96aeddb6ab3e13bea,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &606917056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,6 +3503,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 3695880906524170931, guid: db4254cc1e1a57249b132a026a5c75b0,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &611883001
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,7 +4629,12 @@ MonoBehaviour:
   acceptableItemTag: Quantitative
   inTheBox: []
   itemPlacementShift: {x: 15, y: -20}
-  onItemPlacedSFX: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
+  onItemPlacedSFX:
+    clip: {fileID: 8300000, guid: 6dbcc071aaafb401f814bd39135a0cde, type: 3}
+    amp: 0.13
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &850001768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5030,6 +5035,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 97aa64911ff004bb6b1570f63b9e3ad2,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &911425035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,6 +5055,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 1563187383633855919, guid: a011477faa4a12d4094501b04d435f91,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &937296788
 GameObject:
   m_ObjectHideFlags: 0
@@ -5473,6 +5490,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 5576336ea2957475791647919b53fddb,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1058094591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5487,6 +5510,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 4122531984573164853, guid: 998cb5efd32bece47ad1dc7d15ba45f7,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1140844603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5585,6 +5614,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: fd52c37670273474b9066633368b57f6,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1140844610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5599,6 +5634,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 3105397852801524371, guid: 2a7758cc4e22a9d4d8bb1b44fb788e61,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1147040328
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,6 +5738,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: a9449c597827b49e1809e8c27775d4db,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1147040335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5711,6 +5758,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 2234534695475762064, guid: d7517c12f8d42434c9a8adc0aaedda9b,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1156266650
 GameObject:
   m_ObjectHideFlags: 0
@@ -5801,6 +5854,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 735186734212377306, guid: 287c6cbe14b78c74ba211b98d5d068f5,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1156266655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5823,6 +5882,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: c17d32709747a43cfbc1da1f66652a22,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1170396071
 GameObject:
   m_ObjectHideFlags: 0
@@ -5979,6 +6044,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 6064066258308621410, guid: 8a89511451afba24cb7b25129f767c69,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1183769141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6001,6 +6072,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 27abd7d4c8b37411686a07aaf2143a2c,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1194995205
 GameObject:
   m_ObjectHideFlags: 0
@@ -6137,6 +6214,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: f1e125667d1f4453fa384a70bce5f42a,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1207372955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6151,6 +6234,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 9152618591510017358, guid: fb6dc47f6c594ad49a8fc7b6fc54a831,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1218843635
 GameObject:
   m_ObjectHideFlags: 0
@@ -6365,9 +6454,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1290497626}
   - component: {fileID: 1290497627}
-  - component: {fileID: 1290497628}
   m_Layer: 0
-  m_Name: MiniGame Manager
+  m_Name: Sorting Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6403,23 +6491,19 @@ MonoBehaviour:
   QLBox: {fileID: 569189697}
   requiredItemsInBox: 5
   buttonsPanel: {fileID: 324152594}
-  BGM: {fileID: 0}
   winScreen: {fileID: 1930363418}
---- !u!114 &1290497628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290497625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195538bad0e2f4549b96077cfd98a26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value1: 15
-  value3: 0
-  value4: 0
+  BGM:
+    clip: {fileID: 8300000, guid: 7540e8a21e1f14de49d4264037651663, type: 3}
+    amp: 0.3
+    pitch: 1
+    loop: 1
+    pan: 0
+  gameWinTune:
+    clip: {fileID: 8300000, guid: 43fc9b7ff4e3043a1995e11d586c1bdb, type: 3}
+    amp: 0.4
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1303687988
 GameObject:
   m_ObjectHideFlags: 0
@@ -6801,6 +6885,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 5fed2c934baeb4780880bb221372ef40,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1429622125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6815,6 +6905,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 4460597904344864491, guid: 73355646c31f0654bad531644cff6cf5,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1446208329
 GameObject:
   m_ObjectHideFlags: 0
@@ -7500,6 +7596,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: ef9007b7f9c98476aaffb7535e3c7ee3,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1601090189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7514,6 +7616,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 438505717318855270, guid: b446d7ecddfcc7c42821d264322d9d89,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1605718117
 GameObject:
   m_ObjectHideFlags: 0
@@ -7779,7 +7887,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6993da59801ca487f9efe2bde48016fe, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
@@ -9189,6 +9297,12 @@ MonoBehaviour:
   insideBoxSpriteRight: {fileID: 21300000, guid: 7ea151612ef4147a3a669c9197791d0c,
     type: 3}
   onDragOpacity: 0.7
+  dragSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!114 &1968638407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9203,6 +9317,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enlargedPrefab: {fileID: 4630026763485575762, guid: d87da73874565334ba91557b649a6858,
     type: 3}
+  clickSFX:
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    amp: 0.15
+    pitch: 1
+    loop: 0
+    pan: 0
 --- !u!1 &1975257515
 GameObject:
   m_ObjectHideFlags: 0

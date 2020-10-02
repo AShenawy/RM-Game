@@ -5,16 +5,22 @@ namespace Methodyca.Minigames.SortGame
     // this script handles the sorting minigame gameplay
     public class SortingManager : MonoBehaviour
     {
+        public delegate void OnGameComplete();
+        public event OnGameComplete gameComplete;
+
         public SortBoxBehaviour QNBox;
         public SortBoxBehaviour QLBox;
         public int requiredItemsInBox;
         public CanvasGroup buttonsPanel;
-        public AudioClip BGM;
+        public GameObject winScreen;
 
         //public bool filesArranged;    // **************** this field seems unused. removed
         //public bool completed;        //*********** not needed. removed
-        public GameObject winScreen;
-        
+
+        [Header("Sound")]
+        [Tooltip("The Background Music track during game")] public Sound BGM;
+        public Sound gameWinTune;
+
         bool QNBoxSorted;
         bool QLBoxSorted;
         SoundManager soundMan;
@@ -35,6 +41,8 @@ namespace Methodyca.Minigames.SortGame
         {
             winScreen.SetActive(false);
             soundMan = FindObjectOfType<SoundManager>();
+
+            SoundManager.instance.PlayBGM(BGM);
         }
 
         void CheckQNSorted(int correctItemsCount)
@@ -67,14 +75,17 @@ namespace Methodyca.Minigames.SortGame
         {
             //if(!completed)  // ******************* is check necessary?
             //{
-                //completed = true;         //************ unused. removed
+            //completed = true;         //************ unused. removed
             //}
 
+            gameComplete?.Invoke();
             winScreen.SetActive(true);
-            soundMan.Stop("Fraud Full");
-            soundMan.Stop("static");
-            soundMan.Play("comp");
-            soundMan.Play("staticL");
+            //soundMan.Stop("Fraud Full");     //******* with the new SoundManager setup we can simply switch to another BGM straight away
+            //soundMan.Play("comp");
+            SoundManager.instance.PlayBGM(gameWinTune);
+            
+            //soundMan.Stop("static");
+            //soundMan.Play("staticL");         //******* according to Kewa this is no longer needed to be played
         }
 
         public void ResetLayout()

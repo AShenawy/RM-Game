@@ -10,15 +10,25 @@ namespace Methodyca.Minigames.SortGame
         public Sprite[] crystalPhases;
         public Image glowImage;
 
-        private int chargePhase = 0;
+        //private int chargePhase = 0;          //***** unused. removed
         private VerticalOscillator oscillator;
         private AudioSource audioSource;
+        private SortingManager gameManager;
+
 
         private void Start()
         {
             glowImage.enabled = false;
             oscillator = GetComponent<VerticalOscillator>();
             audioSource = GetComponent<AudioSource>();
+            audioSource.mute = true;
+            gameManager = FindObjectOfType<SortingManager>();
+            gameManager.gameComplete += LowerVolume;
+        }
+
+        private void OnDisable()
+        {
+            gameManager.gameComplete -= LowerVolume;
         }
 
         //public void IncreaseCharge()
@@ -51,13 +61,18 @@ namespace Methodyca.Minigames.SortGame
             if (phase > 4)
             {
                 glowImage.enabled = true;
-                audioSource.Play();
+                audioSource.mute = false;
             }
             else
             {
                 glowImage.enabled = false;
-                audioSource.Stop();
+                audioSource.mute = true;
             }
+        }
+
+        private void LowerVolume()
+        {
+            audioSource.volume = 0.13f;
         }
     }
 }

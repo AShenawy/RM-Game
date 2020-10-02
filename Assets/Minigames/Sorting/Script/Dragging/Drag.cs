@@ -49,6 +49,7 @@ namespace Methodyca.Minigames.SortGame
         //public Sprite swap;    //the operation that swaps.        //******** no longer needed ***********
         
         [Range(0, 1)]public float onDragOpacity = 0.7f;     // Make object transparent while being dragged
+        public Sound dragSFX;
 
         //Resizer for the sprites both inside and outside       //***** these dimensions should be set up automatically through code, and not by hand by trial-error. Check end of Awake()
         private Vector2 inBoxImageDimensions;       
@@ -58,7 +59,7 @@ namespace Methodyca.Minigames.SortGame
         private Vector2 startPosOnTable;
 
         Image image;
-        SoundManager soundMan;
+        //SoundManager soundMan;
         SortingManager sortMan;
 
 
@@ -70,7 +71,7 @@ namespace Methodyca.Minigames.SortGame
             //table = GameObject.Find("Draggable Items");       //********* same as above *********
             startPosOnTable = rectTransform.anchoredPosition;
             image = GetComponent<Image>();
-            soundMan = FindObjectOfType<SoundManager>();
+            //soundMan = FindObjectOfType<SoundManager>();
 
             // Set up dimensions based on texture sizes
             // ********* We take advantage that rect transform uses width and height just like the image information.
@@ -172,8 +173,9 @@ namespace Methodyca.Minigames.SortGame
             //    ResetItemPosition();
             //}
 
-            if (soundMan)
-                soundMan.Play("click");
+            //if (soundMan)
+            //    soundMan.Play("click");
+            SoundManager.instance.PlaySFX(dragSFX);
 
             // re-allow UI buttons to work again
             //GameObject.Find("Buttons").GetComponent<CanvasGroup>().blocksRaycasts = true;

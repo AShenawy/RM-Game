@@ -53,9 +53,7 @@ namespace Methodyca.Minigames.SortGame
 
         public Vector2 itemPlacementShift;       //the distance between the items in box,for spacing. 
 
-        public AudioClip onItemPlacedSFX;
-        public Sound onItemPlacedSFX2;
-        SoundManager soundMan;
+        public Sound onItemPlacedSFX;
       
 
         private void Start()
@@ -63,7 +61,6 @@ namespace Methodyca.Minigames.SortGame
             //anchored = GetComponent<RectTransform>();     //********* unused. removed
             //glow.SetActive(false);                                    //******** functionality moved to Crystal
             //shinnny = crystalStation.GetComponent<RectTransform>();       //******** functionality moved to CrystalCharger
-            soundMan = FindObjectOfType<SoundManager>();
         }
 
         void Update()
@@ -85,7 +82,7 @@ namespace Methodyca.Minigames.SortGame
             //Sound Effect
             //soundMan.Imaging("paper_hit");
             //soundMan.Play("paper_hit");     //sound of the game.
-            soundMan.PlaySFX(onItemPlacedSFX, true);
+            SoundManager.instance.PlaySFX(onItemPlacedSFX, true);
 
 
             //This is basically to define the things on the table and, make them snap to the box when clicked. 

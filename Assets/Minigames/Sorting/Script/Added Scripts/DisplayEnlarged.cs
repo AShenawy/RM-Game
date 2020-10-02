@@ -8,20 +8,22 @@ namespace Methodyca.Minigames.SortGame
     {
         [Tooltip("The zoomed-in enlarged version of the object")]
         public GameObject enlargedPrefab;
-        private SoundManager soundMan;
+        public Sound clickSFX;
 
-        void Start()
-        {
-            soundMan = FindObjectOfType<SoundManager>();
-        }
+        //void Start()
+        //{
+        //    soundMan = FindObjectOfType<SoundManager>();
+        //}
 
         public void OnPointerClick(PointerEventData eventData)
         {
             if (enlargedPrefab)
                 Instantiate(enlargedPrefab);
 
-            if (soundMan)
-                soundMan.Play("click");
+            //if (soundMan)
+            //    soundMan.Play("click");
+
+            SoundManager.instance.PlaySFX(clickSFX);
         }
     }
 }
