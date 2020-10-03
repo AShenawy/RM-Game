@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Methodyca.Minigames.SortGame
 {
     // this script handles the sorting minigame gameplay
     public class SortingManager : MonoBehaviour
     {
-        public delegate void OnGameComplete();
-        public event OnGameComplete gameComplete;
+        //public delegate void OnGameComplete();
+        //public event OnGameComplete gameComplete;     //**** redundant (was for lowering SFX in crystals but now can be done from sound manager)
 
         public SortBoxBehaviour QNBox;
         public SortBoxBehaviour QLBox;
@@ -68,7 +69,7 @@ namespace Methodyca.Minigames.SortGame
         void CheckGameComplete()
         {
             if (QNBoxSorted && QLBoxSorted)
-                Complete();
+                StartCoroutine(CompleteGame());     //***** changed to coroutine due to sound not having enough time to change volume
         }
 
         void Complete()
@@ -78,14 +79,24 @@ namespace Methodyca.Minigames.SortGame
             //completed = true;         //************ unused. removed
             //}
 
-            gameComplete?.Invoke();
+            //gameComplete?.Invoke();
             winScreen.SetActive(true);
             //soundMan.Stop("Fraud Full");     //******* with the new SoundManager setup we can simply switch to another BGM straight away
             //soundMan.Play("comp");
             SoundManager.instance.PlayBGM(gameWinTune);
+            //SoundManager.instance.ChangeAllSFXVolume(0.13f);
+            SoundManager.instance.StopAllSFX();
             
             //soundMan.Stop("static");
             //soundMan.Play("staticL");         //******* according to Kewa this is no longer needed to be played
+        }
+
+        IEnumerator CompleteGame()
+        {
+            yield return new WaitForSeconds(0.5f);
+            winScreen.SetActive(true);
+            SoundManager.instance.ChangeAllSFXVolume(0.13f);
+            SoundManager.instance.PlayBGM(gameWinTune);
         }
 
         public void ResetLayout()

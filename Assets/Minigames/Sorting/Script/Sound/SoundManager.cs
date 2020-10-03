@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ namespace Methodyca.Minigames.SortGame
         //public float gain;                   //************ unused
 
         private AudioSource BGMPlayer;
-        [SerializeField] private List<Sound> SFXPlayers = new List<Sound>();
+        private List<Sound> SFXPlayers = new List<Sound>();
 
 
         void Awake()
@@ -176,6 +175,20 @@ namespace Methodyca.Minigames.SortGame
 
             yield return new WaitForSeconds(0.2f);
             StartCoroutine(CheckEndedSFX());
+        }
+
+        public void ChangeAllSFXVolume(float volume)
+        {
+            SFXPlayers.ForEach(s => s.source.volume = Mathf.Clamp01(volume));
+        }
+
+        public void StopAllSFX()
+        {
+            foreach (Sound sfx in SFXPlayers.ToArray())
+            {
+                Destroy(sfx.source);
+                SFXPlayers.Remove(sfx);
+            }
         }
     } 
 }

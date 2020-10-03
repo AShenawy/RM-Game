@@ -12,24 +12,25 @@ namespace Methodyca.Minigames.SortGame
 
         //private int chargePhase = 0;          //***** unused. removed
         private VerticalOscillator oscillator;
-        private AudioSource audioSource;
-        private SortingManager gameManager;
+        //private AudioSource audioSource;      //**** switched to sound manager for handling sfx
+        public Sound chargedSFX;
+        //private SortingManager gameManager;
 
 
         private void Start()
         {
             glowImage.enabled = false;
             oscillator = GetComponent<VerticalOscillator>();
-            audioSource = GetComponent<AudioSource>();
-            audioSource.mute = true;
-            gameManager = FindObjectOfType<SortingManager>();
-            gameManager.gameComplete += LowerVolume;
+            //audioSource = GetComponent<AudioSource>();        //***** switched to sound mananger for handling sfx
+            //audioSource.mute = true;
+            //gameManager = FindObjectOfType<SortingManager>();
+            //gameManager.gameComplete += LowerVolume;
         }
 
-        private void OnDisable()
-        {
-            gameManager.gameComplete -= LowerVolume;
-        }
+        //private void OnDisable()
+        //{
+        //    gameManager.gameComplete -= LowerVolume;
+        //}
 
         //public void IncreaseCharge()
         //{
@@ -61,18 +62,20 @@ namespace Methodyca.Minigames.SortGame
             if (phase > 4)
             {
                 glowImage.enabled = true;
-                audioSource.mute = false;
+                //audioSource.mute = false;     //**** switched to sound manager
+                SoundManager.instance.PlaySFX(chargedSFX);
             }
             else
             {
                 glowImage.enabled = false;
-                audioSource.mute = true;
+                //audioSource.mute = true;      //**** switched to sound manager
+                SoundManager.instance.StopSFX(chargedSFX.name);
             }
         }
 
-        private void LowerVolume()
-        {
-            audioSource.volume = 0.13f;
-        }
+        //private void LowerVolume()
+        //{
+        //    audioSource.volume = 0.13f;
+        //}
     }
 }
