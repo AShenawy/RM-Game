@@ -23,7 +23,7 @@ namespace Methodyca.Minigames.SortGame
 
         bool QNBoxSorted;
         bool QLBoxSorted;
-        SoundManager soundMan;
+        //SoundManager soundMan;        //***** new SoundManager setup makes this redundant
 
         private void OnEnable()
         {
@@ -40,7 +40,7 @@ namespace Methodyca.Minigames.SortGame
         void Start()
         {
             winScreen.SetActive(false);
-            soundMan = FindObjectOfType<SoundManager>();
+            //soundMan = FindObjectOfType<SoundManager>();
 
             SoundManager.instance.PlayBGM(BGM);
         }

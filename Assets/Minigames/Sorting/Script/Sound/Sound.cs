@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.SortGame
     [System.Serializable]
     public class Sound
     {
-        //public string name;       //******* will drop this as calling sounds will better be using variable references
+        public string name;
         public AudioClip clip;
         
         [Range(0f, 1f)] 
@@ -19,7 +19,8 @@ namespace Methodyca.Minigames.SortGame
         
         [Range(-1f, 1f)]
         public float pan = 0f;   //stereo imaging of the sound
-    
-        //public AudioSource source;  //audio source of the sounds      //***** unnecessary
+
+        [HideInInspector]
+        public AudioSource source;  //audio source of the sounds
     }   
 }

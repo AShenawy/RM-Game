@@ -27,8 +27,8 @@ namespace Methodyca.Minigames.SortGame
         //public float gain;                   //************ unused
 
         private AudioSource BGMPlayer;
-        private List<AudioSource> SFXPlayers = new List<AudioSource>();
-        
+        [SerializeField] private List<Sound> SFXPlayers = new List<Sound>();
+
 
         void Awake()
         {
@@ -47,11 +47,12 @@ namespace Methodyca.Minigames.SortGame
             //    s.source.loop = s.loop;
             //    s.source.panStereo = s.pan;
             //}
+            BGMPlayer = gameObject.AddComponent<AudioSource>();
         }
 
         void Start()
         {
-            BGMPlayer = gameObject.AddComponent<AudioSource>();
+            StartCoroutine(CheckEndedSFX());
 
             //Play("Fraud Full");      //Background Music 
         }
@@ -79,24 +80,28 @@ namespace Methodyca.Minigames.SortGame
 
         public void PlaySFX(Sound sfxCLip, bool doMouseImaging = false)
         {
-            AudioSource player = gameObject.AddComponent<AudioSource>();
-            SFXPlayers.Add(player);
+            // if the SFX is already playing then just reset it and play from the start
+            if (SFXPlayers.Exists(x => x.name == sfxCLip.name))
+            {
+                SFXPlayers.Find(x => x.name == sfxCLip.name).source.Play();
+                return;
+            }
 
-            player.clip = sfxCLip.clip;
-            player.volume = sfxCLip.amp;
-            player.pitch = sfxCLip.pitch;
-            player.loop = sfxCLip.loop;
+            SFXPlayers.Add(sfxCLip);
+            sfxCLip.source = gameObject.AddComponent<AudioSource>();
+
+            sfxCLip.source.clip = sfxCLip.clip;
+            sfxCLip.source.volume = sfxCLip.amp;
+            sfxCLip.source.pitch = sfxCLip.pitch;
+            sfxCLip.source.loop = sfxCLip.loop;
 
             // check if either the clip has panning set or imaging is required
             if (sfxCLip.pan != 0)
-                player.panStereo = sfxCLip.pan;
+                sfxCLip.source.panStereo = sfxCLip.pan;
             else if (doMouseImaging)
-                player.panStereo = SFXImaging();
+                sfxCLip.source.panStereo = SFXImaging();
 
-            player.Play();
-
-            if (player.loop == false)
-                StartCoroutine(StopSFX(player));
+            sfxCLip.source.Play();
         }
 
         private float SFXImaging()
@@ -146,11 +151,31 @@ namespace Methodyca.Minigames.SortGame
             BGMPlayer.Stop();
         }
 
-        IEnumerator StopSFX(AudioSource player)
+        public void StopSFX(string clipName)
         {
-            yield return new WaitForSeconds(player.clip.length + 0.2f);
-            SFXPlayers.Remove(player);
-            Destroy(player);
+            if (SFXPlayers.Exists(x => x.name == clipName))
+            {
+                Sound SFXSound = SFXPlayers.Find(x => x.name == clipName);
+                SFXSound.source.Stop();
+                SFXPlayers.Remove(SFXSound);
+                Destroy(SFXSound.source);
+            }
+        }
+
+        // Check every 0.2 seconds if any SFX stopped playing (besides looping). If yes, then kill it 
+        IEnumerator CheckEndedSFX()
+        {
+            foreach (Sound sfx in SFXPlayers.ToArray())
+            {
+                if (sfx.source.isPlaying == false)
+                {
+                    SFXPlayers.Remove(sfx);
+                    Destroy(sfx.source);
+                }
+            }
+
+            yield return new WaitForSeconds(0.2f);
+            StartCoroutine(CheckEndedSFX());
         }
     } 
 }
