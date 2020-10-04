@@ -16,6 +16,9 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] TextMeshProUGUI interestPointGained;
         [SerializeField] TextMeshProUGUI storyEventCompleted;
 
+        public Sound GameWin;
+        public Sound GameOver;
+
         void Start()
         {
             GameManager.Instance.OnGameOver += GameOverHandler;
@@ -29,23 +32,17 @@ namespace Methodyca.Minigames.Questioniser
             if (GameManager.Instance.StoryEventsCompleted >= 4)
             {
                 gameOverPanel.sprite = winTheGame;
-                FindObjectOfType<SoundManager>().Stop("Theme");
-                FindObjectOfType<SoundManager>().Stop("GameTheme");
-                FindObjectOfType<SoundManager>().Play("GameWin");
+                SoundManager.instance.PlayBGM(GameWin);
             }
             else if (GameManager.Instance.InterestPoint < 0)
             {
                 gameOverPanel.sprite = outOfInterestPoint;
-                FindObjectOfType<SoundManager>().Stop("Theme");
-                FindObjectOfType<SoundManager>().Stop("GameTheme");
-                FindObjectOfType<SoundManager>().Play("GameOverLose");
+                SoundManager.instance.PlayBGM(GameOver);
             }
             else
             {
                 gameOverPanel.sprite = outOfCard;
-                FindObjectOfType<SoundManager>().Stop("Theme");
-                FindObjectOfType<SoundManager>().Stop("GameTheme");
-                FindObjectOfType<SoundManager>().Play("GameOverLose");
+                SoundManager.instance.PlayBGM(GameOver);
             }
 
             questionsAskedCorrectly.text = GameManager.Instance.QuestionsAskedCorrectly.ToString();

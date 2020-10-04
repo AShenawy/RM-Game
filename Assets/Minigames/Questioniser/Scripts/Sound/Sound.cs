@@ -8,7 +8,9 @@ namespace Methodyca.Minigames.Questioniser
     public class Sound//Custom sound Class. 
     {
         public string name;
+
         public AudioClip clip;
+
         public bool loop;
 
         [Range(0f, 1f)]

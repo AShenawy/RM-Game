@@ -10,6 +10,10 @@ namespace Methodyca.Minigames.Questioniser
         private RectTransform _transform;
         private Button _button;
 
+        [Header("SFX")]
+        public Sound ClickSFX;
+        public Sound HoverSFX;
+
         private void Awake()
         {
             _transform = GetComponent<RectTransform>();
@@ -19,7 +23,7 @@ namespace Methodyca.Minigames.Questioniser
         public void OnPointerDown(PointerEventData eventData)//ClickSound
         {
             _transform.DOScale(0.9f, 0.15f);
-            FindObjectOfType<SoundManager>().Play("Click");
+            SoundManager.instance.PlaySFX(ClickSFX);
             //Debug.Log("Click ");
         }
 
@@ -32,7 +36,7 @@ namespace Methodyca.Minigames.Questioniser
         public void OnPointerEnter(PointerEventData eventData)
         {
             _transform.DOScale(1.1f, 0.15f);
-            FindObjectOfType<SoundManager>().Play("Hover");
+            SoundManager.instance.PlaySFX(HoverSFX,true);
             //Debug.Log("Hello there");
         }
 

@@ -19,6 +19,8 @@ namespace Methodyca.Minigames.Questioniser
         Option[] _options;
         readonly Vector2 _optionPanelPaddingSize = new Vector2(75, 50);
 
+        public Sound ClickSFX;
+
         public void ClickHandler(int id) // Called from the editor
         {
             for (int i = 0; i < _options.Length; i++)
@@ -45,7 +47,7 @@ namespace Methodyca.Minigames.Questioniser
                     doneButton.onClick.AddListener(DoneClickHandler);
                 }
             }
-            FindObjectOfType<SoundManager>().Play("Click");
+            SoundManager.instance.PlaySFX(ClickSFX);
             //Debug.Log("Call");
         }
 

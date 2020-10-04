@@ -187,6 +187,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &698201165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3265673034059774561, guid: 588341f9c3680d3469dba51a987fe066,
+    type: 3}
+  m_PrefabInstance: {fileID: 3265673032416193213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &698201170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698201165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0b9012370284e19b906bba636c470c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenuBGM:
+    name: Menu
+    clip: {fileID: 8300000, guid: c04f209f3430947eb9b3f54965efec4d, type: 3}
+    loop: 0
+    volume: 0.4
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
 --- !u!1 &1080594862
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,11 +459,71 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 756996309185135297, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2536058286098804756, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1507796968}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938886381284533937, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3265673032139191673, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +634,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033586250228, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
     - target: {fileID: 3265673033586250232, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -588,6 +704,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033804685985, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
     - target: {fileID: 3265673033804685989, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -607,6 +753,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265673033827133988, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3265673033827133992, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
@@ -631,6 +807,156 @@ PrefabInstance:
     - target: {fileID: 3265673033827133995, guid: 588341f9c3680d3469dba51a987fe066,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562619215926565956, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754998500305056384, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730008810966433007, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887528241025963260, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: ClickSFX.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677686549629428535, guid: 588341f9c3680d3469dba51a987fe066,
+        type: 3}
+      propertyPath: HoverSFX.pitch
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

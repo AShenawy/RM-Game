@@ -238,6 +238,38 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2b98b050ceeadb6419c96a45e2da77f2, type: 3}
   infoSprite: {fileID: 0}
   cardBack: {fileID: 8704260277624349887}
+  thinkingSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 1e9ea034f9e814c98854e69685d32069, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  tableHitSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 3be107fd66f954883ac87851849dc7ba, type: 3}
+    loop: 0
+    volume: 0.4
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  cardHighSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1c823fba8b594a0e94e35cf739c7638, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  notEnoughSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1ab72eb817c34bc882d23abbf18eda8, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
 --- !u!1 &6776163577966647767
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 1313668066019732701, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2558315732062379536, guid: 523c71a9dabc23d46b467ff258462ccb,
         type: 3}

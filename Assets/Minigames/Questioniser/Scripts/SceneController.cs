@@ -10,10 +10,13 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] GameObject loadProgressCanvas;
         [SerializeField] UnityEngine.UI.Slider loadProgressSlider;
 
+        //public Sound BGMMainMenu;
+        //public Sound BGMLevel;
+
         public void ChangeScene(int index)
         {
             StartCoroutine(LoadSceneCor(index));
-            
+            //SoundManager.instance.PlayBGM(BGMMainMenu);
         }
 
         void Start()
@@ -25,9 +28,9 @@ namespace Methodyca.Minigames.Questioniser
         {
             var opr = SceneManager.LoadSceneAsync(index);
             loadProgressCanvas.SetActive(true);
+            //SoundManager.instance.PlayBGM(BGMLevel);
             //Debug.Log("swtiching Scene");
-            FindObjectOfType<SoundManager>().Stop("Theme");
-            FindObjectOfType<SoundManager>().Play("GameTheme");
+            
 
             while (!opr.isDone)
             {

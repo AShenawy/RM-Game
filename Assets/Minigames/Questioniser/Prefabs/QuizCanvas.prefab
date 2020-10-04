@@ -707,6 +707,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5554d1cbf6ba8d34595382082f9af82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClickSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 0
+    pan: 0
+    Source: {fileID: 0}
+  HoverSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 0
+    pan: 0
+    Source: {fileID: 0}
 --- !u!1 &4663578142233959806
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1013,14 @@ MonoBehaviour:
   - {fileID: 9016054167733064407}
   - {fileID: 1643544359527455692}
   - {fileID: 1458413092113257829}
+  ClickSFX:
+    name: QuizClickSFX
+    clip: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
 --- !u!225 &327905268
 CanvasGroup:
   m_ObjectHideFlags: 0

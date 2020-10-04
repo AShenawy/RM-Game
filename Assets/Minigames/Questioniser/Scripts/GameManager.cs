@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Questioniser
+
 {
     [Serializable]
     public class Topic
@@ -13,6 +14,7 @@ namespace Methodyca.Minigames.Questioniser
         public bool IsStoryInitiated;
         public Sprite CardSprite;
         public Dialog StoryDialog;
+
 
         public Topic(string name, bool isStoryInitiated, Sprite cardSprite)
         {
@@ -57,6 +59,13 @@ namespace Methodyca.Minigames.Questioniser
         const byte ACTION_POINT_PER_TURN = 5;
         const byte POINT_TO_INITIATE_STORY = 4;
         const float GAME_START_DELAY_TIME = 0.5f;
+
+        [Header ("SFX")]
+        public Sound ActionsPointsSFX;
+        public Sound NotEnoughPointsSFX;
+        public Sound StoryPointsSFX;
+        public Sound RechargePointsSFX;
+        public Sound BGMLevel;
 
         [SerializeField] Camera sceneCamera;
         [SerializeField] CardHolder hand;
@@ -184,9 +193,10 @@ namespace Methodyca.Minigames.Questioniser
                 OnImproviserRaised?.Invoke(_isImproviserTurn = false);
 
             ActionPoint = ACTION_POINT_PER_TURN + _extraPointsForNextTurn;
-            FindObjectOfType<SoundManager>().Play("ActionPoints");
+            SoundManager.instance.PlaySFX(ActionsPointsSFX);
             _extraPointsForNextTurn = 0;
         }
+        
 
        
 
@@ -238,7 +248,7 @@ namespace Methodyca.Minigames.Questioniser
             else
             {
                 SendGameMessage("Not enough interest point");
-                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+                SoundManager.instance.PlaySFX(NotEnoughPointsSFX);
             }
         }
 
@@ -277,7 +287,7 @@ namespace Methodyca.Minigames.Questioniser
                         if (GetCorrectAnswerCountFor(_currentTopic.Name) >= POINT_TO_INITIATE_STORY)
                         {
                             OnStoryInitiated?.Invoke(_currentTopic.IsStoryInitiated = true);
-                            FindObjectOfType<SoundManager>().Play("StoryPoints");
+                            SoundManager.instance.PlaySFX(StoryPointsSFX);
                         }
                     }
                 }
@@ -336,6 +346,8 @@ namespace Methodyca.Minigames.Questioniser
             yield return new WaitForSeconds(GAME_START_DELAY_TIME);
             SetRandomTopic();
             DrawRandomCardFromDeck(DRAW_COUNT_PER_TURN);
+
+            SoundManager.instance.PlayBGM(BGMLevel);
         }
 
         void GameOver()
@@ -353,7 +365,7 @@ namespace Methodyca.Minigames.Questioniser
                         if (cardName == cards[j].Name)
                             _quizAnswerSheet[i, j] = true;
             //Debug.Log("We gat Money");
-            FindObjectOfType<SoundManager>().Play("Points");
+            SoundManager.instance.PlaySFX(RechargePointsSFX);
         }
 
         byte GetCorrectAnswerCountFor(string topicName)
