@@ -9,6 +9,8 @@ namespace Methodyca.Core
     {
         #region Singleton
         public static GameManager instance;
+        public Sound DoorSFX;
+        public Sound clickSFX;
         private void Awake()
         {
             // Check if not existing and assign as singleton
@@ -97,6 +99,8 @@ namespace Methodyca.Core
                 if (Input.GetKeyDown(cntrn[cntrnIndex]))
                     cntrnIndex++;
                 else
+                SoundManager.instance.PlaySFX(clickSFX);
+                Debug.Log("clicked");
                     cntrnIndex = 0;
             }
 
@@ -223,6 +227,7 @@ namespace Methodyca.Core
             roomTarget = null;
 
             ResetCursor();
+            SoundManager.instance.PlaySFX(DoorSFX);
 
             // ---- for debugging ----
             print("Entered " + roomCurrent.name);

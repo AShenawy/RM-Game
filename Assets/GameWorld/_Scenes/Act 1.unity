@@ -2122,6 +2122,7 @@ GameObject:
   - component: {fileID: 299963987}
   - component: {fileID: 299963986}
   - component: {fileID: 299963988}
+  - component: {fileID: 299963989}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -2155,6 +2156,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aaf966dcaf15c748a5d985bf0b4c2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DoorSFX:
+    name: Doors
+    clip: {fileID: 8300000, guid: af3cd41644d974c56b8e1c81218455a3, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  clickSFX:
+    name: Click
+    clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    loop: 0
+    volume: 0.1
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   player: {fileID: 1421544494}
   rooms:
   - {fileID: 1099030298}
@@ -2199,6 +2216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   space: 12
   items: []
+  dimeSwitcherItem: {fileID: 0}
 --- !u!114 &299963988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,6 +2240,26 @@ MonoBehaviour:
   mailSender: {fileID: 741289029}
   senderIcon: {fileID: 714213311}
   mailBody: {fileID: 1952307779}
+--- !u!114 &299963989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299963983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32150b04411874a048f2cc110a64903f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMUsic:
+    name: Act1
+    clip: {fileID: 8300000, guid: 27abefdade9874ca9ad44a1ab9dabd9b, type: 3}
+    loop: 1
+    volume: 0.5
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
 --- !u!4 &300350091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645712452071088696, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -4772,6 +4810,14 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: It doesn't need that
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   canMove: 1
   movementValue: {x: 2.5, y: 0}
 --- !u!1 &587584450
@@ -5123,6 +5169,14 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   canOperate: 1
   onOperateSuccessText: 
   onOperateFailText: I can't open it.
@@ -5408,6 +5462,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c669829f41f4df045a5ce8ed5bbad54c, type: 2}
   - {fileID: 11400000, guid: f2fdd43caf14ffd4989d2a64345b3a10, type: 2}
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   canUsePortal: 0
   responseForDisabled: 
 --- !u!65 &826353355
@@ -5700,6 +5762,41 @@ PrefabInstance:
       propertyPath: inspectDialogue.Array.data[2]
       value: I hope my supervisor's okay..
       objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: InterSFX.clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: InterSFX.name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: InterSFX.volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: InterSFX.pan
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: afe807e3d9f9d456987459374038fbd8, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.volume
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
@@ -5763,6 +5860,14 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   isLocked: 1
   unlockCombination: 030000000000000002000000
   lockedBoxPrefab: {fileID: 1938385551}
@@ -6676,6 +6781,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 865a288ad1a94a74d9336d0350963be0, type: 3}
+--- !u!1 &1096161553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1096161555}
+  - component: {fileID: 1096161554}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1096161554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096161553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab76a19bb61f48fc90e5f647b26a39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1096161555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096161553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 476.5555, y: 291.7983, z: -99.52106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099030298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -7579,6 +7727,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
   - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
   wrongItemText: There's no need to do that.
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   gameHub: {fileID: 1313759070}
   canStartGame: 0
   responseForDisabled: 
