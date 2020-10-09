@@ -8,6 +8,8 @@ namespace Methodyca.Minigames.Questioniser
 
         public bool IsMale { get; set; } = false;
 
+        
+
         private void Awake()
         {
             if (Current == null)
@@ -21,5 +23,8 @@ namespace Methodyca.Minigames.Questioniser
 
             DontDestroyOnLoad(gameObject);
         }
+
+        
+
     }
 }

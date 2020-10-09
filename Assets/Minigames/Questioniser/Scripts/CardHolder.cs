@@ -10,6 +10,7 @@ namespace Methodyca.Minigames.Questioniser
 
         [HideInInspector] public Transform GetTransform;
         public List<CardBase> Cards = new List<CardBase>();
+        public Sound ShuffleSFX;
 
         void Awake()
         {
@@ -34,8 +35,8 @@ namespace Methodyca.Minigames.Questioniser
         public void AddCard(CardBase card)
         {
             if (!Cards.Contains(card))
-            //Debug.Log("Adding Cards");
-            FindObjectOfType<SoundManager>().Play("CardShuffledSFX");
+                //Debug.Log("Adding Cards");
+                SoundManager.instance.PlaySFX(ShuffleSFX);
                 Cards.Add(card);
         }
 

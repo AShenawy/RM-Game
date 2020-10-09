@@ -45,6 +45,12 @@ namespace Methodyca.Minigames.Questioniser
         protected void TriggerCardIsThrown(CardBase card) => OnCardThrown?.Invoke(this, new OnCardThrownEventArgs { Card = card });
         protected virtual void Throw() { }
 
+        [Header ("SFX")]
+        public Sound thinkingSFX;
+        public Sound tableHitSFX;
+        public Sound cardHighSFX;
+        public Sound notEnoughSFX;
+
         public void InitializeCard(Camera camera, CardHolder hand, CardHolder table, CardHolder deck)
         {
             _camera = camera;
@@ -114,7 +120,7 @@ namespace Methodyca.Minigames.Questioniser
         public void SelectCard()
         {
             _transform.DOScale(1.25f, 0.2f);
-            FindObjectOfType<SoundManager>().Play("ThinkingSFX");
+            SoundManager.instance.PlaySFX(thinkingSFX);
             //Debug.Log("Card Selected");
         }
 
@@ -127,7 +133,7 @@ namespace Methodyca.Minigames.Questioniser
         {
             _renderer.material.SetColor(outlineColor, color);
             //Debug.Log("Setting Outline Colors");
-            FindObjectOfType<SoundManager>().Play("CardHitting");
+            SoundManager.instance.PlaySFX(tableHitSFX);
             
         }
 
@@ -165,8 +171,7 @@ namespace Methodyca.Minigames.Questioniser
                 return;
 
             _renderer.material.SetColor(outlineColor, Color.red);
-            FindObjectOfType<SoundManager>().StereoImaging("CardHighSFX");
-            FindObjectOfType<SoundManager>().Play("CardHighSFX");
+            SoundManager.instance.PlaySFX(cardHighSFX, true);
             //Debug.Log("Sighted");
         }
 
@@ -209,7 +214,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 ReturnHand();
                 _gameManager.SendGameMessage("Not enough points");
-                FindObjectOfType<SoundManager>().Play("NotEnoughPoints");
+                SoundManager.instance.PlaySFX(notEnoughSFX);
                 
             }
         }
