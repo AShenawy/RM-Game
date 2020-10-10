@@ -1,15 +1,22 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.DocStudy
 {
     [System.Serializable]
     public class Thread
     {
-        public bool IsSelected;
+        public bool IsCompleted;
         public int Id;
         public string Title;
+        public Post Post;
+    }
+
+    [System.Serializable]
+    public class Post
+    {
+        public string ProfileName;
+        public string ProfilePost;
+        public Sprite ProfileImage;
         public Selection[] Selections;
     }
 
@@ -17,88 +24,81 @@ namespace Methodyca.Minigames.DocStudy
     public class Selection
     {
         public bool IsCorrect;
+        public bool IsSelected;
         public string Text;
-    }
-
-    public class UIForum : MonoBehaviour
-    {
-        [SerializeField] private GameObject threadPrefab;
-        [SerializeField] private TextMeshProUGUI remainingText;
-
-        private Thread[] _threads;
-
-        public void SelectThread(int id)
-        {
-
-        }
-
-        private void OnEnable()
-        {
-            _threads = GameManager.Instance.CurrentQuestion.Threads;
-            //remainingText.text = $"Selections ({}/{_threads.Length})";
-            UpdateForumThreads();
-        }
-
-        private void UpdateForumThreads()
-        {
-            foreach (var item in _threads)
-            {
-                var thread = Instantiate(threadPrefab);
-
-                thread.GetComponentInChildren<TextMeshProUGUI>().text = item.Title;
-            }
-        }
-    }
-
-    public class UIThread : MonoBehaviour, IPointerClickHandler
-    {
-        private const float _selectedAlpha = 0.75f;
-
-        private CanvasGroup _canvasGroup;
-        private bool _isClicked;
-
-        private void Awake()
-        {
-            _canvasGroup = GetComponent<CanvasGroup>();
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            _isClicked = !_isClicked;
-
-            if (_isClicked)
-            {
-                _canvasGroup.alpha = _selectedAlpha;
-            }
-            else
-            {
-                _canvasGroup.alpha = 1;
-            }
-        }
-    }
-
-    public class UIPost : MonoBehaviour
-    {
-        private Question _current;
-
-        private void OnEnable()
-        {
-            _current = GameManager.Instance.CurrentQuestion;
-        }
     }
 
     public class GameManager : Singleton<GameManager>
     {
-        public Question CurrentQuestion { get; private set; }
+        public static event System.Action<Post> OnPostInitiated = delegate { };
+        public static event System.Action<Question> OnForumInitiated = delegate { };
+        public static event System.Action<int, int> OnPostCompleted = delegate { };
+        public static event System.Action<int, int> OnScoreUpdated;
+
+        private Question _currentQuestion;
+        private Thread _currentThread;
+        private int _maxThreadToComplete = 3;
+        private int _correctPostCount = 0;
+        private int _correctlySelectedPostCount = 0;
 
         public void InitiateForumThread(Question question)
         {
-            CurrentQuestion = question;
+            _currentQuestion = question;
+            OnForumInitiated?.Invoke(question);
+            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
         }
 
-        public void SelectForumThread()
+        public void HandlePostInitiation(Thread thread)
         {
+            _currentThread = thread;
+            OnPostInitiated?.Invoke(thread.Post);
+        }
 
+        public void HandlePostCompletion()
+        {
+            _currentThread.IsCompleted = true;
+            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
+        }
+
+        public void GetFeedback()
+        {
+            var selections = _currentThread.Post.Selections;
+
+            for (int i = 0; i < selections.Length; i++)
+            {
+                if (selections[i].IsCorrect)
+                {
+                    _correctPostCount++;
+
+                    if (selections[i].IsSelected)
+                    {
+                        _correctlySelectedPostCount++;
+                    }
+                }
+            }
+
+            OnScoreUpdated?.Invoke(_correctlySelectedPostCount, _correctPostCount);
+        }
+
+        public void ResetGame()
+        {
+            _correctPostCount = 0;
+            _correctlySelectedPostCount = 0;
+        }
+
+        public int GetCompletedThreadCount()
+        {
+            int completedCount = 0;
+
+            foreach (var thread in _currentQuestion.Threads)
+            {
+                if (thread.IsCompleted)
+                {
+                    completedCount++;
+                }
+            }
+
+            return completedCount;
         }
     }
 }

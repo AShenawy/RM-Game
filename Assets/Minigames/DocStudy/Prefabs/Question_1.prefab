@@ -45,9 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: What are the common mistakes game designers make?
   Threads:
-  - IsSelected: 0
+  - IsCompleted: 0
     Id: 1
     Title: Thread 1
-    Selections:
-    - IsCorrect: 0
-      Text: Correct
+    Post:
+      ProfileText: Name
+      ProfileImage: {fileID: 0}
+      Selections:
+      - IsCorrect: 1
+        Text: Correct
