@@ -6,20 +6,27 @@ using TMPro;
 
 namespace Methodyca.Minigames.DocStudy
 {
-    public class UISelection : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class UIPost : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
-        private const float _scaleDuration = 0.25f;
+        private const float _scaleDuration = 0.1f;
 
-        [SerializeField] private Image bubble;
+        [SerializeField] private RectTransform messagePanel;
         [SerializeField] private TextMeshProUGUI message;
 
-        private UIPost _uiPost;
-        private Selection _selection;
+        private Image _panel;
+        private Post _selection;
+        private UIPostPanel _uiPost;
+        private readonly Vector2 _messagePanelPaddingSize = new Vector2(0, 10);
 
-        public void Initialize(Selection selection)
+        public void Initialize(Post selection)
         {
             _selection = selection;
-            message.text = selection.Text;
+
+            message.text = $"<b>{selection.Name}: </b>{selection.Message}";
+            message.ForceMeshUpdate();
+
+            Vector2 textSize = message.GetRenderedValues();
+            messagePanel.sizeDelta = new Vector2(messagePanel.sizeDelta.x, textSize.y) + _messagePanelPaddingSize;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -42,17 +49,18 @@ namespace Methodyca.Minigames.DocStudy
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            bubble.color = Color.yellow;
+            _panel.color = Color.yellow;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            bubble.color = Color.white;
+            _panel.color = Color.white;
         }
 
         private void Awake()
         {
-            _uiPost = GetComponentInParent<UIPost>();
+            _panel = messagePanel.GetComponent<Image>();
+            _uiPost = GetComponentInParent<UIPostPanel>();
         }
     }
 }

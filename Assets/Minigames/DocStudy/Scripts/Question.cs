@@ -4,7 +4,7 @@ namespace Methodyca.Minigames.DocStudy
 {
     public class Question : MonoBehaviour
     {
-        public string Title;
+        [TextArea(1, 3)] public string Title;
         public Thread[] Threads;
     }
 }

@@ -7,39 +7,32 @@ namespace Methodyca.Minigames.DocStudy
     {
         public bool IsCompleted;
         public int Id;
-        public string Title;
-        public Post Post;
+        [TextArea(1, 3)] public string Title;
+        public Post[] Posts;
     }
 
     [System.Serializable]
     public class Post
     {
-        public string ProfileName;
-        public string ProfilePost;
-        public Sprite ProfileImage;
-        public Selection[] Selections;
-    }
-
-    [System.Serializable]
-    public class Selection
-    {
         public bool IsCorrect;
         public bool IsSelected;
-        public string Text;
+        public Sprite ProfileImage;
+        public string Name;
+        [TextArea(2, 4)] public string Message;
     }
 
     public class GameManager : Singleton<GameManager>
     {
-        public static event System.Action<Post> OnPostInitiated = delegate { };
+        public static event System.Action<string, Thread> OnPostInitiated = delegate { };
         public static event System.Action<Question> OnForumInitiated = delegate { };
         public static event System.Action<int, int> OnPostCompleted = delegate { };
-        public static event System.Action<int, int> OnScoreUpdated;
+        public static event System.Action<int, int> OnScoreUpdated = delegate { };
 
-        private Question _currentQuestion;
-        private Thread _currentThread;
-        private int _maxThreadToComplete = 3;
+        private int _maxThreadToComplete = 3; // constant
         private int _correctPostCount = 0;
         private int _correctlySelectedPostCount = 0;
+        private Thread _currentThread;
+        private Question _currentQuestion;
 
         public void InitiateForumThread(Question question)
         {
@@ -51,18 +44,19 @@ namespace Methodyca.Minigames.DocStudy
         public void HandlePostInitiation(Thread thread)
         {
             _currentThread = thread;
-            OnPostInitiated?.Invoke(thread.Post);
+            OnPostInitiated?.Invoke(_currentQuestion.Title, thread);
         }
 
-        public void HandlePostCompletion()
+        public void HandleSelectedPostCompletion()
         {
             _currentThread.IsCompleted = true;
+            OnForumInitiated?.Invoke(_currentQuestion);
             OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
         }
 
         public void GetFeedback()
         {
-            var selections = _currentThread.Post.Selections;
+            var selections = _currentThread.Posts;
 
             for (int i = 0; i < selections.Length; i++)
             {
