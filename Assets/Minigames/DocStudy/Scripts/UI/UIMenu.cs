@@ -5,10 +5,17 @@ namespace Methodyca.Minigames.DocStudy
     public class UIMenu : MonoBehaviour
     {
         [SerializeField] private GameObject root;
+        [SerializeField] private GameObject questionPanel;
 
         private void OnEnable()
         {
             GameManager.OnForumInitiated += ForumInitiatedHandler;
+            DialogManager.OnDialogCompleted += DialogCompletedHandler;
+        }
+
+        private void DialogCompletedHandler()
+        {
+            questionPanel.SetActive(true);
         }
 
         private void ForumInitiatedHandler(Question question)
@@ -19,6 +26,7 @@ namespace Methodyca.Minigames.DocStudy
         private void OnDisable()
         {
             GameManager.OnForumInitiated -= ForumInitiatedHandler;
+            DialogManager.OnDialogCompleted -= DialogCompletedHandler;
         }
     }
 }

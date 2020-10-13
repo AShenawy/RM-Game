@@ -23,12 +23,13 @@ namespace Methodyca.Minigames.DocStudy
 
     public class GameManager : Singleton<GameManager>
     {
+        private const int _maxThreadToComplete = 3;
+
         public static event System.Action<string, Thread> OnPostInitiated = delegate { };
         public static event System.Action<Question> OnForumInitiated = delegate { };
         public static event System.Action<int, int> OnPostCompleted = delegate { };
         public static event System.Action<int, int> OnScoreUpdated = delegate { };
 
-        private int _maxThreadToComplete = 3; // constant
         private int _correctPostCount = 0;
         private int _correctlySelectedPostCount = 0;
         private Thread _currentThread;
@@ -80,7 +81,7 @@ namespace Methodyca.Minigames.DocStudy
             _correctlySelectedPostCount = 0;
         }
 
-        public int GetCompletedThreadCount()
+        private int GetCompletedThreadCount()
         {
             int completedCount = 0;
 

@@ -64,7 +64,7 @@ namespace Methodyca.Minigames.DocStudy
             }
 
             ClearPosts();
-            RefreshPostDataAtPeek();
+            DisplayPostDataAtPeek();
         }
 
         private void ClearPosts()
@@ -112,10 +112,10 @@ namespace Methodyca.Minigames.DocStudy
 
             var spawned = Instantiate(selectedPostPrefab, content);
             spawned.Initialize(post);
-            RefreshPostDataAtPeek();
+            DisplayPostDataAtPeek();
         }
 
-        private void RefreshPostDataAtPeek()
+        private void DisplayPostDataAtPeek()
         {
             if (_allPosts.Count > 0)
             {
