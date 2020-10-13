@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Methodyca.Minigames.DocStudy
 {
     [System.Serializable]
     public class Thread
     {
+        public bool IsCorrect;
         public bool IsCompleted;
         public int Id;
         [TextArea(1, 3)] public string Title;
@@ -28,12 +30,14 @@ namespace Methodyca.Minigames.DocStudy
         public static event System.Action<string, Thread> OnPostInitiated = delegate { };
         public static event System.Action<Question> OnForumInitiated = delegate { };
         public static event System.Action<int, int> OnPostCompleted = delegate { };
-        public static event System.Action<int, int> OnScoreUpdated = delegate { };
+        public static event System.Action<(int, int, int, int)> OnScoreUpdated = delegate { };
 
         private int _correctPostCount = 0;
         private int _correctlySelectedPostCount = 0;
+        private int _correctlySelectedThreadCount = 0;
         private Thread _currentThread;
         private Question _currentQuestion;
+        private (int SelectedCorrectPosts, int TotalCorrectPosts, int SelectedCorrectThreads, int TotalCorrectThreads) _score;
 
         public void InitiateForumThread(Question question)
         {
@@ -72,13 +76,23 @@ namespace Methodyca.Minigames.DocStudy
                 }
             }
 
-            OnScoreUpdated?.Invoke(_correctlySelectedPostCount, _correctPostCount);
+            var threads = _currentQuestion.Threads;
+
+            for (int i = 0; i < threads.Length; i++)
+            {
+                if (threads[i].IsCorrect && threads[i].IsCompleted)
+                {
+                    _correctlySelectedThreadCount++;
+                }
+            }
+
+            _score = (_correctlySelectedPostCount, _correctPostCount, _correctlySelectedThreadCount, _maxThreadToComplete);
+            OnScoreUpdated?.Invoke(_score);
         }
 
         public void ResetGame()
         {
-            _correctPostCount = 0;
-            _correctlySelectedPostCount = 0;
+            
         }
 
         private int GetCompletedThreadCount()
@@ -94,6 +108,17 @@ namespace Methodyca.Minigames.DocStudy
             }
 
             return completedCount;
+        }
+
+        public void RestartGame()
+        {
+            _correctPostCount = 0;
+            _correctlySelectedPostCount = 0;
+        }
+
+        public void ReturnMenu()
+        {
+
         }
     }
 }
