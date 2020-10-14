@@ -44,7 +44,7 @@ namespace Methodyca.Minigames.DocStudy
         private void CompleteClickHandler()
         {
             root.SetActive(false);
-            GameManager.Instance.HandleSelectedPostCompletion();
+            GameManager.Instance.HandlePostCompletion();
         }
 
         private void PostInitiatedHandler(string question, Thread thread)

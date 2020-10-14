@@ -1,6 +1,6 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Methodyca.Minigames.DocStudy
 {
@@ -14,10 +14,16 @@ namespace Methodyca.Minigames.DocStudy
 
         private void OnEnable()
         {
-            GameManager.OnScoreUpdated += ScoreUpdatedHandler;
+            GameManager.OnFeedbackInitiated += ScoreUpdatedHandler;
+            GameManager.OnRestartGame += RestartGameHandler;
 
             restart.onClick.AddListener(() => GameManager.Instance.RestartGame());
-            returnMenu.onClick.AddListener(() => GameManager.Instance.ReturnMenu());
+            returnMenu.onClick.AddListener(() => GameManager.Instance.ResetData());
+        }
+
+        private void RestartGameHandler()
+        {
+            root.SetActive(false);
         }
 
         private void ScoreUpdatedHandler((int SelectedCorrectPosts, int TotalCorrectPosts, int SelectedCorrectThreads, int TotalCorrectThreads) score)
@@ -30,7 +36,8 @@ namespace Methodyca.Minigames.DocStudy
 
         private void OnDisable()
         {
-            GameManager.OnScoreUpdated -= ScoreUpdatedHandler;
+            GameManager.OnFeedbackInitiated -= ScoreUpdatedHandler;
+            GameManager.OnRestartGame -= RestartGameHandler;
         }
     }
 }

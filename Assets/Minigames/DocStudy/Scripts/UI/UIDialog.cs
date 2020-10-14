@@ -1,7 +1,7 @@
-﻿using DG.Tweening;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
 namespace Methodyca.Minigames.DocStudy
 {
@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.DocStudy
             nextButton.onClick.AddListener(ClickNextHandler);
         }
 
-        private void DialogCompletedHandler()
+        private void DialogCompletedHandler(Dialog lastDialog)
         {
             nextButton.gameObject.SetActive(false);
         }

@@ -7,8 +7,10 @@ namespace Methodyca.Minigames.DocStudy
     public class UIForum : MonoBehaviour
     {
         [SerializeField] private GameObject root;
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private TextMeshProUGUI remainingText;
         [SerializeField] private Button finishButton;
+        [SerializeField] private Button backButton;
         [SerializeField] private Button[] threadButtons;
 
         private Button _selectedThreadButton;
@@ -22,6 +24,7 @@ namespace Methodyca.Minigames.DocStudy
                 {
                     _selectedThreadButton = threadButtons[i];
                     GameManager.Instance.HandlePostInitiation(_threads[i]);
+
                 }
             }
         }
@@ -32,7 +35,14 @@ namespace Methodyca.Minigames.DocStudy
             GameManager.OnPostInitiated += PostInitiatedHandler;
             GameManager.OnPostCompleted += PostCompletedHandler;
 
-            finishButton.onClick.AddListener(() => GameManager.Instance.GetFeedback());
+            finishButton.onClick.AddListener(HandleGameResult);
+            backButton.onClick.AddListener(() => GameManager.Instance.ResetData());
+        }
+
+        private void HandleGameResult()
+        {
+            root.SetActive(false);
+            GameManager.Instance.GetFeedback();
         }
 
         private void PostInitiatedHandler(string question, Thread thread)
@@ -40,25 +50,26 @@ namespace Methodyca.Minigames.DocStudy
             root.SetActive(false);
         }
 
-        private void UpdateForumThread()
+        private void ForumInitiatedHandler(Question question)
         {
+            _threads = question.Threads;
+            _selectedThreadButton = null;
+            canvasGroup.blocksRaycasts = true;
+
+            root.SetActive(true);
             finishButton.gameObject.SetActive(false);
 
             for (int i = 0; i < _threads.Length; i++)
             {
+                threadButtons[i].interactable = true;
                 threadButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = _threads[i].Title;
             }
         }
 
-        private void ForumInitiatedHandler(Question question)
-        {
-            root.SetActive(true);
-            _threads = question.Threads;
-            UpdateForumThread();
-        }
-
         private void PostCompletedHandler(int current, int max)
         {
+            root.SetActive(true);
+
             if (_selectedThreadButton != null)
             {
                 _selectedThreadButton.interactable = false;
@@ -67,7 +78,7 @@ namespace Methodyca.Minigames.DocStudy
             if (current >= max)
             {
                 finishButton.gameObject.SetActive(true);
-                // add disable all threads
+                canvasGroup.blocksRaycasts = false;
             }
 
             remainingText.text = $"Thread completed ({current}/{max})";
@@ -76,7 +87,10 @@ namespace Methodyca.Minigames.DocStudy
         private void OnDisable()
         {
             GameManager.OnForumInitiated -= ForumInitiatedHandler;
+            GameManager.OnPostInitiated -= PostInitiatedHandler;
             GameManager.OnPostCompleted -= PostCompletedHandler;
+
+            finishButton.onClick.RemoveAllListeners();
         }
     }
 }

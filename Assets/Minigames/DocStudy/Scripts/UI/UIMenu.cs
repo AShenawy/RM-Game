@@ -6,16 +6,24 @@ namespace Methodyca.Minigames.DocStudy
     {
         [SerializeField] private GameObject root;
         [SerializeField] private GameObject questionPanel;
+        [SerializeField] private GameObject menuButton;
 
         private void OnEnable()
         {
             GameManager.OnForumInitiated += ForumInitiatedHandler;
+            GameManager.OnRestartGame += RestartGameHandler;
             DialogManager.OnDialogCompleted += DialogCompletedHandler;
         }
 
-        private void DialogCompletedHandler()
+        private void RestartGameHandler()
+        {
+            root.SetActive(true);
+        }
+
+        private void DialogCompletedHandler(Dialog lastDialog)
         {
             questionPanel.SetActive(true);
+            menuButton.SetActive(true);
         }
 
         private void ForumInitiatedHandler(Question question)
@@ -26,6 +34,7 @@ namespace Methodyca.Minigames.DocStudy
         private void OnDisable()
         {
             GameManager.OnForumInitiated -= ForumInitiatedHandler;
+            GameManager.OnRestartGame -= RestartGameHandler;
             DialogManager.OnDialogCompleted -= DialogCompletedHandler;
         }
     }

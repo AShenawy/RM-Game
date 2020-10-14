@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.DocStudy
     public class DialogManager : Singleton<DialogManager>
     {
         public static event System.Action<Dialog> OnDialogUpdated = delegate { };
-        public static event System.Action OnDialogCompleted = delegate { };
+        public static event System.Action<Dialog> OnDialogCompleted = delegate { };
 
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private Dialog[] dialogs;
@@ -33,7 +33,7 @@ namespace Methodyca.Minigames.DocStudy
                 OnDialogUpdated?.Invoke(dialog);
 
                 if (_dialogQueue.Count <= 0)
-                    OnDialogCompleted?.Invoke();
+                    OnDialogCompleted?.Invoke(dialog);
             }
         }
     }

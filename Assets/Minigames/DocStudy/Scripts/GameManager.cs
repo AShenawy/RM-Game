@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.DocStudy
 {
@@ -30,7 +29,10 @@ namespace Methodyca.Minigames.DocStudy
         public static event System.Action<string, Thread> OnPostInitiated = delegate { };
         public static event System.Action<Question> OnForumInitiated = delegate { };
         public static event System.Action<int, int> OnPostCompleted = delegate { };
-        public static event System.Action<(int, int, int, int)> OnScoreUpdated = delegate { };
+        public static event System.Action<(int, int, int, int)> OnFeedbackInitiated = delegate { };
+        public static event System.Action OnRestartGame = delegate { };
+
+        [SerializeField] private Question[] questions;
 
         private int _correctPostCount = 0;
         private int _correctlySelectedPostCount = 0;
@@ -43,7 +45,7 @@ namespace Methodyca.Minigames.DocStudy
         {
             _currentQuestion = question;
             OnForumInitiated?.Invoke(question);
-            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
+            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);//
         }
 
         public void HandlePostInitiation(Thread thread)
@@ -52,15 +54,10 @@ namespace Methodyca.Minigames.DocStudy
             OnPostInitiated?.Invoke(_currentQuestion.Title, thread);
         }
 
-        public void HandleSelectedPostCompletion()
+        public void HandlePostCompletion()
         {
             _currentThread.IsCompleted = true;
-            OnForumInitiated?.Invoke(_currentQuestion);
-            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
-        }
 
-        public void GetFeedback()
-        {
             var selections = _currentThread.Posts;
 
             for (int i = 0; i < selections.Length; i++)
@@ -76,6 +73,11 @@ namespace Methodyca.Minigames.DocStudy
                 }
             }
 
+            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
+        }
+
+        public void GetFeedback()
+        {
             var threads = _currentQuestion.Threads;
 
             for (int i = 0; i < threads.Length; i++)
@@ -87,12 +89,7 @@ namespace Methodyca.Minigames.DocStudy
             }
 
             _score = (_correctlySelectedPostCount, _correctPostCount, _correctlySelectedThreadCount, _maxThreadToComplete);
-            OnScoreUpdated?.Invoke(_score);
-        }
-
-        public void ResetGame()
-        {
-            
+            OnFeedbackInitiated?.Invoke(_score);
         }
 
         private int GetCompletedThreadCount()
@@ -112,13 +109,32 @@ namespace Methodyca.Minigames.DocStudy
 
         public void RestartGame()
         {
-            _correctPostCount = 0;
-            _correctlySelectedPostCount = 0;
+            OnRestartGame?.Invoke();
+            ResetData();
         }
 
-        public void ReturnMenu()
+        public void ResetData()
         {
+            _correctPostCount = 0;
+            _correctlySelectedPostCount = 0;
+            _correctlySelectedThreadCount = 0;
 
+            for (int i = 0; i < questions.Length; i++)
+            {
+                for (int j = 0; j < questions[i].Threads.Length; j++)
+                {
+                    questions[i].Threads[j].IsCompleted = false;
+                    for (int k = 0; k < questions[i].Threads[j].Posts.Length; k++)
+                    {
+                        questions[i].Threads[j].Posts[k].IsSelected = false;
+                    }
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            ResetData();
         }
     }
 }
