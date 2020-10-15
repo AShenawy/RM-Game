@@ -53,8 +53,8 @@ namespace Methodyca.Minigames.DocStudy
             postPanel.SetActive(true);
             completeButton.gameObject.SetActive(false);
 
-            threadTitle.text = thread.Title;
-            questionTitle.text = question;
+            questionTitle.text = $"Research Question: {question}";
+            threadTitle.text = $"Forum Thread: {thread.Title}";
 
             _allPosts = new Queue<Post>();
 

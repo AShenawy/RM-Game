@@ -16,7 +16,10 @@ namespace Methodyca.Minigames.DocStudy
         private Image _panel;
         private Post _selection;
         private UIPostPanel _uiPost;
+
         private readonly Vector2 _messagePanelPaddingSize = new Vector2(0, 10);
+        private readonly Color _defaultColor = new Color(0.9f, 0.9f, 0.9f, 1);
+        private readonly Color _pointerEnterColor = new Color(0.85f, 0.85f, 0.55f, 1);
 
         public void Initialize(Post selection)
         {
@@ -49,12 +52,12 @@ namespace Methodyca.Minigames.DocStudy
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _panel.color = Color.yellow;
+            _panel.color = _pointerEnterColor;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _panel.color = Color.white;
+            _panel.color = _defaultColor;
         }
 
         private void Awake()

@@ -8,6 +8,7 @@ namespace Methodyca.Minigames.DocStudy
     {
         [SerializeField] private GameObject root;
         [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private TextMeshProUGUI researchQText;
         [SerializeField] private TextMeshProUGUI remainingText;
         [SerializeField] private Button finishButton;
         [SerializeField] private Button backButton;
@@ -55,6 +56,7 @@ namespace Methodyca.Minigames.DocStudy
             _threads = question.Threads;
             _selectedThreadButton = null;
             canvasGroup.blocksRaycasts = true;
+            researchQText.text = $"Research Question: {question.Title}";
 
             root.SetActive(true);
             finishButton.gameObject.SetActive(false);
