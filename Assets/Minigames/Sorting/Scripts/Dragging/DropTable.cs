@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.SortGame
 {
-    
     public class DropTable : MonoBehaviour, IDropHandler 
     {
         public GameObject boxQuali;

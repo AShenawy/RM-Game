@@ -10,18 +10,10 @@ namespace Methodyca.Minigames.SortGame
         public GameObject enlargedPrefab;
         public Sound clickSFX;
 
-        //void Start()
-        //{
-        //    soundMan = FindObjectOfType<SoundManager>();
-        //}
-
         public void OnPointerClick(PointerEventData eventData)
         {
             if (enlargedPrefab)
                 Instantiate(enlargedPrefab);
-
-            //if (soundMan)
-            //    soundMan.Play("click");
 
             SoundManager.instance.PlaySFX(clickSFX);
         }

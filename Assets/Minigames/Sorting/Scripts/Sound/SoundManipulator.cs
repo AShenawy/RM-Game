@@ -6,8 +6,6 @@ namespace Methodyca.Minigames.SortGame
     [RequireComponent(typeof(AudioSource))]
     public class SoundManipulator : MonoBehaviour
     {   
-        //The Ossicaltor. 
-        //public SortBoxBehaviour boxDragSlot;      //********* not needed anymore. removed
         public SortingManager gameManager;
         public VerticalOscillator crystalOscillator;
 
@@ -26,9 +24,6 @@ namespace Methodyca.Minigames.SortGame
         public int sampleRate = 44100;
         public float waveLengthInSeconds = 2.0f;
 
-        //public float tick;      //for the speed.        //************* Is this required for anything besides moving the object?
-        //public float gain;      //like a compressor     //************ Same question
-       
         float minOscillationPosition;
         float maxOscillationPosition;
         int timeIndex = 0;
@@ -50,25 +45,6 @@ namespace Methodyca.Minigames.SortGame
         void Update()
         {
             Shake(audioSource);
-
-            /*
-            if(boxDragSlot.done == true)
-            {
-                if(!audioSource.isPlaying)        //****************** moved to PlaySound()
-                {
-                    audioSource.Play();
-                    timeIndex = 0;           //resets timer before playing sound
-                    Debug.Log("Keys are playing");
-                }
-            }
-            
-
-            if (gameManager.completed==true)
-                audioSource.Stop();                 //**************** moved to StopSound()
-            
-
-            Oscillate();                //********* check method comments
-            */
         }
 
         public void PlaySound()
@@ -122,15 +98,5 @@ namespace Methodyca.Minigames.SortGame
             volumeAux = Mathf.Lerp(0, 1, ratio);
             audioSource.volume = volumeAux;
         }
-
-        // Move game object in oscillations according to sound          //********** functionality moved to VerticalOscillator script
-        //void Oscillate()
-        //{
-        //    //Vector3 temp = new Vector3();
-        //    float vlMotion = gain * Mathf.Sin(tick * Time.fixedTime);
-
-        //    // move the object
-        //    GetComponent<VerticalOscillator>().Oscillate(0, vlMotion);
-        //}
     }
 }
