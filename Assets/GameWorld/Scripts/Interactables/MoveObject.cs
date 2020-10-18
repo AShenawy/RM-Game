@@ -20,7 +20,7 @@ public class MoveObject : ObjectInteraction
     void Move()
     {
         transform.Translate(movementValue.x, movementValue.y, 0);
-        SoundManager.instance.PlaySFX(SFX);
         ToggleInteraction(false);
+        SoundManager.instance.PlaySFX(SFX);
     }
 }

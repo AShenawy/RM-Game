@@ -98,9 +98,8 @@ namespace Methodyca.Core
             {
                 if (Input.GetKeyDown(cntrn[cntrnIndex]))
                     cntrnIndex++;
+               
                 else
-                SoundManager.instance.PlaySFX(clickSFX);
-                Debug.Log("clicked");
                     cntrnIndex = 0;
             }
 
@@ -191,6 +190,7 @@ namespace Methodyca.Core
         {
             inventoryPanel.SetActive(false);
             CursorManager.instance.HideContextMenu();
+            
         }
     
         public void GoToRoom(GameObject destination)
@@ -286,6 +286,7 @@ namespace Methodyca.Core
         {
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
+            SoundManager.instance.PlaySFX(clickSFX);
         }
 
         public void SetStartingRoom(GameObject room)
