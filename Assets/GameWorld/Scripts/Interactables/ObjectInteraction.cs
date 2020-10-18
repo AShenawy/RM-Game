@@ -32,7 +32,7 @@ namespace Methodyca.Core
         protected bool usedCorrectItem;     // check when player uses item with object that requires one
         protected int requiredItemsLeft;    // counter for how many items before object can be used/unlocked
 
-        public Sound InterSFX;
+        //public Sound InterSFX;
 
         protected virtual void Start()
         {

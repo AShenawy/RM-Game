@@ -16,6 +16,8 @@ namespace Methodyca.Core
         private int currentIndex = 0;
         public int currentValue { get;  private set; }
 
+       
+
         private void Start()
         {
             UpdateDisplay(currentIndex);
@@ -26,6 +28,7 @@ namespace Methodyca.Core
             currentValue = digits[index];
             digitDisplay.text = currentValue.ToString();
             onDigitChanged?.Invoke();
+            //Debug.Log("Gt");
         }
 
         public void Scroll(ScrollDirection direction)
@@ -35,7 +38,10 @@ namespace Methodyca.Core
                 case ScrollDirection.Down:
                     // check index doesn't go out of digits array bounds
                     if (currentIndex < digits.Length - 1)
+                    {
                         currentIndex++;
+                        
+                    }
                     else
                         currentIndex = 0;
 
