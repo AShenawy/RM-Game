@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Methodyca.Core;
 
+// This script if for picking up interactable objects
 public class PickUp : ObjectInteraction
 {
+    [Header("Specific Pick Up Parameters")]
+    [Tooltip("Reference to the item scriptable object which will be picked up")]
+    public Item item;
 
     public override void InteractWithObject()
     {
@@ -16,13 +18,11 @@ public class PickUp : ObjectInteraction
     public override void PickUpObject()
     {
         base.PickUpObject();
+
         if (canPickUp)
         {
-            print(name + " added to inventory.");
-        }
-        else
-        {
-            print("I can't pick the " + name + " right now");
+            InventoryManager.instance.Add(item);
+            Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
     }
 }
