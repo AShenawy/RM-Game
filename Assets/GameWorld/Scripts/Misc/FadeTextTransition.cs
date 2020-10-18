@@ -20,7 +20,6 @@ namespace Methodyca.Core
         IEnumerator ShowText()
         {
             yield return new WaitForSeconds(3f);    // 1 second lost on FadeIn
-            print("fading out");
             StartCoroutine(Fader.FadeOut(tMPText));
 
             yield return new WaitForSeconds(1.2f);    // until FadeOut is finished
