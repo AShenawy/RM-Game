@@ -1,0 +1,1848 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Nodes>
+    <DialogueNode>
+      <NodeID>0</NodeID>
+      <Info></Info>
+      <Text></Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Hello! I’m [PLAYER_NAME].</Text>
+          <Pro>1</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>1</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text> Hi! I'm [PLAYER_NAME]. Lovely day for an interview, isn't it?</Text>
+          <Pro>1</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>2</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Yo! What's up?</Text>
+          <Pro></Pro>
+          <Con>2</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>66</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>I am doing this interview to create a new online shopping application so anything you can tell me about your experience with any such applications will be of tremendous use.</Text>
+          <Pro></Pro>
+          <Con>1</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>69</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>2</NodeID>
+      <Info>1</Info>
+      <Text>Hello! I'm Judy. And yes it is quite nice! Would like to be out there already.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Yes, indeed. Which is why I appreciate it even more so that you are here for this interview. Thank you!</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>3</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright, let's get out of here then!</Text>
+          <Pro></Pro>
+          <Con>9</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>67</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>67</NodeID>
+      <Info></Info>
+      <Text>Wow...</Text>
+      <Thoughts>Wow, that was unexpected!</Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>*end interview*</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>-1</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>3</NodeID>
+      <Info></Info>
+      <Text>No problem. Thank you for inviting me.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Let’s begin.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>74</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it okay that i record our conversation? Only I will see this later to make sure i don’t miss any details.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>5</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*set up your [ITEM_LIST]* Let's begin.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>68</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>66</NodeID>
+      <Info>1</Info>
+      <Text>Hi! I’m Judy, nice to meet you!</Text>
+      <Thoughts>Wow they are so informal. I'm not sure how i feel about this.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Nice to meet you too! Thank you for agreeing to participate in the interview.</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>4</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it okay that i record our conversation? Only I will use this later to make sure i don’t miss any details.</Text>
+          <Pro>2</Pro>
+          <Con></Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>5</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*set up your [ITEM_LIST]* Let's begin.</Text>
+          <Pro></Pro>
+          <Con>17</Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>68</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>1</NodeID>
+      <Info>1</Info>
+      <Text>Hi! I’m Judy, nice to meet you!</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Nice to meet you too! Thank you for agreeing to participate in the interview.</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>4</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it okay that i record our conversation? Only I will use this later to make sure i don’t miss any details.</Text>
+          <Pro>2</Pro>
+          <Con></Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>5</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*set up your [ITEM_LIST]* Let's begin.</Text>
+          <Pro></Pro>
+          <Con>17</Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>68</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>4</NodeID>
+      <Info></Info>
+      <Text>Of course, thanks for inviting me.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Let’s begin.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>74</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it okay that i record our conversation? Only I will use this later to make sure i don’t miss any details.</Text>
+          <Pro>2</Pro>
+          <Con></Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>5</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*set up your [ITEM_LIST]* Let's begin.</Text>
+          <Pro></Pro>
+          <Con>17</Con>
+          <SpecialInteractionItems>camera,dictaphone</SpecialInteractionItems>
+          <DestNodeID>68</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>5</NodeID>
+      <Info></Info>
+      <Text>Yes, alright.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Thank you! Let’s begin.</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>74</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>I am doing this interview to create a new online shopping application so anything you can tell me about your experience with any such applications will be of tremendous use.</Text>
+          <Pro>3</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>77</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>68</NodeID>
+      <Info></Info>
+      <Text>Sure...</Text>
+      <Thoughts>Are they recording me? Shouldn't they ask my permission?</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>69</NodeID>
+      <Info></Info>
+      <Text></Text>
+      <Thoughts>Right to business? A bit rude perhaps.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm terribly sorry! Did I just start the interview without like that? It must be the nerves. I am [PLAYER_NAME].</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>8</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>8</NodeID>
+      <Info></Info>
+      <Text>It's okay, I understand.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Thank you! Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>74</NodeID>
+      <Info></Info>
+      <Text></Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I am doing this interview to create a new online shopping application so anything you can tell me about your experience with any such applications will be of tremendous use.</Text>
+          <Pro>3</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>77</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Online shopping. Go.</Text>
+          <Pro></Pro>
+          <Con>18</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>6</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>77</NodeID>
+      <Info></Info>
+      <Text>Oh, good to know!</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Online shopping. Go.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>6</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro>1</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>6</NodeID>
+      <Info></Info>
+      <Text>Uhm. What should i talk about?</Text>
+      <Thoughts>That's straight to business. More info about this interview would be nice.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry, I should have told you a bit more information about the interview. Allow me to explain.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>9</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>9</NodeID>
+      <Info></Info>
+      <Text>It's okay, thank you for telling me more about the interview.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Firstly, I would like to know a little bit about you. Can you tell me, what is your age group?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>7</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>7</NodeID>
+      <Info>2</Info>
+      <Text>I’m in my late 20s.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you have a family? A husband or kids?</Text>
+          <Pro>14</Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>10</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Really? You look a lot older!</Text>
+          <Pro></Pro>
+          <Con>4</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>11</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>11</NodeID>
+      <Info></Info>
+      <Text>Hm, okay.</Text>
+      <Thoughts>Did they seriously just insult me?</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry! It wasn't meant as an insult, more of a compliment. </Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>12</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>12</NodeID>
+      <Info></Info>
+      <Text>It's alright. I get it.</Text>
+      <Thoughts>I hope they won't make a habit of insulting.</Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you have a family? A husband or kids?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>10</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>10</NodeID>
+      <Info>3</Info>
+      <Text>Just my daughter and I.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Really? I have a friend who is also a single mother. It is tough isn't it?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>13</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>13</NodeID>
+      <Info></Info>
+      <Text>Yeah, it can be challenging. How's your friend managing?</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Oh, she just lost her job and the kid is a menace.</Text>
+          <Pro></Pro>
+          <Con>6</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>14</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Luckily, she's getting by. But let's get back to you.</Text>
+          <Pro>10</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>78</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>78</NodeID>
+      <Info></Info>
+      <Text>Hm, okay.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Can you specify your salary? It is just for the research and I am only looking to see, whether it is above, below or around the average wage.</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>20</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you earn above average wage?</Text>
+          <Pro>14</Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>21</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>14</NodeID>
+      <Info></Info>
+      <Text>That's terrible! Is the father not supporting her?</Text>
+      <Thoughts>What a horrible thing to hear. Wait why am I here?</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text> I'm sorry, I went a little off topic. Let's get back to the interview.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>15</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>No, he's long gone! Same case with you right?</Text>
+          <Pro></Pro>
+          <Con>7</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>16</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>He is. But let's get back to the interview.</Text>
+          <Pro>10</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>18</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>15</NodeID>
+      <Info></Info>
+      <Text>Good idea.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Back to my friend, the child's father is long gone. Same case with you right?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>16</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>16</NodeID>
+      <Info></Info>
+      <Text>No. My child's father is still supporting his daughter.</Text>
+      <Thoughts>They are just making assumptions about me!</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry, I shouldn't be making assumptions. let's get back to the interview instead.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>17</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Let's get back to the interview instead.</Text>
+          <Pro>10</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>18</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>17</NodeID>
+      <Info></Info>
+      <Text>Good idea.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>18</NodeID>
+      <Info></Info>
+      <Text>Let's.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What kind of work do you do?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>19</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Can you specify your salary? It is just for the research and I am only looking to see, whether it is above, below or around the average wage.</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>20</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>19</NodeID>
+      <Info>4</Info>
+      <Text> I work as an administrator in a hotel.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you earn above average wage?</Text>
+          <Pro>14</Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>21</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Can you specify your salary? It is just for the research and I am only looking to see, whether it is above, below or around the average wage.</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>20</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>You must not earn much, being a single mother! How much do you get?</Text>
+          <Pro>7,8</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>70</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>20</NodeID>
+      <Info>6</Info>
+      <Text>I am getting below average wage.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Thank you for telling me this. Perhaps you can start telling me about your shopping habits. How often do you do grocery shopping online?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>23</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>With such low income, you must not do much online shopping. How often do you shop in online grocery stores?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>71</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>70</NodeID>
+      <Info></Info>
+      <Text></Text>
+      <Thoughts>I am not comfortable with this.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Sorry, I didn't mean to make you uncomfortable.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>22</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>On second thought, I don't care. Perhaps you can start telling me about your shopping habits. How often do you do grocery shopping online?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>23</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>22</NodeID>
+      <Info></Info>
+      <Text>Okay. Salary wise, I am getting below average wage.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Thank you for telling me this. Perhaps you can start telling me about your shopping habits. How often do you do grocery shopping online?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>23</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>With such low income, you must not do much online shopping. How often do you shop in online grocery stores?</Text>
+          <Pro></Pro>
+          <Con>4</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>71</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>71</NodeID>
+      <Info></Info>
+      <Text>I don't earn that little.</Text>
+      <Thoughts>I don't need them to insult me like that.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Sorry, I didn't mean to make you uncomfortable.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>24</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Well?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>23</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>21</NodeID>
+      <Info>6</Info>
+      <Text>No, unfortunately not.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Thank you for telling me this. Perhaps you can start telling me about your shopping habits. How often do you do grocery shopping online?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>23</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>With such low income, you must not do much online shopping. How often do you shop in online grocery stores?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>71</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>23</NodeID>
+      <Info>7</Info>
+      <Text>I think I shop online about two-three times a week.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Which applications do you use for your shopping?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>27</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you use FoodDelivery?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>25</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>24</NodeID>
+      <Info></Info>
+      <Text>Okay, I think I shop online about two-three times a week.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you use FoodDelivery?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>25</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Which applications do you use for your shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>27</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>25</NodeID>
+      <Info></Info>
+      <Text>No.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you also frequent the physical store?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>26</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Which applications do you use for your shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>27</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>26</NodeID>
+      <Info>8</Info>
+      <Text>Not always. Mostly I shop online.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Which applications do you use for your shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>27</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>27</NodeID>
+      <Info>8,9</Info>
+      <Text>Hmm, I use Freshly for my everyday shopping. However sometimes I don’t find all the products and I need and go to a physical store as well.</Text>
+      <Thoughts>Just thinking about Freshly now.</Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Tell me about Freshly. What do you like about this application?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>29</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you like this application? Would you recommend it?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>28</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>28</NodeID>
+      <Info>10</Info>
+      <Text>Yes. I would recommend it.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Just going to mention, that we are only halfway through the interview.</Text>
+          <Pro></Pro>
+          <Con>13</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>34</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>29</NodeID>
+      <Info>10,11,13</Info>
+      <Text>Well, it usually has a wide product range. I like that they also have a fast delivery and I can choose what time they arrive.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What times do you usually like your deliveries?</Text>
+          <Pro>6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>30</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you think this is one of the reasons why you like online shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>31</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>30</NodeID>
+      <Info>5,12</Info>
+      <Text>I prefer evenings, since I work such long days and I don’t have time to buy groceries or receive them during the day.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you think this is one of the reasons why you like online shopping?</Text>
+          <Pro>5</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>31</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What other reasons, do you think, make online grocery shopping appealing to you?</Text>
+          <Pro>6,9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>32</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>31</NodeID>
+      <Info></Info>
+      <Text>Yes definitely, having groceries delivered to me at my chosen time helps so much and makes my life a bit easier.</Text>
+      <Thoughts>Good, they understood what I meant.</Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What other reasons, do you think, make online grocery shopping appealing to you?</Text>
+          <Pro>6,9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>32</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>32</NodeID>
+      <Info>14,15</Info>
+      <Text>Well, this is the main reason...[PAUSE] I also like shopping online, because I can do it from my own home and there are no distractions. I often get distracted when going to a store and buy things I don’t need.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you think online shopping helps you save money, by buying items that aren’t absolutely necessary?</Text>
+          <Pro>5,6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>33</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>33</NodeID>
+      <Info>16</Info>
+      <Text>Yes, perhaps...[PAUSE] But I am not always so sure, because it is more comfortable online and I might buy even more things when I see all of these different categories listed just a mouseclick away.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Just going to mention, that we are only halfway through the interview.</Text>
+          <Pro></Pro>
+          <Con>13</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>34</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>34</NodeID>
+      <Info></Info>
+      <Text>Alright. I'll try to be faster. Sorry.</Text>
+      <Thoughts>This feels uncomfortable.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Anyway, let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>I'm sorry. Didn't want to make you uncomfortable, just remembered I promised you it takes an hour.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>35</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>35</NodeID>
+      <Info></Info>
+      <Text>I have extra time. But I can be faster.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>No, don't worry about it at all. You're doing great!</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>75</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Sorry for interrupting you. Let's get back to it.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>76</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>75</NodeID>
+      <Info></Info>
+      <Text>Thanks.</Text>
+      <Thoughts>They are being nice.</Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Let’s take Freshly as an example. Tell me about what makes shopping there comfortable?</Text>
+          <Pro>4</Pro>
+          <Con>10</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>36</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>When you start shopping online, do you use search a lot?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>38</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>36</NodeID>
+      <Info>17</Info>
+      <Text>It has all these different food categories and I can find all the products I need under them, but using the search functionality makes finding things so much easier. This is something you can’t do in a physical store, you’d have to wander the isles or ask a salesperson, where the item you want is.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>When you start shopping online, do you use search a lot?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>38</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Walk me through the steps you take for your shopping. What do you do before you start and how do you go about shopping?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>37</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>37</NodeID>
+      <Info>18,20,21</Info>
+      <Text>Hmm...[PAUSE] Well usually I have an idea what I want to cook before i go to the app. Then I start by going through the recipe and use the search to find the items. When I don’t find what I want, I improvise and get some alternative, unless this specific item was crucial for the recipe. Sometimes I also ask my daughter if she wants anything and add it if I can.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What items do you usually add to your cart?</Text>
+          <Pro></Pro>
+          <Con>12</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>44</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Does it happen often, that you don’t find what you’re looking for?</Text>
+          <Pro>6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>39</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*look at clock* We are nearing the end of our time. Let's go faster.</Text>
+          <Pro></Pro>
+          <Con>13</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>40</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>40</NodeID>
+      <Info></Info>
+      <Text>Okay. Alright.</Text>
+      <Thoughts>It's a bit uncomfortable. I lost my train of thought.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Sorry, didn't mean to interrupt. I just had promised you it would take an hour.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>41</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. What items you usually need to buy in a store that you don’t find in the shopping application?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>45</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. Name one thing you bought last time in a physical store?</Text>
+          <Pro></Pro>
+          <Con>12</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>46</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>41</NodeID>
+      <Info></Info>
+      <Text>It's okay, I have some time.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. Name one thing you bought last time in a physical store?</Text>
+          <Pro></Pro>
+          <Con>12</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>46</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. What items you usually need to buy in a store that you don’t find in the shopping application?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>45</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>38</NodeID>
+      <Info>17</Info>
+      <Text>Yes, I use it to find all the items I need.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What items do you usually add to your cart?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>44</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Does it happen often, that you don’t find what you’re looking for?</Text>
+          <Pro>6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>39</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>39</NodeID>
+      <Info>22</Info>
+      <Text>No, not often, I know what they have so I change my recipes accordingly.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>How difficult it is for you to change your dinner plans?</Text>
+          <Pro>19,23</Pro>
+          <Con>6</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>42</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>42</NodeID>
+      <Info></Info>
+      <Text>Not too difficult, I have some bookmarked recipe sites and there are always interesting and easy things to cook. My daughter is just happy with all kinds of pasta, so not so difficult to change the items.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Actually you are right, there are not too much differences to buy these things from online or physical. I take it pasta is one of the things that frequent your shopping cart then! What other items do you often add to your cart?</Text>
+          <Pro>5,6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>43</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>43</NodeID>
+      <Info>23,24</Info>
+      <Text>Yes! I buy a lot of pasta! But other regular items are milk, cheese, cereal and bread. The usuals.</Text>
+      <Thoughts>This makes me feel a bit more comfortable.</Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. Name one thing you bought last time in a physical store?</Text>
+          <Pro></Pro>
+          <Con>12</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>46</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. What items you usually need to buy in a store that you don’t find in the shopping application?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>45</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>44</NodeID>
+      <Info>24</Info>
+      <Text>Milk, cheese, cereal, bread, the usuals.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. Name one thing you bought last time in a physical store?</Text>
+          <Pro></Pro>
+          <Con>12</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>46</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Alright. At the start you also mentioned visiting a physical store when you can’t find the items you need. What items you usually need to buy in a store that you don’t find in the shopping application?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>45</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>45</NodeID>
+      <Info>25,26</Info>
+      <Text>Let’s see...[PAUSE] I think the last time I went to the store is to get my daughter a magazine she wanted, there are no magazines in Freshly, mostly groceries and some household products too. Ah, and I usually go when I want to buy fish, for some reason the website only has frozen fish and not much of a pick of fresh ones.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>That’s very interesting! What else would you like to be able to buy from this website?</Text>
+          <Pro>6,11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>47</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>46</NodeID>
+      <Info></Info>
+      <Text>Let’s see...[PAUSE] I think the last time I went to the store was to get my daughter a magazine she wanted, there are no magazines in Freshly, mostly groceries and some household products too.</Text>
+      <Thoughts>Got to think of just one thing.</Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>That’s very interesting! What else would you like to be able to buy from this website?</Text>
+          <Pro>6,11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>47</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>47</NodeID>
+      <Info>27</Info>
+      <Text>Some ready made food!</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>So getting food that is easy to cook or heat up is important to you?</Text>
+          <Pro>5</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>48</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What kind of ready made food you’d like?</Text>
+          <Pro>6</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>51</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>48</NodeID>
+      <Info>28,29</Info>
+      <Text>There’s usually cakes and party platters ready to go, but I’d like to see perhaps cooked chicken or risotto, something I can throw on the pan to quickly heat up and have dinner ready in minutes. But not something frozen, something real.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>So getting food that is easy to cook or heat up is important to you?</Text>
+          <Pro>5</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>51</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>But frozen food is nice! It is cheap and very easy to cook. I also like the taste of it!</Text>
+          <Pro></Pro>
+          <Con>15</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>49</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>49</NodeID>
+      <Info></Info>
+      <Text>I don't unfortunately.</Text>
+      <Thoughts>My opinion doesn't match theirs.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry, that was just a matter of personal preference.</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>50</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>So getting food that is easy to cook or heat up is important to you?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>51</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>50</NodeID>
+      <Info></Info>
+      <Text>Understandable.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>So getting food that is easy to cook or heat up is important to you?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>51</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>51</NodeID>
+      <Info></Info>
+      <Text>Yes, I get dinner ready so much faster then.</Text>
+      <Thoughts>They understand what i was trying to say.</Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Do you also have a budget when grocery shopping?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>52</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What would you say, is the online shopping application lacking that you’d like there to be?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>60</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>52</NodeID>
+      <Info>30</Info>
+      <Text> Yeah, I try to stay in a daily budget limit.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What is your daily budget?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>53</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>How do you make sure you keep to your budget?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>55</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>53</NodeID>
+      <Info>31</Info>
+      <Text>I try to keep it to about 15 euros.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>This seems very low. How do you manage to survive on that?</Text>
+          <Pro></Pro>
+          <Con>15</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>54</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>How do you make sure you keep to your budget?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>55</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it easier to keep to this in online or physical store?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>56</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>54</NodeID>
+      <Info></Info>
+      <Text>Well I do.</Text>
+      <Thoughts>That is just their opinion, but I don't appreciate it.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry, I didn't mean any harm. It is actually very admirable!</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>57</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What do you think are the online shopping applications missing, that you'd like there to be?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>59</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>57</NodeID>
+      <Info></Info>
+      <Text>Thank you. Yeah it is difficult but we manage.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>How do you make sure you keep to your budget?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>55</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Is it easier to keep to this in online or physical store?</Text>
+          <Pro></Pro>
+          <Con>11</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>56</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>55</NodeID>
+      <Info>33,34</Info>
+      <Text>I try to select discounted items and when I shop online I can always see how much the items in my cart cost. That helps a lot.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>How would you compare finding discounted items in an online store to finding them in physical store?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>58</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What would you say, is the online shopping application lacking that you’d like there to be?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>60</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>56</NodeID>
+      <Info>32</Info>
+      <Text>Online store.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Why, do you think, that is easier in online store?</Text>
+          <Pro>6,9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>58</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What would you say, is the online shopping application lacking that you’d like there to be?</Text>
+          <Pro>9</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>60</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>58</NodeID>
+      <Info>32,35</Info>
+      <Text>I think it is easier in online store because I can filter by discounted items, in the physical store I would have to spend more time finding discounted versions.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>What would you say, is the online shopping application lacking that you’d like there to be?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>60</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>What do you think are the online shopping applications missing, that you'd like there to be?</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>59</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>59</NodeID>
+      <Info></Info>
+      <Text>Can't think of anything else at the moment.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Please try to think of something, alright?</Text>
+          <Pro></Pro>
+          <Con>19</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>62</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>It is absolutely alright, you have been very helpful already! Do you have anything you’d like to add?</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>61</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>60</NodeID>
+      <Info>36,37</Info>
+      <Text>Well, even more categories would be nice...[PAUSE] I think I’d like to be able to see quick and easy recipes over there as well, that I can make with the items that are in the store. Can’t think of much more at the moment.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>Please try to think of something, alright?</Text>
+          <Pro></Pro>
+          <Con>19</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>62</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>It is absolutely alright, you have been very helpful already! Do you have anything you’d like to add?</Text>
+          <Pro>11</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>61</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>61</NodeID>
+      <Info></Info>
+      <Text>No, don’t think so.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>In that case, this concludes our interview. Thank you very much for agreeing to participate!</Text>
+          <Pro>12</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>64</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Goodbye!</Text>
+          <Pro>13</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>65</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*just leave without saying anything*</Text>
+          <Pro></Pro>
+          <Con>20</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>72</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>62</NodeID>
+      <Info></Info>
+      <Text>Sorry, I really don't have anything else to say.</Text>
+      <Thoughts>They are pushing me, I don't like it.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>I'm sorry, You don't have to add anything else, you've already been very helpful!</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>63</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>In that case, this concludes our interview. Thank you very much for agreeing to participate!</Text>
+          <Pro>12</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>64</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Goodbye!</Text>
+          <Pro>13</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>65</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*just leave without saying anything*</Text>
+          <Pro></Pro>
+          <Con>20</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>72</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>63</NodeID>
+      <Info></Info>
+      <Text>Okay. I really don't have anything else to add.</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>In that case, this concludes our interview. Thank you very much for agreeing to participate!</Text>
+          <Pro>12</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>64</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>*just leave without saying anything*</Text>
+          <Pro></Pro>
+          <Con>20</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>72</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Goodbye!</Text>
+          <Pro>13</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>65</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>64</NodeID>
+      <Info></Info>
+      <Text>Thank you too!</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>*just leave without saying anything*</Text>
+          <Pro></Pro>
+          <Con>20</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>72</DestNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Goodbye!</Text>
+          <Pro>13</Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>65</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>65</NodeID>
+      <Info></Info>
+      <Text>Goodbye!</Text>
+      <Thoughts></Thoughts>
+      <ScaleValue>0</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>*end interview*</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>-1</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>73</NodeID>
+      <Info></Info>
+      <Text>Bye, I guess...</Text>
+      <Thoughts>The ending was quite sudden.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>*end interview*</Text>
+          <Pro></Pro>
+          <Con>21</Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>-1</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>72</NodeID>
+      <Info></Info>
+      <Text>Bye, I guess...</Text>
+      <Thoughts>Leaving just like that? That's rude.</Thoughts>
+      <ScaleValue>-1</ScaleValue>
+      <Options>
+        <DialogueOption>
+          <Text>*end interview*</Text>
+          <Pro></Pro>
+          <Con></Con>
+          <SpecialInteractionItems></SpecialInteractionItems>
+          <DestNodeID>-1</DestNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+  </Nodes>
+</Dialogue>

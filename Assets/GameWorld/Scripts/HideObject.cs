@@ -1,12 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HideObject : MonoBehaviour
+namespace Methodyca.Core
 {
-    public void Hide(GameObject gameObject)
-    {
-        gameObject.SetActive(false);
-    }
+  public class HideObject : MonoBehaviour
+  {
+      public void Hide(GameObject gameObject)
+      {
+          gameObject.SetActive(false);
+      }
 
+  }
 }
