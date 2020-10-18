@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Methodyca.Minigames.SortGame
+namespace Methodyca.Core
 {
     // this class is to hold data about SFX or BGM clip
     [System.Serializable]

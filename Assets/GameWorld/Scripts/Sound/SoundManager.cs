@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Methodyca.Minigames.SortGame
+namespace Methodyca.Core
 {
     // The script handling in-game sound playback
     public sealed class SoundManager : MonoBehaviour
