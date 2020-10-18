@@ -83,6 +83,8 @@ namespace Methodyca.Minigames.SortGame
 
             // prevent UI buttons from blocking raycasts, essentially making items float on them
             sortMan.EnableButtons(false);
+
+            SoundManager.instance.PlaySFX(dragSFX);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -99,7 +101,7 @@ namespace Methodyca.Minigames.SortGame
             // re-enable raycasting after object is dropped to be able to click it again
             image.raycastTarget = true;
 
-            SoundManager.instance.PlaySFX(dragSFX);
+            
 
             // re-allow UI buttons to work again
             sortMan.EnableButtons(true);

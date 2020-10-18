@@ -6,14 +6,13 @@ namespace Methodyca.Minigames.SortGame
     [RequireComponent(typeof(AudioSource))]
     public class SoundManipulator : MonoBehaviour
     {   
-        public SortingManager gameManager;
         public VerticalOscillator crystalOscillator;
 
         [Range(0, 20000)]
-        public int frequency1;
+        public int frequencyLeftChannel;
     
         [Range(0, 20000)]
-        public int frequency2;
+        public int frequencyRightChannel;
 
         [Range (0f, 1f)]
         public float volume;    //the main volume. 
@@ -53,7 +52,6 @@ namespace Methodyca.Minigames.SortGame
             {
                 audioSource.Play();
                 timeIndex = 0;           //resets timer before playing sound
-                Debug.Log("Keys are playing");
             }
         }
 
@@ -67,10 +65,10 @@ namespace Methodyca.Minigames.SortGame
         {
             for(int i = 0; i < data.Length; i+= channels)
             {          
-                data[i] = CreateSine(timeIndex, frequency1, sampleRate);
+                data[i] = CreateSine(timeIndex, frequencyLeftChannel, sampleRate);
             
                 if(channels == 2)
-                    data[i+1] = CreateSine(timeIndex, frequency2, sampleRate);
+                    data[i+1] = CreateSine(timeIndex, frequencyRightChannel, sampleRate);
             
                 timeIndex++;
             
@@ -95,7 +93,7 @@ namespace Methodyca.Minigames.SortGame
             float currentPos = crystalOscillator.GetComponent<RectTransform>().anchoredPosition.y;
             float ratio = (currentPos - minOscillationPosition) / motionRange;
 
-            volumeAux = Mathf.Lerp(0, 1, ratio);
+            volumeAux = Mathf.Lerp(0f, 1f, ratio);
             audioSource.volume = volumeAux;
         }
     }
