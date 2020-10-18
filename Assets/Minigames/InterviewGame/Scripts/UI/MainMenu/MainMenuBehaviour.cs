@@ -33,7 +33,7 @@ namespace Methodyca.Minigames.Interview
                 playBtn.SetActive(false);
                 aboutBtn.SetActive(false);
                 title.SetActive(false);
-                logos.SetActive(false);
+                logos.SetActive(true);
             });
 
             backBtn = GameObject.Find("BackBtn");
@@ -43,7 +43,7 @@ namespace Methodyca.Minigames.Interview
                 playBtn.SetActive(true);
                 aboutBtn.SetActive(true);
                 title.SetActive(true);
-                logos.SetActive(true);
+                logos.SetActive(false);
             });
             about.SetActive(false);
         }

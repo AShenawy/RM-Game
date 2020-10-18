@@ -61,6 +61,8 @@ namespace Methodyca.Minigames.Interview
                 consBtn.GetComponent<Image>().color = new Color32(200, 200, 200, 255);
                 infoBtn.GetComponent<Image>().color = new Color32(170, 170, 170, 255);
             });
+
+            Resources.UnloadUnusedAssets();
         }
     }
 }
