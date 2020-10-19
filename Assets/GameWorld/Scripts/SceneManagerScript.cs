@@ -54,12 +54,17 @@ namespace Methodyca.Core
 
         public void UnloadScene(string scene)
         {
-            SceneManager.UnloadSceneAsync(scene);
-            
+            AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(scene);
+
+            unloadOpr.completed += UnloadAssets;
+        }
+
+        void UnloadAssets(AsyncOperation opr)
+        {
             // Unload minigame unused assests
             Resources.UnloadUnusedAssets();
         }
-        
+
         // Typically called by GameManager script when player is going to a scene within main game
         public GameObject GetSceneStartingRoom()
         {
