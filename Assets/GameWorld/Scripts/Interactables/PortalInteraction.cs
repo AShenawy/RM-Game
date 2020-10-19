@@ -26,7 +26,7 @@ public class PortalInteraction : ObjectInteraction
 
         if(canUsePortal)
         {
-            portalControl.GoToNextLevel();
+            portalControl.PlayTransition();
         } 
         else
             DialogueHandler.instance.DisplayDialogue(responseForDisabled);

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 
 namespace Methodyca.Core
@@ -27,7 +27,15 @@ namespace Methodyca.Core
         private enum CrystalType { Quantitaive, Qualitative, None}
         private CrystalType lastPlacedCrystal;
         private bool isBothSlotsEmpty = true;
+        private VideoPlayer videoPlayer;
 
+
+        private void OnEnable()
+        {
+            videoPlayer = GetComponent<VideoPlayer>();
+            // prepares the video file for quick playback when called
+            videoPlayer.Prepare();
+        }
 
         public void OnItemPlacement(Item crystal)
         {
@@ -106,8 +114,17 @@ namespace Methodyca.Core
             }
         }
 
-        public void GoToNextLevel()
+        public void PlayTransition()
         {
+            videoPlayer.Play();
+            
+            videoPlayer.loopPointReached += GoToNextLevel;
+        }
+
+        void GoToNextLevel(VideoPlayer player)
+        {
+            player.loopPointReached -= GoToNextLevel;
+
             switch (lastPlacedCrystal)
             {
                 case CrystalType.Qualitative:
@@ -115,6 +132,7 @@ namespace Methodyca.Core
                     break;
 
                 case CrystalType.Quantitaive:
+                    videoPlayer.Play();
                     SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QNRoomTag);
                     break;
 

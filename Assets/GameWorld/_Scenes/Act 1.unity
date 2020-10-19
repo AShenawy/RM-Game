@@ -3920,6 +3920,12 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!20 &491797757 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7105289843966998066, guid: ce7064c0a0d6a9844a96840271686d84,
+    type: 3}
+  m_PrefabInstance: {fileID: 7105289843720212045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &500650166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5378,6 +5384,7 @@ GameObject:
   - component: {fileID: 826353355}
   - component: {fileID: 826353354}
   - component: {fileID: 826353353}
+  - component: {fileID: 826353357}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -5477,6 +5484,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.7856023
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!328 &826353357
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826353351}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: d41965cc2f1cea845bbd732043ff80e7, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 491797757}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 0
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
 --- !u!1 &868621792
 GameObject:
   m_ObjectHideFlags: 0
