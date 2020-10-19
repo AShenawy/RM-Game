@@ -4,11 +4,11 @@ namespace Methodyca.Core
 {
     public class ReturnToMainGame : MonoBehaviour
     {
-        public string sceneToClose;
-
         public void ReturnToGame()
         {
-            SceneManagerScript.instance.UnloadScene(sceneToClose);
+            SceneManagerScript.instance.UnloadScene();
+            SoundManager.instance.StopBGM();
+            SoundManager.instance.StopAllSFX();
         }
     }
 }

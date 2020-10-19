@@ -11,9 +11,10 @@ namespace Methodyca.Minigames.SortGame
             SceneManager.LoadScene(sceneName);
         }
 
-        public void ExitMinigame(string name)
+        public void ExitMinigame()
         {
-            SceneManagerScript.instance.UnloadScene(name);
+            SceneManagerScript.instance.UnloadScene();
+            SoundManager.instance.StopBGM();
         }
     }
 }
