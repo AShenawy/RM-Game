@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Methodyca.Minigames.Protoescape
@@ -7,15 +8,38 @@ namespace Methodyca.Minigames.Protoescape
     {
         public static event Action<bool> OnStackMove = delegate { };
         public static event Action<GameObject> OnSelected = delegate { };
-        public static bool IsStacksMovable = false;
 
-        public static GameObject SelectedEntity { get => _selectedEntity; set { { _selectedEntity = value; OnSelected?.Invoke(_selectedEntity); } } }
+        public static GameObject SelectedEntity { get => _selectedEntity; set { _selectedEntity = value; OnSelected?.Invoke(value); } }
         private static GameObject _selectedEntity;
 
-        public void HandleStacksMove(bool value)
+        public static bool IsStacksMovable { get => _isStacksMovable; set { _isStacksMovable = value; OnStackMove?.Invoke(value); } }
+        static bool _isStacksMovable;
+
+        private List<IEntity> _likableEntities;
+        private List<IEntity> _confusingEntities;
+
+        public void CheckResult()
         {
-            IsStacksMovable = value;
-            OnStackMove?.Invoke(value);
+            _confusingEntities = _likableEntities = new List<IEntity>();
+
+            var entities = GetComponentsInChildren<IEntity>();
+
+            foreach (var entity in entities)
+            {
+                if (entity.CorrectSiblingIndex == entity.CurrentSiblingIndex)
+                {
+                    _likableEntities.Add(entity);
+                }
+                else
+                {
+                    _confusingEntities.Add(entity);
+                }
+            }
+        }
+
+        private void Start()
+        {
+            IsStacksMovable = false;
         }
     }
 }

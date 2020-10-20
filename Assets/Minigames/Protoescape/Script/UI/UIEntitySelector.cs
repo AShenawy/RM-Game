@@ -15,6 +15,12 @@ namespace Methodyca.Minigames.Protoescape
 
         private void SelectedHandler(GameObject selection)
         {
+            if (selection == null)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
             var selectedRect = selection.GetComponent<RectTransform>();
 
             gameObject.SetActive(true);
