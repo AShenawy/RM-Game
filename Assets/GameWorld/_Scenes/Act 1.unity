@@ -4204,21 +4204,6 @@ PrefabInstance:
       propertyPath: wrongItemText
       value: That won't work
       objectReference: {fileID: 0}
-    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
-        type: 3}
-      propertyPath: OberservSFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ad93d8254f857430aa7b4c6cead6b68d, type: 3}
-    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
-        type: 3}
-      propertyPath: OberservSFX.name
-      value: poster
-      objectReference: {fileID: 0}
-    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
-        type: 3}
-      propertyPath: OberservSFX.volume
-      value: 0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
 --- !u!4 &502351307 stripped
@@ -4825,16 +4810,16 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: It doesn't need that
-  canMove: 1
-  movementValue: {x: 2.5, y: 0}
-  SFX:
-    name: Drag
-    clip: {fileID: 8300000, guid: 022657c3917a84791bad3e275a793fcc, type: 3}
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
     loop: 0
-    volume: 0.3
+    volume: 0
     pitch: 1
     pan: 0
     Source: {fileID: 0}
+  canMove: 1
+  movementValue: {x: 2.5, y: 0}
 --- !u!1 &587584450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,6 +5169,14 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   canOperate: 1
   onOperateSuccessText: 
   onOperateFailText: I can't open it.
@@ -5470,6 +5463,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c669829f41f4df045a5ce8ed5bbad54c, type: 2}
   - {fileID: 11400000, guid: f2fdd43caf14ffd4989d2a64345b3a10, type: 2}
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   canUsePortal: 0
   responseForDisabled: 
 --- !u!65 &826353355
@@ -5991,6 +5992,14 @@ MonoBehaviour:
   isItemRequired: 0
   requiredItems: []
   wrongItemText: 
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   isLocked: 1
   unlockCombination: 030000000000000002000000
   lockedBoxPrefab: {fileID: 1938385551}
@@ -6861,61 +6870,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 903832171}
     m_Modifications:
-    - target: {fileID: 1884184045181866388, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184045181866388, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184045284367970, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184045284367970, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184045716654128, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184045716654128, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.name
-      value: lock
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184045716654128, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184046105068071, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184046105068071, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184046478932875, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184046478932875, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.12
-      objectReference: {fileID: 0}
     - target: {fileID: 1884184047007946081, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
       propertyPath: m_Name
@@ -7030,16 +6984,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884184047235717052, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c737d0f797d1b45c99e58c06a64e672a, type: 3}
-    - target: {fileID: 1884184047235717052, guid: 865a288ad1a94a74d9336d0350963be0,
-        type: 3}
-      propertyPath: SFX.volume
-      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 865a288ad1a94a74d9336d0350963be0, type: 3}
@@ -8032,6 +7976,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
   - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
   wrongItemText: There's no need to do that.
+  InterSFX:
+    name: 
+    clip: {fileID: 0}
+    loop: 0
+    volume: 0
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
   gameHub: {fileID: 1313759070}
   canStartGame: 0
   responseForDisabled: 
