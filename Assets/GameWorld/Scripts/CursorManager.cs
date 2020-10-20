@@ -10,7 +10,8 @@ namespace Methodyca.Core
         // Event called whenever state of context menu changes
         public delegate void OnContextMenu(bool value);
         public event OnContextMenu contextMenuDisabled;
-    
+
+        [SerializeField] private bool lockCursor;
         [SerializeField] private GameObject menuContext;    // ref to the context menu GO
     
         [Header("Cursor Styles")]
@@ -33,7 +34,8 @@ namespace Methodyca.Core
         // Start is called before the first frame update
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            if (lockCursor)
+                Cursor.lockState = CursorLockMode.Confined;
         }
     
         // shows the mouse's context menu

@@ -50,16 +50,31 @@ namespace Methodyca.Core
         public void LoadSceneAdditive(string sceneName)
         {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            SceneManager.sceneLoaded += SetLoadedSceneActive;
         }
 
-        public void UnloadScene(string scene)
+        void SetLoadedSceneActive(Scene scene, LoadSceneMode mode)
         {
-            SceneManager.UnloadSceneAsync(scene);
-            
+            SceneManager.SetActiveScene(scene);
+            SceneManager.sceneLoaded -= SetLoadedSceneActive;
+        }
+
+        public void UnloadScene()
+        {
+            AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            unloadOpr.completed += UnloadAssets;
+        }
+
+        void UnloadAssets(AsyncOperation opr)
+        {
+            Debug.Log("Scene closed. Unloading unused resources.");
             // Unload minigame unused assests
             Resources.UnloadUnusedAssets();
+            
+            opr.completed -= UnloadAssets;
         }
-        
+
         // Typically called by GameManager script when player is going to a scene within main game
         public GameObject GetSceneStartingRoom()
         {
