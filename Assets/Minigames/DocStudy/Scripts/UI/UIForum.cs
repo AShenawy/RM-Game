@@ -25,7 +25,6 @@ namespace Methodyca.Minigames.DocStudy
                 {
                     _selectedThreadButton = threadButtons[i];
                     GameManager.Instance.HandlePostInitiation(_threads[i]);
-
                 }
             }
         }
