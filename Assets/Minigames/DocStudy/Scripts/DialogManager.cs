@@ -7,6 +7,7 @@ namespace Methodyca.Minigames.DocStudy
     {
         public static event System.Action<Dialog> OnDialogUpdated = delegate { };
         public static event System.Action<Dialog> OnDialogCompleted = delegate { };
+        public static event System.Action OnNextClicked = delegate { };
 
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private Dialog initialForumDialog;
@@ -36,6 +37,8 @@ namespace Methodyca.Minigames.DocStudy
             {
                 dialogPanel.SetActive(false);
             }
+
+            OnNextClicked?.Invoke();
         }
 
         public void TriggerDialog(Dialog dialog)

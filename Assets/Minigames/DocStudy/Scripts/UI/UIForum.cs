@@ -34,9 +34,16 @@ namespace Methodyca.Minigames.DocStudy
             GameManager.OnForumInitiated += ForumInitiatedHandler;
             GameManager.OnPostInitiated += PostInitiatedHandler;
             GameManager.OnPostCompleted += PostCompletedHandler;
+            DialogManager.OnNextClicked += NextClickedHandler;
 
             finishButton.onClick.AddListener(HandleGameResult);
             backButton.onClick.AddListener(() => GameManager.Instance.ResetData());
+        }
+
+        private void NextClickedHandler()
+        {
+            canvasGroup.blocksRaycasts = true;
+            backButton.gameObject.SetActive(true);
         }
 
         private void HandleGameResult()
@@ -54,11 +61,12 @@ namespace Methodyca.Minigames.DocStudy
         {
             _threads = question.Threads;
             _selectedThreadButton = null;
-            canvasGroup.blocksRaycasts = true;
+            canvasGroup.blocksRaycasts = false;
             researchQText.text = $"Research Question: {question.Title}";
 
             root.SetActive(true);
             finishButton.gameObject.SetActive(false);
+            backButton.gameObject.SetActive(false);
 
             for (int i = 0; i < _threads.Length; i++)
             {
@@ -90,6 +98,7 @@ namespace Methodyca.Minigames.DocStudy
             GameManager.OnForumInitiated -= ForumInitiatedHandler;
             GameManager.OnPostInitiated -= PostInitiatedHandler;
             GameManager.OnPostCompleted -= PostCompletedHandler;
+            DialogManager.OnNextClicked -= NextClickedHandler;
 
             finishButton.onClick.RemoveAllListeners();
         }

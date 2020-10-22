@@ -11,6 +11,7 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private UIPost selectedPostPrefab;
         [SerializeField] private Transform selectedArea;
         [SerializeField] private Transform discardedArea;
+        [SerializeField] private Button backButton;
         [SerializeField] private Button selectButton;
         [SerializeField] private Button discardButton;
         [SerializeField] private Button completeButton;
@@ -39,6 +40,8 @@ namespace Methodyca.Minigames.DocStudy
             selectButton.onClick.AddListener(SelectClickHandler);
             discardButton.onClick.AddListener(DiscardClickHandler);
             completeButton.onClick.AddListener(CompleteClickHandler);
+            DialogManager.OnNextClicked += () => backButton.gameObject.SetActive(true);
+
         }
 
         private void CompleteClickHandler()
@@ -52,6 +55,7 @@ namespace Methodyca.Minigames.DocStudy
             root.SetActive(true);
             postPanel.SetActive(true);
             completeButton.gameObject.SetActive(false);
+            backButton.gameObject.SetActive(false);
 
             questionTitle.text = $"<b>Research question</b>: {question}";
             threadTitle.text = $"<b>Selected forum thread</b>: {thread.Title}";

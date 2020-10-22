@@ -12,6 +12,7 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private TextMeshProUGUI postScore;
         [SerializeField] private TextMeshProUGUI feedback;
 
+        private readonly string _emailTitle = "Re: Game Jam Post-mortem";
         private readonly string _feedbackForLessCorrect = "Unfortunately, our editorial team has found that the article does not " +
             "cite enough evidence to support the generalizations it makes about the subject. " +
             "As such, we regret to inform you that we have decided against publishing it.";
@@ -21,6 +22,7 @@ namespace Methodyca.Minigames.DocStudy
             "As such, we would like to ask you to revise the article and remove the unnecessary digressions, then submit it to us again.";
         private readonly string _feedbackForMoreCorrect = "We have read your article and enjoyed how your argumentation is grounded in actual forum quotes. " +
             "We are pleased to inform you that your article has been accepted for publication. Check out Gamathustra’s Article section tomorrow!";
+        private readonly string _emailGratitude = "Best of luck with future game jams";
 
         private void OnEnable()
         {
@@ -33,22 +35,22 @@ namespace Methodyca.Minigames.DocStudy
         {
             root.SetActive(true);
 
-            threadScore.text = $"You selected {score.SelectedCorrectThreads} out of {score.TotalCorrectThreads} relevant threads";
-            postScore.text = $"You selected {score.SelectedCorrectPosts} out of {score.TotalCorrectPosts} relevant posts across the selected threads";
+            threadScore.text = $"You selected <b>{score.SelectedCorrectThreads} out of {score.TotalCorrectThreads}</b> relevant threads";
+            postScore.text = $"You selected <b>{score.SelectedCorrectPosts} out of {score.TotalCorrectPosts}</b> relevant posts across the selected threads";
 
             var ratio = score.SelectedCorrectPosts / (float)score.TotalCorrectPosts;
 
             if (ratio < 0.4f)
             {
-                feedback.text = _feedbackForLessCorrect;
+                feedback.text = $"<b>{_emailTitle}</b>\n\n{_feedbackForLessCorrect}\n\n{_emailGratitude}";
             }
             else if (ratio >= 0.4f && ratio < 0.6f)
             {
-                feedback.text = _feedbackForMediumCorrect;
+                feedback.text = $"<b>{_emailTitle}</b>\n\n{_feedbackForMediumCorrect}\n\n{_emailGratitude}";
             }
             else
             {
-                feedback.text = _feedbackForMoreCorrect;
+                feedback.text = $"<b>{_emailTitle}</b>\n\n{_feedbackForMoreCorrect}\n\n{_emailGratitude}";
             }
         }
 
