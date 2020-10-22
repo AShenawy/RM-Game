@@ -31,37 +31,65 @@ namespace Methodyca.Core
         public void PlayBGM(Sound soundClip)
         {
             BGMPlayer.clip = soundClip.clip;
-            BGMPlayer.volume = soundClip.amp;
+            BGMPlayer.volume = soundClip.volume;
             BGMPlayer.pitch = soundClip.pitch;
             BGMPlayer.loop = soundClip.loop;
             BGMPlayer.panStereo = soundClip.pan;
             BGMPlayer.Play();
         }
 
-        public void PlaySFX(Sound sfxCLip, bool doMouseImaging = false)
+        public void PlaySFX(Sound sfxClip, bool doMouseImaging = false)
         {
             // if the SFX is already playing then just reset it and play from the start
-            if (SFXPlayers.Exists(x => x.name == sfxCLip.name))
+            if (SFXPlayers.Exists(x => x.name == sfxClip.name))
             {
-                SFXPlayers.Find(x => x.name == sfxCLip.name).source.Play();
+                SFXPlayers.Find(x => x.name == sfxClip.name).source.Play();
                 return;
             }
 
-            SFXPlayers.Add(sfxCLip);
-            sfxCLip.source = gameObject.AddComponent<AudioSource>();
+            SFXPlayers.Add(sfxClip);
+            sfxClip.source = gameObject.AddComponent<AudioSource>();
 
-            sfxCLip.source.clip = sfxCLip.clip;
-            sfxCLip.source.volume = sfxCLip.amp;
-            sfxCLip.source.pitch = sfxCLip.pitch;
-            sfxCLip.source.loop = sfxCLip.loop;
+            sfxClip.source.clip = sfxClip.clip;
+            sfxClip.source.volume = sfxClip.volume;
+            sfxClip.source.pitch = sfxClip.pitch;
+            sfxClip.source.loop = sfxClip.loop;
 
             // check if either the clip has panning set or imaging is required
-            if (sfxCLip.pan != 0)
-                sfxCLip.source.panStereo = sfxCLip.pan;
+            if (sfxClip.pan != 0)
+                sfxClip.source.panStereo = sfxClip.pan;
             else if (doMouseImaging)
-                sfxCLip.source.panStereo = SFXImaging();
+                sfxClip.source.panStereo = SFXImaging();
 
-            sfxCLip.source.Play();
+            sfxClip.source.Play();
+        }
+
+        // PlaySFXOneShot allows playing the same sound clip multiple times without resetting like on the first check in PlaySFX.
+        // The disadvantage is that the sound clip and audio source playing it are not accessible later on, and are not listed in SFXPlayers list.
+        // Hence, once the clip is played, it will destroy itself automatically.
+        public void PlaySFXOneShot(Sound sfxClip, bool doMouseImaging = false)
+        {
+            // create a new child game object and add an audioSource component to it
+            GameObject sfxSource = new GameObject();
+            sfxSource.transform.SetParent(gameObject.transform);
+            sfxSource.name = "SFX Player";
+            sfxClip.source = sfxSource.AddComponent<AudioSource>();
+
+            sfxClip.source.clip = sfxClip.clip;
+            sfxClip.source.volume = sfxClip.volume;
+            sfxClip.source.pitch = sfxClip.pitch;
+            sfxClip.source.loop = false;       // force loop to false as this method should play sfx only once
+
+            // check if either the clip has panning set or imaging is required
+            if (sfxClip.pan != 0)
+                sfxClip.source.panStereo = sfxClip.pan;
+            else if (doMouseImaging)
+                sfxClip.source.panStereo = SFXImaging();
+
+            sfxClip.source.Play();
+
+            // attach the self-destructor on sfx ended component
+            sfxSource.AddComponent<DestroyOnSFXEnded>();
         }
 
         private float SFXImaging()

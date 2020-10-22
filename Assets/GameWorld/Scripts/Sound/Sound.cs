@@ -10,7 +10,7 @@ namespace Methodyca.Core
         public AudioClip clip;
         
         [Range(0f, 1f)] 
-        public float amp = 1f;   //volume of the sound 
+        public float volume = 1f;   //volume of the sound 
         
         [Range(-3f, 3f)]
         public float pitch = 1f; //pitch of the sound
