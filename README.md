@@ -1,2 +1,4 @@
-# World-General Branch
-This branch is for developing general gameplay mechanics and functionality.
+# Minigame Branch
+## Participatory Loop (and the samovar or time)
+
+A minigame about participatory design.
