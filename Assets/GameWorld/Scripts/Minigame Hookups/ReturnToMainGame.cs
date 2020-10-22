@@ -9,6 +9,7 @@ namespace Methodyca.Core
             SceneManagerScript.instance.UnloadScene();
             SoundManager.instance.StopBGM();
             SoundManager.instance.StopAllSFX();
+            Debug.Log("Leggo"); 
         }
     }
 }

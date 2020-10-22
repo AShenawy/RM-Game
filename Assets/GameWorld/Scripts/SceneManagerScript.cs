@@ -80,6 +80,7 @@ namespace Methodyca.Core
         {
             GameObject sceneStartRoom = GameObject.FindGameObjectWithTag(startRoomTag);
             return sceneStartRoom;
+            
         }
     }
 }

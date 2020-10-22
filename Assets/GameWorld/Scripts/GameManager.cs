@@ -227,7 +227,7 @@ namespace Methodyca.Core
             roomTarget = null;
 
             ResetCursor();
-            SoundManager.instance.PlaySFX(DoorSFX);
+            //SoundManager.instance.PlaySFX(DoorSFX);
 
             // ---- for debugging ----
             print("Entered " + roomCurrent.name);
@@ -267,7 +267,8 @@ namespace Methodyca.Core
             CursorManager.instance.SetDefaultCursor();
         }
 
-        private void OnContextMenuDisabled(bool isDisabled)
+        private void
+            OnContextMenuDisabled(bool isDisabled)
         {
             // check if context menu is NOT disabled, then disable player turning
             if(!isDisabled)
@@ -287,6 +288,7 @@ namespace Methodyca.Core
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
             SoundManager.instance.PlaySFX(clickSFX);
+            
         }
 
         public void SetStartingRoom(GameObject room)

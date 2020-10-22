@@ -2146,19 +2146,19 @@ MonoBehaviour:
   DoorSFX:
     name: Doors
     clip: {fileID: 8300000, guid: af3cd41644d974c56b8e1c81218455a3, type: 3}
-    loop: 0
-    volume: 0.2
+    amp: 0.3
     pitch: 1
+    loop: 0
     pan: 0
-    Source: {fileID: 0}
+    source: {fileID: 0}
   clickSFX:
     name: Click
     clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
-    loop: 0
-    volume: 0.1
+    amp: 0.3
     pitch: 1
+    loop: 0
     pan: 0
-    Source: {fileID: 0}
+    source: {fileID: 0}
   player: {fileID: 1421544494}
   rooms:
   - {fileID: 1099030298}
@@ -2243,11 +2243,11 @@ MonoBehaviour:
   BGMUsic:
     name: Act1
     clip: {fileID: 8300000, guid: 27abefdade9874ca9ad44a1ab9dabd9b, type: 3}
-    loop: 1
-    volume: 0.5
+    amp: 0.5
     pitch: 1
+    loop: 1
     pan: 0
-    Source: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &300350091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645712452071088696, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -2785,6 +2785,16 @@ PrefabInstance:
         type: 3}
       propertyPath: PickUpFailText
       value: I don't want to take my supervisor's notes. They could be important.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ad93d8254f857430aa7b4c6cead6b68d, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
@@ -4208,7 +4218,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OberservSFX.clip
       value: 
-      objectReference: {fileID: 8300000, guid: ad93d8254f857430aa7b4c6cead6b68d, type: 3}
+      objectReference: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
     - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: OberservSFX.name
@@ -4217,6 +4227,11 @@ PrefabInstance:
     - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: OberservSFX.volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
       value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4830,11 +4845,11 @@ MonoBehaviour:
   SFX:
     name: Drag
     clip: {fileID: 8300000, guid: 022657c3917a84791bad3e275a793fcc, type: 3}
-    loop: 0
-    volume: 0.3
+    amp: 0.3
     pitch: 1
+    loop: 0
     pan: 0
-    Source: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &587584450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,7 +5932,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OberservSFX.clip
       value: 
-      objectReference: {fileID: 8300000, guid: afe807e3d9f9d456987459374038fbd8, type: 3}
+      objectReference: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
     - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: OberservSFX.name
@@ -5926,6 +5941,11 @@ PrefabInstance:
     - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: OberservSFX.volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
       value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -6003,6 +6023,14 @@ MonoBehaviour:
   unlockedBoxPrefab: {fileID: 3329853875887142851, guid: 5f267c2fd901e934fae7ed2e2e9c944f,
     type: 3}
   winMessage: It's unlocked!
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: b0e372a924f85446c9c4f3ebbd60e032, type: 3}
+    amp: 0.2
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!65 &903832173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6871,6 +6899,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 1884184045181866388, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1884184045284367970, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
       propertyPath: SFX.clip
@@ -6880,6 +6913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.volume
       value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884184045284367970, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1884184045716654128, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
@@ -6896,6 +6934,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.19
       objectReference: {fileID: 0}
+    - target: {fileID: 1884184045716654128, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1884184046105068071, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
       propertyPath: SFX.clip
@@ -6906,6 +6949,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 1884184046105068071, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1884184046478932875, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
       propertyPath: SFX.clip
@@ -6915,6 +6963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.volume
       value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884184046478932875, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1884184047007946081, guid: 865a288ad1a94a74d9336d0350963be0,
         type: 3}
@@ -7041,51 +7094,13 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 1884184047235717052, guid: 865a288ad1a94a74d9336d0350963be0,
+        type: 3}
+      propertyPath: SFX.amp
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 865a288ad1a94a74d9336d0350963be0, type: 3}
---- !u!1 &1096161553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1096161555}
-  - component: {fileID: 1096161554}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1096161554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096161553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab76a19bb61f48fc90e5f647b26a39f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1096161555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096161553}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 476.5555, y: 291.7983, z: -99.52106}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099030298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -10400,6 +10415,26 @@ PrefabInstance:
       propertyPath: requiredItems.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorOpenSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 51bffcc1c86a445eb9d26f1ff8e5f9ea, type: 3}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorOpenSFX.amp
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorlockedSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: af3cd41644d974c56b8e1c81218455a3, type: 3}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorlockedSFX.amp
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11039,6 +11074,16 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectDialogue.Array.data[0]
       value: Safety first!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
@@ -12483,6 +12528,16 @@ PrefabInstance:
       value: Each office has one. But I think this one's specifically red to please
         my supervisor's tastes.
       objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2508603823664755835, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
@@ -13691,6 +13746,16 @@ PrefabInstance:
         type: 3}
       propertyPath: inspectDialogue.Array.data[0]
       value: An ordinary plant. Nothing special about it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.amp
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}

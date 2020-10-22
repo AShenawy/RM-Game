@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7074937910760552046}
   - component: {fileID: 7074937910760552047}
   m_Layer: 0
-  m_Name: Crystal Blue
+  m_Name: Crystal Blue Uncharged
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -64,9 +64,17 @@ MonoBehaviour:
   PickUpSuccessText: Picked up dark blue crystal.
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
   item: {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    amp: 0.2
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &7074937912425257558
 GameObject:
   m_ObjectHideFlags: 0
