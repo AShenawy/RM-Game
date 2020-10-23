@@ -1,34 +1,33 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public class StackMover : MonoBehaviour, IDragHandler, IDropHandler, IEntity
+    public class EntityStack : MonoBehaviour, IDragHandler, IDropHandler, ICheckable
     {
         [SerializeField] private Image stackHighlight;
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private int correctSiblingIndex = 0;
+        [SerializeField] private int[] confusingLocations;
 
-        protected Canvas _canvas;
-        protected RectTransform _rect;
-        protected RectTransform _rectParent;
-        protected Image[] _childrenImages;
+        private RectTransform _rect;
+        private RectTransform _rectParent;
+        private Image[] _childrenImages;
 
-        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
-        public int CorrectSiblingIndex { get => correctSiblingIndex; }
+        private int _currentSiblingIndex { get => _rect.GetSiblingIndex(); }
 
-        protected virtual void Awake()
+        private void Awake()
         {
             _rect = GetComponent<RectTransform>();
-            _canvas = GetComponentInParent<Canvas>();
             _rectParent = _rect.parent as RectTransform;
             _childrenImages = GetComponentsInChildren<Image>();
         }
 
-        protected virtual void Start()
+        private void Start()
         {
             GameManager_Protoescape.OnStackMove += StackMoveHandler;
+            stackHighlight.enabled = false;
         }
 
         private void StackMoveHandler(bool value)
@@ -68,6 +67,22 @@ namespace Methodyca.Minigames.Protoescape
                 _rect.SetSiblingIndex(dragged.transform.GetSiblingIndex());
                 dragged.transform.SetSiblingIndex(index);
             }
+        }
+
+        public Dictionary<ConfusionType, GameObject> GetConfusions()
+        {
+            var dict = new Dictionary<ConfusionType, GameObject>();
+
+            foreach (var index in confusingLocations)
+            {
+                if (_currentSiblingIndex == index)
+                {
+                    dict.Add(ConfusionType.Location, gameObject);
+                    break;
+                }
+            }
+
+            return dict;
         }
 
         protected virtual void OnDestroy()

@@ -18,16 +18,6 @@ namespace Methodyca.Minigames.Protoescape
             _tmpText.UpdateFontAsset();
         }
 
-        private void OnEnable()
-        {
-            GameManager_Protoescape.OnSelected += SelectedHandler;
-        }
-
-        private void SelectedHandler(GameObject selectedObject)
-        {
-
-        }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             _replaceable = GameManager_Protoescape.SelectedEntity;
@@ -36,11 +26,6 @@ namespace Methodyca.Minigames.Protoescape
             {
                 _replaceable.GetComponent<IReplaceable<TMP_FontAsset>>().Replace(fontAsset);
             }
-        }
-
-        private void OnDisable()
-        {
-            GameManager_Protoescape.OnSelected -= SelectedHandler;
         }
     }
 }

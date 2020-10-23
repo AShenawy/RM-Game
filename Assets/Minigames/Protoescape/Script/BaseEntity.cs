@@ -3,21 +3,16 @@ using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public class BaseEntity : MonoBehaviour, IPointerClickHandler, IDragHandler, IDropHandler, IEntity
+    public class BaseEntity : MonoBehaviour, IPointerClickHandler, IDragHandler, IDropHandler
     {
-        [SerializeField] private int correctSiblingIndex;
-
-        protected Canvas _canvas;
         protected RectTransform _rect;
         protected RectTransform _rectParent;
 
-        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
-        public int CorrectSiblingIndex { get => correctSiblingIndex; }
+        protected int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
 
         protected virtual void Awake()
         {
             _rect = GetComponent<RectTransform>();
-            _canvas = GetComponentInParent<Canvas>();
             _rectParent = _rect.parent as RectTransform;
         }
 
@@ -32,12 +27,28 @@ namespace Methodyca.Minigames.Protoescape
                 return;
             }
 
-            if (dragged.transform.IsChildOf(_rectParent))
+            int tempIndex = 0;
+
+            if (dragged.transform.IsSiblingOf(_rect))
             {
-                int index = _rect.GetSiblingIndex();
+                tempIndex = _rect.GetSiblingIndex();
 
                 _rect.SetSiblingIndex(dragged.transform.GetSiblingIndex());
-                dragged.transform.SetSiblingIndex(index);
+                dragged.transform.SetSiblingIndex(tempIndex);
+            }
+            else if (dragged.transform.parent.IsSiblingOf(_rect))
+            {
+                tempIndex = _rect.GetSiblingIndex();
+
+                _rect.SetSiblingIndex(dragged.transform.parent.GetSiblingIndex());
+                dragged.transform.parent.SetSiblingIndex(tempIndex);
+            }
+            else if (dragged.transform.IsSiblingOf(_rectParent))
+            {
+                tempIndex = _rectParent.GetSiblingIndex();
+
+                _rectParent.SetSiblingIndex(dragged.transform.GetSiblingIndex());
+                dragged.transform.SetSiblingIndex(tempIndex);
             }
         }
 

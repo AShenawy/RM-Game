@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Methodyca.Minigames.Protoescape
 {
+    public enum ConfusionType { None, Location, Color, Sprite, Highlight, Font }
+
     public class GameManager_Protoescape : Singleton<GameManager_Protoescape>
     {
+        [SerializeField] private ScreenBox[] screenBoxes;
+
         public static event Action<bool> OnStackMove = delegate { };
         public static event Action<GameObject> OnSelected = delegate { };
 
@@ -15,24 +20,17 @@ namespace Methodyca.Minigames.Protoescape
         public static bool IsStacksMovable { get => _isStacksMovable; set { _isStacksMovable = value; OnStackMove?.Invoke(value); } }
         static bool _isStacksMovable;
 
-        private List<IEntity> _likableEntities;
-        private List<IEntity> _confusingEntities;
+        private List<ScreenBox> _allScreenBoxes;
 
-        public void CheckResult()
+        public IEnumerable<ICheckable> GetAllSelectedCheckablesToTest()
         {
-            _confusingEntities = _likableEntities = new List<IEntity>();
-
-            var entities = GetComponentsInChildren<IEntity>();
-
-            foreach (var entity in entities)
+            while (_allScreenBoxes.Count > 0)
             {
-                if (entity.CorrectSiblingIndex == entity.CurrentSiblingIndex)
+                var selections = GetRandomScreenBox().GetRandomCheckablesBy();
+
+                foreach (var item in selections)
                 {
-                    _likableEntities.Add(entity);
-                }
-                else
-                {
-                    _confusingEntities.Add(entity);
+                    yield return item;
                 }
             }
         }
@@ -40,6 +38,20 @@ namespace Methodyca.Minigames.Protoescape
         private void Start()
         {
             IsStacksMovable = false;
+            _allScreenBoxes = new List<ScreenBox>(screenBoxes);
+        }
+
+        private ScreenBox GetRandomScreenBox()
+        {
+            if (_allScreenBoxes.Count <= 0)
+            {
+                return null;
+            }
+
+            var rndBox = screenBoxes[Random.Range(0, _allScreenBoxes.Count)];
+            _allScreenBoxes.Remove(rndBox);
+
+            return rndBox;
         }
     }
 }
