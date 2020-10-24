@@ -47,6 +47,12 @@ namespace Methodyca.Core
             InventoryManager.instance.GiveSwitcherItem();
         }
 
+        public void PreloadScene(string sceneName)
+        {
+            SceneManager.LoadSceneAsync(sceneName).allowSceneActivation = false;
+            Debug.LogWarning("Scene \"${sceneName}\" loaded in background.");
+        }
+
         public void LoadSceneAdditive(string sceneName)
         {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
