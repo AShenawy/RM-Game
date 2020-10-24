@@ -28,6 +28,8 @@ namespace Methodyca.Core
 
         private Scene sceneCurrent;
         private GameObject loadingScreen;
+        private AsyncOperation preloadSceneOpr;
+        
 
         public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
         {
@@ -47,10 +49,17 @@ namespace Methodyca.Core
             InventoryManager.instance.GiveSwitcherItem();
         }
 
-        public void PreloadScene(string sceneName)
+        public void PreloadScene(string sceneName, LoadSceneMode loadMode)
         {
-            SceneManager.LoadSceneAsync(sceneName).allowSceneActivation = false;
-            Debug.LogWarning("Scene \"${sceneName}\" loaded in background.");
+            preloadSceneOpr = SceneManager.LoadSceneAsync(sceneName, loadMode);
+            preloadSceneOpr.allowSceneActivation = false;
+            Debug.LogWarning($"Scene \"{sceneName}\" loading in background.");
+        }
+
+        public void LoadPreloadedScene()
+        {
+            preloadSceneOpr.allowSceneActivation = true;
+            SceneManager.sceneLoaded += SetLoadedSceneActive;
         }
 
         public void LoadSceneAdditive(string sceneName)
@@ -69,7 +78,7 @@ namespace Methodyca.Core
         {
             AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
-            unloadOpr.completed += UnloadAssets;
+            //unloadOpr.completed += UnloadAssets;
         }
 
         void UnloadAssets(AsyncOperation opr)

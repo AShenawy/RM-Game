@@ -20,9 +20,11 @@ public class SortingGameHub : MinigameHub
 
     private SwitchImageDisplay deskSpriteSwitch;
 
-    private void Start()
+    public override void Start()
     {
         deskSpriteSwitch = GetComponent<SwitchImageDisplay>();
+
+        base.Start();
     }
 
     public override void OnItemPlacement(Item item)

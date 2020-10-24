@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41938383
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,10 +2145,9 @@ MonoBehaviour:
   player: {fileID: 1421544494}
   rooms:
   - {fileID: 1099030298}
-  - {fileID: 0}
   - {fileID: 41938382}
   - {fileID: 2125245411}
-  roomStart: {fileID: 0}
+  roomStart: {fileID: 1099030298}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -3459,7 +3458,7 @@ PrefabInstance:
     - target: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645712453818223722, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
@@ -7261,7 +7260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: Data Charger
-  sceneLoadType: 0
+  sceneLoadType: 1
+  preloadMinigame: 1
   unchargedCrystalQLPrefab: {fileID: 6554072079888044917, guid: 60efba3dda61dea4c8c766ee7693de55,
     type: 3}
   unchargedCrystalQNPrefab: {fileID: 5626291000834006621, guid: 23f3f5d2931d3d44c93ff6bad8610e68,
@@ -12153,7 +12153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2125245412
 Transform:
   m_ObjectHideFlags: 0
