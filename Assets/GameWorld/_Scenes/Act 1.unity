@@ -2153,7 +2153,7 @@ MonoBehaviour:
   clickSFX:
     name: Click
     clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loop: 0
     pan: 0
@@ -6005,7 +6005,7 @@ MonoBehaviour:
   SFX:
     name: 
     clip: {fileID: 8300000, guid: b0e372a924f85446c9c4f3ebbd60e032, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     loop: 0
     pan: 0
@@ -7097,6 +7097,7 @@ GameObject:
   - component: {fileID: 1103277046}
   - component: {fileID: 1103277047}
   - component: {fileID: 1103277048}
+  - component: {fileID: 1103277049}
   m_Layer: 0
   m_Name: World Sound Manager
   m_TagString: Untagged
@@ -7144,10 +7145,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMUsic:
     name: 
-    clip: {fileID: 8300000, guid: 27abefdade9874ca9ad44a1ab9dabd9b, type: 3}
+    clip: {fileID: 8300000, guid: 9d188777d940a49d1b0d4b1ca9b4a25d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1
+    pan: 0
+    source: {fileID: 0}
+--- !u!114 &1103277049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103277045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f09aba88b14b078d37333b0e13e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
     pan: 0
     source: {fileID: 0}
 --- !u!1 &1112223197
@@ -10435,6 +10456,16 @@ PrefabInstance:
       propertyPath: DoorlockedSFX.amp
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorlockedSFX.volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: DoorOpenSFX.volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12536,6 +12567,11 @@ PrefabInstance:
     - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: OberservSFX.amp
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: OberservSFX.volume
       value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents:
