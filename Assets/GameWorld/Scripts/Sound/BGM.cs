@@ -19,5 +19,10 @@ namespace Methodyca.Core
         {
 
         }
+        public void BackToMain()
+        {
+            SoundManager.instance.PlayBGM(BGMUsic);
+            //Debug.Log("EggFriedRice");
+        }
     }
 }

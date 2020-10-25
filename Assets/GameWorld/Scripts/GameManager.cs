@@ -11,6 +11,7 @@ namespace Methodyca.Core
         public static GameManager instance;
         public Sound DoorSFX;
         public Sound clickSFX;
+        //public Sound BGM;
         private void Awake()
         {
             // Check if not existing and assign as singleton
@@ -51,6 +52,7 @@ namespace Methodyca.Core
         {
             if (SceneManagerScript.instance != null)
                 roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
+            
         }
 
         private void Start()
@@ -60,6 +62,9 @@ namespace Methodyca.Core
             HideAllRooms();     // Make sure all rooms are inactive at play start
             GoToRoom(roomStart);    // Place player in first room in scene
             #endregion
+
+            //Sound of the game
+            //SoundManager.instance.PlayBGM(BGM);
 
             // Subscribe to context menu event
             CursorManager.instance.contextMenuDisabled += OnContextMenuDisabled;
@@ -190,7 +195,7 @@ namespace Methodyca.Core
         {
             inventoryPanel.SetActive(false);
             CursorManager.instance.HideContextMenu();
-            
+            Debug.Log("checkmeOut");
         }
     
         public void GoToRoom(GameObject destination)

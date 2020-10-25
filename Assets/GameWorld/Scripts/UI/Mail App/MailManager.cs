@@ -75,6 +75,7 @@ namespace Methodyca.Core
             mailDisplay.SetActive(true);
             
             UpdateNotificationCounter();
+            Debug.Log("Safe");
         }
 
         public void HideMail()
@@ -87,6 +88,7 @@ namespace Methodyca.Core
             senderIcon.sprite = null;
             senderIcon.color = Color.white;
             mailBody.text = null;
+            Debug.Log("Clear");
         }
 
         public void SendMail(GameObject mailPrefab)

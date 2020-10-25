@@ -20,6 +20,8 @@ public class SortingGameHub : MinigameHub
 
     private SwitchImageDisplay deskSpriteSwitch;
 
+    //public BGM MainMain;
+
     private void Start()
     {
         deskSpriteSwitch = GetComponent<SwitchImageDisplay>();
@@ -54,6 +56,7 @@ public class SortingGameHub : MinigameHub
 
         deskSpriteSwitch.SwitchImage();     // switch to clean desk image
         ReplaceCrystals();
+        
     }
 
     void ReplaceCrystals()
@@ -66,4 +69,5 @@ public class SortingGameHub : MinigameHub
         Instantiate(chargedCrystalQLPrefab, qualitativeCrystalDisplay.transform);
         Instantiate(chargedCrystalQNPrefab, quantitativeCrystalDisplay.transform);
     }
+
 }

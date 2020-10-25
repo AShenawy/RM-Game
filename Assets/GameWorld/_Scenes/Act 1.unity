@@ -2109,7 +2109,6 @@ GameObject:
   - component: {fileID: 299963987}
   - component: {fileID: 299963986}
   - component: {fileID: 299963988}
-  - component: {fileID: 299963989}
   m_Layer: 0
   m_Name: World Game Manager
   m_TagString: GameController
@@ -2146,7 +2145,7 @@ MonoBehaviour:
   DoorSFX:
     name: Doors
     clip: {fileID: 8300000, guid: af3cd41644d974c56b8e1c81218455a3, type: 3}
-    amp: 0.3
+    volume: 0.2
     pitch: 1
     loop: 0
     pan: 0
@@ -2154,7 +2153,7 @@ MonoBehaviour:
   clickSFX:
     name: Click
     clip: {fileID: 8300000, guid: 65372bdc13bc54374b37df4bfd91f7a8, type: 3}
-    amp: 0.3
+    volume: 0.2
     pitch: 1
     loop: 0
     pan: 0
@@ -2228,26 +2227,6 @@ MonoBehaviour:
   mailSender: {fileID: 741289029}
   senderIcon: {fileID: 714213311}
   mailBody: {fileID: 1952307779}
---- !u!114 &299963989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299963983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32150b04411874a048f2cc110a64903f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BGMUsic:
-    name: Act1
-    clip: {fileID: 8300000, guid: 27abefdade9874ca9ad44a1ab9dabd9b, type: 3}
-    amp: 0.5
-    pitch: 1
-    loop: 1
-    pan: 0
-    source: {fileID: 0}
 --- !u!4 &300350091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645712452071088696, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -4845,7 +4824,7 @@ MonoBehaviour:
   SFX:
     name: Drag
     clip: {fileID: 8300000, guid: 022657c3917a84791bad3e275a793fcc, type: 3}
-    amp: 0.3
+    volume: 0.3
     pitch: 1
     loop: 0
     pan: 0
@@ -6026,7 +6005,7 @@ MonoBehaviour:
   SFX:
     name: 
     clip: {fileID: 8300000, guid: b0e372a924f85446c9c4f3ebbd60e032, type: 3}
-    amp: 0.2
+    volume: 1
     pitch: 1
     loop: 0
     pan: 0
@@ -7117,6 +7096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1103277046}
   - component: {fileID: 1103277047}
+  - component: {fileID: 1103277048}
   m_Layer: 0
   m_Name: World Sound Manager
   m_TagString: Untagged
@@ -7147,9 +7127,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1103277045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e27bf57851dc47e19c309665d69079c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cb49e45a8adc41fe989790d861dd5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1103277048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103277045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32150b04411874a048f2cc110a64903f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMUsic:
+    name: 
+    clip: {fileID: 8300000, guid: 27abefdade9874ca9ad44a1ab9dabd9b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &1112223197
 GameObject:
   m_ObjectHideFlags: 0
