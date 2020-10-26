@@ -31,6 +31,7 @@ public class LockBox : ObjectInteraction
 
     public Sound SFX;
 
+
     private void Start()
     {
         // subscribe to event called by changing values on lock dials
@@ -67,7 +68,9 @@ public class LockBox : ObjectInteraction
                 if (i >= lockDials.Length - 1)
                 {
                     DialogueHandler.instance.DisplayDialogue(winMessage);
-                    Unlock();
+                    
+                    if (isLocked)
+                        Unlock();
                 }
 
                 continue;
@@ -82,8 +85,9 @@ public class LockBox : ObjectInteraction
         // change indicator colour if available
         if (lockIndicator)
             lockIndicator.color = Color.green;
-            Debug.Log("Setlockmatch");
-            SoundManager.instance.PlaySFX(SFX);
+        
+        Debug.Log("Setlockmatch");
+        SoundManager.instance.PlaySFXOneShot(SFX);
     }
 
     void Open()
