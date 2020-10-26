@@ -9,8 +9,6 @@ namespace Methodyca.Core
     {
         #region Singleton
         public static GameManager instance;
-        public Sound DoorSFX;
-        public Sound clickSFX;
         //public Sound BGM;
         private void Awake()
         {
@@ -22,6 +20,8 @@ namespace Methodyca.Core
 
         [Header("World Objects")]
         public GameObject player;
+        public Sound DoorSFX;
+        public Sound clickSFX;
     
         [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
         [Space, SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
