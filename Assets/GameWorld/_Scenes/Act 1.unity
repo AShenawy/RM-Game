@@ -2176,6 +2176,11 @@ PrefabInstance:
       propertyPath: SFX.clip
       value: 
       objectReference: {fileID: 8300000, guid: 275135c4bdd2523489d2fd5d901d3c20, type: 3}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: sticky note
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6115b38abff77d4abd4f583c60aa9c6, type: 3}
@@ -3221,6 +3226,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: poster
+      objectReference: {fileID: 0}
     - target: {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: SFX.clip
@@ -3769,7 +3779,7 @@ MonoBehaviour:
   canMove: 1
   movementValue: {x: 2.5, y: 0}
   SFX:
-    name: 
+    name: mat moving
     clip: {fileID: 8300000, guid: 79066ec38879da0429383089a13f0c52, type: 3}
     volume: 0.3
     pitch: 1
@@ -4343,7 +4353,7 @@ MonoBehaviour:
   animBot: {fileID: 1897563732}
   animTop: {fileID: 1188629177}
   swirlSFX:
-    name: 
+    name: swirl
     clip: {fileID: 8300000, guid: 65e306fbc1855d448ad146a223d21d63, type: 3}
     volume: 0.3
     pitch: 1
@@ -4366,17 +4376,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
-  inGameDescription: 
+  inGameDescription: What a strange device. It has two grooves on either side, which
+    seem to take something in them.. I wonder what.
   canPickUp: 0
   PickUpSuccessText: 
-  PickUpFailText: 
+  PickUpFailText: Last time I took something I didn't understand, I almost ended
+    up in the hospital.
   isItemRequired: 1
   requiredItems:
   - {fileID: 11400000, guid: c669829f41f4df045a5ce8ed5bbad54c, type: 2}
   - {fileID: 11400000, guid: f2fdd43caf14ffd4989d2a64345b3a10, type: 2}
-  wrongItemText: 
+  wrongItemText: This won't work here.
   canUsePortal: 0
-  responseForDisabled: 
+  responseForDisabled: I think it's missing something for it to work. The shape of
+    the grooves is quite specific.. Maybe I need to place something there to have
+    a response?
 --- !u!65 &826353355
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4709,6 +4723,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: glass
+      objectReference: {fileID: 0}
     - target: {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: SFX.clip
@@ -4791,7 +4810,7 @@ MonoBehaviour:
     type: 3}
   winMessage: It's unlocked!
   dialSFX:
-    name: 
+    name: safe dial
     clip: {fileID: 8300000, guid: a6a3c45ec728a37438236cc7497f591f, type: 3}
     volume: 0.12
     pitch: 1
@@ -4799,7 +4818,7 @@ MonoBehaviour:
     pan: 0
     source: {fileID: 0}
   unlockedSFX:
-    name: 
+    name: safe unlock
     clip: {fileID: 8300000, guid: 445d698f8f4cee040a401982aecb4255, type: 3}
     volume: 0.3
     pitch: 1
@@ -5665,11 +5684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGMUsic:
-    name: 
+    name: main bgm
     clip: {fileID: 8300000, guid: 89ee74e0187979e418c890a0a0df89ef, type: 3}
     volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     pan: 0
     source: {fileID: 0}
 --- !u!1 &1112223197
@@ -6581,10 +6600,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 1
-  inGameDescription: 
+  inGameDescription: The supervisor's desk is full of clutter and 2 weird-looking
+    coloured pedestals. It looks like I can put something on them.
   canPickUp: 0
   PickUpSuccessText: 
-  PickUpFailText: 
+  PickUpFailText: It's too heavy. Plus, I like my desk.
   isItemRequired: 1
   requiredItems:
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
@@ -6592,7 +6612,8 @@ MonoBehaviour:
   wrongItemText: There's no need to do that.
   gameHub: {fileID: 1313759070}
   canStartGame: 0
-  responseForDisabled: 
+  responseForDisabled: Seems like I need to place something on these 2 coloured cylinders
+    before I can check the desk.
 --- !u!65 &1313759075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8271,6 +8292,16 @@ PrefabInstance:
       propertyPath: doorOpenSFX.volume
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorLockedSFX.name
+      value: door locked
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorOpenSFX.name
+      value: door open
+      objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8949,6 +8980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.volume
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: fire extinguisher
       objectReference: {fileID: 0}
     - target: {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
@@ -10174,6 +10210,11 @@ PrefabInstance:
       propertyPath: SFX.volume
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: mailbox
+      objectReference: {fileID: 0}
     - target: {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
       propertyPath: SFX.clip
@@ -11272,6 +11313,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2721754521106543444, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: SFX.name
+      value: mail app
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456735936816263852, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: SFX.name
+      value: game quit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76a19fc7f61302d4cae0c8d7387b9454, type: 3}
 --- !u!1 &1369920434708363381 stripped
@@ -11363,7 +11414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFX:
-    name: 
+    name: start game
     clip: {fileID: 8300000, guid: bcf4c708d666553448d32b233d46ef10, type: 3}
     volume: 0.2
     pitch: 1
@@ -11383,7 +11434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFX:
-    name: 
+    name: hide phone
     clip: {fileID: 8300000, guid: bcf4c708d666553448d32b233d46ef10, type: 3}
     volume: 0.2
     pitch: 1
@@ -11557,6 +11608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.volume
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538143304110549147, guid: a6115b38abff77d4abd4f583c60aa9c6,
+        type: 3}
+      propertyPath: SFX.name
+      value: planter
       objectReference: {fileID: 0}
     - target: {fileID: 3500270206941080662, guid: a6115b38abff77d4abd4f583c60aa9c6,
         type: 3}
