@@ -35,14 +35,12 @@ namespace Methodyca.Core
                     slots[i].ClearSlot();
                 }
             }
-            //Debug.Log("Called");
         }
 
         // unsubscribe from event upon disable of this script
         void OnDisable()
         {
             InventoryManager.instance.itemChanged -= UpdateUI;
-            
         }
     }
 }

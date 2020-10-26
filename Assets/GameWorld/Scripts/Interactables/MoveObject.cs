@@ -7,7 +7,6 @@ public class MoveObject : ObjectInteraction
     [Header("Specific Move Object Parameters")]
     public bool canMove;
     public Vector2 movementValue;
-    public Sound SFX;
 
     public override void InteractWithObject()
     {
@@ -21,6 +20,5 @@ public class MoveObject : ObjectInteraction
     {
         transform.Translate(movementValue.x, movementValue.y, 0);
         ToggleInteraction(false);
-        SoundManager.instance.PlaySFX(SFX);
     }
 }
