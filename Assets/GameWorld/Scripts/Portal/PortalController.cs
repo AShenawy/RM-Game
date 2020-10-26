@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Video;
+using System.IO;
 
 
 namespace Methodyca.Core
@@ -35,6 +36,7 @@ namespace Methodyca.Core
         private void OnEnable()
         {
             videoPlayer = GetComponent<VideoPlayer>();
+            videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "portal-animate_lower-30fps_2MBPS.mp4");
             // prepares the video file for quick playback when called
             videoPlayer.Prepare();
         }
