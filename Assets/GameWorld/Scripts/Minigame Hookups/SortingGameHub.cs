@@ -20,6 +20,7 @@ public class SortingGameHub : MinigameHub
 
     private SwitchImageDisplay deskSpriteSwitch;
 
+
     public override void Start()
     {
         deskSpriteSwitch = GetComponent<SwitchImageDisplay>();

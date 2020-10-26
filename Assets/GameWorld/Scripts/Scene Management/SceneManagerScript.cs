@@ -88,6 +88,7 @@ namespace Methodyca.Core
             Resources.UnloadUnusedAssets();
             
             opr.completed -= UnloadAssets;
+            GameObject.FindObjectOfType<BGM>().BackToMain();
         }
 
         // Typically called by GameManager script when player is going to a scene within main game

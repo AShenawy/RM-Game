@@ -29,6 +29,9 @@ public class LockBox : ObjectInteraction
     [SerializeField, Tooltip("Message to display when unlocked")]
     private string winMessage;
 
+    public Sound SFX;
+
+
     private void Start()
     {
         // subscribe to event called by changing values on lock dials
@@ -64,7 +67,9 @@ public class LockBox : ObjectInteraction
                 if (i >= lockDials.Length - 1)
                 {
                     DialogueHandler.instance.DisplayDialogue(winMessage);
-                    Unlock();
+                    
+                    if (isLocked)
+                        Unlock();
                 }
 
                 continue;
@@ -79,6 +84,8 @@ public class LockBox : ObjectInteraction
         // change indicator colour if available
         if (lockIndicator)
             lockIndicator.color = Color.green;
+        
+        SoundManager.instance.PlaySFXOneShot(SFX);
     }
 
     void Open()
