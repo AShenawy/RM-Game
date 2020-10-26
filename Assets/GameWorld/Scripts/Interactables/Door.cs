@@ -11,23 +11,15 @@ public class Door : ObjectInteraction
     public bool isLocked;
     [Multiline, Tooltip("In-game text to be displayed if door is locked")]
     public string responseForLocked;
-    public Sound DoorlockedSFX;
-    public Sound DoorOpenSFX;
 
     public override void InteractWithObject()
     {
         base.InteractWithObject();
 
-        if (isLocked)
-        {
+        if(isLocked)
             DialogueHandler.instance.DisplayDialogue(responseForLocked);
-            SoundManager.instance.PlaySFX(DoorlockedSFX);
-        }
         else
-        {
             GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
-            SoundManager.instance.PlaySFXOneShot(DoorOpenSFX);
-        }
     }
 
     public override void UseWithHeldItem(Item item)
