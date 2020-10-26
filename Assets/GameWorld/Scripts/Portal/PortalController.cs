@@ -21,6 +21,7 @@ namespace Methodyca.Core
         //[SerializeField] private SpriteRenderer swirlDisplayTop;
         [SerializeField] private Animator animBot;
         [SerializeField] private Animator animTop;
+        public Sound swirlSFX;
 
         [Header("Act 2 Scenes")]
         [SerializeField] private string Act2Scene;
@@ -46,6 +47,7 @@ namespace Methodyca.Core
             PlaceCrystalInSlot(crystal);
             lastPlacedCrystal = CheckCrystalType(crystal);
             DisplaySwirlFX();
+            SoundManager.instance.PlaySFX(swirlSFX);
         }
 
         private CrystalType CheckCrystalType(Item crystal)
@@ -130,6 +132,9 @@ namespace Methodyca.Core
 
         public void PlayTransition()
         {
+            SoundManager.instance.StopSFX("swirl");
+            SoundManager.instance.StopBGM();
+
             videoPlayer.Play();
             
             videoPlayer.loopPointReached += GoToNextLevel;

@@ -33,7 +33,8 @@ namespace Methodyca.Core
             BGMPlayer.clip = soundClip.clip;
             BGMPlayer.volume = soundClip.volume;
             BGMPlayer.pitch = soundClip.pitch;
-            BGMPlayer.loop = soundClip.loop;
+            // force looping for BGM tracks
+            BGMPlayer.loop = true;
             BGMPlayer.panStereo = soundClip.pan;
             BGMPlayer.Play();
         }
