@@ -13,12 +13,12 @@ namespace Methodyca.Core
         [SerializeField] private GameObject crystalQNSlot;
 
         [Header("Swirl Effect")]
-        [SerializeField] private Sprite spriteQLOpaque;
-        [SerializeField] private Sprite spriteQLTransparent;
-        [SerializeField] private Sprite spriteQNOpaque;
-        [SerializeField] private Sprite spriteQNTransparent;
-        [SerializeField] private SpriteRenderer swirlDisplayBot;
-        [SerializeField] private SpriteRenderer swirlDisplayTop;
+        //[SerializeField] private Sprite spriteQLOpaque;
+        //[SerializeField] private Sprite spriteQLTransparent;
+        //[SerializeField] private Sprite spriteQNOpaque;
+        //[SerializeField] private Sprite spriteQNTransparent;
+        //[SerializeField] private SpriteRenderer swirlDisplayBot;
+        //[SerializeField] private SpriteRenderer swirlDisplayTop;
         [SerializeField] private Animator animBot;
         [SerializeField] private Animator animTop;
 
@@ -36,7 +36,7 @@ namespace Methodyca.Core
         private void OnEnable()
         {
             videoPlayer = GetComponent<VideoPlayer>();
-            videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "portal-animate_lower-30fps_2MBPS.mp4");
+            videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "portal-animate_lower-30fps_2MBPS_aud.mp4");
             // prepares the video file for quick playback when called
             videoPlayer.Prepare();
         }
@@ -113,7 +113,7 @@ namespace Methodyca.Core
                     else
                     {
                         //swirlDisplayTop.sprite = spriteQNTransparent;
-                        animBot.SetTrigger("OnBlueCrystal");
+                        animTop.SetTrigger("OnBlueCrystal");
                     }
 
                     break;
