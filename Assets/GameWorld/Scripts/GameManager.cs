@@ -9,6 +9,7 @@ namespace Methodyca.Core
     {
         #region Singleton
         public static GameManager instance;
+        
         private void Awake()
         {
             // Check if not existing and assign as singleton
@@ -49,6 +50,7 @@ namespace Methodyca.Core
         {
             if (SceneManagerScript.instance != null)
                 roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
+            
         }
 
         private void Start()
@@ -81,7 +83,7 @@ namespace Methodyca.Core
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                     DoMainAction();
                 
-                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to 
+                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to RMB 
                     DoSecondaryAction();
             }
             else
@@ -96,6 +98,7 @@ namespace Methodyca.Core
             {
                 if (Input.GetKeyDown(cntrn[cntrnIndex]))
                     cntrnIndex++;
+               
                 else
                     cntrnIndex = 0;
             }
@@ -128,8 +131,6 @@ namespace Methodyca.Core
                     
                     if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
                         CursorManager.instance.SetCursor(CursorTypes.Interact, null);
-
-                    // print("Found something!");
                 }
                 else
                 {
@@ -138,8 +139,6 @@ namespace Methodyca.Core
 
                     if(!isPlayerHoldingItem)    // change to default cursor if no item is held
                         CursorManager.instance.SetDefaultCursor();
-
-                    // print("Nothing here!");
                 }
             }
         }
@@ -187,6 +186,7 @@ namespace Methodyca.Core
         {
             inventoryPanel.SetActive(false);
             CursorManager.instance.HideContextMenu();
+            Debug.Log("checkmeOut");
         }
     
         public void GoToRoom(GameObject destination)
@@ -262,7 +262,8 @@ namespace Methodyca.Core
             CursorManager.instance.SetDefaultCursor();
         }
 
-        private void OnContextMenuDisabled(bool isDisabled)
+        private void
+            OnContextMenuDisabled(bool isDisabled)
         {
             // check if context menu is NOT disabled, then disable player turning
             if(!isDisabled)

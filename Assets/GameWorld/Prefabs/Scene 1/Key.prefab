@@ -58,14 +58,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a401bf3ab24f70b328ba81b0d13add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   inGameDescription: A key. Looks like it might be for the office door.
   canPickUp: 1
   PickUpSuccessText: Picked up supervisor's office door key.
-  PickUpFailText: I can't pick it up the key.
-  canInteract: 1
+  PickUpFailText: I can't pick up the key.
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
+  wrongItemText: 
   item: {fileID: 11400000, guid: 046c01be4e1171f4d927b8417116280d, type: 2}
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: d262a9a8ae3214cc7a44fe5a84203eb2, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &6941695044937797644
 GameObject:
   m_ObjectHideFlags: 0
