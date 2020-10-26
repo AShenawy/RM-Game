@@ -18,6 +18,8 @@ namespace Methodyca.Core
         [SerializeField] private Sprite spriteQNTransparent;
         [SerializeField] private SpriteRenderer swirlDisplayBot;
         [SerializeField] private SpriteRenderer swirlDisplayTop;
+        [SerializeField] private Animator animBot;
+        [SerializeField] private Animator animTop;
 
         [Header("Act 2 Scenes")]
         [SerializeField] private string Act2Scene;
@@ -87,21 +89,31 @@ namespace Methodyca.Core
                 case CrystalType.Qualitative:
                     if (isBothSlotsEmpty)
                     {
-                        swirlDisplayBot.sprite = spriteQLOpaque;
+                        //swirlDisplayBot.sprite = spriteQLOpaque;
+                        animBot.SetTrigger("OnPurpleCrystal");
                         isBothSlotsEmpty = false;
                     }
                     else
-                        swirlDisplayTop.sprite = spriteQLTransparent;
+                    {
+                        //swirlDisplayTop.sprite = spriteQLTransparent;
+                        animTop.SetTrigger("OnPurpleCrystal");
+                    }
+
                     break;
 
                 case CrystalType.Quantitaive:
                     if (isBothSlotsEmpty)
                     {
-                        swirlDisplayBot.sprite = spriteQNOpaque;
+                        //swirlDisplayBot.sprite = spriteQNOpaque;
+                        animBot.SetTrigger("OnBlueCrystal");
                         isBothSlotsEmpty = false;
                     }
                     else
-                        swirlDisplayTop.sprite = spriteQNTransparent;
+                    {
+                        //swirlDisplayTop.sprite = spriteQNTransparent;
+                        animBot.SetTrigger("OnBlueCrystal");
+                    }
+
                     break;
 
                 case CrystalType.None:
