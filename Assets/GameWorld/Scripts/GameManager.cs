@@ -20,8 +20,6 @@ namespace Methodyca.Core
 
         [Header("World Objects")]
         public GameObject player;
-        //public Sound DoorSFX;
-        //public Sound clickSFX;
     
         [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
         [Space, SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
@@ -63,9 +61,6 @@ namespace Methodyca.Core
             GoToRoom(roomStart);    // Place player in first room in scene
             #endregion
 
-            //Sound of the game
-            //SoundManager.instance.PlayBGM(BGM);
-
             // Subscribe to context menu event
             CursorManager.instance.contextMenuDisabled += OnContextMenuDisabled;
 
@@ -88,7 +83,7 @@ namespace Methodyca.Core
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                     DoMainAction();
                 
-                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to 
+                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to RMB 
                     DoSecondaryAction();
             }
             else
@@ -136,8 +131,6 @@ namespace Methodyca.Core
                     
                     if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
                         CursorManager.instance.SetCursor(CursorTypes.Interact, null);
-
-                    // print("Found something!");
                 }
                 else
                 {
@@ -146,8 +139,6 @@ namespace Methodyca.Core
 
                     if(!isPlayerHoldingItem)    // change to default cursor if no item is held
                         CursorManager.instance.SetDefaultCursor();
-
-                    // print("Nothing here!");
                 }
             }
         }
@@ -232,7 +223,6 @@ namespace Methodyca.Core
             roomTarget = null;
 
             ResetCursor();
-            //SoundManager.instance.PlaySFX(DoorSFX);
 
             // ---- for debugging ----
             print("Entered " + roomCurrent.name);
@@ -292,8 +282,6 @@ namespace Methodyca.Core
         {
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
-            //SoundManager.instance.PlaySFX(clickSFX);
-            
         }
 
         public void SetStartingRoom(GameObject room)

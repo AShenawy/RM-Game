@@ -47,7 +47,6 @@ public class LockBox : ObjectInteraction
             DisplayLockScreen();
         else
             Open();
-        
     }
 
     void DisplayLockScreen()
@@ -86,7 +85,6 @@ public class LockBox : ObjectInteraction
         if (lockIndicator)
             lockIndicator.color = Color.green;
         
-        //Debug.Log("Setlockmatch");
         SoundManager.instance.PlaySFXOneShot(SFX);
     }
 

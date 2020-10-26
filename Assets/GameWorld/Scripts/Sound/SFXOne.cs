@@ -11,8 +11,6 @@ namespace Methodyca.Core
         public void Itsjustkewa()
         {
             SoundManager.instance.PlaySFXOneShot(SFX);
-            //Debug.Log("Alalee");
         }
     }
-    
 }

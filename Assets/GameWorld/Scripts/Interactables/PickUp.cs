@@ -13,7 +13,6 @@ public class PickUp : ObjectInteraction
     {
         base.InteractWithObject();
         PickUpObject();
-        
     }
 
     public override void PickUpObject()

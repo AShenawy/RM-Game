@@ -28,7 +28,6 @@ namespace Methodyca.Core
 
         private Scene sceneCurrent;
         private GameObject loadingScreen;
-        //public BGM MainSound;
 
         public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
         {
@@ -65,7 +64,6 @@ namespace Methodyca.Core
             AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
             unloadOpr.completed += UnloadAssets;
-            Debug.Log("Checkout");
         }
 
         void UnloadAssets(AsyncOperation opr)
@@ -83,7 +81,6 @@ namespace Methodyca.Core
         {
             GameObject sceneStartRoom = GameObject.FindGameObjectWithTag(startRoomTag);
             return sceneStartRoom;
-            
         }
     }
 }

@@ -113,7 +113,7 @@ namespace Methodyca.Core
                     Debug.LogError("No case satisfied in DisplaySwirlFX() method. Check names of crystal items used.");
                     break;
             }
-            Debug.Log("SwirlingPortal");
+            
             SoundManager.instance.PlaySFX(Swril);
         }
 
