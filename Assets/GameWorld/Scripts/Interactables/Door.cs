@@ -26,7 +26,7 @@ public class Door : ObjectInteraction
         else
         {
             GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
-            SoundManager.instance.PlaySFX(DoorOpenSFX);
+            SoundManager.instance.PlaySFXOneShot(DoorOpenSFX);
         }
     }
 

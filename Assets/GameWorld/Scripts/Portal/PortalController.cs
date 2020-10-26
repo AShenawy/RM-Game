@@ -18,6 +18,7 @@ namespace Methodyca.Core
         [SerializeField] private Sprite spriteQNTransparent;
         [SerializeField] private SpriteRenderer swirlDisplayBot;
         [SerializeField] private SpriteRenderer swirlDisplayTop;
+        public Sound Swril;
 
         [Header("Act 2 Scenes")]
         [SerializeField] private string Act2Scene;
@@ -113,10 +114,12 @@ namespace Methodyca.Core
                     break;
             }
             Debug.Log("SwirlingPortal");
+            SoundManager.instance.PlaySFX(Swril);
         }
 
         public void PlayTransition()
         {
+            SoundManager.instance.StopSFX("portal");
             videoPlayer.Play();
             
             videoPlayer.loopPointReached += GoToNextLevel;

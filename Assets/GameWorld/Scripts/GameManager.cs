@@ -9,7 +9,7 @@ namespace Methodyca.Core
     {
         #region Singleton
         public static GameManager instance;
-        //public Sound BGM;
+        
         private void Awake()
         {
             // Check if not existing and assign as singleton
@@ -20,8 +20,8 @@ namespace Methodyca.Core
 
         [Header("World Objects")]
         public GameObject player;
-        public Sound DoorSFX;
-        public Sound clickSFX;
+        //public Sound DoorSFX;
+        //public Sound clickSFX;
     
         [SerializeField] private GameObject[] rooms;    // array of rooms in the scenes
         [Space, SerializeField] private GameObject roomStart;  // ref to the starting room in the scene
@@ -292,7 +292,7 @@ namespace Methodyca.Core
         {
             triggerTurnLeft.SetActive(value);
             triggerTurnRight.SetActive(value);
-            SoundManager.instance.PlaySFX(clickSFX);
+            //SoundManager.instance.PlaySFX(clickSFX);
             
         }
 

@@ -86,7 +86,7 @@ public class LockBox : ObjectInteraction
         if (lockIndicator)
             lockIndicator.color = Color.green;
         
-        Debug.Log("Setlockmatch");
+        //Debug.Log("Setlockmatch");
         SoundManager.instance.PlaySFXOneShot(SFX);
     }
 
