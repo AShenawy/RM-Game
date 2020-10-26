@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6482538992629101373}
   - component: {fileID: 5544749042293094642}
   - component: {fileID: 6609474359976843670}
+  - component: {fileID: -2286108462336635978}
   m_Layer: 0
   m_Name: Crystal Purple Uncharged
   m_TagString: Untagged
@@ -64,9 +65,29 @@ MonoBehaviour:
   PickUpSuccessText: Picked up dark purple crystal.
   PickUpFailText: 
   isItemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItems: []
   wrongItemText: 
   item: {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
+--- !u!114 &-2286108462336635978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698392248901542707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f09aba88b14b078d37333b0e13e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: bcf4c708d666553448d32b233d46ef10, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &3021631533331711673
 GameObject:
   m_ObjectHideFlags: 0

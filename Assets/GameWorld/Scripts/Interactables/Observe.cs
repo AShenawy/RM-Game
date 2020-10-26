@@ -7,9 +7,11 @@ public class Observe : ObjectInteraction
     [Header("Specific Observe Paramters")]
     [TextArea, Tooltip("Dialogue to display when interacting with object")]
     public string[] inspectDialogue;
+    public Sound SFX;
 
     public override void InteractWithObject()
     {
         DialogueHandler.instance.DisplayDialogue(inspectDialogue);
+        SoundManager.instance.PlaySFX(SFX);
     }
 }

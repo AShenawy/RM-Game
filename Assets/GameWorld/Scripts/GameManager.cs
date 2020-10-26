@@ -81,7 +81,7 @@ namespace Methodyca.Core
                 if (Input.GetButtonUp("Fire1"))     // ref to LMB
                     DoMainAction();
                 
-                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to 
+                if (!isPlayerHoldingItem && Input.GetButtonDown("Fire2"))      // ref to RMB
                     DoSecondaryAction();
             }
             else
@@ -128,8 +128,6 @@ namespace Methodyca.Core
                     
                     if(!isPlayerHoldingItem && canInteract)    // change to interaction cursor if no item is held
                         CursorManager.instance.SetCursor(CursorTypes.Interact, null);
-
-                    // print("Found something!");
                 }
                 else
                 {
@@ -138,8 +136,6 @@ namespace Methodyca.Core
 
                     if(!isPlayerHoldingItem)    // change to default cursor if no item is held
                         CursorManager.instance.SetDefaultCursor();
-
-                    // print("Nothing here!");
                 }
             }
         }

@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7042165988469670948}
   - component: {fileID: 7042165988469670949}
   - component: {fileID: 1484870298333094944}
+  - component: {fileID: 934017759293590496}
   m_Layer: 5
   m_Name: Inventory Slot
   m_TagString: Inv Slot
@@ -175,6 +176,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 934017759293590496}
+        m_MethodName: Itsjustkewa
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1484870298333094944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +201,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 7042165987667775003}
   item: {fileID: 0}
+--- !u!114 &934017759293590496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042165988469670951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f09aba88b14b078d37333b0e13e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX:
+    name: 
+    clip: {fileID: 8300000, guid: bcf4c708d666553448d32b233d46ef10, type: 3}
+    volume: 0.2
+    pitch: 1.23
+    loop: 0
+    pan: 0
+    source: {fileID: 0}

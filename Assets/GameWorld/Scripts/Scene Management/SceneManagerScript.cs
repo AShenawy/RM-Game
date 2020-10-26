@@ -74,10 +74,15 @@ namespace Methodyca.Core
             SceneManager.sceneLoaded -= SetLoadedSceneActive;
         }
 
+
+        // used to unload additive scenes
         public void UnloadScene()
         {
             AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
+            // Play the main game's BGM
+            SoundManager.instance.GetComponent<BGM>().BackToMain();
+            
             //unloadOpr.completed += UnloadAssets;
         }
 

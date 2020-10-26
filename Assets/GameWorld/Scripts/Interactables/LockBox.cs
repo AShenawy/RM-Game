@@ -28,6 +28,9 @@ public class LockBox : ObjectInteraction
     
     [SerializeField, Tooltip("Message to display when unlocked")]
     private string winMessage;
+    public Sound dialSFX;
+    public Sound unlockedSFX;
+
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class LockBox : ObjectInteraction
         foreach (ScrollDial dial in lockDials)
         {
             dial.onDigitChanged += CheckCombination;
+            dial.onDigitChanged += PlayDialSFX;
         }
     }
 
@@ -51,6 +55,11 @@ public class LockBox : ObjectInteraction
         lockScreen.SetActive(true);
     }
 
+    void PlayDialSFX()
+    {
+        SoundManager.instance.PlaySFX(dialSFX);
+    }
+
     void CheckCombination()
     {
         for (int i = 0; i < lockDials.Length; i++)
@@ -64,7 +73,8 @@ public class LockBox : ObjectInteraction
                 if (i >= lockDials.Length - 1)
                 {
                     DialogueHandler.instance.DisplayDialogue(winMessage);
-                    Unlock();
+                    if (isLocked)
+                        Unlock();
                 }
 
                 continue;
@@ -79,6 +89,8 @@ public class LockBox : ObjectInteraction
         // change indicator colour if available
         if (lockIndicator)
             lockIndicator.color = Color.green;
+
+        SoundManager.instance.PlaySFXOneShot(unlockedSFX);
     }
 
     void Open()
