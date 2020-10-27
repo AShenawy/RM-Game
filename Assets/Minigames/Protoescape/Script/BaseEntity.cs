@@ -5,10 +5,13 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class BaseEntity : MonoBehaviour, IPointerClickHandler, IDragHandler, IDropHandler
     {
+        [SerializeField] protected string entityId;
+
         protected RectTransform _rect;
         protected RectTransform _rectParent;
 
-        protected int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public string EntityID { get => entityId; }
+        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
 
         protected virtual void Awake()
         {

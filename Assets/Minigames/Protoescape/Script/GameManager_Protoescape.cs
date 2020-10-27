@@ -5,13 +5,15 @@ using Random = UnityEngine.Random;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public enum ConfusionType { None, Location, Color, Sprite, Highlight, Font }
+    public enum CategoryType { None, Location, Color, Sprite, Highlight, Font, Consistency }
 
     public class GameManager_Protoescape : Singleton<GameManager_Protoescape>
     {
         [SerializeField] private ScreenBox[] screenBoxes;
 
         public static event Action<bool> OnStackMove = delegate { };
+        public static event Action OnPrototypeInitiated= delegate { };
+        public static event Action OnPrototypeTestInitiated= delegate { };
         public static event Action<GameObject> OnSelected = delegate { };
 
         public static GameObject SelectedEntity { get => _selectedEntity; set { _selectedEntity = value; OnSelected?.Invoke(value); } }
@@ -33,6 +35,27 @@ namespace Methodyca.Minigames.Protoescape
                     yield return item;
                 }
             }
+        }
+
+        public IEnumerable<ICheckable> GetAllCheckables()
+        {
+            foreach (var box in screenBoxes)
+            {
+                foreach (var checkables in box.GetAllCheckables())
+                {
+                    yield return checkables;
+                }
+            }
+        }
+
+        internal void HandlePrototypeTesting()
+        {
+            OnPrototypeTestInitiated?.Invoke();
+        }
+
+        public void HandlePrototypeInitiation()
+        {
+            OnPrototypeInitiated?.Invoke();
         }
 
         private void Start()

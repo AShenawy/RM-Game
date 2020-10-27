@@ -5,23 +5,23 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class UIPopupTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler
     {
-        [SerializeField] private GameObject highlightedPanel;
+        [SerializeField] private GameObject popup;
 
         private void Start()
         {
-            highlightedPanel.SetActive(false);
+            popup.SetActive(false);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            highlightedPanel.SetActive(false);
+            popup.SetActive(false);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (eventData.pointerDrag == gameObject)
+            if (eventData.pointerEnter == gameObject)
             {
-                highlightedPanel.SetActive(true);
+                popup.SetActive(true);
             }
         }
 
@@ -32,14 +32,14 @@ namespace Methodyca.Minigames.Protoescape
                 return;
             }
 
-            highlightedPanel.SetActive(true);
+            popup.SetActive(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (eventData.pointerEnter != highlightedPanel || eventData.pointerEnter != gameObject)
+            if (eventData.pointerEnter != popup || eventData.pointerEnter != gameObject)
             {
-                highlightedPanel.SetActive(false);
+                popup.SetActive(false);
             }
         }
     }

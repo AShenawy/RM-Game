@@ -2,6 +2,27 @@
 
 namespace Methodyca.Minigames.Protoescape
 {
+    public class UIFeedback : MonoBehaviour
+    {
+        private void OnEnable()
+        {
+            PrototypeTester.OnPrototypeTested += PrototypeTestedHandler;
+        }
+
+        private void PrototypeTestedHandler(int current, int total)
+        {
+
+        }
+
+        private void OnDisable()
+        {
+            
+        }
+    }
+    public class UIDiary : MonoBehaviour
+    {
+
+    }
     public class UIEntitySelector : MonoBehaviour
     {
         private RectTransform _rect;

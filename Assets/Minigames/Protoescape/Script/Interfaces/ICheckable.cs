@@ -6,6 +6,9 @@ namespace Methodyca.Minigames.Protoescape
     public interface ICheckable
     {
         GameObject gameObject { get; }
-        Dictionary<ConfusionType, GameObject> GetConfusions();
+        string EntityID { get; }
+        bool IsChecked { get; set; }
+        int GetSiblingIndex { get; }
+        Dictionary<CategoryType, GameObject> GetConfusions();
     }
 }

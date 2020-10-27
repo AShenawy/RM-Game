@@ -7,6 +7,7 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class EntityStack : MonoBehaviour, IDragHandler, IDropHandler, ICheckable
     {
+        [SerializeField] private string entityId;
         [SerializeField] private Image stackHighlight;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private int[] confusingLocations;
@@ -15,7 +16,9 @@ namespace Methodyca.Minigames.Protoescape
         private RectTransform _rectParent;
         private Image[] _childrenImages;
 
-        private int _currentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public string EntityID { get => entityId; }
+        public bool IsChecked { get; set; } = false;
+        public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
 
         private void Awake()
         {
@@ -69,15 +72,15 @@ namespace Methodyca.Minigames.Protoescape
             }
         }
 
-        public Dictionary<ConfusionType, GameObject> GetConfusions()
+        public Dictionary<CategoryType, GameObject> GetConfusions()
         {
-            var dict = new Dictionary<ConfusionType, GameObject>();
+            var dict = new Dictionary<CategoryType, GameObject>();
 
             foreach (var index in confusingLocations)
             {
-                if (_currentSiblingIndex == index)
+                if (GetSiblingIndex == index)
                 {
-                    dict.Add(ConfusionType.Location, gameObject);
+                    dict.Add(CategoryType.Location, gameObject);
                     break;
                 }
             }

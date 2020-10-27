@@ -11,11 +11,11 @@ namespace Methodyca.Minigames.Protoescape
             PrototypeTester.OnSelectionPointed += SelectionPointedHandler;
         }
 
-        private void SelectionPointedHandler(ConfusionType confusion, GameObject selection)
+        private void SelectionPointedHandler(CategoryType confusion, GameObject selection)
         {
             alienHand.anchoredPosition = selection.GetComponent<RectTransform>().anchoredPosition;
 
-            if (confusion == ConfusionType.None)
+            if (confusion == CategoryType.None)
             {
                 //Likable
             }

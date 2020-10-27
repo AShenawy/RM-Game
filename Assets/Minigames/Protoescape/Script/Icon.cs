@@ -15,7 +15,11 @@ namespace Methodyca.Minigames.Protoescape
 
         private Image _image;
 
+        public Color GetColor { get => _image.color; }
+        public Sprite GetSprite { get => _image.sprite; }
         public bool IsHighlighted { get; set; } = false;
+        public bool IsChecked { get; set; } = false;
+        public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
 
         protected override void Awake()
         {
@@ -39,15 +43,15 @@ namespace Methodyca.Minigames.Protoescape
             highlight.SetActive(IsHighlighted);
         }
 
-        public Dictionary<ConfusionType, GameObject> GetConfusions()
+        public Dictionary<CategoryType, GameObject> GetConfusions()
         {
-            var dict = new Dictionary<ConfusionType, GameObject>();
+            var dict = new Dictionary<CategoryType, GameObject>();
 
             foreach (var index in confusingLocations)
             {
                 if (CurrentSiblingIndex == index)
                 {
-                    dict.Add(ConfusionType.Location, gameObject);
+                    dict.Add(CategoryType.Location, gameObject);
                     break;
                 }
             }
@@ -56,7 +60,7 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (_image.sprite == sprite)
                 {
-                    dict.Add(ConfusionType.Sprite, gameObject);
+                    dict.Add(CategoryType.Sprite, gameObject);
                     break;
                 }
             }
@@ -65,14 +69,14 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (_image.color == color)
                 {
-                    dict.Add(ConfusionType.Color, gameObject);
+                    dict.Add(CategoryType.Color, gameObject);
                     break;
                 }
             }
 
             if (isHighlightable != IsHighlighted)
             {
-                dict.Add(ConfusionType.Highlight, gameObject);
+                dict.Add(CategoryType.Highlight, gameObject);
             }
 
             return dict;

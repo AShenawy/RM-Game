@@ -10,15 +10,19 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private int[] confusingLocations;
         [SerializeField] private TMP_FontAsset[] confusingFonts;
 
-        public Dictionary<ConfusionType, GameObject> GetConfusions()
+        public TMP_FontAsset GetFont { get => textField.font; }
+        public bool IsChecked { get; set; } = false;
+        public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
+
+        public Dictionary<CategoryType, GameObject> GetConfusions()
         {
-            var dict = new Dictionary<ConfusionType, GameObject>();
+            var dict = new Dictionary<CategoryType, GameObject>();
 
             foreach (var index in confusingLocations)
             {
                 if (CurrentSiblingIndex == index)
                 {
-                    dict.Add(ConfusionType.Location, gameObject);
+                    dict.Add(CategoryType.Location, gameObject);
                     break;
                 }
             }
@@ -27,7 +31,7 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (textField.font == font)
                 {
-                    dict.Add(ConfusionType.Font, gameObject);
+                    dict.Add(CategoryType.Font, gameObject);
                     break;
                 }
             }
