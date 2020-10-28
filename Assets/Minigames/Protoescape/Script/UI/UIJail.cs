@@ -6,11 +6,18 @@ namespace Methodyca.Minigames.Protoescape
     public class UIJail : MonoBehaviour
     {
         [SerializeField] private RectTransform alien;
+        [SerializeField] private TMPro.TextMeshProUGUI testText;
         [SerializeField] private Button prototypeButton;
 
         private void OnEnable()
         {
             prototypeButton.onClick.AddListener(ClickPrototypeHandler);
+            PrototypeTester.OnPrototypeTested += PrototypeTestedHandler;
+        }
+
+        private void PrototypeTestedHandler(int current, int total)
+        {
+            testText.text = $"{current}/{total}";
         }
 
         private void ClickPrototypeHandler()
@@ -21,6 +28,7 @@ namespace Methodyca.Minigames.Protoescape
         private void OnDisable()
         {
             prototypeButton.onClick.RemoveAllListeners();
+            PrototypeTester.OnPrototypeTested -= PrototypeTestedHandler;
         }
     }
 }

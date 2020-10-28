@@ -4,37 +4,34 @@ using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    [RequireComponent(typeof(Image))]
     public class Icon : BaseEntity, IReplaceable<Sprite>, IReplaceable<Color>, IHighlighted, ICheckable
     {
+        [SerializeField] private Image icon;
         [SerializeField] private GameObject highlight;
-        [SerializeField] private bool isHighlightable = true;
+        [SerializeField] private bool shouldBeHighlighted;
         [SerializeField] private Sprite[] confusingSprites;
         [SerializeField] private Color[] confusingColors;
         [SerializeField] private int[] confusingLocations;
 
-        private Image _image;
-
-        public Color GetColor { get => _image.color; }
-        public Sprite GetSprite { get => _image.sprite; }
-        public bool IsHighlighted { get; set; } = false;
+        public Color GetColor { get => icon.color; }
+        public Sprite GetSprite { get => icon.sprite; }
+        public bool IsHighlighted { get; set; }
         public bool IsChecked { get; set; } = false;
         public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
 
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
-            _image = GetComponent<Image>();
+            IsHighlighted = highlight.activeInHierarchy;
         }
 
         public void Replace(Color value)
         {
-            _image.color = value;
+            icon.color = value;
         }
 
         public void Replace(Sprite value)
         {
-            _image.sprite = value;
+            icon.sprite = value;
         }
 
         public void SetHighlight()
@@ -58,7 +55,7 @@ namespace Methodyca.Minigames.Protoescape
 
             foreach (var sprite in confusingSprites)
             {
-                if (_image.sprite == sprite)
+                if (icon.sprite == sprite)
                 {
                     dict.Add(CategoryType.Sprite, gameObject);
                     break;
@@ -67,14 +64,14 @@ namespace Methodyca.Minigames.Protoescape
 
             foreach (var color in confusingColors)
             {
-                if (_image.color == color)
+                if (icon.color == color)
                 {
                     dict.Add(CategoryType.Color, gameObject);
                     break;
                 }
             }
 
-            if (isHighlightable != IsHighlighted)
+            if (shouldBeHighlighted != IsHighlighted)
             {
                 dict.Add(CategoryType.Highlight, gameObject);
             }

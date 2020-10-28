@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.Protoescape
@@ -38,6 +39,9 @@ namespace Methodyca.Minigames.Protoescape
 
                 _rect.SetSiblingIndex(dragged.transform.GetSiblingIndex());
                 dragged.transform.SetSiblingIndex(tempIndex);
+
+                dragged.transform.localScale = Vector3.zero;
+                dragged.transform.DOScale(1, 0.15f);
             }
             else if (dragged.transform.parent.IsSiblingOf(_rect))
             {
@@ -45,6 +49,9 @@ namespace Methodyca.Minigames.Protoescape
 
                 _rect.SetSiblingIndex(dragged.transform.parent.GetSiblingIndex());
                 dragged.transform.parent.SetSiblingIndex(tempIndex);
+
+                dragged.transform.localScale = Vector3.zero;
+                dragged.transform.DOScale(1, 0.15f);
             }
             else if (dragged.transform.IsSiblingOf(_rectParent))
             {
@@ -52,6 +59,9 @@ namespace Methodyca.Minigames.Protoescape
 
                 _rectParent.SetSiblingIndex(dragged.transform.GetSiblingIndex());
                 dragged.transform.SetSiblingIndex(tempIndex);
+
+                dragged.transform.localScale = Vector3.zero;
+                dragged.transform.DOScale(1, 0.15f);
             }
         }
 
