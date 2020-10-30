@@ -9,170 +9,128 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class PrototypeTester : MonoBehaviour
     {
-        public static event Action<int, int> OnPrototypeTested = delegate { };
-        public static event Action<CategoryType, GameObject> OnSelectionPointed = delegate { };
+        public static event Action<int, int> OnPrototypeTestCompleted = delegate { };
+        public static event Action OnPrototypeTestInitiated = delegate { };
+        public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
-        private List<ICheckable> _selections;
+        private List<ICheckable> _allCheckables;
+        private List<ICheckable> _checkablesToTest;
 
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(1);
-            _selections = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
+            _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
         }
 
-        public void Test()
+        /// <summary>
+        /// Called in the editor. Click Alien event.
+        /// </summary>
+        public void InitiatePrototypeTesting()
         {
-            var result = GetConfusedCategoryCount();
+            _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(6));
 
-            OnPrototypeTested?.Invoke(result.current, result.total);
+            OnPrototypeTestInitiated?.Invoke();
+            PointSelectedCheckable();
         }
 
+        /// <summary>
+        /// Called in the editor. Click "like" or "confuse" buttons.
+        /// </summary>
         public void PointSelectedCheckable()
         {
-            var checkable = _selections[Random.Range(0, _selections.Count)];
-            var confusions = checkable.GetConfusions();
-
-            if (confusions.Count > 0)
+            if (_checkablesToTest.Count <= 0)
             {
-                var index = Random.Range(0, confusions.Count);
-                var key = confusions.Keys.ElementAt(index);
-                var value = confusions.Values.ElementAt(index);
-
-                OnSelectionPointed?.Invoke(key, value);
-            }
-            else
-            {
-                OnSelectionPointed?.Invoke(CategoryType.None, checkable.gameObject);
+                OnSelectionPointed?.Invoke(null);
+                return;
             }
 
-            _selections.Remove(checkable);
+            var checkable = _checkablesToTest[Random.Range(0, _checkablesToTest.Count)];
+
+            OnSelectionPointed?.Invoke(checkable);
+
+            _checkablesToTest.Remove(checkable);
         }
 
-        private Dictionary<CategoryType, bool> GetConfusionChecklist()
+        /// <summary>
+        /// Called in the editor. Click event of "Skip"
+        /// </summary>
+        public void CompletePrototypeTesting()
         {
-            var confusionChecklist = new Dictionary<CategoryType, bool>()
+            var result = GetLikedCategoryRate();
+            OnPrototypeTestCompleted?.Invoke(result.current, result.total);
+        }
+
+        private (int current, int total) GetLikedCategoryRate()
+        {
+            int likeCount = GetCategoryChecklistByStatus().Count(i => i.Value);
+
+            if (IsAllConsistent())
             {
-                { CategoryType.Color, false },
-                { CategoryType.Sprite, false },
-                { CategoryType.Location, false },
-                { CategoryType.Font, false },
-                { CategoryType.Highlight, false },
+                likeCount++;
+            }
+
+            return (likeCount, 6);
+        }
+
+        private Dictionary<CategoryType, bool> GetCategoryChecklistByStatus()
+        {
+            var checklist = new Dictionary<CategoryType, bool>()
+            {
+                { CategoryType.Color, true },
+                { CategoryType.Icon, true },
+                { CategoryType.Position, true },
+                { CategoryType.Font, true },
+                { CategoryType.Highlight, true }
             };
 
-            foreach (var item in _selections)
+            foreach (var item in _allCheckables)
             {
-                var results = item.GetConfusions();
+                var results = item.GetLikables();
 
                 foreach (var i in results)
                 {
-                    if (confusionChecklist.ContainsKey(i.Key))
+                    if (!item.Categories.Contains(i.Key))
                     {
-                        confusionChecklist[i.Key] = true;
+                        checklist[i.Key] = false;
                     }
                 }
             }
 
-            return confusionChecklist;
+            return checklist;
         }
 
-        private (int current, int total) GetConfusedCategoryCount()
+        private bool IsAllConsistent()
         {
-            int confusionCount = 0;
-            var checklist = GetConfusionChecklist();
-
-            foreach (var pair in checklist)
-            {
-                if (pair.Value)
-                {
-                    confusionCount++;
-                }
-            }
-
-            if (!IsConsistent())
-            {
-                confusionCount++;
-            }
-
-            return (confusionCount, checklist.Count + 1);
-        }
-
-        private bool IsConsistent()
-        {
-            var all = _selections;
+            var all = new List<ICheckable>(_allCheckables);
+            var checklist = new List<bool>();
 
             foreach (var item in all)
             {
                 item.IsChecked = false;
             }
 
-            for (int i = 0; i < all.Count; i++)
+            for (int i = 0; i < all.Count - 1; i++)
             {
                 if (all[i].IsChecked)
                 {
                     continue;
                 }
 
-                var icon = new List<Sprite>();
-                var color = new List<Color>();
-                var location = new List<int>();
-                var font = new List<TMPro.TMP_FontAsset>();
-
-                foreach (var item in all)
+                for (int j = i + 1; j < all.Count; j++)
                 {
-                    if (all[i] == item)
+                    if (all[i].EntityID == all[j].EntityID)
                     {
-                        continue;
-                    }
-
-                    if (all[i].EntityID == item.EntityID)
-                    {
-                        //color
-                        if (all[i].gameObject.GetComponent<IReplaceable<Color>>() != null)
-                        {
-                            if (color.Count == 0)
-                            {
-                                color.Add(all[i].gameObject.GetComponent<Icon>().GetColor);
-                            }
-                            color.Add(item.gameObject.GetComponent<Icon>().GetColor);
-                        }
-                        //icon
-                        if (all[i].gameObject.GetComponent<IReplaceable<Sprite>>() != null)
-                        {
-                            if (icon.Count == 0)
-                            {
-                                icon.Add(all[i].gameObject.GetComponent<Icon>().GetSprite);
-                            }
-                            icon.Add(item.gameObject.GetComponent<Icon>().GetSprite);
-                        }
-                        //font
-                        if (all[i].gameObject.GetComponent<IReplaceable<TMPro.TMP_FontAsset>>() != null)
-                        {
-                            if (font.Count == 0)
-                            {
-                                font.Add(all[i].gameObject.GetComponent<TextArea>().GetFont);
-                            }
-                            font.Add(item.gameObject.GetComponent<TextArea>().GetFont);
-                        }
-                        //location
-                        if (location.Count == 0)
-                        {
-                            location.Add(all[i].GetSiblingIndex);
-                        }
-                        location.Add(item.GetSiblingIndex);
-
-                        item.IsChecked = true;
+                        checklist.Add(all[i].GetLikables().Values.All(v => all[j].GetLikables().ContainsValue(v)));
                     }
                 }
                 all[i].IsChecked = true;
-
-                if (color.GroupBy(x => x).Skip(1).Any() ||
-                    icon.GroupBy(x => x).Skip(1).Any() ||
-                    font.GroupBy(x => x).Skip(1).Any() ||
-                    location.GroupBy(x => x).Skip(1).Any())
-                {
-                    return false;
-                }
             }
+
+            if (checklist.GroupBy(x => x).Skip(1).Any())
+            {
+                return false;
+            }
+
             return true;
         }
     }

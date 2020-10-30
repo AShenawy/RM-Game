@@ -7,7 +7,7 @@ namespace Methodyca.Minigames.Protoescape
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            GameManager_Protoescape.Instance.HandlePrototypeTesting();
+            //Start testing
         }
 
         public void OnPointerEnter(PointerEventData eventData)

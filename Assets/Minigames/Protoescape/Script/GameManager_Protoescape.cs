@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public enum CategoryType { None, Location, Color, Sprite, Highlight, Font, Consistency }
+    public enum CategoryType { None, Position, Color, Icon, Highlight, Font, Consistency }
 
     public class GameManager_Protoescape : Singleton<GameManager_Protoescape>
     {
         [SerializeField] private ScreenBox[] screenBoxes;
 
         public static event Action<bool> OnStackMove = delegate { };
-        public static event Action OnPrototypeInitiated= delegate { };
-        public static event Action OnPrototypeTestInitiated= delegate { };
+        public static event Action OnPrototypeInitiated = delegate { };
         public static event Action<GameObject> OnSelected = delegate { };
 
         public static GameObject SelectedEntity { get => _selectedEntity; set { _selectedEntity = value; OnSelected?.Invoke(value); } }
@@ -22,15 +21,39 @@ namespace Methodyca.Minigames.Protoescape
         public static bool IsStacksMovable { get => _isStacksMovable; set { _isStacksMovable = value; OnStackMove?.Invoke(value); } }
         static bool _isStacksMovable;
 
-        private List<ScreenBox> _allScreenBoxes;
-
-        public IEnumerable<ICheckable> GetAllSelectedCheckablesToTest()
+        public List<ICheckable> GetRandomCheckablesBy(int total)
         {
-            while (_allScreenBoxes.Count > 0)
-            {
-                var selections = GetRandomScreenBox().GetRandomCheckablesBy();
+            var likables = new List<ICheckable>(GetAllLikables());
+            var confusings = new List<ICheckable>(GetAllConfusings());
 
-                foreach (var item in selections)
+            int half = Mathf.RoundToInt(total * 0.5f);
+
+            var l = likables.Take(half).ToList();
+            var c = confusings.Take(total - l.Count);
+
+            return l.Concat(c).ToList();
+        }
+
+        public IEnumerable<ICheckable> GetAllLikables()
+        {
+            var all = GetAllCheckables().ToList();
+
+            foreach (var item in all)
+            {
+                if (!(item.GetLikables().Count > 0))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        public IEnumerable<ICheckable> GetAllConfusings()
+        {
+            var all = GetAllCheckables().ToList();
+
+            foreach (var item in all)
+            {
+                if (item.GetLikables().Count > 0)
                 {
                     yield return item;
                 }
@@ -41,16 +64,14 @@ namespace Methodyca.Minigames.Protoescape
         {
             foreach (var box in screenBoxes)
             {
-                foreach (var checkables in box.GetAllCheckables())
+                foreach (var checkable in box.GetAllCheckables())
                 {
-                    yield return checkables;
+                    if (!string.IsNullOrEmpty(checkable.EntityID))
+                    {
+                        yield return checkable;
+                    }
                 }
             }
-        }
-
-        internal void HandlePrototypeTesting()
-        {
-            OnPrototypeTestInitiated?.Invoke();
         }
 
         public void HandlePrototypeInitiation()
@@ -61,20 +82,6 @@ namespace Methodyca.Minigames.Protoescape
         private void Start()
         {
             IsStacksMovable = false;
-            _allScreenBoxes = new List<ScreenBox>(screenBoxes);
-        }
-
-        private ScreenBox GetRandomScreenBox()
-        {
-            if (_allScreenBoxes.Count <= 0)
-            {
-                return null;
-            }
-
-            var rndBox = screenBoxes[Random.Range(0, _allScreenBoxes.Count)];
-            _allScreenBoxes.Remove(rndBox);
-
-            return rndBox;
         }
     }
 }

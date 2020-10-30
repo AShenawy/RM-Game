@@ -5,10 +5,13 @@ namespace Methodyca.Minigames.Protoescape
 {
     public interface ICheckable
     {
-        GameObject gameObject { get; }
         string EntityID { get; }
+        string ScreenName { get; }
+        int CurrentSiblingIndex { get; }
         bool IsChecked { get; set; }
-        int GetSiblingIndex { get; }
-        Dictionary<CategoryType, GameObject> GetConfusions();
+        GameObject gameObject { get; }
+        HashSet<CategoryType> Categories { get; }
+        string GetNotebookLogData();
+        Dictionary<CategoryType, dynamic> GetLikables();
     }
 }

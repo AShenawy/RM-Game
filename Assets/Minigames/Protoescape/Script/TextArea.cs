@@ -1,42 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Linq;
 
 namespace Methodyca.Minigames.Protoescape
 {
     public class TextArea : BaseEntity, IReplaceable<TMP_FontAsset>, ICheckable
     {
+        [SerializeField] protected string entityId;
         [SerializeField] private TextMeshProUGUI textField;
-        [SerializeField] private int[] confusingLocations;
-        [SerializeField] private TMP_FontAsset[] confusingFonts;
+        [SerializeField] private int[] likableLocations;
+        [SerializeField] private TMP_FontAsset[] likableFonts;
 
-        public TMP_FontAsset GetFont { get => textField.font; }
+        public string EntityID { get => entityId; }
+        public TMP_FontAsset CurrentFont { get => textField.font; }
         public bool IsChecked { get; set; } = false;
-        public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public string ScreenName { get => _screen.ScreenName; }
 
-        public Dictionary<CategoryType, GameObject> GetConfusions()
+        public HashSet<CategoryType> Categories
         {
-            var dict = new Dictionary<CategoryType, GameObject>();
+            get => new HashSet<CategoryType>()
+                         {
+                            { CategoryType.Position },
+                            { CategoryType.Font }
+                         };
+        }
 
-            foreach (var index in confusingLocations)
+        public Dictionary<CategoryType, dynamic> GetLikables()
+        {
+            var dict = new Dictionary<CategoryType, dynamic>();
+
+            if (likableLocations.Contains(CurrentSiblingIndex))
             {
-                if (CurrentSiblingIndex == index)
-                {
-                    dict.Add(CategoryType.Location, gameObject);
-                    break;
-                }
+                dict.Add(CategoryType.Position, CurrentSiblingIndex);
             }
 
-            foreach (var font in confusingFonts)
+            if (likableFonts.Contains(CurrentFont))
             {
-                if (textField.font == font)
-                {
-                    dict.Add(CategoryType.Font, gameObject);
-                    break;
-                }
+                dict.Add(CategoryType.Font, CurrentFont);
             }
 
             return dict;
+        }
+
+        public string GetNotebookLogData()
+        {
+            var likables = GetLikables();
+            string result = "";
+
+            foreach (var category in Categories)
+            {
+                if (likables.ContainsKey(category))
+                {
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>liked</i>\n";
+                }
+                else
+                {
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>confused</i>\n";
+                }
+            }
+
+            return result;
         }
 
         public void Replace(TMP_FontAsset value)

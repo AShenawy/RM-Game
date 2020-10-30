@@ -6,18 +6,15 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class BaseEntity : MonoBehaviour, IPointerClickHandler, IDragHandler, IDropHandler
     {
-        [SerializeField] protected string entityId;
-
         protected RectTransform _rect;
         protected RectTransform _rectParent;
-
-        public string EntityID { get => entityId; }
-        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        protected ScreenBox _screen;
 
         protected virtual void Awake()
         {
             _rect = GetComponent<RectTransform>();
             _rectParent = _rect.parent as RectTransform;
+            _screen = GetComponentInParent<ScreenBox>();
         }
 
         public void OnDrag(PointerEventData eventData) { }

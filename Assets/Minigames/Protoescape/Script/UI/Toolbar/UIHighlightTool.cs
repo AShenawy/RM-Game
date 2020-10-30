@@ -8,7 +8,7 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private Sprite on;
         [SerializeField] private Sprite off;
 
-        private IHighlighted _selection;
+        private IHighlightable _selection;
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -17,11 +17,11 @@ namespace Methodyca.Minigames.Protoescape
 
         protected override void SelectionTriggered(GameObject selection)
         {
-            if (selection.GetComponent<IHighlighted>() != null)
+            if (selection.GetComponent<IHighlightable>() != null)
             {
                 Enable();
 
-                _selection = selection.GetComponent<IHighlighted>();
+                _selection = selection.GetComponent<IHighlightable>();
 
                 if (_selection.IsHighlighted)
                 {

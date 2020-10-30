@@ -4,33 +4,50 @@ using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public class Icon : BaseEntity, IReplaceable<Sprite>, IReplaceable<Color>, IHighlighted, ICheckable
+    public class Icon : BaseEntity, IReplaceable<Sprite>, IReplaceable<Color>, IHighlightable, ICheckable
     {
+        [SerializeField] protected string entityId;
         [SerializeField] private Image icon;
         [SerializeField] private GameObject highlight;
         [SerializeField] private bool shouldBeHighlighted;
-        [SerializeField] private Sprite[] confusingSprites;
-        [SerializeField] private Color[] confusingColors;
-        [SerializeField] private int[] confusingLocations;
+        [SerializeField] private List<Sprite> likableSprites = new List<Sprite>();
+        [SerializeField] private List<Color> likableColors = new List<Color>();
+        [SerializeField] private List<int> likableLocations = new List<int>();
 
-        public Color GetColor { get => icon.color; }
-        public Sprite GetSprite { get => icon.sprite; }
+        public bool IsChecked { get; set; }
         public bool IsHighlighted { get; set; }
-        public bool IsChecked { get; set; } = false;
-        public int GetSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public Color CurrentColor { get; private set; }
+        public Sprite CurrentSprite { get; private set; }
+        public string EntityID { get => entityId; }
+        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public string ScreenName { get => _screen.ScreenName; }
+
+        public HashSet<CategoryType> Categories
+        {
+            get => new HashSet<CategoryType>()
+                         {
+                            { CategoryType.Position },
+                            { CategoryType.Icon },
+                            { CategoryType.Color },
+                            { CategoryType.Highlight },
+                         };
+        }
 
         private void Start()
         {
             IsHighlighted = highlight.activeInHierarchy;
+            _screen = GetComponentInParent<ScreenBox>();
         }
 
         public void Replace(Color value)
         {
+            CurrentColor = value;
             icon.color = value;
         }
 
         public void Replace(Sprite value)
         {
+            CurrentSprite = value;
             icon.sprite = value;
         }
 
@@ -40,43 +57,49 @@ namespace Methodyca.Minigames.Protoescape
             highlight.SetActive(IsHighlighted);
         }
 
-        public Dictionary<CategoryType, GameObject> GetConfusions()
+        public Dictionary<CategoryType, dynamic> GetLikables()
         {
-            var dict = new Dictionary<CategoryType, GameObject>();
+            var dict = new Dictionary<CategoryType, dynamic>();
 
-            foreach (var index in confusingLocations)
+            if (likableLocations.Contains(CurrentSiblingIndex))
             {
-                if (CurrentSiblingIndex == index)
-                {
-                    dict.Add(CategoryType.Location, gameObject);
-                    break;
-                }
+                dict.Add(CategoryType.Position, CurrentSiblingIndex);
             }
-
-            foreach (var sprite in confusingSprites)
+            if (likableSprites.Contains(CurrentSprite))
             {
-                if (icon.sprite == sprite)
-                {
-                    dict.Add(CategoryType.Sprite, gameObject);
-                    break;
-                }
+                dict.Add(CategoryType.Icon, CurrentSprite);
             }
-
-            foreach (var color in confusingColors)
+            if (likableColors.Contains(CurrentColor))
             {
-                if (icon.color == color)
-                {
-                    dict.Add(CategoryType.Color, gameObject);
-                    break;
-                }
+                dict.Add(CategoryType.Color, CurrentColor);
             }
-
-            if (shouldBeHighlighted != IsHighlighted)
+            if (shouldBeHighlighted == IsHighlighted)
             {
-                dict.Add(CategoryType.Highlight, gameObject);
+                dict.Add(CategoryType.Highlight, IsHighlighted);
             }
 
             return dict;
         }
+
+        public string GetNotebookLogData()
+        {
+            var likables = GetLikables();
+            string result = "";
+
+            foreach (var category in Categories)
+            {
+                if (likables.ContainsKey(category))
+                {
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <u>liked</u>\n";
+                }
+                else
+                {
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <u>confused</u>\n";
+                }
+            }
+
+            return result;
+        }
+
     }
 }

@@ -4,28 +4,39 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class UIAlienHand : MonoBehaviour
     {
-        [SerializeField] private RectTransform alienHand;
+        [SerializeField] private GameObject alienHand;
+        [SerializeField] private AudioClip likeSound;
+        [SerializeField] private AudioClip confuseSound;
 
-        private void OnEnable()
+        private void Start()
         {
             PrototypeTester.OnSelectionPointed += SelectionPointedHandler;
         }
 
-        private void SelectionPointedHandler(CategoryType confusion, GameObject selection)
+        private void SelectionPointedHandler(ICheckable checkable)
         {
-            alienHand.anchoredPosition = selection.GetComponent<RectTransform>().anchoredPosition;
-
-            if (confusion == CategoryType.None)
+            if (checkable == null) // There is no item to point anymore
             {
-                //Likable
+                alienHand.SetActive(false);
+                return;
+            }
+
+            alienHand.transform.position = checkable.gameObject.GetComponent<RectTransform>().position;
+            var likables = checkable.GetLikables();
+
+            if (likables.Count > 0)
+            {
+                //likable sound
+
             }
             else
             {
-                //Confusing
+                //confusing sound
+
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             PrototypeTester.OnSelectionPointed -= SelectionPointedHandler;
         }

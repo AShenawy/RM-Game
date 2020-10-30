@@ -1,6 +1,6 @@
 ﻿namespace Methodyca.Minigames.Protoescape
 {
-    public interface IHighlighted
+    public interface IHighlightable
     {
         bool IsHighlighted { get; set; }
         void SetHighlight();
