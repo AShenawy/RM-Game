@@ -23,13 +23,13 @@ namespace Methodyca.Minigames.Protoescape
 
         public List<ICheckable> GetRandomCheckablesBy(int total)
         {
-            var likables = new List<ICheckable>(GetAllLikables());
-            var confusings = new List<ICheckable>(GetAllConfusings());
+            var likables = GetAllLikables();
+            var confusings = GetAllConfusings();
 
             int half = Mathf.RoundToInt(total * 0.5f);
 
-            var l = likables.Take(half).ToList();
-            var c = confusings.Take(total - l.Count);
+            var l = likables.Shuffle().Take(half).ToList();
+            var c = confusings.Shuffle().Take(total - l.Count);
 
             return l.Concat(c).ToList();
         }
@@ -40,7 +40,7 @@ namespace Methodyca.Minigames.Protoescape
 
             foreach (var item in all)
             {
-                if (!(item.GetLikables().Count > 0))
+                if (item.GetLikables().Count > 0)
                 {
                     yield return item;
                 }
@@ -53,7 +53,7 @@ namespace Methodyca.Minigames.Protoescape
 
             foreach (var item in all)
             {
-                if (item.GetLikables().Count > 0)
+                if (!(item.GetLikables().Count > 0))
                 {
                     yield return item;
                 }

@@ -9,8 +9,16 @@ namespace Methodyca.Minigames.Protoescape
         private void Start()
         {
             _rect = GetComponent<RectTransform>();
+
             GameManager_Protoescape.OnSelected += SelectedHandler;
+            GameManager_Protoescape.OnStackMove += StackMoveHandler;
+
             gameObject.SetActive(false);
+        }
+
+        private void StackMoveHandler(bool isMovable)
+        {
+            gameObject.SetActive(!isMovable);
         }
 
         private void SelectedHandler(GameObject selection)
@@ -34,6 +42,7 @@ namespace Methodyca.Minigames.Protoescape
         private void OnDestroy()
         {
             GameManager_Protoescape.OnSelected -= SelectedHandler;
+            GameManager_Protoescape.OnStackMove -= StackMoveHandler;
         }
     }
 }

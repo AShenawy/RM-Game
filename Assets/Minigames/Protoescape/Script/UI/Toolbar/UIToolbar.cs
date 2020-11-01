@@ -15,6 +15,12 @@ namespace Methodyca.Minigames.Protoescape
             PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
         }
 
+        private void Start()
+        {
+            root.SetActive(false);
+            testToolbar.SetActive(false);
+        }
+
         private void PrototypeTestCompletedHandler(int current, int total)
         {
             editToolbar.SetActive(true);

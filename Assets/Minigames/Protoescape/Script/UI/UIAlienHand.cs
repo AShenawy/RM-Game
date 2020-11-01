@@ -8,7 +8,7 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private AudioClip likeSound;
         [SerializeField] private AudioClip confuseSound;
 
-        private void Start()
+        private void Awake()
         {
             PrototypeTester.OnSelectionPointed += SelectionPointedHandler;
         }
@@ -27,12 +27,10 @@ namespace Methodyca.Minigames.Protoescape
             if (likables.Count > 0)
             {
                 //likable sound
-
             }
             else
             {
                 //confusing sound
-
             }
         }
 

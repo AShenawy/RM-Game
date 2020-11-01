@@ -14,7 +14,7 @@ namespace Methodyca.Minigames.Protoescape
 
         public string EntityID { get => entityId; }
         public TMP_FontAsset CurrentFont { get => textField.font; }
-        public bool IsChecked { get; set; } = false;
+        public bool IsChecked { get; set; }
         public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
         public string ScreenName { get => _screen.ScreenName; }
 

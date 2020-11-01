@@ -9,6 +9,8 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class PrototypeTester : MonoBehaviour
     {
+        [SerializeField] private int selectionCountToPointAt;
+
         public static event Action<int, int> OnPrototypeTestCompleted = delegate { };
         public static event Action OnPrototypeTestInitiated = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
@@ -27,8 +29,7 @@ namespace Methodyca.Minigames.Protoescape
         /// </summary>
         public void InitiatePrototypeTesting()
         {
-            _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(6));
-
+            _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt)));
             OnPrototypeTestInitiated?.Invoke();
             PointSelectedCheckable();
         }
@@ -45,9 +46,7 @@ namespace Methodyca.Minigames.Protoescape
             }
 
             var checkable = _checkablesToTest[Random.Range(0, _checkablesToTest.Count)];
-
             OnSelectionPointed?.Invoke(checkable);
-
             _checkablesToTest.Remove(checkable);
         }
 

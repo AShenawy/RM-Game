@@ -14,6 +14,11 @@ namespace Methodyca.Minigames.Protoescape
             PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
         }
 
+        private void Start()
+        {
+            root.SetActive(false);
+        }
+
         private void PrototypeTestCompletedHandler(int current, int total)
         {
             root.SetActive(false);

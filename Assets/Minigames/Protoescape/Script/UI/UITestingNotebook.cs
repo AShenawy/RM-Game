@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private Button likableButton;
         [SerializeField] private Button confusingButton;
 
-        private void Start()
+        private void Awake()
         {
             PrototypeTester.OnSelectionPointed += SelectionPointedHandler;
             PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
@@ -17,7 +17,6 @@ namespace Methodyca.Minigames.Protoescape
 
         private void PrototypeTestInitiatedHandler()
         {
-            Debug.Log("test started");
             logText.text = "";
             likableButton.interactable = true;
             confusingButton.interactable = true;
@@ -32,7 +31,7 @@ namespace Methodyca.Minigames.Protoescape
             }
             else
             {
-                logText.text += $"{checkable.GetNotebookLogData()}\"<align=\"center\">~~~~~~~~~~~~</align>\n";
+                logText.text += $"{checkable.GetNotebookLogData()}~~~~~~~~~~~~~~~~~~~~\n";
             }
         }
 

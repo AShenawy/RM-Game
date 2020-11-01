@@ -13,6 +13,19 @@ namespace Methodyca.Minigames.Protoescape
         protected virtual void OnEnable()
         {
             GameManager_Protoescape.OnSelected += SelectedHandler;
+            GameManager_Protoescape.OnStackMove += StackMoveHandler;
+        }
+
+        private void StackMoveHandler(bool isMovable)
+        {
+            if (isMovable)
+            {
+                Disable();
+            }
+            else
+            {
+                Enable();
+            }
         }
 
         protected virtual void Start()
@@ -42,6 +55,7 @@ namespace Methodyca.Minigames.Protoescape
         protected virtual void OnDisable()
         {
             GameManager_Protoescape.OnSelected -= SelectedHandler;
+            GameManager_Protoescape.OnStackMove -= StackMoveHandler;
         }
     }
 }

@@ -104,11 +104,11 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (likables.ContainsKey(category))
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>confused</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>liked</i>\n";
                 }
                 else
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>liked</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>confused</i>\n";
                 }
             }
 

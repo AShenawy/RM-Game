@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public static class TransformExtentions
 {
     public static bool IsSiblingOf(this Transform transform, Transform sibling)
