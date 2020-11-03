@@ -81,7 +81,7 @@ namespace Methodyca.Core
             AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
             // Play the main game's BGM
-            SoundManager.instance.GetComponent<BGM>().BackToMain();
+            SoundManager.instance.GetComponent<BGM>().PlayBGM();
             
             //unloadOpr.completed += UnloadAssets;
         }

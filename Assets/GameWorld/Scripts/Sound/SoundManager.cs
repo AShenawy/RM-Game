@@ -21,6 +21,9 @@ namespace Methodyca.Core
                 instance = this;
 
             BGMPlayer = gameObject.AddComponent<AudioSource>();
+
+            // keep the sound manager throughout the entire game
+            DontDestroyOnLoad(this);
         }
 
         void Start()

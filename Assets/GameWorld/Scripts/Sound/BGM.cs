@@ -11,10 +11,10 @@ namespace Methodyca.Core
 
         void Start()
         {
-            BackToMain();
+            PlayBGM();
         }
 
-        public void BackToMain()
+        public void PlayBGM()
         {
             SoundManager.instance.PlayBGM(BGMUsic);
         }
