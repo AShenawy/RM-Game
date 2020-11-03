@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
 {
     public class UIPrototype : MonoBehaviour
     {
         [SerializeField] private GameObject root;
+        [SerializeField] private GameObject selector;
         [SerializeField] private GameObject alienHand;
+        [SerializeField] private GraphicRaycaster graphicRaycaster;
 
         private void OnEnable()
         {
@@ -19,22 +22,28 @@ namespace Methodyca.Minigames.Protoescape
             root.SetActive(false);
         }
 
-        private void PrototypeTestCompletedHandler(int current, int total)
+        private void PrototypeTestCompletedHandler(string feedback)
         {
             root.SetActive(false);
             alienHand.SetActive(false);
+            graphicRaycaster.enabled = true;
         }
 
         private void PrototypeTestInitiatedHandler()
         {
             root.SetActive(true);
             alienHand.SetActive(true);
+            graphicRaycaster.enabled = false;
         }
 
         private void PrototypeInitiatedHandler()
         {
             root.SetActive(true);
+            selector.SetActive(false);
             alienHand.SetActive(false);
+
+            graphicRaycaster.enabled = true;
+            GameManager_Protoescape.SelectedEntity = null;
         }
 
         private void OnDisable()

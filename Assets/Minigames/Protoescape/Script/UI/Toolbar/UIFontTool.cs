@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.Protoescape
     {
         protected override void SelectionTriggered(GameObject selection)
         {
-            if (selection.GetComponent<IReplaceable<TMPro.TMP_FontAsset>>() != null)
+            if (selection != null && selection.GetComponent<IReplaceable<TMPro.TMP_FontAsset>>() != null)
             {
                 Enable();
             }

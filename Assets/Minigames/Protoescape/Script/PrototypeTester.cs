@@ -10,13 +10,17 @@ namespace Methodyca.Minigames.Protoescape
     public class PrototypeTester : MonoBehaviour
     {
         [SerializeField] private int selectionCountToPointAt;
+        [SerializeField] private UIEntitySelector selector;
+        [SerializeField, TextArea(1, 3)] private string negativeFeedback;
+        [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
-        public static event Action<int, int> OnPrototypeTestCompleted = delegate { };
+        public static event Action<string> OnPrototypeTestCompleted = delegate { };
         public static event Action OnPrototypeTestInitiated = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
-        private List<ICheckable> _allCheckables;
-        private List<ICheckable> _checkablesToTest;
+        private List<ICheckable> _allCheckables = new List<ICheckable>();
+        private List<ICheckable> _checkablesToTest = new List<ICheckable>();
+        private readonly int _categorySize = Enum.GetNames(typeof(CategoryType)).Length;
 
         private IEnumerator Start()
         {
@@ -29,6 +33,10 @@ namespace Methodyca.Minigames.Protoescape
         /// </summary>
         public void InitiatePrototypeTesting()
         {
+            if (_allCheckables.Count <= 0)
+            {
+                return;
+            }
             _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt)));
             OnPrototypeTestInitiated?.Invoke();
             PointSelectedCheckable();
@@ -41,22 +49,70 @@ namespace Methodyca.Minigames.Protoescape
         {
             if (_checkablesToTest.Count <= 0)
             {
+                selector.Select(null);
                 OnSelectionPointed?.Invoke(null);
                 return;
             }
 
             var checkable = _checkablesToTest[Random.Range(0, _checkablesToTest.Count)];
             OnSelectionPointed?.Invoke(checkable);
+            selector.Select(checkable.gameObject);
             _checkablesToTest.Remove(checkable);
         }
 
         /// <summary>
-        /// Called in the editor. Click event of "Skip"
+        /// Called in the editor. Click event of "Skip/Complete"
         /// </summary>
         public void CompletePrototypeTesting()
         {
             var result = GetLikedCategoryRate();
-            OnPrototypeTestCompleted?.Invoke(result.current, result.total);
+
+            var ratio = result.current / (float)result.total;
+
+            if (ratio < 0.1f) //confused
+            {
+                OnPrototypeTestCompleted?.Invoke(negativeFeedback);
+            }
+            else if (ratio >= 0.1f && ratio <= 0.8f)
+            {
+                string liked = string.Empty;
+                string confused = string.Empty;
+
+                foreach (var item in GetCategoryChecklistByStatus())
+                {
+                    if (item.Value)
+                    {
+                        if (string.IsNullOrEmpty(liked))
+                        {
+                            liked = $"{item.Key}";
+                        }
+                        else
+                        {
+                            liked += $", {item.Key}";
+                        }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(confused))
+                        {
+                            confused = $"{item.Key}";
+                        }
+                        else
+                        {
+                            confused += $", {item.Key}";
+                        }
+                    }
+                }
+
+                string feedback = $"Looks like they enjoyed {liked}. Unfortunately, you’ll still need to work on {confused}. " +
+                                   "Make sure you get them right this time! I got grandkids waiting at home.";
+
+                OnPrototypeTestCompleted?.Invoke(feedback);
+            }
+            else //liked
+            {
+                OnPrototypeTestCompleted?.Invoke(positiveFeedback);
+            }
         }
 
         private (int current, int total) GetLikedCategoryRate()
@@ -68,7 +124,7 @@ namespace Methodyca.Minigames.Protoescape
                 likeCount++;
             }
 
-            return (likeCount, 6);
+            return (likeCount, _categorySize);
         }
 
         private Dictionary<CategoryType, bool> GetCategoryChecklistByStatus()
@@ -100,7 +156,7 @@ namespace Methodyca.Minigames.Protoescape
 
         private bool IsAllConsistent()
         {
-            var all = new List<ICheckable>(_allCheckables);
+            var all = _allCheckables;
             var checklist = new List<bool>();
 
             foreach (var item in all)

@@ -5,6 +5,8 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class UITestingNotebook : MonoBehaviour
     {
+        [SerializeField] private GameObject notebook;
+        [SerializeField] private TMPro.TextMeshProUGUI feedbackText;
         [SerializeField] private TMPro.TextMeshProUGUI logText;
         [SerializeField] private Button likableButton;
         [SerializeField] private Button confusingButton;
@@ -13,6 +15,13 @@ namespace Methodyca.Minigames.Protoescape
         {
             PrototypeTester.OnSelectionPointed += SelectionPointedHandler;
             PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
+        }
+
+        private void PrototypeTestCompletedHandler(string feedback)
+        {
+            notebook.SetActive(true);
+            feedbackText.text = feedback;
         }
 
         private void PrototypeTestInitiatedHandler()
@@ -39,6 +48,7 @@ namespace Methodyca.Minigames.Protoescape
         {
             PrototypeTester.OnSelectionPointed -= SelectionPointedHandler;
             PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
         }
     }
 }

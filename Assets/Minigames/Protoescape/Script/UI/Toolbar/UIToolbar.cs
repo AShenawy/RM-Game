@@ -12,20 +12,12 @@ namespace Methodyca.Minigames.Protoescape
         {
             GameManager_Protoescape.OnPrototypeInitiated += PrototypeInitiatedHandler;
             PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
-            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
         }
 
         private void Start()
         {
             root.SetActive(false);
             testToolbar.SetActive(false);
-        }
-
-        private void PrototypeTestCompletedHandler(int current, int total)
-        {
-            editToolbar.SetActive(true);
-            testToolbar.SetActive(false);
-            root.SetActive(false);
         }
 
         private void PrototypeTestInitiatedHandler()
@@ -46,7 +38,6 @@ namespace Methodyca.Minigames.Protoescape
         {
             GameManager_Protoescape.OnPrototypeInitiated -= PrototypeInitiatedHandler;
             PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
-            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
         }
     }
 }

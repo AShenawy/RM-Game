@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
@@ -6,31 +7,26 @@ namespace Methodyca.Minigames.Protoescape
     public class UIJail : MonoBehaviour
     {
         [SerializeField] private RectTransform alien;
-        [SerializeField] private GameObject notebook;
-        [SerializeField] private TMPro.TextMeshProUGUI testText;
-        [SerializeField] private Button prototypeButton;
+        //[SerializeField] private Button prototypeButton;
 
-        private void OnEnable()
+        //private void OnEnable()
+        //{
+        //    prototypeButton.onClick.AddListener(ClickPrototypeHandler);
+        //}
+
+        private void Start()
         {
-            prototypeButton.onClick.AddListener(ClickPrototypeHandler);
-            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestedHandler;
+            alien.DOShakePosition(10, 400, 1, fadeOut: false).OnComplete(() => GameManager_Protoescape.Instance.HandleGameStart());
         }
 
-        private void PrototypeTestedHandler(int current, int total)
-        {
-            notebook.SetActive(true);
-            testText.text = $"{current}/{total}";
-        }
+        //private void ClickPrototypeHandler()
+        //{
+        //    GameManager_Protoescape.Instance.HandlePrototypeInitiation();
+        //}
 
-        private void ClickPrototypeHandler()
-        {
-            GameManager_Protoescape.Instance.HandlePrototypeInitiation();
-        }
-
-        private void OnDisable()
-        {
-            prototypeButton.onClick.RemoveAllListeners();
-            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestedHandler;
-        }
+        //private void OnDisable()
+        //{
+        //    prototypeButton.onClick.RemoveAllListeners();
+        //}
     }
 }

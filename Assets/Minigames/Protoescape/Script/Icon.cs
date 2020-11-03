@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
@@ -37,6 +38,11 @@ namespace Methodyca.Minigames.Protoescape
         {
             IsHighlighted = highlight.activeInHierarchy;
             _screen = GetComponentInParent<ScreenBox>();
+        }
+
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            GameManager_Protoescape.SelectedEntity = gameObject;
         }
 
         public void Replace(Color value)

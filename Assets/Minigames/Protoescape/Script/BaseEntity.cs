@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public class BaseEntity : MonoBehaviour, IPointerClickHandler, IDragHandler, IDropHandler
+    public class BaseEntity : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IDropHandler
     {
         protected RectTransform _rect;
         protected RectTransform _rectParent;
@@ -53,7 +53,6 @@ namespace Methodyca.Minigames.Protoescape
             else if (dragged.transform.IsSiblingOf(_rectParent))
             {
                 tempIndex = _rectParent.GetSiblingIndex();
-
                 _rectParent.SetSiblingIndex(dragged.transform.GetSiblingIndex());
                 dragged.transform.SetSiblingIndex(tempIndex);
 
@@ -62,9 +61,11 @@ namespace Methodyca.Minigames.Protoescape
             }
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData) { }
+
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            GameManager_Protoescape.SelectedEntity = gameObject;
+            GameManager_Protoescape.SelectedEntity = null;
         }
     }
 }

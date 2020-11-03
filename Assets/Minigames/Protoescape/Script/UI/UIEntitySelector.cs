@@ -6,22 +6,7 @@ namespace Methodyca.Minigames.Protoescape
     {
         private RectTransform _rect;
 
-        private void Start()
-        {
-            _rect = GetComponent<RectTransform>();
-
-            GameManager_Protoescape.OnSelected += SelectedHandler;
-            GameManager_Protoescape.OnStackMove += StackMoveHandler;
-
-            gameObject.SetActive(false);
-        }
-
-        private void StackMoveHandler(bool isMovable)
-        {
-            gameObject.SetActive(!isMovable);
-        }
-
-        private void SelectedHandler(GameObject selection)
+        public void Select(GameObject selection)
         {
             if (selection == null)
             {
@@ -32,11 +17,25 @@ namespace Methodyca.Minigames.Protoescape
             var selectedRect = selection.GetComponent<RectTransform>();
 
             gameObject.SetActive(true);
-
-            _rect.SetParent(selectedRect);
-            _rect.anchoredPosition = selectedRect.anchoredPosition;
             _rect.sizeDelta = selectedRect.sizeDelta;
-            _rect.localPosition = Vector2.zero;
+            _rect.position = selectedRect.position;
+        }
+
+        private void Awake()
+        {
+            _rect = GetComponent<RectTransform>();
+            GameManager_Protoescape.OnSelected += SelectedHandler;
+            GameManager_Protoescape.OnStackMove += StackMoveHandler;
+        }
+
+        private void StackMoveHandler(bool isMovable)
+        {
+            gameObject.SetActive(!isMovable);
+        }
+
+        private void SelectedHandler(GameObject selection)
+        {
+            Select(selection);
         }
 
         private void OnDestroy()

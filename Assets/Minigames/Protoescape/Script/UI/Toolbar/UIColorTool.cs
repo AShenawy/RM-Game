@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.Protoescape
     {
         protected override void SelectionTriggered(GameObject selection)
         {
-            if (selection.GetComponent<IReplaceable<Color>>() != null)
+            if (selection != null && selection.GetComponent<IReplaceable<Color>>() != null)
             {
                 Enable();
             }

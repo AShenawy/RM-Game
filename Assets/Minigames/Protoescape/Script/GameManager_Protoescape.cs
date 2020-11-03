@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace Methodyca.Minigames.Protoescape
 {
-    public enum CategoryType { None, Position, Color, Icon, Highlight, Font, Consistency }
+    public enum CategoryType { Position, Color, Icon, Highlight, Font, Consistency }
 
     public class GameManager_Protoescape : Singleton<GameManager_Protoescape>
     {
         [SerializeField] private ScreenBox[] screenBoxes;
 
+        public static event Action OnGameStarted = delegate { };
         public static event Action<bool> OnStackMove = delegate { };
         public static event Action OnPrototypeInitiated = delegate { };
         public static event Action<GameObject> OnSelected = delegate { };
@@ -20,6 +21,11 @@ namespace Methodyca.Minigames.Protoescape
 
         public static bool IsStacksMovable { get => _isStacksMovable; set { _isStacksMovable = value; OnStackMove?.Invoke(value); } }
         static bool _isStacksMovable;
+
+        public void HandleGameStart()
+        {
+            OnGameStarted?.Invoke();
+        }
 
         public List<ICheckable> GetRandomCheckablesBy(int total)
         {

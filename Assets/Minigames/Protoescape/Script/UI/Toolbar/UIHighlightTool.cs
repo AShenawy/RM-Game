@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.Protoescape
 
         protected override void SelectionTriggered(GameObject selection)
         {
-            if (selection.GetComponent<IHighlightable>() != null)
+            if (selection != null && selection.GetComponent<IHighlightable>() != null)
             {
                 Enable();
 

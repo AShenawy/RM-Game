@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.Protoescape
 {
@@ -25,6 +26,11 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Position },
                             { CategoryType.Font }
                          };
+        }
+
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            GameManager_Protoescape.SelectedEntity = gameObject;
         }
 
         public Dictionary<CategoryType, dynamic> GetLikables()
