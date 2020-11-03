@@ -4,9 +4,7 @@ using System.Collections;
 
 namespace Methodyca.Core
 {
-    /* This class handles moving the player between different scenes/levels in the game
-     * and also protects some game objects from being destroyed when switching scenes
-     */
+    // This class handles moving the player between different scenes/levels in the game
     public sealed class SceneManagerScript : MonoBehaviour
     {
         // make this class a singleton
