@@ -100,7 +100,7 @@ namespace Methodyca.Core
         // used to unload additive scenes
         public void UnloadScene()
         {
-            AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         }
 
         void UnloadAssets()
