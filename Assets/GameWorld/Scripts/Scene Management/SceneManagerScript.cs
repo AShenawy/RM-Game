@@ -1,52 +1,77 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace Methodyca.Core
 {
     /* This class handles moving the player between different scenes/levels in the game
      * and also protects some game objects from being destroyed when switching scenes
      */
-    public sealed class SceneManagerScript
+    public sealed class SceneManagerScript : MonoBehaviour
     {
         // make this class a singleton
-        #region Singleton
-        private static SceneManagerScript singleton;
+        public static SceneManagerScript instance;
 
-        public static SceneManagerScript instance
-        {
-            get
-            {
-                if (singleton == null)
-                    singleton = new SceneManagerScript();
-
-                return singleton;
-            }
-        }
-        #endregion
-
+        [HideInInspector]
         public string startRoomTag = "Starting Room";
 
         private Scene sceneCurrent;
         private GameObject loadingScreen;
         private AsyncOperation preloadSceneOpr;
-        
+
+
+        private void Awake()
+        {
+            if (instance == null)
+                instance = this;
+
+            DontDestroyOnLoad(this);
+        }
 
         public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
         {
             startRoomTag = roomTag;
-            SceneManager.LoadScene(sceneName);
-            // TODO: Load and unload scenes behind a loading screen
-            // loadingScreen = Object.Instantiate(Resources.Load("Loading Screen") as GameObject);
+            StartCoroutine(LoadLevel(sceneName));
+        }
 
+        IEnumerator LoadLevel(string sceneName)
+        {
+            // instantiate a loading screen and hide the start button in it using the attached ProgressBar script
+            loadingScreen = Instantiate(Resources.Load("Loading Screen") as GameObject);
+            ProgressBar progress = loadingScreen.GetComponent<ProgressBar>();
+            progress.startButton.SetActive(false);
+
+            // Start loading the new scene and stop it from auto activation
+            AsyncOperation loadOpr = SceneManager.LoadSceneAsync(sceneName);
+            loadOpr.allowSceneActivation = false;
+
+            while (!loadOpr.isDone)
+            {
+                // fill up the loading screen progress bar
+                progress.progressBar.fillAmount = loadOpr.progress;
+
+                if (loadOpr.progress >= 0.9f)
+                {
+                    // when loading is finished activate the start button
+                    progress.startButton.SetActive(true);
+
+                    if (progress.isStartClicked || Input.GetKeyDown(KeyCode.Space))
+                        loadOpr.allowSceneActivation = true;
+                }
+
+                yield return null;
+            }
+
+            CheckSwitcherApplicable();
+            UnloadAssets();
+        }
+
+        void CheckSwitcherApplicable()
+        {
             // Give the player the dimension switcher on Act 2 entry
             Scene loadedScene = SceneManager.GetActiveScene();
             if (loadedScene.name == "Act 2" || loadedScene.name == "Act 3")
-                GiveSwitcherItem();
-        }
-
-        void GiveSwitcherItem()
-        {
-            InventoryManager.instance.GiveSwitcherItem();
+                InventoryManager.instance.GiveSwitcherItem();
         }
 
         public void PreloadScene(string sceneName, LoadSceneMode loadMode)
@@ -74,25 +99,17 @@ namespace Methodyca.Core
             SceneManager.sceneLoaded -= SetLoadedSceneActive;
         }
 
-
         // used to unload additive scenes
         public void UnloadScene()
         {
             AsyncOperation unloadOpr = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-            // Play the main game's BGM
-            SoundManager.instance.GetComponent<BGM>().PlayBGM();
-            
-            //unloadOpr.completed += UnloadAssets;
         }
 
-        void UnloadAssets(AsyncOperation opr)
+        void UnloadAssets()
         {
             Debug.Log("Scene closed. Unloading unused resources.");
             // Unload minigame unused assests
             Resources.UnloadUnusedAssets();
-            
-            opr.completed -= UnloadAssets;
         }
 
         // Typically called by GameManager script when player is going to a scene within main game

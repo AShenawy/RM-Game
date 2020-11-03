@@ -34,7 +34,7 @@ namespace Methodyca.Core
         private VideoPlayer videoPlayer;
 
 
-        private void OnEnable()
+        private void Start()
         {
             videoPlayer = GetComponent<VideoPlayer>();
             videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "portal-animate_lower-30fps_2MBPS_aud.mp4");

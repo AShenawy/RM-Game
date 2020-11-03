@@ -47,7 +47,7 @@ namespace Methodyca.Core
         // When loading a new scene with GameManager in it, it should first check 
         private void OnEnable()
         {
-            if (SceneManagerScript.instance != null)
+            //if (SceneManagerScript.instance != null)
                 roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
         }
 
