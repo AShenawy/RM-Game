@@ -24,7 +24,7 @@ namespace Methodyca.Minigames.Protoescape
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(1);
+            yield return null;
             _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
         }
 
@@ -66,8 +66,9 @@ namespace Methodyca.Minigames.Protoescape
         public void CompletePrototypeTesting()
         {
             var result = GetLikedCategoryRate();
-
             var ratio = result.current / (float)result.total;
+
+            Debug.Log("Result: " + result.current + "/" + result.total);
 
             if (ratio < 0.1f) //confused
             {
@@ -104,7 +105,7 @@ namespace Methodyca.Minigames.Protoescape
                     }
                 }
 
-                string feedback = $"Looks like they enjoyed {liked}. Unfortunately, you’ll still need to work on {confused}. " +
+                string feedback = $"Looks like they enjoyed <b>{liked}</b>. Unfortunately, you’ll still need to work on <b>{confused}</b>. " +
                                    "Make sure you get them right this time! I got grandkids waiting at home.";
 
                 OnPrototypeTestCompleted?.Invoke(feedback);
@@ -117,7 +118,7 @@ namespace Methodyca.Minigames.Protoescape
 
         private (int current, int total) GetLikedCategoryRate()
         {
-            int likeCount = GetCategoryChecklistByStatus().Count(i => i.Value);
+            int likeCount = GetCategoryChecklistByStatus().Count(i => i.Value == true);
 
             if (IsAllConsistent())
             {
@@ -138,16 +139,13 @@ namespace Methodyca.Minigames.Protoescape
                 { CategoryType.Highlight, true }
             };
 
-            foreach (var item in _allCheckables)
+            foreach (var checkable in _allCheckables)
             {
-                var results = item.GetLikables();
+                var differences = checkable.Categories.Except(checkable.GetLikables().Keys);
 
-                foreach (var i in results)
+                foreach (var difference in differences)
                 {
-                    if (!item.Categories.Contains(i.Key))
-                    {
-                        checklist[i.Key] = false;
-                    }
+                    checklist[difference] = false;
                 }
             }
 

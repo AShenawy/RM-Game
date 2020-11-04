@@ -38,6 +38,8 @@ namespace Methodyca.Minigames.Protoescape
         {
             IsHighlighted = highlight.activeInHierarchy;
             _screen = GetComponentInParent<ScreenBox>();
+            CurrentColor = icon.color;
+            CurrentSprite = icon.sprite;
         }
 
         public override void OnPointerClick(PointerEventData eventData)
@@ -63,9 +65,9 @@ namespace Methodyca.Minigames.Protoescape
             highlight.SetActive(IsHighlighted);
         }
 
-        public Dictionary<CategoryType, dynamic> GetLikables()
+        public Dictionary<CategoryType, object> GetLikables()
         {
-            var dict = new Dictionary<CategoryType, dynamic>();
+            var dict = new Dictionary<CategoryType, object>();
 
             if (likableLocations.Contains(CurrentSiblingIndex))
             {

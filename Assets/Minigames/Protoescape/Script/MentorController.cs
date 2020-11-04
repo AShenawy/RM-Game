@@ -38,7 +38,6 @@ namespace Methodyca.Minigames.Protoescape
         {
             _currentLines = new LinkedList<string>(prototypeTips);
             _currentLine = _currentLines.First;
-
             NextLine();
         }
 
@@ -46,6 +45,7 @@ namespace Methodyca.Minigames.Protoescape
         {
             _currentLines = new LinkedList<string>(introductionLines);
             _currentLine = _currentLines.First;
+            NextLine();
         }
 
         private void OnDisable()

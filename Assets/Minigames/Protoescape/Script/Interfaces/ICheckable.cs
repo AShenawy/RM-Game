@@ -12,6 +12,6 @@ namespace Methodyca.Minigames.Protoescape
         GameObject gameObject { get; }
         HashSet<CategoryType> Categories { get; }
         string GetNotebookLogData();
-        Dictionary<CategoryType, dynamic> GetLikables();
+        Dictionary<CategoryType, object> GetLikables();
     }
 }
