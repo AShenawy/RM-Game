@@ -4087,6 +4087,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1303687990}
+        m_MethodName: ResetAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1000032112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5139,6 +5150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e97bd40f814c94fa66c7d1faa78528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainGameBGM:
+    name: main BGM
+    clip: {fileID: 8300000, guid: 89ee74e0187979e418c890a0a0df89ef, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    pan: 0
+    source: {fileID: 0}
 --- !u!114 &1303687991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5191,6 +5210,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Data Charger
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1303687990}
+        m_MethodName: ResetAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1303687992

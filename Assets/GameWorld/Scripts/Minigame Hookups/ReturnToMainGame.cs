@@ -6,9 +6,14 @@ namespace Methodyca.Core
     {
         public void ReturnToGame()
         {
+            SceneManagerScript.instance.UnloadScene();
+        }
+
+        public void ResetAudio()
+        {
             SoundManager.instance.StopBGM();
             SoundManager.instance.StopAllSFX();
-            SceneManagerScript.instance.UnloadScene();
+            SoundManager.instance.PlayMainBGM();
         }
     }
 }

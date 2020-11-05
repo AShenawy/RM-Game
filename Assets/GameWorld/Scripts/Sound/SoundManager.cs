@@ -9,6 +9,7 @@ namespace Methodyca.Core
     public sealed class SoundManager : MonoBehaviour
     {
         public static SoundManager instance;
+        public Sound mainBGM;
 
         private AudioSource BGMPlayer;
         private List<Sound> SFXPlayers = new List<Sound>();
@@ -40,6 +41,11 @@ namespace Methodyca.Core
             BGMPlayer.loop = true;
             BGMPlayer.panStereo = soundClip.pan;
             BGMPlayer.Play();
+        }
+
+        public void PlayMainBGM()
+        {
+            PlayBGM(mainBGM);
         }
 
         public void PlaySFX(Sound sfxClip, bool doMouseImaging = false)
