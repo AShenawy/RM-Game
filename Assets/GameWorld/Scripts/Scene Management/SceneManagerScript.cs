@@ -12,10 +12,8 @@ namespace Methodyca.Core
 
         [HideInInspector]
         public string startRoomTag = "Starting Room";
-        public GameObject loadingScreen;
+        public GameObject loadingScreenPrefab;
 
-        private Scene sceneCurrent;
-        private GameObject loadingScreenPrefab;
         private AsyncOperation preloadSceneOpr;
 
 
@@ -36,12 +34,13 @@ namespace Methodyca.Core
         IEnumerator LoadLevel(string sceneName)
         {
             // instantiate a loading screen and hide the start button in it using the attached ProgressBar script
-            loadingScreen = Instantiate(loadingScreen);
+            GameObject loadingScreen = Instantiate(loadingScreenPrefab);
             ProgressBar progress = loadingScreen.GetComponent<ProgressBar>();
             progress.startButton.SetActive(false);
 
             // Start loading the new scene and stop it from auto activation
             AsyncOperation loadOpr = SceneManager.LoadSceneAsync(sceneName);
+            loadOpr.priority = 0;
             loadOpr.allowSceneActivation = false;
 
             while (!loadOpr.isDone)
@@ -76,6 +75,7 @@ namespace Methodyca.Core
         public void PreloadScene(string sceneName, LoadSceneMode loadMode)
         {
             preloadSceneOpr = SceneManager.LoadSceneAsync(sceneName, loadMode);
+            preloadSceneOpr.priority = -999;
             preloadSceneOpr.allowSceneActivation = false;
             Debug.LogWarning($"Scene \"{sceneName}\" loading in background.");
         }
