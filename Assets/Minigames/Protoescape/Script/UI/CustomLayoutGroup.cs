@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CustomLayoutGroup : LayoutGroup
 {
-    public enum FitType { Uniform, Width, Height, FixedRows, FixedColumns }
+    public enum FitType { Uniform, Width, Height, FixedRows, FixedColumns/*, Fixed */}
 
     public FitType fitType;
 
@@ -35,6 +35,16 @@ public class CustomLayoutGroup : LayoutGroup
         if (fitType == FitType.Height || fitType == FitType.FixedRows)
         {
             Columns = Mathf.CeilToInt(transform.childCount / Rows);
+        }
+
+        //if (fitType == FitType.Fixed)
+        //{
+        //    Rows = Mathf.CeilToInt(transform.childCount / Columns);
+        //    Columns = Mathf.CeilToInt(transform.childCount / Rows);
+        //}
+        if (Columns == 0 || Rows == 0)
+        {
+            return;
         }
 
         float parentWidth = rectTransform.rect.width;

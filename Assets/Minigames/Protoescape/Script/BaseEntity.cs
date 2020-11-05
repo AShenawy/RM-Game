@@ -6,14 +6,15 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class BaseEntity : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IDropHandler
     {
-        protected RectTransform _rect;
-        protected RectTransform _rectParent;
+        public bool IsEmptySpot;
+        public bool IsVerticallySwapable;
+
+        protected Transform _transform;
         protected ScreenBox _screen;
 
         protected virtual void Awake()
         {
-            _rect = GetComponent<RectTransform>();
-            _rectParent = _rect.parent as RectTransform;
+            _transform = transform;
             _screen = GetComponentInParent<ScreenBox>();
         }
 
@@ -22,42 +23,71 @@ namespace Methodyca.Minigames.Protoescape
         public void OnDrop(PointerEventData eventData)
         {
             var dragged = eventData.pointerDrag;
+            var draggedEntity = dragged.GetComponent<BaseEntity>();
 
-            if (dragged == null || dragged == gameObject || GameManager_Protoescape.IsStacksMovable)
+            if (draggedEntity.IsEmptySpot || dragged == null || dragged == gameObject || GameManager_Protoescape.IsStacksMovable)
             {
                 return;
             }
 
-            int tempIndex = 0;
+            var stack = GetComponentInParent<EntityStack>();
+            var draggedStack = dragged.GetComponentInParent<EntityStack>();
 
-            if (dragged.transform.IsSiblingOf(_rect))
+            if (stack == draggedStack)
             {
-                tempIndex = _rect.GetSiblingIndex();
+                if (dragged.transform.IsSiblingOf(transform))
+                {
+                    var dropSiblingIndex = _transform.GetSiblingIndex();
+                    var dragSiblingIndex = dragged.transform.GetSiblingIndex();
 
-                _rect.SetSiblingIndex(dragged.transform.GetSiblingIndex());
-                dragged.transform.SetSiblingIndex(tempIndex);
+                    _transform.SetSiblingIndex(dragSiblingIndex);
+                    dragged.transform.SetSiblingIndex(dropSiblingIndex);
+                }
+                else if (dragged.transform.parent.IsSiblingOf(_transform)) //Icon to text area
+                {
+                    var dropSiblingIndex = _transform.GetSiblingIndex();
+                    var dragSiblingIndex = dragged.transform.parent.GetSiblingIndex();
 
-                dragged.transform.localScale = Vector3.zero;
-                dragged.transform.DOScale(1, 0.15f);
+                    _transform.SetSiblingIndex(dragSiblingIndex);
+                    dragged.transform.parent.SetSiblingIndex(dropSiblingIndex);
+                }
+                else if (dragged.transform.IsSiblingOf(_transform.parent)) //Text area to icon
+                {
+                    var dropSiblingIndex = _transform.parent.GetSiblingIndex();
+                    var dragSiblingIndex = dragged.transform.GetSiblingIndex();
+
+                    _transform.parent.SetSiblingIndex(dragSiblingIndex);
+                    dragged.transform.SetSiblingIndex(dropSiblingIndex);
+                }
+
+                dragged.transform.DOShakeScale(duration: 0.2f, strength: 0.5f, vibrato: 5, fadeOut: false);
             }
-            else if (dragged.transform.parent.IsSiblingOf(_rect))
+            else
             {
-                tempIndex = _rect.GetSiblingIndex();
+                if ((!draggedEntity.IsVerticallySwapable && !draggedEntity.IsEmptySpot) || (draggedEntity.IsVerticallySwapable && !IsVerticallySwapable && !IsEmptySpot))
+                {
+                    var dropSiblingIndex = stack.transform.GetSiblingIndex();
+                    var dragSiblingIndex = draggedStack.transform.GetSiblingIndex();
 
-                _rect.SetSiblingIndex(dragged.transform.parent.GetSiblingIndex());
-                dragged.transform.parent.SetSiblingIndex(tempIndex);
+                    stack.transform.SetSiblingIndex(dragSiblingIndex);
+                    draggedStack.transform.SetSiblingIndex(dropSiblingIndex);
+                }
+                else if (draggedEntity.IsVerticallySwapable && (IsVerticallySwapable || IsEmptySpot))
+                {
+                    var dropParent = _transform.parent;
+                    var dropSiblingIndex = _transform.GetSiblingIndex();
 
-                dragged.transform.localScale = Vector3.zero;
-                dragged.transform.DOScale(1, 0.15f);
-            }
-            else if (dragged.transform.IsSiblingOf(_rectParent))
-            {
-                tempIndex = _rectParent.GetSiblingIndex();
-                _rectParent.SetSiblingIndex(dragged.transform.GetSiblingIndex());
-                dragged.transform.SetSiblingIndex(tempIndex);
+                    var dragParent = dragged.transform.parent;
+                    var dragSiblingIndex = dragged.transform.GetSiblingIndex();
 
-                dragged.transform.localScale = Vector3.zero;
-                dragged.transform.DOScale(1, 0.15f);
+                    _transform.SetParent(dragParent);
+                    _transform.SetSiblingIndex(dragSiblingIndex);
+
+                    dragged.transform.SetParent(dropParent);
+                    dragged.transform.SetSiblingIndex(dropSiblingIndex);
+
+                    dragged.transform.DOShakeScale(duration: 0.2f, strength: 0.5f, vibrato: 5, fadeOut: false);
+                }
             }
         }
 

@@ -7,6 +7,7 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class EntityStack : MonoBehaviour, IDragHandler, IDropHandler, ICheckable
     {
+        //public bool IsVerticallyMovable;
         [SerializeField] private string entityId;
         [SerializeField] private Image stackHighlight;
         [SerializeField] private CanvasGroup canvasGroup;

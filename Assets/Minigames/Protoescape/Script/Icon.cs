@@ -20,7 +20,7 @@ namespace Methodyca.Minigames.Protoescape
         public Color CurrentColor { get; private set; }
         public Sprite CurrentSprite { get; private set; }
         public string EntityID { get => entityId; }
-        public int CurrentSiblingIndex { get => _rect.GetSiblingIndex(); }
+        public int CurrentSiblingIndex { get => _transform.GetSiblingIndex(); }
         public string ScreenName { get => _screen.ScreenName; }
 
         public HashSet<CategoryType> Categories
