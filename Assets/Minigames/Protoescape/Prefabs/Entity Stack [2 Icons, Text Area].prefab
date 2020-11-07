@@ -244,10 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5411bdb6799036c47a3b8fd7f590441b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEmptySpot: 0
+  IsVerticallySwapable: 0
   entityId: text area
   textField: {fileID: 7410852272230019614}
-  likableLocations: 
   likableFonts: []
+  likableCoordinates: []
 --- !u!1 &7410852272431902377
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53e6a8ddf84a14eba4ba58475baa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEmptySpot: 0
+  IsVerticallySwapable: 0
 --- !u!1 &7410852273759789339
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,10 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7410852273759789348}
-  - component: {fileID: 7410852273759789345}
-  - component: {fileID: 7410852273759789344}
   - component: {fileID: 7410852273759789349}
-  - component: {fileID: 7410852273759789351}
   - component: {fileID: 7410852273759789350}
   m_Layer: 5
   m_Name: Entity Stack [2 Icons, Text Area]
@@ -440,43 +441,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7410852273759789345
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410852273759789339}
-  m_CullTransparentMesh: 0
---- !u!114 &7410852273759789344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410852273759789339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e7547b78913f764eb191260916f4547, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
 --- !u!114 &7410852273759789349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,18 +466,6 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
---- !u!225 &7410852273759789351
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410852273759789339}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &7410852273759789350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,10 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f3a02bcd8e8b7428ca0f229c080e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: stack
-  stackHighlight: {fileID: 7410852273759789344}
-  canvasGroup: {fileID: 7410852273759789351}
-  likablePositions: 
 --- !u!1001 &3243763368305481405
 PrefabInstance:
   m_ObjectHideFlags: 0

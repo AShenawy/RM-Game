@@ -19,9 +19,6 @@ namespace Methodyca.Minigames.Protoescape
         public static GameObject SelectedEntity { get => _selectedEntity; set { _selectedEntity = value; OnSelected?.Invoke(value); } }
         private static GameObject _selectedEntity;
 
-        public static bool IsStacksMovable { get => _isStacksMovable; set { _isStacksMovable = value; OnStackMove?.Invoke(value); } }
-        static bool _isStacksMovable;
-
         public void HandleGameStart()
         {
             OnGameStarted?.Invoke();
@@ -83,11 +80,6 @@ namespace Methodyca.Minigames.Protoescape
         public void HandlePrototypeInitiation()
         {
             OnPrototypeInitiated?.Invoke();
-        }
-
-        private void Start()
-        {
-            IsStacksMovable = false;
         }
     }
 }

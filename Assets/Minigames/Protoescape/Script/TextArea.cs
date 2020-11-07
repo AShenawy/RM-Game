@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-using System.Linq;
-using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.Protoescape
 {
@@ -10,14 +8,13 @@ namespace Methodyca.Minigames.Protoescape
     {
         [SerializeField] protected string entityId;
         [SerializeField] private TextMeshProUGUI textField;
-        [SerializeField] private int[] likableLocations;
-        [SerializeField] private TMP_FontAsset[] likableFonts;
+        [SerializeField] private List<TMP_FontAsset> likableFonts = new List<TMP_FontAsset>();
+        [SerializeField] private List<EntityCoordinate> likableCoordinates = new List<EntityCoordinate>();
 
         public string EntityID { get => entityId; }
         public TMP_FontAsset CurrentFont { get => textField.font; }
         public bool IsChecked { get; set; }
-        public int CurrentSiblingIndex { get => _transform.GetSiblingIndex(); }
-        public string ScreenName { get => _screen.ScreenName; }
+        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex); }
 
         public HashSet<CategoryType> Categories
         {
@@ -28,18 +25,13 @@ namespace Methodyca.Minigames.Protoescape
                          };
         }
 
-        public override void OnPointerClick(PointerEventData eventData)
+        public Dictionary<CategoryType, object> GetLikables()
         {
-            GameManager_Protoescape.SelectedEntity = gameObject;
-        }
+            var dict = new Dictionary<CategoryType, object>();
 
-        public Dictionary<CategoryType, dynamic> GetLikables()
-        {
-            var dict = new Dictionary<CategoryType, dynamic>();
-
-            if (likableLocations.Contains(CurrentSiblingIndex))
+            if (likableCoordinates.Contains(CurrentCoordinate))
             {
-                dict.Add(CategoryType.Position, CurrentSiblingIndex);
+                dict.Add(CategoryType.Position, CurrentCoordinate);
             }
 
             if (likableFonts.Contains(CurrentFont))
@@ -59,11 +51,11 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (likables.ContainsKey(category))
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>liked</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_stack.ScreenName} screen is <i>liked</i>\n";
                 }
                 else
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>confused</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_stack.ScreenName} screen is <i>confused</i>\n";
                 }
             }
 

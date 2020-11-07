@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Methodyca.Minigames.Protoescape
@@ -13,15 +12,14 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private bool shouldBeHighlighted;
         [SerializeField] private List<Sprite> likableSprites = new List<Sprite>();
         [SerializeField] private List<Color> likableColors = new List<Color>();
-        [SerializeField] private List<int> likableLocations = new List<int>();
+        [SerializeField] private List<EntityCoordinate> likableCoordinates = new List<EntityCoordinate>();
 
         public bool IsChecked { get; set; }
         public bool IsHighlighted { get; set; }
         public Color CurrentColor { get; private set; }
         public Sprite CurrentSprite { get; private set; }
         public string EntityID { get => entityId; }
-        public int CurrentSiblingIndex { get => _transform.GetSiblingIndex(); }
-        public string ScreenName { get => _screen.ScreenName; }
+        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(),_stack.CurrentSiblingIndex); }
 
         public HashSet<CategoryType> Categories
         {
@@ -37,14 +35,8 @@ namespace Methodyca.Minigames.Protoescape
         private void Start()
         {
             IsHighlighted = highlight.activeInHierarchy;
-            _screen = GetComponentInParent<ScreenBox>();
             CurrentColor = icon.color;
             CurrentSprite = icon.sprite;
-        }
-
-        public override void OnPointerClick(PointerEventData eventData)
-        {
-            GameManager_Protoescape.SelectedEntity = gameObject;
         }
 
         public void Replace(Color value)
@@ -69,9 +61,9 @@ namespace Methodyca.Minigames.Protoescape
         {
             var dict = new Dictionary<CategoryType, object>();
 
-            if (likableLocations.Contains(CurrentSiblingIndex))
+            if (likableCoordinates.Contains(CurrentCoordinate))
             {
-                dict.Add(CategoryType.Position, CurrentSiblingIndex);
+                dict.Add(CategoryType.Position, CurrentCoordinate);
             }
             if (likableSprites.Contains(CurrentSprite))
             {
@@ -98,11 +90,11 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if (likables.ContainsKey(category))
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>liked</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_stack.ScreenName} screen is <i>liked</i>\n";
                 }
                 else
                 {
-                    result += $"<b>{category}</b> of {EntityID} at {_screen.ScreenName} screen is <i>confused</i>\n";
+                    result += $"<b>{category}</b> of {EntityID} at {_stack.ScreenName} screen is <i>confused</i>\n";
                 }
             }
 

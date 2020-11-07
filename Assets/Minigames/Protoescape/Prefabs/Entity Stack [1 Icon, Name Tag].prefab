@@ -165,10 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5128563979701387797}
-  - component: {fileID: 5128563979701387792}
-  - component: {fileID: 5128563979701387793}
   - component: {fileID: 5128563979701387796}
-  - component: {fileID: 5128563979701387794}
   - component: {fileID: 5128563979701387795}
   m_Layer: 5
   m_Name: Entity Stack [1 Icon, Name Tag]
@@ -198,43 +195,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5128563979701387792
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5128563979701387798}
-  m_CullTransparentMesh: 0
---- !u!114 &5128563979701387793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5128563979701387798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e7547b78913f764eb191260916f4547, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
 --- !u!114 &5128563979701387796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,18 +220,6 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
---- !u!225 &5128563979701387794
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5128563979701387798}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &5128563979701387795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,10 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f3a02bcd8e8b7428ca0f229c080e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: 
-  stackHighlight: {fileID: 5128563979701387793}
-  canvasGroup: {fileID: 5128563979701387794}
-  likablePositions: 
 --- !u!1 &5128563979852337000
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,10 +320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5411bdb6799036c47a3b8fd7f590441b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEmptySpot: 0
+  IsVerticallySwapable: 0
   entityId: 
   textField: {fileID: 4290487831307710982}
-  likableLocations: 
   likableFonts: []
+  likableCoordinates: []
 --- !u!1001 &4417576919305512146
 PrefabInstance:
   m_ObjectHideFlags: 0

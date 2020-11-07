@@ -5,6 +5,7 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class UIPopupTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler
     {
+        [SerializeField] private bool setAsLastSiblingOnPointerEnter;
         [SerializeField] private GameObject popup;
 
         private void Start()
@@ -31,6 +32,10 @@ namespace Methodyca.Minigames.Protoescape
             {
                 return;
             }
+            if (setAsLastSiblingOnPointerEnter)
+            {
+                transform.SetAsLastSibling();
+            }
 
             popup.SetActive(true);
         }
@@ -41,6 +46,11 @@ namespace Methodyca.Minigames.Protoescape
             {
                 popup.SetActive(false);
             }
+        }
+
+        private void OnDisable()
+        {
+            popup.SetActive(false);
         }
     }
 }

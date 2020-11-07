@@ -10,12 +10,12 @@ namespace Methodyca.Minigames.Protoescape
         public bool IsVerticallySwapable;
 
         protected Transform _transform;
-        protected ScreenBox _screen;
+        protected EntityStack _stack;
 
         protected virtual void Awake()
         {
             _transform = transform;
-            _screen = GetComponentInParent<ScreenBox>();
+            _stack = GetComponentInParent<EntityStack>();
         }
 
         public void OnDrag(PointerEventData eventData) { }
@@ -25,15 +25,15 @@ namespace Methodyca.Minigames.Protoescape
             var dragged = eventData.pointerDrag;
             var draggedEntity = dragged.GetComponent<BaseEntity>();
 
-            if (draggedEntity.IsEmptySpot || dragged == null || dragged == gameObject || GameManager_Protoescape.IsStacksMovable)
+            if (draggedEntity.IsEmptySpot || dragged == null || dragged == gameObject)
             {
                 return;
             }
 
-            var stack = GetComponentInParent<EntityStack>();
+            _stack = GetComponentInParent<EntityStack>();
             var draggedStack = dragged.GetComponentInParent<EntityStack>();
 
-            if (stack == draggedStack)
+            if (_stack == draggedStack)
             {
                 if (dragged.transform.IsSiblingOf(transform))
                 {
@@ -66,10 +66,10 @@ namespace Methodyca.Minigames.Protoescape
             {
                 if ((!draggedEntity.IsVerticallySwapable && !draggedEntity.IsEmptySpot) || (draggedEntity.IsVerticallySwapable && !IsVerticallySwapable && !IsEmptySpot))
                 {
-                    var dropSiblingIndex = stack.transform.GetSiblingIndex();
+                    var dropSiblingIndex = _stack.transform.GetSiblingIndex();
                     var dragSiblingIndex = draggedStack.transform.GetSiblingIndex();
 
-                    stack.transform.SetSiblingIndex(dragSiblingIndex);
+                    _stack.transform.SetSiblingIndex(dragSiblingIndex);
                     draggedStack.transform.SetSiblingIndex(dropSiblingIndex);
                 }
                 else if (draggedEntity.IsVerticallySwapable && (IsVerticallySwapable || IsEmptySpot))
@@ -91,7 +91,13 @@ namespace Methodyca.Minigames.Protoescape
             }
         }
 
-        public virtual void OnPointerClick(PointerEventData eventData) { }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!IsEmptySpot)
+            {
+                GameManager_Protoescape.SelectedEntity = gameObject;
+            }
+        }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
