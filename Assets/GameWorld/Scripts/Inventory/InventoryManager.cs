@@ -23,9 +23,6 @@ namespace Methodyca.Core
         // create event when inventory items change
         public delegate void OnItemChanged();
         public event OnItemChanged itemChanged;
-        /* Event Subs:
-         *  - InventoryUI
-         */
 
         // set the limit of how many items player can carry in inventory. 13 is the max using current UI icon size.
         public int space = 12;

@@ -26,5 +26,10 @@ public class PickUp : ObjectInteraction
             Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
     }
+
+    /* TODO State saving
+     * can use OnDestroy() to save the state that it was picked up (bool).
+     * On Start() and before running the base, load the state of being picked up and destroy the object.
+     */
 }
    

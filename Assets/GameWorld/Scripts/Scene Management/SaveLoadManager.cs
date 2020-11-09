@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
-public class SaveLoadManager : MonoBehaviour
+public class SaveLoadManager
 {
-    public static SaveLoadManager instance;
-
-    #region Singleton
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
-    #endregion
+    
 
     public void SaveJSON(string key, Object saveObj)
     {
@@ -37,4 +33,26 @@ public class SaveLoadManager : MonoBehaviour
     {
         return JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString(key));
     }
+
+
+}
+
+public interface ISaveable
+{
+    void SaveState();
+}
+
+public interface ILoadable
+{
+    void LoadState();
+}
+
+public class SaveStates
+{
+    // autosave number is 0. When including save slots they will start from 1 and up
+    public int stateNum;
+
+    public Dictionary<PickUp, int> pickableItemsStates;
+
+    public MoveObject moveableItemsStates;
 }

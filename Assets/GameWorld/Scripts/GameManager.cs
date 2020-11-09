@@ -337,20 +337,20 @@ namespace Methodyca.Core
 
         public void SavePlayerPos()
         {
-            PlayerData savePos = new PlayerData();
-            savePos.roomName = roomCurrent.name;
-            savePos.worldPosition = player.transform.position;
-            print("saving player position at: " + savePos.roomName);
-            SaveLoadManager.instance.SaveJSON("PlayerPos", savePos);
+            //PlayerData savePos = new PlayerData();
+            //savePos.roomName = roomCurrent.name;
+            //savePos.worldPosition = player.transform.position;
+            //print("saving player position at: " + savePos.roomName);
+            //SaveLoadManager.instance.SaveJSON("PlayerPos", savePos);
         }
 
         public void LoadPlayerPos()
         {
-            PlayerData data = SaveLoadManager.instance.LoadJSON("PlayerPos");
-            print("loaded room " + data.roomName);
-            GameObject newRoom = System.Array.Find(rooms, room => room.name == data.roomName);
-            print("Found room " + newRoom.name);
-            GoToRoom(newRoom);
+            //PlayerData data = SaveLoadManager.instance.LoadJSON("PlayerPos");
+            //print("loaded room " + data.roomName);
+            //GameObject newRoom = System.Array.Find(rooms, room => room.name == data.roomName);
+            //print("Found room " + newRoom.name);
+            //GoToRoom(newRoom);
         }
     }
     
