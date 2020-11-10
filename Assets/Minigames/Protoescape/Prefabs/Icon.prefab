@@ -126,13 +126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802c242dc3c94ff4c85245491a2ad5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEmptySpot: 0
+  IsVerticallySwapable: 0
   entityId: 
   icon: {fileID: 6096892193786193317}
   highlight: {fileID: 6096892192965011953}
   shouldBeHighlighted: 0
   likableSprites: []
   likableColors: []
-  likableLocations: 
+  likableCoordinates: []
 --- !u!114 &6096892193341748872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5efad176dada5b4c98b2353e2fb6bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setAsLastSiblingOnPointerEnter: 0
   popup: {fileID: 6096892194613570935}
 --- !u!1 &6096892193662471348
 GameObject:
@@ -411,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 90}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 20, y: -35}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6096892194613570932
