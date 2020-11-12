@@ -25,7 +25,7 @@ public class DictionarySave : MonoBehaviour
     public void SaveDictionary()
     {
         FillDic();
-        SaveData sav = new SaveData();
+        DicSaveData sav = new DicSaveData();
         foreach (var kvp in dic)
         {
             sav.keys.Add(kvp.Key);
@@ -44,7 +44,7 @@ public class DictionarySave : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/Dic_Save.sex", FileMode.Open);
-        SaveData sav = (SaveData)bf.Deserialize(file);
+        DicSaveData sav = (DicSaveData)bf.Deserialize(file);
         file.Close();
 
         dic = new Dictionary<string, int>();
@@ -69,7 +69,7 @@ public class DictionarySave : MonoBehaviour
 }
 
 [System.Serializable]
-public class SaveData
+public class DicSaveData
 {
     public List<string> keys = new List<string>();
     public List<int> values = new List<int>();
