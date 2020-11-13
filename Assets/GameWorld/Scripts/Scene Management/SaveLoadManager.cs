@@ -10,6 +10,7 @@ public sealed class SaveLoadManager
     [DllImport("__Internal")]
     private static extern void SyncFiles();
 
+    public static bool autosaveAvailable { get; private set; }  // determines if Continue button is available or not on main menu
     public static int currentSceneIndex { get; private set; }
     public static string currentRoomName { get; private set; }
     public static List<string> currentInventoryItems
@@ -30,7 +31,7 @@ public sealed class SaveLoadManager
         private set { completedMinigames = new List<int>(); }
     }
 
-    // Saving and loading player prefs for game settings (mute, volume, etc.)
+    // ====== Saving and loading player prefs for game settings (mute, volume, etc.) ======
     public static void SavePlayPref(string key, int value)
     {
         PlayerPrefs.SetInt(key, value);
@@ -41,9 +42,22 @@ public sealed class SaveLoadManager
         PlayerPrefs.SetFloat(key, value);
     }
 
+    private static void SetAutosaveAvailable()
+    {
+        autosaveAvailable = true;
+        PlayerPrefs.SetInt("SaveSlot_0", 1);
+    }
+
     // details saved on the save/load slots when manually saving/loading
     public static void SetSlotInfo(int slotNum, string roomName)
     {
+        // autosave slot doesn't show up in save/load screen so shouldn't save info for it. Slots should be from 1 to 3
+        if (slotNum == 0)
+        {
+            Debug.LogError("Warning: Attempting to save slot info on autosave slot. Action stopped.");
+            return;
+        }
+
         SlotInfo info = new SlotInfo();
         info.saveSlotNumber = slotNum;
         info.savedRoomName = roomName;
@@ -62,13 +76,21 @@ public sealed class SaveLoadManager
         return PlayerPrefs.GetFloat(key);
     }
 
-    public static SlotInfo GetSlotInfo(int slotNum)
+    private static void GetAutosaveAvailable()
     {
-        SlotInfo info = JsonUtility.FromJson<SlotInfo>(PlayerPrefs.GetString($"SaveSlot_{slotNum}"));
-        return info;
+        if (!PlayerPrefs.HasKey("SaveSlot_0"))
+            return;
+
+        if (PlayerPrefs.GetInt("SaveSlot_0") == 1)
+            autosaveAvailable = true;
     }
 
-    // Saving and loading game states
+    public static SlotInfo GetSlotInfo(int slotNum)
+    {
+        return JsonUtility.FromJson<SlotInfo>(PlayerPrefs.GetString($"SaveSlot_{slotNum}"));
+    }
+
+    // ====== Saving and loading game states ======
     public static void SetCurrentScene(int sceneIndex)
     {
         currentSceneIndex = sceneIndex;
@@ -124,6 +146,7 @@ public sealed class SaveLoadManager
         FileStream file = File.Create(Application.persistentDataPath + "/SavedGames/AutoSave.mth");
         bf.Serialize(file, state);
         file.Close();
+        SetAutosaveAvailable();
         SyncFiles();    // ensure browser syncs save file to local indexed DB file system
         Debug.Log("Autosave complete.");
     }
@@ -144,6 +167,7 @@ public sealed class SaveLoadManager
         interactableStates.Clear();
         for (int i = 0; i < state.objectInteractionName.Count; i++)
             interactableStates.Add(state.objectInteractionName[i], state.isObjectInteracted[i]);
+
 
         Debug.Log("Autosave loading complete.");
     }
