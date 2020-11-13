@@ -172,7 +172,50 @@ public sealed class SaveLoadManager
         Debug.Log("Autosave loading complete.");
     }
 
+    public static void SaveGameState(int slotNum)
+    {
+        // set up a new state and fill with current information
+        SaveStates state = new SaveStates();
+        state.stateNum = slotNum; // the state number for autosaving
+        state.sceneIndex = currentSceneIndex;
+        state.roomName = currentRoomName;
+        state.itemsHeld = currentInventoryItems;
 
+        foreach (var kvp in interactableStates)
+        {
+            state.objectInteractionName.Add(kvp.Key);
+            state.isObjectInteracted.Add(kvp.Value);
+        }
+
+        // save the new state to file
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + $"/SavedGames/Save_{slotNum}.mth");
+        bf.Serialize(file, state);
+        file.Close();
+        SyncFiles();    // ensure browser syncs save file to local indexed DB file system
+        Debug.Log($"Saving to slot {slotNum} complete.");
+    }
+
+    public static void LoadGameState(int slotNum)
+    {
+        // load the autosave file
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + $"/SavedGames/Save_{slotNum}.mth", FileMode.Open);
+        SaveStates state = (SaveStates)bf.Deserialize(file);
+        file.Close();
+
+        // update current information for other scripts to pull
+        currentSceneIndex = state.sceneIndex;
+        currentRoomName = state.roomName;
+        currentInventoryItems = state.itemsHeld;
+
+        interactableStates.Clear();
+        for (int i = 0; i < state.objectInteractionName.Count; i++)
+            interactableStates.Add(state.objectInteractionName[i], state.isObjectInteracted[i]);
+
+
+        Debug.Log($"Loading from slot {slotNum} complete.");
+    }
 }
 
 public interface ISaveable
