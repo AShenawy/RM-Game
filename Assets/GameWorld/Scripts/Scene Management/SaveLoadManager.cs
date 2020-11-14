@@ -11,23 +11,10 @@ namespace Methodyca.Core
         public static bool autosaveAvailable { get; private set; }  // determines if Continue button is available or not on main menu
         public static int currentSceneIndex { get; private set; }
         public static string currentRoomName { get; private set; }
-        public static List<string> currentInventoryItems
-        {
-            get { return currentInventoryItems; }
-            private set { currentInventoryItems = new List<string>(); }
-        }
+        public static List<string> currentInventoryItems = new List<string>();
+        public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
+        public static List<int> completedMinigames = new List<int>();
 
-        public static Dictionary<string, int> interactableStates
-        {
-            get { return interactableStates; }
-            private set { interactableStates = new Dictionary<string, int>(); }
-        }
-
-        public static List<int> completedMinigames
-        {
-            get { return completedMinigames; }
-            private set { completedMinigames = new List<int>(); }
-        }
 
         // ====== Saving and loading player prefs for game settings (mute, volume, etc.) ======
         public static void SavePlayPref(string key, int value)
