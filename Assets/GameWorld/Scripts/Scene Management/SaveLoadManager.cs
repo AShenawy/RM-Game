@@ -8,9 +8,6 @@ namespace Methodyca.Core
 {
     public sealed class SaveLoadManager
     {
-        [DllImport("__Internal")]
-        private static extern void SyncFiles();
-
         public static bool autosaveAvailable { get; private set; }  // determines if Continue button is available or not on main menu
         public static int currentSceneIndex { get; private set; }
         public static string currentRoomName { get; private set; }
@@ -48,6 +45,11 @@ namespace Methodyca.Core
             autosaveAvailable = true;
             PlayerPrefs.SetInt("SaveSlot_0", 1);
         }
+
+        private static System.Action onSaveComplete;
+
+        [DllImport("__Internal")]
+        private static extern void SyncFiles();
 
         // details saved on the save/load slots when manually saving/loading
         public static void SetSlotInfo(int slotNum, string roomName)
@@ -88,7 +90,10 @@ namespace Methodyca.Core
 
         public static SaveSlotInfo GetSlotInfo(int slotNum)
         {
-            return JsonUtility.FromJson<SaveSlotInfo>(PlayerPrefs.GetString($"SaveSlot_{slotNum}"));
+            if (PlayerPrefs.HasKey($"SaveSlot_{slotNum}"))
+                return JsonUtility.FromJson<SaveSlotInfo>(PlayerPrefs.GetString($"SaveSlot_{slotNum}"));
+            else
+                return null;
         }
 
         // ====== Saving and loading game states ======
@@ -173,7 +178,7 @@ namespace Methodyca.Core
             Debug.Log("Autosave loading complete.");
         }
 
-        public static void SaveGameState(int slotNum)
+        public static System.Action SaveGameState(int slotNum)
         {
             // set up a new state and fill with current information
             SaveStates state = new SaveStates();
@@ -196,6 +201,7 @@ namespace Methodyca.Core
             SetSlotInfo(slotNum, currentRoomName);  // update the playerprefs for save/load UI
             SyncFiles();    // ensure browser syncs save file to local indexed DB file system
             Debug.Log($"Saving to slot {slotNum} complete.");
+            return onSaveComplete;
         }
 
         public static void LoadGameState(int slotNum)

@@ -7,26 +7,47 @@ namespace Methodyca.Core
     // class for behavior of save slot buttons in UI
     public class SaveSlotBehaviour : MonoBehaviour
     {
-        public int saveSlot;
+        [SerializeField, Range(1,3)]
+        private int saveSlot;
+        [SerializeField]
         private Text saveDescription;
 
-        void OnEnable()
+        private void Awake()
+        {
+            saveDescription = GetComponent<Text>();
+        }
+
+        private void OnEnable()
+        {
+            // display the latest save data info on the slot. Or show that it's empty
+            SaveSlotInfo info = SaveLoadManager.GetSlotInfo(saveSlot);
+            if (info != null)
+                saveDescription.text = $"Slot {info.saveSlotNumber} - {info.saveSlotNumber}\nMinigames Complete - {info.minigamesCompletedNumber}";
+            else
+                saveDescription.text = $"Slot {saveSlot} - Empty";
+        }
+
+        // button click action
+        public void SaveGame()
+        {
+            System.Action onSaveComplete = SaveLoadManager.SaveGameState(saveSlot); //**** needs testing to check if delegate does get called
+            onSaveComplete += UpdateSlotInfo;
+            onSaveComplete();
+            onSaveComplete -= UpdateSlotInfo;
+        }
+
+        void UpdateSlotInfo()
         {
             SaveSlotInfo info = SaveLoadManager.GetSlotInfo(saveSlot);
             saveDescription.text = $"Slot {info.saveSlotNumber} - {info.saveSlotNumber}\nMinigames Complete - {info.minigamesCompletedNumber}";
-        }
-
-        public void SaveGame()
-        {
-            SaveLoadManager.SaveGameState(saveSlot);
         }
     }
 
     [System.Serializable]
     public class SaveSlotInfo
     {
-        public int saveSlotNumber;
-        public string savedRoomName;
-        public int minigamesCompletedNumber;
+        public int saveSlotNumber = -1;
+        public string savedRoomName = "N/A";
+        public int minigamesCompletedNumber = -1;
     }
 }
