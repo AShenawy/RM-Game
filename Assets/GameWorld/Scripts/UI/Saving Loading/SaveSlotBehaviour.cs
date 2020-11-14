@@ -12,11 +12,6 @@ namespace Methodyca.Core
         [SerializeField]
         private Text saveDescription;
 
-        private void Awake()
-        {
-            saveDescription = GetComponent<Text>();
-        }
-
         private void OnEnable()
         {
             // display the latest save data info on the slot. Or show that it's empty
