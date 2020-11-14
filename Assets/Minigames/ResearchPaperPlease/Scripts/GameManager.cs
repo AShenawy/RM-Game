@@ -21,10 +21,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     }
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private ResearchPaper[] data;
+        [SerializeField] private LevelData[] data;
 
         public static event Action<bool, ResearchPaperData> OnPaperDecided = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
+        public static event Action<LevelData> OnLevelInitiated = delegate { };
+        public static event Action<string> OnLevelOver = delegate { };
         public static event Action<string> OnFix = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
         public static event Action<int> OnQualityUpdated = delegate { };
@@ -33,40 +35,47 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private ResearchPaperData _currentResearchPaperData;
         private Queue<ResearchPaperData> _allResearchPaper = new Queue<ResearchPaperData>();
-        private Dictionary<char, string> _researchPaperOptionPairs = new Dictionary<char, string>();
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
 
-        private int _currentLevelIndex = 0;
+        private bool _isFeedbackDisplayed;
         private int _qualityValue = 0;
         private int _progressValue = 0;
+        private int _currentLevelIndex = 0;
 
         public void InitiateNextLevel()
         {
-            _allResearchPaper = GetResearchDataByLevel(++_currentLevelIndex);
+            _allResearchPaper = GetResearchPaperByLevel(++_currentLevelIndex);
 
-            if (_allResearchPaper == null)
+            if (_allResearchPaper == null) //All of research paper are completed (Game Over)
             {
-                //Game Over
+
             }
-            else
+            else //Display next paper
             {
+                OnLevelInitiated?.Invoke(GetCurrentLevelData());
                 HandleNextPaper();
             }
         }
 
         public void HandleNextPaper()
         {
-            if (_allResearchPaper != null && _allResearchPaper.Count > 0)
+            if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
             {
                 _currentResearchPaperData = _allResearchPaper.Dequeue();
                 OnPaperUpdated?.Invoke(_currentResearchPaperData);
+                OnProgressUpdated?.Invoke(_progressValue);
             }
-            else
+            else if (_isFeedbackDisplayed) //Next level is initiated
             {
+                _isFeedbackDisplayed = false;
                 InitiateNextLevel();
             }
-
-            OnProgressUpdated?.Invoke(_progressValue);
+            else //Level is over (Display level-end feedback)
+            {
+                _isFeedbackDisplayed = true;
+                OnProgressUpdated?.Invoke(_progressValue);
+                OnLevelOver?.Invoke(GetCurrentLevelFeedback());
+            }
         }
 
         public void HandleAcceptedPaper()
@@ -86,51 +95,37 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void HandleRejectedPaper()
         {
-            if (_currentResearchPaperData.IsCorrect)
-            {
-                //Students yells
-
-            }
-            else
-            {
-                //Feedback from Academic auditor - Grethe Whiny
-
-            }
-
             _progressValue++;
             OnPaperDecided?.Invoke(false, _currentResearchPaperData);
         }
 
-        public void HandleFixOptions(char optionIndex)
+        public void HandleFixingOption(char optionIndex)
         {
-            if (_currentResearchPaperData.WrongOption == optionIndex)
+            if (_currentResearchPaperData.IsCorrect)
             {
-                //Correct Answer
+                //Students yell
+                OnFix?.Invoke("Student yell");
             }
             else
             {
-                //Wrong Answer
+                if (_currentResearchPaperData.WrongOption == optionIndex)
+                {
+                    //Correct Answer
+                    OnFix?.Invoke("Do nothing");
+                }
+                else
+                {
+                    //Wrong Answer - Auditor speaks
+                    OnFix?.Invoke("Auditor speaks");
+                }
             }
-
-            OnFix?.Invoke(_currentResearchPaperData.Feedback);
         }
 
         private void Start()
         {
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
-            InitiateNextLevel();
-
             TotalPaperCount = GetTotalResearchPaperCount();
-
-            _researchPaperOptionPairs = new Dictionary<char, string>()
-            {
-                { 'a', _currentResearchPaperData.Title },
-                { 'b', _currentResearchPaperData.Author },
-                { 'c', _currentResearchPaperData.ResearchGoal },
-                { 'd', _currentResearchPaperData.ResearchMethodology },
-                { 'e', _currentResearchPaperData.ResearchMethods },
-                { 'f', _currentResearchPaperData.ResearchQuestions }
-            };
+            InitiateNextLevel();
         }
 
         private int GetTotalResearchPaperCount()
@@ -145,6 +140,32 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             return count;
         }
 
+        private string GetCurrentLevelFeedback()
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (_currentLevelIndex == data[i].Level)
+                {
+                    return data[i].LevelFeedback;
+                }
+            }
+
+            return "";
+        }
+
+        private LevelData GetCurrentLevelData()
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (_currentLevelIndex == data[i].Level)
+                {
+                    return data[i];
+                }
+            }
+
+            return null;
+        }
+
         private Dictionary<int, ResearchPaperData[]> GetResearchPaperDataByLevel()
         {
             var keyValuePairs = new Dictionary<int, ResearchPaperData[]>();
@@ -157,7 +178,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             return keyValuePairs;
         }
 
-        private Queue<ResearchPaperData> GetResearchDataByLevel(int level)
+        private Queue<ResearchPaperData> GetResearchPaperByLevel(int level)
         {
             if (_currentResearchPaperDataByLevel.TryGetValue(level, out ResearchPaperData[] researchPaperData))
             {

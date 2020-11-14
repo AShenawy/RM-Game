@@ -1,7 +1,7 @@
-﻿using DG.Tweening;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using TMPro;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -15,15 +15,44 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Button acceptButton;
         [SerializeField] private Button rejectButton;
         [SerializeField] private Button nextButton;
-        [SerializeField] private UIFixButton[] fixButtons;
+        [SerializeField] private CanvasGroup fixButtonCanvasGroup;
+
+        private readonly Color _halfTransparent = new Color(1, 1, 1, 0.5f);
 
         private void OnEnable()
         {
+            GameManager.OnLevelInitiated += LevelInitiatedHandler;
+            GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
             GameManager.OnPaperDecided += PaperDecisionHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
+        }
+
+        private void FixHandler(string feedback)
+        {
+            feedbackText.text = feedback;
+
+            nextButton.interactable = true;
+            nextButton.targetGraphic.raycastTarget = true;
+            nextButton.targetGraphic.color = Color.white;
+
+            fixButtonCanvasGroup.blocksRaycasts = false;
+            fixButtonCanvasGroup.alpha = 0.5f;
+        }
+
+        private void LevelInitiatedHandler(LevelData levelData)
+        {
+            notebookText.text = levelData.LevelRules;
+        }
+
+        private void LevelOverHandler(string feedback)
+        {
+            feedbackText.text = feedback;
+
+            nextButton.interactable = false;
+            nextButton.interactable = true;
         }
 
         private void QualityUpdatedHandler(int value)
@@ -49,43 +78,53 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             if (isAccepted)
             {
                 nextButton.interactable = true;
+                nextButton.targetGraphic.raycastTarget = true;
+                nextButton.targetGraphic.color = Color.white;
+
+                acceptButton.interactable = false;
             }
             else
             {
-                //activate buttons
-                for (int i = 0; i < fixButtons.Length; i++)
-                {
-                    fixButtons[i].SetInteractable(true);
-                }
+                rejectButton.interactable = false;
+
+                fixButtonCanvasGroup.alpha = 1;
+                fixButtonCanvasGroup.interactable = true;
+                fixButtonCanvasGroup.blocksRaycasts = true;
             }
 
-            acceptButton.interactable = false;
-            rejectButton.interactable = false;
+            rejectButton.targetGraphic.raycastTarget = false;
+            rejectButton.targetGraphic.color = _halfTransparent;
+
+            acceptButton.targetGraphic.raycastTarget = false;
+            acceptButton.targetGraphic.color = _halfTransparent;
         }
 
         private void PaperUpdatedHandler(ResearchPaperData data)
         {
-            paperText.text = data.Field;
+            paperText.text = $"{data.Field}\n{data.Title}\n{data.Author}\n{data.Supervisor}\n{data.ResearchGoal}\n{data.ResearchMethodology}\n{data.ResearchMethods}\n{data.ResearchQuestions}";
+            feedbackText.text = data.Feedback;
 
             acceptButton.interactable = true;
             rejectButton.interactable = true;
+
+            rejectButton.targetGraphic.raycastTarget = true;
+            acceptButton.targetGraphic.raycastTarget = true;
+
+            rejectButton.targetGraphic.color = Color.white;
+            acceptButton.targetGraphic.color = Color.white;
+
             nextButton.interactable = false;
+            nextButton.targetGraphic.raycastTarget = false;
+            nextButton.targetGraphic.color = _halfTransparent;
+
+            fixButtonCanvasGroup.blocksRaycasts = false;
+            fixButtonCanvasGroup.alpha = 0.5f;
         }
-
-        private void FixHandler(string feedback)
-        {
-            feedbackText.text = feedback;
-            nextButton.interactable = true;
-
-            for (int i = 0; i < fixButtons.Length; i++)
-            {
-                fixButtons[i].SetInteractable(false);
-            }
-        }
-
 
         private void OnDisable()
         {
+            GameManager.OnLevelInitiated -= LevelInitiatedHandler;
+            GameManager.OnLevelOver -= LevelOverHandler;
             GameManager.OnFix -= FixHandler;
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;
             GameManager.OnPaperDecided -= PaperDecisionHandler;

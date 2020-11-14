@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6489066190073261413}
   - component: {fileID: 6489066190073261418}
   m_Layer: 0
-  m_Name: PaperData [Level-1]
+  m_Name: PaperData [Level-2]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,20 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a90e00ec0e726247b3ba20fe4e50720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  levelFeedback: Level 1 is over.
-  levelRules: 'Rule #1 - Title: Title should be specific
-
-    Rule #2 - Supervisor:
-    Every paper should have a supervisor
-
-    Rule #3 - Goal: Every paper should
-    have  clearly stated research objective. '
-  effectiveOptionsToFix: 610062006300
+  level: 2
+  levelFeedback: Level 2 is over.
+  levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
+    Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
+    clearly stated research objective.\r\nRule #4 - Research Questions: Avoid closed
+    questions. Questions should be different but related to the goal\r\nRule #5 -
+    Methodology: Methodology should be inline with the research goal.\r\nRule #6
+    - Methods: Data collection or design methods should be inline with the research
+    design (methodology)\r"
+  effectiveOptionsToFix: 61006200630064006500
   researches:
   - IsCorrect: 0
     WrongOption: 102
-    Field: field1
+    Field: field2
     Title: title
     Author: author
     Supervisor: supervisor
@@ -67,7 +67,7 @@ MonoBehaviour:
     Feedback: feedback
   - IsCorrect: 1
     WrongOption: 99
-    Field: field1
+    Field: field2
     Title: title
     Author: author
     Supervisor: supervisor
@@ -78,7 +78,7 @@ MonoBehaviour:
     Feedback: feedback
   - IsCorrect: 0
     WrongOption: 99
-    Field: field1
+    Field: field2
     Title: title
     Author: author
     Supervisor: supervisor
@@ -89,7 +89,7 @@ MonoBehaviour:
     Feedback: feedback
   - IsCorrect: 1
     WrongOption: 99
-    Field: field1
+    Field: field2
     Title: title
     Author: author
     Supervisor: supervisor
@@ -100,7 +100,7 @@ MonoBehaviour:
     Feedback: feedback
   - IsCorrect: 0
     WrongOption: 99
-    Field: field1
+    Field: field2
     Title: title
     Author: author
     Supervisor: supervisor
