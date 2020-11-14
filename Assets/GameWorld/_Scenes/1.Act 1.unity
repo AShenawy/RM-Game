@@ -11348,7 +11348,7 @@ PrefabInstance:
     - target: {fileID: 1819376409727762907, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1819376409727762907, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11383,7 +11383,7 @@ PrefabInstance:
     - target: {fileID: 1819376410298268752, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410298268752, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11394,11 +11394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 299963985}
+      objectReference: {fileID: 1369920434708363390}
     - target: {fileID: 1819376410298268752, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SavePlayerPos
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410298268752, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11788,6 +11788,12 @@ MonoBehaviour:
     loop: 0
     pan: 0
     source: {fileID: 0}
+--- !u!1 &1369920434708363390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575601354670292938, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+    type: 3}
+  m_PrefabInstance: {fileID: 1369920434708363380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2641257133204290548
 MonoBehaviour:
   m_ObjectHideFlags: 0
