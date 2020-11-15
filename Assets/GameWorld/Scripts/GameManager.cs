@@ -248,7 +248,7 @@ namespace Methodyca.Core
             // Check if entered room is a save checkpoint
             if (roomData.isSavePoint)
             {
-                SaveGame();
+                SaveGameAuto();
             }
         }
     
@@ -284,10 +284,9 @@ namespace Methodyca.Core
             roomStart = room;
         }
 
-        public void SaveGame()
+        public void SaveGameAuto()
         {
-            //TODO Save the game
-            print("Save the current game progress");
+            SaveLoadManager.SaveGameAuto();
         }
 
         public void InteractWithObject(Interaction interactionType)

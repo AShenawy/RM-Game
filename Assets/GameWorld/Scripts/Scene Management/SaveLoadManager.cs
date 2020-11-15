@@ -8,7 +8,6 @@ namespace Methodyca.Core
 {
     public sealed class SaveLoadManager
     {
-        public static bool autosaveAvailable { get; private set; }  // determines if Continue button is available or not on main menu
         public static int currentSceneIndex { get; private set; }
         public static string currentRoomName { get; private set; }
         public static List<string> currentInventoryItems = new List<string>();
@@ -31,9 +30,9 @@ namespace Methodyca.Core
             PlayerPrefs.SetFloat(key, value);
         }
 
-        private static void SetAutosaveAvailable(bool isAvail)
+        private static void SetAutosaveAvailable(bool value)
         {
-            if (isAvail)
+            if (value)
                 PlayerPrefs.SetInt("SaveSlot_0", 1);
             else
                 PlayerPrefs.SetInt("SaveSlot_0", 0);
@@ -67,9 +66,9 @@ namespace Methodyca.Core
             return PlayerPrefs.GetFloat(key);
         }
 
-        private static bool GetAutosaveAvailable()
+        public static bool GetAutosaveAvailable()
         {
-            string savePath = Path.Combine(Application.persistentDataPath + "SavedGames" + "AutoSave.mth");
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames", "AutoSave.mth");
 
             if (!PlayerPrefs.HasKey("SaveSlot_0") || !File.Exists(savePath))
             {
