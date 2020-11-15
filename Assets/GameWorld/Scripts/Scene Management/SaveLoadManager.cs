@@ -15,6 +15,10 @@ namespace Methodyca.Core
         public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
         public static List<int> completedMinigamesIDs = new List<int>();
 
+        private static System.Action onSaveComplete;
+
+        [DllImport("__Internal")]
+        private static extern void SyncFiles();
 
         // ====== Saving and loading player prefs for game settings (mute, volume, etc.) ======
         public static void SavePlayPref(string key, int value)
@@ -27,17 +31,14 @@ namespace Methodyca.Core
             PlayerPrefs.SetFloat(key, value);
         }
 
-        private static void SetAutosaveAvailable()
+        private static void SetAutosaveAvailable(bool isAvail)
         {
-            autosaveAvailable = true;
-            PlayerPrefs.SetInt("SaveSlot_0", 1);
+            if (isAvail)
+                PlayerPrefs.SetInt("SaveSlot_0", 1);
+            else
+                PlayerPrefs.SetInt("SaveSlot_0", 0);
         }
 
-        private static System.Action onSaveComplete;
-
-        [DllImport("__Internal")]
-        private static extern void SyncFiles();
-      
         // details saved on the save/load slots when manually saving/loading
         public static void SetSlotInfo(int slotNum, string roomName)
         {
@@ -66,32 +67,39 @@ namespace Methodyca.Core
             return PlayerPrefs.GetFloat(key);
         }
 
-        private static void GetAutosaveAvailable()
+        private static bool GetAutosaveAvailable()
         {
             string savePath = Path.Combine(Application.persistentDataPath + "SavedGames" + "AutoSave.mth");
 
-            if (!PlayerPrefs.HasKey("SaveSlot_0") || File.Exists(savePath) == false)
+            if (!PlayerPrefs.HasKey("SaveSlot_0") || !File.Exists(savePath))
             {
-                autosaveAvailable = false;
+                PlayerPrefs.DeleteKey("SaveSlot_0");    // if file doesn't exist
                 Debug.LogWarning($"Autosave file not found in {savePath}");
-                return;
+                return false;
             }
 
             if (PlayerPrefs.GetInt("SaveSlot_0") == 1)
-                autosaveAvailable = true;
-            else
-            {
-                autosaveAvailable = false;
-                Debug.LogWarning($"Autosave file not found in {savePath}");
-            }
+                return true;
+            else                
+                // Autosave not available at this moment
+                return false;
         }
 
         public static SaveSlotInfo GetSlotInfo(int slotNum)
         {
-            if (PlayerPrefs.HasKey($"SaveSlot_{slotNum}"))
+            if (PlayerPrefs.HasKey($"SaveSlot_{slotNum}") && SaveFileExists(slotNum))
                 return JsonUtility.FromJson<SaveSlotInfo>(PlayerPrefs.GetString($"SaveSlot_{slotNum}"));
             else
+            {
+                // if save file doesn't exist then key should be removed
+                PlayerPrefs.DeleteKey($"SaveSlot_{ slotNum}");
                 return null;
+            }
+        }
+
+        public static void ClearPlayPrefsAll()
+        {
+            PlayerPrefs.DeleteAll();
         }
 
         // ====== Saving and loading game states ======
@@ -159,7 +167,7 @@ namespace Methodyca.Core
             FileStream file = File.Create(savePath);
             bf.Serialize(file, state);
             file.Close();
-            SetAutosaveAvailable();
+            SetAutosaveAvailable(true);
 
             if (Application.platform == RuntimePlatform.WebGLPlayer)
                 SyncFiles();    // ensure browser syncs save file to local indexed DB file system
@@ -178,6 +186,7 @@ namespace Methodyca.Core
             if (!File.Exists(savePath))
             {
                 Debug.LogWarning($"Autosave file not found in {savePath}");
+                
                 return;
             }
             
@@ -267,6 +276,20 @@ namespace Methodyca.Core
                 return true;
             else
                 return false;
+        }
+
+        // Delete all saved games and player prefs
+        public static void DeleteAllSaveData()
+        {
+            ClearPlayPrefsAll();
+            string autosavePath = Path.Combine(Application.persistentDataPath, "SavedGames", "AutoSave.mth");
+            File.Delete(autosavePath);
+            string savePath1 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_1.mth");
+            File.Delete(savePath1);
+            string savePath2 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_2.mth");
+            File.Delete(savePath2);
+            string savePath3 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_3.mth");
+            File.Delete(savePath3);
         }
     }
 
