@@ -3,7 +3,7 @@
 	{
 		FS.syncfs(false, function(err)
 		{
-			console.log('Web Assembly: synced to file system's local source');
+			console.log("Web Assembly: synced to file system's local source");
 		});
 	}
 });

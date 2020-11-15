@@ -13,7 +13,7 @@ namespace Methodyca.Core
         public static string currentRoomName { get; private set; }
         public static List<string> currentInventoryItems = new List<string>();
         public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
-        public static List<int> completedMinigames = new List<int>();
+        public static List<int> completedMinigamesIDs = new List<int>();
 
 
         // ====== Saving and loading player prefs for game settings (mute, volume, etc.) ======
@@ -37,7 +37,7 @@ namespace Methodyca.Core
 
         [DllImport("__Internal")]
         private static extern void SyncFiles();
-
+      
         // details saved on the save/load slots when manually saving/loading
         public static void SetSlotInfo(int slotNum, string roomName)
         {
@@ -51,7 +51,7 @@ namespace Methodyca.Core
             SaveSlotInfo info = new SaveSlotInfo();
             info.saveSlotNumber = slotNum;
             info.savedRoomName = roomName;
-            info.minigamesCompletedNumber = completedMinigames.Count;
+            info.minigamesCompletedNumber = completedMinigamesIDs.Count;
 
             PlayerPrefs.SetString($"SaveSlot_{slotNum}", JsonUtility.ToJson(info));
         }
@@ -68,11 +68,22 @@ namespace Methodyca.Core
 
         private static void GetAutosaveAvailable()
         {
-            if (!PlayerPrefs.HasKey("SaveSlot_0"))
+            string savePath = Path.Combine(Application.persistentDataPath + "SavedGames" + "AutoSave.mth");
+
+            if (!PlayerPrefs.HasKey("SaveSlot_0") || File.Exists(savePath) == false)
+            {
+                autosaveAvailable = false;
+                Debug.LogWarning($"Autosave file not found in {savePath}");
                 return;
+            }
 
             if (PlayerPrefs.GetInt("SaveSlot_0") == 1)
                 autosaveAvailable = true;
+            else
+            {
+                autosaveAvailable = false;
+                Debug.LogWarning($"Autosave file not found in {savePath}");
+            }
         }
 
         public static SaveSlotInfo GetSlotInfo(int slotNum)
@@ -94,14 +105,20 @@ namespace Methodyca.Core
             currentRoomName = name;
         }
 
+        public static void SetCompletedMinigames(int[] IDs)
+        {
+            // refresh the list of completed games
+            completedMinigamesIDs.Clear();
+            foreach (int id in IDs)
+                completedMinigamesIDs.Add(id);
+        }
+
         public static void SetCurrentInventoryItems(string[] items)
         {
             // refresh the list of held items
             currentInventoryItems.Clear();
             foreach (string item in items)
-            {
                 currentInventoryItems.Add(item);
-            }
         }
 
         public static void SetInteractableState(string objectName, int value)
@@ -136,11 +153,17 @@ namespace Methodyca.Core
 
             // save the new state to file
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/SavedGames/AutoSave.mth");
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");
+            Directory.CreateDirectory(savePath);
+            savePath = Path.Combine(savePath, "AutoSave.mth");
+            FileStream file = File.Create(savePath);
             bf.Serialize(file, state);
             file.Close();
             SetAutosaveAvailable();
-            SyncFiles();    // ensure browser syncs save file to local indexed DB file system
+
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+                SyncFiles();    // ensure browser syncs save file to local indexed DB file system
+
             Debug.Log("Autosave complete.");
         }
 
@@ -148,7 +171,17 @@ namespace Methodyca.Core
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SavedGames/AutoSave.mth", FileMode.Open);
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");
+            Directory.CreateDirectory(savePath);
+            savePath = Path.Combine(savePath, "AutoSave.mth");
+
+            if (!File.Exists(savePath))
+            {
+                Debug.LogWarning($"Autosave file not found in {savePath}");
+                return;
+            }
+            
+            FileStream file = File.Open(savePath, FileMode.Open);
             SaveStates state = (SaveStates)bf.Deserialize(file);
             file.Close();
 
@@ -182,11 +215,17 @@ namespace Methodyca.Core
 
             // save the new state to file
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + $"/SavedGames/Save_{slotNum}.mth");
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");
+            Directory.CreateDirectory(savePath);
+            savePath = Path.Combine(savePath, $"Save_{slotNum}.mth");
+            FileStream file = File.Create(savePath);
             bf.Serialize(file, state);
             file.Close();
             SetSlotInfo(slotNum, currentRoomName);  // update the playerprefs for save/load UI
-            SyncFiles();    // ensure browser syncs save file to local indexed DB file system
+
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+                SyncFiles();    // ensure browser syncs save file to local indexed DB file system
+
             Debug.Log($"Saving to slot {slotNum} complete.");
             return onSaveComplete;
         }
@@ -195,7 +234,16 @@ namespace Methodyca.Core
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + $"/SavedGames/Save_{slotNum}.mth", FileMode.Open);
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");
+            Directory.CreateDirectory(savePath);
+            savePath = Path.Combine(savePath, $"Save_{slotNum}.mth");
+            if (!SaveFileExists(slotNum))
+            {
+                Debug.LogWarning($"No save file found in {savePath} for slot {slotNum}");
+                return;
+            }
+
+            FileStream file = File.Open(savePath, FileMode.Open);
             SaveStates state = (SaveStates)bf.Deserialize(file);
             file.Close();
 
@@ -210,6 +258,15 @@ namespace Methodyca.Core
 
 
             Debug.Log($"Loading from slot {slotNum} complete.");
+        }
+
+        static bool SaveFileExists(int slotNum)
+        {
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames", $"Save_{slotNum}.mth");
+            if (File.Exists(savePath))
+                return true;
+            else
+                return false;
         }
     }
 

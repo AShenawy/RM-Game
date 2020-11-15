@@ -17,9 +17,9 @@ namespace Methodyca.Core
             // display the latest save data info on the slot. Or show that it's empty
             SaveSlotInfo info = SaveLoadManager.GetSlotInfo(saveSlot);
             if (info != null)
-                saveDescription.text = $"Slot {info.saveSlotNumber} - {info.saveSlotNumber}\nMinigames Complete - {info.minigamesCompletedNumber}";
+                saveDescription.text = $"Save Game {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}";
             else
-                saveDescription.text = $"Slot {saveSlot} - Empty";
+                saveDescription.text = $"Save Game {saveSlot} - Empty";
         }
 
         // button click action
@@ -34,7 +34,7 @@ namespace Methodyca.Core
         void UpdateSlotInfo()
         {
             SaveSlotInfo info = SaveLoadManager.GetSlotInfo(saveSlot);
-            saveDescription.text = $"Slot {info.saveSlotNumber} - {info.saveSlotNumber}\nMinigames Complete - {info.minigamesCompletedNumber}";
+            saveDescription.text = $"Save Game {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}";
         }
     }
 
