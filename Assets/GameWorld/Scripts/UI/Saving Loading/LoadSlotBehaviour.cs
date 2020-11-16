@@ -7,7 +7,7 @@ namespace Methodyca.Core
     public class LoadSlotBehaviour : MonoBehaviour
     {
         public event System.Action onLoadGame;
-        [SerializeField]
+        [SerializeField, Range(1, 3)]
         private int saveSlot;
         [SerializeField]
         private Text saveDescription;
@@ -26,6 +26,7 @@ namespace Methodyca.Core
                 // display save quick info and enable button to call LoadGame()
                 saveDescription.text = $"Save Game {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}";
                 btn.interactable = true;
+                SceneManagerScript.instance.SubscribeToOnLoadEvent(this);
             }
             else
             {
@@ -33,6 +34,11 @@ namespace Methodyca.Core
                 saveDescription.text = $"Save Game {saveSlot} - Empty";
                 btn.interactable = false;
             }
+        }
+
+        private void OnDisable()
+        {
+            SceneManagerScript.instance.UnSubscribeFromOnLoadEvent(this);
         }
 
         // button click action
