@@ -39,7 +39,8 @@ namespace Methodyca.Core
                         break;
 
                     case LoadSceneMode.Single:
-                        SceneManagerScript.instance.GoToLevel(minigameSceneName);
+                        // minigames don't have the world GameManager so no room name is needed
+                        SceneManagerScript.instance.GoToLevel(minigameSceneName, "");    
                         break;
 
                     default:

@@ -8,7 +8,7 @@ namespace Methodyca.Core
 {
     public sealed class SaveLoadManager
     {
-        public static int currentSceneIndex { get; private set; }
+        public static string currentScene { get; private set; }
         public static string currentRoomName { get; private set; }
         public static List<string> currentInventoryItems = new List<string>();
         public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
@@ -102,9 +102,9 @@ namespace Methodyca.Core
         }
 
         // ====== Saving and loading game states ======
-        public static void SetCurrentScene(int sceneIndex)
+        public static void SetCurrentScene(string scene)
         {
-            currentSceneIndex = sceneIndex;
+            currentScene = scene;
         }
 
         public static void SetCurrentRoom(string name)
@@ -148,7 +148,7 @@ namespace Methodyca.Core
             // set up a new state and fill with current information
             SaveStates state = new SaveStates();
             state.stateNum = 0; // the state number for autosaving
-            state.sceneIndex = currentSceneIndex;
+            state.sceneName = currentScene;
             state.roomName = currentRoomName;
             state.itemsHeld = currentInventoryItems;
 
@@ -194,7 +194,7 @@ namespace Methodyca.Core
             file.Close();
 
             // update current information for other scripts to pull
-            currentSceneIndex = state.sceneIndex;
+            currentScene = state.sceneName;
             currentRoomName = state.roomName;
             currentInventoryItems = state.itemsHeld;
 
@@ -211,7 +211,7 @@ namespace Methodyca.Core
             // set up a new state and fill with current information
             SaveStates state = new SaveStates();
             state.stateNum = slotNum; // the state number for autosaving
-            state.sceneIndex = currentSceneIndex;
+            state.sceneName = currentScene;
             state.roomName = currentRoomName;
             state.itemsHeld = currentInventoryItems;
 
@@ -256,7 +256,7 @@ namespace Methodyca.Core
             file.Close();
 
             // update current information for other scripts to pull
-            currentSceneIndex = state.sceneIndex;
+            currentScene = state.sceneName;
             currentRoomName = state.roomName;
             currentInventoryItems = state.itemsHeld;
 
@@ -309,7 +309,7 @@ namespace Methodyca.Core
         public int stateNum;
 
         // last scene (by index) player was in
-        public int sceneIndex;
+        public string sceneName;
 
         // last room player was in
         public string roomName;

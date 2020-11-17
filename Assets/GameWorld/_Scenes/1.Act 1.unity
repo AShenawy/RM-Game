@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &41938383
 Transform:
   m_ObjectHideFlags: 0
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   - {fileID: 1099030298}
   - {fileID: 41938382}
   - {fileID: 2125245411}
-  roomStart: {fileID: 0}
+  roomStart: {fileID: 1099030298}
   inventoryPanel: {fileID: 1618254536}
   triggerTurnRight: {fileID: 115463040}
   triggerTurnLeft: {fileID: 2086164242}
@@ -4361,8 +4361,8 @@ MonoBehaviour:
     pan: 0
     source: {fileID: 0}
   Act2Scene: 2.Act 2
-  Act2QLRoomTag: Starting Room QL
-  Act2QNRoomTag: Starting Room QN
+  Act2QLRoomName: QL Start
+  Act2QNRoomName: QN Start
 --- !u!114 &826353354
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,8 +47,7 @@ namespace Methodyca.Core
         // When loading a new scene with GameManager in it, it should first check 
         private void OnEnable()
         {
-            //if (SceneManagerScript.instance != null)
-                roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
+            roomStart = SceneManagerScript.instance.GetSceneStartingRoom() ?? roomStart;
         }
 
         private void Start()
@@ -229,6 +228,9 @@ namespace Methodyca.Core
             // Get room data
             roomData = room.GetComponent<RoomData>();
 
+            // Update the Save Manager
+            SaveLoadManager.SetCurrentRoom(roomData.name);
+
             // Check if room allows player to turn or not
             if (roomData.playerCanTurn)
             {
@@ -245,11 +247,9 @@ namespace Methodyca.Core
                 SetTurnTriggersActive(false);
             }
 
-            // Check if entered room is a save checkpoint
+            // Check if entered room is an autosave checkpoint
             if (roomData.isSavePoint)
-            {
-                SaveGameAuto();
-            }
+                SaveLoadManager.SaveGameAuto();
         }
     
         private void ResetCursor()
@@ -282,11 +282,6 @@ namespace Methodyca.Core
         public void SetStartingRoom(GameObject room)
         {
             roomStart = room;
-        }
-
-        public void SaveGameAuto()
-        {
-            SaveLoadManager.SaveGameAuto();
         }
 
         public void InteractWithObject(Interaction interactionType)

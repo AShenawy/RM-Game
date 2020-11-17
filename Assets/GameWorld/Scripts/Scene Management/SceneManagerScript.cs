@@ -11,7 +11,7 @@ namespace Methodyca.Core
         public static SceneManagerScript instance;
 
         [HideInInspector]
-        public string startRoomTag = "Starting Room";
+        public string startRoomName;
         public GameObject loadingScreenPrefab;
 
         private AsyncOperation preloadSceneOpr;
@@ -25,9 +25,9 @@ namespace Methodyca.Core
             DontDestroyOnLoad(this);
         }
 
-        public void GoToLevel(string sceneName, string roomTag = "Starting Room")   // Default start room tag in every scene
+        public void GoToLevel(string sceneName, string roomName)
         {
-            startRoomTag = roomTag;
+            startRoomName = roomName;
             StartCoroutine(LoadLevel(sceneName));
         }
 
@@ -60,6 +60,8 @@ namespace Methodyca.Core
                 yield return null;
             }
 
+            // update Save Manager with the current loaded scene
+            SaveLoadManager.SetCurrentScene(sceneName);
             CheckSwitcherApplicable();
             UnloadAssets();
         }
@@ -114,7 +116,7 @@ namespace Methodyca.Core
         // Typically called by GameManager script when player is going to a scene within main game
         public GameObject GetSceneStartingRoom()
         {
-            GameObject sceneStartRoom = GameObject.FindGameObjectWithTag(startRoomTag);
+            GameObject sceneStartRoom = GameObject.Find(startRoomName);
             return sceneStartRoom;
         }
 
@@ -140,7 +142,7 @@ namespace Methodyca.Core
 
         void OnGameLoad()
         {
-            //TODO Move to Scene index and inform GameManager
+            GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName);
         }
     }
 }
