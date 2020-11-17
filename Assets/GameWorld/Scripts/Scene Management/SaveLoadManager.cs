@@ -15,7 +15,6 @@ namespace Methodyca.Core
         public static List<int> completedMinigamesIDs = new List<int>();
 
         private static System.Action onSaveComplete;
-        private static System.Action onLoadComplete;
 
         [DllImport("__Internal")]
         private static extern void SyncFiles();
@@ -175,7 +174,7 @@ namespace Methodyca.Core
             Debug.Log("Autosave complete.");
         }
 
-        public static System.Action LoadGameAuto()
+        public static void LoadGameAuto()
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
@@ -186,8 +185,7 @@ namespace Methodyca.Core
             if (!File.Exists(savePath))
             {
                 Debug.LogWarning($"Autosave file not found in {savePath}");
-                
-                return null;
+                return;
             }
             
             FileStream file = File.Open(savePath, FileMode.Open);
@@ -203,9 +201,7 @@ namespace Methodyca.Core
             for (int i = 0; i < state.objectInteractionName.Count; i++)
                 interactableStates.Add(state.objectInteractionName[i], state.isObjectInteracted[i]);
 
-
             Debug.Log("Autosave loading complete.");
-            return onLoadComplete;
         }
 
         public static System.Action SaveGameState(int slotNum)
@@ -240,7 +236,7 @@ namespace Methodyca.Core
             return onSaveComplete;
         }
 
-        public static System.Action LoadGameState(int slotNum)
+        public static void LoadGameState(int slotNum)
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
@@ -250,7 +246,7 @@ namespace Methodyca.Core
             if (!SaveFileExists(slotNum))
             {
                 Debug.LogWarning($"No save file found in {savePath} for slot {slotNum}");
-                return null;
+                return;
             }
 
             FileStream file = File.Open(savePath, FileMode.Open);
@@ -266,9 +262,7 @@ namespace Methodyca.Core
             for (int i = 0; i < state.objectInteractionName.Count; i++)
                 interactableStates.Add(state.objectInteractionName[i], state.isObjectInteracted[i]);
 
-
             Debug.Log($"Loading from slot {slotNum} complete.");
-            return onLoadComplete;
         }
 
         static bool SaveFileExists(int slotNum)

@@ -4,11 +4,20 @@ using Methodyca.Core;
 
 public class StartButton : MonoBehaviour
 {
-    public Sound clickSFX;
+    [SerializeField] private GameObject newgameConfirmScreen;
 
-    public void StartNewGame()
+    public void CheckFirstRun()
     {
-        SoundManager.instance.PlaySFXOneShot(clickSFX);
+        if (SaveLoadManager.GetAutosaveAvailable())
+        {
+            newgameConfirmScreen.SetActive(true);
+        }
+        else
+            StartGame();
+    }
+
+    public void StartGame()
+    {
         SceneManagerScript.instance.GoToLevel("1.Act 1", "Act 1 Start Room");
     }
 }

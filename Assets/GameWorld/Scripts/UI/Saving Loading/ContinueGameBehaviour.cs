@@ -7,7 +7,7 @@ namespace Methodyca.Core
     {
         public event System.Action onLoadGame;
 
-        private void Start()
+        private void OnEnable()
         {
             if (!SaveLoadManager.GetAutosaveAvailable())
                 gameObject.SetActive(false);
@@ -22,16 +22,7 @@ namespace Methodyca.Core
 
         public void ContinueGame()
         {
-            
-           
-            System.Action onLoadComplete = SaveLoadManager.LoadGameAuto();
-            onLoadComplete += OnGameStateLoaded;
-            onLoadComplete();
-            onLoadComplete -= OnGameStateLoaded;
-        }
-
-        void OnGameStateLoaded()
-        {
+            SaveLoadManager.LoadGameAuto();
             onLoadGame?.Invoke();   // for SceneManagerScript & others to use loaded info
         }
     }
