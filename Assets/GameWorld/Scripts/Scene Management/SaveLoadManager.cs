@@ -120,12 +120,11 @@ namespace Methodyca.Core
                 completedMinigamesIDs.Add(id);
         }
 
-        public static void SetCurrentInventoryItems(string[] items)
+        public static void SetCurrentInventoryItems(List<string> items)
         {
             // refresh the list of held items
             currentInventoryItems.Clear();
-            foreach (string item in items)
-                currentInventoryItems.Add(item);
+            currentInventoryItems = items;
         }
 
         public static void SetInteractableState(string objectName, int value)

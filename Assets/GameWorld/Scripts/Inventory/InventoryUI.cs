@@ -13,7 +13,7 @@ namespace Methodyca.Core
         private InventoryManager inventory;
         private InventorySlot[] slots;
 
-        // Start is called before the first frame update
+
         void Start()
         {
             inventory = InventoryManager.instance;

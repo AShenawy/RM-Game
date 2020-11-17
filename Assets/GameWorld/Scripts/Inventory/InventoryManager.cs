@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Methodyca.Core
 {
     // This script handles the player inventory UI
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, ISaveable, ILoadable
     {
         // Make this class a singleton
         #region Singleton
@@ -29,6 +29,13 @@ namespace Methodyca.Core
         public List<Item> items = new List<Item>();
         public GameObject dimeSwitcherItem;
 
+        private void Start()
+        {
+            // when game is loaded from save file will update the inventory
+            // Method call delayed to allow InventoryUI script to subscribe to itemChanged event and show added items on UI slots
+            Invoke("LoadState", 0.05f);
+        }
+
         public void Add(Item item)
         {
             if(items.Count >= space)
@@ -43,6 +50,7 @@ namespace Methodyca.Core
 
             // invoke event
             itemChanged?.Invoke();
+            SaveState();
         }
 
 
@@ -58,11 +66,32 @@ namespace Methodyca.Core
 
             // invoke event
             itemChanged?.Invoke();
+            SaveState();
         }
 
         public void GiveSwitcherItem()
         {
             dimeSwitcherItem.SetActive(true);
+        }
+
+        public void SaveState()
+        {
+            // generate an array the size of the items list
+            List<string> heldItemsNames = new List<string>();
+
+            for (int i = 0; i < items.Count; i++)
+                heldItemsNames.Add(items[i].name);
+
+            SaveLoadManager.SetCurrentInventoryItems(heldItemsNames);
+        }
+
+        public void LoadState()
+        {
+            List<string> heldItemsNames = SaveLoadManager.currentInventoryItems;
+            items.Clear();
+
+            foreach (string name in heldItemsNames.ToArray())
+                Add(Resources.Load<Item>($"Inventory Items/{name}"));
         }
     }
 }
