@@ -15,6 +15,7 @@ namespace Methodyca.Core
         public static List<int> completedMinigamesIDs = new List<int>();
 
         private static System.Action onSaveComplete;
+        private static System.Action onLoadComplete;
 
         [DllImport("__Internal")]
         private static extern void SyncFiles();
@@ -238,7 +239,7 @@ namespace Methodyca.Core
             return onSaveComplete;
         }
 
-        public static void LoadGameState(int slotNum)
+        public static System.Action LoadGameState(int slotNum)
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
@@ -248,7 +249,7 @@ namespace Methodyca.Core
             if (!SaveFileExists(slotNum))
             {
                 Debug.LogWarning($"No save file found in {savePath} for slot {slotNum}");
-                return;
+                return null;
             }
 
             FileStream file = File.Open(savePath, FileMode.Open);
@@ -266,6 +267,7 @@ namespace Methodyca.Core
 
 
             Debug.Log($"Loading from slot {slotNum} complete.");
+            return onLoadComplete;
         }
 
         static bool SaveFileExists(int slotNum)
