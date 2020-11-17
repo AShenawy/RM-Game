@@ -22,8 +22,17 @@ namespace Methodyca.Core
 
         public void ContinueGame()
         {
-            SaveLoadManager.LoadGameAuto();
-            onLoadGame?.Invoke();
+            
+           
+            System.Action onLoadComplete = SaveLoadManager.LoadGameAuto();
+            onLoadComplete += OnGameStateLoaded;
+            onLoadComplete();
+            onLoadComplete -= OnGameStateLoaded;
+        }
+
+        void OnGameStateLoaded()
+        {
+            onLoadGame?.Invoke();   // for SceneManagerScript & others to use loaded info
         }
     }
 }

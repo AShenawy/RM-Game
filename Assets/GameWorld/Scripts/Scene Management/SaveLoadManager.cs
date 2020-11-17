@@ -175,7 +175,7 @@ namespace Methodyca.Core
             Debug.Log("Autosave complete.");
         }
 
-        public static void LoadGameAuto()
+        public static System.Action LoadGameAuto()
         {
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
@@ -187,7 +187,7 @@ namespace Methodyca.Core
             {
                 Debug.LogWarning($"Autosave file not found in {savePath}");
                 
-                return;
+                return null;
             }
             
             FileStream file = File.Open(savePath, FileMode.Open);
@@ -205,6 +205,7 @@ namespace Methodyca.Core
 
 
             Debug.Log("Autosave loading complete.");
+            return onLoadComplete;
         }
 
         public static System.Action SaveGameState(int slotNum)

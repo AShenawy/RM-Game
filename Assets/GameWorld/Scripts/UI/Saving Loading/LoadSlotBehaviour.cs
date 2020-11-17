@@ -45,12 +45,12 @@ namespace Methodyca.Core
         public void LoadGame()
         {
             System.Action onLoadComplete = SaveLoadManager.LoadGameState(saveSlot);
-            onLoadComplete += onGameStateLoaded;
+            onLoadComplete += OnGameStateLoaded;
             onLoadComplete();
-            onLoadComplete -= onGameStateLoaded;
+            onLoadComplete -= OnGameStateLoaded;
         }
 
-        void onGameStateLoaded()
+        void OnGameStateLoaded()
         {
             onLoadGame?.Invoke();   // for SceneManagerScript & others to use loaded info
         }
