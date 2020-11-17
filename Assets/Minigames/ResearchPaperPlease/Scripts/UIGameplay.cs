@@ -16,7 +16,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnFeedbackInitiated += FeedbackInitiatedHandler;
         }
 
-        private void FeedbackInitiatedHandler(Feedback feedback)
+        private void FeedbackInitiatedHandler(Sprite character, string feedback)
         {
             if (feedback == null)
             {
@@ -25,8 +25,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             else
             {
                 speechBubble.gameObject.SetActive(true);
-                image.sprite = feedback.Character;
-                speech.text = feedback.Speech;
+                image.sprite = character;
+                speech.text = feedback;
             }
         }
 
@@ -54,16 +54,46 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
             GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
-            GameManager.OnPaperDecided += PaperDecisionHandler;
+            //GameManager.OnPaperDecided += PaperDecisionHandler;
+            GameManager.OnPaperDecided += PaperDecidedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
         }
 
+        private void PaperDecidedHandler(bool isAccepted, bool isFixable)
+        {
+            if (isAccepted)
+            {
+                acceptButton.interactable = false;
+            }
+            else
+            {
+                rejectButton.interactable = false;
+
+                if (isFixable)
+                {
+                    fixButtonCanvasGroup.alpha = 1;
+                    fixButtonCanvasGroup.interactable = true;
+                    fixButtonCanvasGroup.blocksRaycasts = true;
+                }
+                else
+                {
+                    nextButton.interactable = true;
+                    nextButton.targetGraphic.raycastTarget = true;
+                    nextButton.targetGraphic.color = Color.white;
+                }
+            }
+
+            rejectButton.targetGraphic.raycastTarget = false;
+            rejectButton.targetGraphic.color = _halfTransparent;
+
+            acceptButton.targetGraphic.raycastTarget = false;
+            acceptButton.targetGraphic.color = _halfTransparent;
+        }
+
         private void FixHandler()
         {
-            //feedbackText.text = feedback;
-
             nextButton.interactable = true;
             nextButton.targetGraphic.raycastTarget = true;
             nextButton.targetGraphic.color = Color.white;
@@ -103,31 +133,31 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                               .Append(progressCursor.DOShakeRotation(0.3f, 10 * Vector3.forward, 15 * value));
         }
 
-        private void PaperDecisionHandler(bool isAccepted, ResearchPaperData data)
-        {
-            if (isAccepted)
-            {
-                nextButton.interactable = true;
-                nextButton.targetGraphic.raycastTarget = true;
-                nextButton.targetGraphic.color = Color.white;
+        //private void PaperDecisionHandler(bool isAccepted, ResearchPaperData data)
+        //{
+        //    if (isAccepted)
+        //    {
+        //        nextButton.interactable = true;
+        //        nextButton.targetGraphic.raycastTarget = true;
+        //        nextButton.targetGraphic.color = Color.white;
 
-                acceptButton.interactable = false;
-            }
-            else
-            {
-                rejectButton.interactable = false;
+        //        acceptButton.interactable = false;
+        //    }
+        //    else
+        //    {
+        //        rejectButton.interactable = false;
 
-                fixButtonCanvasGroup.alpha = 1;
-                fixButtonCanvasGroup.interactable = true;
-                fixButtonCanvasGroup.blocksRaycasts = true;
-            }
+        //        fixButtonCanvasGroup.alpha = 1;
+        //        fixButtonCanvasGroup.interactable = true;
+        //        fixButtonCanvasGroup.blocksRaycasts = true;
+        //    }
 
-            rejectButton.targetGraphic.raycastTarget = false;
-            rejectButton.targetGraphic.color = _halfTransparent;
+        //    rejectButton.targetGraphic.raycastTarget = false;
+        //    rejectButton.targetGraphic.color = _halfTransparent;
 
-            acceptButton.targetGraphic.raycastTarget = false;
-            acceptButton.targetGraphic.color = _halfTransparent;
-        }
+        //    acceptButton.targetGraphic.raycastTarget = false;
+        //    acceptButton.targetGraphic.color = _halfTransparent;
+        //}
 
         private void PaperUpdatedHandler(ResearchPaperData data)
         {
@@ -168,7 +198,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelOver -= LevelOverHandler;
             GameManager.OnFix -= FixHandler;
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;
-            GameManager.OnPaperDecided -= PaperDecisionHandler;
+           // GameManager.OnPaperDecided -= PaperDecisionHandler;
             GameManager.OnProgressUpdated -= ProgressUpdatedHandler;
             GameManager.OnQualityUpdated -= QualityUpdatedHandler;
         }
