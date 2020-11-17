@@ -5,6 +5,36 @@ using TMPro;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
+    public class UIFeedback : MonoBehaviour
+    {
+        [SerializeField] private Transform speechBubble;
+        [SerializeField] private Image image;
+        [SerializeField] private TextMeshProUGUI speech;
+
+        private void Start()
+        {
+            GameManager.OnFeedbackInitiated += FeedbackInitiatedHandler;
+        }
+
+        private void FeedbackInitiatedHandler(Feedback feedback)
+        {
+            if (feedback == null)
+            {
+                speechBubble.gameObject.SetActive(false);
+            }
+            else
+            {
+                speechBubble.gameObject.SetActive(true);
+                image.sprite = feedback.Character;
+                speech.text = feedback.Speech;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.OnFeedbackInitiated -= FeedbackInitiatedHandler;
+        }
+    }
     public class UIGameplay : MonoBehaviour
     {
         [SerializeField] private Transform qualityCursor;
@@ -30,9 +60,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
         }
 
-        private void FixHandler(string feedback)
+        private void FixHandler()
         {
-            feedbackText.text = feedback;
+            //feedbackText.text = feedback;
 
             nextButton.interactable = true;
             nextButton.targetGraphic.raycastTarget = true;
@@ -47,9 +77,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             notebookText.text = levelData.LevelRules;
         }
 
-        private void LevelOverHandler(string feedback)
+        private void LevelOverHandler(Feedback feedback)
         {
-            feedbackText.text = feedback;
+            notebookText.text = feedback.Speech;
 
             nextButton.interactable = false;
             nextButton.interactable = true;
@@ -101,8 +131,19 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void PaperUpdatedHandler(ResearchPaperData data)
         {
-            paperText.text = $"{data.Field}\n{data.Title}\n{data.Author}\n{data.Supervisor}\n{data.ResearchGoal}\n{data.ResearchMethodology}\n{data.ResearchMethods}\n{data.ResearchQuestions}";
-            feedbackText.text = data.Feedback;
+            paperText.text = "";
+
+            foreach (var item in data.Options)
+            {
+                if (char.IsWhiteSpace(item.Index))
+                {
+                    paperText.text += $"<b>{item.Header}:</b> {item.Text}\n";
+                }
+                else
+                {
+                    paperText.text += $"<b>{item.Index}) {item.Header}:</b> {item.Text}\n";
+                }
+            }
 
             acceptButton.interactable = true;
             rejectButton.interactable = true;

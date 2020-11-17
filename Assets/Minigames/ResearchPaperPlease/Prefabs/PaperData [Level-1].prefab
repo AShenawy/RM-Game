@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  levelFeedback: Level 1 is over.
   levelRules: 'Rule #1 - Title: Title should be specific
 
     Rule #2 - Supervisor:
@@ -52,60 +51,50 @@ MonoBehaviour:
 
     Rule #3 - Goal: Every paper should
     have  clearly stated research objective. '
+  levelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: Level Ended
   effectiveOptionsToFix: 610062006300
   researches:
-  - IsCorrect: 0
-    WrongOption: 102
-    Field: field1
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 1
-    WrongOption: 99
-    Field: field1
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 0
-    WrongOption: 99
-    Field: field1
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 1
-    WrongOption: 99
-    Field: field1
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 0
-    WrongOption: 99
-    Field: field1
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
+  - ShouldBeAccepted: 0
+    WrongOption: 98
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: student
+    AuditorReaction:
+      Character: {fileID: 0}
+      Speech: auditor
+    Options:
+    - Index: 97
+      Header: Field
+      Text: Field 1
+    - Index: 98
+      Header: Title
+      Text: Title 1
+    - Index: 99
+      Header: Supervisor
+      Text: Supervisor 1
+    - Index: 32
+      Header: Question
+      Text: Question 1
+  - ShouldBeAccepted: 1
+    WrongOption: 32
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 0}
+      Speech: 
+    Options:
+    - Index: 97
+      Header: Field
+      Text: Field 1
+    - Index: 98
+      Header: Title
+      Text: Title 1
+    - Index: 99
+      Header: Supervisor
+      Text: Supervisor 1
+    - Index: 32
+      Header: Question
+      Text: Question 1

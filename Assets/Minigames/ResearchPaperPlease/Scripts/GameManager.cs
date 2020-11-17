@@ -5,19 +5,27 @@ using UnityEngine;
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
     [Serializable]
+    public class Feedback
+    {
+        public Sprite Character;
+        [TextArea(1, 3)] public string Speech;
+    }
+    [Serializable]
+    public class Option
+    {
+        public char Index;
+        public string Header;
+        [TextArea(1, 4)] public string Text;
+    }
+    [Serializable]
     public class ResearchPaperData
     {
-        public bool IsCorrect;
+        public bool ShouldBeAccepted;
         public char WrongOption;
-        public string Field;
-        public string Title;
-        public string Author;
-        public string Supervisor;
-        public string ResearchGoal;
-        public string ResearchMethodology;
-        public string ResearchMethods;
-        [TextArea(1, 4)] public string ResearchQuestions;
-        [TextArea(1, 3)] public string Feedback;
+       //public Feedback[] Reactions;
+        public Feedback StudentReaction;
+        public Feedback AuditorReaction;
+        public Option[] Options;
     }
     public class GameManager : Singleton<GameManager>
     {
@@ -26,14 +34,15 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public static event Action<bool, ResearchPaperData> OnPaperDecided = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
         public static event Action<LevelData> OnLevelInitiated = delegate { };
-        public static event Action<string> OnLevelOver = delegate { };
-        public static event Action<string> OnFix = delegate { };
+        public static event Action<Feedback> OnLevelOver = delegate { };
+        public static event Action<Feedback> OnFeedbackInitiated = delegate { };
+        public static event Action OnFix = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
         public static event Action<int> OnQualityUpdated = delegate { };
-
         public int TotalPaperCount { get; private set; }
 
         private ResearchPaperData _currentResearchPaperData;
+        private Queue<Feedback> reactions = new Queue<Feedback>();
         private Queue<ResearchPaperData> _allResearchPaper = new Queue<ResearchPaperData>();
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
 
@@ -59,7 +68,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void HandleNextPaper()
         {
-            if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
+            if (reactions.Count > 0)
+            {
+                OnFeedbackInitiated?.Invoke(reactions.Dequeue());
+            }
+            else if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
             {
                 _currentResearchPaperData = _allResearchPaper.Dequeue();
                 OnPaperUpdated?.Invoke(_currentResearchPaperData);
@@ -80,7 +93,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void HandleAcceptedPaper()
         {
-            if (_currentResearchPaperData.IsCorrect)
+            if (_currentResearchPaperData.ShouldBeAccepted)
             {
                 OnQualityUpdated?.Invoke(++_qualityValue);
             }
@@ -101,22 +114,29 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void HandleFixingOption(char optionIndex)
         {
-            if (_currentResearchPaperData.IsCorrect)
+            reactions = new Queue<Feedback>();
+
+            if (_currentResearchPaperData.ShouldBeAccepted)
             {
+                reactions.Enqueue(_currentResearchPaperData.StudentReaction);
                 //Students yell
-                OnFix?.Invoke("Student yell");
+                OnFix?.Invoke();
             }
             else
             {
                 if (_currentResearchPaperData.WrongOption == optionIndex)
                 {
-                    //Correct Answer
-                    OnFix?.Invoke("Do nothing");
+                    //Correct Choice - Students yell
+                    foreach (var item in _currentResearchPaperData.Options)
+                    {
+                        if (optionIndex == item.Index)
+                            OnFix?.Invoke();
+                    }
                 }
                 else
                 {
-                    //Wrong Answer - Auditor speaks
-                    OnFix?.Invoke("Auditor speaks");
+                    //Wrong Choice - Auditor speaks
+                    OnFix?.Invoke();
                 }
             }
         }
@@ -140,7 +160,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             return count;
         }
 
-        private string GetCurrentLevelFeedback()
+        private Feedback GetCurrentLevelFeedback()
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -150,7 +170,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
             }
 
-            return "";
+            return null;
         }
 
         private LevelData GetCurrentLevelData()

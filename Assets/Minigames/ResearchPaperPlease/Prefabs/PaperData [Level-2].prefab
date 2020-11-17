@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
-  levelFeedback: Level 2 is over.
   levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
     Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
     clearly stated research objective.\r\nRule #4 - Research Questions: Avoid closed
@@ -52,60 +51,29 @@ MonoBehaviour:
     Methodology: Methodology should be inline with the research goal.\r\nRule #6
     - Methods: Data collection or design methods should be inline with the research
     design (methodology)\r"
+  levelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: 
   effectiveOptionsToFix: 61006200630064006500
   researches:
-  - IsCorrect: 0
-    WrongOption: 102
-    Field: field2
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 1
-    WrongOption: 99
-    Field: field2
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 0
-    WrongOption: 99
-    Field: field2
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 1
-    WrongOption: 99
-    Field: field2
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
-  - IsCorrect: 0
-    WrongOption: 99
-    Field: field2
-    Title: title
-    Author: author
-    Supervisor: supervisor
-    ResearchGoal: goal
-    ResearchMethodology: methodology
-    ResearchMethods: methods
-    ResearchQuestions: questions
-    Feedback: feedback
+  - ShouldBeAccepted: 0
+    WrongOption: 100
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 0}
+      Speech: 
+    Options:
+    - Index: 97
+      Header: Title
+      Text: asdasdasd
+    - Index: 98
+      Header: Supervisor
+      Text: 
+    - Index: 99
+      Header: 
+      Text: 
+    - Index: 100
+      Header: 
+      Text: 
