@@ -1,29 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
-    [RequireComponent(typeof(Button))]
-    public class UIFixButton : MonoBehaviour
+    public class UIFixButton : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private char optionIndex;
-        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private Sprite normalSprite;
+        [SerializeField] private Sprite pressedSprite;
 
-        private Button _button;
+        private Image _image;
+        private bool _isPressed;
 
         private void Awake()
         {
-            _button = GetComponent<Button>();
+            _image = GetComponent<Image>();
         }
 
         private void Start()
         {
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
-            _button.onClick.AddListener(ClickHandler);
+            GameManager.OnPaperUpdated += PaperUpdatedHandler;
         }
 
         private void LevelInitiatedHandler(LevelData data)
         {
+            if (_isPressed)
+            {
+                OnPointerClick(default);
+            }
+
             gameObject.SetActive(false);
 
             foreach (var item in data.ActiveOptionsToFix)
@@ -35,15 +42,34 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
         }
 
-        private void ClickHandler()
+        private void PaperUpdatedHandler(ResearchPaperData data)
         {
-            GameManager.Instance.HandleFixingOption(optionIndex);
+            if (_isPressed)
+            {
+                OnPointerClick(default);
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _isPressed = !_isPressed;
+
+            if (_isPressed)
+            {
+                _image.sprite = pressedSprite;
+            }
+            else
+            {
+                _image.sprite = normalSprite;
+            }
+
+            GameManager.Instance.HandleFixingOption(optionIndex, _isPressed);
         }
 
         private void OnDestroy()
         {
             GameManager.OnLevelInitiated -= LevelInitiatedHandler;
-            _button.onClick.RemoveAllListeners();
+            GameManager.OnPaperUpdated -= PaperUpdatedHandler;
         }
     }
 }

@@ -23,8 +23,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     public class ResearchPaperData
     {
         public PaperQuality Quality;
-        public char WrongOption;
         public Feedback StudentReaction;
+        public Feedback AuditorReaction;
+        public char[] FixRequiredOptions;
         public Option[] Options;
     }
     public class GameManager : Singleton<GameManager>
@@ -32,20 +33,23 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private LevelData[] data;
 
         public static event Action<LevelData> OnLevelInitiated = delegate { };
-        public static event Action<Feedback> OnLevelOver = delegate { };
-        public static event Action<bool, bool> OnPaperDecided = delegate { };
+        public static event Action<string> OnLevelOver = delegate { };
+        public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
-        public static event Action<Sprite, string> OnFeedbackInitiated = delegate { };
-        public static event Action OnFix = delegate { };
+        public static event Action<Feedback> OnFeedbackInitiated = delegate { };
+        public static event Action<bool> OnFix = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
         public static event Action<int> OnQualityUpdated = delegate { };
 
         public int TotalPaperCount { get; private set; }
 
+        private LevelData _currentLevelData;
         private ResearchPaperData _currentResearchPaperData;
-        private Queue<Feedback> reactions = new Queue<Feedback>();
         private Queue<ResearchPaperData> _allResearchPaper = new Queue<ResearchPaperData>();
+        private Dictionary<char, bool> _fixButtonPairs;
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
+        private List<ResearchPaperData> _acceptedPaperData = new List<ResearchPaperData>();
+        private List<ResearchPaperData> _rejectedPaperData = new List<ResearchPaperData>();
 
         private bool _isFeedbackDisplayed;
         private int _qualityValue = 0;
@@ -62,13 +66,16 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
             else //Display next paper
             {
-                OnLevelInitiated?.Invoke(GetCurrentLevelData());
+                _currentLevelData = GetCurrentLevelData();
+                InitiateFixButtons();
+                OnLevelInitiated?.Invoke(_currentLevelData);
                 HandleNextPaper();
             }
         }
 
         public void HandleNextPaper()
         {
+            OnFeedbackInitiated?.Invoke(null);
             if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
             {
                 _currentResearchPaperData = _allResearchPaper.Dequeue();
@@ -82,15 +89,25 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             else //Level is over (Display level-end feedback)
             {
                 _isFeedbackDisplayed = true;
-                OnLevelOver?.Invoke(GetCurrentLevelFeedback());
+                OnLevelOver?.Invoke($"<b>Level {_currentLevelIndex}</b> is completed.");
+
+                if (_currentLevelData.AcceptedPaperTreshold > _acceptedPaperData.Count)
+                {
+                    OnFeedbackInitiated?.Invoke(_currentLevelData.PositiveLevelFeedback);
+                }
+                else
+                {
+                    OnFeedbackInitiated?.Invoke(_currentLevelData.NegativeLevelFeedback);
+                }
             }
         }
-
 
         public void HandleDecision(bool isAccepted)
         {
             if (isAccepted)
             {
+                _acceptedPaperData.Add(_currentResearchPaperData);
+
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
                     OnProgressUpdated?.Invoke(++_progressValue);
@@ -100,57 +117,58 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
-                    OnFeedbackInitiated?.Invoke(GetAuditor(), "could have been better");
+                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                 }
                 else
                 {
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(--_qualityValue);
-                    OnFeedbackInitiated?.Invoke(GetAuditor(), "there is a mistake ...");
+                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                 }
 
-                OnPaperDecided(true, false);
+                OnPaperDecided(true);
             }
             else
             {
+                _rejectedPaperData.Add(_currentResearchPaperData);
+
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
                     OnQualityUpdated?.Invoke(--_qualityValue);
-                    OnPaperDecided(false, false);
-                    OnFeedbackInitiated?.Invoke(GetAuditor(),"You just rejected a perfectly fine research proposal. Try to be more careful next time.");
+                    OnPaperDecided(false);
+                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium | _currentResearchPaperData.Quality == PaperQuality.Low)
                 {
-                    OnPaperDecided(false, true);
+                    foreach (var option in _currentResearchPaperData.FixRequiredOptions)
+                    {
+                        if (_fixButtonPairs[option])
+                        {
+                            //Student NPC will provide feedback
+                            OnQualityUpdated?.Invoke(++_qualityValue);
+                            OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
+                            OnPaperDecided(false);
+                            return;
+                        }
+                    }
+
+                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnPaperDecided(false);
                 }
             }
         }
 
-        public void HandleFixingOption(char optionIndex)
+        public void HandleFixingOption(char optionIndex, bool isPressed)
         {
-            if (_currentResearchPaperData.WrongOption == optionIndex)
+            _fixButtonPairs[optionIndex] = isPressed;
+
+            if (_fixButtonPairs.ContainsValue(true))
             {
-                if (_currentResearchPaperData.Quality == PaperQuality.Medium)
-                {
-                    OnQualityUpdated?.Invoke(++_qualityValue);
-                    OnFeedbackInitiated?.Invoke(GetAuditor(),"auditor");
-                }
-                else
-                {
-                    OnQualityUpdated?.Invoke(++_qualityValue);
-                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction.Character, _currentResearchPaperData.StudentReaction.Speech);
-                }
+                OnFix?.Invoke(true);
             }
             else
             {
-                if (_currentResearchPaperData.Quality == PaperQuality.Medium)
-                {
-                    OnFeedbackInitiated?.Invoke(GetAuditor(),"auditor");
-                }
-                else
-                {
-                    OnFeedbackInitiated?.Invoke(GetAuditor(),"auditor");
-                }
+                OnFix?.Invoke(false);
             }
         }
 
@@ -173,30 +191,14 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             return count;
         }
 
-        private Sprite GetAuditor()
+        private void InitiateFixButtons()
         {
-            for (int i = 0; i < data.Length; i++)
+            _fixButtonPairs = new Dictionary<char, bool>();
+
+            foreach (var item in _currentLevelData.ActiveOptionsToFix)
             {
-                if (_currentLevelIndex == data[i].Level)
-                {
-                    return data[i].AuditorCharacter;
-                }
+                _fixButtonPairs.Add(item, false);
             }
-
-            return null;
-        }
-
-        private Feedback GetCurrentLevelFeedback()
-        {
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (_currentLevelIndex == data[i].Level)
-                {
-                    return data[i].LevelFeedback;
-                }
-            }
-
-            return null;
         }
 
         private LevelData GetCurrentLevelData()

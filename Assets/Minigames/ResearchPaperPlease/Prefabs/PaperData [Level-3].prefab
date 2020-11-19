@@ -1,0 +1,460 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6489066190073261419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6489066190073261413}
+  - component: {fileID: 6489066190073261418}
+  m_Layer: 0
+  m_Name: PaperData [Level-3]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6489066190073261413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489066190073261419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6489066190073261418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489066190073261419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a90e00ec0e726247b3ba20fe4e50720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  acceptedPaperTreshold: 24
+  levelInitiatedMessage: Evaluate the quality of the research plans based on the
+    Title, Supervisor, Research goals, Research questions, methodology (AKA research
+    design or strategy) and methods for data collection or design.
+  levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
+    Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
+    clearly stated research objective.\r\nRule #4 - Research Questions: Avoid closed
+    questions. Questions should be different but related to the goal\r\nRule #5 -
+    Methodology: Methodology should be inline with the research goal.\r\nRule #6
+    - Methods: Data collection or design methods should be inline with the research
+    design (methodology)\r"
+  positiveLevelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: Very good! Having a registered final thesis title is the first step for
+      graduating on time.
+  negativeLevelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: Excuse me!? I demand you to pass more proposals! Our school will be evaluated
+      by the number of students who have registered topics for the final thesis.
+      If you are letting us down we will not have money to pay for your job.
+  effectiveOptionsToFix: 610062006300640065006600
+  researches:
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: "\xD5nne Tulits"
+    - Index: 97
+      Header: Title
+      Text: Differences in Game Interactions Between Generations
+    - Index: 98
+      Header: Supervisor
+      Text: Aivar Pendel
+    - Index: 99
+      Header: Research goals
+      Text: The goal of the current study is to determine what is causing the differences
+        (if there are any) in interaction patterns between generations.
+    - Index: 100
+      Header: Research questions
+      Text: '1) What are the hardware preferences among generations?
+
+        2)
+        What are the genre preferences?'
+    - Index: 101
+      Header: Methodology
+      Text: Survey
+    - Index: 102
+      Header: Research Methods
+      Text: Questionnaire
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Pjede Staal
+    - Index: 97
+      Header: Title
+      Text: The Usability of the Digital Learning Game "Inglorious Family" in Real
+        Life
+    - Index: 98
+      Header: Supervisor
+      Text: Grit Airon
+    - Index: 99
+      Header: Research goals
+      Text: Study how our social habits, related to digital devices, have changed?
+    - Index: 100
+      Header: Research questions
+      Text: '1) How digital games engage youngsters?
+
+        2) What behavioral
+        patterns players learn via the game?
+
+        3) Which social skills does
+        the game train?'
+    - Index: 101
+      Header: Methodology
+      Text: Case study
+    - Index: 102
+      Header: Research Methods
+      Text: Think Aloud, Testing, Emocard Method, Interview
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Rutt Tiine
+    - Index: 97
+      Header: Title
+      Text: The Effects of Music on Gameplay in Video Games
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+    - Index: 99
+      Header: Research goals
+      Text: "Determine the correlation between the intensity of game music and players\u2019
+        level of focus"
+    - Index: 100
+      Header: Research questions
+      Text: "1) How big is the correlation between music intensity and perceived
+        difficulty?\n2) How big is the correlation between music intensity and players\u2019
+        level of focus?"
+    - Index: 101
+      Header: Methodology
+      Text: Experiment
+    - Index: 102
+      Header: Research Methods
+      Text: Test
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 0c99c818ee576904b8f762d64a1060b5, type: 3}
+      Speech: 'Seriously, took my whole semester and you didn''t even flip the pages.
+        Disrespecful! '
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: The survey and interview seems not to be in line with the title - conceptual
+        design.
+    FixRequiredOptions: 65006600
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Aig Abimbola
+    - Index: 97
+      Header: Title
+      Text: Conceptual Design of a Digital Reading Diary
+    - Index: 98
+      Header: Supervisor
+      Text: Timur Jesentuki
+    - Index: 99
+      Header: Research goals
+      Text: Develop a gamified app that supports a student's reading motivation.
+    - Index: 100
+      Header: Research questions
+      Text: '1) What are the similar applications on the market?
+
+        2) What
+        should be covered with the design document?
+
+        3) What are the suitable
+        design methods and how to evaluate their suitability?'
+    - Index: 101
+      Header: Methodology
+      Text: Survey
+    - Index: 102
+      Header: Research Methods
+      Text: Interview
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Uuve Kaitse
+    - Index: 97
+      Header: Title
+      Text: Rapid Prototyping as a Learning Methodology in Game Design Courses
+    - Index: 98
+      Header: Supervisor
+      Text: Adam Ernes
+    - Index: 99
+      Header: Research goals
+      Text: To evaluate the suitability of rapid game prototyping as a central activity
+        in a game design and development course.
+    - Index: 100
+      Header: Research questions
+      Text: '1) How can rapid prototyping be integrated into a game design course?
+
+        2)
+        How engaging are assignments based on rapid prototyping for game design students?
+
+        3)
+        How does the systematic use of rapid prototyping in a game design course
+        affect students'' practical game creation skills?'
+    - Index: 101
+      Header: Methodology
+      Text: Case study
+    - Index: 102
+      Header: Research Methods
+      Text: Focus group interview, Questionnaire
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: The scope of the thesis is overly ambitious (MANY games have been created
+        over 30 years that have queer characters), unclear (are you looking at North
+        American games? Japanese games? role-playing games? action games? etc.),
+        and arbitrary (why this particular time frame?).
+    FixRequiredOptions: 610063006400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Uuve Kiir
+    - Index: 97
+      Header: Title
+      Text: How Has LGBTQ+ Representation in Games Evolved over Time?
+    - Index: 98
+      Header: Supervisor
+      Text: Sean Adrian
+    - Index: 99
+      Header: Research goals
+      Text: Trace the evolution of LGBTQ+ characters' portrayal in video games from
+        the 1990s to the present day.
+    - Index: 100
+      Header: Research questions
+      Text: 1) How has LGBTQ+ characters' representation in video games changed over
+        the past three decades?
+    - Index: 101
+      Header: Methodology
+      Text: Survey
+    - Index: 102
+      Header: Research Methods
+      Text: Document study
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Vallu Velg
+    - Index: 97
+      Header: Title
+      Text: The Effects of Game Immersion on Perceiving Distractions
+    - Index: 98
+      Header: Supervisor
+      Text: Hamar Juhani
+    - Index: 99
+      Header: Research goals
+      Text: The study aims to analyse the impact of being immersed in videogame play
+        on the player's ability to perceive distractions around them and their response
+        to such distractions.
+    - Index: 100
+      Header: Research questions
+      Text: '1) How can immersion in videogame play be measured?
+
+        2) How
+        does being immersed in playing a videogame affect the player''s response
+        to distractions?'
+    - Index: 101
+      Header: Methodology
+      Text: Case study
+    - Index: 102
+      Header: Research Methods
+      Text: Observation, Questionnaire
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: cc747388a926c2347907fd12163663aa, type: 3}
+      Speech: You must be joking. Who reeds those papers anyway. This is not decent
+        research after all.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Title of the thesis (gamification) refers to design-based research.
+        How is this related to the experiment? If the research goal focuses on motivation
+        study, why knowledge should be tested?
+    FixRequiredOptions: 65006600
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Oskar Silver Emiirelgi
+    - Index: 97
+      Header: Title
+      Text: Gamification of the e-Learning Course for Teacher Training
+    - Index: 98
+      Header: Supervisor
+      Text: Mart Part
+    - Index: 99
+      Header: Research goals
+      Text: Gamify the instructional design and the evaluation of the course to support
+        study motivation.
+    - Index: 100
+      Header: Research questions
+      Text: '1) What are the current instructional approaches in teacher training?
+
+        2)
+        How gamification can be integrated with the current practices? 3) How stakeholders
+        perceive gamified approach?'
+    - Index: 101
+      Header: Methodology
+      Text: Experiment
+    - Index: 102
+      Header: Research Methods
+      Text: Knowledge test
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: a082286f005012442ae504ed4acffa17, type: 3}
+      Speech: Of course it's bad, I have no idea what I'm doing and I got zero help
+        from my supervisor! I should find a new one.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: The research goal is too general. The research question is the same
+        as the goal.
+    FixRequiredOptions: 63006400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Fedot Mihhailov
+    - Index: 97
+      Header: Title
+      Text: Conceptual Design of Gamified Music Portal
+    - Index: 98
+      Header: Supervisor
+      Text: "Sander V\xF5llam\xE4e"
+    - Index: 99
+      Header: Research goals
+      Text: The idea of the research is to develop a portal where users can trade
+        music.
+    - Index: 100
+      Header: Research questions
+      Text: 1) Develop a new music portal
+    - Index: 101
+      Header: Methodology
+      Text: Design based research
+    - Index: 102
+      Header: Research Methods
+      Text: Interview, Participatory design, Prototyping
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 7b5c00e0210c23a4597ff09f9a491dd9, type: 3}
+      Speech: Oh, no... I worked so hard on my research plan... How could you reject
+        it?
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: "The title is too general. Goal statement doesn\xE4t require new development
+        but benchmarking of existing game engines."
+    FixRequiredOptions: 610065006600
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Helen Kross
+    - Index: 97
+      Header: Title
+      Text: Game Engine Source
+    - Index: 98
+      Header: Supervisor
+      Text: Jacob Skipper
+    - Index: 99
+      Header: Research goals
+      Text: Analyse how the Source game engine has influenced other game engines.
+    - Index: 100
+      Header: Research questions
+      Text: '1) Why is the Source game engine popular today?
+
+        2) What are
+        the new features of this engine? How it has influenced other engines?'
+    - Index: 101
+      Header: Methodology
+      Text: Design based research
+    - Index: 102
+      Header: Research Methods
+      Text: Waterfall, Prototyping

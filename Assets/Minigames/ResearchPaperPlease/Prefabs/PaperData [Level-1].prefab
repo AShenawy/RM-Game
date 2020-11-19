@@ -44,57 +44,243 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  acceptedPaperTreshold: 8
+  levelInitiatedMessage: Evaluate the quality of the research plans based on the
+    <b>Title</b> and <b>Supervisor</b> information.
   levelRules: 'Rule #1 - Title: Title should be specific
 
     Rule #2 - Supervisor:
-    Every paper should have a supervisor
-
-    Rule #3 - Goal: Every paper should
-    have  clearly stated research objective. '
-  levelFeedback:
+    Every paper should have a supervisor'
+  positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
-    Speech: Level Ended
-  effectiveOptionsToFix: 610062006300
+    Speech: Great job! It is heartwarming to see how good progress our students have
+      made.
+  negativeLevelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: What is going on? Why did so many papers get rejected? We need to find
+      possibilities to increase this number. Otherwise, we will not have enough students
+      who graduate within nominal time.
+  effectiveOptionsToFix: 61006200
   researches:
-  - ShouldBeAccepted: 0
-    WrongOption: 98
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 98bc1e4a5cf362c4c85f41229c9da396, type: 3}
+      Speech: This is the diploma autocracy what you are doing. You should give an
+        equal chance to everybody.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: The topic is too broad.
+    FixRequiredOptions: 6100
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ralf Sotse-Garneer
+    - Index: 97
+      Header: Title
+      Text: Serious Games
+    - Index: 98
+      Header: Supervisor
+      Text: Martinques Siliatos
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 4b8e336a1ba433a4da9db60aea307a50, type: 3}
+      Speech: Are you crazy there was absolutly nothing wrong with the paper.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: X, Y and Z in the title should be replaced with specific words.
+    FixRequiredOptions: 6100
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Piotr Kaalikas
+    - Index: 97
+      Header: Title
+      Text: Creating X Learning Games for Teaching topic of Y in Z
+    - Index: 98
+      Header: Supervisor
+      Text: Martinques Siliatos
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 6d8e9cadf8b196e4cb40dc14d7d4e3f0, type: 3}
+      Speech: Why did you reject my proposal? Only because the supervisor was missing?
+        I can supervise myself.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Supervisor name is missing.
+    FixRequiredOptions: 6200
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Irina Selline
+    - Index: 97
+      Header: Title
+      Text: 'Virtual Game Museum: Gamified E-learning Environment for Learning Digital
+        Games History'
+    - Index: 98
+      Header: Supervisor
+      Text: 
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 194ca6d299871bf409ec67eff8da94ef, type: 3}
+      Speech: Accept my paper immediately, or I report this to the student council,
+        and they will make your life miserable.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Supervisor name is missing.
+    FixRequiredOptions: 6200
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ahti Mihkel Ehisenagi
+    - Index: 97
+      Header: Title
+      Text: Conceptual Design and Development of a Serious Game for Learning Topographical
+        Maps
+    - Index: 98
+      Header: Supervisor
+      Text: 
+  - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
-      Speech: student
+      Speech: Accept my paper immediately, or I report this to the student council,
+        and they will make your life miserable.
     AuditorReaction:
-      Character: {fileID: 0}
-      Speech: auditor
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: 'The title could be more specific: are you analyzing existing examples
+        of embedded assessment or developing a new one?'
+    FixRequiredOptions: 6100
     Options:
-    - Index: 97
-      Header: Field
-      Text: Field 1
-    - Index: 98
-      Header: Title
-      Text: Title 1
-    - Index: 99
-      Header: Supervisor
-      Text: Supervisor 1
     - Index: 32
-      Header: Question
-      Text: Question 1
-  - ShouldBeAccepted: 1
-    WrongOption: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Anna Hagu
+    - Index: 97
+      Header: Title
+      Text: Embedded Assessment in Learning Games
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+  - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
       Speech: 
     AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Anna Kepp
+    - Index: 97
+      Header: Title
+      Text: Designing a Learning Game for Children with Speech and Communication
+        Difficulties
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+  - Quality: 2
+    StudentReaction:
       Character: {fileID: 0}
       Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
     Options:
-    - Index: 97
-      Header: Field
-      Text: Field 1
-    - Index: 98
-      Header: Title
-      Text: Title 1
-    - Index: 99
-      Header: Supervisor
-      Text: Supervisor 1
     - Index: 32
-      Header: Question
-      Text: Question 1
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Anti Septik
+    - Index: 97
+      Header: Title
+      Text: Process of Participatory Game Design as a Catalyst for Reflection on
+        Experience of Immigration
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Are games based on exercise "learning games"?
+    FixRequiredOptions: 6100
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Anti Stress
+    - Index: 97
+      Header: Title
+      Text: 'Information Retention in Learning Games: The Example of Exergames'
+    - Index: 98
+      Header: Supervisor
+      Text: Martinques Siliatos
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: The title is not specific enough.
+    FixRequiredOptions: 6100
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ave Rage
+    - Index: 97
+      Header: Title
+      Text: Game About Game Elements
+    - Index: 98
+      Header: Supervisor
+      Text: Martinques Siliatos
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ergo Meeter
+    - Index: 97
+      Header: Title
+      Text: Using Digital Games to Support Real-World Communication
+    - Index: 98
+      Header: Supervisor
+      Text: Martinques Siliatos

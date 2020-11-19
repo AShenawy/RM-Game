@@ -5,48 +5,19 @@ using TMPro;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
-    public class UIFeedback : MonoBehaviour
-    {
-        [SerializeField] private Transform speechBubble;
-        [SerializeField] private Image image;
-        [SerializeField] private TextMeshProUGUI speech;
-
-        private void Start()
-        {
-            GameManager.OnFeedbackInitiated += FeedbackInitiatedHandler;
-        }
-
-        private void FeedbackInitiatedHandler(Sprite character, string feedback)
-        {
-            if (feedback == null)
-            {
-                speechBubble.gameObject.SetActive(false);
-            }
-            else
-            {
-                speechBubble.gameObject.SetActive(true);
-                image.sprite = character;
-                speech.text = feedback;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            GameManager.OnFeedbackInitiated -= FeedbackInitiatedHandler;
-        }
-    }
     public class UIGameplay : MonoBehaviour
     {
         [SerializeField] private Transform qualityCursor;
         [SerializeField] private Transform progressCursor;
         [SerializeField] private TextMeshProUGUI paperText;
-        [SerializeField] private TextMeshProUGUI feedbackText;
+        [SerializeField] private TextMeshProUGUI smallScreenText;
         [SerializeField] private TextMeshProUGUI notebookText;
         [SerializeField] private Button acceptButton;
         [SerializeField] private Button rejectButton;
         [SerializeField] private Button nextButton;
         [SerializeField] private CanvasGroup fixButtonCanvasGroup;
 
+        private ResearchPaperData _currentPaperData;
         private readonly Color _halfTransparent = new Color(1, 1, 1, 0.5f);
 
         private void OnEnable()
@@ -54,62 +25,108 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
             GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
-            //GameManager.OnPaperDecided += PaperDecisionHandler;
             GameManager.OnPaperDecided += PaperDecidedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
         }
 
-        private void PaperDecidedHandler(bool isAccepted, bool isFixable)
+        private void LevelInitiatedHandler(LevelData levelData)
+        {
+            smallScreenText.text =$"<b>Level {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+
+            rejectButton.interactable = false;
+            rejectButton.targetGraphic.raycastTarget = false;
+            rejectButton.targetGraphic.color = _halfTransparent;
+        }
+
+        private void PaperDecidedHandler(bool isAccepted)
         {
             if (isAccepted)
             {
                 acceptButton.interactable = false;
+                acceptButton.targetGraphic.raycastTarget = false;
+                acceptButton.targetGraphic.color = _halfTransparent;
             }
             else
             {
                 rejectButton.interactable = false;
-
-                if (isFixable)
-                {
-                    fixButtonCanvasGroup.alpha = 1;
-                    fixButtonCanvasGroup.interactable = true;
-                    fixButtonCanvasGroup.blocksRaycasts = true;
-                }
-                else
-                {
-                    nextButton.interactable = true;
-                    nextButton.targetGraphic.raycastTarget = true;
-                    nextButton.targetGraphic.color = Color.white;
-                }
+                rejectButton.targetGraphic.raycastTarget = false;
+                rejectButton.targetGraphic.color = _halfTransparent;
             }
 
-            rejectButton.targetGraphic.raycastTarget = false;
-            rejectButton.targetGraphic.color = _halfTransparent;
+            fixButtonCanvasGroup.alpha = 0.5f;
+            fixButtonCanvasGroup.blocksRaycasts = false;
 
-            acceptButton.targetGraphic.raycastTarget = false;
-            acceptButton.targetGraphic.color = _halfTransparent;
-        }
-
-        private void FixHandler()
-        {
             nextButton.interactable = true;
             nextButton.targetGraphic.raycastTarget = true;
             nextButton.targetGraphic.color = Color.white;
-
-            fixButtonCanvasGroup.blocksRaycasts = false;
-            fixButtonCanvasGroup.alpha = 0.5f;
         }
 
-        private void LevelInitiatedHandler(LevelData levelData)
+        private void FixHandler(bool isAnyActivated)
         {
-            notebookText.text = levelData.LevelRules;
+            if (isAnyActivated)
+            {
+                acceptButton.targetGraphic.raycastTarget = false;
+                acceptButton.targetGraphic.color = _halfTransparent;
+
+                rejectButton.targetGraphic.raycastTarget = true;
+                rejectButton.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                acceptButton.targetGraphic.raycastTarget = true;
+                acceptButton.targetGraphic.color = Color.white;
+
+                rejectButton.targetGraphic.raycastTarget = false;
+                rejectButton.targetGraphic.color = _halfTransparent;
+            }
+
+            //foreach (var option in _currentPaperData.Options)
+            //{
+            //    if (!char.IsWhiteSpace(option.Index))
+            //    {
+            //        paperText.text += $"<mark=#ffff00aa><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
+            //    }
+            //}
         }
 
-        private void LevelOverHandler(Feedback feedback)
+        private void PaperUpdatedHandler(ResearchPaperData data)
         {
-            notebookText.text = feedback.Speech;
+            _currentPaperData = data;
+
+            paperText.text = "";
+
+            foreach (var item in data.Options)
+            {
+                if (char.IsWhiteSpace(item.Index))
+                {
+                    paperText.text += $"<b>{item.Header}:</b> {item.Text}\n";
+                }
+                else
+                {
+                    paperText.text += $"<b>{item.Index}) {item.Header}:</b> {item.Text}\n";
+                }
+            }
+
+            rejectButton.interactable = true;
+            rejectButton.targetGraphic.raycastTarget = false;
+            rejectButton.targetGraphic.color = _halfTransparent;
+
+            acceptButton.interactable = true;
+            acceptButton.targetGraphic.color = Color.white;
+            acceptButton.targetGraphic.raycastTarget = true;
+
+            nextButton.targetGraphic.raycastTarget = false;
+            nextButton.targetGraphic.color = _halfTransparent;
+
+            fixButtonCanvasGroup.alpha = 1;
+            fixButtonCanvasGroup.blocksRaycasts = true;
+        }
+
+        private void LevelOverHandler(string message)
+        {
+            smallScreenText.text =  message;
 
             nextButton.interactable = false;
             nextButton.interactable = true;
@@ -133,72 +150,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                               .Append(progressCursor.DOShakeRotation(0.3f, 10 * Vector3.forward, 15 * value));
         }
 
-        //private void PaperDecisionHandler(bool isAccepted, ResearchPaperData data)
-        //{
-        //    if (isAccepted)
-        //    {
-        //        nextButton.interactable = true;
-        //        nextButton.targetGraphic.raycastTarget = true;
-        //        nextButton.targetGraphic.color = Color.white;
-
-        //        acceptButton.interactable = false;
-        //    }
-        //    else
-        //    {
-        //        rejectButton.interactable = false;
-
-        //        fixButtonCanvasGroup.alpha = 1;
-        //        fixButtonCanvasGroup.interactable = true;
-        //        fixButtonCanvasGroup.blocksRaycasts = true;
-        //    }
-
-        //    rejectButton.targetGraphic.raycastTarget = false;
-        //    rejectButton.targetGraphic.color = _halfTransparent;
-
-        //    acceptButton.targetGraphic.raycastTarget = false;
-        //    acceptButton.targetGraphic.color = _halfTransparent;
-        //}
-
-        private void PaperUpdatedHandler(ResearchPaperData data)
-        {
-            paperText.text = "";
-
-            foreach (var item in data.Options)
-            {
-                if (char.IsWhiteSpace(item.Index))
-                {
-                    paperText.text += $"<b>{item.Header}:</b> {item.Text}\n";
-                }
-                else
-                {
-                    paperText.text += $"<b>{item.Index}) {item.Header}:</b> {item.Text}\n";
-                }
-            }
-
-            acceptButton.interactable = true;
-            rejectButton.interactable = true;
-
-            rejectButton.targetGraphic.raycastTarget = true;
-            acceptButton.targetGraphic.raycastTarget = true;
-
-            rejectButton.targetGraphic.color = Color.white;
-            acceptButton.targetGraphic.color = Color.white;
-
-            nextButton.interactable = false;
-            nextButton.targetGraphic.raycastTarget = false;
-            nextButton.targetGraphic.color = _halfTransparent;
-
-            fixButtonCanvasGroup.blocksRaycasts = false;
-            fixButtonCanvasGroup.alpha = 0.5f;
-        }
-
         private void OnDisable()
         {
             GameManager.OnLevelInitiated -= LevelInitiatedHandler;
             GameManager.OnLevelOver -= LevelOverHandler;
             GameManager.OnFix -= FixHandler;
+            GameManager.OnPaperDecided -= PaperDecidedHandler;
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;
-           // GameManager.OnPaperDecided -= PaperDecisionHandler;
             GameManager.OnProgressUpdated -= ProgressUpdatedHandler;
             GameManager.OnQualityUpdated -= QualityUpdatedHandler;
         }

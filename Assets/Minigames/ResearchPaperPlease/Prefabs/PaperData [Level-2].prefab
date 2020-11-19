@@ -44,36 +44,358 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  acceptedPaperTreshold: 16
+  levelInitiatedMessage: Evaluate the quality of the research plans based on the
+    <b>Title, Supervisor, Research goals</b> and <b>Questions</b>.
   levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
     Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
-    clearly stated research objective.\r\nRule #4 - Research Questions: Avoid closed
-    questions. Questions should be different but related to the goal\r\nRule #5 -
-    Methodology: Methodology should be inline with the research goal.\r\nRule #6
-    - Methods: Data collection or design methods should be inline with the research
-    design (methodology)\r"
-  levelFeedback:
+    clearly stated research objective\r\nRule #4 - Research Questions: Avoid closed
+    questions. Questions should be different but related to the goal\r"
+  positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
-    Speech: 
-  effectiveOptionsToFix: 61006200630064006500
+    Speech: Well done! It is really important to keep our progress indicator high.
+  negativeLevelFeedback:
+    Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Speech: What are you doing? Do you really believe that those research proposals
+      you rejected are not good enough? I think you are too critical.
+  effectiveOptionsToFix: 6100620063006400
   researches:
-  - ShouldBeAccepted: 0
-    WrongOption: 100
+  - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
       Speech: 
     AuditorReaction:
-      Character: {fileID: 0}
-      Speech: 
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Are you designing and evaluating SEVERAL games and applications for
+        one thesis? The connection between the technologies and the games' purpose
+        are not clear either.
+    FixRequiredOptions: 6100
     Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ergo Noom
     - Index: 97
       Header: Title
-      Text: asdasdasd
+      Text: Designing and Evaluating Games and Applications that Make Use of Technologies
+        such as Geo-localization, Augmented Reality, and QR Codes
     - Index: 98
       Header: Supervisor
-      Text: 
+      Text: Gerd Arrow
     - Index: 99
-      Header: 
-      Text: 
+      Header: Research goals
+      Text: The goal of such applications will be to support a process of collaboration
+        between learners, as well as knowledge building.
     - Index: 100
-      Header: 
-      Text: 
+      Header: Research questions
+      Text: '1) What are the existing games in this field?
+
+        2) What are the
+        needs for further development?
+
+        3) What are the existing instruments
+        for evaluating such games?'
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: d42b0b8b96af86846971b21537ac3437, type: 3}
+      Speech: I can't believe you rejected it! I spent entire 5 minutes writing this
+        research plan. This is so unfair!
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Avoid yes or no questions. The "research goal" sounds like a description
+        of what you're doing, not what you aim to learn from doing that.
+    FixRequiredOptions: 63006400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Kajsu Norock
+    - Index: 97
+      Header: Title
+      Text: Is mouse tracking useable as a poor man's eye-tracker?
+    - Index: 98
+      Header: Supervisor
+      Text: Aivar Pendel
+    - Index: 99
+      Header: Research goals
+      Text: Logging simultaneously mouse movements and eye movements in different
+        usage cases and analyzing the results.
+    - Index: 100
+      Header: Questions
+      Text: Can mouse-tracking be used instead of eye-tracking technology when the
+        latter is not available?
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 3c57fbff090670b41b5b005f2803641a, type: 3}
+      Speech: "You, small person! Enjoy your small power. Do you think you can control
+        my life? You even can\u2019t control yours."
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: This doesn't sound like a research goal. This is more like a description
+        of the research needs.
+    FixRequiredOptions: 6300
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Moe Vember
+    - Index: 97
+      Header: Title
+      Text: Continuous Authentication of Players by Using Behavioural Biometrics
+    - Index: 98
+      Header: Supervisor
+      Text: Aivar Pendel
+    - Index: 99
+      Header: Research goals
+      Text: Players ID can be copied or captured. It is more difficult to copy the
+        behaviour patterns
+    - Index: 100
+      Header: Questions
+      Text: '1) What are the typical behavioural characteristics of the action game
+        players?
+
+        2) In what extent the existing player type models can be
+        used?
+
+        3) What are the methods for detecting players behavioural
+        characteristics?'
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Kai-Mai Kaiman
+    - Index: 97
+      Header: Title
+      Text: How Finger Length and Proportions Influencing Game Dynamics.
+    - Index: 98
+      Header: Supervisor
+      Text: Aivar Pendel
+    - Index: 99
+      Header: Research goals
+      Text: The goal of the study is to investigate if people with a significantly
+        different index finger and ring finger ratio can be detected by their game
+        dynamics.
+    - Index: 100
+      Header: Questions
+      Text: '1) Can players be detected by their keystroke dynamics?
+
+        2)
+        What is the general influence of finger lengths on game dynamics?'
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 196fe3c374912a743914a93ea1acab9f, type: 3}
+      Speech: This is so unfair! I lost my job, and I lost my cat and now this! Please
+        accept my research plan. This is my only reason to live.
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: A research question is the same as the research goal only stated in
+        the format of the question.
+    FixRequiredOptions: 6400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Anna Ka
+    - Index: 97
+      Header: Title
+      Text: Players Profiling by Hardware Preferences.
+    - Index: 98
+      Header: Supervisor
+      Text: Aivar Pendel
+    - Index: 99
+      Header: Research goals
+      Text: Detect age, gender, handedness, physical, psychological or other differences
+        in using game hardware.
+    - Index: 100
+      Header: Questions
+      Text: 1) What are the players' preferences in using gaming hardware
+  - Quality: 0
+    StudentReaction:
+      Character: {fileID: 21300000, guid: 2111d0479eb7dc842a3d7c2baf9cb3f9, type: 3}
+      Speech: What? I can't believe this! Don't you think you have a very narrow
+        understanding of how research can be designed?
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: None of the questions is related to the research goal. Besides don't
+        ask close-ended questions.
+    FixRequiredOptions: 6400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: "Taavet P\xFChal"
+    - Index: 97
+      Header: Title
+      Text: Effective Learning Games for School Students
+    - Index: 98
+      Header: Supervisor
+      Text: Timur Jesentuki
+    - Index: 99
+      Header: Research goals
+      Text: Create a design model for serious games based on the theoretical overview
+    - Index: 100
+      Header: Questions
+      Text: '1) What are the main problems while using digital games?
+
+        2)
+        Does games have enough relevant content?
+
+        3) What would teachers
+        suggest to improve in games?
+
+        4) What is the best approach to use
+        games in class?'
+  - Quality: 2
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: You just rejected a perfectly fine research proposal. Try to be more
+        careful next time.
+    FixRequiredOptions: 
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Kata Loog
+    - Index: 97
+      Header: Title
+      Text: Mapping the Principles of Narrative Design in Learning Games
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+    - Index: 99
+      Header: Research goals
+      Text: To develop principles specifically on how to design narrative games.
+    - Index: 100
+      Header: Questions
+      Text: '1) What is the current state of research into a narrative in game development?
+
+        2)
+        Based on existing research, what are good principles for narrative design
+        in learning games?
+
+        3) What narrative design practices do game industry
+        professionals employ that can benefit learning games?'
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Be careful by using the word "correlation". It has a very narrow meaning
+        in research. Use it if you really plan a correlation study.
+    FixRequiredOptions: 6400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Kata Pult
+    - Index: 97
+      Header: Title
+      Text: Effects of Negative Feedback on Gameplay Behavior in Video Games
+    - Index: 98
+      Header: Supervisor
+      Text: Michela Fiadora
+    - Index: 99
+      Header: Research goals
+      Text: The objective of the study is to evaluate the data gathered from the
+        participants and establish a cause-and-effect relationship between negative
+        feedback and player behaviour in competitive games.
+    - Index: 100
+      Header: Questions
+      Text: '1) How does negative feedback correlate to the abandonment of the game?
+
+        2)
+        How does negative feedback affect player motivation and competence?'
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: It could be better if this only research question could be stated as
+        objective and four objectives as research questions.
+    FixRequiredOptions: 63006400
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Laine Hari
+    - Index: 97
+      Header: Title
+      Text: Measuring Immersion Factors in First-Person Games
+    - Index: 98
+      Header: Supervisor
+      Text: Valeria Tomorrow
+    - Index: 99
+      Header: Research goals
+      Text: Map the immersion factors, find instruments on how to measure the immersion,
+        design game prototypes and test them among users
+    - Index: 100
+      Header: Questions
+      Text: 1) Which type of User Interface causes the highest amount of immersion
+        in first-person games?
+  - Quality: 1
+    StudentReaction:
+      Character: {fileID: 0}
+      Speech: 
+    AuditorReaction:
+      Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Speech: Development mentioned 2 times in the title.
+    FixRequiredOptions: 6100
+    Options:
+    - Index: 32
+      Header: Field
+      Text: Game Studies
+    - Index: 32
+      Header: Author
+      Text: Ly Bahunt
+    - Index: 97
+      Header: Title
+      Text: Development of a Virtual Reality game for the Child Development Evaluation
+    - Index: 98
+      Header: Supervisor
+      Text: "Romull R\xF5bak"
+    - Index: 99
+      Header: Research goals
+      Text: Design, code and test a minimum viable product that helps teachers and
+        parents to evaluate child development between ages 3 - 7.
+    - Index: 100
+      Header: Questions
+      Text: '1) What are the typical issues in child development?
+
+        2) What
+        are the current tools and method for evaluating kids development?
+
+        3)
+        How VR technology can be used for evaluating kids development? What are the
+        teachers feedback for the designed solution?'
