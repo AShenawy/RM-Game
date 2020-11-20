@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -25,15 +26,53 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
             GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
+            GameManager.Onfixed += GameManager_Onfixed;
             GameManager.OnPaperDecided += PaperDecidedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
+            GameManager.OnGameOver += GameOverHandler;
+        }
+
+        private void GameManager_Onfixed(Dictionary<char, bool> fixbuttons)
+        {
+            paperText.text = "";
+
+            foreach (var option in _currentPaperData.Options)
+            {
+                if (char.IsWhiteSpace(option.Index))
+                {
+                    paperText.text += $"<b>{option.Header}:</b> {option.Text}\n";
+                }
+                else
+                {
+                    if (fixbuttons[option.Index])
+                    {
+                        paperText.text += $"<mark=#000000aa><font=\"Orbitron\"><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
+                    }
+                    else
+                    {
+                        paperText.text += $"<b>{option.Index}) {option.Header}:</b> {option.Text}\n";
+                    }
+                }
+            }
+        }
+
+        private void GameOverHandler(bool isWon, Feedback feedback)
+        {
+            rejectButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(false);
+
+            nextButton.targetGraphic.raycastTarget = false;
+            nextButton.targetGraphic.color = _halfTransparent;
+
+            fixButtonCanvasGroup.alpha = 0.5f;
+            fixButtonCanvasGroup.blocksRaycasts = false;
         }
 
         private void LevelInitiatedHandler(LevelData levelData)
         {
-            smallScreenText.text =$"<b>Level {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+            smallScreenText.text = $"<b>Level {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
 
             rejectButton.interactable = false;
             rejectButton.targetGraphic.raycastTarget = false;
@@ -81,14 +120,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 rejectButton.targetGraphic.raycastTarget = false;
                 rejectButton.targetGraphic.color = _halfTransparent;
             }
-
-            //foreach (var option in _currentPaperData.Options)
-            //{
-            //    if (!char.IsWhiteSpace(option.Index))
-            //    {
-            //        paperText.text += $"<mark=#ffff00aa><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
-            //    }
-            //}
         }
 
         private void PaperUpdatedHandler(ResearchPaperData data)
@@ -126,7 +157,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void LevelOverHandler(string message)
         {
-            smallScreenText.text =  message;
+            smallScreenText.text = message;
 
             nextButton.interactable = false;
             nextButton.interactable = true;
@@ -159,6 +190,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;
             GameManager.OnProgressUpdated -= ProgressUpdatedHandler;
             GameManager.OnQualityUpdated -= QualityUpdatedHandler;
+            GameManager.OnGameOver -= GameOverHandler;
         }
     }
 }

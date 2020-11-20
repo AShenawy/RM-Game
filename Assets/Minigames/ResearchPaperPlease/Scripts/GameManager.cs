@@ -30,10 +30,15 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     }
     public class GameManager : Singleton<GameManager>
     {
+        [SerializeField] private int progressValueToWin;
+        [SerializeField] private int qualityValueToWin;
+        [SerializeField] private Feedback winFeedback;
+        [SerializeField] private Feedback loseFeedback;
         [SerializeField] private LevelData[] data;
 
         public static event Action<LevelData> OnLevelInitiated = delegate { };
         public static event Action<string> OnLevelOver = delegate { };
+        public static event Action<bool, Feedback> OnGameOver = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
         public static event Action<Feedback> OnFeedbackInitiated = delegate { };
@@ -56,13 +61,28 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int _progressValue = 0;
         private int _currentLevelIndex = 0;
 
+        private const int _maxProgressionValueToWin = 20;
+
         public void InitiateNextLevel()
         {
             _allResearchPaper = GetResearchPaperByLevel(++_currentLevelIndex);
 
             if (_allResearchPaper == null) //All of research paper are completed (Game Over)
             {
-
+                if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue > qualityValueToWin)
+                {
+                    OnGameOver?.Invoke(true, winFeedback);
+                }
+                else if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue <= qualityValueToWin)
+                {
+                    loseFeedback.Speech += " Too many papers were rejected for wrong reasons. I suggest you try again and be more careful. I suggest you try again and be more careful.";
+                    OnGameOver?.Invoke(false, loseFeedback);
+                }
+                else if (_progressValue > _maxProgressionValueToWin)
+                {
+                    loseFeedback.Speech += " Too many low-quality research plans got accepted. I suggest you try again and be more careful.";
+                    OnGameOver?.Invoke(false, loseFeedback);
+                }
             }
             else //Display next paper
             {
@@ -157,10 +177,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
             }
         }
-
+        public static event Action<Dictionary<char,bool>> Onfixed;
         public void HandleFixingOption(char optionIndex, bool isPressed)
         {
             _fixButtonPairs[optionIndex] = isPressed;
+
+            Onfixed(_fixButtonPairs);
 
             if (_fixButtonPairs.ContainsValue(true))
             {
@@ -170,6 +192,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             {
                 OnFix?.Invoke(false);
             }
+        }
+
+        public void InitiateFeedback(Feedback feedback)
+        {
+            OnFeedbackInitiated?.Invoke(feedback);
         }
 
         private void Start()
