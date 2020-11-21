@@ -8,7 +8,7 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
     [Tooltip("Reference to the item scriptable object which will be picked up")]
     public Item item;
     public Sound SFX;
-    bool isPicked;
+    private bool isPicked;
 
     protected override void Start()
     {
