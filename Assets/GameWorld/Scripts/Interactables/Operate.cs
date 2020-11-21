@@ -3,7 +3,7 @@ using Methodyca.Core;
 
 // This script handles general use of objects
 [RequireComponent(typeof(SwitchImageDisplay))]
-public class Operate : ObjectInteraction
+public class Operate : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Operate Parameters")]
     [Tooltip("Can the player operate this object?")]
@@ -13,10 +13,25 @@ public class Operate : ObjectInteraction
     [Tooltip("Dialogue to display on failed operate")]
     public string onOperateFailText;
 
+    private bool isOperated;
+
+
+    protected override void Start()
+    {
+        LoadState();
+        if (isOperated)
+            Use();
+
+        base.Start();
+    }
+
     public override void InteractWithObject()
     {
         if (canOperate)
+        {
             Use();
+            DialogueHandler.instance.DisplayDialogue(onOperateSuccessText);
+        }
         else
             DialogueHandler.instance.DisplayDialogue(onOperateFailText);
     }
@@ -24,8 +39,20 @@ public class Operate : ObjectInteraction
     void Use()
     {
         GetComponent<SwitchImageDisplay>().SwitchImage();
+        isOperated = true;
         ToggleInteraction(false);
-        DialogueHandler.instance.DisplayDialogue(onOperateSuccessText);
+        SaveState();
+    }
+
+    public void SaveState()
+    {
+        SaveLoadManager.SetInteractableState(name, 1);
+    }
+
+    public void LoadState()
+    {
+        if (SaveLoadManager.interactableStates.TryGetValue(name, out int operatedState))
+            isOperated = (operatedState == 0) ? false : true;
     }
 }
    
