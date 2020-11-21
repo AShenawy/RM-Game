@@ -25,10 +25,15 @@ namespace Methodyca.Core
             DontDestroyOnLoad(this);
         }
 
-        public void GoToLevel(string sceneName, string roomName)
+        public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
         {
             startRoomName = roomName;
             StartCoroutine(LoadLevel(sceneName));
+
+            // if moving between levels during gameplay, interactions in previous scene can be deleted
+            // when loading a game from file, interaction should be kept for interactables to check
+            if (!keepInteractionsSaved)
+                SaveLoadManager.ClearInteractableState();
         }
 
         IEnumerator LoadLevel(string sceneName)
@@ -142,7 +147,7 @@ namespace Methodyca.Core
 
         void OnGameLoad()
         {
-            GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName);
+            GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
         }
     }
 }
