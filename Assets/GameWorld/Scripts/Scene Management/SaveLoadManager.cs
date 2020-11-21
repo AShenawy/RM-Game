@@ -11,6 +11,8 @@ namespace Methodyca.Core
         public static string currentScene { get; private set; }
         public static string currentRoomName { get; private set; }
         public static List<string> currentInventoryItems = new List<string>();
+
+        // string is the object's name and int represents bool for interaction done (1/true) or not (0/false)
         public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
         public static List<int> completedMinigamesIDs = new List<int>();
 

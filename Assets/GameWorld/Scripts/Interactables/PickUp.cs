@@ -2,12 +2,22 @@ using UnityEngine;
 using Methodyca.Core;
 
 // This script if for picking up interactable objects
-public class PickUp : ObjectInteraction
+public class PickUp : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Pick Up Parameters")]
     [Tooltip("Reference to the item scriptable object which will be picked up")]
     public Item item;
     public Sound SFX;
+    bool isPicked;
+
+    protected override void Start()
+    {
+        LoadState();
+        if (isPicked)
+            Destroy(gameObject);
+
+        base.Start(); 
+    }
 
     public override void InteractWithObject()
     {
@@ -23,13 +33,26 @@ public class PickUp : ObjectInteraction
         {
             InventoryManager.instance.Add(item);
             SoundManager.instance.PlaySFX(SFX);
+            isPicked = true;
             Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
     }
 
-    /* TODO State saving
-     * can use OnDestroy() to save the state that it was picked up (bool).
-     * On Start() and before running the base, load the state of being picked up and destroy the object.
-     */
+    public void SaveState()
+    {
+        SaveLoadManager.SetInteractableState(name, 1);
+    }
+
+    public void LoadState()
+    {
+        // check if item already picked in save file
+        if (SaveLoadManager.interactableStates.TryGetValue(name, out int interactionState))
+            isPicked = (interactionState == 0) ? false : true;
+    }
+
+    private void OnDestroy()
+    {
+        SaveState();
+    }
 }
    
