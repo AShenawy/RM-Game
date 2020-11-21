@@ -48,13 +48,6 @@ MonoBehaviour:
   levelInitiatedMessage: Evaluate the quality of the research plans based on the
     Title, Supervisor, Research goals, Research questions, methodology (AKA research
     design or strategy) and methods for data collection or design.
-  levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
-    Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
-    clearly stated research objective.\r\nRule #4 - Research Questions: Avoid closed
-    questions. Questions should be different but related to the goal\r\nRule #5 -
-    Methodology: Methodology should be inline with the research goal.\r\nRule #6
-    - Methods: Data collection or design methods should be inline with the research
-    design (methodology)\r"
   positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
     Speech: Very good! Having a registered final thesis title is the first step for
@@ -65,6 +58,17 @@ MonoBehaviour:
       by the number of students who have registered topics for the final thesis.
       If you are letting us down we will not have money to pay for your job.
   effectiveOptionsToFix: 610062006300640065006600
+  levelRules:
+  - 'Rule #1 - Title: Title should be specific'
+  - 'Rule #2 - Supervisor: Every paper should have a supervisor'
+  - 'Rule #3 - Goal: Every paper should have clearly stated research objectives'
+  - 'Rule #4 - Research Questions: Avoid closed questions. Questions should be different
+    but related to the goal'
+  - 'Rule #5 - Methodology: Methodology should be inline with the research goal'
+  - 'Rule #6 - Methods: Data collection or design methods should be inline with the
+    research design (methodology)
+
+'
   researches:
   - Quality: 2
     StudentReaction:

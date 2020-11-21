@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
-using System.Collections.Generic;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -26,7 +26,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
             GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
-            GameManager.Onfixed += GameManager_Onfixed;
+            GameManager.OnOptionHighlighted += OptionHighlightedHandler;
             GameManager.OnPaperDecided += PaperDecidedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
@@ -34,32 +34,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnGameOver += GameOverHandler;
         }
 
-        private void GameManager_Onfixed(Dictionary<char, bool> fixbuttons)
-        {
-            paperText.text = "";
-
-            foreach (var option in _currentPaperData.Options)
-            {
-                if (char.IsWhiteSpace(option.Index))
-                {
-                    paperText.text += $"<b>{option.Header}:</b> {option.Text}\n";
-                }
-                else
-                {
-                    if (fixbuttons[option.Index])
-                    {
-                        paperText.text += $"<mark=#000000aa><font=\"Orbitron\"><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
-                    }
-                    else
-                    {
-                        paperText.text += $"<b>{option.Index}) {option.Header}:</b> {option.Text}\n";
-                    }
-                }
-            }
-        }
-
         private void GameOverHandler(bool isWon, Feedback feedback)
         {
+            paperText.gameObject.SetActive(false);
+
             rejectButton.gameObject.SetActive(false);
             acceptButton.gameObject.SetActive(false);
 
@@ -119,6 +97,30 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
                 rejectButton.targetGraphic.raycastTarget = false;
                 rejectButton.targetGraphic.color = _halfTransparent;
+            }
+        }
+
+        private void OptionHighlightedHandler(Dictionary<char, bool> fixbuttons)
+        {
+            paperText.text = "";
+
+            foreach (var option in _currentPaperData.Options)
+            {
+                if (char.IsWhiteSpace(option.Index))
+                {
+                    paperText.text += $"<b>{option.Header}:</b> {option.Text}\n";
+                }
+                else
+                {
+                    if (fixbuttons[option.Index])
+                    {
+                        paperText.text += $"<mark=#000000aa><font=\"Orbitron\"><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
+                    }
+                    else
+                    {
+                        paperText.text += $"<b>{option.Index}) {option.Header}:</b> {option.Text}\n";
+                    }
+                }
             }
         }
 
@@ -185,6 +187,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             GameManager.OnLevelInitiated -= LevelInitiatedHandler;
             GameManager.OnLevelOver -= LevelOverHandler;
+            GameManager.OnOptionHighlighted -= OptionHighlightedHandler;
             GameManager.OnFix -= FixHandler;
             GameManager.OnPaperDecided -= PaperDecidedHandler;
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;

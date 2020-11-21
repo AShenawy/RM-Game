@@ -47,10 +47,6 @@ MonoBehaviour:
   acceptedPaperTreshold: 8
   levelInitiatedMessage: Evaluate the quality of the research plans based on the
     <b>Title</b> and <b>Supervisor</b> information.
-  levelRules: 'Rule #1 - Title: Title should be specific
-
-    Rule #2 - Supervisor:
-    Every paper should have a supervisor'
   positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
     Speech: Great job! It is heartwarming to see how good progress our students have
@@ -61,6 +57,9 @@ MonoBehaviour:
       possibilities to increase this number. Otherwise, we will not have enough students
       who graduate within nominal time.
   effectiveOptionsToFix: 61006200
+  levelRules:
+  - 'Rule #1 - Title: Title should be specific'
+  - 'Rule #2 - Supervisor: Every paper should have a supervisor'
   researches:
   - Quality: 0
     StudentReaction:

@@ -36,15 +36,17 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Feedback loseFeedback;
         [SerializeField] private LevelData[] data;
 
-        public static event Action<LevelData> OnLevelInitiated = delegate { };
-        public static event Action<string> OnLevelOver = delegate { };
-        public static event Action<bool, Feedback> OnGameOver = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
-        public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
-        public static event Action<Feedback> OnFeedbackInitiated = delegate { };
         public static event Action<bool> OnFix = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
         public static event Action<int> OnQualityUpdated = delegate { };
+        public static event Action<string> OnLevelOver = delegate { };
+        public static event Action<string, string> OnRulesUpdated = delegate { };
+        public static event Action<bool, Feedback> OnGameOver = delegate { };
+        public static event Action<Feedback> OnFeedbackInitiated = delegate { };
+        public static event Action<LevelData> OnLevelInitiated = delegate { };
+        public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
+        public static event Action<Dictionary<char, bool>> OnOptionHighlighted = delegate { };
 
         public int TotalPaperCount { get; private set; }
 
@@ -54,7 +56,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private Dictionary<char, bool> _fixButtonPairs;
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
         private List<ResearchPaperData> _acceptedPaperData = new List<ResearchPaperData>();
-        private List<ResearchPaperData> _rejectedPaperData = new List<ResearchPaperData>();
+        private LinkedList<string> _rules;
+        private LinkedListNode<string> _currentRule;
 
         private bool _isFeedbackDisplayed;
         private int _qualityValue = 0;
@@ -87,6 +90,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             else //Display next paper
             {
                 _currentLevelData = GetCurrentLevelData();
+
+                _rules = new LinkedList<string>(_currentLevelData.LevelRules);
+                _currentRule = _rules.First;
+                OnRulesUpdated?.Invoke(_currentRule.Value, _currentRule.NextOrFirst().Value);
+
                 InitiateFixButtons();
                 OnLevelInitiated?.Invoke(_currentLevelData);
                 HandleNextPaper();
@@ -150,8 +158,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
             else
             {
-                _rejectedPaperData.Add(_currentResearchPaperData);
-
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
                     OnQualityUpdated?.Invoke(--_qualityValue);
@@ -177,12 +183,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
             }
         }
-        public static event Action<Dictionary<char,bool>> Onfixed;
+
         public void HandleFixingOption(char optionIndex, bool isPressed)
         {
             _fixButtonPairs[optionIndex] = isPressed;
 
-            Onfixed(_fixButtonPairs);
+            OnOptionHighlighted(_fixButtonPairs);
 
             if (_fixButtonPairs.ContainsValue(true))
             {
@@ -194,9 +200,34 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
         }
 
-        public void InitiateFeedback(Feedback feedback)
+        public void NextRule()
         {
-            OnFeedbackInitiated?.Invoke(feedback);
+            if (_rules.Count < 2)
+            {
+                return;
+            }
+
+            var left = _currentRule.NextOrFirst().NextOrFirst();
+            var right = left.NextOrFirst();
+
+            _currentRule = left;
+
+            OnRulesUpdated?.Invoke(left.Value, right.Value);
+        }
+
+        public void PreviousRule()
+        {
+            if (_rules.Count < 2)
+            {
+                return;
+            }
+
+            var right = _currentRule.PreviousOrLast();
+            var left = right.PreviousOrLast();
+
+            _currentRule = left;
+
+            OnRulesUpdated?.Invoke(left.Value, right.Value);
         }
 
         private void Start()

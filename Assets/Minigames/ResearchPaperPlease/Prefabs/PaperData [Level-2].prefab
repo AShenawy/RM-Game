@@ -47,10 +47,6 @@ MonoBehaviour:
   acceptedPaperTreshold: 16
   levelInitiatedMessage: Evaluate the quality of the research plans based on the
     <b>Title, Supervisor, Research goals</b> and <b>Questions</b>.
-  levelRules: "Rule #1 - Title: Title should be specific\r\nRule #2 - Supervisor:
-    Every paper should have a supervisor\r\nRule #3 - Goal: Every paper should have 
-    clearly stated research objective\r\nRule #4 - Research Questions: Avoid closed
-    questions. Questions should be different but related to the goal\r"
   positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
     Speech: Well done! It is really important to keep our progress indicator high.
@@ -59,6 +55,12 @@ MonoBehaviour:
     Speech: What are you doing? Do you really believe that those research proposals
       you rejected are not good enough? I think you are too critical.
   effectiveOptionsToFix: 6100620063006400
+  levelRules:
+  - 'Rule #1 - Title: Title should be specific'
+  - 'Rule #2 - Supervisor: Every paper should have a supervisor'
+  - 'Rule #3 - Goal: Every paper should have clearly stated research objectives'
+  - 'Rule #4 - Research Questions: Avoid closed questions. Questions should be different
+    but related to the goal'
   researches:
   - Quality: 1
     StudentReaction:
