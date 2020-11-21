@@ -4,7 +4,7 @@ using UnityEngine;
 using Methodyca.Core;
 
 // This script handles transporting the player between rooms
-public class Door : ObjectInteraction
+public class Door : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Door Parameters")]
     public GameObject targetRoom;
@@ -14,6 +14,13 @@ public class Door : ObjectInteraction
     public Sound doorLockedSFX;
     public Sound doorOpenSFX;
 
+
+    protected override void Start()
+    {
+        LoadState();
+
+        base.Start();
+    }
 
     public override void InteractWithObject()
     {
@@ -45,7 +52,21 @@ public class Door : ObjectInteraction
 
         // if all required items are used, then unlock
         if (requiredItemsLeft < 1)
+        {
             isLocked = false;
+            SaveState();
+        }
+    }
+
+    public void LoadState()
+    {
+        if (SaveLoadManager.interactableStates.TryGetValue(name, out int lockedState))
+            isLocked = (lockedState == 0) ? false : true;
+    }
+
+    public void SaveState()
+    {
+        SaveLoadManager.SetInteractableState(name, 0);
     }
 }
    
