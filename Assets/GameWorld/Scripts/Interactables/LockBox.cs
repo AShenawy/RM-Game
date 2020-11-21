@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 
 // This script handles lockbox and safe objects that need a code to unlock/open
-public class LockBox : ObjectInteraction
+public class LockBox : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Lock Box Parameters")]
     [SerializeField, Tooltip("Is box already locked?")]
@@ -31,9 +31,18 @@ public class LockBox : ObjectInteraction
     public Sound dialSFX;
     public Sound unlockedSFX;
 
+    private bool isOpened;
 
-    private void Start()
+
+    protected override void Start()
     {
+        // check for saved state
+        LoadState();
+        if (!isLocked)
+            Unlock();
+        if (isOpened)
+            Open();
+
         // subscribe to event called by changing values on lock dials
         foreach (ScrollDial dial in lockDials)
         {
@@ -91,6 +100,7 @@ public class LockBox : ObjectInteraction
             lockIndicator.color = Color.green;
 
         SoundManager.instance.PlaySFXOneShot(unlockedSFX);
+        SaveState();
     }
 
     void Open()
@@ -98,5 +108,23 @@ public class LockBox : ObjectInteraction
         Destroy(lockedBoxPrefab);  // remove locked box child
         Instantiate(unlockedBoxPrefab, gameObject.transform);   // instaniate unlocked box version as child
         ToggleInteraction(false);
+        isOpened = true;
+        SaveState();
+    }
+
+    public void SaveState()
+    {
+        // make 2 entries as same key can't be used twice
+        SaveLoadManager.SetInteractableState(name + "_locked", System.Convert.ToInt32(isLocked));
+        SaveLoadManager.SetInteractableState(name + "_opened", System.Convert.ToInt32(isOpened));
+    }
+
+    public void LoadState()
+    {
+        if (SaveLoadManager.interactableStates.TryGetValue(name + "_locked", out int lockedState))
+            isLocked = (lockedState == 0) ? false : true;
+
+        if (SaveLoadManager.interactableStates.TryGetValue(name + "_opened", out int openedState))
+            isOpened = (openedState == 0) ? false : true;
     }
 }
