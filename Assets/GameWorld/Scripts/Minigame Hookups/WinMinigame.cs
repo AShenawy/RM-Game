@@ -7,6 +7,7 @@ namespace Methodyca.Core
     // Currently only works for Additive loaded mingame scenes (since minigame hub script is in main game scene files)
     public class WinMinigame : MonoBehaviour
     {
+        public Minigames minigameID;
         [SerializeField, Tooltip("What is the tag of the Game Object that starts minigame?")]
         private string minigameHubTag;
         private MinigameHub gameHub;
@@ -19,6 +20,7 @@ namespace Methodyca.Core
         public void CompleteMinigame()
         {
             gameHub.EndGame();
+            MinigameManager.SetMinigameComplete(minigameID);
         }
     }
 }
