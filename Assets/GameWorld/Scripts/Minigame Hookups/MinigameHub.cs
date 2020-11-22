@@ -15,7 +15,7 @@ namespace Methodyca.Core
             "of it. Single closes the main game scene and loads the minigame only.")]
         private LoadSceneMode sceneLoadType = LoadSceneMode.Additive;
         [SerializeField, Tooltip("Should the minigame be preloaded when entering the room?")]
-        private bool preloadMinigame = false;
+        protected bool preloadMinigame = false;
 
         public delegate void GamePlayAccess(bool value);
         public event GamePlayAccess isGamePlayable;

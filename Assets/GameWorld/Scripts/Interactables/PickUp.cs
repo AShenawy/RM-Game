@@ -8,6 +8,7 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
     [Tooltip("Reference to the item scriptable object which will be picked up")]
     public Item item;
     public Sound SFX;
+    public event System.Action<Item> onPickUp;
     private bool isPicked;
 
     protected override void Start()
@@ -34,6 +35,7 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
             InventoryManager.instance.Add(item);
             SoundManager.instance.PlaySFX(SFX);
             isPicked = true;
+            onPickUp?.Invoke(item);
             Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
     }
