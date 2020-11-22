@@ -1699,6 +1699,7 @@ GameObject:
   - component: {fileID: 299963987}
   - component: {fileID: 299963986}
   - component: {fileID: 299963988}
+  - component: {fileID: 299963989}
   m_Layer: 0
   m_Name: World Game Manager
   m_TagString: GameController
@@ -1800,6 +1801,18 @@ MonoBehaviour:
   mailSender: {fileID: 741289029}
   senderIcon: {fileID: 714213311}
   mailBody: {fileID: 1952307779}
+--- !u!114 &299963989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299963983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56923a16546eee0448b88b9a8ad6320d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &310967413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645712452071088696, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -6539,6 +6552,9 @@ MonoBehaviour:
     type: 3}
   qualitativeCrystalDisplay: {fileID: 1673020241}
   quantitativeCrystalDisplay: {fileID: 1127053413}
+  isCompleted: 0
+  isQlTaken: 0
+  isQnTaken: 0
 --- !u!65 &1313759071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12861,7 +12877,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b96d19765a92d9449ba5be4163209a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4aaa3e401716e9408b4f8ba72b88bff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
