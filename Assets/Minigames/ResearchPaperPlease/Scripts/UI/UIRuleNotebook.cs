@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -7,10 +8,19 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     {
         [SerializeField] private TextMeshProUGUI leftPage;
         [SerializeField] private TextMeshProUGUI rightPage;
+        [SerializeField] private Image leftArrow;
+        [SerializeField] private Image rightArrow;
 
         private void OnEnable()
         {
             GameManager.OnRulesUpdated += RulesUpdatedHandler;
+            GameManager.OnLevelInitiated += LevelInitiatedHandler;
+        }
+
+        private void LevelInitiatedHandler(LevelData data)
+        {
+            leftArrow.gameObject.SetActive(data.LevelRules.Length > 2);
+            rightArrow.gameObject.SetActive(data.LevelRules.Length > 2);
         }
 
         private void RulesUpdatedHandler(string previousRule, string nextRule)
@@ -21,7 +31,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void OnDisable()
         {
-            GameManager.OnRulesUpdated += RulesUpdatedHandler;
+            GameManager.OnRulesUpdated -= RulesUpdatedHandler;
+            GameManager.OnLevelInitiated -= LevelInitiatedHandler;
         }
     }
 }

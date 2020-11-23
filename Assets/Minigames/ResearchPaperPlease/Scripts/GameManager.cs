@@ -59,10 +59,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private LinkedList<string> _rules;
         private LinkedListNode<string> _currentRule;
 
-        private bool _isFeedbackDisplayed;
         private int _qualityValue = 0;
         private int _progressValue = 0;
         private int _currentLevelIndex = 0;
+        private bool _isFeedbackDisplayed;
 
         private const int _maxProgressionValueToWin = 20;
 
@@ -172,6 +172,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                         {
                             //Student NPC will provide feedback
                             OnQualityUpdated?.Invoke(++_qualityValue);
+                            OnProgressUpdated?.Invoke(++_progressValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
                             OnPaperDecided(false);
                             return;
@@ -188,16 +189,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             _fixButtonPairs[optionIndex] = isPressed;
 
-            OnOptionHighlighted(_fixButtonPairs);
-
-            if (_fixButtonPairs.ContainsValue(true))
-            {
-                OnFix?.Invoke(true);
-            }
-            else
-            {
-                OnFix?.Invoke(false);
-            }
+            OnOptionHighlighted?.Invoke(_fixButtonPairs);
+            OnFix?.Invoke(_fixButtonPairs.ContainsValue(true));
         }
 
         public void NextRule()

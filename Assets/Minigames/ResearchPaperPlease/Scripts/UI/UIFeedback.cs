@@ -19,15 +19,15 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void FeedbackInitiatedHandler(Feedback feedback)
         {
-
             if (feedback == null)
             {
-                speechBubble.DOScale(endValue: 0, duration: 0.1f).OnComplete(() => speechBubble.gameObject.SetActive(false));
+                speechBubble.gameObject.SetActive(false);
+                //speechBubble.DOScale(endValue: 0, duration: 0.1f).OnComplete(() => );
             }
             else
             {
-
-                speechBubble.DOScale(endValue: 1, duration: 0.1f).OnStart(() => speechBubble.gameObject.SetActive(true));
+                speechBubble.gameObject.SetActive(true);
+                //speechBubble.DOScale(endValue: 1, duration: 0.1f).OnStart(() => );
                 image.sprite = feedback.Character;
                 speech.text = feedback.Speech;
             }

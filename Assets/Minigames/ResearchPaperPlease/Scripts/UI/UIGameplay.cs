@@ -16,10 +16,33 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Button acceptButton;
         [SerializeField] private Button rejectButton;
         [SerializeField] private Button nextButton;
+        [SerializeField] private Button scrollUpButton;
+        [SerializeField] private Button scrollDownButton;
+        [SerializeField] private ScrollRect screenScrollRect;
         [SerializeField] private CanvasGroup fixButtonCanvasGroup;
+        [SerializeField] private GameObject[] screenPages;
 
+        private int _currentPageIndex = 0;
         private ResearchPaperData _currentPaperData;
         private readonly Color _halfTransparent = new Color(1, 1, 1, 0.5f);
+
+        public void ScrollUp()
+        {
+            screenPages[Mathf.Clamp(_currentPageIndex, 0, screenPages.Length - 1)].SetActive(false);
+            screenPages[Mathf.Clamp(--_currentPageIndex, 0, screenPages.Length - 1)].SetActive(true);
+
+            scrollUpButton.interactable = _currentPageIndex != 0;
+            scrollDownButton.interactable = true;
+        }
+
+        public void ScrollDown()
+        {
+            screenPages[Mathf.Clamp(_currentPageIndex, 0, screenPages.Length - 1)].SetActive(false);
+            screenPages[Mathf.Clamp(++_currentPageIndex, 0, screenPages.Length - 1)].SetActive(true);
+
+            scrollDownButton.interactable = _currentPageIndex != screenPages.Length - 1;
+            scrollUpButton.interactable = true;
+        }
 
         private void OnEnable()
         {
@@ -51,6 +74,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void LevelInitiatedHandler(LevelData levelData)
         {
             smallScreenText.text = $"<b>Level {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+
+            for (int i = 0; i < screenPages.Length; i++)
+                screenPages[i].SetActive(false);
+
+            screenPages[0].SetActive(true);
+            scrollUpButton.interactable = false;
 
             rejectButton.interactable = false;
             rejectButton.targetGraphic.raycastTarget = false;
@@ -127,7 +156,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void PaperUpdatedHandler(ResearchPaperData data)
         {
             _currentPaperData = data;
-
             paperText.text = "";
 
             foreach (var item in data.Options)
@@ -159,7 +187,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void LevelOverHandler(string message)
         {
-            smallScreenText.text = message;
+            paperText.text = $"<align=\"center\">{message}</align>";
+            smallScreenText.text = "";
 
             nextButton.interactable = false;
             nextButton.interactable = true;
