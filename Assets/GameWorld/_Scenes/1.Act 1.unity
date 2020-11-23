@@ -1445,9 +1445,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1277399702}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 299963986}
+        m_MethodName: HideContextMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1813,6 +1813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56923a16546eee0448b88b9a8ad6320d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  badgeUI: {fileID: 0}
+  badgesEarned: 
 --- !u!4 &310967413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645712452071088696, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -1996,9 +1998,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1277399702}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 299963986}
+        m_MethodName: HideContextMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2738,6 +2740,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1646663905}
     m_Modifications:
+    - target: {fileID: 3453464258199768723, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6006707842057624144, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
         type: 3}
       propertyPath: playerCanTurn
@@ -7150,9 +7157,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1277399702}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 299963986}
+        m_MethodName: HideContextMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

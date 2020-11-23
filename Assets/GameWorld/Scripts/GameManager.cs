@@ -110,6 +110,10 @@ namespace Methodyca.Core
 
         private void Scan()
         {
+            // Check for mouse on GUI to not change cursor while GUI object is on screen
+            if (IsCursorOnGUI())
+                return;
+
             // cast ray at cursor location onto game world
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -118,10 +122,6 @@ namespace Methodyca.Core
             {
                 if (hit.collider.GetComponent<ObjectInteraction>())
                 {
-                    // Check for mouse on GUI to not change cursor while GUI object is on screen
-                    if (IsCursorOnGUI())
-                        return;
-
                     interactableObject = hit.collider.GetComponent<ObjectInteraction>();
                     canInteract = interactableObject.canInteract;   // player can only interact if the object allows it
                     
