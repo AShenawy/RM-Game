@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BadgeBehaviour : MonoBehaviour
+
+namespace Methodyca.Core
 {
-    private Text badgeText;
-
-    // Start is called before the first frame update
-    void Start()
+    // script to be placed on badges in the badges app
+    public class BadgeBehaviour : MonoBehaviour
     {
-        badgeText = GetComponentInChildren<Text>();
-    }
+        public Minigames minigameID;
+        private Text badgeText;
 
-    public void UpdateBadgeInfo()
-    {
 
+        // Start is called before the first frame update
+        void Start()
+        {
+            badgeText = GetComponentInChildren<Text>();
+        }
     }
 }

@@ -14,6 +14,8 @@ namespace Methodyca.Core
 
         // string is the object's name and int represents bool for interaction done (1/true) or not (0/false)
         public static Dictionary<string, int> interactableStates = new Dictionary<string, int>();
+        
+        // minigames IDs start with Sorting at ID 0
         public static List<int> completedMinigamesIDs = new List<int>();
 
         private static System.Action onSaveComplete;
@@ -114,7 +116,7 @@ namespace Methodyca.Core
             currentRoomName = name;
         }
 
-        public static void SetCompletedMinigames(int[] IDs)
+        public static void SetCompletedMinigames(List<int> IDs)
         {
             // refresh the list of completed games
             completedMinigamesIDs.Clear();
