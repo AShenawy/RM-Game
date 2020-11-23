@@ -21,7 +21,7 @@ namespace Methodyca.Core
 
         public void SetMinigameComplete(Minigames id)
         {
-            badgeUI.DisplayBagdeInApp(id);
+            //badgeUI.DisplayBagdeInApp(id);
         }
 
         public void SaveState()
