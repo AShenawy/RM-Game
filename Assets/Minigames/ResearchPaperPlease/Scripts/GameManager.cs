@@ -56,9 +56,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private Dictionary<char, bool> _fixButtonPairs;
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
         private List<ResearchPaperData> _acceptedPaperData = new List<ResearchPaperData>();
-        private LinkedList<string> _rules;
-        private LinkedListNode<string> _currentRule;
+        private List<string> _rules;
 
+        private int _rulePageIndex = -2;
         private int _qualityValue = 0;
         private int _progressValue = 0;
         private int _currentLevelIndex = 0;
@@ -90,10 +90,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             else //Display next paper
             {
                 _currentLevelData = GetCurrentLevelData();
-
-                _rules = new LinkedList<string>(_currentLevelData.LevelRules);
-                _currentRule = _rules.First;
-                OnRulesUpdated?.Invoke(_currentRule.Value, _currentRule.NextOrFirst().Value);
+                _rules = new List<string>(_currentLevelData.LevelRules);
+                NextRule();
+                PreviousRule();
 
                 InitiateFixButtons();
                 OnLevelInitiated?.Invoke(_currentLevelData);
@@ -195,32 +194,66 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void NextRule()
         {
-            if (_rules.Count < 2)
+            if (_rules.Count == 1)
             {
+                OnRulesUpdated?.Invoke(_rules[0], null);
+                OnRulesUpdated?.Invoke(null, null);
+                return;
+            }
+            else if (_rules.Count == 2)
+            {
+                OnRulesUpdated?.Invoke(_rules[0], _rules[1]);
+                OnRulesUpdated?.Invoke(null, null);
                 return;
             }
 
-            var left = _currentRule.NextOrFirst().NextOrFirst();
-            var right = left.NextOrFirst();
+            if (_rulePageIndex + 2 >= _rules.Count)
+            {
+                OnRulesUpdated?.Invoke(_rules[_rules.Count - 2], null);
+            }
+            else
+            {
+                OnRulesUpdated?.Invoke(_rules[_rulePageIndex + 2], _rules[_rulePageIndex + 3]);
+                _rulePageIndex += 2;
 
-            _currentRule = left;
-
-            OnRulesUpdated?.Invoke(left.Value, right.Value);
+                if (_rulePageIndex + 2 >= _rules.Count)
+                {
+                    OnRulesUpdated?.Invoke(_rules[_rules.Count - 2], null);
+                    _rulePageIndex = _rules.Count - 2;
+                }
+            }
         }
 
         public void PreviousRule()
         {
-            if (_rules.Count < 2)
+            if (_rules.Count == 1)
             {
+                OnRulesUpdated?.Invoke(_rules[0], null);
+                OnRulesUpdated?.Invoke(null, null);
+                return;
+            }
+            else if (_rules.Count == 2)
+            {
+                OnRulesUpdated?.Invoke(_rules[0], _rules[1]);
+                OnRulesUpdated?.Invoke(null, null);
                 return;
             }
 
-            var right = _currentRule.PreviousOrLast();
-            var left = right.PreviousOrLast();
+            if (_rulePageIndex - 2 < 0)
+            {
+                OnRulesUpdated?.Invoke(null, _rules[1]);
+            }
+            else
+            {
+                OnRulesUpdated?.Invoke(_rules[_rulePageIndex - 2], _rules[_rulePageIndex - 1]);
+                _rulePageIndex -= 2;
 
-            _currentRule = left;
-
-            OnRulesUpdated?.Invoke(left.Value, right.Value);
+                if (_rulePageIndex - 2 < 0)
+                {
+                    OnRulesUpdated?.Invoke(null, _rules[1]);
+                    _rulePageIndex = 0;
+                }
+            }
         }
 
         private void Start()

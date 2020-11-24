@@ -14,25 +14,34 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void OnEnable()
         {
             GameManager.OnRulesUpdated += RulesUpdatedHandler;
-            GameManager.OnLevelInitiated += LevelInitiatedHandler;
-        }
-
-        private void LevelInitiatedHandler(LevelData data)
-        {
-            leftArrow.gameObject.SetActive(data.LevelRules.Length > 2);
-            rightArrow.gameObject.SetActive(data.LevelRules.Length > 2);
         }
 
         private void RulesUpdatedHandler(string previousRule, string nextRule)
         {
-            leftPage.text = previousRule;
-            rightPage.text = nextRule;
+            if (string.IsNullOrEmpty(previousRule))
+            {
+                leftArrow.gameObject.SetActive(false);
+            }
+            else
+            {
+                leftArrow.gameObject.SetActive(true);
+                leftPage.text = previousRule;
+            }
+
+            if (string.IsNullOrEmpty(nextRule))
+            {
+                rightArrow.gameObject.SetActive(false);
+            }
+            else
+            {
+                rightArrow.gameObject.SetActive(true);
+                rightPage.text = nextRule;
+            }
         }
 
         private void OnDisable()
         {
             GameManager.OnRulesUpdated -= RulesUpdatedHandler;
-            GameManager.OnLevelInitiated -= LevelInitiatedHandler;
         }
     }
 }
