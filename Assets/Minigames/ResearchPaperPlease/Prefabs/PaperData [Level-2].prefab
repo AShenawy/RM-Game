@@ -49,9 +49,11 @@ MonoBehaviour:
     <b>Title, Supervisor, Research goals</b> and <b>Questions</b>.
   positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Name: Director
     Speech: Well done! It is really important to keep our progress indicator high.
   negativeLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Name: Director
     Speech: What are you doing? Do you really believe that those research proposals
       you rejected are not good enough? I think you are too critical.
   effectiveOptionsToFix: 6100620063006400
@@ -65,9 +67,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: Author
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Are you designing and evaluating SEVERAL games and applications for
         one thesis? The connection between the technologies and the games' purpose
         are not clear either.
@@ -102,10 +106,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: d42b0b8b96af86846971b21537ac3437, type: 3}
+      Name: Author
       Speech: I can't believe you rejected it! I spent entire 5 minutes writing this
         research plan. This is so unfair!
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Avoid yes or no questions. The "research goal" sounds like a description
         of what you're doing, not what you aim to learn from doing that.
     FixRequiredOptions: 63006400
@@ -133,10 +139,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 3c57fbff090670b41b5b005f2803641a, type: 3}
+      Name: Author
       Speech: "You, small person! Enjoy your small power. Do you think you can control
         my life? You even can\u2019t control yours."
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: This doesn't sound like a research goal. This is more like a description
         of the research needs.
     FixRequiredOptions: 6300
@@ -170,9 +178,11 @@ MonoBehaviour:
   - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: You just rejected a perfectly fine research proposal. Try to be more
         careful next time.
     FixRequiredOptions: 
@@ -203,10 +213,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 196fe3c374912a743914a93ea1acab9f, type: 3}
+      Name: Author
       Speech: This is so unfair! I lost my job, and I lost my cat and now this! Please
         accept my research plan. This is my only reason to live.
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: A research question is the same as the research goal only stated in
         the format of the question.
     FixRequiredOptions: 6400
@@ -233,10 +245,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 2111d0479eb7dc842a3d7c2baf9cb3f9, type: 3}
+      Name: Author
       Speech: What? I can't believe this! Don't you think you have a very narrow
         understanding of how research can be designed?
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: None of the questions is related to the research goal. Besides don't
         ask close-ended questions.
     FixRequiredOptions: 6400
@@ -271,9 +285,11 @@ MonoBehaviour:
   - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: You just rejected a perfectly fine research proposal. Try to be more
         careful next time.
     FixRequiredOptions: 
@@ -306,9 +322,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Be careful by using the word "correlation". It has a very narrow meaning
         in research. Use it if you really plan a correlation study.
     FixRequiredOptions: 6400
@@ -339,9 +357,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: It could be better if this only research question could be stated as
         objective and four objectives as research questions.
     FixRequiredOptions: 63006400
@@ -369,9 +389,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Development mentioned 2 times in the title.
     FixRequiredOptions: 6100
     Options:

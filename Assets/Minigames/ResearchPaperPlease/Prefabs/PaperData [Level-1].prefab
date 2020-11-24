@@ -49,10 +49,12 @@ MonoBehaviour:
     <b>Title</b> and <b>Supervisor</b> information.
   positiveLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Name: Director
     Speech: Great job! It is heartwarming to see how good progress our students have
       made.
   negativeLevelFeedback:
     Character: {fileID: 21300000, guid: f695b12cfc479374183b2aaa61bcb230, type: 3}
+    Name: Director
     Speech: What is going on? Why did so many papers get rejected? We need to find
       possibilities to increase this number. Otherwise, we will not have enough students
       who graduate within nominal time.
@@ -64,10 +66,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 98bc1e4a5cf362c4c85f41229c9da396, type: 3}
+      Name: Author
       Speech: This is the diploma autocracy what you are doing. You should give an
         equal chance to everybody.
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: The topic is too broad.
     FixRequiredOptions: 6100
     Options:
@@ -86,9 +90,11 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 4b8e336a1ba433a4da9db60aea307a50, type: 3}
+      Name: Author
       Speech: Are you crazy there was absolutly nothing wrong with the paper.
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: X, Y and Z in the title should be replaced with specific words.
     FixRequiredOptions: 6100
     Options:
@@ -107,10 +113,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 6d8e9cadf8b196e4cb40dc14d7d4e3f0, type: 3}
+      Name: Author
       Speech: Why did you reject my proposal? Only because the supervisor was missing?
         I can supervise myself.
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Supervisor name is missing.
     FixRequiredOptions: 6200
     Options:
@@ -130,10 +138,12 @@ MonoBehaviour:
   - Quality: 0
     StudentReaction:
       Character: {fileID: 21300000, guid: 194ca6d299871bf409ec67eff8da94ef, type: 3}
+      Name: Author
       Speech: Accept my paper immediately, or I report this to the student council,
         and they will make your life miserable.
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Supervisor name is missing.
     FixRequiredOptions: 6200
     Options:
@@ -153,10 +163,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
-      Speech: Accept my paper immediately, or I report this to the student council,
-        and they will make your life miserable.
+      Name: 
+      Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: 'The title could be more specific: are you analyzing existing examples
         of embedded assessment or developing a new one?'
     FixRequiredOptions: 6100
@@ -176,9 +187,11 @@ MonoBehaviour:
   - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: You just rejected a perfectly fine research proposal. Try to be more
         careful next time.
     FixRequiredOptions: 
@@ -199,9 +212,11 @@ MonoBehaviour:
   - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: You just rejected a perfectly fine research proposal. Try to be more
         careful next time.
     FixRequiredOptions: 
@@ -222,9 +237,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: Are games based on exercise "learning games"?
     FixRequiredOptions: 6100
     Options:
@@ -243,9 +260,11 @@ MonoBehaviour:
   - Quality: 1
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: The title is not specific enough.
     FixRequiredOptions: 6100
     Options:
@@ -264,9 +283,11 @@ MonoBehaviour:
   - Quality: 2
     StudentReaction:
       Character: {fileID: 0}
+      Name: 
       Speech: 
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
+      Name: Auditor
       Speech: You just rejected a perfectly fine research proposal. Try to be more
         careful next time.
     FixRequiredOptions: 

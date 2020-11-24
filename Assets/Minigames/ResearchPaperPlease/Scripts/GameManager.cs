@@ -10,6 +10,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     public class Feedback
     {
         public Sprite Character;
+        public string Name;
         [TextArea(1, 3)] public string Speech;
     }
     [Serializable]
