@@ -50,6 +50,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public static event Action<Dictionary<char, bool>> OnOptionHighlighted = delegate { };
 
         public int TotalPaperCount { get; private set; }
+        public int ProgressValueToWin => progressValueToWin;
+        public int QualityValueToWin => qualityValueToWin;
 
         private LevelData _currentLevelData;
         private ResearchPaperData _currentResearchPaperData;
@@ -79,12 +81,17 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue <= qualityValueToWin)
                 {
-                    loseFeedback.Speech += " Too many papers were rejected for wrong reasons. I suggest you try again and be more careful. I suggest you try again and be more careful.";
+                    loseFeedback.Speech += " Too much paper was rejected for wrong reasons. I suggest you try again and be more careful. I suggest you try again and be more careful.";
                     OnGameOver?.Invoke(false, loseFeedback);
                 }
                 else if (_progressValue > _maxProgressionValueToWin)
                 {
                     loseFeedback.Speech += " Too many low-quality research plans got accepted. I suggest you try again and be more careful.";
+                    OnGameOver?.Invoke(false, loseFeedback);
+                }
+                else
+                {
+                    loseFeedback.Speech += " Too much paper was rejected for wrong reasons, and many low-quality research plans got accepted. I suggest you try again and be more careful.";
                     OnGameOver?.Invoke(false, loseFeedback);
                 }
             }
@@ -117,7 +124,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             else //Level is over (Display level-end feedback)
             {
                 _isFeedbackDisplayed = true;
-                OnLevelOver?.Invoke($"<b>Level {_currentLevelIndex}</b> is completed.");
+                OnLevelOver?.Invoke($"<b>LEVEL {_currentLevelIndex}</b> is completed.");
 
                 if (_currentLevelData.AcceptedPaperTreshold > _acceptedPaperData.Count)
                 {
@@ -164,13 +171,26 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnPaperDecided(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                 }
-                else if (_currentResearchPaperData.Quality == PaperQuality.Medium | _currentResearchPaperData.Quality == PaperQuality.Low)
+                else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
                     foreach (var option in _currentResearchPaperData.FixRequiredOptions)
                     {
                         if (_fixButtonPairs[option])
                         {
-                            //Student NPC will provide feedback
+                            OnQualityUpdated?.Invoke(++_qualityValue);
+                            break;
+                        }
+                    }
+
+                    OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnPaperDecided(false);
+                }
+                else
+                {
+                    foreach (var option in _currentResearchPaperData.FixRequiredOptions)
+                    {
+                        if (_fixButtonPairs[option])
+                        {
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             OnProgressUpdated?.Invoke(++_progressValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);

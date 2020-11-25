@@ -69,11 +69,17 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
             fixButtonCanvasGroup.alpha = 0.5f;
             fixButtonCanvasGroup.blocksRaycasts = false;
+
+            scrollUpButton.targetGraphic.raycastTarget = false;
+            scrollUpButton.targetGraphic.color = _halfTransparent;
+
+            scrollDownButton.targetGraphic.raycastTarget = false;
+            scrollDownButton.targetGraphic.color = _halfTransparent;
         }
 
         private void LevelInitiatedHandler(LevelData levelData)
         {
-            smallScreenText.text = $"<b>Level {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+            smallScreenText.text = $"<b>LEVEL {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
 
             for (int i = 0; i < screenPages.Length; i++)
                 screenPages[i].SetActive(false);
@@ -143,7 +149,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     if (fixbuttons[option.Index])
                     {
-                        paperText.text += $"<mark=#000000aa><font=\"Orbitron\"><b>{option.Index}) {option.Header}:</b></mark> {option.Text}\n";
+                        paperText.text += $"<mark=#000000aa><font=\"VT323\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
                     }
                     else
                     {
@@ -151,6 +157,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     }
                 }
             }
+
+            paperText.ForceMeshUpdate(true);
         }
 
         private void PaperUpdatedHandler(ResearchPaperData data)

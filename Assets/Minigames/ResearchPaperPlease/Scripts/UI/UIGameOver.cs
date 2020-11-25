@@ -42,7 +42,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             _isWon = isWon;
             finalScreen.SetActive(true);
             character.sprite = feedback.Character;
-            feedbackText.text = feedback.Speech;
+            feedbackText.text = $"<b>{feedback.Name}:</b> {feedback.Speech}";
 
             if (isWon)
             {
