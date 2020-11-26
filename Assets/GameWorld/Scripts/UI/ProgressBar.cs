@@ -8,11 +8,12 @@ namespace Methodyca.Core
     {
         public Image progressBar;
         public GameObject startButton;
-        [HideInInspector] public bool isStartClicked;
+        [HideInInspector] public bool isStartClicked; // for checking by SceneManagerScript when loading a scene
 
         public void OnStart()
         {
             isStartClicked = true;
+            Destroy(gameObject);
         }
     }
 }

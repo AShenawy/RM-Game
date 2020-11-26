@@ -19,12 +19,14 @@ namespace Methodyca.Core
         {
             // Make it Singelton
             if (instance == null)
+            {
                 instance = this;
+                DontDestroyOnLoad(this);
+            }
+            else if (instance != this)
+                Destroy(gameObject);
 
             BGMPlayer = gameObject.AddComponent<AudioSource>();
-
-            // keep the sound manager throughout the entire game
-            DontDestroyOnLoad(this);
         }
 
         void Start()

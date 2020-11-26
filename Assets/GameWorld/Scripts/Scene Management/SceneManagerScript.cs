@@ -15,14 +15,18 @@ namespace Methodyca.Core
         public GameObject loadingScreenPrefab;
 
         private AsyncOperation preloadSceneOpr;
+        private bool isPreloadingScene;
 
 
         private void Awake()
         {
             if (instance == null)
+            {
                 instance = this;
-
-            DontDestroyOnLoad(this);
+                DontDestroyOnLoad(this);
+            }
+            else if (instance != this)
+                Destroy(gameObject);
         }
 
         public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
@@ -38,10 +42,18 @@ namespace Methodyca.Core
 
         IEnumerator LoadLevel(string sceneName)
         {
+            // mute game sounds
+            AudioListener.pause = true;
+
             // instantiate a loading screen and hide the start button in it using the attached ProgressBar script
             GameObject loadingScreen = Instantiate(loadingScreenPrefab);
+            DontDestroyOnLoad(loadingScreen);   // so it carries over to the loaded scene and can delay it's removal
             ProgressBar progress = loadingScreen.GetComponent<ProgressBar>();
             progress.startButton.SetActive(false);
+
+            // if a scene is being preloaded then it must be loaded before another scene can load
+            if (isPreloadingScene)
+                preloadSceneOpr.allowSceneActivation = true;
 
             // Start loading the new scene and stop it from auto activation
             AsyncOperation loadOpr = SceneManager.LoadSceneAsync(sceneName);
@@ -56,10 +68,16 @@ namespace Methodyca.Core
                 if (loadOpr.progress >= 0.9f)
                 {
                     // when loading is finished activate the start button
-                    progress.startButton.SetActive(true);
+                    //progress.startButton.SetActive(true);
 
-                    if (progress.isStartClicked || Input.GetKeyDown(KeyCode.Space))
-                        loadOpr.allowSceneActivation = true;
+                    loadOpr.allowSceneActivation = true;
+                    //AudioListener.pause = false;
+
+                    //if (progress.isStartClicked || Input.GetKeyDown(KeyCode.Space))
+                    //{
+                    //    loadOpr.allowSceneActivation = true;
+                    //    AudioListener.pause = false;
+                    //}
                 }
 
                 yield return null;
@@ -69,6 +87,15 @@ namespace Methodyca.Core
             SaveLoadManager.SetCurrentScene(sceneName);
             CheckSwitcherApplicable();
             UnloadAssets();
+            // Delay loadscreen removal to allow Start() in all scripts to finish before player can see/hear the game
+            StartCoroutine(RemoveLoadingScreen(loadingScreen)); 
+        }
+
+        IEnumerator RemoveLoadingScreen(GameObject screen)
+        {
+            yield return new WaitForSecondsRealtime(1.5f);
+            Destroy(screen);
+            AudioListener.pause = false;
         }
 
         void CheckSwitcherApplicable()
@@ -81,6 +108,7 @@ namespace Methodyca.Core
 
         public void PreloadScene(string sceneName, LoadSceneMode loadMode)
         {
+            isPreloadingScene = true;
             preloadSceneOpr = SceneManager.LoadSceneAsync(sceneName, loadMode);
             preloadSceneOpr.priority = -999;
             preloadSceneOpr.allowSceneActivation = false;
@@ -91,7 +119,21 @@ namespace Methodyca.Core
         {
             preloadSceneOpr.allowSceneActivation = true;
             SceneManager.sceneLoaded += SetLoadedSceneActive;
+            isPreloadingScene = false;  // scene is loaded and no longer in async ops queue
         }
+
+        //public void RemovePreloadedScene()
+        //{
+        //    // we have to finish loading the scene before we can remove it
+        //    preloadSceneOpr.allowSceneActivation = true;
+
+        //    while (!preloadSceneOpr.isDone)
+        //    {
+        //        Debug.LogWarning("Unloading preloaded scene.");
+        //    }
+
+
+        //}
 
         public void LoadSceneAdditive(string sceneName)
         {
