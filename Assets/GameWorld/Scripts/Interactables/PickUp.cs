@@ -36,6 +36,7 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
             SoundManager.instance.PlaySFX(SFX);
             isPicked = true;
             onPickUp?.Invoke(item);
+            SaveState();
             Destroy(gameObject);    // destroy object in game world after it's moved to inventory
         }
     }
@@ -50,11 +51,6 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
         // check if item already picked in save file
         if (SaveLoadManager.interactableStates.TryGetValue(name, out int interactionState))
             isPicked = (interactionState == 0) ? false : true;
-    }
-
-    private void OnDestroy()
-    {
-        SaveState();
     }
 }
    
