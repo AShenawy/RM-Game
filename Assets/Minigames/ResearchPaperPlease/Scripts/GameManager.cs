@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
@@ -33,17 +34,19 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     {
         [SerializeField] private int progressValueToWin;
         [SerializeField] private int qualityValueToWin;
+
         [SerializeField] private Feedback winFeedback;
         [SerializeField] private Feedback loseFeedback;
         [SerializeField] private LevelData[] data;
 
-        public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<bool> OnFix = delegate { };
+        public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
         public static event Action<int> OnQualityUpdated = delegate { };
         public static event Action<string> OnLevelOver = delegate { };
+        public static event Action<int, int> OnPageUpdated = delegate { };
         public static event Action<string, string> OnRulesUpdated = delegate { };
-        public static event Action<bool, Feedback> OnGameOver = delegate { };
+        public static event Action<bool> OnGameOver = delegate { };
         public static event Action<Feedback> OnFeedbackInitiated = delegate { };
         public static event Action<LevelData> OnLevelInitiated = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
@@ -65,6 +68,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int _qualityValue = 0;
         private int _progressValue = 0;
         private int _currentLevelIndex = 0;
+        private int _initialTotalPaperCount;
         private bool _isFeedbackDisplayed;
 
         private const int _maxProgressionValueToWin = 20;
@@ -72,27 +76,32 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public void InitiateNextLevel()
         {
             _allResearchPaper = GetResearchPaperByLevel(++_currentLevelIndex);
+            _initialTotalPaperCount = _allResearchPaper.Count;
 
             if (_allResearchPaper == null) //All of research paper are completed (Game Over)
             {
                 if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue > qualityValueToWin)
                 {
-                    OnGameOver?.Invoke(true, winFeedback);
+                    OnGameOver?.Invoke(true);
+                    OnFeedbackInitiated?.Invoke(winFeedback);
                 }
                 else if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue <= qualityValueToWin)
                 {
                     loseFeedback.Speech += " Too much paper was rejected for wrong reasons. I suggest you try again and be more careful. I suggest you try again and be more careful.";
-                    OnGameOver?.Invoke(false, loseFeedback);
+                    OnGameOver?.Invoke(false);
+                    OnFeedbackInitiated?.Invoke(loseFeedback);
                 }
                 else if (_progressValue > _maxProgressionValueToWin)
                 {
                     loseFeedback.Speech += " Too many low-quality research plans got accepted. I suggest you try again and be more careful.";
-                    OnGameOver?.Invoke(false, loseFeedback);
+                    OnGameOver?.Invoke(false);
+                    OnFeedbackInitiated?.Invoke(loseFeedback);
                 }
                 else
                 {
                     loseFeedback.Speech += " Too much paper was rejected for wrong reasons, and many low-quality research plans got accepted. I suggest you try again and be more careful.";
-                    OnGameOver?.Invoke(false, loseFeedback);
+                    OnGameOver?.Invoke(false);
+                    OnFeedbackInitiated?.Invoke(loseFeedback);
                 }
             }
             else //Display next paper
@@ -104,17 +113,18 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
                 InitiateFixButtons();
                 OnLevelInitiated?.Invoke(_currentLevelData);
-                HandleNextPaper();
             }
         }
 
         public void HandleNextPaper()
         {
             OnFeedbackInitiated?.Invoke(null);
+
             if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
             {
                 _currentResearchPaperData = _allResearchPaper.Dequeue();
                 OnPaperUpdated?.Invoke(_currentResearchPaperData);
+                OnPageUpdated?.Invoke(_initialTotalPaperCount - _allResearchPaper.Count, _initialTotalPaperCount);
             }
             else if (_isFeedbackDisplayed) //Next level is initiated
             {
@@ -126,7 +136,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 _isFeedbackDisplayed = true;
                 OnLevelOver?.Invoke($"<b>LEVEL {_currentLevelIndex}</b> is completed.");
 
-                if (_currentLevelData.AcceptedPaperTreshold > _acceptedPaperData.Count)
+                if (_currentLevelData.AcceptedPaperTreshold > _acceptedPaperData.Count(p => p.Quality == (PaperQuality.High | PaperQuality.Medium)))
                 {
                     OnFeedbackInitiated?.Invoke(_currentLevelData.PositiveLevelFeedback);
                 }
@@ -192,7 +202,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                         if (_fixButtonPairs[option])
                         {
                             OnQualityUpdated?.Invoke(++_qualityValue);
-                            OnProgressUpdated?.Invoke(++_progressValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
                             OnPaperDecided(false);
                             return;
@@ -277,6 +286,18 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
         }
 
+        public void HandleRestartGame()
+        {
+            _rulePageIndex = -2;
+            _qualityValue = 0;
+            _progressValue = 0;
+            _currentLevelIndex = 0;
+            _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
+
+            TotalPaperCount = GetTotalResearchPaperCount();
+            InitiateNextLevel();
+        }
+
         private void Start()
         {
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
@@ -335,7 +356,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             if (_currentResearchPaperDataByLevel.TryGetValue(level, out ResearchPaperData[] researchPaperData))
             {
-                return new Queue<ResearchPaperData>(researchPaperData);
+                return new Queue<ResearchPaperData>(researchPaperData.Shuffle());
             }
 
             return null;

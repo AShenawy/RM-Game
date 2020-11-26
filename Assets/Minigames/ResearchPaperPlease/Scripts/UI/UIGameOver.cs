@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -9,8 +8,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private string areYouSureWinText;
         [SerializeField] private string areYouSureLoseText;
         [SerializeField] private GameObject finalScreen;
-        [SerializeField] private Image character;
-        [SerializeField] private TextMeshProUGUI feedbackText;
         [SerializeField] private TextMeshProUGUI areYouSureText;
 
         private bool _isWon;
@@ -23,13 +20,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
             else
             {
-                //Restart Game
+                GameManager.Instance.HandleRestartGame();
             }
         }
 
         public void Reject()
         {
-            // Quit
+            //Quit
         }
 
         private void OnEnable()
@@ -37,12 +34,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnGameOver += GameOverHandler;
         }
 
-        private void GameOverHandler(bool isWon, Feedback feedback)
+        private void GameOverHandler(bool isWon)
         {
             _isWon = isWon;
             finalScreen.SetActive(true);
-            character.sprite = feedback.Character;
-            feedbackText.text = $"<b>{feedback.Name}:</b> {feedback.Speech}";
 
             if (isWon)
             {

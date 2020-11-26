@@ -13,34 +13,39 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private TextMeshProUGUI paperText;
         [SerializeField] private TextMeshProUGUI smallScreenText;
         [SerializeField] private TextMeshProUGUI notebookText;
+        [SerializeField] private TextMeshProUGUI pageText;
         [SerializeField] private Button acceptButton;
         [SerializeField] private Button rejectButton;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button scrollUpButton;
         [SerializeField] private Button scrollDownButton;
-        [SerializeField] private ScrollRect screenScrollRect;
         [SerializeField] private CanvasGroup fixButtonCanvasGroup;
-        [SerializeField] private GameObject[] screenPages;
 
-        private int _currentPageIndex = 0;
+        private int _currentPageIndex = 1;
         private ResearchPaperData _currentPaperData;
         private readonly Color _halfTransparent = new Color(1, 1, 1, 0.5f);
 
         public void ScrollUp()
         {
-            screenPages[Mathf.Clamp(_currentPageIndex, 0, screenPages.Length - 1)].SetActive(false);
-            screenPages[Mathf.Clamp(--_currentPageIndex, 0, screenPages.Length - 1)].SetActive(true);
+            if (--_currentPageIndex <1)
+            {
+                _currentPageIndex = 1;
+            }
 
-            scrollUpButton.interactable = _currentPageIndex != 0;
+            paperText.pageToDisplay = _currentPageIndex;
+            scrollUpButton.interactable = _currentPageIndex != 1;
             scrollDownButton.interactable = true;
         }
 
         public void ScrollDown()
         {
-            screenPages[Mathf.Clamp(_currentPageIndex, 0, screenPages.Length - 1)].SetActive(false);
-            screenPages[Mathf.Clamp(++_currentPageIndex, 0, screenPages.Length - 1)].SetActive(true);
+            if (++_currentPageIndex > paperText.textInfo.pageCount)
+            {
+                _currentPageIndex = paperText.textInfo.pageCount;
+            }
 
-            scrollDownButton.interactable = _currentPageIndex != screenPages.Length - 1;
+            paperText.pageToDisplay = _currentPageIndex;
+            scrollDownButton.interactable = _currentPageIndex != paperText.textInfo.pageCount;
             scrollUpButton.interactable = true;
         }
 
@@ -50,6 +55,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelOver += LevelOverHandler;
             GameManager.OnFix += FixHandler;
             GameManager.OnOptionHighlighted += OptionHighlightedHandler;
+            GameManager.OnPageUpdated += PageUpdatedHandler; ;
             GameManager.OnPaperDecided += PaperDecidedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
@@ -57,7 +63,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnGameOver += GameOverHandler;
         }
 
-        private void GameOverHandler(bool isWon, Feedback feedback)
+        private void PageUpdatedHandler(int current, int max)
+        {
+            pageText.gameObject.SetActive(true);
+            pageText.text = $"{current}/{max}";
+        }
+
+        private void GameOverHandler(bool isWon)
         {
             paperText.gameObject.SetActive(false);
 
@@ -79,17 +91,23 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void LevelInitiatedHandler(LevelData levelData)
         {
-            smallScreenText.text = $"<b>LEVEL {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+            pageText.gameObject.SetActive(false);
+            paperText.text = $"<b>LEVEL {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
 
-            for (int i = 0; i < screenPages.Length; i++)
-                screenPages[i].SetActive(false);
+            acceptButton.targetGraphic.raycastTarget = false;
+            acceptButton.targetGraphic.color = _halfTransparent;
 
-            screenPages[0].SetActive(true);
-            scrollUpButton.interactable = false;
-
-            rejectButton.interactable = false;
             rejectButton.targetGraphic.raycastTarget = false;
             rejectButton.targetGraphic.color = _halfTransparent;
+
+            fixButtonCanvasGroup.alpha = 0.5f;
+            fixButtonCanvasGroup.blocksRaycasts = false;
+
+            scrollUpButton.targetGraphic.raycastTarget = false;
+            scrollUpButton.targetGraphic.color = _halfTransparent;
+
+            scrollDownButton.targetGraphic.raycastTarget = false;
+            scrollDownButton.targetGraphic.color = _halfTransparent;
         }
 
         private void PaperDecidedHandler(bool isAccepted)
@@ -178,6 +196,29 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
             }
 
+            paperText.ForceMeshUpdate(true);
+            paperText.pageToDisplay = 1;
+
+            if (paperText.textInfo.pageCount > 1)//
+            {
+                scrollUpButton.targetGraphic.raycastTarget = true;
+                scrollUpButton.targetGraphic.color = Color.white;
+
+                scrollDownButton.targetGraphic.raycastTarget = true;
+                scrollDownButton.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                scrollDownButton.targetGraphic.raycastTarget = false;
+                scrollDownButton.targetGraphic.color = _halfTransparent;
+
+                scrollUpButton.targetGraphic.raycastTarget = false;
+                scrollUpButton.targetGraphic.color = _halfTransparent;
+            }
+
+            scrollUpButton.interactable = false;
+            scrollDownButton.interactable = true;
+
             rejectButton.interactable = true;
             rejectButton.targetGraphic.raycastTarget = false;
             rejectButton.targetGraphic.color = _halfTransparent;
@@ -198,6 +239,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             paperText.text = $"<align=\"center\">{message}</align>";
             smallScreenText.text = "";
 
+            pageText.gameObject.SetActive(false);
             nextButton.interactable = false;
             nextButton.interactable = true;
         }
@@ -225,6 +267,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated -= LevelInitiatedHandler;
             GameManager.OnLevelOver -= LevelOverHandler;
             GameManager.OnOptionHighlighted -= OptionHighlightedHandler;
+            GameManager.OnPageUpdated -= PageUpdatedHandler; ;
             GameManager.OnFix -= FixHandler;
             GameManager.OnPaperDecided -= PaperDecidedHandler;
             GameManager.OnPaperUpdated -= PaperUpdatedHandler;
