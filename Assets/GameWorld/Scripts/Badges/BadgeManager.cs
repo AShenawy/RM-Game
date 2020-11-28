@@ -15,26 +15,61 @@ namespace Methodyca.Core
         }
         #endregion
 
-        public BadgeUI badgeUI;
-        public List<int> badgesEarned = new List<int>();
+        public event System.Action minigamesChanged;
+        public List<int> minigamesComplete = new List<int>();
 
 
-        public void SetMinigameComplete(Minigames id)
+        private void Start()
         {
-            //badgeUI.DisplayBagdeInApp(id);
+            LoadState();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                SetMinigameComplete((int)Minigames.Sorting);
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                SetMinigameComplete((int)Minigames.DocStudy);
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                SetMinigameComplete((int)Minigames.Participatory);
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                SetMinigameComplete((int)Minigames.Prototyping);
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+                SetMinigameComplete((int)Minigames.Questionnaire);
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+                SetMinigameComplete((int)Minigames.Research);
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+                SetMinigameComplete((int)Minigames.Interview);
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+                SetMinigameComplete((int)Minigames.Observation);
+        }
+
+        public void SetMinigameComplete(int minigameId)
+        {
+            // only add the minigame to the list if it doesn't contain it
+            if (minigamesComplete.Contains(minigameId))
+                return;
+
+            minigamesComplete.Add(minigameId);
+            minigamesChanged?.Invoke();
+            SaveState();
         }
 
         public void SaveState()
         {
-            throw new System.NotImplementedException();
+            SaveLoadManager.SetCompletedMinigamesList(minigamesComplete);
         }
 
         public void LoadState()
         {
-            throw new System.NotImplementedException();
+            List<int> minigames = SaveLoadManager.completedMinigamesIDs;
+            minigamesComplete.Clear();
+
+            foreach (int id in minigames.ToArray())
+                SetMinigameComplete(id);
         }
     }
 
     // a list of all available minigames
-    public enum Minigames { Sorting, DocStudy, Participatory, Prototyping, Questionnaire, Research }
+    public enum Minigames { Blank, Sorting, DocStudy, Participatory, Prototyping, Questionnaire, Research, Interview, Observation }
 }

@@ -20,7 +20,7 @@ namespace Methodyca.Minigames.SortGame
 
         public void CompleteMinigame()
         {
-            BadgeManager.instance.SetMinigameComplete(minigameID);
+            BadgeManager.instance.SetMinigameComplete((int)minigameID);
             gameHub.EndGame();
         }
     }

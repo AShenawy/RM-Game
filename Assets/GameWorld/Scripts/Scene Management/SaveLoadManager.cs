@@ -116,12 +116,21 @@ namespace Methodyca.Core
             currentRoomName = name;
         }
 
-        public static void SetCompletedMinigames(List<int> IDs)
+        public static void SetCompletedMinigamesList(List<int> IDs)
         {
             // refresh the list of completed games
             completedMinigamesIDs.Clear();
             foreach (int id in IDs)
                 completedMinigamesIDs.Add(id);
+        }
+
+        public static void SetMinigameComplete(Minigames game)
+        {
+            // only add the minigame to the list if it doesn't contain it
+            if (completedMinigamesIDs.Contains((int)game))
+                return;
+
+            completedMinigamesIDs.Add((int)game);
         }
 
         public static void SetCurrentInventoryItems(List<string> items)
@@ -151,6 +160,11 @@ namespace Methodyca.Core
             currentInventoryItems.Clear();
         }
 
+        public static void ClearMinigamesComplete()
+        {
+            completedMinigamesIDs.Clear();
+        }
+
         public static void SaveGameAuto()
         {
             // set up a new state and fill with current information
@@ -159,6 +173,7 @@ namespace Methodyca.Core
             state.sceneName = currentScene;
             state.roomName = currentRoomName;
             state.itemsHeld = currentInventoryItems;
+            state.minigames = completedMinigamesIDs;
 
             foreach (var kvp in interactableStates)
             {
@@ -204,6 +219,7 @@ namespace Methodyca.Core
             currentScene = state.sceneName;
             currentRoomName = state.roomName;
             currentInventoryItems = state.itemsHeld;
+            completedMinigamesIDs = state.minigames;
 
             interactableStates.Clear();
             for (int i = 0; i < state.objectInteractionName.Count; i++)
@@ -220,6 +236,7 @@ namespace Methodyca.Core
             state.sceneName = currentScene;
             state.roomName = currentRoomName;
             state.itemsHeld = currentInventoryItems;
+            state.minigames = completedMinigamesIDs;
 
             foreach (var kvp in interactableStates)
             {
@@ -265,6 +282,7 @@ namespace Methodyca.Core
             currentScene = state.sceneName;
             currentRoomName = state.roomName;
             currentInventoryItems = state.itemsHeld;
+            completedMinigamesIDs = state.minigames;
 
             interactableStates.Clear();
             for (int i = 0; i < state.objectInteractionName.Count; i++)
@@ -329,5 +347,8 @@ namespace Methodyca.Core
         // interactable items dictionary into list
         public List<string> objectInteractionName = new List<string>();
         public List<int> isObjectInteracted = new List<int>(); // value should be either 0 (false) or 1 (true)
+
+        // minigames complete
+        public List<int> minigames = new List<int>();
     }
 }

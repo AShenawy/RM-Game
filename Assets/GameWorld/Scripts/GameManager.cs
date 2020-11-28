@@ -150,7 +150,10 @@ namespace Methodyca.Core
         private void DoMainAction()
         {
             if (!isPlayerHoldingItem)   // Interact with object if player is not holding item
+            {
                 interactableObject.InteractWithObject();
+                CursorManager.instance.SetDefaultCursor();
+            }
             else
             {
                 // Do not interact and use the held item
@@ -163,6 +166,7 @@ namespace Methodyca.Core
         {
             tempInteractObjectReference = interactableObject;
             CursorManager.instance.ShowContextMenu();
+            CursorManager.instance.SetDefaultCursor();
         }
 
         private void CheckPlayerHoldingItem(Item heldItem)

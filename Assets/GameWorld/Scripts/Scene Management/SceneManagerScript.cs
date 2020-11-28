@@ -40,6 +40,7 @@ namespace Methodyca.Core
             {
                 SaveLoadManager.ClearInteractableState();
                 SaveLoadManager.ClearInventoryItems();
+                SaveLoadManager.ClearMinigamesComplete();
             }
         }
 
