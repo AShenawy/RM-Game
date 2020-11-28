@@ -281,14 +281,18 @@ namespace Methodyca.Core
         public static void DeleteAllSaveData()
         {
             ClearPlayPrefsAll();
-            string autosavePath = Path.Combine(Application.persistentDataPath, "SavedGames", "AutoSave.mth");
-            File.Delete(autosavePath);
-            string savePath1 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_1.mth");
-            File.Delete(savePath1);
-            string savePath2 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_2.mth");
-            File.Delete(savePath2);
-            string savePath3 = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_3.mth");
-            File.Delete(savePath3);
+            // delete autosave
+            string savePath = Path.Combine(Application.persistentDataPath, "SavedGames", "AutoSave.mth");
+            File.Delete(savePath);
+            // delete save 1
+            savePath = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_1.mth");
+            File.Delete(savePath);
+            // delete save 2
+            savePath = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_2.mth");
+            File.Delete(savePath);
+            // delete save 3
+            savePath = Path.Combine(Application.persistentDataPath, "SavedGames", "Save_3.mth");
+            File.Delete(savePath);
         }
     }
 
