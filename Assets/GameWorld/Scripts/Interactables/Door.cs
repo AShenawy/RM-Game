@@ -66,7 +66,7 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
 
     public void SaveState()
     {
-        SaveLoadManager.SetInteractableState(name, 0);
+        SaveLoadManager.SetInteractableState(name, isLocked ? 1 : 0);
     }
 }
    

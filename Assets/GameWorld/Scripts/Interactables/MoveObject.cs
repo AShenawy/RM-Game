@@ -45,6 +45,6 @@ public class MoveObject : ObjectInteraction, ISaveable, ILoadable
 
     public void SaveState()
     {
-        SaveLoadManager.SetInteractableState(name, 1);
+        SaveLoadManager.SetInteractableState(name, isMoved ? 1 : 0);
     }
 }

@@ -46,7 +46,7 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
 
     public void SaveState()
     {
-        SaveLoadManager.SetInteractableState(name, 1);
+        SaveLoadManager.SetInteractableState(name, isOperated ? 1 : 0);
     }
 
     public void LoadState()

@@ -43,7 +43,7 @@ public class PickUp : ObjectInteraction, ISaveable, ILoadable
 
     public void SaveState()
     {
-        SaveLoadManager.SetInteractableState(name, 1);
+        SaveLoadManager.SetInteractableState(name, isPicked ? 1 : 0);
     }
 
     public void LoadState()
