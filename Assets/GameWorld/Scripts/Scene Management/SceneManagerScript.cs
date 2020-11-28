@@ -37,7 +37,10 @@ namespace Methodyca.Core
             // if moving between levels during gameplay, interactions in previous scene can be deleted
             // when loading a game from file, interaction should be kept for interactables to check
             if (!keepInteractionsSaved)
+            {
                 SaveLoadManager.ClearInteractableState();
+                SaveLoadManager.ClearInventoryItems();
+            }
         }
 
         IEnumerator LoadLevel(string sceneName)

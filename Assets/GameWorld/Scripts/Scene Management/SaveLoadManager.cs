@@ -146,6 +146,11 @@ namespace Methodyca.Core
             interactableStates.Clear();
         }
 
+        public static void ClearInventoryItems()
+        {
+            currentInventoryItems.Clear();
+        }
+
         public static void SaveGameAuto()
         {
             // set up a new state and fill with current information
