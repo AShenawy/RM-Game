@@ -181,12 +181,22 @@ namespace Methodyca.Core
             loadSlot.onLoadGame += OnGameLoad;
         }
 
+        public void SubscribeToOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
+        {
+            loadSlot.onLoadGame += OnGameLoad;
+        }
+
         public void UnSubscribeFromOnLoadEvent(LoadSlotBehaviour loadSlot)
         {
             loadSlot.onLoadGame -= OnGameLoad;
         }
 
         public void UnSubscribeFromOnLoadEvent(ContinueGameBehaviour loadSlot)
+        {
+            loadSlot.onLoadGame -= OnGameLoad;
+        }
+
+        public void UnSubscribeFromOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
         {
             loadSlot.onLoadGame -= OnGameLoad;
         }

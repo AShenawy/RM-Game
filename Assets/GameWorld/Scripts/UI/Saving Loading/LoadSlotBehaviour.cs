@@ -24,14 +24,15 @@ namespace Methodyca.Core
             if (info != null)
             {
                 // display save quick info and enable button to call LoadGame()
-                saveDescription.text = $"Save Game {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}";
+                saveDescription.text = $"Slot {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}" +
+                    $"\n{System.DateTime.FromBinary(System.Convert.ToInt64(info.dateTime))}";
                 btn.interactable = true;
                 SceneManagerScript.instance.SubscribeToOnLoadEvent(this);
             }
             else
             {
                 // display empty slot and disable button from calling LoadGame()
-                saveDescription.text = $"Save Game {saveSlot} - Empty";
+                saveDescription.text = $"Slot {saveSlot} - Empty";
                 btn.interactable = false;
             }
         }

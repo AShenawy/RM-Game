@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
 
     public void CheckFirstRun()
     {
-        if (SaveLoadManager.GetAutosaveAvailable())
+        if (SaveLoadManager.GetAutosaveInfo() != null)
         {
             newgameConfirmScreen.SetActive(true);
         }
