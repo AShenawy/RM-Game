@@ -21,10 +21,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             if (feedback == null)
             {
                 speechBubble.gameObject.SetActive(false);
+                image.gameObject.SetActive(false);
             }
             else
             {
                 speechBubble.gameObject.SetActive(true);
+                image.gameObject.SetActive(true);
                 image.sprite = feedback.Character;
                 speech.text = $"<b>{feedback.Name}:</b> {feedback.Speech}";
             }

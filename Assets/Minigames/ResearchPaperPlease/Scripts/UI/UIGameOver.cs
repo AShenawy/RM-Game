@@ -32,6 +32,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void OnEnable()
         {
             GameManager.OnGameOver += GameOverHandler;
+            GameManager.OnLevelInitiated += LevelInitiatedHandler;
+        }
+
+        private void LevelInitiatedHandler(LevelData data)
+        {
+            finalScreen.SetActive(false);
         }
 
         private void GameOverHandler(bool isWon)
@@ -52,6 +58,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void OnDisable()
         {
             GameManager.OnGameOver -= GameOverHandler;
+            GameManager.OnLevelInitiated -= LevelInitiatedHandler;
         }
     }
 }

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a90e00ec0e726247b3ba20fe4e50720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   acceptedPaperTreshold: 16
   levelInitiatedMessage: Evaluate the quality of the research plans based on the
     <b>Title, Supervisor, Research goals</b> and <b>Questions</b>.
@@ -72,14 +72,10 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: Are you designing and evaluating SEVERAL games and applications for
-        one thesis? The connection between the technologies and the games' purpose
-        are not clear either.
+      Speech: The title is too broad and combines too many elements lacking a clear
+        connection.
     FixRequiredOptions: 6100
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: Ergo Noom
@@ -112,13 +108,10 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: Avoid yes or no questions. The "research goal" sounds like a description
-        of what you're doing, not what you aim to learn from doing that.
+      Speech: The research goal just states what the author plans to do, not what
+        they aim to learn from it. Avoid "yes/no" research questions.
     FixRequiredOptions: 63006400
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: Kajsu Norock
@@ -145,13 +138,10 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: This doesn't sound like a research goal. This is more like a description
-        of the research needs.
+      Speech: The research goal points to the practical need for the project, but
+        does not explain what research contribution the thesis aims to make.
     FixRequiredOptions: 6300
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: Moe Vember
@@ -188,9 +178,6 @@ MonoBehaviour:
     FixRequiredOptions: 
     Options:
     - Index: 32
-      Header: Field
-      Text: Game Studies
-    - Index: 32
       Header: Author
       Text: Kai-Mai Kaiman
     - Index: 97
@@ -224,9 +211,6 @@ MonoBehaviour:
     FixRequiredOptions: 6400
     Options:
     - Index: 32
-      Header: Field
-      Text: Game Studies
-    - Index: 32
       Header: Author
       Text: Anna Ka
     - Index: 97
@@ -251,13 +235,10 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: None of the questions is related to the research goal. Besides don't
-        ask close-ended questions.
+      Speech: None of the research questions are related to the research goal. Additionally,
+        they are close-ended questions.
     FixRequiredOptions: 6400
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: "Taavet P\xFChal"
@@ -295,9 +276,6 @@ MonoBehaviour:
     FixRequiredOptions: 
     Options:
     - Index: 32
-      Header: Field
-      Text: Game Studies
-    - Index: 32
       Header: Author
       Text: Kata Loog
     - Index: 97
@@ -327,13 +305,10 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: Be careful by using the word "correlation". It has a very narrow meaning
-        in research. Use it if you really plan a correlation study.
+      Speech: Is one of the research questions really a correlation study, or is
+        this world used in the wrong context?
     FixRequiredOptions: 6400
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: Kata Pult
@@ -367,9 +342,6 @@ MonoBehaviour:
     FixRequiredOptions: 63006400
     Options:
     - Index: 32
-      Header: Field
-      Text: Game Studies
-    - Index: 32
       Header: Author
       Text: Laine Hari
     - Index: 97
@@ -394,12 +366,9 @@ MonoBehaviour:
     AuditorReaction:
       Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
       Name: Auditor
-      Speech: Development mentioned 2 times in the title.
+      Speech: Development mentioned twice in the title.
     FixRequiredOptions: 6100
     Options:
-    - Index: 32
-      Header: Field
-      Text: Game Studies
     - Index: 32
       Header: Author
       Text: Ly Bahunt

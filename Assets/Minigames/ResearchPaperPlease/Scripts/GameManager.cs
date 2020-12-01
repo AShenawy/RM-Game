@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using UnityEngine;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
@@ -68,15 +68,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int _qualityValue = 0;
         private int _progressValue = 0;
         private int _currentLevelIndex = 0;
-        private int _initialTotalPaperCount;
-        private bool _isFeedbackDisplayed;
+        private int _initialTotalPaperCountPerLevel;
 
         private const int _maxProgressionValueToWin = 20;
 
         public void InitiateNextLevel()
         {
             _allResearchPaper = GetResearchPaperByLevel(++_currentLevelIndex);
-            _initialTotalPaperCount = _allResearchPaper.Count;
 
             if (_allResearchPaper == null) //All of research paper are completed (Game Over)
             {
@@ -106,6 +104,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
             else //Display next paper
             {
+                _initialTotalPaperCountPerLevel = _allResearchPaper.Count;
                 _currentLevelData = GetCurrentLevelData();
                 _rules = new List<string>(_currentLevelData.LevelRules);
                 NextRule();
@@ -120,30 +119,32 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             OnFeedbackInitiated?.Invoke(null);
 
-            if (_allResearchPaper != null && _allResearchPaper.Count > 0) //Level is progressing
+            if (_allResearchPaper != null) //Level is progressing
             {
-                _currentResearchPaperData = _allResearchPaper.Dequeue();
-                OnPaperUpdated?.Invoke(_currentResearchPaperData);
-                OnPageUpdated?.Invoke(_initialTotalPaperCount - _allResearchPaper.Count, _initialTotalPaperCount);
-            }
-            else if (_isFeedbackDisplayed) //Next level is initiated
-            {
-                _isFeedbackDisplayed = false;
-                InitiateNextLevel();
-            }
-            else //Level is over (Display level-end feedback)
-            {
-                _isFeedbackDisplayed = true;
-                OnLevelOver?.Invoke($"<b>LEVEL {_currentLevelIndex}</b> is completed.");
-
-                if (_currentLevelData.AcceptedPaperTreshold > _acceptedPaperData.Count(p => p.Quality == (PaperQuality.High | PaperQuality.Medium)))
+                if (_allResearchPaper.Count > 0)
                 {
-                    OnFeedbackInitiated?.Invoke(_currentLevelData.PositiveLevelFeedback);
+                    _currentResearchPaperData = _allResearchPaper.Dequeue();
+                    OnPaperUpdated?.Invoke(_currentResearchPaperData);
+                    OnPageUpdated?.Invoke(_initialTotalPaperCountPerLevel - _allResearchPaper.Count, _initialTotalPaperCountPerLevel);
                 }
                 else
                 {
-                    OnFeedbackInitiated?.Invoke(_currentLevelData.NegativeLevelFeedback);
+                    _allResearchPaper = null;
+                    OnLevelOver?.Invoke($"<b>LEVEL {_currentLevelIndex}</b> is completed.");
+
+                    if (_acceptedPaperData.Count/*(p => p.Quality == (PaperQuality.High | PaperQuality.Medium))*/ > _currentLevelData.AcceptedPaperTreshold)
+                    {
+                        OnFeedbackInitiated?.Invoke(_currentLevelData.PositiveLevelFeedback);
+                    }
+                    else
+                    {
+                        OnFeedbackInitiated?.Invoke(_currentLevelData.NegativeLevelFeedback);
+                    }
                 }
+            }
+            else
+            {
+                InitiateNextLevel();
             }
         }
 
@@ -162,13 +163,18 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
+                    //_currentResearchPaperData.AuditorReaction.Speech = $"This proposal is ready for acceptance but has some space for improvement. {_currentResearchPaperData.AuditorReaction.Speech}";
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
                 }
                 else
                 {
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(--_qualityValue);
+
+                    //_currentResearchPaperData.AuditorReaction.Speech = $"Actually, this research proposal requires some extra work. {_currentResearchPaperData.AuditorReaction.Speech}";
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
                 }
 
                 OnPaperDecided(true);
@@ -180,6 +186,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnPaperDecided(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
@@ -187,12 +194,14 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     {
                         if (_fixButtonPairs[option])
                         {
+                            //_currentResearchPaperData.AuditorReaction.Speech = $"This proposal is not that bad but yes it can be better. {_currentResearchPaperData.AuditorReaction.Speech}";
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             break;
                         }
                     }
-
+                    //_currentResearchPaperData.AuditorReaction.Speech = $"It’s true that this proposal has some space for improvement but you have pointed out the wrong reason. {_currentResearchPaperData.AuditorReaction.Speech}";
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
                     OnPaperDecided(false);
                 }
                 else
@@ -208,7 +217,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                         }
                     }
 
+                    //_currentResearchPaperData.AuditorReaction.Speech = $"You are right. This research proposal should be rejected but not for a reason you suggest. {_currentResearchPaperData.AuditorReaction.Speech}";
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
                     OnPaperDecided(false);
                 }
             }
@@ -294,6 +305,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             _currentLevelIndex = 0;
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
 
+            OnProgressUpdated?.Invoke(_progressValue);
+            OnQualityUpdated?.Invoke(_qualityValue);
+
             TotalPaperCount = GetTotalResearchPaperCount();
             InitiateNextLevel();
         }
@@ -303,6 +317,18 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
             TotalPaperCount = GetTotalResearchPaperCount();
             InitiateNextLevel();
+        }
+
+        private Dictionary<char, bool> GetFixedRequiredOptionDictionary()
+        {
+            var result = new Dictionary<char, bool>(_fixButtonPairs);
+
+            foreach (var item in _currentResearchPaperData.FixRequiredOptions)
+            {
+                result[item] = true;
+            }
+
+            return result;
         }
 
         private int GetTotalResearchPaperCount()

@@ -66,7 +66,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void PageUpdatedHandler(int current, int max)
         {
             pageText.gameObject.SetActive(true);
-            pageText.text = $"{current}/{max}";
+            pageText.text = $"Paper {current}/{max}";
         }
 
         private void GameOverHandler(bool isWon)
@@ -92,7 +92,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void LevelInitiatedHandler(LevelData levelData)
         {
             pageText.gameObject.SetActive(false);
-            paperText.text = $"<b>LEVEL {levelData.Level}</b>\n{levelData.LevelInitiatedMessage}";
+            paperText.gameObject.SetActive(true);
+            acceptButton.gameObject.SetActive(true);
+            rejectButton.gameObject.SetActive(true);
+
+            paperText.text = $"<align=\"center\"><b>LEVEL {levelData.Level}</b></align>\n{levelData.LevelInitiatedMessage}";
 
             acceptButton.targetGraphic.raycastTarget = false;
             acceptButton.targetGraphic.color = _halfTransparent;
@@ -108,6 +112,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
             scrollDownButton.targetGraphic.raycastTarget = false;
             scrollDownButton.targetGraphic.color = _halfTransparent;
+
+            nextButton.interactable = true;
+            nextButton.targetGraphic.raycastTarget = true;
+            nextButton.targetGraphic.color = Color.white;
         }
 
         private void PaperDecidedHandler(bool isAccepted)
@@ -199,7 +207,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             paperText.ForceMeshUpdate(true);
             paperText.pageToDisplay = 1;
 
-            if (paperText.textInfo.pageCount > 1)//
+            if (paperText.textInfo.pageCount > 1)
             {
                 scrollUpButton.targetGraphic.raycastTarget = true;
                 scrollUpButton.targetGraphic.color = Color.white;
