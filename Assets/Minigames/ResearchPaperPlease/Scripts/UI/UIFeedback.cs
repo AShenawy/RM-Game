@@ -14,6 +14,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             GameManager.OnFeedbackInitiated += FeedbackInitiatedHandler;
             gameObject.SetActive(false);
+            image.gameObject.SetActive(false);
         }
 
         private void FeedbackInitiatedHandler(Feedback feedback)

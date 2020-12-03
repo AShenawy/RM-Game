@@ -11,7 +11,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Transform qualityCursor;
         [SerializeField] private Transform progressCursor;
         [SerializeField] private TextMeshProUGUI paperText;
-        [SerializeField] private TextMeshProUGUI smallScreenText;
         [SerializeField] private TextMeshProUGUI notebookText;
         [SerializeField] private TextMeshProUGUI pageText;
         [SerializeField] private Button acceptButton;
@@ -27,7 +26,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         public void ScrollUp()
         {
-            if (--_currentPageIndex <1)
+            if (--_currentPageIndex < 1)
             {
                 _currentPageIndex = 1;
             }
@@ -61,6 +60,24 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
             GameManager.OnQualityUpdated += QualityUpdatedHandler;
             GameManager.OnGameOver += GameOverHandler;
+        }
+
+        private void Start()
+        {
+            acceptButton.targetGraphic.raycastTarget = false;
+            acceptButton.targetGraphic.color = _halfTransparent;
+
+            rejectButton.targetGraphic.raycastTarget = false;
+            rejectButton.targetGraphic.color = _halfTransparent;
+
+            scrollUpButton.targetGraphic.raycastTarget = false;
+            scrollUpButton.targetGraphic.color = _halfTransparent;
+
+            scrollDownButton.targetGraphic.raycastTarget = false;
+            scrollDownButton.targetGraphic.color = _halfTransparent;
+
+            fixButtonCanvasGroup.alpha = 0.5f;
+            fixButtonCanvasGroup.blocksRaycasts = false;
         }
 
         private void PageUpdatedHandler(int current, int max)
@@ -175,7 +192,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     if (fixbuttons[option.Index])
                     {
-                        paperText.text += $"<mark=#000000aa><font=\"VT323\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
+                        paperText.text += $"<mark=#000000aa><font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
                     }
                     else
                     {
@@ -245,7 +262,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private void LevelOverHandler(string message)
         {
             paperText.text = $"<align=\"center\">{message}</align>";
-            smallScreenText.text = "";
 
             pageText.gameObject.SetActive(false);
             nextButton.interactable = false;
