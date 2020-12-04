@@ -9,6 +9,7 @@ namespace Methodyca.Minigames.Protoescape
     public sealed class SoundManager : MonoBehaviour
     {
         public static SoundManager instance;
+        [HideInInspector]
         public Sound mainBGM;
 
         private AudioSource BGMPlayer;

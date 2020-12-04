@@ -385,7 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100039970}
   - component: {fileID: 100039969}
-  - component: {fileID: 100039971}
+  - component: {fileID: 100039972}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -408,9 +408,9 @@ MonoBehaviour:
   mainBGM:
     Name: 
     clip: {fileID: 0}
-    volume: 1
+    volume: 0.6
     pitch: 1
-    loop: 0
+    loop: 1
     pan: 0
     source: {fileID: 0}
 --- !u!4 &100039970
@@ -427,14 +427,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &100039971
-AudioListener:
+--- !u!114 &100039972
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100039968}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1de13e4f15d430e8461ac4f0201ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMUsic:
+    Name: 
+    clip: {fileID: 8300000, guid: fada4755a58c34552ad8ee14538e8042, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &299192189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1412,7 @@ GameObject:
   - component: {fileID: 1173610749}
   - component: {fileID: 1173610748}
   - component: {fileID: 1173610750}
+  - component: {fileID: 1173610747}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1407,6 +1420,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &1173610747
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173610746}
+  m_Enabled: 1
 --- !u!20 &1173610748
 Camera:
   m_ObjectHideFlags: 0
