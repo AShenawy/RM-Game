@@ -1,15 +1,12 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.Protoescape
 {
     public class UIIntro : MonoBehaviour
     {
-       // [SerializeField] private RectTransform alien;
-
-        private void Start()
+        public void Destroy()
         {
-          //  alien.DOShakePosition(6, 300, 1, fadeOut: false).OnComplete(() => GameManager_Protoescape.Instance.HandleGameStart());
+            Destroy(gameObject);
         }
     }
 }
