@@ -68,8 +68,6 @@ namespace Methodyca.Minigames.Protoescape
             var result = GetLikedCategoryRate();
             var ratio = result.current / (float)result.total;
 
-            Debug.Log("Result: " + result.current + "/" + result.total);
-
             if (ratio < 0.1f) //confused
             {
                 OnPrototypeTestCompleted?.Invoke(negativeFeedback);

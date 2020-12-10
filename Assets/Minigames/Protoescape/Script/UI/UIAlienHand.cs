@@ -5,6 +5,7 @@ namespace Methodyca.Minigames.Protoescape
     public class UIAlienHand : MonoBehaviour
     {
         [SerializeField] private GameObject alienHand;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip likeSound;
         [SerializeField] private AudioClip confuseSound;
 
@@ -26,11 +27,13 @@ namespace Methodyca.Minigames.Protoescape
 
             if (likables.Count > 0)
             {
-                //likable sound
+                audioSource.clip = likeSound;
+                audioSource.Play();
             }
             else
             {
-                //confusing sound
+                audioSource.clip = confuseSound;
+                audioSource.Play();
             }
         }
 
