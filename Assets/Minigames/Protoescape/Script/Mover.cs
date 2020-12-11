@@ -21,6 +21,18 @@ namespace Methodyca.Minigames.Protoescape
             _animator.SetBool("IsMoving", _moveTween.IsPlaying());
         }
 
+        public void Play()
+        {
+            _moveTween.Play();
+            _animator.SetBool("IsMoving", true);
+        }
+
+        public void Pause()
+        {
+            _moveTween.Pause();
+            _animator.SetBool("IsMoving", false);
+        }
+
         private void Awake()
         {
             _transform = transform;
