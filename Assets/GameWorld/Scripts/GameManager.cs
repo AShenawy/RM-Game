@@ -159,6 +159,7 @@ namespace Methodyca.Core
                 // Do not interact and use the held item
                 interactableObject.UseWithHeldItem(player.GetComponent<PlayerItemHandler>().heldItem);   
                 player.GetComponent<PlayerItemHandler>().RemoveFromHand();
+                CursorManager.instance.SetDefaultCursor();      // return to default cursor right after using item
             }
         }
 
