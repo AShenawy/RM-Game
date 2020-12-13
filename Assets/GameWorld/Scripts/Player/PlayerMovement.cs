@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Methodyca.Core
@@ -10,6 +8,7 @@ namespace Methodyca.Core
         public int turnAngle = 90;
         public bool canDimeSwitch = true;
     
+
         // Removed ability to turn with keyboard. Player can only turn using on-screen interface
         //void Update()
         //{
@@ -29,19 +28,5 @@ namespace Methodyca.Core
         {
             transform.Rotate(0, -turnAngle, 0);
         }
-
-        // Needs to be done through game manager
-        //public void DoSwitch()
-        //{
-        //    if (canDimeSwitch)
-        //    {
-        //        float newHlPosition = transform.position.x * -1;
-        //        transform.position = new Vector3(newHlPosition, transform.position.y, transform.position.z);
-        //    }
-        //    else
-        //    {
-        //        DialogueHandler.instance.DisplayDialogue("I can't switch dimensions right now.");
-        //    }
-        //}
     }
 }

@@ -252,9 +252,34 @@ namespace Methodyca.Core
                 SetTurnTriggersActive(false);
             }
 
+            if (roomData.ForcePlayerOrientation)
+                RotatePlayer();
+
             // Check if entered room is an autosave checkpoint
             if (roomData.isSavePoint)
                 SaveLoadManager.SaveGameAuto();
+
+            void RotatePlayer()
+            {
+                switch (roomData.orientation)
+                {
+                    case RoomData.Orientations.North:
+                        player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                        break;
+
+                    case RoomData.Orientations.East:
+                        player.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                        break;
+
+                    case RoomData.Orientations.South:
+                        player.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                        break;
+
+                    case RoomData.Orientations.West:
+                        player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                        break;
+                }
+            }
         }
     
         private void ResetCursor()
