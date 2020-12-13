@@ -336,6 +336,11 @@ namespace Methodyca.Core
             }
         }
 
+        public string GetCurrentRoomTag()
+        {
+            return roomCurrent.tag;
+        }
+
         public void SwitchDimension()
         {
             // check if player can actually switch
