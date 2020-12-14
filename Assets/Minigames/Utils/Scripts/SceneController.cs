@@ -11,19 +11,18 @@ namespace Methodyca.Minigames.Utils
 
         public void ChangeScene(int index)
         {
-            StartCoroutine(LoadSceneCor(index));
+            var opr = SceneManager.LoadSceneAsync(index);
+            StartCoroutine(LoadSceneOpr(opr));
         }
 
         public void ChangeScene(string sceneName)
         {
-            var scene = SceneManager.GetSceneByName(sceneName);
-            StartCoroutine(LoadSceneCor(scene.buildIndex));
+            var opr = SceneManager.LoadSceneAsync(sceneName);
+            StartCoroutine(LoadSceneOpr(opr));
         }
 
-        private IEnumerator LoadSceneCor(int index)
+        private IEnumerator LoadSceneOpr(AsyncOperation operation)
         {
-            var opr = SceneManager.LoadSceneAsync(index);
-
             if (loadProgressUIPanel == null || loadProgressSlider == null)
             {
                 yield return null;
@@ -31,9 +30,9 @@ namespace Methodyca.Minigames.Utils
 
             loadProgressUIPanel.SetActive(true);
 
-            while (!opr.isDone)
+            while (!operation.isDone)
             {
-                var progress = Mathf.Clamp01(opr.progress / .9f);
+                var progress = Mathf.Clamp01(operation.progress / .9f);
 
                 loadProgressSlider.value = progress;
                 yield return null;
