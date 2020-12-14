@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3059785074208783371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda99e660c93ce449b986d925ee9f1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Open-Ended Question
+  costPoint: 4
+  spawnSize: 5
+  sprite: {fileID: 21300000, guid: de654feeb422fb043be703443ce86df0, type: 3}
+  infoSprite: {fileID: 21300000, guid: 28cd715ee50f9a64bb4f87c6895b19e9, type: 3}
+  cardBack: {fileID: 8704260277624349887}
+  thinkingSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 1e9ea034f9e814c98854e69685d32069, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  tableHitSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 3be107fd66f954883ac87851849dc7ba, type: 3}
+    loop: 0
+    volume: 0.4
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  cardHighSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1c823fba8b594a0e94e35cf739c7638, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  notEnoughSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1ab72eb817c34bc882d23abbf18eda8, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  questions:
+  - IsAnswerCorrect: 0
+    TopicName: Free Time
+    Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
+    Options:
+    - IsCorrect: 1
+      Id: 1
+      Point: 5
+      Feedback: {fileID: 21300000, guid: 0e6c1ded8c996654d8f542d874afa124, type: 3}
+      Text: What do you enjoy about the hobbies you currently do?
+    - IsCorrect: 0
+      Id: 2
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 512d6c509a214614384f0f70bd4b276b, type: 3}
+      Text: How do you feel about drawing?
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 994f85ed331b12942b0193550fc36a89, type: 3}
+      Text: "Why don\u2019t you take up something new?"
+  - IsAnswerCorrect: 0
+    TopicName: Food & Drink
+    Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1fa61435ec950bf48ae760a9582da775, type: 3}
+      Text: What do you think about wine? Or do you prefer beer? Why?
+    - IsCorrect: 1
+      Id: 2
+      Point: 5
+      Feedback: {fileID: 21300000, guid: 3b97fdcf034aed2438109274d9184df8, type: 3}
+      Text: "What\u2019s your attitude to trying new things when it comes to food
+        and drink?"
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1da4eea1ef440b047beb509f1291d1b6, type: 3}
+      Text: So...do you like food?
+  - IsAnswerCorrect: 0
+    TopicName: Travel
+    Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 02fe76356bc547d4983c8bf073d6f5ff, type: 3}
+      Text: What kind of things do you like to do?
+    - IsCorrect: 1
+      Id: 2
+      Point: 5
+      Feedback: {fileID: 21300000, guid: d7e164adac179ff43baed7ef12987e82, type: 3}
+      Text: Tell me about what you like most about travelling.
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1874b9963fd48cb43be819a5aa16aa23, type: 3}
+      Text: Describe your best holiday.
+  - IsAnswerCorrect: 0
+    TopicName: Work
+    Header: {fileID: 21300000, guid: b5e1d996560ec724e994f9262a1b8d7b, type: 3}
+    Options:
+    - IsCorrect: 1
+      Id: 1
+      Point: 5
+      Feedback: {fileID: 21300000, guid: 1d25cc1817e71b041b8150f836d812a6, type: 3}
+      Text: How do you feel about your work situation?
+    - IsCorrect: 0
+      Id: 2
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 1735ebf54c879554eb8c47ae938a1ff3, type: 3}
+      Text: Are you happy with your work?
+    - IsCorrect: 0
+      Id: 3
+      Point: -3
+      Feedback: {fileID: 21300000, guid: 852361756839494489e5a319bab23205, type: 3}
+      Text: "Where are you going to be in three years\u2019 time?"
+--- !u!1001 &6154170396189033455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 34749705673263400, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 713846691693631341, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 3059785074208783371}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Name
+      value: '[ItemCard]Open-EndedQuestion'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: cardBase
+      value: 
+      objectReference: {fileID: 3059785074208783371}
+    m_RemovedComponents:
+    - {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
+--- !u!1 &619988347210649360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
