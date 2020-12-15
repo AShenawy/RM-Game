@@ -14,19 +14,13 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField, TextArea(1, 3)] private string negativeFeedback;
         [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
-        public static event Action<string> OnPrototypeTestCompleted = delegate { };
         public static event Action OnPrototypeTestInitiated = delegate { };
+        public static event Action<string> OnPrototypeTestCompleted = delegate { };
+        public static event Action<string[]> OnCheckableNotesUpdated = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
-        private List<ICheckable> _allCheckables = new List<ICheckable>();
-        private List<ICheckable> _checkablesToTest = new List<ICheckable>();
+        private List<ICheckable> _allCheckables , _checkablesToTest = new List<ICheckable>();
         private readonly int _categorySize = Enum.GetNames(typeof(CategoryType)).Length;
-
-        private IEnumerator Start()
-        {
-            yield return null;
-            _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
-        }
 
         /// <summary>
         /// Called in the editor. Click Alien event.
@@ -37,7 +31,16 @@ namespace Methodyca.Minigames.Protoescape
             {
                 return;
             }
-            _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt)));
+
+            _checkablesToTest = GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt));
+            string[] notes = new string[_checkablesToTest.Count];
+
+            for (int i = 0; i < _checkablesToTest.Count; i++)
+            {
+                notes[i] = _checkablesToTest[i].GetNotebookLogData();
+            }
+
+            OnCheckableNotesUpdated?.Invoke(notes);
             OnPrototypeTestInitiated?.Invoke();
             PointSelectedCheckable();
         }
@@ -112,6 +115,12 @@ namespace Methodyca.Minigames.Protoescape
             {
                 OnPrototypeTestCompleted?.Invoke(positiveFeedback);
             }
+        }
+
+        private IEnumerator Start()
+        {
+            yield return null;
+            _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
         }
 
         private (int current, int total) GetLikedCategoryRate()
