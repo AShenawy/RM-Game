@@ -14,6 +14,11 @@ public static class EnumerableExtensions
         return current.Previous ?? current.List.Last;
     }
 
+    public static HashSet<T> GetHashSet<T>(this IEnumerable<T> source)
+    {
+        return new HashSet<T>(source);
+    }
+
     public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
     {
         return source.Shuffle(new Random());

@@ -6,7 +6,7 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class Icon : BaseEntity, IReplaceable<Sprite>, IReplaceable<Color>, IHighlightable, ICheckable
     {
-        [SerializeField] protected string entityId;
+        [SerializeField] private string entityId;
         [SerializeField] private Image icon;
         [SerializeField] private GameObject highlight;
         [SerializeField] private bool shouldBeHighlighted;
@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.Protoescape
         public Color CurrentColor { get; private set; }
         public Sprite CurrentSprite { get; private set; }
         public string EntityID { get => entityId; }
-        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(),_stack.CurrentSiblingIndex); }
+        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex); }
 
         public HashSet<CategoryType> Categories
         {
@@ -30,13 +30,6 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Color },
                             { CategoryType.Highlight },
                          };
-        }
-
-        private void Start()
-        {
-            IsHighlighted = highlight.activeInHierarchy;
-            CurrentColor = icon.color;
-            CurrentSprite = icon.sprite;
         }
 
         public void Replace(Color value)
@@ -59,26 +52,35 @@ namespace Methodyca.Minigames.Protoescape
 
         public Dictionary<CategoryType, object> GetLikables()
         {
-            var dict = new Dictionary<CategoryType, object>();
+            var result = new Dictionary<CategoryType, object>();
 
             if (likableCoordinates.Contains(CurrentCoordinate))
-            {
-                dict.Add(CategoryType.Position, CurrentCoordinate);
-            }
-            if (likableSprites.Contains(CurrentSprite))
-            {
-                dict.Add(CategoryType.Icon, CurrentSprite);
-            }
-            if (likableColors.Contains(CurrentColor))
-            {
-                dict.Add(CategoryType.Color, CurrentColor);
-            }
-            if (shouldBeHighlighted == IsHighlighted)
-            {
-                dict.Add(CategoryType.Highlight, IsHighlighted);
-            }
+                result.Add(CategoryType.Position, CurrentCoordinate);
 
-            return dict;
+            if (likableSprites.Contains(CurrentSprite))
+                result.Add(CategoryType.Icon, CurrentSprite);
+
+            if (likableColors.Contains(CurrentColor))
+                result.Add(CategoryType.Color, CurrentColor);
+
+            if (shouldBeHighlighted == IsHighlighted)
+                result.Add(CategoryType.Highlight, IsHighlighted);
+
+
+            return result;
+        }
+
+        public HashSet<CategoryType> GetLikedCategories()
+        {
+            return GetLikables().Keys.GetHashSet();
+        }
+
+        public HashSet<CategoryType> GetConfusedCategories()
+        {
+            var result = new HashSet<CategoryType>(Categories);
+            result.ExceptWith(GetLikables().Keys);
+
+            return result;
         }
 
         public string GetNotebookLogData()
@@ -101,5 +103,11 @@ namespace Methodyca.Minigames.Protoescape
             return result;
         }
 
+        private void Start()
+        {
+            IsHighlighted = highlight.activeInHierarchy;
+            CurrentColor = icon.color;
+            CurrentSprite = icon.sprite;
+        }
     }
 }
