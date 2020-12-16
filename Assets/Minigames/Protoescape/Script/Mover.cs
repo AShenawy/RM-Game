@@ -9,63 +9,96 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private float initialDelay;
         [SerializeField] private float finalDelay;
         [SerializeField] private float duration;
-        [SerializeField] private Transform endPoint;
+        [SerializeField] private RectTransform endPoint;
+        [SerializeField] private AudioClip footstep;
 
         private Tween _moveTween;
-        private Transform _transform;
+        private RectTransform _transform;
         private Animator _animator;
-
-        public void PlayPauseMoveTween()
-        {
-            _moveTween.TogglePause();
-            _animator.SetBool("IsMoving", _moveTween.IsPlaying());
-        }
+        private AudioSource _source;
 
         public void Play()
         {
             _moveTween.Play();
             _animator.SetBool("IsMoving", true);
+            PlayFootStep(true);
         }
 
         public void Pause()
         {
             _moveTween.Pause();
             _animator.SetBool("IsMoving", false);
+            PlayFootStep(false);
         }
 
         private void Awake()
         {
-            _transform = transform;
+            _transform = GetComponent<RectTransform>();
             _animator = GetComponentInChildren<Animator>();
+            _source = GetComponentInChildren<AudioSource>();
+
+            if (_source != null)
+            {
+                _source.clip = footstep;
+            }
         }
 
         private void OnEnable()
         {
+            PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
+
             float _duration = Mathf.Abs(duration);
-            Vector2 startPosition = _transform.position;
+            Vector2 startPosition = _transform.anchoredPosition;
 
             _moveTween = DOTween.Sequence().SetDelay(initialDelay)
                                            .AppendCallback(() => _transform.LookAt(endPoint, Vector3.up))
-                                           .Append(_transform.DOMove(endPoint.position, _duration))
+                                           .AppendCallback(() => PlayFootStep(true))
+                                           .Append(_transform.DOAnchorPos(endPoint.anchoredPosition, _duration))
+                                           .AppendCallback(() => PlayFootStep(false))
                                            .AppendCallback(() => _transform.LookAt(startPosition, Vector3.up))
                                            .SetDelay(finalDelay)
-                                           .Append(_transform.DOMove(startPosition, _duration))
+                                           .AppendCallback(() => PlayFootStep(true))
+                                           .Append(_transform.DOAnchorPos(startPosition, _duration))
+                                           .AppendCallback(() => PlayFootStep(false))
                                            .SetEase(Ease.Linear).SetLoops(-1).SetAutoKill(false).Pause();
 
             if (isPlayOnEnable)
             {
-                PlayPauseMoveTween();
+                Play();
+            }
+        }
+
+        private void PrototypeTestCompletedHandler(string obj)
+        {
+            Pause();
+        }
+
+        private void PrototypeTestInitiatedHandler(string[] notes)
+        {
+            Pause();
+        }
+
+        private void PlayFootStep(bool isPlaying)
+        {
+            if (footstep != null)
+            {
+                if (isPlaying)
+                {
+                    _source.Play();
+                }
+                else
+                {
+                    _source.Stop();
+                }
             }
         }
 
         private void OnDisable()
         {
+            PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
             _moveTween.Pause();
-        }
-
-        private void OnDestroy()
-        {
-            _moveTween.Kill();
         }
     }
 }

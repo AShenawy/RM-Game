@@ -14,9 +14,8 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField, TextArea(1, 3)] private string negativeFeedback;
         [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
-        public static event Action OnPrototypeTestInitiated = delegate { };
+        public static event Action<string[]> OnPrototypeTestInitiated = delegate { };
         public static event Action<string> OnPrototypeTestCompleted = delegate { };
-        public static event Action<string[]> OnCheckableNotesUpdated = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
         private List<ICheckable> _allCheckables , _checkablesToTest = new List<ICheckable>();
@@ -40,8 +39,7 @@ namespace Methodyca.Minigames.Protoescape
                 notes[i] = _checkablesToTest[i].GetNotebookLogData();
             }
 
-            OnCheckableNotesUpdated?.Invoke(notes);
-            OnPrototypeTestInitiated?.Invoke();
+            OnPrototypeTestInitiated?.Invoke(notes);
             PointSelectedCheckable();
         }
 

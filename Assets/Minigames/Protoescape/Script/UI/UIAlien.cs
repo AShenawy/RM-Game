@@ -11,12 +11,12 @@ namespace Methodyca.Minigames.Protoescape
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _mover.PlayPauseMoveTween();
+            _mover.Pause();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _mover.PlayPauseMoveTween();
+            _mover.Play();
         }
 
         private void Awake()
