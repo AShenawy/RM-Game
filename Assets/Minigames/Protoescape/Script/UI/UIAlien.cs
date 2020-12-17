@@ -6,8 +6,9 @@ namespace Methodyca.Minigames.Protoescape
 {
     public class UIAlien : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        [SerializeField] private Image spriteImage;
+        [SerializeField] private Image flippedImage;
         private Mover _mover;
-        private Image _image;
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -22,13 +23,31 @@ namespace Methodyca.Minigames.Protoescape
         private void Awake()
         {
             _mover = GetComponent<Mover>();
-            _image = GetComponentInChildren<Image>();
-            _image.raycastTarget = false;
+            spriteImage.raycastTarget = flippedImage.raycastTarget = false;
         }
 
         private void OnEnable()
         {
-            GameManager_Protoescape.OnPrototypeInitiated += () => _image.raycastTarget = true;
+            GameManager_Protoescape.OnPrototypeInitiated += PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
+        }
+
+        private void PrototypeTestInitiatedHandler(string[] obj)
+        {
+            spriteImage.raycastTarget = flippedImage.raycastTarget = false;
+            _mover.Pause();
+        }
+
+        private void PrototypeInitiatedHandler()
+        {
+            spriteImage.raycastTarget = flippedImage.raycastTarget = true;
+            _mover.Pause();
+        }
+
+        private void OnDisable()
+        {
+            GameManager_Protoescape.OnPrototypeInitiated -= PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
         }
     }
 }

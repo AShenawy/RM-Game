@@ -45,6 +45,11 @@ namespace Methodyca.Minigames.Protoescape
 
         private void OnEnable()
         {
+            _moveTween.Play();
+        }
+
+        private void Start()
+        {
             PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
             PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
 
@@ -56,7 +61,7 @@ namespace Methodyca.Minigames.Protoescape
                                            .AppendCallback(() => PlayFootStep(true))
                                            .Append(_transform.DOAnchorPos(endPoint.anchoredPosition, _duration))
                                            .AppendCallback(() => PlayFootStep(false))
-                                           .AppendCallback(() => _transform.LookAt(startPosition, Vector3.up))
+                                           .AppendCallback(() => _transform.Rotate(Vector3.up, -180))
                                            .SetDelay(finalDelay)
                                            .AppendCallback(() => PlayFootStep(true))
                                            .Append(_transform.DOAnchorPos(startPosition, _duration))
@@ -96,9 +101,13 @@ namespace Methodyca.Minigames.Protoescape
 
         private void OnDisable()
         {
+            _moveTween.Pause();
+        }
+
+        private void OnDestroy()
+        {
             PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
             PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
-            _moveTween.Pause();
         }
     }
 }

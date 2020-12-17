@@ -18,7 +18,7 @@ namespace Methodyca.Minigames.Protoescape
         public static event Action<string> OnPrototypeTestCompleted = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
-        private List<ICheckable> _allCheckables , _checkablesToTest = new List<ICheckable>();
+        private List<ICheckable> _allCheckables, _checkablesToTest = new List<ICheckable>();
         private readonly int _categorySize = Enum.GetNames(typeof(CategoryType)).Length;
 
         /// <summary>
@@ -69,9 +69,11 @@ namespace Methodyca.Minigames.Protoescape
             var result = GetLikedCategoryRate();
             var ratio = result.current / (float)result.total;
 
+            string alienEscapedFeedback = $"Aliens still in hallway: <b>{result.total - result.current}/{result.total}</b>\n";
+
             if (ratio < 0.1f) //confused
             {
-                OnPrototypeTestCompleted?.Invoke(negativeFeedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + negativeFeedback);
             }
             else if (ratio >= 0.1f && ratio <= 0.8f)
             {
@@ -104,14 +106,14 @@ namespace Methodyca.Minigames.Protoescape
                     }
                 }
 
-                string feedback = $"Looks like they enjoyed <b>{liked}</b>. Unfortunately, you’ll still need to work on <b>{confused}</b>. " +
-                                   "Make sure you get them right this time! I got grandkids waiting at home.";
+                string feedback = $"Looks like they enjoyed <b>{liked}</b>. " +
+                    $"Unfortunately, you’ll still need to work on <b>{confused}</b>. Make sure you get them right this time! I got grandkids waiting at home.";
 
-                OnPrototypeTestCompleted?.Invoke(feedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + feedback);
             }
             else //liked
             {
-                OnPrototypeTestCompleted?.Invoke(positiveFeedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + positiveFeedback);
             }
         }
 
