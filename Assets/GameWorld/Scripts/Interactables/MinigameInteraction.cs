@@ -3,7 +3,6 @@ using Methodyca.Core;
 
 
 // this script handles entry to minigame scenes
-[RequireComponent(typeof(SwitchImageDisplay))]
 public class MinigameInteraction : ObjectInteraction, ILoadable
 {
     [Header("Specific Script Parameters")]

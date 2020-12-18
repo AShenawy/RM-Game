@@ -2,6 +2,7 @@
 using Methodyca.Core;
 
 // this script handles the sorting minigame hub
+[RequireComponent(typeof(SwitchImageDisplay))]
 public class SortingGameHub : MinigameHub, ISaveable, ILoadable
 {
     [Header("Specific Script Parameters")]
