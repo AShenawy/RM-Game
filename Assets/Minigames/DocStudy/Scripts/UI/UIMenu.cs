@@ -11,13 +11,7 @@ namespace Methodyca.Minigames.DocStudy
         private void OnEnable()
         {
             GameManager.OnForumInitiated += ForumInitiatedHandler;
-            GameManager.OnRestartGame += RestartGameHandler;
             DialogManager.OnDialogCompleted += DialogCompletedHandler;
-        }
-
-        private void RestartGameHandler()
-        {
-            root.SetActive(true);
         }
 
         private void DialogCompletedHandler(Dialog lastDialog)
@@ -34,7 +28,6 @@ namespace Methodyca.Minigames.DocStudy
         private void OnDisable()
         {
             GameManager.OnForumInitiated -= ForumInitiatedHandler;
-            GameManager.OnRestartGame -= RestartGameHandler;
             DialogManager.OnDialogCompleted -= DialogCompletedHandler;
         }
     }

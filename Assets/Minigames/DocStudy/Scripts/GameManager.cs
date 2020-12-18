@@ -45,7 +45,7 @@ namespace Methodyca.Minigames.DocStudy
         {
             _currentQuestion = question;
             OnForumInitiated?.Invoke(question);
-            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);//
+            OnPostCompleted?.Invoke(GetCompletedThreadCount(), _maxThreadToComplete);
         }
 
         public void HandlePostInitiation(Thread thread)
@@ -105,12 +105,6 @@ namespace Methodyca.Minigames.DocStudy
             }
 
             return completedCount;
-        }
-
-        public void RestartGame()
-        {
-            OnRestartGame?.Invoke();
-            ResetData();
         }
 
         public void ResetData()
