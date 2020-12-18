@@ -1,0 +1,1018 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5795142230096787577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5795142230096787579}
+  - component: {fileID: 5795142230096787578}
+  m_Layer: 0
+  m_Name: Question_2 [best practice]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5795142230096787579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795142230096787577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5795142230096787578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795142230096787577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb6b23292251ce4a895f42d4739e1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: What are the best practices in game design?
+  Threads:
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 1
+    Title: "This year\u2019s jam compared to last year"
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "For those who were there last year, how do you think this jam was
+        different? Personally, I was happy to see more female and LGBTQ+ jammers
+        this year, as well as more games addressing gender and other social issues.
+        On the other hand, it would be nice if more games did not take the theme
+        so literally: a third of the entries I\u2019ve seen literally involved the
+        PC increasing in size (which is totally fine, but it\u2019s difficult to
+        stand out when so many games are using the same mechanic)."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "I refuse to believe that anybody can finish a game in 3 days. Just
+        admit that you\u2019re using your preexisting prototypes. Those of us who
+        aren\u2019t need more time. Also, snacks and drinks ran out each day after
+        noon."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: '@Waren Three days is rather common for game jams; once you have some
+        experience under your belt, you can certainly produce something in 72 hours.
+        This actually seems to be working fine: this year has seen a record number
+        of participants, with many entries by young first-time developers.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "Yes, half of the games were by kids! Don\u2019t they have school
+        to go to? Get a life!"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: '@Waren. Play nice! Everybody is welcome here. In fact, it appears
+        that it was not just developers among the fresh faces this year. We also
+        had many young people with strong art and design skills, which resulted in
+        more thought-provoking art games. If anything, I find it encouraging that
+        young people are not only interested in playing games but also in creating
+        them.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: Also, despite the record number of participants, I like how the ideas
+        were presented and teams were formed. Everybody had a chance to present their
+        idea. Those who managed to attract team members were able to continue working
+        on their idea. Very egalitarian approach.
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: I think what helped was introducing guidelines for team composition
+        and the necessary skill sets to have in each team. Compared to last year,
+        where teams of any size and composition were accepted, this year we had a
+        higher ratio of finished projects.
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "Well done on forcing me to join a group where I didn\u2019t know
+        or like anybody."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: '@Ian05: A major goal of a game jam is to build a network: make new
+        friends and make yourself visible in the community. This year, thanks to
+        the large number of participants, I met many new people. We actually invited
+        several participants in for a job interview, which is a first ;)'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "@unlessSun: How about you use official recruitment procedures for
+        hiring developers instead of luring them in during game jams? I\u2019m all
+        for business opportunities, but what happened to fair competition?"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "As one of the people invited for a job interview after the jam (and
+        delighted about it!), I genuinely don\u2019t see what is wrong with that."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: "sorry, late to the party. what i enjoyed a lot was how many vr games
+        we had this year. it was also nice to see several games using custom-created
+        controllers. i don\u2019t think we had that last year. i don\u2019t care
+        much for \u201Cart games\u201D but Romantica was pretty cool with that dynamic
+        painting engine. hope to see more like it next year."
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 2
+    Title: Worst game you played?
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "I don\u2019t want to single anyone out, but I thought there were
+        quite a few games this year that used VR gratuitously and for no good reason.
+        Why do I need a VR headset to collect leaves from a tree? (Also, collecting
+        leaves is not a very engaging core mechanic.) I guess I did single someone
+        out -- sorry\u2026"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: "@Reinhold: i guess it\u2019s our game you are talking about. the
+        plan was to showcase the features and potential of vr (and also for us to
+        try out the new GemVR engine)."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "To me, the submission that did not make a lot of sense was Coronavirus
+        Game. I realize they modded an open-source game, but still, it\u2019s a mod,
+        not an original entry (is that even allowed?). Furthermore, the modding itself
+        was minimal: from what I can see, they only changed the in-game messages.
+        My basic point is, I\u2019m not sure that qualifies as a jam entry."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@BigD: I rather agree. While we don\u2019t have any rules against
+        mods (perhaps we should introduce them next year), that particular project
+        involved less original contribution by its creators than any other entry
+        I have seen in this jam\u2019s history. I think it\u2019s much more fun to
+        create something original and new; even if it fails, you\u2019ll have learned
+        from the experience."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "I didn\u2019t dislike it, but I was rather confused by HERCULES:
+        GREEK HISTORY, whose title I think is misleading. It is good to see a game
+        with educational potential, but I do not understand why the creators chose
+        to present it as a game about Ancient Greek history. There was nothing there
+        about history, it was about Greek mythology. (Also, Hercules is a Roman version
+        of the name, the Greek original is Heracles.)"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: '@Reinhold: Mythology is part of history.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: Mythologies may have their origins in ancient history (although many
+        would say something like The X-Files has its own mythology as well), but
+        to me there is a fundamental difference between events that we have reason
+        to think actually happened and fictional narratives involving transcendental
+        beings. If you are making a game about Greek history, I expect to see a focus
+        on the former rather than the latter, although I do acknowledge that the
+        line between legends, myths, and historical narratives can often be blurry.
+        Sorry to get all professorly on this!
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "@Reinhold @Ian05: I don\u2019t have a firm opinion on mythologies
+        vs history, but I can say that I did enjoy the story in that game and how
+        it integrated each myth with mini-game mechanics rather than presenting it
+        through cut-scenes or dialogue between levels."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: How do I even pick one when 99% of the games look like crap?
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: '@Waren: Watch your language. People invested time and effort in those
+        games. We try to be constructive here.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 49ee8a56ef4db05429c2b6b2f4696eac, type: 3}
+      Name: MrC@t
+      Message: "I\u2019ve actually made a compilation video of all the crazy glitches
+        I\u2019ve seen in games from this jam. You can check it out on my YT channel.
+        I realize that people had limited time, yada-yada, but some didn\u2019t even
+        bother to check if their game can be finished. That dragon-chasing game crashed
+        on the second screen, and now it refuses to restart lol."
+  - IsCorrect: 1
+    IsCompleted: 0
+    Id: 3
+    Title: What was your favorite game and why?
+    Posts:
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: I thought Social Jammers was a really neat one. There is so much negativity
+        in the world, so getting to provide positive feedback to fellow jammers was
+        a nice feeling. And the way it sought to facilitate friendly interaction
+        between players was well-done.
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: '@Kayla: I played the feedback thing for 3 minutes, and it looked
+        like a gamified app more than a game.'
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "I enjoyed Werq-Yer-Sox-Ov, the one game that might actually help
+        me lose weight! And thanks to the randomized scenarios, it has a lot of replayability
+        value. I\u2019ve lost count of how many times I\u2019ve played it already."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "@BigD: That one too is just gamification. I\u2019d rather just go
+        down to the gym than be jumping around the apartment to finish a nonsensical
+        story."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@Waren: 1. Good on you that you have the willpower to go to the gym.
+        Not all of us do. 2. Werq-Yer-Sox-Ov is an exergame, not just a gamified
+        app. There are proper game mechanics, and the game outcome is important in
+        its own right. 3. The randomized scenarios may be on the goofy side, but
+        I for one found them funny. 4. You have posted twice in this thread but not
+        named your favorite game, which is the topic. Why don\u2019t you do that
+        for a start?"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "Just realized I\u2019m not doing as I preach. My own favorite game
+        was probably The Eight Shenanigans. It was a cool concept, and it squeezes
+        a lot out of a simple game mechanic. I also like how it gradually introduces
+        variations to the core mechanic, providing enough variety to keep the player
+        engaged."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "@unlessSun: I\u2019m glad you enjoyed our game! The first build actually
+        had a huge tutorial introducing all of the game mechanics at the beginning.
+        Then we realized it was too much information for the player to handle and
+        thankfully had enough time to redesign the levels to introduce them over
+        time."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 49ee8a56ef4db05429c2b6b2f4696eac, type: 3}
+      Name: MrC@t
+      Message: "I\u2019m making a compilation video of my top 10 entries, and two
+        of them have been mentioned here! But I think my absolute favorite is The
+        Croco Is Not For Sale. Not only did I burst out laughing multiple times while
+        playing it, but it was challenging in a good way thanks to the player-adjustable
+        difficulty. It also looks gorgeous. I would love to see it developed into
+        a full game and become as successful as That Fateful Night from last year.
+        (Check out my Let\u2019s Play of the beta!)"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: I agree The Croco Is Not For Sale is a fun game with a unique aesthetic,
+        but I have to point out that it has too many bright colors and too much shaking
+        and flickering. As an epileptic, I had to stop playing because it nearly
+        triggered a seizure in me. I hope they add a setting to disable the visual
+        effects in the full version (and a trigger warning in the beginning).
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: The Croco was a cool one, but some of the jokes were just lame.
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: im torn between Romantica (amazing custom engine, fresh game mechanic)
+        and W33P1NG, which had this awesome ai for npc dialogue. and then my own
+        wasnt too bad if i say so myself.
+  - IsCorrect: 1
+    IsCompleted: 0
+    Id: 4
+    Title: Balance in games
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "I\u2019ve been taking part in game jams for a few years now, and
+        balancing my games always seems to be the trickiest part. That\u2019s part
+        of the reason I\u2019ve mostly switched to simple puzzles (aside from scope
+        manageability). Does anyone have any good tips on this?"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: One easy approach is the rock-paper-scissors technique.
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: '@BigD: We used that to determine who would go and buy pizzas lol'
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "That\u2019s certainly one way of using it, but what I meant is thinking
+        of major objects or resources in your game as having their strengths and
+        weaknesses. You could, for example, have three types of magic, say, Fire,
+        Water, and Air: Water beats Fire but loses to Air; Air beats Water but loses
+        to Fire; and Fire beats Air but loses to Water. That way, no single type
+        of magic is too powerful because it is counterbalanced by others."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "Very good suggestion! Just wanted to say many other methods exist
+        for how you can balance your game. They include, to name a few, direct and
+        hidden cost, fruit basket, negative feedback, and so on. I\u2019m afraid
+        I don\u2019t have time to discuss them at length, but you can look them up
+        online."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 49ee8a56ef4db05429c2b6b2f4696eac, type: 3}
+      Name: MrC@t
+      Message: "That was actually my quibble about Werq-Yer-Sox-Ov: it felt like,
+        even when I put in the effort and did well, the outcome was sometimes too
+        random and didn\u2019t depend on my performance. It\u2019s like when I was
+        playing collegiate badminton, and one time the school bought these weird
+        shuttlecocks that would fly off in random directions and were nearly impossible
+        to control. The coach first yelled at us for complaining but then tried it
+        himself and couldn\u2019t hit a barn door."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "I felt like quite a few submissions had that problem of too much
+        randomness. One way to work around this is randomize the rewards, not the
+        consequences of the player\u2019s actions. That way, they can plan and strategize
+        more, but there is still a fun element of surprise."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: Sorry for repeating the obvious, but ultimately the key to balancing
+        is testing with as many people as you can. In our prototype for That Fateful
+        Night, pretty much everything was broken and imbalanced, but then we did
+        several more iterations with 100+ testers, and now more people seem happy
+        than angry about it :)
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "@unlessSun: Count me as one of the angry ones. I\u2019m mad that
+        you cut out that character you said was inspired by me from the final release."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "Thank you so much for your suggestions, everyone! This is very helpful.
+        I\u2019ve also been reading up on designing the power curve (basically, making
+        sure that the player\u2019s growth in the game is proportional to their investment
+        in it, but also matched by the increase in challenge). Gamathustra has a
+        nice article about it, which I highly recommend!"
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 5
+    Title: The future of gaming
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: Seeing so many vr games submitted to the jam makes me very excited
+        about the future of gaming. How do you guys see videogames 10 years from
+        now?
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: '@Carol Dunno, maybe we can play them on the chips that the government
+        installs in our brains?'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "@Ian05 There is no chip. If you\u2019re hearing voices, go see a
+        doctor."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "@Carol As interested as I am in virtual reality, I don\u2019t see
+        it replacing other kinds of video games anytime soon. As I mentioned in another
+        thread, many games seem to use VR just because they can, making them less
+        accessible without clear added value. But I am interested to see what happens
+        to the broader Cross-Reality movement, which seems to be increasingly popular.
+        Even in this jam, in addition to VR, we had more augmented and mixed reality
+        games as well."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: "@Reinhold I don\u2019t even know what cross reality means lol. But
+        it sounds promising xD"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "I\u2019m personally excited to see major platforms and publishers
+        opening up to indie developers, and I hope to see more of the same in the
+        future. When we just started, making a short jam game and then developing
+        it further and publishing on consoles sounded like a dream, but we\u2019ve
+        actually done that, and so have other folks."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "@unlessSun That\u2019s definitely part of what is so cool about game
+        jams. You can use the jam to test a game idea and, if it works, develop it
+        further. And, while you have to limit your scope during the jam, it\u2019s
+        a good idea to think about how the game could be extended later."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "My hope for the future is that games become a truly inclusive medium.
+        I think we\u2019ve seen much improvement on that front, both in the industry
+        in general and this jam in particular. Each year, there seem to be more submissions
+        exploring, say, gender issues (shout out to Dysphoric Clouds!), as well as
+        a more diversity among the participants. But there is much room for improvement,
+        too."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 49ee8a56ef4db05429c2b6b2f4696eac, type: 3}
+      Name: MrC@t
+      Message: "Outside of the games themselves, I think it\u2019s notable how much
+        media coverage events like this are receiving. Game jams used to be only
+        interesting to game developers, but now lots of people follow them. Speaking
+        of following, I made a short video recap of this year\u2019s jam which you
+        can check out <u>here</u>."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "I absolutely love game jams, but one bad trend that I am afraid they
+        promote is for people to release unfinished games. It is not specific to
+        jam entries: people these days will make \u201Calpha demos\u201D and \u201Cearly-access
+        versions\u201D available before the game is anywhere near ready. Not to mention
+        the terrible boom of extra downloadable content for purchase. I guess I\u2019m
+        just nostalgic for the good old days when you would just buy the finished
+        game, and that would be it."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@Reinhold I\u2019m not sure I agree. Even in the old times, initial
+        releases of games would often be followed by patches, updates, and addons.
+        But releasing an early version for the public to see is actually a great
+        opportunity to get feedback on your work. As BigD mentioned, a game jam is
+        a great way of gauging how interesting and doable your idea is before you
+        commit to it. More broadly, I actually think it\u2019s good to engage with
+        players sooner rather than later, when the game has already been shipped."
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 6
+    Title: Confusing level design
+    Posts:
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "One thing that has become apparent to me over the years is how even
+        great game mechanics can be undermined by poor level design. This year I\u2019ve
+        seen many examples of that as well. I wonder if next year, we should be encouraging
+        each team to have a dedicated level designer whose job is to think of how
+        to create levels that really bring out the potential of the mechanics."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: "what do you mean by \u201Cpoor level design\u201D? isn\u2019t it
+        very subjective?"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "@Carol: Of course you wouldn\u2019t know what poor level design is.
+        That\u2019s precisely why each tree in your game feels the same as the previous
+        one, but bigger. It\u2019s just so predictable and repetitive and boring."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "@Carol: Let\u2019s take Ian05\u2019s own game as an example. There
+        is enough variation in the levels (which is good!), but also very little
+        clarity about what the player is expected to do and what they CAN do. Doors
+        that open look exactly the same as those that don\u2019t, there is no signage
+        directing the player towards the goal, and the sprites for traps change between
+        levels, making it impossible to identify them as traps before you\u2019ve
+        stepped on one."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "@Reinhold: The traps are supposed to be a puzzle. Every level, you
+        have to figure out where the traps are so you don\u2019t get too comfortable."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "I thought Ian\u2019s game was very good, especially for a first-time
+        entry. But I agree with Reinhold: it was frustrating to have inconsistent
+        signage, and the traps changing appearance felt less like a puzzle and more
+        like\u2026 torturing the player? :) I did have fun playing it, though!"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: 'suggestion to @Ian05: if you want detecting the traps to be a puzzle,
+        try providing some hints to the player. A puzzle needs to offer guidance,
+        not involve blind luck. For example, at the beginning of each level, there
+        could be a sign or note containing a riddle the answer to which tells the
+        player what the traps look like on this level. It would be nice to have some
+        narrative explanation for why they keep changing appearance, too.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: '@BigD: Thanks a ton man, that actually helps a lot!'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "A thing that annoyed me about some of the games is how much backtracking
+        you have to do. You go to one corner of the map to complete a quest, defeat
+        all the monsters along the way, and then you must travel all the way back
+        without anything meaningful to do. Walking isn\u2019t gameplay, kids."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: '@BigD: Conversely, in one of the games I have played, the levels
+        are so packed with quests, monsters, and artifacts that it is impossible
+        for the player to get any respite other than by pausing the game. There is
+        constantly something happening, which makes it feel frenetic and exhausting.
+        It is important to have a sense of rhythm, where after each intense phase
+        is followed by a little rest.'
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "My pet peeve is when levels are completely linear. I can tolerate
+        a linear level every once in a while if it\u2019s justified for tutorial
+        or story purposes. But when the entire level structure is just moving down
+        a tunnel with no branches, it basically feels like you\u2019re shackled and
+        not in control. Rail shooters are a thing of the past; so should be any gameplay
+        that deprives players of the opportunity to navigate the game world."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "Maybe I\u2019ve played too many visual novels, but I don\u2019t actually
+        mind linear levels if they help deliver a great story :) I guess it\u2019s
+        a matter of personal preference. One thing that surprised me was, how, in
+        the middle of HERCULES: GREEK HISTORY you have this one action mini-game,
+        and it\u2019s TOUGH! I didn\u2019t expect to see that in what is otherwise
+        a point-and-click adventure. It broke the flow a bit for me, and it was frustrating
+        to not be able to progress because of a mini-game I couldn\u2019t beat that
+        didn\u2019t seem that relevant to the main story."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: '@Kayla: Re linearity: point taken. As for HERCULES, I guess they
+        were going for action adventure gameplay but isolated the action part in
+        this one mini-game where it would have been better to integrate them and
+        calibrate the difficulty curve for less hardcore players.'
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 7
+    Title: "Let\u2019s have a gathering IRL!"
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "Who wants some pizza next Sunday! Danny\u2019s has great pepperoni
+        and a few old arcade cabinets to boot."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: '@Ian05: Do they have vegan options? If so, count me in!'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: Ah yes. The vegans whining again. Are you trying to convert us?
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@Waren: She just asked a question, no need to be passive aggressive.
+        As it happens, I know the owner at Danny\u2019s and they do have a decent
+        vegan selection. And yeah, I\u2019ll be there. What time?"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "Good idea! Having an informal gathering and playing and discussing
+        retro games could be a great starting point for new collaborations and game
+        ideas without the pressure of a deadline. Maybe we should be doing a pizza
+        night before the event as well. I\u2019m in."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "We do pizza nights every now and then where I work, and I agree with
+        Reinhold. I\u2019ve also found them a great way to discuss work-related issues
+        without pressure. Too bad I\u2019m away on Sunday!"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: '@BigD: interesting. my company has a policy of clearly separating
+        work from personal life, and i quite enjoy that tbh. which means im free
+        to hang out with you fellas sunday xD'
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "@Reinhold: I agree it\u2019s great to hang out and chat! But I wouldn\u2019t
+        use a pre-jam gathering to discuss game ideas and form teams, because then
+        you might end up going into the jam with preconceived ideas rather than being
+        open-minded and responding to the theme."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "It\u2019s nice to see that we\u2019re growing a community here and
+        there\u2019s more social stuff happening in-between official events. That\u2019s
+        certainly a big change compared to Year 1, when no one knew each other and
+        the venue emptied out the moment the jam ended. We\u2019re also getting more
+        international presence, and it\u2019s a shame folks who aren\u2019t around
+        can\u2019t join us. At least some are joining us for the online gaming sessions."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "Awesome! I\u2019ll see you there at 7pm Sunday? Let\u2019s enjoy
+        games, pizzas and beer! \\(^_^)/"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: '@Ian05: beer? how old are you?'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "Can you even be out without your parents\u2019 permission?"
+  - IsCorrect: 1
+    IsCompleted: 0
+    Id: 8
+    Title: What has the jam taught you about game design?
+    Posts:
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "One of the reasons I enjoy jamming so much is that every time you
+        take part, you learn something new. This year, seeing how many transformations
+        our idea went through before it became The Eight Shenanigans, the main takeaway
+        for me was to be flexible and not hold on to any given idea if it\u2019s
+        not working out. For a while, we were stuck trying to make our initial idea
+        work; then we realized we would be using our time better by ideating more."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "@Kayla Interesting! I\u2019d say for me, in the context of a game
+        jam, it\u2019s the opposite. Just stick with an idea and make it work\u2014you
+        don\u2019t have time to keep changing the idea. Maybe that approach was why
+        our game didn\u2019t end up being better than it is, though. Basically, I
+        had a ton of ideas, but as soon as we chose one and started prototyping,
+        I regretted going for that specific one, but decided we had to commit to
+        it regardless."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "I don\u2019t know what your other ideas were, but I quite enjoyed
+        your game @BigD! And I guess it depends on one\u2019s goals and ambition:
+        if you\u2019re looking to have a finished game by the end of the jam, you
+        should probably lock down the idea as quick as you can and just follow through.
+        But if you\u2019re there to have fun and learn, maybe you can afford to play
+        around with the idea a bit before committing."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: " Biggest takeaway for me\u2026 Sounds dumb, but I genuinely thought
+        it would be enough to have a basic idea and start coding immediately and
+        figure it out in the process. At the end, halfway through no one in the team
+        had any idea what was going on. So don\u2019t do that, kids. That would be
+        the biggest thing I\u2019ve learned from this game ham."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 49ee8a56ef4db05429c2b6b2f4696eac, type: 3}
+      Name: MrC@t
+      Message: "\u201CGame ham?\u201D I like the sound of it!"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "@MrC@t That\u2019s such a good typo I\u2019m gonna keep it lol"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "@Ian05 Actually, rapid game prototyping can be a viable approach,
+        although it still requires a bit of planning. Start with an idea, make a
+        quick prototype, see what works and what does not, and then keep iterating.
+        That is quite a frequently used approach in the game industry. \u201CFail
+        faster.\u201D"
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: '@Reinhold thats actually the approach we use in my company. we dont
+        do games but we use it for software dev in general. on a related note, being
+        a dev, i came to appreciate the importance of game design through this jam.
+        not just writing code, but actually thinking in terms of gameplay, player
+        engagement etc. - wish id thought about that more before entering lol'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@Reinhold @Carol That approach could actually account for why we
+        are seeing more professional game developers and designers join the jam every
+        year. (And also for why it has been a springboard for people to go professional.)
+        It\u2019s a nice space to test out ideas and fail fast. Sorry: offtopic thinking-aloud-in-text."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "What the jam has taught me (and I didn\u2019t even have to make any
+        games for that) is DON\u2019T BREAK THE RULES OF YOUR OWN GAME! If it\u2019s
+        possible to destroy all the scenery, don\u2019t have one wall you cannot
+        destroy due to story reasons. If enemies can beat the player to the ammo
+        and collect it, then they shouldn\u2019t have endless ammo. If you have something
+        that looks and acts like spikes, don\u2019t make it do something else on
+        the next level."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "An actually USEFUL post from Waren? Are we about to see flying pigs?
+        (And yes, I\u2019m aware that last bit was a jab at my own game.)"
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 9
+    Title: Voice actor for hire
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Clive_Sound
+      Message: "Hi folks! I\u2019m a professional voice actor looking for projects\u2014game
+        or non-game\u2014to lend my voice to. I\u2019ve done radio commercials, trailers,
+        audiobooks, character voices for games and more; check out my portfolio here.
+        (Some of you might remember me as the narrator for Robot Story, a game created
+        for this jam a few years back.)"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: "So you\u2019re a) expecting to be paid while literally everybody
+        else does this for free and b) writing this AFTER the jam has already finished?
+        Nice. I would flag this as spam, but can\u2019t find how to do it."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "Easy @Waren. Clive is not some random individual, he actually took
+        part in the jam three years ago (and did a great job: Robot Story ranked
+        1st in Sound that year!) And, considering how several entries submitted to
+        this jam have been developed into commercial games, it\u2019s not unreasonable
+        to assume some teams might be looking for voice actors to contribute to their
+        project as they take it further. That said, I don\u2019t believe at this
+        stage\u2014right after the jam has finished\u2014many teams would have a
+        budget and would be able to hire one. Finding a publisher and getting funding
+        takes time."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 58941896b64d0c74eb9ea6791f6acabb, type: 3}
+      Name: Carol
+      Message: who needs a voice actor when you have text to speech libraries? we
+        used it in our game last year, worked just fine.
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "@Carol I\u2019m afraid it didn\u2019t work as well as you think.
+        Even the better TTS services out there, while not sounding as robotic as
+        the old stuff, lack in expression and don\u2019t handle emphasis well. I
+        remember your game from last year, and I disabled the sound altogether after
+        a few minutes, because the TTS was starting to grate on me. Ironically, it
+        might have worked for Robot Story given its subject matter. Bottom line:
+        don\u2019t use text-to-speech unless you have good reason to."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: I get it, TTS is bad. But why not just record your own voice and use
+        it in the game? Every smartphone has a microphone these days.
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: '@Ian05 Sorry to be pedantic, but phones have always had microphones
+        :) But more pertinently, when a game has bad voice acting (unprofessionally
+        acted, poorly recorded, etc.), that can actually be more distracting than
+        useful. I strongly believe that no voice acting is better than poor voice
+        acting.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "@Reinhold What do you mean, unprofessionally acted? If I\u2019m an
+        American teenager and I\u2019m voicing an American teenage character, am
+        I not qualified for this?"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "@Ian05 You may have noticed that, in movies, characters don\u2019t
+        really speak the same way as we do in real life. They are more expressive
+        and emotional, enunciate words more clearly, and their speech is often more
+        rhythmic; in short, they have a different kind of voice that we\u2019ve come
+        to expect of them. Strangely enough, speaking like you do in real life may
+        not translate into your audience thinking the voice acting is \u201Crealistic.\u201D
+        And, if you used a phone mic to record it, it may also sound like it\u2019s
+        coming out of a tin."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "Welcome back Clive! I checked out your portfolio, and it sounds great!
+        Seems you\u2019ve been keeping busy xD On the subject of not having budget,
+        I\u2019ve seen an increasing number of games use gibberish/mumbling voices
+        that seem to be procedurally generated (see e.g. The Croco Is Not For Sale
+        this year). This is nowhere near as immersive as professional voice acting,
+        but a nice workaround for livening things up when you can\u2019t afford voice
+        actors."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: i thought the gibberish in Croco was just weird, tbh...
+  - IsCorrect: 0
+    IsCompleted: 0
+    Id: 10
+    Title: Things we used to have in games, but not anymore
+    Posts:
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "As a gamer of 20+ years, I\u2019ve increasingly been noticing that
+        some things that used to be commonplace in games aren\u2019t really being
+        done anymore. For example, g"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: abcff0b32c102a94db4de11fe7f31a44, type: 3}
+      Name: Waren
+      Message: Good old objectification of women?
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: '@Waren That would be funny if it were true. Games may have made a
+        lot of progress in terms of gender representation, but there is still a long
+        way to go. In this very jam, we had a game where all the good guys are, well,
+        guys. And the evil they are fighting? The Wicked Temptress. What kind of
+        message does that send to women playing games?'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "Sorry, I accidentally pressed Post before I finished writing. And
+        by the time I did, this had gone in a whole different direction! I certainly
+        didn\u2019t mean objectification of women (which was and remains an issue
+        as @Kayla pointed out). I meant things like saving the game manually. Most
+        new games I\u2019m seeing, including in this jam, save player progress automatically.
+        This is interesting: it\u2019s a convenient feature, but it also prevents
+        players from saving strategically and going back in case they want, e.g.,
+        to try a different tactic or route, which is what people used to do a lot
+        before."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 4cd70574e62f9e341ab9153924d01c5e, type: 3}
+      Name: Ian05
+      Message: "I hate to say it, but I thought the Wicked Temptress was a pretty
+        good game actually. And, if we support gender equality, shouldn\u2019t we
+        have more female villains as well?"
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: '@Ian05 More female villains? Sure. But not stereotyped as seductive
+        witches, and not fighting against a crowd consisting exclusively of heroic
+        and noble heterosexual white men.'
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: ba1a5d0dcc752174886597f65f5a1e65, type: 3}
+      Name: Kayla
+      Message: "But anyway, regarding the actual topic: one thing many older games
+        had were user manuals, which you would read before playing. I mostly missed
+        that era, but I play a lot of retro games (recently obsessing over Muriel
+        Tramis\u2019s work), and it\u2019s amazing how much extra information they
+        packed into the user manual: additional story elements, character bios, copy
+        protection, and much more. Most recent games just try to say everything there
+        is to say inside the game itself. "
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: "Oh yes, do I remember boxed games shipping with user manuals and
+        all kinds of \u201Cfeelies\u201D inside the box! And many didn\u2019t even
+        have manual saving as @BigD described: if you were lucky, you\u2019d just
+        get a secret code for each level and then you could start it from the beginning
+        if you didn\u2019t forget to write it down. Overall, I feel like older games
+        were a lot more difficult, whereas newer games are more tolerant of player
+        mistakes. For example, few games these days make you restart from the very
+        beginning if you lose all your lives. Yet that was standard practice in the
+        arcade days."
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 72094060060461342bed693b170e8770, type: 3}
+      Name: unlessSun
+      Message: "@Reinhold A terrible one, too. I HATED when games did that, it felt
+        so cruel to just erase all of the player\u2019s progress! I am glad that
+        these days, game designers have realized that punishing the player by having
+        them replay the whole game after failing is lazy and bad for player motivation. "
+    - IsCorrect: 1
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: dc168d1db08bbb6428829930fc71aeb3, type: 3}
+      Name: BigD
+      Message: "One more thing I remembered that used to annoy me is loading screens.
+        Not the \u201Cwait a few moments\u2026 now you can play\u201D kind, but \u201Cgo
+        make yourself a nice cup of tea and maybe take a walk, this door will be
+        opening for a while\u201D kind. That kind of thing broke the flow of the
+        game completely for me. I\u2019m glad these days developers are smarter and
+        can generally avoid those god-awful screens by preloading content dynamically."
+    - IsCorrect: 0
+      IsSelected: 0
+      ProfileImage: {fileID: 21300000, guid: 87fa8cba19b7d2c4e886ecb2b13e44cf, type: 3}
+      Name: Reinhold
+      Message: '@BigD I absolutely second that!'
