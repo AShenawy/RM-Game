@@ -14,19 +14,12 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField, TextArea(1, 3)] private string negativeFeedback;
         [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
+        public static event Action<string[]> OnPrototypeTestInitiated = delegate { };
         public static event Action<string> OnPrototypeTestCompleted = delegate { };
-        public static event Action OnPrototypeTestInitiated = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
-        private List<ICheckable> _allCheckables = new List<ICheckable>();
-        private List<ICheckable> _checkablesToTest = new List<ICheckable>();
+        private List<ICheckable> _allCheckables, _checkablesToTest = new List<ICheckable>();
         private readonly int _categorySize = Enum.GetNames(typeof(CategoryType)).Length;
-
-        private IEnumerator Start()
-        {
-            yield return null;
-            _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
-        }
 
         /// <summary>
         /// Called in the editor. Click Alien event.
@@ -37,8 +30,16 @@ namespace Methodyca.Minigames.Protoescape
             {
                 return;
             }
-            _checkablesToTest = new List<ICheckable>(GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt)));
-            OnPrototypeTestInitiated?.Invoke();
+
+            _checkablesToTest = GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt));
+            string[] notes = new string[_checkablesToTest.Count];
+
+            for (int i = 0; i < _checkablesToTest.Count; i++)
+            {
+                notes[i] = _checkablesToTest[i].GetNotebookLogData();
+            }
+
+            OnPrototypeTestInitiated?.Invoke(notes);
             PointSelectedCheckable();
         }
 
@@ -68,11 +69,11 @@ namespace Methodyca.Minigames.Protoescape
             var result = GetLikedCategoryRate();
             var ratio = result.current / (float)result.total;
 
-            Debug.Log("Result: " + result.current + "/" + result.total);
+            string alienEscapedFeedback = $"Aliens still in hallway: <b>{result.total - result.current}/{result.total}</b>\n";
 
             if (ratio < 0.1f) //confused
             {
-                OnPrototypeTestCompleted?.Invoke(negativeFeedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + negativeFeedback);
             }
             else if (ratio >= 0.1f && ratio <= 0.8f)
             {
@@ -105,15 +106,21 @@ namespace Methodyca.Minigames.Protoescape
                     }
                 }
 
-                string feedback = $"Looks like they enjoyed <b>{liked}</b>. Unfortunately, you’ll still need to work on <b>{confused}</b>. " +
-                                   "Make sure you get them right this time! I got grandkids waiting at home.";
+                string feedback = $"Looks like they enjoyed <b>{liked}</b>. " +
+                    $"Unfortunately, you’ll still need to work on <b>{confused}</b>. Make sure you get them right this time! I got grandkids waiting at home.";
 
-                OnPrototypeTestCompleted?.Invoke(feedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + feedback);
             }
             else //liked
             {
-                OnPrototypeTestCompleted?.Invoke(positiveFeedback);
+                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + positiveFeedback);
             }
+        }
+
+        private IEnumerator Start()
+        {
+            yield return null;
+            _allCheckables = new List<ICheckable>(GameManager_Protoescape.Instance.GetAllCheckables());
         }
 
         private (int current, int total) GetLikedCategoryRate()

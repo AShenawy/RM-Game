@@ -1,15 +1,38 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Methodyca.Minigames.Protoescape
 {
     public class UIJail : MonoBehaviour
     {
-        [SerializeField] private RectTransform alien;
+        [SerializeField] private GameObject root;
 
-        private void Start()
+        private void OnEnable()
         {
-            alien.DOShakePosition(6, 300, 1, fadeOut: false).OnComplete(() => GameManager_Protoescape.Instance.HandleGameStart());
+            GameManager_Protoescape.OnPrototypeInitiated += PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestInitiated += PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
+        }
+
+        private void PrototypeInitiatedHandler()
+        {
+            root.SetActive(false);
+        }
+
+        private void PrototypeTestCompletedHandler(string obj)
+        {
+            root.SetActive(true);
+        }
+
+        private void PrototypeTestInitiatedHandler(string[] obj)
+        {
+            root.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            GameManager_Protoescape.OnPrototypeInitiated -= PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestInitiated -= PrototypeTestInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
         }
     }
 }

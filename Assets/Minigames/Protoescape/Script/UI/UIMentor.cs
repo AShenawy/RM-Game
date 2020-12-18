@@ -12,11 +12,6 @@ namespace Methodyca.Minigames.Protoescape
             MentorController.OnMentorTalked += MentorTalkedHandler;
         }
 
-        private void Start()
-        {
-            speechBubble.SetActive(false);
-        }
-
         private void MentorTalkedHandler(string dialog)
         {
             speechBubble.SetActive(true);

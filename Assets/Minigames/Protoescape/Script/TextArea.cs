@@ -42,6 +42,19 @@ namespace Methodyca.Minigames.Protoescape
             return dict;
         }
 
+        public HashSet<CategoryType> GetLikedCategories()
+        {
+            return GetLikables().Keys.GetHashSet();
+        }
+
+        public HashSet<CategoryType> GetConfusedCategories()
+        {
+            var result = new HashSet<CategoryType>(Categories);
+            result.ExceptWith(GetLikables().Keys);
+
+            return result;
+        }
+
         public string GetNotebookLogData()
         {
             var likables = GetLikables();

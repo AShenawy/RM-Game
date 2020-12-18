@@ -29,7 +29,7 @@ namespace Methodyca.Minigames.Protoescape
             graphicRaycaster.enabled = true;
         }
 
-        private void PrototypeTestInitiatedHandler()
+        private void PrototypeTestInitiatedHandler(string[] notes)
         {
             root.SetActive(true);
             alienHand.SetActive(true);

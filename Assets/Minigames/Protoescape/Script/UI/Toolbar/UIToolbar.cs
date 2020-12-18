@@ -20,7 +20,7 @@ namespace Methodyca.Minigames.Protoescape
             testToolbar.SetActive(false);
         }
 
-        private void PrototypeTestInitiatedHandler()
+        private void PrototypeTestInitiatedHandler(string[] notes)
         {
             root.SetActive(true);
             editToolbar.SetActive(false);

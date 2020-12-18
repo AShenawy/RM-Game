@@ -8,8 +8,7 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private GameObject notebook;
         [SerializeField] private TMPro.TextMeshProUGUI feedbackText;
         [SerializeField] private TMPro.TextMeshProUGUI logText;
-        [SerializeField] private Button likableButton;
-        [SerializeField] private Button confusingButton;
+        [SerializeField] private Button nextButton;
 
         private void Awake()
         {
@@ -24,23 +23,22 @@ namespace Methodyca.Minigames.Protoescape
             feedbackText.text = feedback;
         }
 
-        private void PrototypeTestInitiatedHandler()
+        private void PrototypeTestInitiatedHandler(string[] notes)
         {
             logText.text = "";
-            likableButton.interactable = true;
-            confusingButton.interactable = true;
+            for (int i = 0; i < notes.Length; i++)
+            {
+                logText.text += $"{notes[i]}~~~~~~~~~~~~~~~~~~~~~~\n";
+            }
+
+            nextButton.interactable = true;
         }
 
         private void SelectionPointedHandler(ICheckable checkable)
         {
             if (checkable == null)
             {
-                likableButton.interactable = false;
-                confusingButton.interactable = false;
-            }
-            else
-            {
-                logText.text += $"{checkable.GetNotebookLogData()}~~~~~~~~~~~~~~~~~~~~\n";
+                nextButton.interactable = false;
             }
         }
 

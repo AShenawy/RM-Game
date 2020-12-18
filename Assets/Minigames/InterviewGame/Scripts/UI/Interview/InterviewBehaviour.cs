@@ -30,6 +30,8 @@ namespace Methodyca.Minigames.Interview
                     itemGameObject.SetActive(true);
                 }
             }
+
+            Resources.UnloadUnusedAssets();
         }
     }
 }

@@ -1,2 +1,2 @@
-# Development Branch
-This branch is for accumulation of other working branches and pre-release testing.
+# World-General Branch
+This branch is for developing general gameplay mechanics and functionality.

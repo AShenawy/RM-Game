@@ -12,5 +12,7 @@ namespace Methodyca.Minigames.Protoescape
         HashSet<CategoryType> Categories { get; }
         string GetNotebookLogData();
         Dictionary<CategoryType, object> GetLikables();
+        HashSet<CategoryType> GetLikedCategories();
+        HashSet<CategoryType> GetConfusedCategories();
     }
 }
