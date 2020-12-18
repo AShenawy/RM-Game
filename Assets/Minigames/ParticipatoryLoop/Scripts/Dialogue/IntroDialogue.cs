@@ -1,40 +1,43 @@
 ﻿using UnityEngine;
 
-public class IntroDialogue : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public DialogueBehaviour dialogueBehaviour;
-    [TextArea] public string[] firstTimeDialogue;
-    [TextArea] public string[] repeatedDialogue;
-    [TextArea] public string[] willAttendDialgue;
-
-    private void OnEnable()
+    public class IntroDialogue : MonoBehaviour
     {
-        if (GameManager.instance.currentTurn < 1)
+        public DialogueBehaviour dialogueBehaviour;
+        [TextArea] public string[] firstTimeDialogue;
+        [TextArea] public string[] repeatedDialogue;
+        [TextArea] public string[] willAttendDialgue;
+
+        private void OnEnable()
         {
-            PlayFirstTimeDialogue();
+            if (GameManager.instance.currentTurn < 1)
+            {
+                PlayFirstTimeDialogue();
+            }
+            else if (GameManager.instance.currentTurn < 3)
+            {
+                PlayRepeatedDialogue();
+            }
+            else
+            {
+                PlayWillAttendDialogue();
+            }
         }
-        else if (GameManager.instance.currentTurn < 3)
+
+        public void PlayFirstTimeDialogue()
         {
-            PlayRepeatedDialogue();
+            dialogueBehaviour.DisplayDialogue(firstTimeDialogue);
         }
-        else
+
+        public void PlayRepeatedDialogue()
         {
-            PlayWillAttendDialogue();
+            dialogueBehaviour.DisplayDialogue(repeatedDialogue);
         }
-    }
 
-    public void PlayFirstTimeDialogue()
-    {
-        dialogueBehaviour.DisplayDialogue(firstTimeDialogue);
-    }
-
-    public void PlayRepeatedDialogue()
-    {
-        dialogueBehaviour.DisplayDialogue(repeatedDialogue);
-    }
-
-    public void PlayWillAttendDialogue()
-    {
-        dialogueBehaviour.DisplayDialogue(willAttendDialgue);
+        public void PlayWillAttendDialogue()
+        {
+            dialogueBehaviour.DisplayDialogue(willAttendDialgue);
+        }
     }
 }

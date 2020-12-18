@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Activities : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public Activity[] activities;
-
-    private void Awake()
+    public class Activities : MonoBehaviour
     {
-        for (int i = 0; i < activities.Length; i++)
-        {
-            if (!activities[i].isHappening)
-            {
+        public Activity[] activities;
 
+        private void Awake()
+        {
+            for (int i = 0; i < activities.Length; i++)
+            {
+                if (!activities[i].isHappening)
+                {
+
+                }
             }
         }
     }

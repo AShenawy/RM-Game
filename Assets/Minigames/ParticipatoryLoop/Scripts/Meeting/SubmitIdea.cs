@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SubmitIdea : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public MeetingBehaviour meetingBehaviour;
-    public MeetingStages nextStage;
-
-    public void UpdateNextStage(MeetingStages stage)
+    public class SubmitIdea : MonoBehaviour
     {
-        nextStage = stage;
-    }
+        public MeetingBehaviour meetingBehaviour;
+        public MeetingStages nextStage;
 
-    public void SubmitAndAdvance()
-    {
-        meetingBehaviour.AdvanceMeeting(nextStage);
+        public void UpdateNextStage(MeetingStages stage)
+        {
+            nextStage = stage;
+        }
+
+        public void SubmitAndAdvance()
+        {
+            meetingBehaviour.AdvanceMeeting(nextStage);
+        }
     }
 }

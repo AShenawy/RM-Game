@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Activity : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public ActivityType activity;
-    public int cost;
-    public bool isHappening;
+    public class Activity : MonoBehaviour
+    {
+        public ActivityType activity;
+        public int cost;
+        public bool isHappening;
 
 
+    }
+
+    public enum ActivityType { Ideation, TargetAudience, StoryWorkshop, ArtWorkshop, SoundWorkshop }
 }
-
-public enum ActivityType { Ideation, TargetAudience, StoryWorkshop, ArtWorkshop, SoundWorkshop}

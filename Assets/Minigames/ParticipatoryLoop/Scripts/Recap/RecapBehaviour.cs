@@ -1,124 +1,125 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RecapBehaviour : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public DesignPlan meetingDesignPlan;
-    public RecapDialogue recapDialogue;
-    public ReviewStages reviewStage;
-    public bool clientLikesIdeation;
-    public bool clientLikesTargetAud;
-    public bool clientLikesStory;
-    public bool clientLikesArt;
-    public bool clientLikesSound;
-
-    private int totalLikes;
-
-    private void OnEnable()
+    public class RecapBehaviour : MonoBehaviour
     {
-        reviewStage = ReviewStages.Intro;
+        public DesignPlan meetingDesignPlan;
+        public RecapDialogue recapDialogue;
+        public ReviewStages reviewStage;
+        public bool clientLikesIdeation;
+        public bool clientLikesTargetAud;
+        public bool clientLikesStory;
+        public bool clientLikesArt;
+        public bool clientLikesSound;
 
-        PopulateDialogue();
-        totalLikes = 0;
-        UpdateClientLikes();
+        private int totalLikes;
 
-        AdvanceReview(reviewStage);
-    }
-
-    void PopulateDialogue()
-    {
-        recapDialogue.FillIdeas(meetingDesignPlan);
-    }
-
-    void UpdateClientLikes()
-    {
-        clientLikesIdeation = meetingDesignPlan.ideationIdea.appealsToClient;
-        if (clientLikesIdeation)
-            totalLikes++;
-
-        clientLikesTargetAud = meetingDesignPlan.targetAudienceIdea.appealsToClient;
-        if (clientLikesTargetAud)
-            totalLikes++;
-
-        clientLikesStory = meetingDesignPlan.storyIdea.appealsToClient;
-        if (clientLikesStory)
-            totalLikes++;
-
-        clientLikesArt = meetingDesignPlan.artIdea.appealsToClient;
-        if (clientLikesArt)
-            totalLikes++;
-
-        clientLikesSound = meetingDesignPlan.soundIdea.appealsToClient;
-        if (clientLikesSound)
-            totalLikes++;
-    }
-
-    public void OnRecapEnded()
-    {
-        if (reviewStage == ReviewStages.Outro && !ClientSatisfied())
-            GameManager.instance.GoToIntro();
-        else if (reviewStage == ReviewStages.Outro && ClientSatisfied())
-            GameManager.instance.GoToEnd();
-    }
-
-    public void AdvanceReview(ReviewStages stage)
-    {
-        switch (stage)
+        private void OnEnable()
         {
-            case ReviewStages.Intro:
-                reviewStage = ReviewStages.Intro;
-                if (GameManager.instance.currentTurn < 3)
-                    recapDialogue.DisplayNoClientIntro();
-                else
-                    recapDialogue.DisplayWithClientIntro();
-                break;
+            reviewStage = ReviewStages.Intro;
 
-            case ReviewStages.Ideation:
-                reviewStage = ReviewStages.Ideation;
-                recapDialogue.DisplayIdeationReview();
-                break;
+            PopulateDialogue();
+            totalLikes = 0;
+            UpdateClientLikes();
 
-            case ReviewStages.TargetAudience:
-                reviewStage = ReviewStages.TargetAudience;
-                recapDialogue.DisplayTargetAudReview();
-                break;
+            AdvanceReview(reviewStage);
+        }
 
-            case ReviewStages.Story:
-                reviewStage = ReviewStages.Story;
-                recapDialogue.DisplayStoryReview();
-                break;
+        void PopulateDialogue()
+        {
+            recapDialogue.FillIdeas(meetingDesignPlan);
+        }
 
-            case ReviewStages.Art:
-                reviewStage = ReviewStages.Art;
-                recapDialogue.DisplayArtReview();
-                break;
+        void UpdateClientLikes()
+        {
+            clientLikesIdeation = meetingDesignPlan.ideationIdea.appealsToClient;
+            if (clientLikesIdeation)
+                totalLikes++;
 
-            case ReviewStages.Sound:
-                reviewStage = ReviewStages.Sound;
-                recapDialogue.DisplaySoundReview();
-                break;
+            clientLikesTargetAud = meetingDesignPlan.targetAudienceIdea.appealsToClient;
+            if (clientLikesTargetAud)
+                totalLikes++;
 
-            case ReviewStages.Outro:
-                reviewStage = ReviewStages.Outro;
-                if (GameManager.instance.currentTurn < 3)
-                    recapDialogue.DisplayNoClientOutro();
-                else if (ClientSatisfied())
-                    recapDialogue.DisplayClientHappyOutro();
-                else
-                    recapDialogue.DisplayClientAngryOutro();
-                break;
+            clientLikesStory = meetingDesignPlan.storyIdea.appealsToClient;
+            if (clientLikesStory)
+                totalLikes++;
 
-            default:
-                Debug.LogWarning("No review stage provided");
-                break;
+            clientLikesArt = meetingDesignPlan.artIdea.appealsToClient;
+            if (clientLikesArt)
+                totalLikes++;
+
+            clientLikesSound = meetingDesignPlan.soundIdea.appealsToClient;
+            if (clientLikesSound)
+                totalLikes++;
+        }
+
+        public void OnRecapEnded()
+        {
+            if (reviewStage == ReviewStages.Outro && !ClientSatisfied())
+                GameManager.instance.GoToIntro();
+            else if (reviewStage == ReviewStages.Outro && ClientSatisfied())
+                GameManager.instance.GoToEnd();
+        }
+
+        public void AdvanceReview(ReviewStages stage)
+        {
+            switch (stage)
+            {
+                case ReviewStages.Intro:
+                    reviewStage = ReviewStages.Intro;
+                    if (GameManager.instance.currentTurn < 3)
+                        recapDialogue.DisplayNoClientIntro();
+                    else
+                        recapDialogue.DisplayWithClientIntro();
+                    break;
+
+                case ReviewStages.Ideation:
+                    reviewStage = ReviewStages.Ideation;
+                    recapDialogue.DisplayIdeationReview();
+                    break;
+
+                case ReviewStages.TargetAudience:
+                    reviewStage = ReviewStages.TargetAudience;
+                    recapDialogue.DisplayTargetAudReview();
+                    break;
+
+                case ReviewStages.Story:
+                    reviewStage = ReviewStages.Story;
+                    recapDialogue.DisplayStoryReview();
+                    break;
+
+                case ReviewStages.Art:
+                    reviewStage = ReviewStages.Art;
+                    recapDialogue.DisplayArtReview();
+                    break;
+
+                case ReviewStages.Sound:
+                    reviewStage = ReviewStages.Sound;
+                    recapDialogue.DisplaySoundReview();
+                    break;
+
+                case ReviewStages.Outro:
+                    reviewStage = ReviewStages.Outro;
+                    if (GameManager.instance.currentTurn < 3)
+                        recapDialogue.DisplayNoClientOutro();
+                    else if (ClientSatisfied())
+                        recapDialogue.DisplayClientHappyOutro();
+                    else
+                        recapDialogue.DisplayClientAngryOutro();
+                    break;
+
+                default:
+                    Debug.LogWarning("No review stage provided");
+                    break;
+            }
+        }
+
+        bool ClientSatisfied()
+        {
+            return totalLikes > 4;
         }
     }
 
-    bool ClientSatisfied()
-    {
-        return totalLikes > 4;
-    }
+    public enum ReviewStages { Intro, Ideation, TargetAudience, Story, Art, Sound, Outro }
 }
-
-public enum ReviewStages { Intro, Ideation, TargetAudience, Story, Art, Sound, Outro }

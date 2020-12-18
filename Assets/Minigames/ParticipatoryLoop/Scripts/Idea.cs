@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[System.Serializable]
-public struct Idea
+
+namespace Methodyca.Minigames.PartLoop
 {
-    [TextArea(5,7)]
-    public string idea;
-    public string designDocEntry;
-    public bool appealsToClient;
-    [TextArea(5,7)]
-    public string clientResponse;
-
-    public void Clear()
+    [System.Serializable]
+    public struct Idea
     {
-        idea = null;
-        designDocEntry = null;
-        appealsToClient = false;
-        clientResponse = null;
+        [TextArea(5, 7)]
+        public string idea;
+        public string designDocEntry;
+        public bool appealsToClient;
+        [TextArea(5, 7)]
+        public string clientResponse;
+
+        public void Clear()
+        {
+            idea = null;
+            designDocEntry = null;
+            appealsToClient = false;
+            clientResponse = null;
+        }
     }
 }

@@ -1,56 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MeetingDialogue : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public DialogueBehaviour dialogueBehaviour;
-    [TextArea] public string[] greetingDialogue;
-    [TextArea] public string[] ideationDialogue;
-    [TextArea] public string[] targetAudDialogue;
-    [TextArea] public string[] storyDialogue;
-    [TextArea] public string[] artDialogue;
-    [TextArea] public string[] musicDialogue;
-    [TextArea] public string[] conclusionNoClientDialogue;
-    [TextArea] public string[] conclusionWithClientDialogue;
-
-    public void DisplayGreeting()
+    public class MeetingDialogue : MonoBehaviour
     {
-        dialogueBehaviour.DisplayDialogue(greetingDialogue);
-    }
+        public DialogueBehaviour dialogueBehaviour;
+        [TextArea] public string[] greetingDialogue;
+        [TextArea] public string[] ideationDialogue;
+        [TextArea] public string[] targetAudDialogue;
+        [TextArea] public string[] storyDialogue;
+        [TextArea] public string[] artDialogue;
+        [TextArea] public string[] musicDialogue;
+        [TextArea] public string[] conclusionNoClientDialogue;
+        [TextArea] public string[] conclusionWithClientDialogue;
 
-    public void DisplayIdeation()
-    {
-        dialogueBehaviour.DisplayDialogue(ideationDialogue);
-    }
+        public void DisplayGreeting()
+        {
+            dialogueBehaviour.DisplayDialogue(greetingDialogue);
+        }
 
-    public void DisplayTarget()
-    {
-        dialogueBehaviour.DisplayDialogue(targetAudDialogue);
-    }
+        public void DisplayIdeation()
+        {
+            dialogueBehaviour.DisplayDialogue(ideationDialogue);
+        }
 
-    public void DisplayStory()
-    {
-        dialogueBehaviour.DisplayDialogue(storyDialogue);
-    }
+        public void DisplayTarget()
+        {
+            dialogueBehaviour.DisplayDialogue(targetAudDialogue);
+        }
 
-    public void DisplayArt()
-    {
-        dialogueBehaviour.DisplayDialogue(artDialogue);
-    }
+        public void DisplayStory()
+        {
+            dialogueBehaviour.DisplayDialogue(storyDialogue);
+        }
 
-    public void DisplaySound()
-    {
-        dialogueBehaviour.DisplayDialogue(musicDialogue);
-    }
+        public void DisplayArt()
+        {
+            dialogueBehaviour.DisplayDialogue(artDialogue);
+        }
 
-    public void DisplayConclusionNoClient()
-    {
-        dialogueBehaviour.DisplayDialogue(conclusionNoClientDialogue);
-    }
+        public void DisplaySound()
+        {
+            dialogueBehaviour.DisplayDialogue(musicDialogue);
+        }
 
-    public void DisplayConclusionWithClient()
-    {
-        dialogueBehaviour.DisplayDialogue(conclusionWithClientDialogue);
+        public void DisplayConclusionNoClient()
+        {
+            dialogueBehaviour.DisplayDialogue(conclusionNoClientDialogue);
+        }
+
+        public void DisplayConclusionWithClient()
+        {
+            dialogueBehaviour.DisplayDialogue(conclusionWithClientDialogue);
+        }
     }
 }

@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class AdvanceFeedback : MonoBehaviour
+namespace Methodyca.Minigames.PartLoop
 {
-    public ReviewStages reviewStage;
-    public RecapBehaviour recapBehaviour;
-
-    public void Advance()
+    public class AdvanceFeedback : MonoBehaviour
     {
-        if (reviewStage < ReviewStages.Outro)
-        {
-            reviewStage++;
-            recapBehaviour.AdvanceReview(reviewStage);
-        }
-        else
-            recapBehaviour.OnRecapEnded();
+        public ReviewStages reviewStage;
+        public RecapBehaviour recapBehaviour;
 
+        public void Advance()
+        {
+            if (reviewStage < ReviewStages.Outro)
+            {
+                reviewStage++;
+                recapBehaviour.AdvanceReview(reviewStage);
+            }
+            else
+                recapBehaviour.OnRecapEnded();
+
+        }
     }
 }

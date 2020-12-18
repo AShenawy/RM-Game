@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3059785074208783371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619988347210649360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda99e660c93ce449b986d925ee9f1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Multiple Choice
+  costPoint: 2
+  spawnSize: 5
+  sprite: {fileID: 21300000, guid: 1eceedeb05fc40a49bf6fce56eadfcd1, type: 3}
+  infoSprite: {fileID: 21300000, guid: aa9e44b542775ae4e98af0543ed69ad4, type: 3}
+  cardBack: {fileID: 8704260277624349887}
+  thinkingSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 1e9ea034f9e814c98854e69685d32069, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  tableHitSFX:
+    name: 
+    clip: {fileID: 8300000, guid: 3be107fd66f954883ac87851849dc7ba, type: 3}
+    loop: 0
+    volume: 0.4
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  cardHighSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1c823fba8b594a0e94e35cf739c7638, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  notEnoughSFX:
+    name: 
+    clip: {fileID: 8300000, guid: c1ab72eb817c34bc882d23abbf18eda8, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  questions:
+  - IsAnswerCorrect: 0
+    TopicName: Free Time
+    Header: {fileID: 21300000, guid: 9886dce285fc6dc4ba41ea8129196d43, type: 3}
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -1
+      Feedback: {fileID: 21300000, guid: 85e0b05a62dfcdb4db8c41d2f0562f4d, type: 3}
+      Text: "What kind of games do you prefer? \r\n[Perfect information] [Imperfect
+        information] [Luck-based]\r"
+    - IsCorrect: 1
+      Id: 2
+      Point: 3
+      Feedback: {fileID: 21300000, guid: b3cc38c52f4e18549b466021ef905c24, type: 3}
+      Text: 'What do you value most when choosing a new hobby?
+
+        [Creativity,
+        socialising, relaxation, improving fitness, uniqueness]'
+    - IsCorrect: 0
+      Id: 3
+      Point: -1
+      Feedback: {fileID: 21300000, guid: c775d851864673a4c80f216e170f8a70, type: 3}
+      Text: "How often do you do a particular hobby?\r\n[Never] [Less than once a
+        month] [1-2 times a month]\n[2-4 times a month] [Once a week] [More than
+        once a week]\r"
+  - IsAnswerCorrect: 0
+    TopicName: Food & Drink
+    Header: {fileID: 21300000, guid: 9886dce285fc6dc4ba41ea8129196d43, type: 3}
+    Options:
+    - IsCorrect: 1
+      Id: 1
+      Point: 3
+      Feedback: {fileID: 21300000, guid: b21a0b467dc7e9941be5b30a1e859185, type: 3}
+      Text: "What flavour do you most prefer? \r\n[Sweet] [Sour] [Bitter] [Salty]"
+    - IsCorrect: 0
+      Id: 2
+      Point: -1
+      Feedback: {fileID: 21300000, guid: 739dd0a72414fe447b3d55f40676b4a7, type: 3}
+      Text: "Name two cuisines that you enjoy. \r\n[Italian] [French] [Chinese] [Thai]
+        [Indian]\r"
+    - IsCorrect: 0
+      Id: 3
+      Point: -1
+      Feedback: {fileID: 21300000, guid: 5ce24393581435b418ffbd03ea2b04c5, type: 3}
+      Text: "What is the best kind of food? \r\n[Fast food] [Home-cooked food] [Michelin-star
+        quality food]\r"
+  - IsAnswerCorrect: 0
+    TopicName: Travel
+    Header: {fileID: 21300000, guid: 9886dce285fc6dc4ba41ea8129196d43, type: 3}
+    Options:
+    - IsCorrect: 0
+      Id: 1
+      Point: -1
+      Feedback: {fileID: 21300000, guid: aaac5050dbd59ae4fba45d71491d2f53, type: 3}
+      Text: "Would you like to go on an all-expenses paid holiday?\r\n[Yes] [No]
+        [I don\u2019t know]\r"
+    - IsCorrect: 0
+      Id: 2
+      Point: -1
+      Feedback: {fileID: 21300000, guid: 6e9c520b170fe8b48a82d4c5c2247725, type: 3}
+      Text: "What\u2019s your preferred method of transport? \r\n[Hoverboard] [Zip
+        line] [Tuk tuk] [Pogo stick]\r"
+    - IsCorrect: 1
+      Id: 3
+      Point: 3
+      Feedback: {fileID: 21300000, guid: 63a114f2fdf9efd4f877c6cc6843b8b9, type: 3}
+      Text: 'When you go travelling, what do you most want to get out of the experience?
+
+        [A
+        sun tan] [Cool stories] [Romance] [Relaxation] [Excitement] [Unique experiences]'
+  - IsAnswerCorrect: 0
+    TopicName: Work
+    Header: {fileID: 21300000, guid: 9886dce285fc6dc4ba41ea8129196d43, type: 3}
+    Options:
+    - IsCorrect: 1
+      Id: 1
+      Point: 3
+      Feedback: {fileID: 21300000, guid: 4dbfe5ed3d6f96446ac566d3730c4b38, type: 3}
+      Text: "What do you most value from a job?\r\n[Salary] [Career advancement]
+        [Teamwork] [Doing something meaningful] [Other]\r"
+    - IsCorrect: 0
+      Id: 2
+      Point: -1
+      Feedback: {fileID: 21300000, guid: ac4282fcb34cba34ca6a72c233af48b1, type: 3}
+      Text: "What job have you done before?\r\n[Service or hospitality] [Emergency
+        worker]\n[Creative professional] [Gangster / Crime lord]\r"
+    - IsCorrect: 0
+      Id: 3
+      Point: -1
+      Feedback: {fileID: 21300000, guid: df1dcf51549476b4186c7a07ced56df3, type: 3}
+      Text: "How would you score your current job?\r\n[1] [2] [3] [4] [5]\r"
+--- !u!1001 &6154170396189033455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 34749705673263400, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 713846691693631341, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 3059785074208783371}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815613, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: m_Name
+      value: '[ItemCard]MultipleChoice'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb,
+        type: 3}
+      propertyPath: cardBase
+      value: 
+      objectReference: {fileID: 3059785074208783371}
+    m_RemovedComponents:
+    - {fileID: 7356647888320885001, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 523c71a9dabc23d46b467ff258462ccb, type: 3}
+--- !u!1 &619988347210649360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6769654898956815615, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704260277624349887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3288683003462887248, guid: 523c71a9dabc23d46b467ff258462ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154170396189033455}
+  m_PrefabAsset: {fileID: 0}
