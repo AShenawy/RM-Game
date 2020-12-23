@@ -31,6 +31,7 @@ namespace Methodyca.Minigames.Protoescape
                 return;
             }
 
+            _checkablesToTest = new List<ICheckable>();
             _checkablesToTest = GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt));
             string[] notes = new string[_checkablesToTest.Count];
 
@@ -128,9 +129,7 @@ namespace Methodyca.Minigames.Protoescape
             int likeCount = GetCategoryChecklistByStatus().Count(i => i.Value == true);
 
             if (IsAllConsistent())
-            {
                 likeCount++;
-            }
 
             return (likeCount, _categorySize);
         }
@@ -163,35 +162,25 @@ namespace Methodyca.Minigames.Protoescape
         {
             var all = _allCheckables;
             var checklist = new List<bool>();
-
-            foreach (var item in all)
-            {
-                item.IsChecked = false;
-            }
+            var checkedEntities = new HashSet<ICheckable>();
 
             for (int i = 0; i < all.Count - 1; i++)
             {
-                if (all[i].IsChecked)
-                {
+                if (checkedEntities.Contains(all[i]))
                     continue;
-                }
 
                 for (int j = i + 1; j < all.Count; j++)
                 {
                     if (all[i].EntityID == all[j].EntityID)
                     {
-                        checklist.Add(all[i].GetLikables().Values.All(v => all[j].GetLikables().ContainsValue(v)));
+                        checkedEntities.Add(all[i]);
+                        checkedEntities.Add(all[j]);
+                        checklist.Add(all[i].GetCurrentData.All(v => all[j].GetCurrentData.Contains(v)));
                     }
                 }
-                all[i].IsChecked = true;
             }
 
-            if (checklist.GroupBy(x => x).Skip(1).Any())
-            {
-                return false;
-            }
-
-            return true;
+            return !checklist.GroupBy(x => x).Skip(1).Any();
         }
     }
 }

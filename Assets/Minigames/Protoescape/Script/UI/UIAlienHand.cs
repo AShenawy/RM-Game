@@ -28,26 +28,27 @@ namespace Methodyca.Minigames.Protoescape
 
             alienHand.transform.position = checkable.gameObject.GetComponent<RectTransform>().position;
 
-            var result = checkable.GetConfusedCategories();
+            hintPanel.gameObject.SetActive(true);
+            hintText.text = "";
 
-            if (result.Count == 0)
+            var confusedCategories = checkable.GetConfusedCategories();
+            var likedCategories = checkable.GetLikedCategories();
+
+            foreach (var liked in likedCategories)
+                hintText.text += $"<b><sprite=\"checkmark\" index=0>{liked}\n</b>";
+
+            foreach (var confused in confusedCategories)
+                hintText.text += $"<b><sprite=\"cross\" index=0>{confused}\n</b>";
+
+            if (confusedCategories.Count == 0)
             {
-                hintPanel.gameObject.SetActive(false);
                 audioSource.clip = likeSound;
                 audioSource.Play();
             }
             else
             {
-                hintPanel.gameObject.SetActive(true);
                 audioSource.clip = confuseSound;
                 audioSource.Play();
-
-                hintText.text = "Confused:";
-
-                foreach (var confused in result)
-                {
-                    hintText.text += $" <b>[{confused}]</b>";
-                }
             }
 
             hintText.ForceMeshUpdate();
