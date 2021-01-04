@@ -1,5 +1,6 @@
 using UnityEngine;
 using Methodyca.Core;
+using System.Collections.Generic;
 
 // This script handles general use of objects
 [RequireComponent(typeof(SwitchImageDisplay))]
@@ -12,17 +13,27 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
     public string onOperateSuccessText;
     [Tooltip("Dialogue to display on failed operate")]
     public string onOperateFailText;
+    
+    public event System.Action<Operate, Item> onCorrectItemUsed;     // keeps track of progress for mirror QL/QN objects
+    public event System.Action<Operate> onOperation;      // keeps track of progress for linked objects
 
-    private bool isOperated;
+    private bool isOperated;    // check for saving/loading object state
+    public List<Item> givenItems = new List<Item>();
 
 
     protected override void Start()
     {
+        // keep above LoadState() so requiredItemsLeft isn't overwritten by base.Start()
+        base.Start();
+
+        LoadObjectState();
+    }
+
+    public override void LoadObjectState()
+    {
         LoadState();
         if (isOperated)
             Use();
-
-        base.Start();
     }
 
     public override void InteractWithObject()
@@ -39,20 +50,61 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
     void Use()
     {
         GetComponent<SwitchImageDisplay>().SwitchImage();
-        isOperated = true;
         ToggleInteraction(false);
-        SaveState();
+
+        isOperated = true;
+        onOperation?.Invoke(this);
+        SaveState();    // update _operated state
+    }
+
+    public override void UseWithHeldItem(Item item)
+    {
+        base.UseWithHeldItem(item);
+
+        if (usedCorrectItem)
+        {
+            requiredItems.Remove(item);     // remove the item required from the list
+            givenItems.Add(item);       // add item to givenItems list for when loading state
+            InventoryManager.instance.Remove(item);
+            onCorrectItemUsed?.Invoke(this, item);
+        }
+        else
+            return;
+
+        // if all required items are given, then allow operation (if set to false)
+        if (requiredItems.Count < 1)
+        {
+            canOperate = true;
+            DialogueHandler.instance.DisplayDialogue(itemsProvidedText);
+        }
+
+        SaveState();        // update _requiredItems & operateable states
     }
 
     public void SaveState()
     {
-        SaveLoadManager.SetInteractableState(name, isOperated ? 1 : 0);
+        foreach (Item i in givenItems)
+            SaveLoadManager.SetInteractableState($"{name}_given_{i.name}", 1);
+
+        SaveLoadManager.SetInteractableState(name + "_operateable", canOperate ? 1 : 0);
+        SaveLoadManager.SetInteractableState(name + "_operated", isOperated ? 1 : 0);
     }
 
     public void LoadState()
     {
-        if (SaveLoadManager.interactableStates.TryGetValue(name, out int operatedState))
+        foreach (Item i in requiredItems.ToArray())
+        {
+            if (SaveLoadManager.interactableStates.TryGetValue($"{name}_given_{i.name}", out int givenState))
+            {
+                requiredItems.Remove(i);
+                givenItems.Add(i);
+            }
+        }
+
+        if (SaveLoadManager.interactableStates.TryGetValue(name + "_operateable", out int operateableState))
+            canOperate = (operateableState == 0) ? false : true;
+
+        if (SaveLoadManager.interactableStates.TryGetValue(name + "_operated", out int operatedState))
             isOperated = (operatedState == 0) ? false : true;
     }
 }
-   

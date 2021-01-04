@@ -59,6 +59,7 @@ namespace Methodyca.Core
             // Display the dialogue box and text
             if (inDialogue != "")
             {
+                progressionIndex = 0;
                 dialoguePanel.SetActive(true);  // display the dialogue panel
                 dialoguePieces = new[] { inDialogue };
                 AdvanceDialogue();

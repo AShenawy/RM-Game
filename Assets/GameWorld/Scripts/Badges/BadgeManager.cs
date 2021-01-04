@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define TESTING
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace Methodyca.Core
@@ -26,6 +27,7 @@ namespace Methodyca.Core
 
         private void Update()
         {
+#if TESTING
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 SetMinigameComplete((int)Minigames.Sorting);
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -42,6 +44,7 @@ namespace Methodyca.Core
                 SetMinigameComplete((int)Minigames.Interview);
             if (Input.GetKeyDown(KeyCode.Alpha8))
                 SetMinigameComplete((int)Minigames.Observation);
+#endif
         }
 
         public void SetMinigameComplete(int minigameId)

@@ -117,8 +117,8 @@ namespace Methodyca.Core
             // cast ray at cursor location onto game world
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            // check if cursor hit an interactable object
-            if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity))
+            // check if cursor hit an interactable object at range of 20 units (rooms' farthest object is 15 units)
+            if (Physics.Raycast(mouseRay, out RaycastHit hit, 20f))
             {
                 if (hit.collider.GetComponent<ObjectInteraction>())
                 {

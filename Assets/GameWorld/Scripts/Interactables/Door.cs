@@ -29,12 +29,12 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         if (isLocked)
         {
             DialogueHandler.instance.DisplayDialogue(responseForLocked);
-            SoundManager.instance.PlaySFX(doorLockedSFX);
+            SoundManager.instance.PlaySFXOneShot(doorLockedSFX);
         }
         else
         {
             GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
-            SoundManager.instance.PlaySFX(doorOpenSFX);
+            SoundManager.instance.PlaySFXOneShot(doorOpenSFX);
         }
     }
 
@@ -53,9 +53,14 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         // if all required items are used, then unlock
         if (requiredItemsLeft < 1)
         {
-            isLocked = false;
-            SaveState();
+            Unlock();
         }
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        SaveState();
     }
 
     public void LoadState()

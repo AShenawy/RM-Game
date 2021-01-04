@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define TESTING
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -27,6 +28,14 @@ namespace Methodyca.Core
             }
             else if (instance != this)
                 Destroy(gameObject);
+        }
+
+        private void Update()
+        {
+#if TESTING
+            if (Input.GetKeyDown(KeyCode.U))
+                SaveLoadManager.SetCurrentScene(SceneManager.GetActiveScene().name);
+#endif
         }
 
         public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
