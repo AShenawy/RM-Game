@@ -308,7 +308,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 3092e2bc1b26985458715fd056c3d11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3384,7 +3384,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b04886097902c3840a2fd5a29ad5c85e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3846,7 +3846,9 @@ MonoBehaviour:
   PickUpFailText: I don't think the janitor would appreciate that.
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: It doesn't need that
+  requiredItemsLeft: 0
   canMove: 1
   movementValue: {x: 2.5, y: 0}
   SFX:
@@ -4167,10 +4169,13 @@ MonoBehaviour:
   PickUpFailText: 
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: 
+  requiredItemsLeft: 0
   canOperate: 1
   onOperateSuccessText: 
   onOperateFailText: I can't open it.
+  givenItems: []
 --- !u!65 &655782968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4508,7 +4513,9 @@ MonoBehaviour:
   requiredItems:
   - {fileID: 11400000, guid: c669829f41f4df045a5ce8ed5bbad54c, type: 2}
   - {fileID: 11400000, guid: f2fdd43caf14ffd4989d2a64345b3a10, type: 2}
+  itemsProvidedText: 
   wrongItemText: This won't work here.
+  requiredItemsLeft: 0
   canUsePortal: 0
   responseForDisabled: I think it's missing something for it to work. The shape of
     the grooves is quite specific.. Maybe I need to place something there to have
@@ -4918,7 +4925,9 @@ MonoBehaviour:
   PickUpFailText: 
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: 
+  requiredItemsLeft: 0
   isLocked: 1
   unlockCombination: 030000000000000002000000
   lockedBoxPrefab: {fileID: 1938385551}
@@ -5368,7 +5377,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5d29cb2fea01a184a980dc72f8214262, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6133,7 +6142,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: f0730eed52011f945b76b1c91f188065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6232,7 +6241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 18e30d30f2dc6d640ba4ea10e77574a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6721,7 +6730,9 @@ MonoBehaviour:
   requiredItems:
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
   - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
+  itemsProvidedText: 
   wrongItemText: There's no need to do that.
+  requiredItemsLeft: 0
   gameHub: {fileID: 1313759070}
   canStartGame: 0
   responseForDisabled: Seems like I need to place something on these 2 coloured cylinders
@@ -9202,7 +9213,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 7ac826d0fa38c9d49b1f5b1dbd0c4be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10803,6 +10814,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
+  ForcePlayerOrientation: 0
+  orientation: 0
   isSavePoint: 1
 --- !u!114 &2125245414
 MonoBehaviour:
@@ -11476,7 +11489,7 @@ PrefabInstance:
     - target: {fileID: 1819376409715237236, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 360
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1819376409715237236, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11581,7 +11594,7 @@ PrefabInstance:
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 220
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11594,6 +11607,36 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
@@ -11611,12 +11654,12 @@ PrefabInstance:
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -90
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -12172,6 +12215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
+  ForcePlayerOrientation: 0
+  orientation: 0
   isSavePoint: 1
 --- !u!222 &2997399169880592296
 CanvasRenderer:
