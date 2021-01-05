@@ -19,7 +19,7 @@ namespace Methodyca.Core
         // minigames IDs start with Sorting at ID 0
         public static List<int> completedMinigamesIDs = new List<int>();
 
-        private static System.Action onSaveComplete;
+        private static Action onSaveComplete;
 
         [DllImport("__Internal")]
         private static extern void SyncFiles();
@@ -229,7 +229,7 @@ namespace Methodyca.Core
             Debug.Log("Autosave complete.");
         }
 
-        public static System.Action SaveGameState(int slotNum)
+        public static Action SaveGameState(int slotNum)
         {
             // set up a new state and fill with current information
             SaveStates state = new SaveStates();
