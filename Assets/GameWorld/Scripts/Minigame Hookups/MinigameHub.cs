@@ -17,8 +17,8 @@ namespace Methodyca.Core
         [SerializeField, Tooltip("Should the minigame be preloaded when entering the room?")]
         protected bool preloadMinigame = false;
 
-        public delegate void GamePlayAccess(bool value);
-        public event GamePlayAccess isGamePlayable;
+        protected bool isCompleted;
+        public event System.Action<bool> isGamePlayable;
 
 
         public virtual void Start()
@@ -62,6 +62,7 @@ namespace Methodyca.Core
         public virtual void EndGame()
         {
             isGamePlayable?.Invoke(false);
+            isCompleted = true;
         }
     }
 }

@@ -180,39 +180,19 @@ namespace Methodyca.Core
             return sceneStartRoom;
         }
 
-        public void SubscribeToOnLoadEvent(LoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
-        
-        public void SubscribeToOnLoadEvent(ContinueGameBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
+        //public void SubscribeToOnLoadEvent(System.Action loadAction)
+        //{
+        //    loadAction += OnGameLoad;
+        //}
 
-        public void SubscribeToOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
+        //public void UnSubscribeFromOnLoadEvent(System.Action loadAction)
+        //{
+        //    loadAction -= OnGameLoad;
+        //}
 
-        public void UnSubscribeFromOnLoadEvent(LoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        public void UnSubscribeFromOnLoadEvent(ContinueGameBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        public void UnSubscribeFromOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        void OnGameLoad()
-        {
-            GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
-        }
+        //void OnGameLoad()
+        //{
+        //    GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
+        //}
     }
 }

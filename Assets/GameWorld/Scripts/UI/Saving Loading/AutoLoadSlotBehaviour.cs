@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 namespace Methodyca.Core
 {
+    // script for first saved game slot (autosave) in load game screen (main menu)
     public class AutoLoadSlotBehaviour : MonoBehaviour
     {
-        public event System.Action onLoadGame;
+        //public event System.Action onLoadGame;
         [SerializeField]
         private Text saveDescription;
         private Button btn;
@@ -34,19 +35,20 @@ namespace Methodyca.Core
                 btn.interactable = true;
             }
 
-            SceneManagerScript.instance.SubscribeToOnLoadEvent(this);
+            //SceneManagerScript.instance.SubscribeToOnLoadEvent(onLoadGame);
         }
 
-        private void OnDisable()
-        {
-            SceneManagerScript.instance.UnSubscribeFromOnLoadEvent(this);
-        }
+        //private void OnDisable()
+        //{
+        //    SceneManagerScript.instance.UnSubscribeFromOnLoadEvent(onLoadGame);
+        //}
 
         // button click action
         public void LoadAutoSave()
         {
             SaveLoadManager.LoadGameAuto();
-            onLoadGame?.Invoke();   // for SceneManagerScript & others to use loaded info
+            //onLoadGame?.Invoke();
+            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
         }
     }
 }

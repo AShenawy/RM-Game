@@ -3,7 +3,7 @@ using Methodyca.Core;
 
 
 // this script handles entry to minigame scenes
-public class MinigameInteraction : ObjectInteraction, ILoadable
+public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Script Parameters")]
     [SerializeField] private MinigameHub gameHub;
@@ -71,7 +71,8 @@ public class MinigameInteraction : ObjectInteraction, ILoadable
             canStartGame = true;
     }
 
-    // ISaveable not implemented due to method argument
+    public void SaveState() { }
+
     void SaveState(Item item)
     {
         // Save which correct crystal was placed on desk relative to it's index in the required items list

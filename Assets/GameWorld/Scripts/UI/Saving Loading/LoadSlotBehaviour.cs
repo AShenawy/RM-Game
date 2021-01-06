@@ -6,7 +6,7 @@ namespace Methodyca.Core
     // class for behavior of load slot buttons in UI
     public class LoadSlotBehaviour : MonoBehaviour
     {
-        public event System.Action onLoadGame;
+        //public event System.Action onLoadGame;
         [SerializeField, Range(1, 3)]
         private int saveSlot;
         [SerializeField]
@@ -27,7 +27,7 @@ namespace Methodyca.Core
                 saveDescription.text = $"Slot {info.saveSlotNumber} - {info.savedRoomName}\nMinigames Complete - {info.minigamesCompletedNumber}" +
                     $"\n{System.DateTime.FromBinary(System.Convert.ToInt64(info.dateTime))}";
                 btn.interactable = true;
-                SceneManagerScript.instance.SubscribeToOnLoadEvent(this);
+                //SceneManagerScript.instance.SubscribeToOnLoadEvent(onLoadGame);
             }
             else
             {
@@ -37,16 +37,17 @@ namespace Methodyca.Core
             }
         }
 
-        private void OnDisable()
-        {
-            SceneManagerScript.instance.UnSubscribeFromOnLoadEvent(this);
-        }
+        //private void OnDisable()
+        //{
+        //    SceneManagerScript.instance.UnSubscribeFromOnLoadEvent(onLoadGame);
+        //}
 
         // button click action
         public void LoadGame()
         {
             SaveLoadManager.LoadGameState(saveSlot);
-            onLoadGame?.Invoke();   // for SceneManagerScript & others to use loaded info
+            //onLoadGame?.Invoke();
+            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
         }
     }
 }
