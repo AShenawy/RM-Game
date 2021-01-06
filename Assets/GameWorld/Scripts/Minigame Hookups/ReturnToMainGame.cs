@@ -12,6 +12,7 @@ namespace Methodyca.Core
 
         public void QuitMinigame()
         {
+            // load latest state saved before entering the minigame scene
             SaveLoadManager.LoadGameAuto();
             SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
         }

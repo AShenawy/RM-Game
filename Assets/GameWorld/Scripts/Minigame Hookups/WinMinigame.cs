@@ -18,10 +18,19 @@ namespace Methodyca.Minigames.SortGame
             gameHub = GameObject.FindGameObjectWithTag(minigameHubTag).GetComponent<MinigameHub>();
         }
 
+        // button click action
         public void CompleteMinigame()
         {
             BadgeManager.instance.SetMinigameComplete((int)minigameID);
             gameHub.EndGame();
+        }
+
+
+        // button click action
+        // will be used by minigames loaded as single - can only access SaveLoadManager & SceneManagerScript
+        public void CompleteSingleLoadedMinigame()
+        {
+            SceneManagerScript.instance.minigamesWon.Add((int)minigameID);
         }
     }
 }

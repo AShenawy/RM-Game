@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Methodyca.Core
 {
@@ -10,10 +11,13 @@ namespace Methodyca.Core
     {
         // make this class a singleton
         public static SceneManagerScript instance;
+        
+        public GameObject loadingScreenPrefab;
 
         [HideInInspector]
         public string startRoomName;
-        public GameObject loadingScreenPrefab;
+        //[HideInInspector]
+        public List<int> minigamesWon = new List<int>();
 
         private AsyncOperation preloadSceneOpr;
         private bool isPreloadingScene;
@@ -49,7 +53,7 @@ namespace Methodyca.Core
             {
                 SaveLoadManager.ClearInteractableState();
                 SaveLoadManager.ClearInventoryItems();
-                SaveLoadManager.ClearMinigamesComplete();
+                //SaveLoadManager.ClearMinigamesComplete(); // shouldn't be cleared. this is persistent for all game
             }
         }
 
