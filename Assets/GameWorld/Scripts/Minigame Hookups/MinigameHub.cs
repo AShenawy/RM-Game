@@ -41,6 +41,7 @@ namespace Methodyca.Core
                     case LoadSceneMode.Single:
                         // save latest state before leaving main game scene to return to it
                         SaveLoadManager.SaveGameAuto();
+                        SoundManager.instance.StopBGM();
                         // minigames don't have the world GameManager so no room name is needed
                         SceneManagerScript.instance.GoToLevel(minigameSceneName, "");    
                         break;

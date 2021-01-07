@@ -15,7 +15,8 @@ namespace Methodyca.Minigames.SortGame
 
         private void Start()
         {
-            gameHub = GameObject.FindGameObjectWithTag(minigameHubTag).GetComponent<MinigameHub>();
+            if (minigameHubTag != "")
+                gameHub = GameObject.FindGameObjectWithTag(minigameHubTag).GetComponent<MinigameHub>();
         }
 
         // button click action

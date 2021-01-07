@@ -8,6 +8,9 @@ public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
     [Header("Specific Script Parameters")]
     [SerializeField] private MinigameHub gameHub;
 
+    private enum GameCompletionOptions { DisableInteraction, DisableGameStarting }
+    [SerializeField] private GameCompletionOptions onMinigameCompletion;
+
     [Tooltip("Whether player can start the minigame or not")]
     public bool canStartGame;
 
@@ -16,7 +19,10 @@ public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
 
     private void OnEnable()
     {
-        gameHub.isGamePlayable += ToggleInteraction;    // event drives interactability with minigame hub
+        if (onMinigameCompletion == GameCompletionOptions.DisableInteraction)
+            gameHub.isGamePlayable += ToggleInteraction;    // event drives interactability with minigame hub
+        else if (onMinigameCompletion == GameCompletionOptions.DisableGameStarting)
+            gameHub.isGamePlayable += ToggleGameStartability;   // event drives replay of minigame
     }
 
     protected override void Start()
@@ -60,6 +66,7 @@ public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
     private void OnDisable()
     {
         gameHub.isGamePlayable -= ToggleInteraction;
+        gameHub.isGamePlayable -= ToggleGameStartability;
     }
 
     void RefreshMinigameState(Item item)
@@ -69,6 +76,11 @@ public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
 
         if (requiredItemsLeft < 1)
             canStartGame = true;
+    }
+
+    void ToggleGameStartability(bool value)
+    {
+        canStartGame = value;
     }
 
     public void SaveState() { }

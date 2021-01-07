@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2761,9 +2761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c551e64b453c02548b4b8692ab17684a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoomName: 
   loadingScreenPrefab: {fileID: 831254788418089426, guid: 21d06e6c7c7759d419f6d1322af64afa,
     type: 3}
+  startRoomName: 
+  minigamesWon: 
 --- !u!4 &483186746
 Transform:
   m_ObjectHideFlags: 0
@@ -6664,7 +6665,6 @@ MonoBehaviour:
     type: 3}
   qualitativeCrystalDisplay: {fileID: 1673020241}
   quantitativeCrystalDisplay: {fileID: 1127053413}
-  isCompleted: 0
   isQlTaken: 0
   isQnTaken: 0
 --- !u!65 &1313759071
@@ -6734,6 +6734,7 @@ MonoBehaviour:
   wrongItemText: There's no need to do that.
   requiredItemsLeft: 0
   gameHub: {fileID: 1313759070}
+  onMinigameCompletion: 0
   canStartGame: 0
   responseForDisabled: Seems like I need to place something on these 2 coloured cylinders
     before I can check the desk.
@@ -11123,39 +11124,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 299963988}
     - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1369920434708363383}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Itsjustkewa
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1369920434683879475, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_IsActive
