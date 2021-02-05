@@ -1,5 +1,4 @@
-﻿#define TESTING
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 namespace Methodyca.Core
@@ -17,7 +16,7 @@ namespace Methodyca.Core
         #endregion
 
         public event System.Action minigamesChanged;
-        public List<int> minigamesComplete = new List<int>();
+        public List<int> minigamesComplete;
 
 
         private void Start()
@@ -65,11 +64,21 @@ namespace Methodyca.Core
 
         public void LoadState()
         {
-            List<int> minigames = SaveLoadManager.completedMinigamesIDs;
-            minigamesComplete.Clear();
+            minigamesComplete = new List<int>(SaveLoadManager.completedMinigamesIDs);
+            CheckSceneManager();
+            minigamesChanged?.Invoke();
+            SaveState();    // Update SaveLoadManager with completed minigames from SceneManagerScript
 
-            foreach (int id in minigames.ToArray())
-                SetMinigameComplete(id);
+            void CheckSceneManager()
+            {
+                List<int> tempList = new List<int>(SceneManagerScript.instance.minigamesWon);
+                foreach (int minigame in tempList)
+                {
+                    // ensure minigamesComplete has no duplicate values
+                    if (!minigamesComplete.Contains(minigame))
+                        minigamesComplete.Add(minigame);
+                }
+            }
         }
     }
 

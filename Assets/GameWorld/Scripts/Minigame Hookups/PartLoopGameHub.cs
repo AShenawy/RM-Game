@@ -31,7 +31,6 @@ public class PartLoopGameHub : MinigameHub, ISaveable, ILoadable
             isRewardGiven = true;
         }
 
-        BadgeManager.instance.SetMinigameComplete((int)minigameID);
         SaveState();
     }
 

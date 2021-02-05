@@ -18,7 +18,7 @@ namespace Methodyca.Core
 
         private void Awake()
         {
-            image.alphaHitTestMinimumThreshold = 0.1f;
+            //image.alphaHitTestMinimumThreshold = 0.5f;
         }
 
         public void OnPointerEnter(PointerEventData eventData)

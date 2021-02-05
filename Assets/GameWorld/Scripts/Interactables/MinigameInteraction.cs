@@ -35,13 +35,10 @@ public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
 
     public override void InteractWithObject()
     {
-        base.InteractWithObject();
-
         if (canStartGame)
             gameHub.LoadMinigame();
         else
             DialogueHandler.instance.DisplayDialogue(responseForDisabled);
-
     }
 
     public override void UseWithHeldItem(Item item)

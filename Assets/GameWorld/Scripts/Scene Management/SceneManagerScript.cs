@@ -53,7 +53,7 @@ namespace Methodyca.Core
             {
                 SaveLoadManager.ClearInteractableState();
                 SaveLoadManager.ClearInventoryItems();
-                //SaveLoadManager.ClearMinigamesComplete(); // shouldn't be cleared. this is persistent for all game
+                SaveLoadManager.ClearMinigamesComplete();
             }
         }
 
