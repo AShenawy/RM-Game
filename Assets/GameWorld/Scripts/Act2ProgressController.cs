@@ -7,10 +7,13 @@ namespace Methodyca.Core
     // this script handles progression & objects' update/activation in the main world between nodes (1,2,3) in Act2
     public class Act2ProgressController : MonoBehaviour
     {
-        [Header("N1 Qualitative")]
+        [Header("N1 ELEMENTS", order = -2), Space(-25f, order = -1)]
+        [Header("__________________________________________", order = 0), Space(-5f, order = 1)]
+        [Header("N1 Qualitative", order = 2)]
         public Operate tollMachineQL;
         public Map mapTable;
         public Door gateQL;
+        
 
         [Header("N1 Quantitative")]
         public Operate tollMachineQN;
@@ -22,8 +25,10 @@ namespace Methodyca.Core
 
         //[Header("N2 Qualitative")]
         //[Header("N2 Quantitative")]
+
         //[Header("N3 Qualitative")]
         //[Header("N3 Quantitative")]
+        
 
 
 
