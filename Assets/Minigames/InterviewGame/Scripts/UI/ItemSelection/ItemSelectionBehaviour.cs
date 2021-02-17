@@ -18,7 +18,7 @@ namespace Methodyca.Minigames.Interview
             continueBtn = GameObject.Find("ContinueButton");
             continueBtn.GetComponent<Button>().onClick.AddListener(delegate
             {
-                SceneManager.LoadScene("Interview");
+                SceneManager.LoadScene("Assets/Minigames/InterviewGame/Scenes/Interview.unity");
             });
 
             foreach (Item item in itemList.items)

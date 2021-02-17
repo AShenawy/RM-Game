@@ -52,7 +52,7 @@ public class PersonaGame : MonoBehaviour, IDragHandler, IEndDragHandler
     static Vector3 startPos4 = new Vector3();
     static Vector3 startPos5 = new Vector3();
     static Vector3 startPos6 = new Vector3();
-    static string stage = "stage1";
+    static string stage = "persona_stage1";
     static string selectedAbout = "";
     static string selectedQuote = "";
 
@@ -90,43 +90,43 @@ public class PersonaGame : MonoBehaviour, IDragHandler, IEndDragHandler
           pos4 = new Vector3();
           pos5 = new Vector3();
           pos6 = new Vector3();
-          stage = "stage1";
+          stage = "persona_stage1";
           selectedAbout = "";
           selectedQuote = "";
     }
 
     public void Proceed()
     {
-        if(isUsed1 && isUsed2 && isUsed3 && isUsed4 && stage == "stage1")
+        if(isUsed1 && isUsed2 && isUsed3 && isUsed4 && stage == "persona_stage1")
         {
             isPersonaPage = false;
-            if (getCorrectAnswersCount() == 4 && stage != "stage3")
+            if (getCorrectAnswersCount() == 4 && stage != "persona_stage3")
             {
                 isPersonaPage = false;
-                stage = "stage2";
+                stage = "persona_stage2";
                 ChangeScene("stage");
             }
             else
             {
                 SetInterviewStarted();
-                ChangeScene("feedback");
+                ChangeScene("persona_feedback");
             }
         } 
-        else if(selectedAbout != "" && stage == "stage2")
+        else if(selectedAbout != "" && stage == "persona_stage2")
         {
             if (selectedAbout == "answerA" || selectedAbout == "answerC")
             {
-                stage = "stage3";
+                stage = "persona_stage3";
                 ChangeScene("stage");
             }
             else
             {
-                ChangeScene("feedback");
+                ChangeScene("persona_feedback");
             }
         }
         else if (selectedQuote != "")
         {
-            ChangeScene("finalFeedback");
+            ChangeScene("persona_finalFeedback");
         }
     }
 
