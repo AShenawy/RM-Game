@@ -18,7 +18,10 @@ public class Menu : MonoBehaviour
     {
         if(selectedPlayer != "")
             SelectCharacter(selectedPlayer);
+
         DontDestroyOnLoad(transform.gameObject);
+        if (FindObjectsOfType<Menu>().Length > 1)
+            Destroy(gameObject);
     }
 
     public void SelectCharacter(string character)
