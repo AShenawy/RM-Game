@@ -14,7 +14,6 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private List<Color> likableColors = new List<Color>();
         [SerializeField] private List<EntityCoordinate> likableCoordinates = new List<EntityCoordinate>();
 
-        public bool IsChecked { get; set; }
         public bool IsHighlighted { get; set; }
         public Color CurrentColor { get; private set; }
         public Sprite CurrentSprite { get; private set; }
@@ -29,6 +28,15 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Icon },
                             { CategoryType.Color },
                             { CategoryType.Highlight },
+                         };
+        }
+
+        public HashSet<object> GetCurrentData
+        {
+            get => new HashSet<object>()
+                         {
+                            { CurrentSprite },
+                            { CurrentColor }
                          };
         }
 

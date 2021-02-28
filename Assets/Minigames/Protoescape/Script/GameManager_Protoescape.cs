@@ -24,6 +24,11 @@ namespace Methodyca.Minigames.Protoescape
             OnGameStarted?.Invoke();
         }
 
+        public void HandlePrototypeInitiation()
+        {
+            OnPrototypeInitiated?.Invoke();
+        }
+
         public List<ICheckable> GetRandomCheckablesBy(int total)
         {
             var likables = GetAllLikables();
@@ -32,18 +37,19 @@ namespace Methodyca.Minigames.Protoescape
             int half = Mathf.RoundToInt(total * 0.5f);
 
             var l = likables.Shuffle().Take(half).ToList();
-            var c = confusings.Shuffle().Take(total - l.Count);
+            var c = confusings.Shuffle().Take(total - l.Count).ToList();
+
+            if (c.Count < half)
+                l = likables.Shuffle().Take(total - c.Count).ToList();
 
             return l.Concat(c).ToList();
         }
 
         public IEnumerable<ICheckable> GetAllLikables()
         {
-            var all = GetAllCheckables().ToList();
-
-            foreach (var item in all)
+            foreach (var item in GetAllCheckables())
             {
-                if (item.GetLikables().Count > 0)
+                if (item.GetLikedCategories().Count == item.Categories.Count)
                 {
                     yield return item;
                 }
@@ -52,11 +58,9 @@ namespace Methodyca.Minigames.Protoescape
 
         public IEnumerable<ICheckable> GetAllConfusings()
         {
-            var all = GetAllCheckables().ToList();
-
-            foreach (var item in all)
+            foreach (var item in GetAllCheckables())
             {
-                if (!(item.GetLikables().Count > 0))
+                if (item.GetLikedCategories().Count < item.Categories.Count)
                 {
                     yield return item;
                 }
@@ -75,11 +79,6 @@ namespace Methodyca.Minigames.Protoescape
                     }
                 }
             }
-        }
-
-        public void HandlePrototypeInitiation()
-        {
-            OnPrototypeInitiated?.Invoke();
         }
     }
 }

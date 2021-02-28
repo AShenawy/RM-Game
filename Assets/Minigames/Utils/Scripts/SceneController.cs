@@ -6,19 +6,22 @@ namespace Methodyca.Minigames.Utils
 {
     public class SceneController : MonoBehaviour
     {
-        [SerializeField] GameObject loadProgressUIPanel;
-        [SerializeField] UnityEngine.UI.Slider loadProgressSlider;
-
-        public void ChangeScene(int index)
-        {
-            var opr = SceneManager.LoadSceneAsync(index);
-            StartCoroutine(LoadSceneOpr(opr));
-        }
+        [SerializeField] private Texture2D cursor;
+        [SerializeField] private GameObject loadProgressUIPanel;
+        [SerializeField] private UnityEngine.UI.Slider loadProgressSlider;
 
         public void ChangeScene(string sceneName)
         {
             var opr = SceneManager.LoadSceneAsync(sceneName);
             StartCoroutine(LoadSceneOpr(opr));
+        }
+
+        private void Start()
+        {
+            if (cursor != null)
+            {
+                Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+            }
         }
 
         private IEnumerator LoadSceneOpr(AsyncOperation operation)

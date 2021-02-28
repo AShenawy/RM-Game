@@ -13,7 +13,6 @@ namespace Methodyca.Minigames.Protoescape
 
         public string EntityID { get => entityId; }
         public TMP_FontAsset CurrentFont { get => textField.font; }
-        public bool IsChecked { get; set; }
         public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex); }
 
         public HashSet<CategoryType> Categories
@@ -24,7 +23,14 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Font }
                          };
         }
-
+        public HashSet<object> GetCurrentData
+        {
+            get => new HashSet<object>()
+                         {
+                            { CurrentCoordinate },
+                            { CurrentFont }
+                         };
+        }
         public Dictionary<CategoryType, object> GetLikables()
         {
             var dict = new Dictionary<CategoryType, object>();

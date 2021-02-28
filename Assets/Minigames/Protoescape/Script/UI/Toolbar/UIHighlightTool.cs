@@ -16,6 +16,7 @@ namespace Methodyca.Minigames.Protoescape
         {
             if (selection != null && selection.GetComponent<IHighlightable>() != null)
             {
+                _selection = selection.GetComponent<IHighlightable>();
                 Enable();
             }
             else
