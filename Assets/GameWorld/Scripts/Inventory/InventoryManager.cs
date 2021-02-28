@@ -76,18 +76,17 @@ namespace Methodyca.Core
 
         public void SaveState()
         {
-            // generate an array the size of the items list
-            List<string> heldItemsNames = new List<string>();
+            //List<string> heldItemsNames = new List<string>();
 
-            for (int i = 0; i < items.Count; i++)
-                heldItemsNames.Add(items[i].name);
+            //for (int i = 0; i < items.Count; i++)
+            //    heldItemsNames.Add(items[i].name);
 
-            SaveLoadManager.SetCurrentInventoryItems(heldItemsNames);
+            SaveLoadManager.SetCurrentInventoryItems(items);
         }
 
         public void LoadState()
         {
-            List<string> heldItemsNames = SaveLoadManager.currentInventoryItems;
+            List<string> heldItemsNames = new List<string> (SaveLoadManager.currentInventoryItems);
             items.Clear();
 
             foreach (string name in heldItemsNames.ToArray())

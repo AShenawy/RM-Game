@@ -164,11 +164,13 @@ namespace Methodyca.Core
             completedMinigamesIDs.Add((int)game);
         }
 
-        public static void SetCurrentInventoryItems(List<string> items)
+        public static void SetCurrentInventoryItems(List<Item> items)
         {
-            // refresh the list of held items
-            currentInventoryItems.Clear();
-            currentInventoryItems = items;
+            foreach (Item i in items)
+            {
+                if (!currentInventoryItems.Contains(i.name))
+                    currentInventoryItems.Add(i.name);
+            }
         }
 
         public static void SetInteractableState(string objectName, int value)
@@ -383,7 +385,7 @@ namespace Methodyca.Core
         // inventory items held
         public List<string> itemsHeld = new List<string>();
 
-        // interactable items dictionary into list
+        // split interactable items dictionary into 2 lists
         public List<string> objectInteractionName = new List<string>();
         public List<int> isObjectInteracted = new List<int>(); // value should be either 0 (false) or 1 (true)
 
