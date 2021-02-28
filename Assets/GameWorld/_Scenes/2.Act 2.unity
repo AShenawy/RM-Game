@@ -3096,11 +3096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: targetRoom
       value: 
-      objectReference: {fileID: 1902221579}
+      objectReference: {fileID: 1053260061}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -5113,6 +5113,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedInteractableObject: {fileID: 1071673566}
+--- !u!114 &763919849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763919843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e081a0499f3730c49abc11da7fe16515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 499056187}
 --- !u!212 &784665413 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8645712453315489106, guid: fc57500bf498f2045bd6d0a3b4e6a98b,
@@ -5280,11 +5293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: targetRoom
       value: 
-      objectReference: {fileID: 260875691}
+      objectReference: {fileID: 563405690}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
@@ -8079,6 +8092,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 481199997}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071673564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071673563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e081a0499f3730c49abc11da7fe16515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 789135435}
 --- !u!114 &1071673565
 MonoBehaviour:
   m_ObjectHideFlags: 0
