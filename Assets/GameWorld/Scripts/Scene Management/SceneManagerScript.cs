@@ -34,13 +34,13 @@ namespace Methodyca.Core
                 Destroy(gameObject);
         }
 
+#if TESTING
         private void Update()
         {
-#if TESTING
             if (Input.GetKeyDown(KeyCode.U))
                 SaveLoadManager.SetCurrentScene(SceneManager.GetActiveScene().name);
-#endif
         }
+#endif
 
         public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
         {

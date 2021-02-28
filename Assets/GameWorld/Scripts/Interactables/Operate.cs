@@ -18,7 +18,7 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
     public event System.Action<Operate> onOperation;      // keeps track of progress for linked objects
 
     private bool isOperated;    // check for saving/loading object state
-    public List<Item> givenItems = new List<Item>();
+    public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
 
     protected override void Start()

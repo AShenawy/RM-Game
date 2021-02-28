@@ -401,8 +401,10 @@ MonoBehaviour:
   minigameSceneName: Assets/Minigames/ParticipatoryLoop/_Scenes/PartLoop.unity
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 0}
   minigameID: 3
   isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 0}
 --- !u!1 &61679649
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,12 +826,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 134911922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: minigames/questioniser/scenes/menuscene
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 5
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 1260021259}
 --- !u!114 &134911925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,7 +859,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 134911924}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &134911926
@@ -1849,6 +1855,16 @@ MonoBehaviour:
   gateQN: {fileID: 789135435}
   coin1: {fileID: 11400000, guid: f4415e78acfd09e4d8cd9a5d2cb81d96, type: 2}
   coin2: {fileID: 11400000, guid: 46f7a9900e3319c45a9c41c18ceeafd1, type: 2}
+  n1Rewards:
+  - {fileID: 11400000, guid: f4415e78acfd09e4d8cd9a5d2cb81d96, type: 2}
+  - {fileID: 11400000, guid: 46f7a9900e3319c45a9c41c18ceeafd1, type: 2}
+  n2Rewards: []
+  punchCard1: {fileID: 0}
+  punchCard2: {fileID: 0}
+  n3Rewards:
+  - {fileID: 11400000, guid: 0f651e57d1f1f87438227e039542ec70, type: 2}
+  - {fileID: 11400000, guid: c97a229253a433e4db100353e99b21d2, type: 2}
+  rewardsGiven: []
 --- !u!1 &301149298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,12 +3987,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 595319589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: minigames/docstudy/scenes/menu
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 2
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 1816657705}
 --- !u!114 &595319592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4000,7 +4020,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 595319591}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &595319593
@@ -9171,12 +9191,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260021257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: minigames/questioniser/scenes/menuscene
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 5
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 134911924}
 --- !u!114 &1260021260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9200,7 +9224,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 1260021259}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &1260021261
@@ -9973,12 +9997,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1424430052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: Binoculars
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 8
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 1628464744}
 --- !u!114 &1424430055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10002,7 +10030,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 1424430054}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &1424430056
@@ -11549,12 +11577,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1544940903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: minigames/interviewgame/scenes/mainmenu
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 7
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 0}
 --- !u!114 &1544940906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11578,7 +11610,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 1544940905}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &1544940907
@@ -11878,12 +11910,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1628464742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: Binoculars
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 8
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 1424430054}
 --- !u!114 &1628464745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11907,7 +11943,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 1628464744}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &1628464746
@@ -12495,12 +12531,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816657703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dccb529361ba94cbd9f1ef7528067b, type: 3}
+  m_Script: {fileID: 11500000, guid: 048e24556f1765b42be0c0758c04b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minigameSceneName: minigames/docstudy/scenes/menu
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
+  minigameID: 2
+  isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 595319591}
 --- !u!114 &1816657706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12524,7 +12564,7 @@ MonoBehaviour:
   wrongItemText: 
   requiredItemsLeft: 0
   gameHub: {fileID: 1816657705}
-  onMinigameCompletion: 0
+  onMinigameCompletion: 1
   canStartGame: 1
   responseForDisabled: 
 --- !u!65 &1816657707
@@ -14073,8 +14113,10 @@ MonoBehaviour:
   minigameSceneName: Assets/Minigames/ParticipatoryLoop/_Scenes/PartLoop.unity
   sceneLoadType: 0
   preloadMinigame: 0
+  progressController: {fileID: 299963990}
   minigameID: 3
   isRewardGiven: 0
+  linkedMinigameAccess: {fileID: 0}
 --- !u!114 &2091681612
 MonoBehaviour:
   m_ObjectHideFlags: 0

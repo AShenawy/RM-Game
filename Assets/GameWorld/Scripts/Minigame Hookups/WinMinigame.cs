@@ -9,7 +9,7 @@ namespace Methodyca.Minigames.SortGame
     public class WinMinigame : MonoBehaviour
     {
         public Core.Minigames minigameID;
-        [SerializeField, Tooltip("What is the tag of the Game Object that starts minigame?")]
+        [SerializeField, Header("Optional"), Tooltip("For additive-loaded type minigames.\nWhat is the tag of the Game Object that starts minigame?")]
         private string minigameHubTag;
         private MinigameHub gameHub;
 
@@ -20,6 +20,7 @@ namespace Methodyca.Minigames.SortGame
         }
 
         // button click action
+        // for additive-loaded minigames
         public void CompleteMinigame()
         {
             BadgeManager.instance.SetMinigameComplete((int)minigameID);
@@ -28,7 +29,7 @@ namespace Methodyca.Minigames.SortGame
 
 
         // button click action
-        // will be used by minigames loaded as single - can only access SaveLoadManager & SceneManagerScript
+        // for single-loaded minigames
         public void CompleteSingleLoadedMinigame()
         {
             SceneManagerScript.instance.minigamesWon.Add((int)minigameID);

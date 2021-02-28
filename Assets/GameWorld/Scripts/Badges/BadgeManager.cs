@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define TESTING
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace Methodyca.Core
