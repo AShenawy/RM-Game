@@ -166,10 +166,23 @@ namespace Methodyca.Core
 
         public static void SetCurrentInventoryItems(List<Item> items)
         {
+            // Convert the Item list to a string array (faster) of names
+            List<string> itemNames = new List<string>();
             foreach (Item i in items)
+                itemNames.Add(i.name);
+
+            // Include new items added to player inventory
+            foreach (string s in itemNames)
             {
-                if (!currentInventoryItems.Contains(i.name))
-                    currentInventoryItems.Add(i.name);
+                if (!currentInventoryItems.Contains(s))
+                    currentInventoryItems.Add(s);
+            }
+
+            // Discard items removed from player inventory
+            foreach (string s in currentInventoryItems.ToArray())
+            {
+                if (!itemNames.Contains(s))
+                    currentInventoryItems.Remove(s);
             }
         }
 
