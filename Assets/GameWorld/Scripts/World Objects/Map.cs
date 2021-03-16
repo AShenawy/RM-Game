@@ -44,7 +44,7 @@ namespace Methodyca.Core
                     SetMapLevel(4);
                     break;
                 default:
-                    Debug.LogError($"Wrong map display level {minigamesDone}");
+                    Debug.LogWarning($"Wrong map display level {minigamesDone}");
                     goto case 1;
             }
 
