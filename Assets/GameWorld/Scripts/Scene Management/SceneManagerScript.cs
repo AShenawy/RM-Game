@@ -42,19 +42,32 @@ namespace Methodyca.Core
         }
 #endif
 
-        public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
+        //public void GoToLevel(string sceneName, string roomName, bool keepMinigames = false , bool keepInteractions = false)
+        public void GoToLevel(string sceneName, string roomName, bool keepInteractions = true)
         {
             startRoomName = roomName;
             StartCoroutine(LoadLevel(sceneName));
 
-            // if moving between levels during gameplay, interactions in previous scene can be deleted
-            // when loading a game from file, interaction should be kept for interactables to check
-            if (!keepInteractionsSaved)
+            // at some cases, like moving between main game scenes, interaction states from previous scene can be removed
+            if (!keepInteractions)
             {
                 SaveLoadManager.ClearInteractableState();
-                SaveLoadManager.ClearInventoryItems();
-                SaveLoadManager.ClearMinigamesComplete();
             }
+
+
+            //TODO remove if redundant
+            // when moving between scenes (Acts or main/mini game scenes) or loading a new game, minigame progression needs to be saved
+            // Minigames should be cleared when loading a save file from inside the game (not main menu)
+            //if(!keepMinigames)   
+            //    SaveLoadManager.ClearMinigamesComplete();
+
+            // if moving between levels during gameplay, interactions in previous scene can be deleted
+            // when loading a game from file, interaction should be kept for interactables to check
+            //if (!keepInteractions)
+            //{
+            //    SaveLoadManager.ClearInteractableState();
+            //    SaveLoadManager.ClearInventoryItems();
+            //}
         }
 
         IEnumerator LoadLevel(string sceneName)

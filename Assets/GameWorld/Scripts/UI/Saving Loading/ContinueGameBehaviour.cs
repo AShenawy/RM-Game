@@ -31,7 +31,9 @@ namespace Methodyca.Core
                 SaveLoadManager.LoadGameState(latestSaveSlot);
 
             //onLoadGame?.Invoke();
-            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
+            // Clear so no badge data is transferred to the next loaded instance
+            SceneManagerScript.instance.minigamesWon.Clear();
+            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName);
         }
     }
 }

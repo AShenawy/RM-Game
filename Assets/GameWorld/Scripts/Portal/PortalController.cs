@@ -147,12 +147,14 @@ namespace Methodyca.Core
             switch (lastPlacedCrystal)
             {
                 case CrystalType.Qualitative:
-                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QLRoomName);
+                    // can remove interaction states since going to a new scene
+                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QLRoomName, false);
                     break;
 
                 case CrystalType.Quantitaive:
-                    videoPlayer.Play();
-                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QNRoomName);
+                    //videoPlayer.Play();   //TODO remove this line
+                    // can remove interaction states since going to a new scene
+                    SceneManagerScript.instance.GoToLevel(Act2Scene, Act2QNRoomName, false);
                     break;
 
                 case CrystalType.None:

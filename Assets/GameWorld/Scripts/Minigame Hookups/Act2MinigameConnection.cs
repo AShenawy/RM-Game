@@ -3,7 +3,7 @@ using UnityEngine;
 using Methodyca.Core;
 
 
-// this script handles collaborative design / participatory loop minigame hub
+// this script handles minigames launched in Act2
 [RequireComponent(typeof(MinigameInteraction))]
 public class Act2MinigameConnection : MinigameHub, ISaveable, ILoadable
 {

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Methodyca.Core
 {
-    public sealed class SaveLoadManager
+    public static class SaveLoadManager
     {
         public static string currentScene { get; private set; }
         public static string currentRoomName { get; private set; }
@@ -21,6 +21,7 @@ namespace Methodyca.Core
 
         private static Action onSaveComplete;
 
+        // JS interaction with browser to force file saving on system
         [DllImport("__Internal")]
         private static extern void SyncFiles();
 
@@ -57,7 +58,7 @@ namespace Methodyca.Core
             info.saveSlotNumber = slotNum;
             info.savedRoomName = roomName;
             info.minigamesCompletedNumber = completedMinigamesIDs.Count;
-            info.dateTime = System.DateTime.Now.ToBinary().ToString();
+            info.dateTime = DateTime.Now.ToBinary().ToString();
 
             PlayerPrefs.SetString($"SaveSlot_{slotNum}", JsonUtility.ToJson(info));
         }
@@ -164,6 +165,7 @@ namespace Methodyca.Core
             completedMinigamesIDs.Add((int)game);
         }
 
+        //TODO remove if unused and below methods working
         public static void SetCurrentInventoryItems(List<Item> items)
         {
             // Convert the Item list to a string array (faster) of names
@@ -184,6 +186,18 @@ namespace Methodyca.Core
                 if (!itemNames.Contains(s))
                     currentInventoryItems.Remove(s);
             }
+        }
+
+        public static void AddInventoryItem(Item item)
+        {
+            if (!currentInventoryItems.Contains(item.name))
+                currentInventoryItems.Add(item.name);
+        }
+
+        public static void RemoveInventoryItem(Item item)
+        {
+            if (currentInventoryItems.Contains(item.name))
+                currentInventoryItems.Remove(item.name);
         }
 
         public static void SetInteractableState(string objectName, int value)
@@ -279,6 +293,13 @@ namespace Methodyca.Core
 
         public static void LoadGameAuto()
         {
+            // Clear current states for new file
+            currentScene = "";
+            currentRoomName = "";
+            currentInventoryItems.Clear();
+            interactableStates.Clear();
+            completedMinigamesIDs.Clear();
+
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
             string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");
@@ -301,7 +322,7 @@ namespace Methodyca.Core
             currentInventoryItems = state.itemsHeld;
             completedMinigamesIDs = state.minigames;
 
-            interactableStates.Clear();
+            //interactableStates.Clear();       // ---- moved up
             for (int i = 0; i < state.objectInteractionName.Count; i++)
                 interactableStates.Add(state.objectInteractionName[i], state.isObjectInteracted[i]);
 
@@ -310,6 +331,13 @@ namespace Methodyca.Core
 
         public static void LoadGameState(int slotNum)
         {
+            // Clear current states for new file
+            currentScene = "";
+            currentRoomName = "";
+            currentInventoryItems.Clear();
+            interactableStates.Clear();
+            completedMinigamesIDs.Clear();
+
             // load the autosave file
             BinaryFormatter bf = new BinaryFormatter();
             string savePath = Path.Combine(Application.persistentDataPath, "SavedGames");

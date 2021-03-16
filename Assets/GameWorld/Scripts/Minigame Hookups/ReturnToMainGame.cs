@@ -16,9 +16,12 @@ namespace Methodyca.Core
         // for single-type loaded scenes
         public void QuitMinigame()
         {
-            // load latest state saved before entering the minigame scene
+            // load latest state saved before entering the minigame scene for scene and room names info to be updated
             SaveLoadManager.LoadGameAuto();
-            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
+            
+            //TODO remove this line if redundant
+            //SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true, true);
+            SceneManagerScript.instance.GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName);
         }
 
         public void ResetAudio()
