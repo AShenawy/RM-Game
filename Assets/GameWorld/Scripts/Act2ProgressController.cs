@@ -12,8 +12,8 @@ namespace Methodyca.Core
         [Header("__________________________________________", order = 0), Space(-5f, order = 1)]
         [Header("N1 Qualitative", order = 2)]
         public Operate tollMachineQL;
-        public Map mapTable;
-        public Door gateQL;
+        public Map mapTable;    //TODO remove if unused
+        public Door gateQL;     //TODO remove if unused
         
 
         [Header("N1 Quantitative")]
