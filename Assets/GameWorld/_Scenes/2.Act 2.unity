@@ -1315,6 +1315,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1402945043}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &236788424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1402945043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236788422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &236788427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,7 +1826,7 @@ MonoBehaviour:
   - {fileID: 2132617442}
   - {fileID: 260875691}
   - {fileID: 563405690}
-  roomStart: {fileID: 308958452}
+  roomStart: {fileID: 1053260061}
   inventoryPanel: {fileID: 2008627694}
   triggerTurnRight: {fileID: 966193871}
   triggerTurnLeft: {fileID: 1480830063}
@@ -1913,6 +1925,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4415e78acfd09e4d8cd9a5d2cb81d96, type: 2}
   - {fileID: 11400000, guid: 46f7a9900e3319c45a9c41c18ceeafd1, type: 2}
   n2Rewards: []
+  laceCharQL: {fileID: 236788424}
+  laceCharQN: {fileID: 2105458096}
   punchCard1: {fileID: 11400000, guid: 0f651e57d1f1f87438227e039542ec70, type: 2}
   punchCard2: {fileID: 11400000, guid: c97a229253a433e4db100353e99b21d2, type: 2}
   n3Rewards:
@@ -3172,7 +3186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targetRoom
       value: 
-      objectReference: {fileID: 1902221579}
+      objectReference: {fileID: 1053260061}
     - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: isLocked
@@ -6520,7 +6534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 222c666f13853bc46a17bb7b9d916466, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.972549}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8131,6 +8145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
+      propertyPath: textDialogues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
       propertyPath: requiredItems.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0f651e57d1f1f87438227e039542ec70,
@@ -8155,6 +8174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canSpeakWith
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: textDialogues.Array.data[0]
+      value: Ok let's talk
       objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
@@ -9985,6 +10009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
+      propertyPath: textDialogues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
       propertyPath: requiredItems.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0f651e57d1f1f87438227e039542ec70,
@@ -10009,6 +10038,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canSpeakWith
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: textDialogues.Array.data[0]
+      value: Ok let's talk
       objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
@@ -11036,7 +11070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 222c666f13853bc46a17bb7b9d916466, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.972549}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -14415,6 +14449,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2105458094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1068688021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2105458096 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1068688021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105458094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2105458099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105458094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a166b478c91a1134cbe447207a9165e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneTransferObject: {fileID: 4652820552570664111}
 --- !u!114 &2125797725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1541064387060370759, guid: 76a19fc7f61302d4cae0c8d7387b9454,
@@ -14776,8 +14841,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5690517, y: 2.6532311, z: 1}
-  m_Center: {x: 0.8206701, y: -0.7968812, z: 0}
+  m_Size: {x: 3.4092026, y: 2.6532311, z: 1}
+  m_Center: {x: 0.74074554, y: -0.7968812, z: 0}
 --- !u!1 &4652820552311917951
 GameObject:
   m_ObjectHideFlags: 0
@@ -14822,6 +14887,8 @@ MonoBehaviour:
   startingRoomName: Bunker
   canTransfer: 0
   responseForDisabled: Cannot travel right now
+  isPaired: 1
+  pairedTransferObject: {fileID: 4652820552570664111}
 --- !u!4 &4652820552570664105
 Transform:
   m_ObjectHideFlags: 0
@@ -14847,8 +14914,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5690517, y: 2.6532311, z: 1}
-  m_Center: {x: 0.8206701, y: -0.7968812, z: 0}
+  m_Size: {x: 3.4092026, y: 2.6532311, z: 1}
+  m_Center: {x: 0.74074554, y: -0.7968812, z: 0}
 --- !u!1 &4652820552570664110
 GameObject:
   m_ObjectHideFlags: 0
@@ -14893,6 +14960,8 @@ MonoBehaviour:
   startingRoomName: Bunker
   canTransfer: 0
   responseForDisabled: Cannot travel right now
+  isPaired: 1
+  pairedTransferObject: {fileID: 4652820552311917952}
 --- !u!1001 &7105289843720212045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14903,7 +14972,7 @@ PrefabInstance:
     - target: {fileID: 7105289845137293922, guid: ce7064c0a0d6a9844a96840271686d84,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7105289845137293922, guid: ce7064c0a0d6a9844a96840271686d84,
         type: 3}
@@ -14913,7 +14982,7 @@ PrefabInstance:
     - target: {fileID: 7105289845137293922, guid: ce7064c0a0d6a9844a96840271686d84,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 7105289845137293922, guid: ce7064c0a0d6a9844a96840271686d84,
         type: 3}
