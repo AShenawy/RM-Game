@@ -5,7 +5,6 @@ using Methodyca.Core;
 namespace Methodyca.Minigames.SortGame
 {
     // this script tells main game that minigame is won
-    // Currently only works for Additive loaded mingame scenes (since minigame hub script is in main game scene files)
     public class WinMinigame : MonoBehaviour
     {
         public Core.Minigames minigameID;
