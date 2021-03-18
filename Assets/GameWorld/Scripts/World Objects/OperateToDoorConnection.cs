@@ -4,7 +4,7 @@ namespace Methodyca.Core
 {
     // this script connects an Operate-class object to a door for unlocking it
     [RequireComponent(typeof(Operate))]
-    public class TollToDoorConnection : MonoBehaviour
+    public class OperateToDoorConnection : MonoBehaviour
     {
         [SerializeField] private Door door;
 
