@@ -63,6 +63,7 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
 
     public void Unlock()
     {
+        print($"{name} is unlocking");
         isLocked = false;
 
         if (switchImageOnUnlock)
@@ -71,15 +72,18 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         SaveState();
     }
 
+    public void SaveState()
+    {
+        SaveLoadManager.SetInteractableState(name, isLocked ? 1 : 0);
+    }
+
     public void LoadState()
     {
         if (SaveLoadManager.interactableStates.TryGetValue(name, out int lockedState))
             isLocked = (lockedState == 0) ? false : true;
-    }
 
-    public void SaveState()
-    {
-        SaveLoadManager.SetInteractableState(name, isLocked ? 1 : 0);
+        if (!isLocked && switchImageOnUnlock)
+            GetComponent<SwitchImageDisplay>().SwitchImage();
     }
 }
    

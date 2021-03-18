@@ -15,6 +15,12 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
     public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
 
+    protected override void Start()
+    {
+        base.Start();
+        LoadState();
+    }
+
     public override void InteractWithObject()
     {
         if (canSpeakWith)
