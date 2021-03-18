@@ -53,7 +53,7 @@ namespace Methodyca.Core
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             BadgeManager.instance.minigamesChanged -= UpdateMap;
         }

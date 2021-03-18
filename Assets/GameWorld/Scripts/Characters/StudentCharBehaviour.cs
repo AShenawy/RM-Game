@@ -23,6 +23,7 @@ namespace Methodyca.Core
         // changes the char images with beer levels
         void UpdateBeer()
         {
+            print("adding beer");
             int minigamesDone = BadgeManager.instance.minigamesComplete.Count;
 
             switch (minigamesDone)
@@ -53,7 +54,7 @@ namespace Methodyca.Core
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             BadgeManager.instance.minigamesChanged -= UpdateBeer;
         }
