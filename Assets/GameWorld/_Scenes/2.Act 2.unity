@@ -1309,6 +1309,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &236788422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1402945043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &236788427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236788422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a166b478c91a1134cbe447207a9165e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneTransferObject: {fileID: 4652820552311917952}
 --- !u!1 &248758743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,7 +1814,7 @@ MonoBehaviour:
   - {fileID: 2132617442}
   - {fileID: 260875691}
   - {fileID: 563405690}
-  roomStart: {fileID: 308958452}
+  roomStart: {fileID: 1053260061}
   inventoryPanel: {fileID: 2008627694}
   triggerTurnRight: {fileID: 966193871}
   triggerTurnLeft: {fileID: 1480830063}
@@ -8122,6 +8141,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c97a229253a433e4db100353e99b21d2,
         type: 2}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: isItemRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: onFailedSpeakText
+      value: Don't talk to me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: canSpeakWith
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
       propertyPath: m_Name
@@ -9961,6 +9995,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c97a229253a433e4db100353e99b21d2,
         type: 2}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: isItemRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: onFailedSpeakText
+      value: Don't talk to me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: canSpeakWith
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
       propertyPath: m_Name
