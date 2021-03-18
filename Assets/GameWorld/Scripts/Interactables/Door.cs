@@ -82,8 +82,9 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         if (SaveLoadManager.interactableStates.TryGetValue(name, out int lockedState))
             isLocked = (lockedState == 0) ? false : true;
 
-        if (!isLocked && switchImageOnUnlock)
-            GetComponent<SwitchImageDisplay>().SwitchImage();
+        //--- Unlock() is called by linked Operate script (toll machine Q1) which switches the image again to closed door. TODO: decouple linkage with loading state and calling Use() in Operate and check for any problems in Operate
+        //if (isLocked == false && switchImageOnUnlock == true)
+        //    GetComponent<SwitchImageDisplay>().SwitchImage();
     }
 }
    
