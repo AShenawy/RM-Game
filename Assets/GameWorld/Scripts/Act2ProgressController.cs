@@ -15,7 +15,6 @@ namespace Methodyca.Core
         public Map mapTable;    //TODO remove if unused
         public Door gateQL;     //TODO remove if unused
         
-
         [Header("N1 Quantitative")]
         public Operate tollMachineQN;
         public Door gateQN;
@@ -34,9 +33,13 @@ namespace Methodyca.Core
 
         [Header("N3 ELEMENTS", order = -2), Space(-25f, order = -1)]
         [Header("__________________________________________", order = 0), Space(-5f, order = 1)]
-        //[Header("N3 Qualitative")]
-        //[Header("N3 Quantitative")]
-        [Header("N3 Rewards", order = 5)]
+        [Header("N3 Qualitative", order = 2)]
+        public NPC laceCharQL;
+        
+        [Header("N3 Quantitative")]
+        public NPC laceCharQN;
+
+        [Header("N3 Rewards")]
         public Item punchCard1;         //TODO remove after debugging
         public Item punchCard2;         //TODO remove after debugging
         public List<Item> n3Rewards;
@@ -50,6 +53,9 @@ namespace Methodyca.Core
         {
             tollMachineQL.onCorrectItemUsed += UseItemWithMatchingToll;
             tollMachineQN.onCorrectItemUsed += UseItemWithMatchingToll;
+
+            laceCharQL.onCorrectItemUsed += UseItemWithMatchingNPC;
+            laceCharQN.onCorrectItemUsed += UseItemWithMatchingNPC;
         }
 
 #if TESTING
@@ -168,6 +174,28 @@ namespace Methodyca.Core
             }
         }
 
+        //***********   Methods for N3   ***********
 
+        private void UseItemWithMatchingNPC(NPC npc, Item itemUsed)
+        {
+            if (npc == laceCharQL)
+            {
+                print("punch card used with Lace QL. Updating Lace QN");
+                // unsub from the same event called when using the item to avoid looping this method
+                // after running the UseWithHeldItem method, re-sub again for future events
+                laceCharQN.onCorrectItemUsed -= UseItemWithMatchingNPC;
+                laceCharQN.UseWithHeldItem(itemUsed);
+                laceCharQN.onCorrectItemUsed += UseItemWithMatchingNPC;
+            }
+            else
+            {
+                print("punch card used with Lace QN. Updating Lace QL");
+                // unsub from the same event called when using the item to avoid looping this method
+                // after running the UseWithHeldItem method, re-sub again for future events
+                laceCharQL.onCorrectItemUsed -= UseItemWithMatchingNPC;
+                laceCharQL.UseWithHeldItem(itemUsed);
+                laceCharQL.onCorrectItemUsed += UseItemWithMatchingNPC;
+            }
+        }
     }
 }
