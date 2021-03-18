@@ -78,7 +78,7 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
             DialogueHandler.instance.DisplayDialogue(itemsProvidedText);
         }
 
-        SaveState();        // update _requiredItems & operateable states
+        SaveState();        // update given items & operateable states
     }
 
     public void SaveState()

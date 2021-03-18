@@ -60,6 +60,12 @@ namespace Methodyca.Core
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
                 InventoryManager.instance.Add(coin2);
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                InventoryManager.instance.Add(punchCard1);
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                InventoryManager.instance.Add(punchCard2);
         }
 #endif
 

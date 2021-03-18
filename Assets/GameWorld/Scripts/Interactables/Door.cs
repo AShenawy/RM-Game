@@ -9,8 +9,12 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
     [Header("Specific Door Parameters")]
     public GameObject targetRoom;
     public bool isLocked;
+    
     [Multiline, Tooltip("In-game text to be displayed if door is locked")]
     public string responseForLocked;
+   
+    [Tooltip("Does the door change its image when unlocked?")]
+    public bool switchImageOnUnlock = false;
     public Sound doorLockedSFX;
     public Sound doorOpenSFX;
 
@@ -60,6 +64,10 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
     public void Unlock()
     {
         isLocked = false;
+
+        if (switchImageOnUnlock)
+            GetComponent<SwitchImageDisplay>().SwitchImage();
+
         SaveState();
     }
 
