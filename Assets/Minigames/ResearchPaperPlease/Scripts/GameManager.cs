@@ -38,6 +38,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private LevelData[] data;
         [SerializeField] private Feedback[] introSpeech;
 
+        // Main game connection
+        [SerializeField] private GameObject winGameButton;
+
         public static event Action<bool> OnFix = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
@@ -72,6 +75,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private const int _maxProgressionValueToWin = 20;
 
+
+        // Main Game Connection
+        public void DisplayWinGameButton()
+        {
+            winGameButton.SetActive(true);
+        }
+
         public void InitiateNextLevel()
         {
             if (_introSpeech.Count > 0)
@@ -91,7 +101,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue <= qualityValueToWin)
                 {
-                    loseFeedback.Speech += " Too much paper was rejected for wrong reasons. I suggest you try again and be more careful. I suggest you try again and be more careful.";
+                    loseFeedback.Speech += " Too many papers were rejected for wrong reasons. I suggest you try again and be more careful.";
                     OnGameOver?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(loseFeedback);
                 }
@@ -103,7 +113,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else
                 {
-                    loseFeedback.Speech += " Too much paper was rejected for wrong reasons, and many low-quality research plans got accepted. I suggest you try again and be more careful.";
+                    loseFeedback.Speech += " Too many papers were rejected for wrong reasons, and many low-quality research plans got accepted. I suggest you try again and be more careful.";
                     OnGameOver?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(loseFeedback);
                 }

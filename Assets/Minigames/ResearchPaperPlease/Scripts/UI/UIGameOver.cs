@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Methodyca.Core;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -17,6 +18,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             if (_isWon)
             {
                 //Research Plan Mode ON
+
+                // Allow game to be won on quit
+                GameManager.Instance.DisplayWinGameButton();
             }
             else
             {
@@ -27,6 +31,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public void Reject()
         {
             //Quit
+            GetComponent<ReturnToMainGame>().QuitMinigame();
         }
 
         private void OnEnable()
