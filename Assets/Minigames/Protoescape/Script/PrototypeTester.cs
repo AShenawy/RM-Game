@@ -14,6 +14,9 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField, TextArea(1, 3)] private string negativeFeedback;
         [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
+        // Main game connection
+        [SerializeField] private GameObject winAndQuitButton;
+
         public static event Action<string[]> OnPrototypeTestInitiated = delegate { };
         public static event Action<string> OnPrototypeTestCompleted = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
@@ -115,6 +118,9 @@ namespace Methodyca.Minigames.Protoescape
             else //liked
             {
                 OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + positiveFeedback);
+
+                // allow player to win game and quit to main game
+                winAndQuitButton.SetActive(true);
             }
         }
 
