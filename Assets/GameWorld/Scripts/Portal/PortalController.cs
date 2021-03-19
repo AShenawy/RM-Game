@@ -13,7 +13,7 @@ namespace Methodyca.Core
         [SerializeField] private GameObject crystalQNSlot;
 
         [Header("Swirl Effect")]
-        //[SerializeField] private Sprite spriteQLOpaque;
+        //[SerializeField] private Sprite spriteQLOpaque;       //TODO remove redundant code
         //[SerializeField] private Sprite spriteQLTransparent;
         //[SerializeField] private Sprite spriteQNOpaque;
         //[SerializeField] private Sprite spriteQNTransparent;
@@ -26,6 +26,7 @@ namespace Methodyca.Core
         [Header("Act 2 Scenes")]
         [SerializeField] private string Act2Scene;
         [SerializeField] private string Act2QLRoomName, Act2QNRoomName;
+        [SerializeField] private bool skipTransitionVideo;
 
 
         private enum CrystalType { Quantitaive, Qualitative, None}
@@ -135,14 +136,20 @@ namespace Methodyca.Core
             SoundManager.instance.StopSFX("swirl");
             SoundManager.instance.StopBGM();
 
-            videoPlayer.Play();
+            if (skipTransitionVideo)
+                GoToNextLevel(null);
+            else
+            {
+                videoPlayer.Play();
+                videoPlayer.loopPointReached += GoToNextLevel;
+            }
             
-            videoPlayer.loopPointReached += GoToNextLevel;
         }
 
         void GoToNextLevel(VideoPlayer player)
         {
-            player.loopPointReached -= GoToNextLevel;
+            if (player != null)
+                player.loopPointReached -= GoToNextLevel;
 
             switch (lastPlacedCrystal)
             {
