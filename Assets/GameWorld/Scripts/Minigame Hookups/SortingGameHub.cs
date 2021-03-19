@@ -2,6 +2,7 @@
 using Methodyca.Core;
 
 // this script handles the sorting minigame hub
+[RequireComponent(typeof(SwitchImageDisplay))]
 public class SortingGameHub : MinigameHub, ISaveable, ILoadable
 {
     [Header("Specific Script Parameters")]
@@ -19,7 +20,7 @@ public class SortingGameHub : MinigameHub, ISaveable, ILoadable
     private GameObject quantitativeCrystalDisplay;
 
     private SwitchImageDisplay deskSpriteSwitch;
-    public bool isCompleted, isQlTaken, isQnTaken;
+    public bool isQlTaken, isQnTaken;
 
 
     public override void Start()
@@ -61,7 +62,6 @@ public class SortingGameHub : MinigameHub, ISaveable, ILoadable
         base.EndGame();
         deskSpriteSwitch.SwitchImage();     // switch to clean desk image
         ReplaceCrystals();
-        isCompleted = true;
         SaveState();
     }
 

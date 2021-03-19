@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2508603821981685855}
   - component: {fileID: 2508603821981685825}
   - component: {fileID: 2538143304110549147}
-  - component: {fileID: 3500270206941080662}
   m_Layer: 0
   m_Name: Observable Object
   m_TagString: Untagged
@@ -68,22 +67,10 @@ MonoBehaviour:
   requiredItems: []
   wrongItemText: 
   inspectDialogue: []
---- !u!114 &3500270206941080662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2508603821981685854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f09aba88b14b078d37333b0e13e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   SFX:
     name: 
     clip: {fileID: 0}
-    volume: 0.3
+    volume: 1
     pitch: 1
     loop: 0
     pan: 0

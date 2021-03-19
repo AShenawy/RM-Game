@@ -2,7 +2,7 @@
 using Methodyca.Core;
 
 
-public class PortalInteraction : ObjectInteraction, ILoadable
+public class PortalInteraction : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Script Parameters")]
     [Tooltip("Whether the player can use the portal or not")]
@@ -61,8 +61,10 @@ public class PortalInteraction : ObjectInteraction, ILoadable
             canUsePortal = true;
     }
 
+    public void SaveState() { }
+
     // ISaveable not implemented due to method argument
-    public void SaveState(Item item)
+    void SaveState(Item item)
     {
         // Save which correct crystal was placed on portal relative to it's index in the required items list
         // Start from 1 instead of 0, since 0 will mean no crystal placed on portal. Portal requires 2 crystals, so value will be 1 or 2

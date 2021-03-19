@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5013531851056719688}
   - component: {fileID: 3621028435604292817}
   m_Layer: 0
-  m_Name: Usable
+  m_Name: Usable Object
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -139,5 +139,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e5cd39ded342ff90b0f6219f05ce15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGameDescription: 
+  canInteract: 1
+  inGameDescription: Object Description
   canPickUp: 0
+  PickUpSuccessText: Pickup Success Text
+  PickUpFailText: Pickup Fail Text
+  isItemRequired: 0
+  requiredItems: []
+  wrongItemText: Wrong Item Text
+  canOperate: 1
+  onOperateSuccessText: Operate Success Text
+  onOperateFailText: Operate Fail Text
