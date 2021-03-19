@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2380,7 +2380,6 @@ GameObject:
   - component: {fileID: 1978975159}
   - component: {fileID: 1978975158}
   - component: {fileID: 1978975157}
-  - component: {fileID: 1978975156}
   - component: {fileID: 1978975155}
   m_Layer: 5
   m_Name: QuitBtn
@@ -2421,20 +2420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e97bd40f814c94fa66c7d1faa78528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1978975156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978975153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d2c0cea5d14c449be4f9a7b2c912e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minigameID: 7
-  minigameHubTag: 
 --- !u!114 &1978975157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,17 +2463,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1978975156}
-        m_MethodName: CompleteSingleLoadedMinigame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1978975155}
         m_MethodName: QuitMinigame
         m_Mode: 1
