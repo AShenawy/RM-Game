@@ -19,7 +19,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             if (_isWon)
             {
-                sceneController.ChangeScene(mainSceneName);
+                //sceneController.ChangeScene(mainSceneName);
+
+                // use minigame hookup scripts
+                GetComponent<SortGame.WinMinigame>().CompleteSingleLoadedMinigame();
+                GetComponent<Core.ReturnToMainGame>().QuitMinigame();
             }
             else
             {
