@@ -16,6 +16,9 @@ namespace Methodyca.Minigames.Questioniser
         [SerializeField] TextMeshProUGUI interestPointGained;
         [SerializeField] TextMeshProUGUI storyEventCompleted;
 
+        // main game connection
+        [SerializeField] GameObject winAndQuitButton;
+
         public Sound GameWin;
         public Sound GameOver;
 
@@ -32,6 +35,7 @@ namespace Methodyca.Minigames.Questioniser
             {
                 gameOverPanel.sprite = winTheGame;
                 SoundManager.instance.PlayBGM(GameWin);
+                winAndQuitButton.SetActive(true);
             }
             else if (GameManager.Instance.InterestPoint < 0)
             {
