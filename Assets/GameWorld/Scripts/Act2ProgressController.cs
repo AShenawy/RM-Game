@@ -91,7 +91,7 @@ namespace Methodyca.Core
                 if (n1Rewards.Count > 0)
                     GiveRewardFromList(n1Rewards);
             }
-            else if (id == Minigames.Participatory || id == Minigames.Prototyping)
+            else if (id == Minigames.Participatory || id == Minigames.Prototyping || id == Minigames.Persona)
             {
                 if (n3Rewards.Count > 0)
                     GiveRewardFromList(n3Rewards);

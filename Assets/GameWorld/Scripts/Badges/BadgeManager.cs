@@ -44,6 +44,8 @@ namespace Methodyca.Core
                 SetMinigameComplete((int)Minigames.Interview);
             if (Input.GetKeyDown(KeyCode.Alpha8))
                 SetMinigameComplete((int)Minigames.Observation);
+            if (Input.GetKeyDown(KeyCode.Alpha9))
+                SetMinigameComplete((int)Minigames.Persona);
 #endif
         }
 
