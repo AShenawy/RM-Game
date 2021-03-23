@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -446,7 +446,7 @@ MonoBehaviour:
   BGMUsic:
     name: start scene bgm
     clip: {fileID: 8300000, guid: 65e306fbc1855d448ad146a223d21d63, type: 3}
-    volume: 0.4
+    volume: 0.1
     pitch: 1
     loop: 1
     pan: 0
