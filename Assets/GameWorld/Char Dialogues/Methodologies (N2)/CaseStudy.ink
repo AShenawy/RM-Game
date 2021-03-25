@@ -1,3 +1,5 @@
+VAR wonDiscussion = false
+
 -> START
 == START ==
 I have one friend - a teacher who is very active in using games in everyday teaching practice. I would like to study her and introduce her best practices to the rest of the world. What type of research this is?
@@ -147,4 +149,5 @@ Why should I hire another researcher?
 * [This is just an option commonly used in case studies. You don't need to follow that.] -> Next
 
 == Insane ==
+~ wonDiscussion = true
 This is insane! Are you trying to kill me with research methods? That's it! I had enough! Get out of here! -> END

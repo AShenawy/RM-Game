@@ -1,3 +1,5 @@
+VAR wonDiscussion = false
+
 -> START
 == START ==
 I have one question. Let's say I would like to create a new learning game. Is there any research strategy that allows me to formulate this as a study?
@@ -141,4 +143,5 @@ So there can be like an empirical study inside of the design-related study?
 * [No, you don't collect any empirical data with design. You have to conduct a stand alone empirical study] -> Fin
 
 == Conclusion ==
+~ wonDiscussion = true
 I believe I got this now. Thank you for your time and help. -> END

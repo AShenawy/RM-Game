@@ -1,3 +1,5 @@
+VAR wonDiscussion = false
+
 -> START
 == START ==
 I have one question? What research design I should use if I would like to know how many teachers are using games in educational conditions?
@@ -257,4 +259,5 @@ Why do I need to test my survey? Isn't this already enough to plan a survey and 
 * [Skiping the pilot is the typical mistake researchers do when they run a survey.] -> Conclusion
 
 == Conclusion ==
+~ wonDiscussion = true
 I guess I need to accept that. Thank you for your help. -> END
