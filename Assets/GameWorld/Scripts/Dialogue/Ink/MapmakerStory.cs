@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Methodyca.Core
+﻿namespace Methodyca.Core
 {
     public class MapmakerStory : InkCharStory, ISaveable, ILoadable
     {

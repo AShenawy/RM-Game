@@ -1,14 +1,29 @@
 ﻿namespace Methodyca.Core
 {
-    public class StudentStory : InkCharStory, ISaveable, ILoadable
+    public class LaceStory : InkCharStory, ISaveable, ILoadable
     {
         public bool firstMeeting = true;
-
+        public bool completedEnoughMinigames = false;
 
         protected override void CheckVariables()
         {
             LoadState();
             inkStory.variablesState["firstMeeting"] = firstMeeting;
+
+            if (getCompletedMinigames() >= 2)
+                completedEnoughMinigames = true;
+
+            inkStory.variablesState["completedMiniGames"] = completedEnoughMinigames;
+
+            int getCompletedMinigames()
+            {
+                int completed = 0;
+                foreach (int game in BadgeManager.instance.minigamesComplete)
+                    if (game == 3 || game == 4 || game == 9)
+                        completed++;
+
+                return completed;
+            }
         }
 
         protected override void EndStory()
