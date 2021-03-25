@@ -2,6 +2,7 @@ VAR monsterOfferedHelp = false
 VAR gotpunkboard = false
 VAR completedMinigames = false
 VAR firstMeeting = true
+VAR monsterCompleted = false
 
 /*
 Where to start help? 
@@ -15,10 +16,11 @@ Where to start help?
     // The player has just entered N2
     - firstMeeting: -> FirstEncounter
     
-    //### BOTH cases lead to same knot as board is not acquired in game
     // The player has completed both enough mini-games and been to the other dimension, but does not have the board from Punk.
+    - completedMinigames and not gotpunkboard: -> NoBoard
+    
     // The player has completed both enough mini-games and been to the other dimension, where he got board from punk.
-    - completedMinigames: -> CompletedMiniGames
+    - completedMinigames and gotpunkboard: -> CompletedMiniGames
     
     // The player has completed some mini-games, but not quite enough.
     - else: -> SomeButNotEnough
@@ -121,5 +123,7 @@ I will explain once the board is all setup.
 + [I Suppose that makes sense] -> Fin
 
 === Fin === 
-Just let me get the pieces setup on the board. 
+Just let me get the pieces setup on the board.
+~ monsterCompleted = true
+* [Leave]
 -> END

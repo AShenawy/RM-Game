@@ -1,23 +1,21 @@
 ﻿namespace Methodyca.Core
 {
-    public class MonsterStory : InkCharStory, ISaveable, ILoadable
+    public class PunkStory : InkCharStory, ISaveable, ILoadable
     {
         public bool firstMeeting = true;
-        public bool completedEnoughMinigames = false;
+        public bool metMonster = false;
         public bool gotPunkBoard = false;
-        public PunkStory punkStory;
-        public event System.Action OnMonsterCompleted;
+        public MonsterStory monsterStory;
 
 
         protected override void CheckVariables()
         {
             LoadState();
-            inkStory.variablesState["firstMeeting"] = firstMeeting;
+            inkStory.variablesState["PunkEncountered"] = (firstMeeting == true) ? 1 : 0;
+            inkStory.variablesState["monsterOfferedHelp"] = metMonster;
+            inkStory.variablesState["gotpunkboard"] = (gotPunkBoard == true) ? 1 : 0;
 
-            if (getCompletedMinigames() >= 2)
-                completedEnoughMinigames = true;
-
-            inkStory.variablesState["completedMinigames"] = completedEnoughMinigames;
+            inkStory.variablesState["N2QlProgress"] = getCompletedMinigames();
 
             int getCompletedMinigames()
             {
@@ -35,26 +33,25 @@
             base.EndStory();
 
             if (firstMeeting)
-            {
                 firstMeeting = false;
-                punkStory.SetMonsterMet();
-            }
 
-            if (System.Convert.ToBoolean(inkStory.variablesState["monsterCompleted"]))
-                OnMonsterCompleted?.Invoke();
+            gotPunkBoard = System.Convert.ToBoolean(inkStory.variablesState["gotpunkboard"]);
+            if (gotPunkBoard)
+                monsterStory.GiveBoard();
 
             SaveState();
         }
 
-        public void GiveBoard()
+        public void SetMonsterMet()
         {
-            gotPunkBoard = true;
+            metMonster = true;
             SaveState();
         }
 
         public void SaveState()
         {
             SaveLoadManager.SetInteractableState($"{name}_story_firstMeeting", firstMeeting ? 1 : 0);
+            SaveLoadManager.SetInteractableState($"{name}_story_metMonster", metMonster ? 1 : 0);
             SaveLoadManager.SetInteractableState($"{name}_story_gotBoard", gotPunkBoard ? 1 : 0);
         }
 
@@ -62,6 +59,9 @@
         {
             if (SaveLoadManager.interactableStates.TryGetValue($"{name}_story_firstMeeting", out int meetingState))
                 firstMeeting = (meetingState == 1) ? true : false;
+
+            if (SaveLoadManager.interactableStates.TryGetValue($"{name}_story_metMonster", out int monsterState))
+                metMonster = (monsterState == 1) ? true : false;
 
             if (SaveLoadManager.interactableStates.TryGetValue($"{name}_story_gotBoard", out int boardState))
                 gotPunkBoard = (boardState == 1) ? true : false;

@@ -1,9 +1,10 @@
 VAR monsterOfferedHelp = false
 VAR N2QlProgress = 0
 VAR gotpunkboard = 0
-VAR PunkEncountered = 0
+VAR PunkEncountered = 1
 VAR on = 0
 
+/*
 (This bit won't be in the actual game.)
 
 Before you start talking to Punk, tell me this: did you visit Monster in Quantiville, and did he ask you to retrieve his board from Punk?
@@ -45,6 +46,9 @@ And finally, is this the first time you are talking to Punk?
 
 Thanks! Now you can start the dialogue as it will be in the actual game.
 + [Start.] -> PunkEncounter
+*/
+
+-> PunkEncounter
 
 // DIALOG PROPER STARTS HERE
 
@@ -159,5 +163,5 @@ Just a little game I started with my third husband many years ago. We never quit
 
 === PunkBye ===
 {&Goodbye!|I will see you soon.}
-
+* [Leave]
 -> END
