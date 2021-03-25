@@ -1,11 +1,28 @@
 VAR monsterOfferedHelp = false
 VAR gotpunkboard = false
+VAR completedMinigames = false
+VAR firstMeeting = true
 
+/*
 Where to start help? 
 + [The player has just entered N2] -> FirstEncounter
 + [The player has completed some mini-games, but not quite enough.] -> SomeButNotEnough
 + [The player has completed both enough mini-games and been to the other dimension, but does not have the board from Punk.] -> NoBoard
 + [The player has completed both enough mini-games and been to the other dimension, where he got board from punk.] -> CompletedMiniGames
+*/
+
+{
+    // The player has just entered N2
+    - firstMeeting: -> FirstEncounter
+    
+    //### BOTH cases lead to same knot as board is not acquired in game
+    // The player has completed both enough mini-games and been to the other dimension, but does not have the board from Punk.
+    // The player has completed both enough mini-games and been to the other dimension, where he got board from punk.
+    - completedMinigames: -> CompletedMiniGames
+    
+    // The player has completed some mini-games, but not quite enough.
+    - else: -> SomeButNotEnough
+}
 
 === FirstEncounter ===
 A perfect someone to play Phutball with me.
