@@ -11,6 +11,7 @@ public class BasicInkExampleEditor : Editor {
 
     static BasicInkExampleEditor () {
         BasicInkExample.OnCreateStory += OnCreateStory;
+        Methodyca.Core.InkCharStory.OnBeginStory += OnCreateStory;
     }
 
     static void OnCreateStory (Story story) {

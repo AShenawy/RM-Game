@@ -2,8 +2,18 @@ VAR usedCrystal = false
 VAR reminderCrystal = false
 VAR offeredHelp = false
 VAR gotStudentCoin = false
+VAR completedOneMinigame = false
+VAR firstMeeting = true
+
+
+/*
+## NOTE
+The where to start section is replace with the conditions checks below it to connect it directly to the main game.
+Since the player will not make these choices. Instead, they will be linked to gameplay progress.
+
 
 Where to start?
+
 
 + [The player has just entered N1-Qual after using a crystal]:
 ~ usedCrystal = true
@@ -12,6 +22,7 @@ Where to start?
 + [The player has just entered N1-Qual without using a crystal]:
 ~ usedCrystal = false
 -> FirstEncounter
+
 
 + [The player has completed some mini-games, but not quite enough.] -> SomeButNotEnough
 
@@ -29,6 +40,21 @@ Where to start?
 ~ usedCrystal = true
 ~ gotStudentCoin = true
 -> Ready
+*/
+
+{
+    // The player has just entered N1-Qual after using a crystal OR without using a crystal
+    - firstMeeting: -> FirstEncounter
+    
+    // The player has completed some mini-games, but not quite enough.
+    - completedOneMinigame and not gotStudentCoin: -> SomeButNotEnough
+    
+    // The player has completed enough mini-games in the qualitative dimension, but has not visited the other dimension.
+    // The player has completed both enough mini-games and been to the other dimension, but does not have the coin from Student.
+    // The player has completed both enough mini-games and been to the other dimension, where he got a coin from Student.
+    - else: -> Ready
+}
+
 
 === FirstEncounter ===
 A strange place, is it not? I have been trying to make a map of it, to understand what these people believe, how they govern themselves, what their work ethic is. I need to collect more data to analyze, but I have my hands full with this map.
@@ -162,5 +188,6 @@ Don't run off just yet! You'd need another coin from Student in the other dimens
 -else:
 You still do not seem to have visited the other dimension. How can you learn about one society without another to compare it to? I suggest you use that crystal of yours to visit Student in the other dimension. You would need to get another coin from him to get past the gate anyway.
 }
+* [Leave]
 -> END
 

@@ -14,6 +14,12 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
 
     public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
+    private InkCharStory inkDialogue;
+
+    private void Awake()
+    {
+        inkDialogue = GetComponent<InkCharStory>();
+    }
 
     protected override void Start()
     {
@@ -58,7 +64,18 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
     void Talk()
     {
         // feed text dialogues to dialogue output box
-        DialogueHandler.instance.DisplayDialogue(textDialogues);
+        //DialogueHandler.instance.DisplayDialogue(textDialogues);
+        inkDialogue.StartStory();
+        
+        // prevent cursor from switching to interaction
+        canInteract = false;
+        inkDialogue.OnEndStory += AllowInteraction;
+    }
+
+    void AllowInteraction()
+    {
+        canInteract = true;
+        inkDialogue.OnEndStory -= AllowInteraction;
     }
 
     public void SaveState()
