@@ -52,6 +52,8 @@ namespace Methodyca.Core
                 SetMinigameComplete((int)Minigames.CaseStudy);
             if (Input.GetKeyDown(KeyCode.P))
                 SetMinigameComplete((int)Minigames.DesignResearch);
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+                SetMinigameComplete((int)Minigames.Experiment);
 #endif
         }
 
