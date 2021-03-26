@@ -20,16 +20,6 @@ namespace Methodyca.Core
         public event System.Action OnEndStory;
 
 
-        protected virtual void Awake()
-        {
-            //inkStory.onError += (msg, type) => {
-            //    if (type == Ink.ErrorType.Warning)
-            //        Debug.LogWarning(msg);
-            //    else
-            //        Debug.LogError(msg);
-            //};
-        }
-
         public virtual void StartStory()
         {
             inkStory = new Story(inkJSONAsset.text);
