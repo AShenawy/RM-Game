@@ -20,6 +20,9 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
     private bool isOperated;    // check for saving/loading object state
     public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
+    public Sound SFX; //Sound of the interaction
+    public Sound WrongSFX;
+    public Sound CorrectSFX;
 
     protected override void Start()
     {
@@ -44,7 +47,9 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
             DialogueHandler.instance.DisplayDialogue(onOperateSuccessText);
         }
         else
+            PlayError();
             DialogueHandler.instance.DisplayDialogue(onOperateFailText);
+            
     }
 
     void Use()
@@ -53,6 +58,7 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
         ToggleInteraction(false);
 
         isOperated = true;
+        SoundManager.instance.PlaySFXOneShot(SFX);
         onOperation?.Invoke(this);
         SaveState();    // update _operated state
     }
@@ -67,9 +73,13 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
             givenItems.Add(item);       // add item to givenItems list for when loading state
             InventoryManager.instance.Remove(item);
             onCorrectItemUsed?.Invoke(this, item);
+            SoundManager.instance.PlaySFXOneShot(CorrectSFX);
         }
         else
+        {
+            PlayError();
             return;
+        }
 
         // if all required items are given, then allow operation (if set to false)
         if (requiredItems.Count < 1)
@@ -106,5 +116,9 @@ public class Operate : ObjectInteraction, ISaveable, ILoadable
 
         if (SaveLoadManager.interactableStates.TryGetValue(name + "_operated", out int operatedState))
             isOperated = (operatedState == 0) ? false : true;
+    }
+    void PlayError()
+    {
+        SoundManager.instance.PlaySFXOneShot(WrongSFX);
     }
 }

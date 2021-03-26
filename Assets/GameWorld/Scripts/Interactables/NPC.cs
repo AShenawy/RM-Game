@@ -14,6 +14,9 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
 
     public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
+    public Sound gottenSFX;
+    public Sound itemaddedSFX;
+
 
     protected override void Start()
     {
@@ -38,6 +41,7 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
         {
             requiredItems.Remove(item);     // remove the item required from the list
             givenItems.Add(item);       // add item to givenItems list for when loading state
+            SoundManager.instance.PlaySFXOneShot(itemaddedSFX);
             InventoryManager.instance.Remove(item);
             onCorrectItemUsed?.Invoke(this, item);
         }
@@ -50,6 +54,7 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
             canSpeakWith = true;
             onGivenAllItems?.Invoke();
             DialogueHandler.instance.DisplayDialogue(itemsProvidedText);
+            ItemSFX();
         }
 
         SaveState();        // update given items & speakable states
@@ -82,5 +87,10 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
 
         if (SaveLoadManager.interactableStates.TryGetValue(name + "_speakable", out int speakableState))
             canSpeakWith = (speakableState == 0) ? false : true;
+    }
+
+    void ItemSFX()
+    {
+        SoundManager.instance.PlaySFXOneShot(gottenSFX);
     }
 }

@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 890726696}
   - component: {fileID: 890726695}
   - component: {fileID: 890726698}
+  - component: {fileID: 890726699}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -1333,6 +1334,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 890726699}
+        m_MethodName: Itsjustkewa
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &890726696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1382,6 +1394,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5660d52649c1f4846a99b2af6a6ae9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &890726699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890726693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f09aba88b14b078d37333b0e13e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX:
+    name: start click
+    clip: {fileID: 8300000, guid: e2f1c99ff339b4424b21df5eda11dad1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!1 &1103277045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2610,7 @@ GameObject:
   - component: {fileID: 2094221805}
   - component: {fileID: 2094221804}
   - component: {fileID: 2094221803}
+  - component: {fileID: 2094221806}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2650,6 +2683,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094221806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094221802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &2101618496
 GameObject:
   m_ObjectHideFlags: 0
