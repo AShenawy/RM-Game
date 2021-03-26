@@ -92,6 +92,6 @@ namespace Methodyca.Core
     }
 
     // a list of all available minigames
-    public enum Minigames { Blank, Sorting, DocStudy, Participatory, Prototyping, Questionnaire,
-                            Research, Interview, Observation, Persona, Survey, CaseStudy, DesignResearch }
+    public enum Minigames { Blank, Sorting, DocStudy, Participatory, Prototyping, Questionnaire, Research,
+                            Interview, Observation, Persona, Survey, CaseStudy, DesignResearch, Experiment }
 }
