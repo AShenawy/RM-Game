@@ -91,6 +91,14 @@ namespace Methodyca.Core
                 if (n1Rewards.Count > 0)
                     GiveRewardFromList(n1Rewards);
             }
+            else if (id == Minigames.Survey || id == Minigames.DesignResearch || id == Minigames.CaseStudy || id == Minigames.Experiment)
+            {
+                // no actual rewards at this time
+                if (n2Rewards.Count > 0)
+                    GiveRewardFromList(n2Rewards);
+
+                Debug.Log("N2 minigames currently have now rewards to give. Only badge is added");
+            }
             else if (id == Minigames.Participatory || id == Minigames.Prototyping || id == Minigames.Persona)
             {
                 if (n3Rewards.Count > 0)

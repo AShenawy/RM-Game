@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 namespace Methodyca.Core
 {
     // This class handles the games main information and player details
-    public sealed class GameManager : MonoBehaviour
+    public sealed class GameManager : MonoBehaviour, ISaveable, ILoadable
     {
         #region Singleton
         public static GameManager instance;
@@ -36,6 +36,7 @@ namespace Methodyca.Core
         private RoomData roomData;
 
         [HideInInspector] public bool isPlayerHoldingItem = false;
+        [HideInInspector] public bool usedDimeSwitch { get; private set; }  // for NPC check to coach player on dimension switching
 
         #region Test Code Vars
         // typing in this string makes the player able to turn in current room (if originally disabled)
@@ -63,6 +64,7 @@ namespace Methodyca.Core
 
             // KEEP BELOW RoomSetup region. Ensures all menus are hidden on start
             HideGUI();
+            LoadState();
         }
     
         // Update is called once per frame
@@ -349,6 +351,9 @@ namespace Methodyca.Core
                 DialogueHandler.instance.DisplayDialogue("I can't switch dimensions right now.");
                 return;
             }
+            
+            usedDimeSwitch = true;
+            SaveState();
 
             // find the corresponding room in the rooms list according to active state and location and teleport to it
             foreach (GameObject room in rooms)
@@ -362,6 +367,17 @@ namespace Methodyca.Core
 
             // Swap the UI image for dime switcher on successful switch
             inventoryPanel.GetComponentInChildren<SwapImageUI>(true).SwapImage();
+        }
+
+        public void SaveState()
+        {
+            SaveLoadManager.SetInteractableState($"{name}_usedDimeSwitch", usedDimeSwitch ? 1 : 0);
+        }
+
+        public void LoadState()
+        {
+            if (SaveLoadManager.interactableStates.TryGetValue($"{name}_usedDimeSwitch", out int usedSwitchState))
+                usedDimeSwitch = (usedSwitchState == 1) ? true : false;
         }
     }
     

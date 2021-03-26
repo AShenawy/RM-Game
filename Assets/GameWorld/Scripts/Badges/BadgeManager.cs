@@ -46,6 +46,14 @@ namespace Methodyca.Core
                 SetMinigameComplete((int)Minigames.Observation);
             if (Input.GetKeyDown(KeyCode.Alpha9))
                 SetMinigameComplete((int)Minigames.Persona);
+            if (Input.GetKeyDown(KeyCode.I))
+                SetMinigameComplete((int)Minigames.Survey);
+            if (Input.GetKeyDown(KeyCode.O))
+                SetMinigameComplete((int)Minigames.CaseStudy);
+            if (Input.GetKeyDown(KeyCode.P))
+                SetMinigameComplete((int)Minigames.DesignResearch);
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+                SetMinigameComplete((int)Minigames.Experiment);
 #endif
         }
 
@@ -86,5 +94,6 @@ namespace Methodyca.Core
     }
 
     // a list of all available minigames
-    public enum Minigames { Blank, Sorting, DocStudy, Participatory, Prototyping, Questionnaire, Research, Interview, Observation, Persona }
+    public enum Minigames { Blank, Sorting, DocStudy, Participatory, Prototyping, Questionnaire, Research,
+                            Interview, Observation, Persona, Survey, CaseStudy, DesignResearch, Experiment }
 }

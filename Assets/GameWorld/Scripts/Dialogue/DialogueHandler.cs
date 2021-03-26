@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Ink.Runtime;
 
 namespace Methodyca.Core
 {
@@ -18,11 +19,20 @@ namespace Methodyca.Core
       }
       #endregion  
     
+        //[Header("Basic Dialogue Fields")]
         [SerializeField] private Text textDisplay;
         [SerializeField] private GameObject dialoguePanel;
 
         private string[] dialoguePieces;
         private int progressionIndex = 0;
+
+        //[Header("Ink Dialogue Fields")]
+        //[SerializeField] private Canvas inkDialogueCvs;
+        //[SerializeField] private Text inkTextPrefab;
+        //[SerializeField] private Button inkChoiceButtonPrefab;
+
+        //private Story inkStory;
+
 
         private void Start()
         {

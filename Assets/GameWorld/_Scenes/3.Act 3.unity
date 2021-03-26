@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3035,6 +3035,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1093976140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1871800460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1093976141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093976140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03bd1942642bdd488f939f61919d143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: a00442df6c902fa438c01241f0550687, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 2089217111692430501, guid: e113553ee0d62e3418bf8922ac4558b1,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: ea8e9393b1a196f499ce883c34dc2b33, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
 --- !u!1 &1108155687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,6 +5623,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: inkDialogue
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
