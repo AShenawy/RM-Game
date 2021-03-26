@@ -11,6 +11,7 @@ namespace Methodyca.Core
     {
         // make this class a singleton
         public static SceneManagerScript instance;
+        public static event System.Action onAdditiveSceneLoaded;
         
         public GameObject loadingScreenPrefab;
 
@@ -174,6 +175,7 @@ namespace Methodyca.Core
         void SetLoadedSceneActive(Scene scene, LoadSceneMode mode)
         {
             SceneManager.SetActiveScene(scene);
+            onAdditiveSceneLoaded?.Invoke();
             SceneManager.sceneLoaded -= SetLoadedSceneActive;
         }
 
