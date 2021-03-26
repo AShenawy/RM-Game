@@ -29,12 +29,13 @@ Design-Based Research you say? But I don't plan to design anything (except my re
 * [If you are so smart why don't you answer yourself to this question?.] -> Rude
 
 == Rude ==
-Hey! There is no need to be so rude. You looked like a helpful person in the first place. -> END
+Hey! There is no need to be so rude. You looked like a helpful person in the first place. 
+* [What ever.] -> END
 
 == CaseStudy2 ==
 What is your Case Study then?
 * [This is in-depth, and detailed examination of a particular case, within a real-world context.] -> Next
-* [...] -> Next
+* [Case Study is not a serious type of research. It is for weak ones who are afraid of collecting a massive amount of data or doing any other type of proper research.] -> Rude
 
 == Next ==
 I see. What should I do next?
@@ -42,6 +43,7 @@ I see. What should I do next?
 * [Select instruments for data collection.] -> Instruments
 * [Prepare data collection and collect data.] -> Instruments2
 * [Analyse data.] -> Analyse
+*  {CHOICE_COUNT() == 0} [Write a research report.] -> Report
 
 == Case ==
 But I have already a case - this one teacher. What's the big deal about selecting the case.
@@ -115,7 +117,7 @@ Sadistiks?! Please no! I don't want to do that!
 == Coding ==
 Coding!? I don't want to programme anything!
 * [No, no! This is describing the text sections with keywords - codes - and then analysing codes - counting them, finding connections, ...] -> Generalisation
-* [...] -> Generalisation
+* [This country needs programmers. Only some useless member of society says something like you did.] -> Rude
 
 == Generalisation ==
 And after analysing data I can interpret results and generalise?
@@ -131,7 +133,7 @@ Why can't I make generalizations?
 == Theory ==
 How can I generalise through the theory?
 * [You need to read articles about similar case studies conducted by other researchers and compare your results with them]. -> Next
-* [...] -> Next
+* [You can analyse more similar cases and compare their results.] -> Next
 
 == Discussion ==
 Thank God I'm allowed to do the discussion! The case study seems to be a very restrictive strategy.
@@ -149,5 +151,10 @@ Why should I hire another researcher?
 * [This is just an option commonly used in case studies. You don't need to follow that.] -> Next
 
 == Insane ==
+This is insane! Are you trying to kill me with research methods? That's it! I had enough!
+* [Ass you wish.]-> END
+
+== Report ==
 ~ wonDiscussion = true
-This is insane! Are you trying to kill me with research methods? That's it! I had enough! Get out of here! -> END
+Yes, every research ends with writing a report. Thank you. 
+* [You are welcome!]-> END

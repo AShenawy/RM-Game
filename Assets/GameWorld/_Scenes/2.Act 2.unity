@@ -1327,6 +1327,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e92c690d640cca44670defb80985f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &236788425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236788422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ee74451cb5e647877c47b073994e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: 5dcb95e3e59194f4ca332cc206a5fe4c, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
+  completedEnoughMinigames: 0
 --- !u!114 &236788427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2153,7 +2173,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 70351140}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &314296011
+--- !u!114 &314296010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2162,10 +2182,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 314296009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17994e7cddb7d7f4dbc954f4bf11b3ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 773ace44acfe3d04a8b483e87e2c7cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 1591946534}
+  inkJSONAsset: {fileID: 4900000, guid: 537554e05bb4ed442b3fad15ff120bdb, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
+  metMonster: 0
+  gotPunkBoard: 0
+  monsterStory: {fileID: 533381234}
 --- !u!1 &326695267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,6 +2348,7 @@ GameObject:
   - component: {fileID: 380723519}
   - component: {fileID: 380723518}
   - component: {fileID: 380723520}
+  - component: {fileID: 380723521}
   m_Layer: 0
   m_Name: NPC-MapMaker
   m_TagString: Untagged
@@ -2393,6 +2423,28 @@ MonoBehaviour:
   textDialogues: []
   onFailedSpeakText: 
   givenItems: []
+--- !u!114 &380723521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380723516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141d456a64b0c0143b23ae33e7e57414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: 2de29dcf4c919134e826f69fecca137e, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
+  usedCrystal: 0
+  completedOneMinigame: 0
+  completedEnoughMinigames: 0
 --- !u!114 &382011435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1369920435416074999, guid: 76a19fc7f61302d4cae0c8d7387b9454,
@@ -3445,6 +3497,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6081206, y: 3.9568965, z: 0.9999951}
   m_Center: {x: -1.6607811, y: -2.6464276, z: 0.0000023245811}
+--- !u!114 &533381234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533381232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa85e228a5dd194aae79b62758a9eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: b1e36ef5d716e394eb81929fd16fdb4b, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
+  completedEnoughMinigames: 0
+  gotPunkBoard: 0
+  punkStory: {fileID: 314296010}
 --- !u!1001 &533722523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8335,7 +8409,7 @@ PrefabInstance:
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
       propertyPath: canSpeakWith
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
@@ -10199,7 +10273,7 @@ PrefabInstance:
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
       propertyPath: canSpeakWith
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
@@ -12296,18 +12370,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2091420324}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1591946534 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2091420324}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591946533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecb7c29708874094b92e2cafd97c25b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1591946537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12794,6 +12856,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b12771c059990274a8b0b0b42f5355e8, type: 3}
   - {fileID: 21300000, guid: 0d712673ed64529469ac1d0a650fdb3d, type: 3}
   - {fileID: 21300000, guid: 9fc4818a2db441946a0b391bf5828227, type: 3}
+--- !u!114 &1680522020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680522018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838f0eeadf79b404887fc5829ca16dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: 96db5f814b049864f949d8b7d0f7d454, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
 --- !u!1 &1690140337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1369920434495604263, guid: 76a19fc7f61302d4cae0c8d7387b9454,
@@ -14734,6 +14815,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneTransferObject: {fileID: 4652820552570664111}
+--- !u!114 &2105458100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105458094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ee74451cb5e647877c47b073994e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 4900000, guid: 5dcb95e3e59194f4ca332cc206a5fe4c, type: 3}
+  inkDialogueCanvasPrefab: {fileID: 4143255052120543991, guid: 5b9c9c4b71b0c1444a231ea8dc923c0b,
+    type: 3}
+  inkTextPrefab: {fileID: 11456674, guid: 99b6e3f4e517a904caf339b19c9ad1ca, type: 3}
+  inkChoiceButtonPrefab: {fileID: 11455116, guid: 95ac86fa10e791046b446563a5bdef2e,
+    type: 3}
+  firstMeeting: 1
+  completedEnoughMinigames: 0
 --- !u!114 &2125797725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1541064387060370759, guid: 76a19fc7f61302d4cae0c8d7387b9454,

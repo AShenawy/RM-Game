@@ -32,8 +32,8 @@ But isn't Design-Based Research about developing new things e.g. games? I don't 
 
 == Design ==
 By research design, I mean what is my research strategy? What is my study framework or so-called methodology?
-* I see. Let's see what are your options again? -> START
-* Ah, this is too much over my competency level. -> END
+* [I see. Let's see what are your options again?] -> START
+* [Ah, this is too much over my competency level.] -> END
 
 == Fun ==
 Yes, but for most serious scholars, this is not decent research. I don't want to take that risk.
@@ -77,9 +77,9 @@ What methods I can use for creating the sample?
 * [I suggest quota sample.] -> Quota
 
 == Example ==
-One example? But this sounds like a Cases Study!
+One example? But this sounds like a Case Study!
 * [You are right. A sample is something else.] -> Sample
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 == Music ==
 This doesn't make any sense.
@@ -87,10 +87,14 @@ This doesn't make any sense.
 * [But you said sound.] -> Fin
 
 == Fin ==
-Hei! You are only teasing me. I think I have had enough of your help. Have a good day. -> END
+Hei! You are only teasing me. I think I have had enough of your help. Have a good day.
+* Leave
+-> END
 
 == NotForMe ==
-This is too much. It seems that research is not for me. I quit. -> END
+This is too much. It seems that research is not for me. I quit.
+* Leave
+-> END
 
 == RND ==
 Random sample - does it mean I can put together the group of individuals I study arbitrary?
@@ -100,7 +104,7 @@ Random sample - does it mean I can put together the group of individuals I study
 == Arbitrary ==
 This doesn't sound right.
 * [You are right. I was joking] -> RND
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 == Systematic ==
 What is a Systematic Sample?
@@ -167,12 +171,12 @@ I see. So how big should be my sample if the population is 6000, the confidence 
 == Small ==
 That small?! This can't be right.
 * [Let's see then] -> SamleExample
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 == Big ==
 That big?! That means I need to study almost half of the population. This doesn't sound right.
 * [Let's see then.] -> SamleExample
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 
 == Plan ==
@@ -195,12 +199,12 @@ What is the typical instrument for collecting survey data?
 == Diary ==
 This doesn't sound right. What will I observe?
 * [Let's see then.] -> Instruments
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 == Interview ==
 This doesn't sound right. How much data I can collect with the interview?
 * [Let's see then.] -> Instruments
-* [If you are so smart why you need my help?] -> END
+* [If you are so smart why do you need my help?] -> END
 
 == CollectData ==
 What do you mean by collecting data? I made a questionnaire already.

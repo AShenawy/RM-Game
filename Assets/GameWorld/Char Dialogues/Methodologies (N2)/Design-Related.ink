@@ -26,7 +26,9 @@ Can you suggest some official methodology names because I need to refer to one i
 * [And there is even more: Design-oriented Research, Research through Design or Research for Design ...] -> More
 
 == Fin ==
-That's what I thought. Then I don't want to make research. I wanna make games. -> END
+That's what I thought. Then I don't want to make research. I wanna make games.
+* Leave
+-> END
 
 == DBR ==
 What is Design-based Research
@@ -144,4 +146,6 @@ So there can be like an empirical study inside of the design-related study?
 
 == Conclusion ==
 ~ wonDiscussion = true
-I believe I got this now. Thank you for your time and help. -> END
+I believe I got this now. Thank you for your time and help.
+* [Leave]
+-> END
