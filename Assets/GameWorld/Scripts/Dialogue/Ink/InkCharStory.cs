@@ -6,7 +6,6 @@ using Ink.Runtime;
 namespace Methodyca.Core
 {
     // a base class for NPC stories created in Ink
-    [RequireComponent(typeof(NPC))]
     public abstract class InkCharStory : MonoBehaviour
     {
         [SerializeField] protected TextAsset inkJSONAsset;
