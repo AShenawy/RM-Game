@@ -13,7 +13,7 @@ namespace Methodyca.Core
         [Tooltip("If the minigame is accessible from both QL/QN nodes, then place the object from opposite node")]
         public StoryMinigameConnection linkedMinigameAccess;
 
-        public MethodologyStory story;
+        private  MethodologyStory story;
 
 
         private void OnEnable()

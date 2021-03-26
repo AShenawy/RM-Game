@@ -147,5 +147,5 @@ So there can be like an empirical study inside of the design-related study?
 == Conclusion ==
 ~ wonDiscussion = true
 I believe I got this now. Thank you for your time and help.
-* [Leave]
+* [You are welcome!]
 -> END

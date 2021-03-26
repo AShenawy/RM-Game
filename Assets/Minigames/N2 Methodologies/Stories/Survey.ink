@@ -264,4 +264,5 @@ Why do I need to test my survey? Isn't this already enough to plan a survey and 
 
 == Conclusion ==
 ~ wonDiscussion = true
-I guess I need to accept that. Thank you for your help. -> END
+I guess I need to accept that. Thank you for your help.
+* You are welcome! -> END
