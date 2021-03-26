@@ -4,15 +4,21 @@ namespace Methodyca.Minigames.Methodologies
 {
     public class MethodologyStory : InkCharStory
     {
-        public static event System.Action OnDiscussionWon;
+        public event System.Action OnDiscussionWon;
+        public Core.Minigames minigameID;
+        public bool wonDiscussion = false;
 
         protected override void CheckVariables() { }
 
         protected override void EndStory()
         {
-            base.EndStory();
             if ((bool)inkStory.variablesState["wonDiscussion"])
+            {
+                wonDiscussion = true;
                 OnDiscussionWon?.Invoke();
+            }
+
+            base.EndStory();
         }
     }
 }
