@@ -1,4 +1,4 @@
-﻿#define TESTING
+﻿//#define TESTING
 using UnityEngine;
 
 namespace Methodyca.Core
