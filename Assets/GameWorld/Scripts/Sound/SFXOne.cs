@@ -11,6 +11,7 @@ namespace Methodyca.Core
         public void Itsjustkewa()
         {
             SoundManager.instance.PlaySFXOneShot(SFX);
+            print("Button Pressed Sound One");
         }
     }
 }

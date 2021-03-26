@@ -11,10 +11,12 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
     [Tooltip("Dialogue to display if player can't speak to NPC")] public string onFailedSpeakText;
     public System.Action<NPC, Item> onCorrectItemUsed;
     public System.Action onGivenAllItems;
-
+    public Sound gottenSFX;
+    public Sound itemaddedSFX;
     public List<Item> givenItems = new List<Item>();        // TODO make it private after debugging
 
     private InkCharStory inkDialogue;
+
 
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
         {
             requiredItems.Remove(item);     // remove the item required from the list
             givenItems.Add(item);       // add item to givenItems list for when loading state
+            SoundManager.instance.PlaySFXOneShot(itemaddedSFX);
             InventoryManager.instance.Remove(item);
             onCorrectItemUsed?.Invoke(this, item);
         }
@@ -56,6 +59,7 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
             canSpeakWith = true;
             onGivenAllItems?.Invoke();
             DialogueHandler.instance.DisplayDialogue(itemsProvidedText);
+            ItemSFX();
         }
 
         SaveState();        // update given items & speakable states
@@ -99,5 +103,10 @@ public class NPC : ObjectInteraction, ISaveable, ILoadable
 
         if (SaveLoadManager.interactableStates.TryGetValue(name + "_speakable", out int speakableState))
             canSpeakWith = (speakableState == 0) ? false : true;
+    }
+
+    void ItemSFX()
+    {
+        SoundManager.instance.PlaySFXOneShot(gottenSFX);
     }
 }

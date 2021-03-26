@@ -2868,6 +2868,22 @@ MonoBehaviour:
   textDialogues: []
   onFailedSpeakText: 
   givenItems: []
+  gottenSFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
+  itemaddedSFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!114 &380723521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3468,6 +3484,36 @@ PrefabInstance:
       propertyPath: isItemRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: CorrectSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8bf63827ace2e412c93d7818787c3586, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: CorrectSFX.volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: WrongSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2151c51bc7d3c4aa8b894bd69632f714, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: WrongSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: SFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 445d698f8f4cee040a401982aecb4255, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: SFX.volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3792,6 +3838,26 @@ PrefabInstance:
       propertyPath: imageSwitcher
       value: 
       objectReference: {fileID: 1880529520}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorOpenSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ed59414780eef1744bf27e6d00e600e2, type: 3}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorOpenSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorLockedSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bcf4c708d666553448d32b233d46ef10, type: 3}
+    - target: {fileID: 4652820553126027670, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
+        type: 3}
+      propertyPath: doorLockedSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4652820553126027671, guid: aa7aa77d644dc4043adbd03f54d7fa9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5866,6 +5932,41 @@ PrefabInstance:
       propertyPath: itemsProvidedText
       value: The machine took the coins. Now I should be able to use it to open the
         gates.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: SFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 445d698f8f4cee040a401982aecb4255, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: SFX.name
+      value: Toll Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: SFX.volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: WrongSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2151c51bc7d3c4aa8b894bd69632f714, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: WrongSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: CorrectSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8bf63827ace2e412c93d7818787c3586, type: 3}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: CorrectSFX.volume
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5013531850455976816, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
@@ -11196,6 +11297,26 @@ PrefabInstance:
         type: 3}
       propertyPath: textDialogues.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: gottenSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 445d698f8f4cee040a401982aecb4255, type: 3}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: gottenSFX.volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: itemaddedSFX.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4287e039dbf2d4d6b8c5882e6f4bebdf, type: 3}
+    - target: {fileID: 1774298762046111791, guid: 3ea72831e80e0674b9bab7d3235afd82,
+        type: 3}
+      propertyPath: itemaddedSFX.volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2071372962145090823, guid: 3ea72831e80e0674b9bab7d3235afd82,
         type: 3}
