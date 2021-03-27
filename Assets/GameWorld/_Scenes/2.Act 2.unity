@@ -2867,7 +2867,6 @@ MonoBehaviour:
   canSpeakWith: 1
   textDialogues: []
   onFailedSpeakText: 
-  givenItems: []
   gottenSFX:
     name: 
     clip: {fileID: 0}
@@ -2884,6 +2883,7 @@ MonoBehaviour:
     loop: 0
     pan: 0
     source: {fileID: 0}
+  givenItems: []
 --- !u!114 &380723521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,7 +3283,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 4.999878}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 10, y: 135}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &466240563
@@ -3513,6 +3513,22 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.volume
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: wrongItemText
+      value: This doesn't go there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: onOperateSuccessText
+      value: The machine opened the gate!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: onOperateFailText
+      value: It's not working. The sign says '2 coins'. Maybe I should find coins
+        to operate it?
       objectReference: {fileID: 0}
     - target: {fileID: 5013531851056719702, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
@@ -5967,6 +5983,22 @@ PrefabInstance:
         type: 3}
       propertyPath: CorrectSFX.volume
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: onOperateSuccessText
+      value: The machine opened the gate!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: wrongItemText
+      value: This doesn't go there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621028435604292817, guid: a6095cd192352b94b9f9a9b22770da32,
+        type: 3}
+      propertyPath: onOperateFailText
+      value: It's not working. The sign says '2 coins'. Maybe I should find coins
+        to operate it?
       objectReference: {fileID: 0}
     - target: {fileID: 5013531850455976816, guid: a6095cd192352b94b9f9a9b22770da32,
         type: 3}
