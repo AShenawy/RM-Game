@@ -97,7 +97,7 @@ namespace Methodyca.Core
                 if (n2Rewards.Count > 0)
                     GiveRewardFromList(n2Rewards);
 
-                Debug.Log("N2 minigames currently have now rewards to give. Only badge is added");
+                //Debug.Log("N2 minigames currently have now rewards to give. Only badge is added");
             }
             else if (id == Minigames.Participatory || id == Minigames.Prototyping || id == Minigames.Persona)
             {
