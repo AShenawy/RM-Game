@@ -9,6 +9,19 @@
         public bool monsterCompleted = false;
         public Door linkedDoorQN;
         public Door linkedDoorQL;
+        public NPC monsterNPC;
+        public SwitchImageDisplay gameBoard;
+
+
+        private void OnEnable()
+        {
+            monsterNPC.onGivenAllItems += GiveBoard;
+        }
+
+        private void OnDisable()
+        {
+            monsterNPC.onGivenAllItems -= GiveBoard;
+        }
 
         private void Awake()
         {
@@ -22,6 +35,14 @@
                     linkedDoorQN.Unlock();
                     linkedDoorQL.Unlock();
                 }
+            }
+
+            // switching image of game board when loading game
+            if (SaveLoadManager.interactableStates.TryGetValue($"{name}_story_gotBoard", out int boardState))
+            {
+                gotPunkBoard = (boardState == 1) ? true : false;
+                if (gotPunkBoard)
+                    gameBoard.SwitchImage();
             }
         }
 
@@ -72,6 +93,7 @@
         public void GiveBoard()
         {
             gotPunkBoard = true;
+            gameBoard.SwitchImage();
             SaveState();
         }
 
