@@ -45,6 +45,14 @@ namespace Methodyca.Minigames.Protoescape
             return l.Concat(c).ToList();
         }
 
+        public void SetAllLikables()
+        {
+            foreach (var item in GetAllCheckables())
+            {
+                item.SetLikables();
+            }
+        }
+
         public IEnumerable<ICheckable> GetAllLikables()
         {
             foreach (var item in GetAllCheckables())

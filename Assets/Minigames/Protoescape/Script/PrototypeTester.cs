@@ -18,7 +18,7 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private GameObject winAndQuitButton;
 
         public static event Action<string[]> OnPrototypeTestInitiated = delegate { };
-        public static event Action<string> OnPrototypeTestCompleted = delegate { };
+        public static event Action<bool,string> OnPrototypeTestCompleted = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
         private List<ICheckable> _allCheckables, _checkablesToTest = new List<ICheckable>();
@@ -77,7 +77,7 @@ namespace Methodyca.Minigames.Protoescape
 
             if (ratio < 0.1f) //confused
             {
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + negativeFeedback);
+                OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + negativeFeedback);
             }
             else if (ratio >= 0.1f && ratio <= 0.8f)
             {
@@ -113,12 +113,19 @@ namespace Methodyca.Minigames.Protoescape
                 string feedback = $"Looks like they enjoyed <b>{liked}</b>. " +
                     $"Unfortunately, you’ll still need to work on <b>{confused}</b>. Make sure you get them right this time! I got grandkids waiting at home.";
 
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + feedback);
+                OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + feedback);
             }
             else //liked
             {
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + positiveFeedback);
-
+                Debug.Log(result.current +"--"+ result.total);
+                if (result.current == result.total)
+                {
+                    OnPrototypeTestCompleted?.Invoke(true, alienEscapedFeedback + positiveFeedback);
+                }
+                else
+                {
+                    OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + positiveFeedback);
+                }
                 // allow player to win game and quit to main game
                 winAndQuitButton.SetActive(true);
             }

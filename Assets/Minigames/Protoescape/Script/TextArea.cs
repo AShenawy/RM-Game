@@ -12,8 +12,9 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private List<EntityCoordinate> likableCoordinates = new List<EntityCoordinate>();
 
         public string EntityID { get => entityId; }
-        public TMP_FontAsset CurrentFont { get => textField.font; }
-        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex); }
+        public TMP_FontAsset CurrentFont { get => textField.font; set => textField.font = value; }
+        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex);
+                                                    set { _transform.SetSiblingIndex(value.Horizontal); _stack.transform.SetSiblingIndex(value.Vertical); }}
 
         public HashSet<CategoryType> Categories
         {
@@ -23,6 +24,7 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Font }
                          };
         }
+
         public HashSet<object> GetCurrentData
         {
             get => new HashSet<object>()
@@ -31,6 +33,13 @@ namespace Methodyca.Minigames.Protoescape
                             { CurrentFont }
                          };
         }
+
+        public void SetLikables()
+        {
+            CurrentCoordinate = likableCoordinates.GetRandomElement();
+            CurrentFont = likableFonts.GetRandomElement();
+        }
+
         public Dictionary<CategoryType, object> GetLikables()
         {
             var dict = new Dictionary<CategoryType, object>();

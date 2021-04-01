@@ -18,7 +18,7 @@ namespace Methodyca.Minigames.Protoescape
             root.SetActive(false);
         }
 
-        private void PrototypeTestCompletedHandler(string obj)
+        private void PrototypeTestCompletedHandler(bool isCompleted, string obj)
         {
             root.SetActive(true);
         }

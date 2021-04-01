@@ -74,9 +74,14 @@ namespace Methodyca.Minigames.Protoescape
             }
         }
 
-        private void PrototypeTestCompletedHandler(string obj)
+        private void PrototypeTestCompletedHandler(bool isCompleted,string feedback)
         {
             Pause();
+
+            if (isCompleted)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void PrototypeTestInitiatedHandler(string[] notes)

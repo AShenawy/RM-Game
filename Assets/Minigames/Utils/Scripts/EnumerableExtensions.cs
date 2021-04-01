@@ -19,6 +19,11 @@ public static class EnumerableExtensions
         return new HashSet<T>(source);
     }
 
+    public static T GetRandomElement<T>(this List<T> source) {
+        var rand = new Random();
+        return source[rand.Next(source.Count)];
+    }
+
     public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
     {
         return source.Shuffle(new Random());
