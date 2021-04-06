@@ -11,6 +11,7 @@ namespace Methodyca.Minigames.Protoescape
 
         public static event Action<string> OnMentorTalked = delegate { };
 
+        private bool _gameIsFinished;
         private LinkedList<string> _currentLines = new LinkedList<string>();
         private LinkedListNode<string> _currentLine;
 
@@ -32,10 +33,27 @@ namespace Methodyca.Minigames.Protoescape
         {
             GameManager_Protoescape.OnGameStarted += GameStartedHandler;
             GameManager_Protoescape.OnPrototypeInitiated += PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
+        }
+
+        private void PrototypeTestCompletedHandler(bool isCompleted, string feedback)
+        {
+            _gameIsFinished = isCompleted;
+
+            if (isCompleted)
+            {
+                _currentLines.Clear();
+                NextLine("Congratulations!");
+            }
         }
 
         private void PrototypeInitiatedHandler()
         {
+            if (_gameIsFinished)
+            {
+                return;
+            }
+
             _currentLines = new LinkedList<string>(prototypeTips);
             _currentLine = _currentLines.First;
             NextLine();
@@ -52,6 +70,7 @@ namespace Methodyca.Minigames.Protoescape
         {
             GameManager_Protoescape.OnGameStarted -= GameStartedHandler;
             GameManager_Protoescape.OnPrototypeInitiated -= PrototypeInitiatedHandler;
+            PrototypeTester.OnPrototypeTestCompleted -= PrototypeTestCompletedHandler;
         }
     }
 }

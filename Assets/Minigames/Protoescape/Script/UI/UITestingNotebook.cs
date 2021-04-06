@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.Protoescape
             PrototypeTester.OnPrototypeTestCompleted += PrototypeTestCompletedHandler;
         }
 
-        private void PrototypeTestCompletedHandler(string feedback)
+        private void PrototypeTestCompletedHandler(bool isCompleted, string feedback)
         {
             notebook.SetActive(true);
             feedbackText.text = feedback;

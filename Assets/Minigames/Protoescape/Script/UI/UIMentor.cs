@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Methodyca.Minigames.Protoescape
-{
+namespace Methodyca.Minigames.Protoescape {
     public class UIMentor : MonoBehaviour
     {
         [SerializeField] private GameObject speechBubble;
