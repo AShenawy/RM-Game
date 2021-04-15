@@ -1,4 +1,5 @@
-﻿using Methodyca.Core;
+﻿#define PLAYTESTING
+using Methodyca.Core;
 
 namespace Methodyca.Minigames.Methodologies
 {
@@ -20,5 +21,15 @@ namespace Methodyca.Minigames.Methodologies
 
             base.EndStory();
         }
+
+#if PLAYTESTING
+        // button click action
+        public void ForceCompleteStory()
+        {
+            wonDiscussion = true;
+            OnDiscussionWon?.Invoke();
+            base.EndStory();
+        }
+#endif
     }
 }
