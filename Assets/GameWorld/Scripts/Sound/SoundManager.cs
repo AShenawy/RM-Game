@@ -11,7 +11,7 @@ namespace Methodyca.Core
         public static SoundManager instance;
         public Sound mainBGM;
 
-        private AudioSource BGMPlayer;
+        [HideInInspector] public AudioSource BGMPlayer;
         private List<Sound> SFXPlayers = new List<Sound>();
 
 
