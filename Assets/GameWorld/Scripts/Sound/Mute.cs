@@ -10,6 +10,7 @@ namespace Methodyca.core
     public class Mute : MonoBehaviour
     {
         [SerializeField] Toggle audioToggle;
+        //[TextArea (3,5)]public string message;
 
 
         // Start is called before the first frame update
@@ -18,11 +19,10 @@ namespace Methodyca.core
             AudioListener.volume = GameObject.FindGameObjectWithTag("audio").GetComponent<SoundManager>().BGMPlayer.volume;
             audioToggle = GetComponent<Toggle>();
             
+        }
+        void Start()
+        {
             
-            // if(AudioListener.volume == 0)
-            // {
-            //     audioToggle.isOn = false;
-            // }
         }
 
         // Update is called once per frame
@@ -39,13 +39,17 @@ namespace Methodyca.core
                 print("Audio is muted");
                 //audioToggle.isOn = true; 
             }
-            else
+            
+            
+        }
+        public void IsntMute()
+        {
+            if(AudioListener.volume < 0)
             {
                 AudioListener.volume = 0.5f;
                 print("Audio isn't muted");
+
             }
-            
-            
         }
     }
 

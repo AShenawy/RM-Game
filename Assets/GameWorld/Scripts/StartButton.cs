@@ -5,9 +5,11 @@ using Methodyca.Core;
 public class StartButton : MonoBehaviour
 {
     [SerializeField] private GameObject newgameConfirmScreen;
+    public GameObject menu;
 
     public void CheckFirstRun()
     {
+        menu.SetActive(false);
         if (SaveLoadManager.GetAutosaveInfo() != null)
         {
             newgameConfirmScreen.SetActive(true);
@@ -24,5 +26,10 @@ public class StartButton : MonoBehaviour
 
         // interactions should be removed as this is a fresh start
         SceneManagerScript.instance.GoToLevel("1.Act 1", "Act 1 Start Room", false);
+    }
+
+    public void TurningMenuOn()
+    {
+        menu.SetActive(true);
     }
 }
