@@ -28,6 +28,7 @@ namespace Methodyca.Minigames.SortGame
 
         public Animator particleAnimator;
         [SerializeField] private string particleTriggerName;
+        [SerializeField] private string particleGoBackName;
 
 
         // Mouse released. 
@@ -80,6 +81,7 @@ namespace Methodyca.Minigames.SortGame
             {
                 if (correctItemsInBoxCount > 0)
                     correctItemsInBoxCount--;
+                particleAnimator.SetTrigger(particleGoBackName);
             }
             
             inTheBox.Remove(itemInBox);

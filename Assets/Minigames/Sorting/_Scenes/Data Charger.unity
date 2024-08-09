@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &90876153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,6 +2914,7 @@ MonoBehaviour:
     source: {fileID: 0}
   particleAnimator: {fileID: 1352401284}
   particleTriggerName: Left
+  particleGoBackName: LeftBack
 --- !u!1 &572454817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4497,6 +4498,7 @@ MonoBehaviour:
     source: {fileID: 0}
   particleAnimator: {fileID: 1352401284}
   particleTriggerName: Right
+  particleGoBackName: RightBack
 --- !u!1 &850001768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6716,7 +6718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9, y: 772}
+  m_AnchoredPosition: {x: -45, y: 652}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!199 &1352401282
@@ -6792,7 +6794,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1352401280}
   serializedVersion: 6
   lengthInSec: 1
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -6866,7 +6868,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7351,7 +7353,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -10646,13 +10648,13 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
+      minMaxState: 0
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
