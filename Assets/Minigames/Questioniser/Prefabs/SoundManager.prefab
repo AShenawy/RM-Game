@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8471056654142379885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8471056654142379875}
+  - component: {fileID: 8471056654142379874}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8471056654142379875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471056654142379885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8471056654142379874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471056654142379885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d21429f932b6439ab183fd607f218ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: c04f209f3430947eb9b3f54965efec4d, type: 3}
+    loop: 1
+    volume: 0.35
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: GameTheme
+    clip: {fileID: 8300000, guid: e2f5103c468b54891a4d78ccab8416a5, type: 3}
+    loop: 1
+    volume: 0.35
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: f66d69165b2da469bb2c0a22e62ccefb, type: 3}
+    loop: 0
+    volume: 0.51
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: Hover
+    clip: {fileID: 8300000, guid: 207ed2432ba6146e09dd4d101feac5a8, type: 3}
+    loop: 0
+    volume: 0.1
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: CardHighSFX
+    clip: {fileID: 8300000, guid: c1c823fba8b594a0e94e35cf739c7638, type: 3}
+    loop: 0
+    volume: 0.1
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: CardShuffledSFX
+    clip: {fileID: 8300000, guid: 1afed2cf2be65485987c2d1d9e2339df, type: 3}
+    loop: 0
+    volume: 0.36
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: CardHitting
+    clip: {fileID: 8300000, guid: 3be107fd66f954883ac87851849dc7ba, type: 3}
+    loop: 0
+    volume: 0.36
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: NotEnoughPoints
+    clip: {fileID: 8300000, guid: c1ab72eb817c34bc882d23abbf18eda8, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: GameOverLose
+    clip: {fileID: 8300000, guid: 0b4e1fd45a713479d9a151ef6f9a55a0, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: ThinkingSFX
+    clip: {fileID: 8300000, guid: 1e9ea034f9e814c98854e69685d32069, type: 3}
+    loop: 0
+    volume: 0.06
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: Points
+    clip: {fileID: 8300000, guid: 5dac5082c589c44ef9aa0fdf9ba6e76c, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: ActionPoints
+    clip: {fileID: 8300000, guid: 2b3fdb0d4e63a4527aada3be9625f998, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: StoryPoints
+    clip: {fileID: 8300000, guid: f4880bbb9fbb74833ac71f7c975cb426, type: 3}
+    loop: 0
+    volume: 0.2
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  - name: GameWin
+    clip: {fileID: 8300000, guid: e3c0f8eb2671b492eb1e748f958545b7, type: 3}
+    loop: 1
+    volume: 0.19
+    pitch: 1
+    pan: 0
+    Source: {fileID: 0}
+  posX: {x: 0, y: 0, z: 0}

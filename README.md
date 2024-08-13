@@ -1,2 +1,4 @@
-# Development Branch
-This branch is for accumulation of other working branches and pre-release testing.
+# Minigame Branch
+## Participatory Loop (and the samovar or time)
+
+A minigame about participatory design.

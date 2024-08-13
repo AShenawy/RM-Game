@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1067,7 +1067,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: End Game
 --- !u!222 &499144371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1954,6 +1954,8 @@ GameObject:
   - component: {fileID: 903423242}
   - component: {fileID: 903423241}
   - component: {fileID: 903423240}
+  - component: {fileID: 903423244}
+  - component: {fileID: 903423243}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -1978,8 +1980,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 80}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -223.4, y: 80}
+  m_SizeDelta: {x: 346.7752, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903423240
 MonoBehaviour:
@@ -2023,7 +2025,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903423241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 903423243}
+        m_MethodName: CompleteSingleLoadedMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 903423244}
+        m_MethodName: QuitMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &903423241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,6 +2085,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903423238}
   m_CullTransparentMesh: 0
+--- !u!114 &903423243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903423238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d2c0cea5d14c449be4f9a7b2c912e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigameID: 7
+  minigameHubTag: 
+--- !u!114 &903423244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903423238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e97bd40f814c94fa66c7d1faa78528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000033436
 GameObject:
   m_ObjectHideFlags: 0

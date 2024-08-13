@@ -100,7 +100,7 @@ namespace Methodyca.Minigames.Observation
 
         public void RestartGame()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("minigames/observationGame/scenes/binoculars");
         }
     }
 }
