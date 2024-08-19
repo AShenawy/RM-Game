@@ -8,6 +8,7 @@ namespace Methodyca.Minigames.DocStudy
         public static event System.Action<Dialog> OnDialogUpdated = delegate { };
         public static event System.Action<Dialog> OnDialogCompleted = delegate { };
         public static event System.Action OnNextClicked = delegate { };
+        public static event System.Action OnPreviousClicked = delegate { };
 
         [SerializeField] private GameObject dialogPanel;
         [SerializeField] private Dialog initialForumDialog;
@@ -17,12 +18,18 @@ namespace Methodyca.Minigames.DocStudy
 
         private bool _isPostDialogInitiated = false;
         private Queue<Dialog> _dialogQueue = new Queue<Dialog>();
+        private Stack<Dialog> _dialogHistory = new Stack<Dialog>();
 
         public void TriggerDialog()
         {
             if (_dialogQueue.Count > 0)
             {
                 var dialog = _dialogQueue.Dequeue();
+
+                if (_dialogHistory.Count == 0 || _dialogHistory.Peek() != dialog)
+                {
+                    _dialogHistory.Push(dialog);
+                }
 
                 dialogPanel.SetActive(true);
                 OnDialogUpdated?.Invoke(dialog);
@@ -46,6 +53,27 @@ namespace Methodyca.Minigames.DocStudy
             dialogPanel.SetActive(false);
             dialogPanel.SetActive(true);
             OnDialogUpdated?.Invoke(dialog);
+        }
+
+
+        public void TriggerPreviousDialog()
+        {
+            // delete the current dialog, get previous one
+            if (_dialogHistory.Count > 1)
+            {
+                _dialogHistory.Pop();
+                var previousDialog = _dialogHistory.Peek();
+
+                dialogPanel.SetActive(true);
+                OnDialogUpdated?.Invoke(previousDialog);
+            }
+
+            OnPreviousClicked?.Invoke();
+        }
+
+        public bool HasPreviousDialog()
+        {
+            return _dialogHistory.Count > 1;
         }
 
         public void SetNewDialogQueue(Dialog[] dialogs)
