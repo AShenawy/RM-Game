@@ -6,11 +6,18 @@ namespace Methodyca.Minigames.DocStudy
 {
     public class UIFeedback : MonoBehaviour
     {
+        private bool isShowingSelections = false;
         [SerializeField] private GameObject root;
         [SerializeField] private Button returnMenu;
+        [SerializeField] private Button seeSelections;
+        [SerializeField] private GameObject selectionPanel;
         [SerializeField] private TextMeshProUGUI threadScore;
         [SerializeField] private TextMeshProUGUI postScore;
         [SerializeField] private TextMeshProUGUI feedback;
+        [SerializeField] private TextMeshProUGUI correctSelections;
+        [SerializeField] private RectTransform areaRectTransform;
+        [SerializeField] private Slider selectionsSlider;
+        
 
         // main game connection
         [SerializeField] private GameObject winAndQuitButton;
@@ -32,6 +39,9 @@ namespace Methodyca.Minigames.DocStudy
             GameManager.OnFeedbackInitiated += ScoreUpdatedHandler;
 
             returnMenu.onClick.AddListener(() => GameManager.Instance.ResetData());
+
+            seeSelections.onClick.AddListener(ShowSelectionPanel);
+            selectionsSlider.onValueChanged.AddListener(ToDrag);
         }
 
         private void ScoreUpdatedHandler((int SelectedCorrectPosts, int TotalCorrectPosts, int SelectedCorrectThreads, int TotalCorrectThreads) score)
@@ -58,11 +68,77 @@ namespace Methodyca.Minigames.DocStudy
                 // allow player to win game and quit to main game
                 winAndQuitButton.SetActive(true);
             }
+
+            DisplayCorrectSelections();
+        }
+
+        private void DisplayCorrectSelections()
+        {
+            var currentQuestion = GameManager.Instance.GetCurrentQuestion();
+
+            if (currentQuestion == null)
+            {
+                correctSelections.text = "No correct selections found.";
+                return;
+            }
+
+            string correctSelectionDetails = "Your Correct Selections:\n\n";
+
+            foreach (var thread in currentQuestion.Threads)
+            {
+                if (thread.IsCorrect && thread.IsCompleted)
+                {
+                    correctSelectionDetails += $"<b>[Correct Thread]</b> \n{thread.Title}\n\n";
+                }
+            }
+
+            foreach (var thread in currentQuestion.Threads)
+            {
+                    foreach (var post in thread.Posts)
+                {
+                    if (post.IsCorrect && post.IsSelected)
+                    {
+                        correctSelectionDetails += $"<b>[Correct Post]</b> \n{post.Message}\n";
+                        correctSelectionDetails += $"<b>From this Thread:</b> {thread.Title}\n";
+                        correctSelectionDetails += $"<b>Post by:</b> {post.Name}\n\n";
+                    }
+                }
+            }
+
+            if (correctSelectionDetails == "Your correct selections:\n\n")
+            {
+                correctSelectionDetails += "None of your selections were correct.";
+            }
+
+            correctSelections.text = correctSelectionDetails;
+        }
+
+        private void ShowSelectionPanel()
+        {
+            if (isShowingSelections == false)
+            {
+                selectionPanel.SetActive(true);
+            }
+            else
+            {
+                selectionPanel.SetActive(false);
+            }
+            isShowingSelections = !isShowingSelections;
+        }
+        private void ToDrag(float value)
+        {
+            //sliding value
+            float tempSliderValue = value;
+            //total slide height
+            float tempTotalHeight = 5000;
+            //set y
+            areaRectTransform.anchoredPosition = new Vector2(areaRectTransform.anchoredPosition.x, tempSliderValue * tempTotalHeight);
         }
 
         private void OnDisable()
         {
             GameManager.OnFeedbackInitiated -= ScoreUpdatedHandler;
+            seeSelections.onClick.RemoveListener(ShowSelectionPanel);
         }
     }
 }

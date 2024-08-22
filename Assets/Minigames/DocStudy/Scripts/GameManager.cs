@@ -107,6 +107,12 @@ namespace Methodyca.Minigames.DocStudy
             return completedCount;
         }
 
+        public Question GetCurrentQuestion()
+        {
+            return _currentQuestion;
+        }
+
+
         public void ResetData()
         {
             _correctPostCount = 0;
