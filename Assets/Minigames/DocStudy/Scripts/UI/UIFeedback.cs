@@ -10,6 +10,7 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private GameObject root;
         [SerializeField] private Button returnMenu;
         [SerializeField] private Button seeSelections;
+        [SerializeField] private Button closeSelections;
         [SerializeField] private GameObject selectionPanel;
         [SerializeField] private TextMeshProUGUI threadScore;
         [SerializeField] private TextMeshProUGUI postScore;
@@ -41,6 +42,7 @@ namespace Methodyca.Minigames.DocStudy
             returnMenu.onClick.AddListener(() => GameManager.Instance.ResetData());
 
             seeSelections.onClick.AddListener(ShowSelectionPanel);
+            closeSelections.onClick.AddListener(ShowSelectionPanel);
             selectionsSlider.onValueChanged.AddListener(ToDrag);
         }
 
@@ -139,6 +141,7 @@ namespace Methodyca.Minigames.DocStudy
         {
             GameManager.OnFeedbackInitiated -= ScoreUpdatedHandler;
             seeSelections.onClick.RemoveListener(ShowSelectionPanel);
+            closeSelections.onClick.RemoveListener(ShowSelectionPanel);
         }
     }
 }
