@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -37,6 +38,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Feedback loseFeedback;
         [SerializeField] private LevelData[] data;
         [SerializeField] private Feedback[] introSpeech;
+        [SerializeField] private GameObject feedbackWindow; // Reference to the feedback window UI
+        [SerializeField] private Text acceptedCorrectlyText;
+        [SerializeField] private Text rejectedCorrectlyText;
+        [SerializeField] private Text acceptedWronglyText;
+        [SerializeField] private Text rejectedWronglyText;
 
         public static event Action<bool> OnFix = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
@@ -70,10 +76,17 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int _currentLevelIndex = 0;
         private int _initialTotalPaperCountPerLevel;
 
+        private int correctAcceptCount = 0;
+        private int correctRejectCount = 0;
+        private int incorrectAcceptCount = 0;
+        private int incorrectRejectCount = 0;
+
         private const int _maxProgressionValueToWin = 20;
 
         public void InitiateNextLevel()
         {
+            feedbackWindow.SetActive(false);
+
             if (_introSpeech.Count > 0)
             {
                 OnFeedbackInitiated?.Invoke(_introSpeech.Dequeue());
@@ -147,6 +160,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     {
                         OnFeedbackInitiated?.Invoke(_currentLevelData.NegativeLevelFeedback);
                     }
+
+                    ShowLevelFeedback(); // Display the feedback window
                 }
             }
             else
@@ -163,11 +178,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
+                    correctAcceptCount++;
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
+                    correctAcceptCount++;
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -175,6 +192,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else
                 {
+                    incorrectAcceptCount++;
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -187,6 +205,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             {
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
+                    incorrectRejectCount++;
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnPaperDecided?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -194,14 +213,18 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
+                    bool wasFixed = false;
                     foreach (var option in _currentResearchPaperData.FixRequiredOptions)
                     {
                         if (_fixButtonPairs[option])
                         {
+                            correctRejectCount++;
                             OnQualityUpdated?.Invoke(++_qualityValue);
+                            wasFixed = true;
                             break;
                         }
                     }
+                    if (!wasFixed) incorrectRejectCount++;
 
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
@@ -209,16 +232,19 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 }
                 else
                 {
+                    bool wasFixed = false;
                     foreach (var option in _currentResearchPaperData.FixRequiredOptions)
                     {
                         if (_fixButtonPairs[option])
                         {
+                            correctRejectCount++;
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
-                            OnPaperDecided?.Invoke(false);
-                            return;
+                            wasFixed = true;
+                            break;
                         }
                     }
+                    if (!wasFixed) incorrectRejectCount++;
 
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
@@ -312,6 +338,21 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
             TotalPaperCount = GetTotalResearchPaperCount();
             InitiateNextLevel();
+        }
+
+        private void ShowLevelFeedback()
+        {
+            feedbackWindow.SetActive(true);
+            acceptedCorrectlyText.text = $"Accepted Correctly: {correctAcceptCount}";
+            rejectedCorrectlyText.text = $"Rejected Correctly: {correctRejectCount}";
+            acceptedWronglyText.text = $"Accepted Wrongly: {incorrectAcceptCount}";
+            rejectedWronglyText.text = $"Rejected Wrongly: {incorrectRejectCount}";
+
+            // Reset counters for next level
+            correctAcceptCount = 0;
+            correctRejectCount = 0;
+            incorrectAcceptCount = 0;
+            incorrectRejectCount = 0;
         }
 
         private void Start()
