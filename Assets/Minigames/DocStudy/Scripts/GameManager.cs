@@ -107,6 +107,16 @@ namespace Methodyca.Minigames.DocStudy
             return completedCount;
         }
 
+        public int GetSelectedCorrectPostsCount()
+        {
+            return _correctlySelectedPostCount;
+        }
+
+        public int GetTotalCorrectPostsCount()
+        {
+            return _correctPostCount;
+        }
+
         public Question GetCurrentQuestion()
         {
             return _currentQuestion;

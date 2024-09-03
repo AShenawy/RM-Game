@@ -84,30 +84,54 @@ namespace Methodyca.Minigames.DocStudy
                 return;
             }
 
-            string correctSelectionDetails = "Your Correct Selections:\n\n";
+            string correctSelectionDetails = $"Your research question was:\n{currentQuestion.Title}\n\n";
 
+            int selectedCorrectThreads = 0;
             foreach (var thread in currentQuestion.Threads)
             {
                 if (thread.IsCorrect && thread.IsCompleted)
                 {
-                    correctSelectionDetails += $"<b>[Correct Thread]</b> \n{thread.Title}\n\n";
+                    selectedCorrectThreads++;
                 }
             }
+            correctSelectionDetails += $"You selected {selectedCorrectThreads}/{currentQuestion.Threads.Length} suitable threads:\n\n";
+
+            int threadIndex = 1;
+            foreach (var thread in currentQuestion.Threads)
+            {
+                if (thread.IsCorrect && thread.IsCompleted)
+                {
+                    correctSelectionDetails += $"{threadIndex})  {thread.Title}\n";
+                    threadIndex++;
+                }
+            }
+
+            correctSelectionDetails += $"\nYou selected {GameManager.Instance.GetSelectedCorrectPostsCount()}/{GameManager.Instance.GetTotalCorrectPostsCount()} suitable posts:\n\n";
 
             foreach (var thread in currentQuestion.Threads)
             {
-                    foreach (var post in thread.Posts)
+                bool hasCorrectPosts = false;
+                string threadPostsDetails = $"{thread.Title}\n";
+
+                int postIndex = 1;
+                foreach (var post in thread.Posts)
                 {
                     if (post.IsCorrect && post.IsSelected)
                     {
-                        correctSelectionDetails += $"<b>[Correct Post]</b> \n{post.Message}\n";
-                        correctSelectionDetails += $"<b>From this Thread:</b> {thread.Title}\n";
-                        correctSelectionDetails += $"<b>Post by:</b> {post.Name}\n\n";
+                        threadPostsDetails += $"{postIndex})  {post.Message}\n\n";
+                        //threadPostsDetails += $"Post by: {post.Name}\n\n";
+                        postIndex++;
+                        hasCorrectPosts = true;
                     }
+                }
+
+                if (hasCorrectPosts)
+                {
+                    correctSelectionDetails += threadPostsDetails;
                 }
             }
 
-            if (correctSelectionDetails == "Your correct selections:\n\n")
+            if (correctSelectionDetails == $"Your research question was:\n {currentQuestion.Title}\n\n")
             {
                 correctSelectionDetails += "None of your selections were correct.";
             }
