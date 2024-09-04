@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -12,6 +13,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Sprite progressUnchargedCrystal;
         [SerializeField] private Sprite qualityChargedCrystal;
         [SerializeField] private Sprite qualityUnchargedCrystal;
+        [SerializeField] private Sprite progressGlowingSprite; // Sprite for glowing effect
+        [SerializeField] private Sprite qualityGlowingSprite;  // Sprite for glowing effect
+
+        private int[] progressThresholds = { 4, 8, 12, 16, 20 };
+        private int[] qualityPositiveThresholds = { 6, 12, 18, 24, 30 };
+        private int[] qualityNegativeThresholds = { -6, -12, -18, -24, -30 };
 
         private void OnEnable()
         {
@@ -21,28 +28,35 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void QualityUpdatedHandler(int value)
         {
-            if (value > GameManager.Instance.QualityValueToWin)
+            // Check for any threshold
+            if (qualityPositiveThresholds.Contains(value) || qualityNegativeThresholds.Contains(value))
             {
-                qualityCrystalImage.sprite = qualityChargedCrystal;
-                qualityCrystalImage.transform.DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
+                ApplyGlowEffect(qualityCrystalImage, qualityGlowingSprite);
             }
             else
             {
-                qualityCrystalImage.sprite = qualityUnchargedCrystal;
+                qualityCrystalImage.sprite = value > GameManager.Instance.QualityValueToWin ? qualityChargedCrystal : qualityUnchargedCrystal;
             }
         }
 
         private void ProgressUpdatedHandler(int value)
         {
-            if (value > GameManager.Instance.ProgressValueToWin)
+            // Check if the value is one of the thresholds
+            if (progressThresholds.Contains(value))
             {
-                progressCrystalImage.sprite = progressChargedCrystal;
-                progressCrystalImage.transform.DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
+                ApplyGlowEffect(progressCrystalImage, progressGlowingSprite);
             }
             else
             {
-                progressCrystalImage.sprite = progressUnchargedCrystal;
+                progressCrystalImage.sprite = value > GameManager.Instance.ProgressValueToWin ? progressChargedCrystal : progressUnchargedCrystal;
             }
+        }
+
+        private void ApplyGlowEffect(Image crystalImage, Sprite glowingSprite)
+        {
+            crystalImage.sprite = glowingSprite;
+            crystalImage.transform
+                .DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
         }
 
         private void OnDisable()
@@ -52,3 +66,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         }
     }
 }
+
+
+
+
+
