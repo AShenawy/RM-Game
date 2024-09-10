@@ -126,8 +126,10 @@ namespace Methodyca.Minigames.Protoescape
                 {
                     OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + positiveFeedback);
                 }
+                
                 // allow player to win game and quit to main game
-                winAndQuitButton.SetActive(true);
+                if (winAndQuitButton)
+                    winAndQuitButton.SetActive(true);
             }
         }
 

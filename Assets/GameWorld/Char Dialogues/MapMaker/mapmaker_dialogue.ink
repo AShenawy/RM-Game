@@ -8,7 +8,7 @@ VAR firstMeeting = true
 
 /*
 ## NOTE
-The where to start section is replace with the conditions checks below it to connect it directly to the main game.
+The where to start section is replaced with the conditions checks below it to connect it directly to the main game.
 Since the player will not make these choices. Instead, they will be linked to gameplay progress.
 
 

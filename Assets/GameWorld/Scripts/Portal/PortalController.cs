@@ -37,6 +37,12 @@ namespace Methodyca.Core
 
         private void Start()
         {
+            if (!skipTransitionVideo)
+                PrepareVideo();
+        }
+
+        void PrepareVideo()
+        {
             videoPlayer = GetComponent<VideoPlayer>();
             videoPlayer.url = Path.Combine(Application.streamingAssetsPath, "portal-animate_lower-30fps_2MBPS_aud.mp4");
             // prepares the video file for quick playback when called

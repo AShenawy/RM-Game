@@ -5,8 +5,21 @@
         public bool firstMeeting = true;
         public bool metMonster = false;
         public bool gotPunkBoard = false;
-        public MonsterStory monsterStory;
+        //public MonsterStory monsterStory; //-- TODO remove as redundant
+        public Act2ProgressController progressController;
+        public SwitchImageDisplay gameBoard;
 
+
+        private void Awake()
+        {
+            // switching image of game board when loading game
+            if (SaveLoadManager.interactableStates.TryGetValue($"{name}_story_gotBoard", out int boardState))
+            {
+                gotPunkBoard = (boardState == 1) ? true : false;
+                if (gotPunkBoard)
+                    gameBoard.SwitchImage();
+            }
+        }
 
         protected override void CheckVariables()
         {
@@ -35,9 +48,13 @@
             if (firstMeeting)
                 firstMeeting = false;
 
-            gotPunkBoard = System.Convert.ToBoolean(inkStory.variablesState["gotpunkboard"]);
-            if (gotPunkBoard)
-                monsterStory.GiveBoard();
+            
+            // Give item on first time completion only
+            if (System.Convert.ToBoolean(inkStory.variablesState["gotpunkboard"]) && !gotPunkBoard)
+            {
+                gotPunkBoard = true;
+                GiveBoard();
+            }
 
             SaveState();
         }
@@ -46,6 +63,13 @@
         {
             metMonster = true;
             SaveState();
+        }
+
+        void GiveBoard()
+        {
+            // minigame can be any of the N2 minigames, since the reward is a single item
+            progressController.GiveMinigameReward(Minigames.Survey);
+            gameBoard.SwitchImage();
         }
 
         public void SaveState()

@@ -4,6 +4,7 @@ using System.Collections;
 
 namespace Methodyca.Core
 {
+    // script for pseudo-minigames in Act 2 N2 that are played through dialogue
     public class StoryMinigameConnection : MinigameHub, ISaveable, ILoadable
     {
         [Header("Specific Script Parameters")]
@@ -60,7 +61,8 @@ namespace Methodyca.Core
 
             if (!isRewardGiven)
             {
-                progressController.GiveMinigameReward(minigameID);
+                // don't give reward as it will be given through conversation with Punk
+                //progressController.GiveMinigameReward(minigameID);
                 isRewardGiven = true;
             }
 
