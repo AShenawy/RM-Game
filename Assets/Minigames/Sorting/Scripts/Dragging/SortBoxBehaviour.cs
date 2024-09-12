@@ -26,7 +26,11 @@ namespace Methodyca.Minigames.SortGame
         public Vector2 itemPlacementShift;       // the distance between the items in box,for spacing. 
 
         public Sound onItemPlacedSFX;
-      
+
+        public Animator particleAnimator;
+        [SerializeField] private string particleTriggerName;
+        [SerializeField] private string particleGoBackName;
+
 
         // Mouse released. 
         public void OnDrop(PointerEventData eventData) 
@@ -56,6 +60,7 @@ namespace Methodyca.Minigames.SortGame
             if (droppedItem.CompareTag(acceptableItemTag))
             {
                 correctItemsInBoxCount++;
+                particleAnimator.SetTrigger(particleTriggerName);
             }
 
             // invoke event to tell if correct item was added
@@ -77,6 +82,7 @@ namespace Methodyca.Minigames.SortGame
             {
                 if (correctItemsInBoxCount > 0)
                     correctItemsInBoxCount--;
+                particleAnimator.SetTrigger(particleGoBackName);
             }
             
             inTheBox.Remove(itemInBox);

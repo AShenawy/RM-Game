@@ -12,6 +12,7 @@ namespace Methodyca.Core
         public string itemName;
         public Sprite icon;
         public Texture2D cursorImage;
+        [Header("Optional")]
         public GameObject prefabObject;
     }
 }

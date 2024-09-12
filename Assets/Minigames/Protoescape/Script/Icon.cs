@@ -14,12 +14,13 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private List<Color> likableColors = new List<Color>();
         [SerializeField] private List<EntityCoordinate> likableCoordinates = new List<EntityCoordinate>();
 
-        public bool IsChecked { get; set; }
         public bool IsHighlighted { get; set; }
         public Color CurrentColor { get; private set; }
         public Sprite CurrentSprite { get; private set; }
         public string EntityID { get => entityId; }
-        public EntityCoordinate CurrentCoordinate { get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex); }
+        public EntityCoordinate CurrentCoordinate {
+            get => new EntityCoordinate(_transform.GetSiblingIndex(), _stack.CurrentSiblingIndex);
+            set { _transform.SetSiblingIndex(value.Horizontal); _stack.transform.SetSiblingIndex(value.Vertical); }}
 
         public HashSet<CategoryType> Categories
         {
@@ -29,6 +30,15 @@ namespace Methodyca.Minigames.Protoescape
                             { CategoryType.Icon },
                             { CategoryType.Color },
                             { CategoryType.Highlight },
+                         };
+        }
+
+        public HashSet<object> GetCurrentData
+        {
+            get => new HashSet<object>()
+                         {
+                            { CurrentSprite },
+                            { CurrentColor }
                          };
         }
 
@@ -48,6 +58,14 @@ namespace Methodyca.Minigames.Protoescape
         {
             IsHighlighted = !IsHighlighted;
             highlight.SetActive(IsHighlighted);
+        }
+
+        public void SetLikables()
+        {
+            highlight.SetActive(IsHighlighted = shouldBeHighlighted);
+            CurrentCoordinate = likableCoordinates.GetRandomElement();
+            Replace(likableColors[0]);
+            Replace(likableSprites[0]);
         }
 
         public Dictionary<CategoryType, object> GetLikables()

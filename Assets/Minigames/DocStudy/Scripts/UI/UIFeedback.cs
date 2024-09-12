@@ -12,6 +12,9 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private TextMeshProUGUI postScore;
         [SerializeField] private TextMeshProUGUI feedback;
 
+        // main game connection
+        [SerializeField] private GameObject winAndQuitButton;
+
         private readonly string _emailTitle = "Re: Game Jam Post-mortem";
         private readonly string _feedbackForLessCorrect = "Unfortunately, our editorial team has found that the article does not " +
             "cite enough evidence to support the generalizations it makes about the subject. " +
@@ -51,6 +54,9 @@ namespace Methodyca.Minigames.DocStudy
             else
             {
                 feedback.text = $"<b>{_emailTitle}</b>\n\n{_feedbackForMoreCorrect}\n\n{_emailGratitude}";
+                
+                // allow player to win game and quit to main game
+                winAndQuitButton.SetActive(true);
             }
         }
 

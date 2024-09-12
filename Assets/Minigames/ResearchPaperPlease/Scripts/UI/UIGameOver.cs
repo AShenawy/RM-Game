@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Methodyca.Minigames.Utils;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -9,6 +10,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private string areYouSureLoseText;
         [SerializeField] private GameObject finalScreen;
         [SerializeField] private TextMeshProUGUI areYouSureText;
+        [SerializeField] private SceneController sceneController;
+        [SerializeField] private string mainSceneName;
 
         private bool _isWon;
 
@@ -16,17 +19,16 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             if (_isWon)
             {
-                //Research Plan Mode ON
+                //sceneController.ChangeScene(mainSceneName);
+
+                // use minigame hookup scripts
+                GetComponent<SortGame.WinMinigame>().CompleteSingleLoadedMinigame();
+                GetComponent<Core.ReturnToMainGame>().QuitMinigame();
             }
             else
             {
                 GameManager.Instance.HandleRestartGame();
             }
-        }
-
-        public void Reject()
-        {
-            //Quit
         }
 
         private void OnEnable()

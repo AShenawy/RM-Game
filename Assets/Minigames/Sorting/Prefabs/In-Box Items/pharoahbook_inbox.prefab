@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 97aa64911ff004bb6b1570f63b9e3ad2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 024d9f397048c444e84f06a5e8402ade, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,11 +89,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11871d99365974aa58e56e7758a5fb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  dragCanvas: {fileID: 0}
   box: {fileID: 0}
-  inBoxPrefab: {fileID: 1119751326471626672}
-  OnTablePrefab: {fileID: 5769720859246817559, guid: 403322650033e45709acfcfadf46e54a,
+  peekUpDistance: 15
+  onTableItemsContainer: {fileID: 0}
+  onTableSprite: {fileID: 0}
+  insideBoxSpriteLeft: {fileID: 21300000, guid: 052d385757b9f478da9551c6303a0ca0,
     type: 3}
+  insideBoxSpriteRight: {fileID: 21300000, guid: 024d9f397048c444e84f06a5e8402ade,
+    type: 3}
+  onDragOpacity: 0.7
+  dragSFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!114 &2405496788898721827
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ namespace Methodyca.Core
         [SerializeField, Tooltip("Should the minigame be preloaded when entering the room?")]
         protected bool preloadMinigame = false;
 
-        public delegate void GamePlayAccess(bool value);
-        public event GamePlayAccess isGamePlayable;
+        protected bool isCompleted;
+        public event System.Action<bool> isGamePlayable;
 
 
         public virtual void Start()
@@ -39,6 +39,9 @@ namespace Methodyca.Core
                         break;
 
                     case LoadSceneMode.Single:
+                        // save latest state before leaving main game scene to return to it
+                        SaveLoadManager.SaveGameAuto();
+                        SoundManager.instance.StopBGM();
                         // minigames don't have the world GameManager so no room name is needed
                         SceneManagerScript.instance.GoToLevel(minigameSceneName, "");    
                         break;
@@ -62,6 +65,7 @@ namespace Methodyca.Core
         public virtual void EndGame()
         {
             isGamePlayable?.Invoke(false);
+            isCompleted = true;
         }
     }
 }

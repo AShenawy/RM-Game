@@ -50,7 +50,7 @@ namespace Methodyca.Core
 
             // invoke event
             itemChanged?.Invoke();
-            SaveState();
+            SaveState(item);
         }
 
 
@@ -66,7 +66,7 @@ namespace Methodyca.Core
 
             // invoke event
             itemChanged?.Invoke();
-            SaveState();
+            SaveState(item, false);
         }
 
         public void GiveSwitcherItem()
@@ -76,18 +76,29 @@ namespace Methodyca.Core
 
         public void SaveState()
         {
-            // generate an array the size of the items list
-            List<string> heldItemsNames = new List<string>();
+            //TODO remove if redundant
+            //List<string> heldItemsNames = new List<string>();
 
-            for (int i = 0; i < items.Count; i++)
-                heldItemsNames.Add(items[i].name);
+            //for (int i = 0; i < items.Count; i++)
+            //    heldItemsNames.Add(items[i].name);
 
-            SaveLoadManager.SetCurrentInventoryItems(heldItemsNames);
+            //SaveLoadManager.SetCurrentInventoryItems(items);
+        }
+
+        void SaveState(Item item, bool isAdded = true)
+        {
+            if (isAdded)
+                SaveLoadManager.AddInventoryItem(item);
+            else
+            {
+                // item is removed from inventory
+                SaveLoadManager.RemoveInventoryItem(item);
+            }
         }
 
         public void LoadState()
         {
-            List<string> heldItemsNames = SaveLoadManager.currentInventoryItems;
+            List<string> heldItemsNames = new List<string> (SaveLoadManager.currentInventoryItems);
             items.Clear();
 
             foreach (string name in heldItemsNames.ToArray())

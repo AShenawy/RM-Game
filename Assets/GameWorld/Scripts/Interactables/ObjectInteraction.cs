@@ -26,11 +26,14 @@ namespace Methodyca.Core
         public bool isItemRequired = false;
         [Tooltip("The item(s) required to allow using this object")]
         public List<Item> requiredItems = new List<Item>();
+        [Tooltip("Dialogue to display after using all required items")]
+        public string itemsProvidedText;
         [Tooltip("Dialogue to display if using wrong item")]
         public string wrongItemText;
 
         protected bool usedCorrectItem;     // check when player uses item with object that requires one
-        protected int requiredItemsLeft;    // counter for how many items before object can be used/unlocked
+        public int requiredItemsLeft;    // counter for how many items before object can be used/unlocked
+
 
         protected virtual void Start()
         {
@@ -40,6 +43,9 @@ namespace Methodyca.Core
             // set the counter value
             requiredItemsLeft = requiredItems.Count;
         }
+
+        // this method will be overridden by derived classes
+        public virtual void LoadObjectState() { }
 
         // this method will be overridden by derived classes
         public virtual void InspectObject()
@@ -63,7 +69,10 @@ namespace Methodyca.Core
                 {
                     // if used item is correct, mark as so
                     if (item == requiredItems[i])
+                    {
                         usedCorrectItem = true;
+                        break;
+                    }
                 }
             }
             else

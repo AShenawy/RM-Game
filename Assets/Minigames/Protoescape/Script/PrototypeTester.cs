@@ -14,8 +14,11 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField, TextArea(1, 3)] private string negativeFeedback;
         [SerializeField, TextArea(1, 3)] private string positiveFeedback;
 
+        // Main game connection
+        [SerializeField] private GameObject winAndQuitButton;
+
         public static event Action<string[]> OnPrototypeTestInitiated = delegate { };
-        public static event Action<string> OnPrototypeTestCompleted = delegate { };
+        public static event Action<bool,string> OnPrototypeTestCompleted = delegate { };
         public static event Action<ICheckable> OnSelectionPointed = delegate { };
 
         private List<ICheckable> _allCheckables, _checkablesToTest = new List<ICheckable>();
@@ -31,6 +34,7 @@ namespace Methodyca.Minigames.Protoescape
                 return;
             }
 
+            _checkablesToTest = new List<ICheckable>();
             _checkablesToTest = GameManager_Protoescape.Instance.GetRandomCheckablesBy(Mathf.Abs(selectionCountToPointAt));
             string[] notes = new string[_checkablesToTest.Count];
 
@@ -73,7 +77,7 @@ namespace Methodyca.Minigames.Protoescape
 
             if (ratio < 0.1f) //confused
             {
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + negativeFeedback);
+                OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + negativeFeedback);
             }
             else if (ratio >= 0.1f && ratio <= 0.8f)
             {
@@ -109,11 +113,23 @@ namespace Methodyca.Minigames.Protoescape
                 string feedback = $"Looks like they enjoyed <b>{liked}</b>. " +
                     $"Unfortunately, you’ll still need to work on <b>{confused}</b>. Make sure you get them right this time! I got grandkids waiting at home.";
 
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + feedback);
+                OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + feedback);
             }
             else //liked
             {
-                OnPrototypeTestCompleted?.Invoke(alienEscapedFeedback + positiveFeedback);
+                Debug.Log(result.current +"--"+ result.total);
+                if (result.current == result.total)
+                {
+                    OnPrototypeTestCompleted?.Invoke(true, alienEscapedFeedback + positiveFeedback);
+                }
+                else
+                {
+                    OnPrototypeTestCompleted?.Invoke(false, alienEscapedFeedback + positiveFeedback);
+                }
+                
+                // allow player to win game and quit to main game
+                if (winAndQuitButton)
+                    winAndQuitButton.SetActive(true);
             }
         }
 
@@ -128,9 +144,7 @@ namespace Methodyca.Minigames.Protoescape
             int likeCount = GetCategoryChecklistByStatus().Count(i => i.Value == true);
 
             if (IsAllConsistent())
-            {
                 likeCount++;
-            }
 
             return (likeCount, _categorySize);
         }
@@ -163,35 +177,25 @@ namespace Methodyca.Minigames.Protoescape
         {
             var all = _allCheckables;
             var checklist = new List<bool>();
-
-            foreach (var item in all)
-            {
-                item.IsChecked = false;
-            }
+            var checkedEntities = new HashSet<ICheckable>();
 
             for (int i = 0; i < all.Count - 1; i++)
             {
-                if (all[i].IsChecked)
-                {
+                if (checkedEntities.Contains(all[i]))
                     continue;
-                }
 
                 for (int j = i + 1; j < all.Count; j++)
                 {
                     if (all[i].EntityID == all[j].EntityID)
                     {
-                        checklist.Add(all[i].GetLikables().Values.All(v => all[j].GetLikables().ContainsValue(v)));
+                        checkedEntities.Add(all[i]);
+                        checkedEntities.Add(all[j]);
+                        checklist.Add(all[i].GetCurrentData.All(v => all[j].GetCurrentData.Contains(v)));
                     }
                 }
-                all[i].IsChecked = true;
             }
 
-            if (checklist.GroupBy(x => x).Skip(1).Any())
-            {
-                return false;
-            }
-
-            return true;
+            return !checklist.GroupBy(x => x).Skip(1).Any();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Methodyca.Minigames.Protoescape
             root.SetActive(false);
         }
 
-        private void PrototypeTestCompletedHandler(string feedback)
+        private void PrototypeTestCompletedHandler(bool isCompleted, string feedback)
         {
             root.SetActive(false);
             alienHand.SetActive(false);

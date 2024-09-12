@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace Methodyca.Core
@@ -10,10 +11,14 @@ namespace Methodyca.Core
     {
         public static SoundManager instance;
         public Sound mainBGM;
+        public Sprite soundOffSprite;
+        public Sprite soundOnSprite;
 
         private AudioSource BGMPlayer;
         private List<Sound> SFXPlayers = new List<Sound>();
+        private bool isPlaying = true;
 
+        [SerializeField]private Image buttonImage;
 
         void Awake()
         {
@@ -157,6 +162,24 @@ namespace Methodyca.Core
             {
                 Destroy(sfx.source);
                 SFXPlayers.Remove(sfx);
+            }
+        }
+
+        public void ToggleMusic()
+        {
+            if (BGMPlayer != null)
+            {
+                if (isPlaying)
+                {
+                    BGMPlayer.Pause();
+                    buttonImage.sprite = soundOffSprite;
+                }
+                else
+                {
+                    BGMPlayer.Play();
+                    buttonImage.sprite =soundOnSprite;
+                }
+                isPlaying = !isPlaying;
             }
         }
     } 

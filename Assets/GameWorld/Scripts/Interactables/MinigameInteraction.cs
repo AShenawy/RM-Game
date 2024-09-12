@@ -3,11 +3,13 @@ using Methodyca.Core;
 
 
 // this script handles entry to minigame scenes
-[RequireComponent(typeof(SwitchImageDisplay))]
-public class MinigameInteraction : ObjectInteraction, ILoadable
+public class MinigameInteraction : ObjectInteraction, ISaveable, ILoadable
 {
     [Header("Specific Script Parameters")]
     [SerializeField] private MinigameHub gameHub;
+
+    private enum GameCompletionOptions { DisableInteraction, DisableGameStarting }
+    [SerializeField] private GameCompletionOptions onMinigameCompletion;
 
     [Tooltip("Whether player can start the minigame or not")]
     public bool canStartGame;
@@ -17,7 +19,10 @@ public class MinigameInteraction : ObjectInteraction, ILoadable
 
     private void OnEnable()
     {
-        gameHub.isGamePlayable += ToggleInteraction;    // event drives interactability with minigame hub
+        if (onMinigameCompletion == GameCompletionOptions.DisableInteraction)
+            gameHub.isGamePlayable += ToggleInteraction;    // event drives interactability with minigame hub
+        else if (onMinigameCompletion == GameCompletionOptions.DisableGameStarting)
+            gameHub.isGamePlayable += ToggleGameStartability;   // event drives replay of minigame
     }
 
     protected override void Start()
@@ -30,13 +35,10 @@ public class MinigameInteraction : ObjectInteraction, ILoadable
 
     public override void InteractWithObject()
     {
-        base.InteractWithObject();
-
         if (canStartGame)
             gameHub.LoadMinigame();
         else
             DialogueHandler.instance.DisplayDialogue(responseForDisabled);
-
     }
 
     public override void UseWithHeldItem(Item item)
@@ -61,6 +63,7 @@ public class MinigameInteraction : ObjectInteraction, ILoadable
     private void OnDisable()
     {
         gameHub.isGamePlayable -= ToggleInteraction;
+        gameHub.isGamePlayable -= ToggleGameStartability;
     }
 
     void RefreshMinigameState(Item item)
@@ -72,7 +75,13 @@ public class MinigameInteraction : ObjectInteraction, ILoadable
             canStartGame = true;
     }
 
-    // ISaveable not implemented due to method argument
+    void ToggleGameStartability(bool value)
+    {
+        canStartGame = value;
+    }
+
+    public void SaveState() { }
+
     void SaveState(Item item)
     {
         // Save which correct crystal was placed on desk relative to it's index in the required items list

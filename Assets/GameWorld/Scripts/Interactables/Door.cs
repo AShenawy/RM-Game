@@ -9,8 +9,12 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
     [Header("Specific Door Parameters")]
     public GameObject targetRoom;
     public bool isLocked;
+    
     [Multiline, Tooltip("In-game text to be displayed if door is locked")]
     public string responseForLocked;
+   
+    [Tooltip("Does the door change its image when unlocked?")]
+    public bool switchImageOnUnlock = false;
     public Sound doorLockedSFX;
     public Sound doorOpenSFX;
 
@@ -29,12 +33,12 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         if (isLocked)
         {
             DialogueHandler.instance.DisplayDialogue(responseForLocked);
-            SoundManager.instance.PlaySFX(doorLockedSFX);
+            SoundManager.instance.PlaySFXOneShot(doorLockedSFX);
         }
         else
         {
             GameManager.instance.GoToRoom(targetRoom);  // Door is unlocked and player can proceed
-            SoundManager.instance.PlaySFX(doorOpenSFX);
+            SoundManager.instance.PlaySFXOneShot(doorOpenSFX);
         }
     }
 
@@ -53,20 +57,34 @@ public class Door : ObjectInteraction, ISaveable, ILoadable
         // if all required items are used, then unlock
         if (requiredItemsLeft < 1)
         {
-            isLocked = false;
-            SaveState();
+            Unlock();
         }
+    }
+
+    public void Unlock()
+    {
+        print($"{name} is unlocking");
+        isLocked = false;
+
+        if (switchImageOnUnlock)
+            GetComponent<SwitchImageDisplay>().SwitchImage();
+
+        SaveState();
+    }
+
+    public void SaveState()
+    {
+        SaveLoadManager.SetInteractableState(name, isLocked ? 1 : 0);
     }
 
     public void LoadState()
     {
         if (SaveLoadManager.interactableStates.TryGetValue(name, out int lockedState))
             isLocked = (lockedState == 0) ? false : true;
-    }
 
-    public void SaveState()
-    {
-        SaveLoadManager.SetInteractableState(name, isLocked ? 1 : 0);
+        //--- Unlock() is called by linked Operate script (toll machine Q1) which switches the image again to closed door. TODO: decouple linkage with loading state and calling Use() in Operate and check for any problems in Operate
+        //if (isLocked == false && switchImageOnUnlock == true)
+        //    GetComponent<SwitchImageDisplay>().SwitchImage();
     }
 }
    

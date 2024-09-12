@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿//#define TESTING
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Methodyca.Core
 {
@@ -9,10 +11,14 @@ namespace Methodyca.Core
     {
         // make this class a singleton
         public static SceneManagerScript instance;
+        public static event System.Action onAdditiveSceneLoaded;
+        
+        public GameObject loadingScreenPrefab;
 
         [HideInInspector]
         public string startRoomName;
-        public GameObject loadingScreenPrefab;
+        //[HideInInspector]
+        public List<int> minigamesWon = new List<int>();
 
         private AsyncOperation preloadSceneOpr;
         private bool isPreloadingScene;
@@ -29,19 +35,40 @@ namespace Methodyca.Core
                 Destroy(gameObject);
         }
 
-        public void GoToLevel(string sceneName, string roomName, bool keepInteractionsSaved = false)
+#if TESTING
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+                SaveLoadManager.SetCurrentScene(SceneManager.GetActiveScene().name);
+        }
+#endif
+
+        //public void GoToLevel(string sceneName, string roomName, bool keepMinigames = false , bool keepInteractions = false)
+        public void GoToLevel(string sceneName, string roomName, bool keepInteractions = true)
         {
             startRoomName = roomName;
             StartCoroutine(LoadLevel(sceneName));
 
-            // if moving between levels during gameplay, interactions in previous scene can be deleted
-            // when loading a game from file, interaction should be kept for interactables to check
-            if (!keepInteractionsSaved)
+            // at some cases, like moving between main game scenes, interaction states from previous scene can be removed
+            if (!keepInteractions)
             {
                 SaveLoadManager.ClearInteractableState();
-                SaveLoadManager.ClearInventoryItems();
-                SaveLoadManager.ClearMinigamesComplete();
             }
+
+
+            //TODO remove if redundant
+            // when moving between scenes (Acts or main/mini game scenes) or loading a new game, minigame progression needs to be saved
+            // Minigames should be cleared when loading a save file from inside the game (not main menu)
+            //if(!keepMinigames)   
+            //    SaveLoadManager.ClearMinigamesComplete();
+
+            // if moving between levels during gameplay, interactions in previous scene can be deleted
+            // when loading a game from file, interaction should be kept for interactables to check
+            //if (!keepInteractions)
+            //{
+            //    SaveLoadManager.ClearInteractableState();
+            //    SaveLoadManager.ClearInventoryItems();
+            //}
         }
 
         IEnumerator LoadLevel(string sceneName)
@@ -148,6 +175,7 @@ namespace Methodyca.Core
         void SetLoadedSceneActive(Scene scene, LoadSceneMode mode)
         {
             SceneManager.SetActiveScene(scene);
+            onAdditiveSceneLoaded?.Invoke();
             SceneManager.sceneLoaded -= SetLoadedSceneActive;
         }
 
@@ -171,39 +199,19 @@ namespace Methodyca.Core
             return sceneStartRoom;
         }
 
-        public void SubscribeToOnLoadEvent(LoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
-        
-        public void SubscribeToOnLoadEvent(ContinueGameBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
+        //public void SubscribeToOnLoadEvent(System.Action loadAction)
+        //{
+        //    loadAction += OnGameLoad;
+        //}
 
-        public void SubscribeToOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame += OnGameLoad;
-        }
+        //public void UnSubscribeFromOnLoadEvent(System.Action loadAction)
+        //{
+        //    loadAction -= OnGameLoad;
+        //}
 
-        public void UnSubscribeFromOnLoadEvent(LoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        public void UnSubscribeFromOnLoadEvent(ContinueGameBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        public void UnSubscribeFromOnLoadEvent(AutoLoadSlotBehaviour loadSlot)
-        {
-            loadSlot.onLoadGame -= OnGameLoad;
-        }
-
-        void OnGameLoad()
-        {
-            GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
-        }
+        //void OnGameLoad()
+        //{
+        //    GoToLevel(SaveLoadManager.currentScene, SaveLoadManager.currentRoomName, true);
+        //}
     }
 }

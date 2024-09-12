@@ -9,9 +9,10 @@ public class Observe : ObjectInteraction
     public string[] inspectDialogue;
     public Sound SFX;
 
+
     public override void InteractWithObject()
     {
         DialogueHandler.instance.DisplayDialogue(inspectDialogue);
-        SoundManager.instance.PlaySFX(SFX);
+        SoundManager.instance.PlaySFXOneShot(SFX);
     }
 }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -308,7 +308,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 3092e2bc1b26985458715fd056c3d11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2761,9 +2761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c551e64b453c02548b4b8692ab17684a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoomName: 
   loadingScreenPrefab: {fileID: 831254788418089426, guid: 21d06e6c7c7759d419f6d1322af64afa,
     type: 3}
+  startRoomName: 
+  minigamesWon: 
 --- !u!4 &483186746
 Transform:
   m_ObjectHideFlags: 0
@@ -3384,7 +3385,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b04886097902c3840a2fd5a29ad5c85e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3846,7 +3847,9 @@ MonoBehaviour:
   PickUpFailText: I don't think the janitor would appreciate that.
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: It doesn't need that
+  requiredItemsLeft: 0
   canMove: 1
   movementValue: {x: 2.5, y: 0}
   SFX:
@@ -4167,10 +4170,37 @@ MonoBehaviour:
   PickUpFailText: 
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: 
+  requiredItemsLeft: 0
   canOperate: 1
   onOperateSuccessText: 
   onOperateFailText: I can't open it.
+  givenItems: []
+  SFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
+  WrongSFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
+  CorrectSFX:
+    name: 
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    pan: 0
+    source: {fileID: 0}
 --- !u!65 &655782968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4485,6 +4515,7 @@ MonoBehaviour:
   Act2Scene: 2.Act 2
   Act2QLRoomName: QL Start
   Act2QNRoomName: QN Start
+  skipTransitionVideo: 0
 --- !u!114 &826353354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4508,7 +4539,9 @@ MonoBehaviour:
   requiredItems:
   - {fileID: 11400000, guid: c669829f41f4df045a5ce8ed5bbad54c, type: 2}
   - {fileID: 11400000, guid: f2fdd43caf14ffd4989d2a64345b3a10, type: 2}
+  itemsProvidedText: 
   wrongItemText: This won't work here.
+  requiredItemsLeft: 0
   canUsePortal: 0
   responseForDisabled: I think it's missing something for it to work. The shape of
     the grooves is quite specific.. Maybe I need to place something there to have
@@ -4918,7 +4951,9 @@ MonoBehaviour:
   PickUpFailText: 
   isItemRequired: 0
   requiredItems: []
+  itemsProvidedText: 
   wrongItemText: 
+  requiredItemsLeft: 0
   isLocked: 1
   unlockCombination: 030000000000000002000000
   lockedBoxPrefab: {fileID: 1938385551}
@@ -5368,7 +5403,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5d29cb2fea01a184a980dc72f8214262, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6133,7 +6168,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: f0730eed52011f945b76b1c91f188065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6232,7 +6267,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 18e30d30f2dc6d640ba4ea10e77574a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6655,7 +6690,6 @@ MonoBehaviour:
     type: 3}
   qualitativeCrystalDisplay: {fileID: 1673020241}
   quantitativeCrystalDisplay: {fileID: 1127053413}
-  isCompleted: 0
   isQlTaken: 0
   isQnTaken: 0
 --- !u!65 &1313759071
@@ -6721,8 +6755,11 @@ MonoBehaviour:
   requiredItems:
   - {fileID: 11400000, guid: 10773f531c566e24db6de538625c554d, type: 2}
   - {fileID: 11400000, guid: 216758379049a274a976eaf0f2197c1c, type: 2}
+  itemsProvidedText: 
   wrongItemText: There's no need to do that.
+  requiredItemsLeft: 0
   gameHub: {fileID: 1313759070}
+  onMinigameCompletion: 0
   canStartGame: 0
   responseForDisabled: Seems like I need to place something on these 2 coloured cylinders
     before I can check the desk.
@@ -7856,6 +7893,8 @@ MonoBehaviour:
   - {fileID: 1369920434708363394}
   - {fileID: 1369920434708363393}
   - {fileID: 1369920434708363392}
+  - {fileID: 1369920434708363404}
+  - {fileID: 1369920434708363403}
   titleDisplay: {fileID: 1369920434708363391}
   descriptionDisplay: {fileID: 1369920434708363388}
 --- !u!1 &1608412002
@@ -9202,7 +9241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -286357679
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 7ac826d0fa38c9d49b1f5b1dbd0c4be3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10803,6 +10842,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
+  ForcePlayerOrientation: 0
+  orientation: 0
   isSavePoint: 1
 --- !u!114 &2125245414
 MonoBehaviour:
@@ -11103,15 +11144,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2016936636}
     m_Modifications:
+    - target: {fileID: 469744455320283372, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1369920434479514694, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11120,29 +11161,9 @@ PrefabInstance:
       objectReference: {fileID: 299963988}
     - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1369920434708363383}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Itsjustkewa
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369920434517489666, guid: 76a19fc7f61302d4cae0c8d7387b9454,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1369920434683879475, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_IsActive
@@ -11476,7 +11497,7 @@ PrefabInstance:
     - target: {fileID: 1819376409715237236, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 360
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1819376409715237236, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11581,7 +11602,7 @@ PrefabInstance:
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 220
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11594,6 +11615,36 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1819376410352704767, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819376410882486816, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
@@ -11611,12 +11662,12 @@ PrefabInstance:
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -90
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 1819376411288972123, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11627,6 +11678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004945357423861762, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2418365217479555481, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11652,6 +11708,16 @@ PrefabInstance:
         type: 3}
       propertyPath: SFX.name
       value: mail app
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750112703309791452, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043103828209687559, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3153662963058631796, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11753,6 +11819,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 363.47888
       objectReference: {fileID: 0}
+    - target: {fileID: 3302627797977837062, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 3420761048059065438, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -11798,10 +11869,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -302.06573
       objectReference: {fileID: 0}
+    - target: {fileID: 4503745029469405377, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4575601354670292938, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993404328987069792, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296736204332008305, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5581330851288276996, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11853,6 +11939,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 363.47888
       objectReference: {fileID: 0}
+    - target: {fileID: 7716684683909149927, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7720618960982553219, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -11872,6 +11963,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -302.06573
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791647159241468281, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000702420279245925, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8688448506936507395, guid: 76a19fc7f61302d4cae0c8d7387b9454,
         type: 3}
@@ -11897,6 +11998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963956472644979494, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76a19fc7f61302d4cae0c8d7387b9454, type: 3}
@@ -12158,6 +12264,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22583094a78cacc4080d4208f8bb0705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1369920434708363403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3821398277414191976, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+    type: 3}
+  m_PrefabInstance: {fileID: 1369920434708363380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22583094a78cacc4080d4208f8bb0705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1369920434708363404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3858714639362638004, guid: 76a19fc7f61302d4cae0c8d7387b9454,
+    type: 3}
+  m_PrefabInstance: {fileID: 1369920434708363380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22583094a78cacc4080d4208f8bb0705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2641257133204290548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12172,6 +12302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanTurn: 0
   allowedTurnAngle: 90
+  ForcePlayerOrientation: 0
+  orientation: 0
   isSavePoint: 1
 --- !u!222 &2997399169880592296
 CanvasRenderer:
