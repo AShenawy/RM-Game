@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Collections;
 
 namespace Methodyca.Minigames.DocStudy
 {
@@ -12,6 +13,17 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private TextMeshProUGUI speech;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button previousButton;
+        [SerializeField] private AudioClip typeSoundClip; // AudioClip for the typewriter sound
+        [SerializeField] private float typingSpeed = 0.05f; // Delay between each character
+
+        private AudioSource audioSource; // We'll create this at runtime
+        private Coroutine typingCoroutine;
+
+        private void Awake()
+        {
+            // Add or find the AudioSource component on this GameObject
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         private void OnEnable()
         {
@@ -23,22 +35,53 @@ namespace Methodyca.Minigames.DocStudy
         private void DialogUpdatedHandler(Dialog dialog)
         {
             if (dialog == null)
-            {
                 return;
-            }
 
             character.sprite = dialog.Character;
-            speech.text = dialog.Speech;
 
+            // Stop any existing typing effect
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+
+            // Start the fade-in and then the typing effect
             DOTween.Sequence().AppendCallback(() => canvasGroup.alpha = 0)
-                              .Append(DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 1, 0.25f));
+                              .Append(DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 1, 0.25f))
+                              .OnComplete(() =>
+                              {
+                                  typingCoroutine = StartCoroutine(TypeText(dialog.Speech));
+                              });
 
             previousButton.interactable = DialogManager.Instance.HasPreviousDialog();
+        }
 
+        private IEnumerator TypeText(string text)
+        {
+            speech.text = "";
+            foreach (char letter in text)
+            {
+                speech.text += letter;
+
+                if (typeSoundClip != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(typeSoundClip); // Play the sound effect for each letter
+                }
+
+                yield return new WaitForSeconds(typingSpeed); // Wait between each letter
+            }
         }
 
         private void ClickNextHandler()
         {
+            // Stop the typing effect if it's ongoing and immediately display full text
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+                speech.text = DialogManager.Instance.GetCurrentDialog().Speech;
+            }
+
+            // Fade out the dialog before triggering the next one
             DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 0, 0.25f)
                    .OnComplete(() =>
                    {
@@ -48,6 +91,13 @@ namespace Methodyca.Minigames.DocStudy
 
         private void ClickPreviousHandler()
         {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+                speech.text = DialogManager.Instance.GetCurrentDialog().Speech;
+            }
+
+            // Fade out the dialog before triggering the previous one
             DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 0, 0.25f)
                    .OnComplete(() =>
                    {
@@ -63,3 +113,5 @@ namespace Methodyca.Minigames.DocStudy
         }
     }
 }
+
+

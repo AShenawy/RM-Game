@@ -55,7 +55,6 @@ namespace Methodyca.Minigames.DocStudy
             OnDialogUpdated?.Invoke(dialog);
         }
 
-
         public void TriggerPreviousDialog()
         {
             // delete the current dialog, get previous one
@@ -74,6 +73,16 @@ namespace Methodyca.Minigames.DocStudy
         public bool HasPreviousDialog()
         {
             return _dialogHistory.Count > 1;
+        }
+
+        // New method to get the current dialog
+        public Dialog GetCurrentDialog()
+        {
+            if (_dialogHistory.Count > 0)
+            {
+                return _dialogHistory.Peek();
+            }
+            return null;
         }
 
         public void SetNewDialogQueue(Dialog[] dialogs)
