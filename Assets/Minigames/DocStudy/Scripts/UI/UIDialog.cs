@@ -15,6 +15,8 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private Button previousButton;
         [SerializeField] private AudioClip typeSoundClip; // AudioClip for the typewriter sound
         [SerializeField] private float typingSpeed = 0.05f; // Delay between each character
+        [SerializeField] private Sprite nextIcon;
+        [SerializeField] private Sprite endIcon;
 
         private AudioSource audioSource; // We'll create this at runtime
         private Coroutine typingCoroutine;
@@ -28,6 +30,9 @@ namespace Methodyca.Minigames.DocStudy
         private void OnEnable()
         {
             DialogManager.OnDialogUpdated += DialogUpdatedHandler;
+            GameObjectActivator.OnGameObjectActivated += HidePreviousButton;
+            GameObjectActivator.OnGameObjectDeactivated += ShowPreviousButton;
+
             nextButton.onClick.AddListener(ClickNextHandler);
             previousButton.onClick.AddListener(ClickPreviousHandler);
         }
@@ -53,7 +58,24 @@ namespace Methodyca.Minigames.DocStudy
                                   typingCoroutine = StartCoroutine(TypeText(dialog.Speech));
                               });
 
-            previousButton.interactable = DialogManager.Instance.HasPreviousDialog();
+            if (DialogManager.Instance.HasPreviousDialog())
+            {
+                previousButton.gameObject.SetActive(true);
+                previousButton.interactable = true;
+            }
+            else
+            {
+                previousButton.gameObject.SetActive(false);
+            }
+
+            if (DialogManager.Instance.NoMoreDialogs())
+            {
+                nextButton.image.sprite = endIcon;
+            }
+            else
+            {
+                nextButton.image.sprite = nextIcon;
+            }
         }
 
         private IEnumerator TypeText(string text)
@@ -87,10 +109,13 @@ namespace Methodyca.Minigames.DocStudy
                    {
                        DialogManager.Instance.TriggerDialog();
                    });
+
+
         }
 
         private void ClickPreviousHandler()
         {
+
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
@@ -103,11 +128,30 @@ namespace Methodyca.Minigames.DocStudy
                    {
                        DialogManager.Instance.TriggerPreviousDialog();
                    });
+
+        }
+        private void HidePreviousButton()
+        {
+            if (previousButton != null)
+            {
+                previousButton.gameObject.SetActive(false);
+            }
+        }
+
+        private void ShowPreviousButton()
+        {
+            if (previousButton != null && DialogManager.Instance != null && DialogManager.Instance.HasPreviousDialog())
+            {
+                previousButton.gameObject.SetActive(true);
+            }
         }
 
         private void OnDisable()
         {
             DialogManager.OnDialogUpdated -= DialogUpdatedHandler;
+            GameObjectActivator.OnGameObjectActivated -= HidePreviousButton;
+            GameObjectActivator.OnGameObjectDeactivated -= ShowPreviousButton;
+
             nextButton.onClick.RemoveAllListeners();
             previousButton.onClick.RemoveAllListeners();
         }
