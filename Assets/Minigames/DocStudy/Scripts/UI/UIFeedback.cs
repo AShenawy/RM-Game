@@ -136,6 +136,8 @@ namespace Methodyca.Minigames.DocStudy
                 correctSelectionDetails += "None of your selections were correct.";
             }
 
+            correctSelectionDetails += "\n———————END———————\n";
+
             correctSelections.text = correctSelectionDetails;
         }
 
