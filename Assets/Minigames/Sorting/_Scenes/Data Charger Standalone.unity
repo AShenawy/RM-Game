@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &90876153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2767,6 +2767,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalImageRenderer: {fileID: 1829932744}
   crystalPhases:
+  - {fileID: 21300000, guid: cd816d5b81f9949e49254f7ef89d6e35, type: 3}
+  - {fileID: 21300000, guid: 330882ea991bb40ee8620fdbc4e6e579, type: 3}
+  - {fileID: 21300000, guid: 63da7916cc53646c89efbd81379795a8, type: 3}
+  - {fileID: 21300000, guid: ac4216bb4f654453fb30f348b25dfd49, type: 3}
+  - {fileID: 21300000, guid: 68e00b571a14a4bda95fb53370376bff, type: 3}
   - {fileID: 21300000, guid: c36cc2167deb34e8b87db7e597cc20bb, type: 3}
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
@@ -2782,6 +2787,7 @@ MonoBehaviour:
     loop: 1
     pan: -1
     source: {fileID: 0}
+  currentPhase: 0
 --- !u!114 &545214132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2943,6 +2949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1290497627}
   otherSortBox: {fileID: 827433517}
+  crystal: {fileID: 545214129}
   placementReference: {fileID: 668920366}
   acceptableItemTag: Qualitative
   inTheBox: []
@@ -3889,7 +3896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &735765637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4527,6 +4534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1290497627}
   otherSortBox: {fileID: 569189697}
+  crystal: {fileID: 1611874113}
   placementReference: {fileID: 1710780501}
   acceptableItemTag: Quantitative
   inTheBox: []
@@ -6501,6 +6509,8 @@ MonoBehaviour:
   requiredItemsInBox: 5
   buttonsPanel: {fileID: 324152594}
   winScreen: {fileID: 1930363418}
+  blueCrystal: {fileID: 1611874113}
+  pinkCrystal: {fileID: 545214129}
   BGM:
     name: Main BGM
     clip: {fileID: 8300000, guid: 7540e8a21e1f14de49d4264037651663, type: 3}
@@ -12670,6 +12680,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalImageRenderer: {fileID: 440691334}
   crystalPhases:
+  - {fileID: 21300000, guid: daa35adb85b584162b6ce52dfa340c88, type: 3}
+  - {fileID: 21300000, guid: 002ce1b1b4cc24286a3dec0be523b9b9, type: 3}
+  - {fileID: 21300000, guid: 3bcde3b8572d243c5b822a8c30218e54, type: 3}
+  - {fileID: 21300000, guid: df170efc1e096480f87b23a0235d3a8f, type: 3}
+  - {fileID: 21300000, guid: 70bf9fa11df954365b5a0538f2de7859, type: 3}
   - {fileID: 21300000, guid: 5604f4b0665e54715b5e0ccd59c24b1f, type: 3}
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
@@ -12685,6 +12700,7 @@ MonoBehaviour:
     loop: 1
     pan: 1
     source: {fileID: 0}
+  currentPhase: 0
 --- !u!114 &1611874114
 MonoBehaviour:
   m_ObjectHideFlags: 0

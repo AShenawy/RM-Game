@@ -12,6 +12,8 @@ namespace Methodyca.Minigames.SortGame
         public int requiredItemsInBox;
         public CanvasGroup buttonsPanel;
         public GameObject winScreen;
+        public Crystal blueCrystal;
+        public Crystal pinkCrystal;
 
         [Header("Sound")]
         [Tooltip("The Background Music track during game")] public Sound BGM;
@@ -19,6 +21,8 @@ namespace Methodyca.Minigames.SortGame
 
         bool QNBoxSorted;
         bool QLBoxSorted;
+        int blueCurrentPhase;
+        int pinkCurrentPhase;
 
         private void OnEnable()
         {
@@ -41,23 +45,72 @@ namespace Methodyca.Minigames.SortGame
 
         void CheckQNSorted(int correctItemsCount)
         {
-            if (correctItemsCount == requiredItemsInBox && QNBox.inTheBox.Count == requiredItemsInBox)
-                QNBoxSorted = true;
+            //if (correctItemsCount == requiredItemsInBox && QNBox.inTheBox.Count == requiredItemsInBox)
+            //{
+            //    QNBoxSorted = true;
+            //}
+            //else
+            //{
+            //    QNBoxSorted = false;
+            //}
+
+            //The following paragraph was temporarily used to rescue the bug.
+            //The blueCurrentPhase of the blue crystal in this script
+            //is always not the same as the currentPhase in the Crystal.cs script,
+            //while everything is fine with the pink crystal.
+            //I couldn't find the reason.
+            if (blueCrystal.currentPhase>0)
+            {
+                blueCurrentPhase = blueCrystal.currentPhase+1;
+            }
+            else if(blueCrystal.currentPhase<0)
+            {
+                blueCurrentPhase = blueCrystal.currentPhase-1;
+            }
             else
+            {
+                blueCurrentPhase = blueCrystal.currentPhase;
+            }
+
+            if (blueCurrentPhase >= 5)
+            {
+                QNBoxSorted = true;
+                Debug.Log("Blue Current Phase Completed");
+            }
+            else
+            {
                 QNBoxSorted = false;
+                Debug.Log("Blue Current Phase in CheckQNSorted: " + blueCurrentPhase);
+            }
 
             CheckGameComplete();
         }
 
         void CheckQLSorted(int correctItemsCount)
         {
-            if (correctItemsCount == requiredItemsInBox && QLBox.inTheBox.Count == requiredItemsInBox)
+            //if (correctItemsCount == requiredItemsInBox && QLBox.inTheBox.Count == requiredItemsInBox)
+            //{
+            //    QLBoxSorted = true;
+            //}
+            //else
+            //{
+            //    QLBoxSorted = false;
+            //}
+            pinkCurrentPhase = pinkCrystal.currentPhase;
+            if (pinkCurrentPhase >= 5)
+            {
                 QLBoxSorted = true;
+                Debug.Log("Pink Current Phase Completed");
+            }
             else
+            {
                 QLBoxSorted = false;
+                Debug.Log("Pink Current Phase in CheckQLSorted: " + pinkCurrentPhase);
+            }
 
             CheckGameComplete();
         }
+
 
         void CheckGameComplete()
         {

@@ -10,10 +10,10 @@ namespace Methodyca.Minigames.SortGame
         public Image crystalImageRenderer;
         public Sprite[] crystalPhases;
         public Image glowImage;
-
         private VerticalOscillator oscillator;
         public Sound chargedSFX;
 
+        public int currentPhase;
 
         private void Start()
         {
@@ -23,7 +23,10 @@ namespace Methodyca.Minigames.SortGame
 
         public void AdjustGlow(int phase)
         {
-            crystalImageRenderer.sprite = crystalPhases[phase];
+            currentPhase = phase;
+            //phase = Mathf.Clamp(phase, -5, 5);
+            int spriteIndex = phase + 5;
+            crystalImageRenderer.sprite = crystalPhases[spriteIndex];
             oscillator.AdjustSpeed(phase);
 
             if (phase > 4)

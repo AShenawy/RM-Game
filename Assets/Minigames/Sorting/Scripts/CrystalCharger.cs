@@ -10,6 +10,8 @@ namespace Methodyca.Minigames.SortGame
         public Crystal crystal;         // crystal this charger is linked to
 
         private SoundManipulator soundManipulator;
+        private int lastCharge = 0;
+
 
         private void OnEnable()
         {
@@ -24,7 +26,9 @@ namespace Methodyca.Minigames.SortGame
 
         void AdjustCharge(int charge)
         {
-            crystal.AdjustGlow(charge);
+            lastCharge += charge;
+            //lastCharge = Mathf.Clamp(lastCharge, -5, 5);
+            crystal.AdjustGlow(lastCharge);
 
             if (charge > 0)
                 soundManipulator.PlaySound();

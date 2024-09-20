@@ -15,6 +15,7 @@ namespace Methodyca.Minigames.SortGame
 
         public SortingManager gameManager;
         public SortBoxBehaviour otherSortBox;
+        public Crystal crystal;
         
         public GameObject placementReference;      // the parent of the items placed in the box
         
@@ -30,7 +31,6 @@ namespace Methodyca.Minigames.SortGame
         public Animator particleAnimator;
         [SerializeField] private string particleTriggerName;
         [SerializeField] private string particleGoBackName;
-
 
         // Mouse released. 
         public void OnDrop(PointerEventData eventData) 
@@ -61,10 +61,16 @@ namespace Methodyca.Minigames.SortGame
             {
                 correctItemsInBoxCount++;
                 particleAnimator.SetTrigger(particleTriggerName);
+                onItemDropped?.Invoke(1);
+            }
+            else
+            {
+                onItemDropped?.Invoke(-1);
+                particleAnimator.SetTrigger(particleGoBackName);
             }
 
             // invoke event to tell if correct item was added
-            onItemDropped?.Invoke(correctItemsInBoxCount);
+           // onItemDropped?.Invoke(correctItemsInBoxCount);
         }
 
         void PlaceInBox(GameObject item)
@@ -80,9 +86,14 @@ namespace Methodyca.Minigames.SortGame
             // A check to see if the tags are correct and if there is a point award to the box already.
             if (itemInBox.CompareTag(acceptableItemTag))
             {
-                if (correctItemsInBoxCount > 0)
+                //if (correctItemsInBoxCount > 0)
                     correctItemsInBoxCount--;
                 particleAnimator.SetTrigger(particleGoBackName);
+                onItemDropped?.Invoke(-1);
+            }
+            else
+            {
+                onItemDropped?.Invoke(1);
             }
             
             inTheBox.Remove(itemInBox);
@@ -91,7 +102,8 @@ namespace Methodyca.Minigames.SortGame
             ReshuffleBox();
 
             // invoke event to check if a correct item was removed
-            onItemDropped?.Invoke(correctItemsInBoxCount);
+            //onItemDropped?.Invoke(correctItemsInBoxCount);
+
         }
 
         void ReshuffleBox()
