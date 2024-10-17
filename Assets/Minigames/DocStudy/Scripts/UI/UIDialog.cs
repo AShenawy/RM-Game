@@ -55,9 +55,13 @@ namespace Methodyca.Minigames.DocStudy
                               .Append(DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 1, 0.25f))
                               .OnComplete(() =>
                               {
-                                  if (dialog.Speech != null)
+                                  if (dialog != null && gameObject.activeInHierarchy)
                                   {
                                       typingCoroutine = StartCoroutine(TypeText(dialog.Speech));
+                                  }
+                                  else
+                                  {
+                                      Debug.LogWarning("Cannot start typing coroutine because the game object is inactive.");
                                   }
                               });
 
