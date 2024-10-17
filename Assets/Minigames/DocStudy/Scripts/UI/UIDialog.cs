@@ -55,7 +55,10 @@ namespace Methodyca.Minigames.DocStudy
                               .Append(DOTween.To(() => canvasGroup.alpha, a => canvasGroup.alpha = a, 1, 0.25f))
                               .OnComplete(() =>
                               {
-                                  typingCoroutine = StartCoroutine(TypeText(dialog.Speech));
+                                  if (dialog.Speech != null)
+                                  {
+                                      typingCoroutine = StartCoroutine(TypeText(dialog.Speech));
+                                  }
                               });
 
             if (DialogManager.Instance.HasPreviousDialog())

@@ -17,6 +17,7 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private TextMeshProUGUI feedback;
         [SerializeField] private TextMeshProUGUI correctSelections;
         [SerializeField] private RectTransform areaRectTransform;
+        [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private Slider selectionsSlider;
         
 
@@ -155,12 +156,13 @@ namespace Methodyca.Minigames.DocStudy
         }
         private void ToDrag(float value)
         {
-            //sliding value
-            float tempSliderValue = value;
-            //total slide height
-            float tempTotalHeight = 5000;
-            //set y
-            areaRectTransform.anchoredPosition = new Vector2(areaRectTransform.anchoredPosition.x, tempSliderValue * tempTotalHeight);
+            ////sliding value
+            //float tempSliderValue = value;
+            ////total slide height
+            //float tempTotalHeight = 5000;
+            ////set y
+            //areaRectTransform.anchoredPosition = new Vector2(areaRectTransform.anchoredPosition.x, tempSliderValue * tempTotalHeight);
+            scrollRect.verticalNormalizedPosition = value;
         }
 
         private void OnDisable()
@@ -168,6 +170,7 @@ namespace Methodyca.Minigames.DocStudy
             GameManager.OnFeedbackInitiated -= ScoreUpdatedHandler;
             seeSelections.onClick.RemoveListener(ShowSelectionPanel);
             closeSelections.onClick.RemoveListener(ShowSelectionPanel);
+            selectionsSlider.onValueChanged.RemoveListener(ToDrag);
         }
     }
 }
