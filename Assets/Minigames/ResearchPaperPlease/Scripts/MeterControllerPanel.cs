@@ -1,21 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MeterControllerPanel : MonoBehaviour
+public class MeterControllerPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject infoPanel;   // The panel to display
-    public Button leftMeterButton; // The meter (which should be clickable)
+    public GameObject infoPanel;
+
+    private bool isMouseOverButton = false;
+    private bool isMouseOverPanel = false;
 
     void Start()
     {
-        // Ensure the panel is hidden initially
         infoPanel.SetActive(false);
+    }
 
-        // Add a listener to the meter button to show the panel
-        leftMeterButton.onClick.AddListener(ShowPanel);
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isMouseOverButton = true;
+        ShowPanel();
+    }
 
-        // Add a listener to the panel's button component to hide the panel
-        infoPanel.GetComponent<Button>().onClick.AddListener(HidePanel);
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isMouseOverButton = false;
+        StartCoroutine(CheckMouseExit());
+    }
+
+    // Panel's own handler for mouse enter/exit
+    public void OnPanelPointerEnter(PointerEventData eventData)
+    {
+        isMouseOverPanel = true;
+    }
+
+    public void OnPanelPointerExit(PointerEventData eventData)
+    {
+        isMouseOverPanel = false;
+        StartCoroutine(CheckMouseExit());
+    }
+
+    private IEnumerator CheckMouseExit()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (!isMouseOverButton && !isMouseOverPanel)
+        {
+            HidePanel();
+        }
     }
 
     void ShowPanel()
