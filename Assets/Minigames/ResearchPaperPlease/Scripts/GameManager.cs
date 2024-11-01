@@ -32,6 +32,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     }
     public class GameManager : Singleton<GameManager>
     {
+        [Header("New Modifications 2024")]
+        public GameObject newRejectButton;
+
+        [Header("Old Settings")]
         [SerializeField] private int progressValueToWin;
         [SerializeField] private int qualityValueToWin;
         [SerializeField] private Feedback winFeedback;
@@ -146,6 +150,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     _currentResearchPaperData = _allResearchPaper.Dequeue();
                     OnPaperUpdated?.Invoke(_currentResearchPaperData);
                     OnPageUpdated?.Invoke(_initialTotalPaperCountPerLevel - _allResearchPaper.Count, _initialTotalPaperCountPerLevel);
+                    newRejectButton.SetActive(true);
                 }
                 else
                 {
@@ -259,6 +264,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
             OnOptionHighlighted?.Invoke(_fixButtonPairs);
             OnFix?.Invoke(_fixButtonPairs.ContainsValue(true));
+
         }
 
         private void HandleGameOver()
@@ -422,6 +428,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             {
                 _fixButtonPairs.Add(item, false);
             }
+
         }
 
         private LevelData GetCurrentLevelData()

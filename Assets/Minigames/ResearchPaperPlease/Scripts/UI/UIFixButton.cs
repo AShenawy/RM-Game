@@ -23,7 +23,10 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             GameManager.OnLevelInitiated += LevelInitiatedHandler;
             GameManager.OnPaperUpdated += PaperUpdatedHandler;
         }
-
+        public void onButtonClick()
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
         private void LevelInitiatedHandler(LevelData data)
         {
             if (_isPressed)
