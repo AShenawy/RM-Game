@@ -178,7 +178,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
         }
 
-        private void OptionHighlightedHandler(Dictionary<char, bool> fixbuttons)
+        private void OptionHighlightedHandler(Dictionary<char, bool> fixbuttons, string markTag)
         {
             paperText.text = "";
 
@@ -192,7 +192,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     if (fixbuttons[option.Index])
                     {
-                        paperText.text += $"<mark=#000000aa><font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
+                        paperText.text += $"{markTag}<font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
                     }
                     else
                     {

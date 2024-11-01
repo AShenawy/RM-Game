@@ -34,6 +34,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     {
         [Header("New Modifications 2024")]
         public GameObject newRejectButton;
+        public string choosingColor = "<mark=#000000aa>";
+        public string wrongColor = "<mark=#ff0000aa>";
+        public string correctColor = "<mark=#00ff00aa>";
 
         [Header("Old Settings")]
         [SerializeField] private int progressValueToWin;
@@ -61,7 +64,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public static event Action<Feedback> OnFeedbackInitiated = delegate { };
         public static event Action<LevelData> OnLevelInitiated = delegate { };
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
-        public static event Action<Dictionary<char, bool>> OnOptionHighlighted = delegate { };
+        public static event Action<Dictionary<char, bool>, string> OnOptionHighlighted = delegate { };
 
         public int TotalPaperCount { get; private set; }
         public int ProgressValueToWin { get => progressValueToWin; }
@@ -193,7 +196,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
                 }
                 else
                 {
@@ -201,7 +204,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), wrongColor);
                 }
 
                 OnPaperDecided?.Invoke(true);
@@ -214,7 +217,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnPaperDecided?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
@@ -232,7 +235,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     if (!wasFixed) incorrectRejectCount++;
 
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
                     OnPaperDecided?.Invoke(false);
                 }
                 else
@@ -252,7 +255,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     if (!wasFixed) incorrectRejectCount++;
 
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary());
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
                     OnPaperDecided?.Invoke(false);
                 }
             }
@@ -262,7 +265,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             _fixButtonPairs[optionIndex] = isPressed;
 
-            OnOptionHighlighted?.Invoke(_fixButtonPairs);
+            OnOptionHighlighted?.Invoke(_fixButtonPairs, choosingColor);
             OnFix?.Invoke(_fixButtonPairs.ContainsValue(true));
 
         }
