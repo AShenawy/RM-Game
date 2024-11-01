@@ -170,6 +170,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     }
 
                     ShowLevelFeedback(); // Display the feedback window
+                    newRejectButton.SetActive(false);
                 }
             }
             else

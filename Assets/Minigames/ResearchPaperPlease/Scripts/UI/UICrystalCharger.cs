@@ -20,6 +20,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int[] qualityPositiveThresholds = { 6, 12, 18, 24, 30 };
         private int[] qualityNegativeThresholds = { -6, -12, -18, -24, -30 };
 
+        private void Start()
+        {
+            SetImageAlpha(qualityCrystalImage, 0.1f);
+            qualityCrystalImage.sprite = qualityGlowingSprite;
+            SetImageAlpha(progressCrystalImage, 0.1f);
+            progressCrystalImage.sprite = progressGlowingSprite;
+        }
         private void OnEnable()
         {
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
@@ -28,35 +35,23 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void QualityUpdatedHandler(int value)
         {
-            // Check for any threshold
-            if (qualityPositiveThresholds.Contains(value) || qualityNegativeThresholds.Contains(value))
-            {
-                ApplyGlowEffect(qualityCrystalImage, qualityGlowingSprite);
-            }
-            else
-            {
-                qualityCrystalImage.sprite = value > GameManager.Instance.QualityValueToWin ? qualityChargedCrystal : qualityUnchargedCrystal;
-            }
+            float alpha = value < -30 ? 0.1f : (value > 30 ? 1.0f : Mathf.Lerp(0.1f, 1.0f, (value + 30) / 60f));
+            SetImageAlpha(qualityCrystalImage, alpha);
+            qualityCrystalImage.sprite = qualityGlowingSprite;
         }
 
         private void ProgressUpdatedHandler(int value)
         {
-            // Check if the value is one of the thresholds
-            if (progressThresholds.Contains(value))
-            {
-                ApplyGlowEffect(progressCrystalImage, progressGlowingSprite);
-            }
-            else
-            {
-                progressCrystalImage.sprite = value > GameManager.Instance.ProgressValueToWin ? progressChargedCrystal : progressUnchargedCrystal;
-            }
+            float alpha = value == 0 ? 0.1f : (value > 20 ? 1.0f : Mathf.Lerp(0.1f, 1.0f, value / 20f));
+            SetImageAlpha(progressCrystalImage, alpha);
+            progressCrystalImage.sprite = progressGlowingSprite;
         }
 
-        private void ApplyGlowEffect(Image crystalImage, Sprite glowingSprite)
+        private void SetImageAlpha(Image image, float alpha)
         {
-            crystalImage.sprite = glowingSprite;
-            crystalImage.transform
-                .DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
+            Color color = image.color;
+            color.a = alpha;
+            image.color = color;
         }
 
         private void OnDisable()
