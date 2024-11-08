@@ -19,7 +19,7 @@ namespace Methodyca.Minigames.DocStudy
         [SerializeField] private RectTransform areaRectTransform;
         [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private Slider selectionsSlider;
-        
+
 
         // main game connection
         [SerializeField] private GameObject winAndQuitButton;
@@ -67,7 +67,7 @@ namespace Methodyca.Minigames.DocStudy
             else
             {
                 feedback.text = $"<b>{_emailTitle}</b>\n\n{_feedbackForMoreCorrect}\n\n{_emailGratitude}";
-                
+
                 // allow player to win game and quit to main game
                 winAndQuitButton.SetActive(true);
             }
@@ -95,7 +95,7 @@ namespace Methodyca.Minigames.DocStudy
                     selectedCorrectThreads++;
                 }
             }
-            correctSelectionDetails += $"You selected {selectedCorrectThreads}/{currentQuestion.Threads.Length} suitable threads:\n\n";
+            correctSelectionDetails += $"The relevant threads you selected:\n\n";
 
             int threadIndex = 1;
             foreach (var thread in currentQuestion.Threads)
@@ -107,7 +107,7 @@ namespace Methodyca.Minigames.DocStudy
                 }
             }
 
-            correctSelectionDetails += $"\nYou selected {GameManager.Instance.GetSelectedCorrectPostsCount()}/{GameManager.Instance.GetTotalCorrectPostsCount()} suitable posts:\n\n";
+            correctSelectionDetails += $"\nThe relevant posts you selected:\n\n";
 
             foreach (var thread in currentQuestion.Threads)
             {
