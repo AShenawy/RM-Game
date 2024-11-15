@@ -1013,7 +1013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1377.3125, y: -766.4401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99829813
@@ -1596,7 +1596,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 214491719}
         m_MethodName: ClickSound
@@ -4368,7 +4368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 923.54443, y: 186.99994}
   m_Pivot: {x: 0.5, y: 1.0000001}
 --- !u!114 &821920946
@@ -10081,8 +10081,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newRejectButton: {fileID: 90466578}
   choosingColor: <mark=#000000aa>
-  wrongColor: <mark=#004589aa>
-  correctColor: <mark=#004589aa>
+  wrongColor: <mark=#c60000aa>
+  correctColor: <mark=#045400aa>
   progressValueToWin: 17
   qualityValueToWin: 24
   winFeedback:
@@ -10135,8 +10135,7 @@ MonoBehaviour:
     Character: {fileID: 21300000, guid: fb03f5fd233a59645b8df45d9465dd78, type: 3}
     Name: Auditor
     Speech: Now you need to evaluate research proposals based on the appropriateness
-      of the methodology and methods.. Use the instruction book to look for more
-      rules.
+      of the methodology and methods. Use the instruction book to look for more rules.
 --- !u!4 &2126865539
 Transform:
   m_ObjectHideFlags: 0
