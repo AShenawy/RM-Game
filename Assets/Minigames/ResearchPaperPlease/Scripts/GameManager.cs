@@ -188,20 +188,23 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
                     correctAcceptCount++;
+                    Debug.Log("A");
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
-                    correctAcceptCount++;
+                    incorrectAcceptCount++;
+                    Debug.Log("B");
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), wrongColor);
                 }
                 else
                 {
                     incorrectAcceptCount++;
+                    Debug.Log("C");
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -215,6 +218,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
                 {
                     incorrectRejectCount++;
+                    Debug.Log("D");
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnPaperDecided?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -223,40 +227,57 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
                     bool wasFixed = false;
+                    string feedbackcolor = correctColor;
                     foreach (var option in _currentResearchPaperData.FixRequiredOptions)
                     {
                         if (_fixButtonPairs[option])
                         {
                             correctRejectCount++;
+                            Debug.Log("E");
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             wasFixed = true;
                             break;
                         }
                     }
-                    if (!wasFixed) incorrectRejectCount++;
+                    if (!wasFixed)
+                    {
+                        incorrectRejectCount++;
+                        feedbackcolor = wrongColor;
+                        Debug.Log("F");
+                    }
 
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), feedbackcolor);
                     OnPaperDecided?.Invoke(false);
                 }
                 else
                 {
                     bool wasFixed = false;
+                    string feedbackcolor = correctColor;
                     foreach (var option in _currentResearchPaperData.FixRequiredOptions)
                     {
                         if (_fixButtonPairs[option])
                         {
                             correctRejectCount++;
+                            Debug.Log("G");
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
+                            OnPaperDecided?.Invoke(false);
                             wasFixed = true;
-                            break;
+                            return;
+                            //break;
+
                         }
                     }
-                    if (!wasFixed) incorrectRejectCount++;
-
+                    if (!wasFixed)
+                    {
+                        incorrectRejectCount++;
+                        //player correctly rejected but doesn't fix the paper
+                        feedbackcolor = wrongColor;
+                        Debug.Log("H");
+                    }
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
-                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
+                    OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), feedbackcolor);
                     OnPaperDecided?.Invoke(false);
                 }
             }
