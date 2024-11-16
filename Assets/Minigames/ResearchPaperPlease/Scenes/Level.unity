@@ -1182,10 +1182,10 @@ RectTransform:
   m_Father: {fileID: 391170522}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1377.3125, y: -766.4401}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 170}
+  m_SizeDelta: {x: 550, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99829813
 MonoBehaviour:
@@ -1444,16 +1444,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Purple crystal charger shows the quality of your decisions.
+  m_text: 'Purple crystal charger shows the quality of your decisions.
+
+    Quality
+    of at least 24 to win.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418cceaffa8a14243adc29804df5ca7a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -8383474242479731975, guid: 418cceaffa8a14243adc29804df5ca7a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4290445242
   m_fontColor: {r: 0.7294118, g: 1, b: 0.7294118, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1513,18 +1517,18 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 111782080}
-    characterCount: 59
+    characterCount: 90
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 15
+    wordCount: 16
     linkCount: 0
-    lineCount: 2
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -5017,6 +5021,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &981363996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 981363997}
+  - component: {fileID: 981363999}
+  - component: {fileID: 981363998}
+  m_Layer: 0
+  m_Name: TMP SubMeshUI [Courier Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &981363997
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981363996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1884145457}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &981363998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981363996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 1.25
+  m_canvasRenderer: {fileID: 981363999}
+  m_TextComponent: {fileID: 1884145458}
+  m_materialReferenceIndex: 1
+--- !u!222 &981363999
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981363996}
+  m_CullTransparentMesh: 0
 --- !u!1 &998021006
 GameObject:
   m_ObjectHideFlags: 0
@@ -7348,10 +7425,10 @@ RectTransform:
   m_Father: {fileID: 391170522}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1377.3123, y: -766.4402}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 170}
+  m_SizeDelta: {x: 550, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589332227
 MonoBehaviour:
@@ -8538,7 +8615,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 981363997}
   m_Father: {fileID: 1589332226}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8566,7 +8644,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Blue crystal charger shows the number of accepted papers.
+  m_text: 'Blue crystal charger shows the number of accepted papers.
+
+    Accept
+    at least 17 to win.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 418cceaffa8a14243adc29804df5ca7a, type: 2}
   m_sharedMaterial: {fileID: -8383474242479731975, guid: 418cceaffa8a14243adc29804df5ca7a,
@@ -8636,12 +8717,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1884145458}
-    characterCount: 57
+    characterCount: 84
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 14
+    wordCount: 15
     linkCount: 0
-    lineCount: 3
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -8650,7 +8731,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 981363998}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
