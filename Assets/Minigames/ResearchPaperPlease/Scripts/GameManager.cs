@@ -52,6 +52,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Text rejectedWronglyText;
         [SerializeField] private Feedback preLevel2Feedback;  // New serialized field for pre-level 2 feedback
         [SerializeField] private Feedback preLevel3Feedback;  // New serialized field for pre-level 3 feedback
+        [SerializeField] private Image notebookImage;
 
         public static event Action<bool> OnFix = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
@@ -101,6 +102,14 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             // Display introductory speech first
             if (_introSpeech.Count > 0)
             {
+                if (_introSpeech.Count == 2)
+                {
+                    notebookImage.color = new Color(0.58f, 0.96f, 1.0f);
+                }
+                else
+                {
+                    notebookImage.color = Color.white;
+                }
                 OnFeedbackInitiated?.Invoke(_introSpeech.Dequeue());
                 return;
             }
