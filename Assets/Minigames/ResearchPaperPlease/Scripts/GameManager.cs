@@ -183,6 +183,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             if (isAccepted)
             {
+                newRejectButton.SetActive(false);
                 _acceptedPaperData.Add(_currentResearchPaperData);
 
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
