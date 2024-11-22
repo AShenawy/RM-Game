@@ -182,6 +182,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             paperText.text = "";
 
+            var playerSelectedOptions = GameManager.Instance.GetPlayerSelectedOptions();
+
             foreach (var option in _currentPaperData.Options)
             {
                 if (char.IsWhiteSpace(option.Index))
@@ -192,7 +194,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     if (fixbuttons[option.Index])
                     {
-                        paperText.text += $"{markTag}<font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
+                        string highlightTag = markTag;
+                        if (playerSelectedOptions.ContainsKey(option.Index))
+                        {
+                            highlightTag = "<mark=#000000aa>";
+                        }
+                        paperText.text += $"{highlightTag}<font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
                     }
                     else
                     {

@@ -95,6 +95,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private bool isPreLevelFeedbackShown = false; // Track if feedback for levels 2 or 3 has been shown
 
+        private Dictionary<char, bool> _playerSelectedOptions = new Dictionary<char, bool>();
+
         public void InitiateNextLevel()
         {
             feedbackWindow.SetActive(false);
@@ -297,9 +299,22 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         {
             _fixButtonPairs[optionIndex] = isPressed;
 
+            if (isPressed)
+            {
+                _playerSelectedOptions[optionIndex] = true;
+            }
+            else
+            {
+                _playerSelectedOptions.Remove(optionIndex);
+            }
+
             OnOptionHighlighted?.Invoke(_fixButtonPairs, choosingColor);
             OnFix?.Invoke(_fixButtonPairs.ContainsValue(true));
+        }
 
+        public Dictionary<char, bool> GetPlayerSelectedOptions()
+        {
+            return _playerSelectedOptions;
         }
 
         private void HandleGameOver()
