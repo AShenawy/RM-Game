@@ -149,6 +149,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 NextRule();
                 PreviousRule();
                 InitiateFixButtons();
+                HandleNextPaper();
                 OnLevelInitiated?.Invoke(_currentLevelData);
             }
         }
