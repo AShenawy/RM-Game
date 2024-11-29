@@ -100,6 +100,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public void InitiateNextLevel()
         {
             feedbackWindow.SetActive(false);
+            newRejectButton.SetActive(false);
 
             // Display introductory speech first
             if (_introSpeech.Count > 0)
@@ -117,7 +118,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
 
             // Show feedback before levels 2 and 3, but ensure it's only shown once
-            if ((_currentLevelIndex == 1 && !isPreLevelFeedbackShown))
+            if (_currentLevelIndex == 1 && !isPreLevelFeedbackShown)
             {
                 OnFeedbackInitiated?.Invoke(preLevel2Feedback);
                 isPreLevelFeedbackShown = true;
@@ -149,8 +150,13 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 NextRule();
                 PreviousRule();
                 InitiateFixButtons();
-                HandleNextPaper();
                 OnLevelInitiated?.Invoke(_currentLevelData);
+
+                // Initiate the first research paper of next level
+                _currentResearchPaperData = _allResearchPaper.Dequeue();
+                OnPaperUpdated?.Invoke(_currentResearchPaperData);
+                OnPageUpdated?.Invoke(_initialTotalPaperCountPerLevel - _allResearchPaper.Count, _initialTotalPaperCountPerLevel);
+                newRejectButton.SetActive(true);
             }
         }
 
