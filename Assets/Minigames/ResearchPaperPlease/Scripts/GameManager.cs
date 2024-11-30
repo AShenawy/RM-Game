@@ -37,6 +37,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public string choosingColor = "<mark=#000000aa>";
         public string wrongColor = "<mark=#ff0000aa>";
         public string correctColor = "<mark=#00ff00aa>";
+        [SerializeField] private UICrystalSoundEffect crystalSoundEffect;
 
         [Header("Old Settings")]
         [SerializeField] private int progressValueToWin;
@@ -210,6 +211,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     Debug.Log("A");
                     OnProgressUpdated?.Invoke(++_progressValue);
                     OnQualityUpdated?.Invoke(++_qualityValue);
+                    crystalSoundEffect.PlayCorrectSoundEffect();
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
@@ -219,6 +221,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnQualityUpdated?.Invoke(++_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), wrongColor);
+                    crystalSoundEffect.PlayIncorrectSoundEffect();
+
                 }
                 else
                 {
@@ -228,6 +232,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnQualityUpdated?.Invoke(--_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), wrongColor);
+                    crystalSoundEffect.PlayIncorrectSoundEffect();
                 }
 
                 OnPaperDecided?.Invoke(true);
@@ -242,6 +247,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnPaperDecided?.Invoke(false);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), correctColor);
+                    crystalSoundEffect.PlayIncorrectSoundEffect();
                 }
                 else if (_currentResearchPaperData.Quality == PaperQuality.Medium)
                 {
@@ -254,6 +260,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                             correctRejectCount++;
                             Debug.Log("E");
                             OnQualityUpdated?.Invoke(++_qualityValue);
+                            crystalSoundEffect.PlayCorrectSoundEffect();
                             wasFixed = true;
                             break;
                         }
@@ -261,6 +268,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     if (!wasFixed)
                     {
                         incorrectRejectCount++;
+                        crystalSoundEffect.PlayIncorrectSoundEffect();
                         feedbackcolor = wrongColor;
                         Debug.Log("F");
                     }
@@ -282,6 +290,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                             OnQualityUpdated?.Invoke(++_qualityValue);
                             OnFeedbackInitiated?.Invoke(_currentResearchPaperData.StudentReaction);
                             OnPaperDecided?.Invoke(false);
+                            crystalSoundEffect.PlayCorrectSoundEffect();
                             wasFixed = true;
                             return;
                             //break;
@@ -291,6 +300,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     if (!wasFixed)
                     {
                         incorrectRejectCount++;
+                        crystalSoundEffect.PlayIncorrectSoundEffect();
                         //player correctly rejected but doesn't fix the paper
                         feedbackcolor = wrongColor;
                         Debug.Log("H");
