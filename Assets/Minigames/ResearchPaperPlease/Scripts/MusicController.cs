@@ -5,19 +5,24 @@ public class MusicController : MonoBehaviour
 {
     public Sprite offSprite;
     public Sprite onSprite;
+    public AudioSource correctOrWrongAudioSource;
+    public AudioSource backgroundMusicAudioSource;
 
-    private Image buttonImage;
+    public Image globalMusicImage;
+    public Image correctOrWrongSoundImage;
+    public Image backgroundMusicImage;
     private bool isMuted = false;
+    private bool isCorrectOrWrongMuted = false;
 
+    private bool isBackgroundMusicMuted = false;
     void Start()
     {
-        buttonImage = GetComponent<Image>();
         UpdateButtonSprite();
     }
 
-    public void ToggleMusic()
+    public void ToggleGlobalMusic()
     {
-        // Toggle the mute state
+        // Toggle the global mute state
         isMuted = !isMuted;
 
         // Set the global volume to 0 if muted, 1 if unmuted
@@ -27,11 +32,43 @@ public class MusicController : MonoBehaviour
         UpdateButtonSprite();
     }
 
+    public void ToggleTargetMusic()
+    {
+        isCorrectOrWrongMuted = !isCorrectOrWrongMuted;
+
+        if (correctOrWrongAudioSource != null)
+        {
+            correctOrWrongAudioSource.mute = isCorrectOrWrongMuted;
+        }
+
+        UpdateButtonSprite();
+    }
+
+    public void ToggleBackgroundMusic()
+    {
+        isBackgroundMusicMuted = !isBackgroundMusicMuted;
+
+        if (backgroundMusicAudioSource != null)
+        {
+            backgroundMusicAudioSource.mute = !backgroundMusicAudioSource.mute;
+        }
+
+        UpdateButtonSprite();
+    }
+
     private void UpdateButtonSprite()
     {
-        if (buttonImage != null)
+        if (globalMusicImage != null)
         {
-            buttonImage.sprite = isMuted ? offSprite : onSprite;
+            globalMusicImage.sprite = isMuted ? offSprite : onSprite;
+        }
+        if (correctOrWrongSoundImage != null)
+        {
+            correctOrWrongSoundImage.sprite = isCorrectOrWrongMuted ? offSprite : onSprite;
+        }
+        if (backgroundMusicImage != null)
+        {
+            backgroundMusicImage.sprite = isBackgroundMusicMuted ? offSprite : onSprite;
         }
     }
 }

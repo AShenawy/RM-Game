@@ -334,6 +334,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             return _playerSelectedOptions;
         }
 
+        public void StartGameWithoutIntro()
+        {
+            _introSpeech.Clear();
+            InitiateNextLevel();
+        }
+
         private void HandleGameOver()
         {
             if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue > qualityValueToWin)
@@ -460,7 +466,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
             _introSpeech = new Queue<Feedback>(introSpeech);
             TotalPaperCount = GetTotalResearchPaperCount();
-            InitiateNextLevel();
         }
 
         private Dictionary<char, bool> GetFixedRequiredOptionDictionary()
