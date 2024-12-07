@@ -218,7 +218,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     incorrectAcceptCount++;
                     Debug.Log("B");
                     OnProgressUpdated?.Invoke(++_progressValue);
-                    OnQualityUpdated?.Invoke(++_qualityValue);
+                    OnQualityUpdated?.Invoke(--_qualityValue);
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
                     OnOptionHighlighted?.Invoke(GetFixedRequiredOptionDictionary(), wrongColor);
                     crystalSoundEffect.PlayIncorrectSoundEffect();
@@ -270,6 +270,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                         incorrectRejectCount++;
                         crystalSoundEffect.PlayIncorrectSoundEffect();
                         feedbackcolor = wrongColor;
+                        OnQualityUpdated?.Invoke(--_qualityValue);
                         Debug.Log("F");
                     }
 
@@ -292,9 +293,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                             OnPaperDecided?.Invoke(false);
                             crystalSoundEffect.PlayCorrectSoundEffect();
                             wasFixed = true;
-                            return;
-                            //break;
-
+                            break;
                         }
                     }
                     if (!wasFixed)
@@ -303,6 +302,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                         crystalSoundEffect.PlayIncorrectSoundEffect();
                         //player correctly rejected but doesn't fix the paper
                         feedbackcolor = wrongColor;
+                        OnQualityUpdated?.Invoke(--_qualityValue);
                         Debug.Log("H");
                     }
                     OnFeedbackInitiated?.Invoke(_currentResearchPaperData.AuditorReaction);
@@ -342,26 +342,26 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void HandleGameOver()
         {
-            if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue > qualityValueToWin)
+            if (_progressValue >= progressValueToWin && _qualityValue >= qualityValueToWin)
             {
                 OnGameOver?.Invoke(true);
                 OnFeedbackInitiated?.Invoke(winFeedback);
             }
-            else if (_progressValue > progressValueToWin && _progressValue <= _maxProgressionValueToWin && _qualityValue <= qualityValueToWin)
+            else if (_progressValue >= progressValueToWin && _qualityValue < qualityValueToWin)
             {
-                loseFeedback.Speech += " Too much paper was rejected for wrong reasons. I suggest you try again and be more careful.";
+                loseFeedback.Speech += " You have accepted enough papers, but the quality of your decisions could be better.";
                 OnGameOver?.Invoke(false);
                 OnFeedbackInitiated?.Invoke(loseFeedback);
             }
-            else if (_progressValue > _maxProgressionValueToWin)
+            else if (_progressValue <= progressValueToWin && _qualityValue >= qualityValueToWin)
             {
-                loseFeedback.Speech += " Too many low-quality research plans got accepted. I suggest you try again and be more careful.";
+                loseFeedback.Speech += " The quality of your decisions is high, but you have rejected too many papers. Sometimes, you need to forgive small mistakes.";
                 OnGameOver?.Invoke(false);
                 OnFeedbackInitiated?.Invoke(loseFeedback);
             }
             else
             {
-                loseFeedback.Speech += " Too much paper was rejected for wrong reasons, and many low-quality research plans got accepted. I suggest you try again and be more careful.";
+                loseFeedback.Speech += "You have rejected too many papers, and the quality of your decisions is not good.";
                 OnGameOver?.Invoke(false);
                 OnFeedbackInitiated?.Invoke(loseFeedback);
             }
