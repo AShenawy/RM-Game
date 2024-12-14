@@ -97,6 +97,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private bool isPreLevelFeedbackShown = false; // Track if feedback for levels 2 or 3 has been shown
 
         private Dictionary<char, bool> _playerSelectedOptions = new Dictionary<char, bool>();
+        private string initialLoseFeedbackSpeech;
 
         public void InitiateNextLevel()
         {
@@ -293,7 +294,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                             OnPaperDecided?.Invoke(false);
                             crystalSoundEffect.PlayCorrectSoundEffect();
                             wasFixed = true;
-                            break;
+                            return;
                         }
                     }
                     if (!wasFixed)
@@ -342,6 +343,9 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void HandleGameOver()
         {
+            // Reset loseFeedback.Speech
+            loseFeedback.Speech = initialLoseFeedbackSpeech;
+
             if (_progressValue >= progressValueToWin && _qualityValue >= qualityValueToWin)
             {
                 OnGameOver?.Invoke(true);
@@ -466,6 +470,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             _currentResearchPaperDataByLevel = GetResearchPaperDataByLevel();
             _introSpeech = new Queue<Feedback>(introSpeech);
             TotalPaperCount = GetTotalResearchPaperCount();
+            initialLoseFeedbackSpeech = loseFeedback.Speech;
         }
 
         private Dictionary<char, bool> GetFixedRequiredOptionDictionary()
