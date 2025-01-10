@@ -32,14 +32,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
     }
     public class GameManager : Singleton<GameManager>
     {
-        [Header("New Modifications 2024")]
-        public GameObject newRejectButton;
-        public string choosingColor = "<mark=#000000aa>";
-        public string wrongColor = "<mark=#ff0000aa>";
-        public string correctColor = "<mark=#00ff00aa>";
         [SerializeField] private UICrystalSoundEffect crystalSoundEffect;
-
-        [Header("Old Settings")]
         [SerializeField] private int progressValueToWin;
         [SerializeField] private int qualityValueToWin;
         [SerializeField] private Feedback winFeedback;
@@ -54,7 +47,6 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Feedback preLevel2Feedback;  // New serialized field for pre-level 2 feedback
         [SerializeField] private Feedback preLevel3Feedback;  // New serialized field for pre-level 3 feedback
         [SerializeField] private Image notebookImage;
-
         public static event Action<bool> OnFix = delegate { };
         public static event Action<bool> OnPaperDecided = delegate { };
         public static event Action<int> OnProgressUpdated = delegate { };
@@ -68,9 +60,14 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public static event Action<ResearchPaperData> OnPaperUpdated = delegate { };
         public static event Action<Dictionary<char, bool>, string> OnOptionHighlighted = delegate { };
 
+        public GameObject newRejectButton;
+        public CanvasGroup fixButtonCanvasGroup;
         public int TotalPaperCount { get; private set; }
         public int ProgressValueToWin { get => progressValueToWin; }
         public int QualityValueToWin { get => qualityValueToWin; }
+        public string choosingColor = "<mark=#000000aa>";
+        public string wrongColor = "<mark=#ff0000aa>";
+        public string correctColor = "<mark=#00ff00aa>";
 
         private LevelData _currentLevelData;
         private ResearchPaperData _currentResearchPaperData;
@@ -80,6 +77,7 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private Dictionary<int, ResearchPaperData[]> _currentResearchPaperDataByLevel = new Dictionary<int, ResearchPaperData[]>();
         private List<ResearchPaperData> _acceptedPaperData = new List<ResearchPaperData>();
         private List<string> _rules;
+        private Dictionary<char, bool> _playerSelectedOptions = new Dictionary<char, bool>();
 
         private int _rulePageIndex = -2;
         private int _qualityValue = 0;
@@ -91,18 +89,16 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         private int correctRejectCount = 0;
         private int incorrectAcceptCount = 0;
         private int incorrectRejectCount = 0;
-
         private const int _maxProgressionValueToWin = 20;
-
         private bool isPreLevelFeedbackShown = false; // Track if feedback for levels 2 or 3 has been shown
-
-        private Dictionary<char, bool> _playerSelectedOptions = new Dictionary<char, bool>();
         private string initialLoseFeedbackSpeech;
 
         public void InitiateNextLevel()
         {
             feedbackWindow.SetActive(false);
             newRejectButton.SetActive(false);
+            fixButtonCanvasGroup.interactable = true;
+            fixButtonCanvasGroup.blocksRaycasts = true;
 
             // Display introductory speech first
             if (_introSpeech.Count > 0)
@@ -159,6 +155,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 OnPaperUpdated?.Invoke(_currentResearchPaperData);
                 OnPageUpdated?.Invoke(_initialTotalPaperCountPerLevel - _allResearchPaper.Count, _initialTotalPaperCountPerLevel);
                 newRejectButton.SetActive(true);
+                fixButtonCanvasGroup.interactable = false;
+                fixButtonCanvasGroup.blocksRaycasts = false;
             }
         }
 
@@ -174,6 +172,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                     OnPaperUpdated?.Invoke(_currentResearchPaperData);
                     OnPageUpdated?.Invoke(_initialTotalPaperCountPerLevel - _allResearchPaper.Count, _initialTotalPaperCountPerLevel);
                     newRejectButton.SetActive(true);
+                    fixButtonCanvasGroup.interactable = false;
+                    fixButtonCanvasGroup.blocksRaycasts = false;
                 }
                 else
                 {
@@ -191,6 +191,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
                     ShowLevelFeedback(); // Display the feedback window
                     newRejectButton.SetActive(false);
+                    fixButtonCanvasGroup.interactable = true;
+                    fixButtonCanvasGroup.blocksRaycasts = true;
                 }
             }
             else
@@ -204,6 +206,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             if (isAccepted)
             {
                 newRejectButton.SetActive(false);
+                fixButtonCanvasGroup.interactable = true;
+                fixButtonCanvasGroup.blocksRaycasts = true;
                 _acceptedPaperData.Add(_currentResearchPaperData);
 
                 if (_currentResearchPaperData.Quality == PaperQuality.High)
