@@ -122,7 +122,8 @@ Oh, and do make use of that crystal to visit Student. You will probably need his
 }
 {offeredHelp and (usedCrystal or reminderCrystal):
 {cycle:
-- Good day.
+- Good day. 
+* [Leave]-> END
 - Yes, yes, begone now.
 - I shall see you later, possibly.
 }

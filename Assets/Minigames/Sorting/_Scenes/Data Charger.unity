@@ -599,13 +599,12 @@ MonoBehaviour:
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: 0
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
@@ -613,6 +612,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -623,10 +624,8 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.095
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
+  parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -634,40 +633,18 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
   m_margin: {x: 20, y: 20, z: 20, w: 20}
-  m_textInfo:
-    textComponent: {fileID: 93333458}
-    characterCount: 179
-    spriteCount: 0
-    spaceCount: 29
-    wordCount: 30
-    linkCount: 0
-    lineCount: 3
-    pageCount: 1
-    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &93333459
@@ -936,7 +913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: afeb245aa801240a8aaa6e413202a37b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 778bc86666cd44c9887bc7eea630577f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1333,10 +1310,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 79
     m_Alignment: 2
     m_AlignByGeometry: 0
@@ -1356,6 +1333,8 @@ MonoBehaviour:
 
     Development
     consultation:
+
+    Quality Assurance:
 
 '
 --- !u!222 &302327591
@@ -2291,6 +2270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalImageRenderer: {fileID: 1829932744}
   crystalPhases:
+  - {fileID: 21300000, guid: cd816d5b81f9949e49254f7ef89d6e35, type: 3}
+  - {fileID: 21300000, guid: 330882ea991bb40ee8620fdbc4e6e579, type: 3}
+  - {fileID: 21300000, guid: 63da7916cc53646c89efbd81379795a8, type: 3}
+  - {fileID: 21300000, guid: ac4216bb4f654453fb30f348b25dfd49, type: 3}
+  - {fileID: 21300000, guid: 68e00b571a14a4bda95fb53370376bff, type: 3}
   - {fileID: 21300000, guid: c36cc2167deb34e8b87db7e597cc20bb, type: 3}
   - {fileID: 21300000, guid: c4a9c9c8d28a945ddbf97d31980074ff, type: 3}
   - {fileID: 21300000, guid: 402f966ed26ce4fa2a0c85c19e215374, type: 3}
@@ -2306,6 +2290,7 @@ MonoBehaviour:
     loop: 1
     pan: -1
     source: {fileID: 0}
+  currentPhase: 0
 --- !u!114 &545214132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2467,6 +2452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1290497627}
   otherSortBox: {fileID: 827433517}
+  crystal: {fileID: 0}
   placementReference: {fileID: 668920366}
   acceptableItemTag: Qualitative
   inTheBox: []
@@ -3009,13 +2995,12 @@ MonoBehaviour:
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: 0
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
   m_fontSize: 28
   m_fontSizeBase: 28
   m_fontWeight: 400
@@ -3023,6 +3008,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 1028
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3033,10 +3020,8 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.095
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
+  parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -3044,40 +3029,18 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 611883003}
-    characterCount: 13
-    spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &611883004
@@ -3832,6 +3795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1290497627}
   otherSortBox: {fileID: 569189697}
+  crystal: {fileID: 0}
   placementReference: {fileID: 1710780501}
   acceptableItemTag: Quantitative
   inTheBox: []
@@ -5431,6 +5395,8 @@ MonoBehaviour:
   requiredItemsInBox: 5
   buttonsPanel: {fileID: 324152594}
   winScreen: {fileID: 1930363418}
+  blueCrystal: {fileID: 1611874113}
+  pinkCrystal: {fileID: 545214129}
   BGM:
     name: Main BGM
     clip: {fileID: 8300000, guid: 7540e8a21e1f14de49d4264037651663, type: 3}
@@ -11280,10 +11246,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 79
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -11292,7 +11258,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Martin Sillaots\r\nElena Gorshkova\r\nIryna Selina\r\nAnni H\xF5\r\nOluwafiyikewa
-    Aigbovbioise Alawode\r\nAhmed Elshenawy\r\n"
+    Aigbovbioise Alawode\r\nAhmed Elshenawy\nZike Tang\r\n"
 --- !u!222 &1607424360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11354,6 +11320,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalImageRenderer: {fileID: 440691334}
   crystalPhases:
+  - {fileID: 21300000, guid: daa35adb85b584162b6ce52dfa340c88, type: 3}
+  - {fileID: 21300000, guid: 002ce1b1b4cc24286a3dec0be523b9b9, type: 3}
+  - {fileID: 21300000, guid: 3bcde3b8572d243c5b822a8c30218e54, type: 3}
+  - {fileID: 21300000, guid: df170efc1e096480f87b23a0235d3a8f, type: 3}
+  - {fileID: 21300000, guid: 70bf9fa11df954365b5a0538f2de7859, type: 3}
   - {fileID: 21300000, guid: 5604f4b0665e54715b5e0ccd59c24b1f, type: 3}
   - {fileID: 21300000, guid: 494a9207084ec43a1b754801db9eebef, type: 3}
   - {fileID: 21300000, guid: 1f0ba8dbc92a54f1d819ad55e6e43d4e, type: 3}
@@ -11369,6 +11340,7 @@ MonoBehaviour:
     loop: 1
     pan: 1
     source: {fileID: 0}
+  currentPhase: 0
 --- !u!114 &1611874114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13083,6 +13055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &2113048696
 GameObject:
   m_ObjectHideFlags: 0
