@@ -23,3 +23,4 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         public ResearchPaperData[] Researches { get => researches; }
     }
 }
+

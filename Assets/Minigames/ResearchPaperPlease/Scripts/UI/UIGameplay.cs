@@ -178,9 +178,11 @@ namespace Methodyca.Minigames.ResearchPaperPlease
             }
         }
 
-        private void OptionHighlightedHandler(Dictionary<char, bool> fixbuttons)
+        private void OptionHighlightedHandler(Dictionary<char, bool> fixbuttons, string markTag)
         {
             paperText.text = "";
+
+            var playerSelectedOptions = GameManager.Instance.GetPlayerSelectedOptions();
 
             foreach (var option in _currentPaperData.Options)
             {
@@ -192,7 +194,12 @@ namespace Methodyca.Minigames.ResearchPaperPlease
                 {
                     if (fixbuttons[option.Index])
                     {
-                        paperText.text += $"<mark=#000000aa><font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
+                        string highlightTag = markTag;
+                        if (playerSelectedOptions.ContainsKey(option.Index))
+                        {
+                            highlightTag = "<mark=#000000aa>";
+                        }
+                        paperText.text += $"{highlightTag}<font=\"Courier\"><b>{option.Index}) {option.Header}:</b> {option.Text}</mark>\n";
                     }
                     else
                     {

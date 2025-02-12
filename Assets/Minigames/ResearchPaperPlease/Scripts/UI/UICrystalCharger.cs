@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 namespace Methodyca.Minigames.ResearchPaperPlease
 {
@@ -12,7 +13,20 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         [SerializeField] private Sprite progressUnchargedCrystal;
         [SerializeField] private Sprite qualityChargedCrystal;
         [SerializeField] private Sprite qualityUnchargedCrystal;
+        [SerializeField] private Sprite progressGlowingSprite; // Sprite for glowing effect
+        [SerializeField] private Sprite qualityGlowingSprite;  // Sprite for glowing effect
 
+        private int[] progressThresholds = { 4, 8, 12, 16, 20 };
+        private int[] qualityPositiveThresholds = { 6, 12, 18, 24, 30 };
+        private int[] qualityNegativeThresholds = { -6, -12, -18, -24, -30 };
+
+        private void Start()
+        {
+            SetImageAlpha(qualityCrystalImage, 0.1f);
+            qualityCrystalImage.sprite = qualityGlowingSprite;
+            SetImageAlpha(progressCrystalImage, 0.1f);
+            progressCrystalImage.sprite = progressGlowingSprite;
+        }
         private void OnEnable()
         {
             GameManager.OnProgressUpdated += ProgressUpdatedHandler;
@@ -21,28 +35,23 @@ namespace Methodyca.Minigames.ResearchPaperPlease
 
         private void QualityUpdatedHandler(int value)
         {
-            if (value > GameManager.Instance.QualityValueToWin)
-            {
-                qualityCrystalImage.sprite = qualityChargedCrystal;
-                qualityCrystalImage.transform.DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
-            }
-            else
-            {
-                qualityCrystalImage.sprite = qualityUnchargedCrystal;
-            }
+            float alpha = value < -30 ? 0.1f : (value > 30 ? 1.0f : Mathf.Lerp(0.1f, 1.0f, (value + 30) / 60f));
+            SetImageAlpha(qualityCrystalImage, alpha);
+            qualityCrystalImage.sprite = qualityGlowingSprite;
         }
 
         private void ProgressUpdatedHandler(int value)
         {
-            if (value > GameManager.Instance.ProgressValueToWin)
-            {
-                progressCrystalImage.sprite = progressChargedCrystal;
-                progressCrystalImage.transform.DOShakePosition(duration: 0.5f, strength: 8 * Vector2.one, vibrato: 50, fadeOut: false);
-            }
-            else
-            {
-                progressCrystalImage.sprite = progressUnchargedCrystal;
-            }
+            float alpha = value == 0 ? 0.1f : (value > 20 ? 1.0f : Mathf.Lerp(0.1f, 1.0f, value / 20f));
+            SetImageAlpha(progressCrystalImage, alpha);
+            progressCrystalImage.sprite = progressGlowingSprite;
+        }
+
+        private void SetImageAlpha(Image image, float alpha)
+        {
+            Color color = image.color;
+            color.a = alpha;
+            image.color = color;
         }
 
         private void OnDisable()
@@ -52,3 +61,8 @@ namespace Methodyca.Minigames.ResearchPaperPlease
         }
     }
 }
+
+
+
+
+
