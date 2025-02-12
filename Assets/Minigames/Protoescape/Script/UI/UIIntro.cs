@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Methodyca.Minigames.Protoescape
 {
@@ -8,6 +10,13 @@ namespace Methodyca.Minigames.Protoescape
         [SerializeField] private Transform alienEye;
         [SerializeField] private int strength = 50;
         [SerializeField] private int vibrato = 1;
+        [SerializeField] private Button skipIntro;
+        [SerializeField] private GameObject[] skippedGameObjects;
+
+        private void Start()
+        {
+            skipIntro.onClick.AddListener(SkipIntro);
+        }
 
         public void DisplayAlienEye()
         {
@@ -18,6 +27,14 @@ namespace Methodyca.Minigames.Protoescape
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        public void SkipIntro()
+        {
+            foreach (var obj in skippedGameObjects)
+            {
+                Destroy(obj);
+            }
         }
     }
 }

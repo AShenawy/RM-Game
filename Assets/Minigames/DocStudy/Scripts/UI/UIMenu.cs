@@ -17,7 +17,7 @@ namespace Methodyca.Minigames.DocStudy
         private void DialogCompletedHandler(Dialog lastDialog)
         {
             questionPanel.SetActive(true);
-            menuButton.SetActive(true);
+            //menuButton.SetActive(true);
         }
 
         private void ForumInitiatedHandler(Question question)
