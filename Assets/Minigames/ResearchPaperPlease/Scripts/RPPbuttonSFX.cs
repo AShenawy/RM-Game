@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonSFX : MonoBehaviour
+public class RPPbuttonSFX : MonoBehaviour
 {
     public AudioSource myFx; // Reference to the AudioSource component
     public AudioClip clickFx; // Audio clip to play when the button is clicked
