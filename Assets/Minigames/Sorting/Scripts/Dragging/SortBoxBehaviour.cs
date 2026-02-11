@@ -16,13 +16,13 @@ namespace Methodyca.Minigames.SortGame
         public SortingManager gameManager;
         public SortBoxBehaviour otherSortBox;
         public Crystal crystal;
-        
+
         public GameObject placementReference;      // the parent of the items placed in the box
-        
+
         public string acceptableItemTag;           // The tag name for the boxes in the game either QA or QN.
         private int correctItemsInBoxCount = 0;    // how many correct items are currently in the box
 
-        public List <GameObject> inTheBox = new List<GameObject>();     //The list for items dropped.
+        public List<GameObject> inTheBox = new List<GameObject>();     //The list for items dropped.
 
         public Vector2 itemPlacementShift;       // the distance between the items in box,for spacing. 
 
@@ -33,13 +33,14 @@ namespace Methodyca.Minigames.SortGame
         [SerializeField] private string particleGoBackName;
 
         // Mouse released. 
-        public void OnDrop(PointerEventData eventData) 
+        public void OnDrop(PointerEventData eventData)
         {
             if (eventData.pointerDrag.GetComponent<Drag>() == null)
                 return;
 
             // Sound Effect
-            SoundManager.instance.PlaySFX(onItemPlacedSFX, true);
+            if (onItemPlacedSFX != null && onItemPlacedSFX.clip != null)
+                SoundManager.instance.PlaySFX(onItemPlacedSFX, true);
 
 
             // This is basically to define the things on the table and, make them snap to the box when clicked. 
@@ -70,7 +71,7 @@ namespace Methodyca.Minigames.SortGame
             }
 
             // invoke event to tell if correct item was added
-           // onItemDropped?.Invoke(correctItemsInBoxCount);
+            // onItemDropped?.Invoke(correctItemsInBoxCount);
         }
 
         void PlaceInBox(GameObject item)
@@ -87,7 +88,7 @@ namespace Methodyca.Minigames.SortGame
             if (itemInBox.CompareTag(acceptableItemTag))
             {
                 //if (correctItemsInBoxCount > 0)
-                    correctItemsInBoxCount--;
+                correctItemsInBoxCount--;
                 particleAnimator.SetTrigger(particleGoBackName);
                 onItemDropped?.Invoke(-1);
             }
@@ -95,7 +96,7 @@ namespace Methodyca.Minigames.SortGame
             {
                 onItemDropped?.Invoke(1);
             }
-            
+
             inTheBox.Remove(itemInBox);
 
             // rearrange items existing in the box to not sit on top of the new placed item

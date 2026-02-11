@@ -32,12 +32,14 @@ namespace Methodyca.Minigames.SortGame
             if (phase > 4)
             {
                 glowImage.enabled = true;
-                SoundManager.instance.PlaySFX(chargedSFX);
+                if (chargedSFX != null && chargedSFX.clip != null)
+                    SoundManager.instance.PlaySFX(chargedSFX);
             }
             else
             {
                 glowImage.enabled = false;
-                SoundManager.instance.StopSFX(chargedSFX.name);
+                if (chargedSFX != null && !string.IsNullOrEmpty(chargedSFX.name))
+                    SoundManager.instance.StopSFX(chargedSFX.name);
             }
         }
     }
